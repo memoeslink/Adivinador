@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fadeScrollbars="false"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.1"></View>
+
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/dialog_name_field"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:background="@drawable/custom_edit_text"
+                android:ellipsize="start"
+                android:hint="@string/input_name_hint"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="256"
+                android:paddingTop="@dimen/floating_hint_margin"
+                android:singleLine="true" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.1"></View>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/dialog_binder_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:drawableLeft="@drawable/emptiness"
+            android:drawablePadding="5dp"
+            android:drawableRight="@drawable/group_link"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.1"></View>
+
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/dialog_other_name_field"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:background="@drawable/custom_edit_text"
+                android:ellipsize="start"
+                android:hint="@string/input_other_name_hint"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLength="256"
+                android:paddingTop="@dimen/floating_hint_margin"
+                android:singleLine="true" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.1"></View>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/dialog_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"></View>
+
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/dialog_progress"
+            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:mpb_progressStyle="horizontal" />
+    </LinearLayout>
+</ScrollView>

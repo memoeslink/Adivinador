@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/preference_fortune_teller">
+        <ListPreference
+            android:defaultValue="20"
+            android:entries="@array/refresh_time"
+            android:entryValues="@array/refresh_time_values"
+            android:key="preference_refreshTime"
+            android:summary="@string/preference_refresh_frequency_summary"
+            android:title="@string/preference_refresh_frequency" />
+        <ListPreference
+            android:defaultValue="60"
+            android:entries="@array/update_time"
+            android:entryValues="@array/update_time_values"
+            android:key="preference_updateTime"
+            android:summary="@string/preference_update_frequency_summary"
+            android:title="@string/preference_update_frequency" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/fortune_teller_aspect"
+            android:entryValues="@array/fortune_teller_aspect_values"
+            android:key="preference_fortuneTellerAspect"
+            android:summary="@string/preference_fortune_teller_aspect_summary"
+            android:title="@string/preference_fortune_teller_aspect" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="preference_greetingsEnabled"
+            android:summary="@string/preference_greetings_summary"
+            android:title="@string/preference_greetings" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="preference_opinionsEnabled"
+            android:summary="@string/preference_opinions_summary"
+            android:title="@string/preference_opinions" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="preference_phrasesEnabled"
+            android:summary="@string/preference_phrases_summary"
+            android:title="@string/preference_phrases" />
+        <EditTextPreference
+            android:defaultValue="@string/emptiness"
+            android:dialogTitle="@string/preference_seed_title"
+            android:key="preference_seed"
+            android:maxLength="32"
+            android:maxLines="1"
+            android:persistent="true"
+            android:summary="@string/preference_seed_summary"
+            android:title="@string/preference_seed" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preference_audio">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="preference_audioEnabled"
+            android:summary="@string/preference_enable_audio_summary"
+            android:title="@string/preference_enable_audio" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="preference_audioEnabled"
+            android:key="preference_soundsEnabled"
+            android:summary="@string/preference_enable_sounds_summary"
+            android:title="@string/preference_enable_sounds" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="preference_audioEnabled"
+            android:key="preference_voiceEnabled"
+            android:summary="@string/preference_enable_voice_summary"
+            android:title="@string/preference_enable_voice" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:dependency="preference_voiceEnabled"
+        android:title="@string/preference_speech_synthesis">
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/text_type"
+            android:entryValues="@array/text_type_values"
+            android:key="preference_textType"
+            android:summary="@string/preference_text_reading_summary"
+            android:title="@string/preference_text_reading" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preference_interface">
+        <ListPreference
+            android:defaultValue="@string/default_language"
+            android:entries="@array/language"
+            android:entryValues="@array/language_values"
+            android:key="preference_language"
+            android:summary="@string/preference_language_summary"
+            android:title="@string/preference_language" />
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/theme"
+            android:entryValues="@array/theme_values"
+            android:key="preference_theme"
+            android:summary="@string/preference_theme_summary"
+            android:title="@string/preference_theme" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="preference_hideDrawer"
+            android:summary="@string/preference_hide_drawer_summary"
+            android:title="@string/preference_hide_drawer" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="preference_stickHeader"
+            android:summary="@string/preference_stick_header_summary"
+            android:title="@string/preference_stick_header" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="preference_particlesEnabled"
+            android:summary="@string/preference_enable_particles_summary"
+            android:title="@string/preference_enable_particles" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="preference_adsEnabled"
+            android:summaryOff="@string/preference_enable_ads_summary_off"
+            android:summaryOn="@string/preference_enable_ads_summary_on"
+            android:title="@string/preference_enable_ads" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preference_screen">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="preference_activeScreen"
+            android:summary="@string/preference_active_screen_summary"
+            android:title="@string/preference_active_screen" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preference_registry">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="preference_keepForm"
+            android:summary="@string/preference_keep_form_summary"
+            android:title="@string/preference_keep_form" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="preference_saveNames"
+            android:summary="@string/preference_save_names_summary"
+            android:title="@string/preference_save_names" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="preference_saveEnquiries"
+            android:summary="@string/preference_save_enquiries_summary"
+            android:title="@string/preference_save_enquiries" />
+    </PreferenceCategory>
+</PreferenceScreen>

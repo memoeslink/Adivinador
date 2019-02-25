@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/nav_enquiry"
+        android:checkableBehavior="single">
+         <item
+            android:id="@+id/nav_data_entry"
+            android:icon="@drawable/application_link"
+            android:title="@string/data_entry"></item>
+        <item
+            android:id="@+id/nav_reload"
+            android:icon="@drawable/reload"
+            android:title="@string/reload"></item>
+        <item
+            android:id="@+id/nav_save"
+            android:icon="@drawable/save"
+            android:title="@string/save"></item>
+        <item
+            android:id="@+id/nav_inquiry"
+            android:icon="@drawable/enquiry"
+            android:title="…"></item>
+        <item
+            android:id="@+id/nav_selector"
+            android:icon="@drawable/form"
+            android:title="@string/selector"></item>
+        <item
+            android:id="@+id/nav_clear"
+            android:icon="@drawable/clear"
+            android:title="@string/clear"></item>
+    </group>
+
+    <group
+        android:id="@+id/nav_tools"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_compatibility"
+            android:icon="@drawable/heart_half"
+            android:title="@string/compatibility"></item>
+        <item
+            android:id="@+id/nav_name_generation"
+            android:icon="@drawable/box"
+            android:title="@string/name_generation"></item>
+    </group>
+</menu>

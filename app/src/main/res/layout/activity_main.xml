@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.app.memoeslink.adivinador.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.app.memoeslink.adivinador.StickyScrollView
+            stuckShadowDrawable="@drawable/below_shadow"
+            stuckShadowHeight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <LinearLayout
+                        android:id="@+id/main_confetti_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="0.25"></View>
+
+                        <android.support.v7.widget.AppCompatImageView
+                            android:id="@+id/main_fortune_teller"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.5"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_image" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="0.25"></View>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/main_fortune_teller_phrase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+
+                <RelativeLayout
+                    android:id="@+id/main_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="?android:windowBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="11dp"
+                        android:animateLayoutChanges="true"
+                        android:divider="@drawable/divider"
+                        android:orientation="horizontal"
+                        android:showDividers="middle">
+
+                        <LinearLayout
+                            android:id="@+id/main_data_entry_holder"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/main_data_entry"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="2.5dp"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="2"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2.5dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/application_link" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/main_reload_holder"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/main_reload"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="2.5dp"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="2"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2.5dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/reload" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/main_inquiry_holder"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/main_inquiry"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="2.5dp"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="2"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2.5dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/enquiry" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/main_selector_holder"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/main_selector"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="2.5dp"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="2"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2.5dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/form" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/main_clear_holder"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/main_clear"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="2.5dp"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="2"
+                                android:singleLine="true"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2.5dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/clear" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:alpha="225"
+                        android:background="?accent"></LinearLayout>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/main_person"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:clickable="false"
+                    android:drawablePadding="5px"
+                    android:ellipsize="marquee"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"></TextView>
+
+                <Spinner
+                    android:id="@+id/main_date_selector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"></Spinner>
+
+                <TextView
+                    android:id="@+id/main_pick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:drawableLeft="@drawable/emptiness"
+                    android:drawableRight="@drawable/calendar"
+                    android:drawablePadding="5dp"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"></View>
+
+                <TextView
+                    android:id="@+id/main_prediction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:enabled="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:longClickable="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textIsSelectable="true"></TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="0.1"></View>
+
+                    <Button
+                        android:id="@+id/main_copy_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="0.4"
+                        android:text="@string/action_copy" />
+
+                    <Button
+                        android:id="@+id/main_edit_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="0.4"
+                        android:text="@string/action_set" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="0.1"></View>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/main_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"></View>
+            </LinearLayout>
+        </com.app.memoeslink.adivinador.StickyScrollView>
+
+        <RelativeLayout
+            android:id="@+id/ad_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#80000000"
+            android:orientation="vertical"
+            android:visibility="gone"></RelativeLayout>
+    </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/navigation_menu"></android.support.design.widget.NavigationView>
+</android.support.v4.widget.DrawerLayout>

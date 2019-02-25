@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BaseTheme" parent="Theme.AppCompat">
+        <item name="actionBarSize">56dp</item>
+        <item name="android:actionBarSize">56dp</item>
+        <item name="actionBarStyle">@style/BaseTheme.ActionBar</item>
+        <item name="android:actionBarStyle">@style/BaseTheme.ActionBar</item>
+        <item name="checkboxStyle">@style/BaseTheme.Preference.CheckBox</item>
+        <item name="android:checkboxStyle">@style/BaseTheme.Preference.CheckBox</item>
+    </style>
+
+    <style name="DefaultTheme" parent="BaseTheme">
+        <item name="accent">@color/blue</item>
+        <item name="disabledItem">@color/gray</item>
+        <item name="android:actionBarStyle">@style/Theme.AppCompat.CompactMenu</item>
+        <item name="colorAccent">?attr/accent</item>
+        <item name="android:listDivider">?attr/accent</item>
+        <item name="android:textColor">@color/selector</item>
+    </style>
+
+    <style name="BlackTheme" parent="BaseTheme">
+        <item name="accent">@color/blue</item>
+        <item name="disabledItem">@color/dark_gray</item>
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:colorBackground">@android:color/black</item>
+        <item name="colorPrimary">#E0000000</item>
+        <item name="colorPrimaryDark">#E0000000</item>
+        <item name="colorAccent">?attr/accent</item>
+        <item name="android:listDivider">?attr/accent</item>
+        <item name="android:windowContentOverlay">@drawable/overlay</item>
+    </style>
+
+    <style name="GrayTheme" parent="BaseTheme">
+        <item name="accent">@color/light_purple_gray</item>
+        <item name="disabledItem">@color/light_gray</item>
+        <item name="android:windowBackground">@color/gray</item>
+        <item name="android:colorBackground">@color/gray</item>
+        <item name="actionBarStyle">@style/GrayTheme.ActionBar</item>
+        <item name="android:actionBarStyle">@style/GrayTheme.ActionBar</item>
+        <item name="colorAccent">?attr/accent</item>
+        <item name="android:listDivider">?attr/accent</item>
+        <item name="android:textColor">@color/selector</item>
+        <item name="android:windowContentOverlay">@drawable/shadow</item>
+    </style>
+
+    <style name="SlateGrayTheme" parent="BaseTheme">
+        <item name="accent">@color/light_gray</item>
+        <item name="disabledItem">@color/dark_gray</item>
+        <item name="android:windowBackground">@color/slate_gray</item>
+        <item name="android:colorBackground">@color/slate_gray</item>
+        <item name="colorPrimary">@color/purple_gray</item>
+        <item name="colorPrimaryDark">@color/dark_purple_gray</item>
+        <item name="colorAccent">?attr/accent</item>
+        <item name="android:listDivider">?attr/accent</item>
+        <item name="android:textColor">@color/selector</item>
+    </style>
+
+    <style name="BaseTheme.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="height">56dp</item>
+        <item name="android:height">56dp</item>
+        <item name="titleTextStyle">@style/TextAppearance.AppCompat.Title</item>
+        <item name="android:titleTextStyle">@style/TextAppearance.AppCompat.Title</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/selector</item>
+    </style>
+
+    <style name="BaseTheme.Preference.CheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="colorAccent">?attr/accent</item>
+        <item name="android:textColorSecondary">?attr/accent</item>
+        <item name="android:button">@drawable/checkbox</item>
+        <item name="android:alpha">0.8</item>
+    </style>
+
+    <style name="GrayTheme.ActionBar" parent="BaseTheme.ActionBar">
+        <item name="android:background">@color/dark_gray</item>
+        <item name="background">@color/dark_gray</item>
+    </style>
+</resources>

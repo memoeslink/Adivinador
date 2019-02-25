@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    tools:context="com.app.memoeslink.adivinador.InputActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:layout_weight="0.6"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_crystal_ball" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="@string/input_title"
+            android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.15"></View>
+
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/input_name_field"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:ellipsize="end"
+                android:hint="@string/input_name_hint"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLength="256"
+                android:maxLines="1" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.15"></View>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="@string/input_sex_description"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFBCC"></TextView>
+
+        <RadioGroup
+            android:id="@+id/input_sex_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:checkedButton="@+id/input_sex_indefinite_option">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/input_sex_indefinite_option"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/input_sex_indefinite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/input_sex_male_option"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/input_sex_male" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/input_sex_female_option"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/input_sex_female" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ellipsize="middle"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/input_birthdate"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFBCC"></TextView>
+
+        <com.app.memoeslink.adivinador.CustomDatePicker
+            android:id="@+id/input_date_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:calendarViewShown="false"></com.app.memoeslink.adivinador.CustomDatePicker>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.3"></View>
+
+            <Button
+                android:id="@+id/input_back_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:text="@string/action_back" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.3"></View>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

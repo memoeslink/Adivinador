@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="gray" type="color">#4F4F5A</item>
+    <item name="dark_gray" type="color">#404040</item>
+    <item name="slate_gray" type="color">#708090</item>
+    <item name="light_gray" type="color">#BDBDBD</item>
+    <item name="purple_gray" type="color">#4C516D</item>
+    <item name="dark_purple_gray" type="color">#3C4057</item>
+    <item name="light_purple_gray" type="color">#9293AD</item>
+    <item name="blue" type="color">#2196F3</item>
+    <item name="medium_gray" type="color">#808080</item>
+</resources>
