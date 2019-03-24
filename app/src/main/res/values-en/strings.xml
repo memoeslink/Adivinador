@@ -3,7 +3,7 @@
     <string name="about">
         <![CDATA[
         <big><b>Adivinador</b></big>
-        <br><b>Version: 1.3.0</b>
+        <br><b>Version: 1.3.1</b>
         <br><br>2014-2018 Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
@@ -555,6 +555,7 @@
         <item>A person, whose sign is {string:astrological_sign}, will affect you {rand:negatively; positively} in {string:divination_middle}.</item>
         <item>You are in a moment where you have to make {rand:∅; critical; hasty; important; well-thought; necessary; essential} decisions about {string:divination_middle}.</item>
         <item>In this moment others see you as a/an {string:personality_trait} person.</item>
+        <item>{string:foreboding_start} {string:foreboding_end}</item>
     </string-array>
     <string-array name="divination_appendix">
         <item>Some keywords, related to this divination, are:</item>
@@ -694,8 +695,10 @@
         <item>your legacy or inheritance</item>
         <item>your plans</item>
         <item>your physiological needs</item>
+        <item>your willingness to do something</item>
         <item>your time</item>
         <item>your self-actualization</item>
+        <item>your motivation</item>
     </string-array>
     <string-array name="divination_start">
         <item>Within ‽1 days (‽2)</item>
@@ -753,6 +756,9 @@
         <item>At any moment</item>
         <item>Pretty soon</item>
         <item>When you least expect it</item>
+        <item>In the current period</item>
+        <item>Presently</item>
+        <item>At the present time</item>
     </string-array>
     <string-array name="element">
         <item>\?</item>
@@ -849,6 +855,32 @@
         <item>unknown reasons</item>
         <item>influences of the divine or from higher forces</item>
         <item>the occult</item>
+    </string-array>
+    <string-array name="foreboding_end">
+        <item>will {rand:∅; not} happen.</item>
+        <item>is {rand:∅; not} going to happen.</item>
+        <item>might {rand:∅; not} happen.</item>
+        <item>could {rand:∅; not} happen.</item>
+        <item>could {rand:∅; not} become reality.</item>
+        <item>is {rand:possible; impossible}.</item>
+        <item>is {rand:∅; not} feasible.</item>
+        <item>is {rand:real; illusory}.</item>
+        <item>makes {rand:∅; no} sense.</item>
+    </string-array>
+    <string-array name="foreboding_start">
+        <item>What you think will {rand:∅; not} happen,</item>
+        <item>What you are thinking about</item>
+        <item>Yes, what you're thinking about,</item>
+        <item>What you dreamed of</item>
+        <item>What you {rand:∅; don't} want</item>
+        <item>What you {rand:∅; don't} expect</item>
+        <item>What you have {rand:∅; not} visualized</item>
+        <item>What you have {rand:∅; not} contemplated</item>
+        <item>What you have {rand:∅; not} imagined</item>
+        <item>What you {rand:expect the most; least expect}</item>
+        <item>All you think about</item>
+        <item>Nothing of what you think</item>
+        <item>What you feel</item>
     </string-array>
     <string-array name="fortune_teller_aspect">
         <item>Crystal ball</item>
@@ -996,7 +1028,6 @@
         <item>Scorpio (November 23 - November 29)</item>
         <item>Ophiuchus (November 30 - December 17)</item>
         <item>Sagittarius (December 18 - January 8)</item>
-        <item>Capricorn (January 9 - February 15)</item>
         <item>Capricorn (January 9 - February 15)</item>
     </string-array>
     <string-array name="person">

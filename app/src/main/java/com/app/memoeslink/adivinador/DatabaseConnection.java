@@ -16,8 +16,8 @@ import java.util.List;
  */
 
 class DatabaseConnection extends SQLiteAssetHelper {
-    public static final String DATABASE_NAME = "words_upgrade_39-40.sqlite";
-    public static final int DATABASE_VERSION = 40;
+    public static final String DATABASE_NAME = "words_upgrade_40-41.sqlite";
+    public static final int DATABASE_VERSION = 41;
     private static final String ID_PREFIX = "ID";
     private static final String TABLE_ENGLISH_ABSTRACT_NOUN = "EN_AbstractNoun";
     private static final String TABLE_ENGLISH_ACTION = "EN_Action";
