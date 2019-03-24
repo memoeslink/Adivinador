@@ -7,8 +7,8 @@ android {
         applicationId "com.app.memoeslink.adivinador"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 94
-        versionName "1.3.0"
+        versionCode 95
+        versionName "1.3.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "Adivinador-$versionName")
         vectorDrawables.useSupportLibrary = true
