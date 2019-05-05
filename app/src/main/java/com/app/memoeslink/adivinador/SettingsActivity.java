@@ -1,15 +1,17 @@
 package com.app.memoeslink.adivinador;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
+
+import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 
 /**
  * Created by Memoeslink on 10/08/2017.
@@ -30,7 +32,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
         setTheme(Methods.getTheme(this));
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         tts = new TextToSpeech(this, this);
         preferences = this.getSharedPreferences(Methods.PREFERENCES, Activity.MODE_PRIVATE);
@@ -135,11 +137,10 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
         }
     }
 
-    public static class MyPreferenceFragment extends PreferenceFragment {
+    public static class MyPreferenceFragment extends PreferenceFragmentCompat {
         @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.default_preferences);
+        public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
+            setPreferencesFromResource(R.xml.default_preferences, rootKey);
         }
     }
 }

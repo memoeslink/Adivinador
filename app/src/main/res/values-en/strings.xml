@@ -3,7 +3,7 @@
     <string name="about">
         <![CDATA[
         <big><b>Adivinador</b></big>
-        <br><b>Version: 1.3.1</b>
+        <br><b>Version: 1.3.2</b>
         <br><br>2014-2018 Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
@@ -45,7 +45,7 @@
         <br><i><font color=#B9BCEE>• Fade In Fade Out Android Animation in Java</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/6796139/fade-in-fade-out-android-animation-in-java/">http://stackoverflow.com/</a>)
         <br><i><font color=#B9BCEE>• How do I disable orientation change on Android?</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/1512045/how-do-i-disable-orientation-change-on-android/">http://stackoverflow.com/</a>)
         <br><i><font color=#B9BCEE>• How to get IP address of the device from code?</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/6064510/how-to-get-ip-address-of-the-device-from-code/">http://stackoverflow.com/</a>)
-        <br><i><font color=#B9BCEE>• How to set emoji by Unicode in Android TextView</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/26893796/how-set-emoji-by-unicode-in-android-textview/">http://stackoverflow.com/</a>)
+        <br><i><font color=#B9BCEE>• How to set emoji by Unicode in Android TextView</font></i> [<font  hn color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/26893796/how-set-emoji-by-unicode-in-android-textview/">http://stackoverflow.com/</a>)
         <br><i><font color=#B9BCEE>• Html.fromHtml deprecated in Android N</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/37904739/html-fromhtml-deprecated-in-android-n/">http://stackoverflow.com/</a>)
         <br><i><font color=#B9BCEE>• Java method to find difference between 2 date objects in years, months and days</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/13084651/java-method-to-find-difference-between-2-date-objects-in-years-months-and-days/">http://stackoverflow.com/</a>)
         <br><i><font color=#B9BCEE>• MD5 hashing in Android</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/4846484/md5-hashing-in-android/">http://stackoverflow.com/</a>)
@@ -187,22 +187,24 @@
         <br>%21$s
         <br><br><font color=#53E3B3>Secret name:</font>
         <br>%22$s
-        <br><br><font color=#53E3B3>Name in the previous life:</font>
+        <br><br><font color=#53E3B3>Demonic name:</font>
         <br>%23$s
-        <br><br><font color=#53E3B3>Name in the next life:</font>
+        <br><br><font color=#53E3B3>Name in the previous life:</font>
         <br>%24$s
-        <br><br><font color=#53E3B3>Recommended username:</font>
+        <br><br><font color=#53E3B3>Name in the next life:</font>
         <br>%25$s
+        <br><br><font color=#53E3B3>Recommended username:</font>
+        <br>%26$s
         <br><br><font color=#53E3B3>Personal digit:</font>
-        <br>%26$d
+        <br>%27$d
         <br><br><font color=#53E3B3>Unique fortune numbers:</font>
-        <br>%27$s
-        <br><br><font color=#53E3B3>Universally unique identifier (UUID):</font>
         <br>%28$s
+        <br><br><font color=#53E3B3>Universally unique identifier (UUID):</font>
+        <br>%29$s
         <br><br><font color=#53E3B3>Days between current date and birthdate:</font>
-        <br><font color=#E3E1A1><b>%29$s</b></font>
-        <br><br><font color=#53E3B3>Time between current date and birthdate:</font>
         <br><font color=#E3E1A1><b>%30$s</b></font>
+        <br><br><font color=#53E3B3>Time between current date and birthdate:</font>
+        <br><font color=#E3E1A1><b>%31$s</b></font>
         ]]>
     </string>
     <string name="pick">Pick an enquiry date</string>
@@ -946,6 +948,7 @@
         <item>Japanese name</item>
         <item>Mexican name</item>
         <item>Russian name</item>
+        <item>Generated pattern name</item>
         <item>Generated natural name</item>
         <item>Generated defined name</item>
         <item>Generated mystic name</item>

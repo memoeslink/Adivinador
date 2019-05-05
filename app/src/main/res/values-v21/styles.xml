@@ -8,6 +8,7 @@
         <item name="colorPrimary">#000000</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">?attr/accent</item>
+        <item name="android:listDivider">?attr/accent</item>
         <item name="android:windowContentOverlay">@drawable/overlay</item>
     </style>
 </resources>

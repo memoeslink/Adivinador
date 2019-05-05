@@ -2,7 +2,6 @@ package com.app.memoeslink.adivinador;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +10,7 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,8 +18,11 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.AppCompatImageView;
 import android.text.Editable;
@@ -251,8 +254,8 @@ public class MainActivity extends MenuActivity {
 
         //Request ads
         adRequest = new AdRequest.Builder()
-                //.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                //.addTestDevice(methods.getTestDeviceId())
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice(methods.getTestDeviceId())
                 .build();
 
         //Get a greeting, if enabled
@@ -268,11 +271,14 @@ public class MainActivity extends MenuActivity {
         methods.deleteTemp();
 
         //Set adapters
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dateOptions);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, dateOptions);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dateSelector.setAdapter(adapter);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nameTypeOptions) {
+        dateSelector.setBackgroundColor(Color.TRANSPARENT);
+        dateSelector.setPopupBackgroundResource(android.R.drawable.spinner_dropdown_background);
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, nameTypeOptions) {
             private final int[] positions = {0, 1, nameTypeOptions.length - 1};
+            private final int defaultColor = Methods.getTextColor(MainActivity.this);
 
             @Override
             public boolean isEnabled(int position) {
@@ -282,12 +288,16 @@ public class MainActivity extends MenuActivity {
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
+                view.setTag(position);
                 TextView textView = (TextView) view;
 
-                if (isContained(position))
+                if (isContained(position)) {
                     textView.setTextColor(Color.GRAY);
-                else
-                    textView.setTextColor(Color.WHITE);
+                    textView.setBackgroundColor(Color.DKGRAY);
+                } else {
+                    textView.setTextColor(defaultColor);
+                    textView.setBackgroundColor(Color.TRANSPARENT);
+                }
                 return view;
             }
 
@@ -300,13 +310,14 @@ public class MainActivity extends MenuActivity {
         nameTypeSelector.setSelection(2);
 
         //Build dialogs
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity.this, R.style.CustomDialog);
+        AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
         builder.setTitle(R.string.compatibility);
         builder.setNeutralButton(R.string.action_close, (dialog, which) -> compatibilityDialog.dismiss());
         builder.setView(compatibilityView);
         compatibilityDialog = builder.create();
 
-        builder = new AlertDialog.Builder(MainActivity.this);
+        builder = new AlertDialog.Builder(wrapper);
         builder.setTitle(R.string.name_generation);
         builder.setPositiveButton(R.string.action_generate, null);
         builder.setNegativeButton(R.string.action_close, null);
@@ -423,7 +434,7 @@ public class MainActivity extends MenuActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 nameEnum = NameEnum.values()[position];
-                obtainName(); //Generate a nameBox
+                obtainName(); //Generate a random name
             }
 
             @Override
@@ -500,7 +511,7 @@ public class MainActivity extends MenuActivity {
         nameGenerationDialog.setOnShowListener(dialog -> {
             Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
             button.setOnClickListener(view -> {
-                obtainName(); //Generate a nameBox
+                obtainName(); //Generate a random name
             });
         });
 
@@ -1062,8 +1073,8 @@ public class MainActivity extends MenuActivity {
 
         if (nameList != null && nameList.size() > 0) {
             String[] names = nameList.toArray(new String[0]);
-            initialName.setAdapter(new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_dropdown_item_1line, names));
-            finalName.setAdapter(new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_dropdown_item_1line, names));
+            initialName.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line, names));
+            finalName.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line, names));
         }
     }
 
@@ -1100,7 +1111,7 @@ public class MainActivity extends MenuActivity {
             builder.setTitle(R.string.alert_select_enquiry_title);
             builder.setNegativeButton(R.string.action_cancel, (dialogInterface, i) -> dialog.dismiss());
             final ListView listView = new ListView(MainActivity.this);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, items);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, android.R.id.text1, items);
             listView.setAdapter(adapter);
 
             listView.setOnItemClickListener((parent, view, position, id) -> {
@@ -1289,6 +1300,10 @@ public class MainActivity extends MenuActivity {
             }
             preferences.edit().remove("temp_busy").apply();
 
+            //Display name of the person, if possible
+            if (!isVisible(personInfo))
+                Methods.showFormattedToast(MainActivity.this, Methods.fromHtml(data[2].toString()));
+
             //Talk; if active, enabled and possible
             if (recent)
                 pending = true;
@@ -1316,14 +1331,14 @@ public class MainActivity extends MenuActivity {
         int zodiacIndex, newZodiacIndex;
         Boolean anonymous = null;
         boolean user = false;
-        String name, formattedName;
+        String name, simpleName, formattedName;
         String date;
         String prediction = null, clipboardPrediction = null;
 
         if (formCompleted) {
             lastModified = 1;
             fakeIdentifier = getFakeIdentifier();
-            name = preferences.getString("temp_name", "?");
+            name = simpleName = preferences.getString("temp_name", "?");
             sex = preferences.getInt("temp_sex", Methods.DEFAULT_SEX);
             year = preferences.getInt("temp_date_year", Methods.DEFAULT_YEAR);
             month = preferences.getInt("temp_date_month", Methods.DEFAULT_MONTH) + 1;
@@ -1349,9 +1364,11 @@ public class MainActivity extends MenuActivity {
 
             if (anonymous = seededMethods.getRandomizer().getInt(3, 0) == 0) {
                 name = person.getUsername();
+                simpleName = " ";
                 formattedName = Methods.formatText(new String[]{name}, "", "b,tt");
             } else {
-                name = person.getForename() + (!person.getForename().isEmpty() && !person.getLastName().isEmpty() ? " " : "") + person.getLastName() + (person.getSuffix().isEmpty() ? "" : " " + person.getSuffix());
+                simpleName = person.getForename() + (!person.getForename().isEmpty() && !person.getLastName().isEmpty() ? " " : "") + person.getLastName();
+                name = simpleName + (person.getSuffix().isEmpty() ? "" : " " + person.getSuffix());
                 formattedName = Methods.formatText(new String[]{person.getForename(), person.getLastName()}, person.getSuffix(), "b");
             }
             Calendar calendar = Calendar.getInstance();
@@ -1431,6 +1448,7 @@ public class MainActivity extends MenuActivity {
         hashMap.put("animal", methods.capitalizeFirst(seededMethods.getStringFromStringArray(R.array.animal)));
         hashMap.put("psychologicalType", seededMethods.getStringFromStringArray(R.array.psychological_type));
         hashMap.put("secretName", "<font color=" + seededMethods.getColorAsString() + ">" + Methods.formatText(new String[]{methods.capitalizeFirst(seededMethods.generateName(seededMethods.getRandomizer().getInt(6, 1)))}, "", "b") + "</font>");
+        hashMap.put("demonicName", "<font color=" + seededMethods.getColorAsString() + ">" + Methods.formatText(new String[]{methods.getDemonicName(simpleName)}, "", "b") + "</font>");
         hashMap.put("previousName", "<font color=" + seededMethods.getColorAsString() + ">" + Methods.formatText(new String[]{entities[0].getPrimitiveName()[0], entities[0].getPrimitiveName()[1]}, entities[0].getPrimitiveName()[2], "b") + "</font>");
         hashMap.put("futureName", "<font color=" + seededMethods.getColorAsString() + ">" + Methods.formatText(new String[]{entities[1].getPrimitiveName()[0], entities[1].getPrimitiveName()[1]}, entities[1].getPrimitiveName()[2], "b") + "</font>");
         hashMap.put("recommendedUsername", "<font color=" + seededMethods.getColorAsString() + ">" + Methods.formatText(new String[]{seededMethods.generateUsername()}, "", "b,tt") + "</font>");
@@ -1463,6 +1481,7 @@ public class MainActivity extends MenuActivity {
                 hashMap.get("animal").toString(),
                 hashMap.get("psychologicalType").toString(),
                 hashMap.get("secretName").toString(),
+                hashMap.get("demonicName").toString(),
                 hashMap.get("previousName").toString(),
                 hashMap.get("futureName").toString(),
                 hashMap.get("recommendedUsername").toString(),
@@ -1495,6 +1514,7 @@ public class MainActivity extends MenuActivity {
                 hashMap.get("animal").toString(),
                 hashMap.get("psychologicalType").toString(),
                 hashMap.get("secretName").toString(),
+                hashMap.get("demonicName").toString(),
                 hashMap.get("previousName").toString(),
                 hashMap.get("futureName").toString(),
                 hashMap.get("recommendedUsername").toString(),
@@ -1604,11 +1624,24 @@ public class MainActivity extends MenuActivity {
             preferredNames.add(NameEnum.TEST_CASE);
             preferredNames.add(nameEnum);
             Entity entity = unseededMethods.getEntity(preferredNames);
-            String formattedName = Methods.formatText(new String[]{entity.getPrimitiveName()[0], entity.getPrimitiveName()[1]}, "", "");
-            nameBox.setText(formattedName);
+            String composedName = Methods.formatText(new String[]{entity.getPrimitiveName()[0], entity.getPrimitiveName()[1]}, "", "");
+            nameBox.setText(composedName);
             nameTypeSelector.setEnabled(true);
             obtaining = false;
         }
+    }
+
+    private boolean isVisible(View view) {
+        if (view == null)
+            return false;
+        if (!view.isShown())
+            return false;
+        Rect rect = new Rect();
+
+        if (view.getGlobalVisibleRect(rect) && view.getHeight() == rect.height() && view.getWidth() == rect.width())
+            return true;
+        else
+            return false;
     }
 
     private int[] getScreenSize() {

@@ -1,12 +1,12 @@
 package com.app.memoeslink.adivinador;
 
-import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.LocaleList;
 import android.preference.PreferenceManager;
+import android.support.multidex.MultiDexApplication;
 
 import java.io.File;
 import java.util.Locale;
@@ -14,7 +14,7 @@ import java.util.Locale;
 /**
  * Created by Memoeslink on 11/05/2016.
  */
-public class ApplicationContext extends Application {
+public class ApplicationContext extends MultiDexApplication {
     private SharedPreferences defaultPreferences;
 
     @Override

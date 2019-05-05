@@ -3,15 +3,15 @@
     <string name="about">
         <![CDATA[
         <big><b>Adivinador</b></big>
-        <br><b>Versión: 1.3.1</b>
+        <br><b>Versión: 1.3.2</b>
         <br><br>2014-2018 Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
         <br><br>Aplicación de predicción del futuro
         <br><br><font color=#53E3B3>Imágenes:</font>
-        <br><i><font color=#FFFDC4>• Dimitry Miroliubov</font></i> [<font color=#99BAD1>Flaticon Basic License</font>] (<cite>http://www.flaticon.com/</cite>)
-        <br><i><font color=#FFFDC4>• Freepik</font></i> [<font color=#99BAD1>Flaticon Basic License</font>] (<cite>http://www.flaticon.com/</cite>)
-        <br><i><font color=#FFFDC4>• Vectors Market</font></i> [<font color=#99BAD1>Flaticon Basic License</font>] (<cite>http://www.flaticon.com/</cite>)
+        <br><i><font color=#FFFDC4>• Dimitry Miroliubov</font></i> [<font color=#99BAD1>Licencia básica de Flaticon</font>] (<cite>http://www.flaticon.com/</cite>)
+        <br><i><font color=#FFFDC4>• Freepik</font></i> [<font color=#99BAD1>Licencia básica de Flaticon</font>] (<cite>http://www.flaticon.com/</cite>)
+        <br><i><font color=#FFFDC4>• Vectors Market</font></i> [<font color=#99BAD1>Licencia básica de Flaticon</font>] (<cite>http://www.flaticon.com/</cite>)
         <br><br><font color=#53E3B3>Sonidos:</font>
         <br><i><font color=#FFFDC4>• cabled_mess</font></i> [<font color=#6ACCB1>CC0 1.0</font>] (<cite>http://freesound.org/</cite>)
         <br><i><font color=#FFFDC4>• Intimidated</font></i> [<font color=#B9B0F4>CC BY 3.0</font>] (<cite>http://freesound.org/</cite>)
@@ -26,28 +26,28 @@
         <br><i><font color=#FFFDC4>• TheGertz</font></i> [<font color=#6ACCB1>CC0 1.0</font>] (<cite>http://freesound.org/</cite>)
         <br><br><font color=#53E3B3>Recursos lingüísticos:</font>
         <br><i><font color=#8082E5>• Desi Quintans</font></i> [<font color=#A268FF>Dominio público</font>] (<a href="http://www.desiquintans.com/nounlist/">http://www.desiquintans.com/</a>)
-        <br><i><font color=#8082E5>• Ian Li</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://github.com/ianli/fortune-cookies-galore/">https://github.com/</a>)
+        <br><i><font color=#8082E5>• Ian Li</font></i> [<font color=#FF9BB4>Licencia MIT</font>] (<a href="https://github.com/ianli/fortune-cookies-galore/">https://github.com/</a>)
         <br><i><font color=#8082E5>• Ismael Olea</font></i> [<font color=#A268FF>Dominio público</font>] (<a href="http://olea.org/proyectos/lemarios/">http://olea.org/</a>)
         <br><i><font color=#8082E5>• Solosequenosenada</font></i> [<font color=#A268FF>Dominio público</font>] (<a href="http://www.solosequenosenada.com/gramatica/spanish/listado/lista_01_adjetivos.php/">http://www.solosequenosenada.com/</a>)
         <br><i><font color=#8082E5>• Wikipedia, la enciclopedia libre</font></i> [<font color=#B9B0F4>CC BY 3.0</font>] (<a href="https://www.wikipedia.org/">https://www.wikipedia.org/</a>)
         <br><i><font color=#BABBFF>• Frequency lists by Neri</font></i> [<font color=#A268FF>Dominio público</font>] (<a href="http://frequencylists.blogspot.mx/2016/08/5000-spanish-sentences-sorted-from.html/">https://blogger.com/</a>)
         <br><br><font color=#53E3B3>Código:</font>
-        <br><i><font color=#FDFCDA>• Alexandros Schillings, Cyril Mottier, Jeff Gilfelt, Jon Adams, Kevin (kevinchai): </font><font color=#FFFDC4>Android SQLiteAssetHelper</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/jgilfelt/android-sqlite-asset-helper/">https://github.com/</a>)
+        <br><i><font color=#FDFCDA>• Alexandros Schillings, Cyril Mottier, Jeff Gilfelt, Jon Adams, Kevin (kevinchai): </font><font color=#FFFDC4>Android SQLiteAssetHelper</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/jgilfelt/android-sqlite-asset-helper/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Dominik Schürmann: </font><font color=#FFFDC4>Android Donations Lib</font></i> (<a href="https://github.com/PrivacyApps/donations/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Emil Sjölander: </font><font color=#FFFDC4>StickyScrollViewItems</font></i> (<a href="https://github.com/emilsjolander/StickyScrollViewItems/">https://github.com/</a>)
-        <br><i><font color=#FDFCDA>• Google Inc.: </font><font color=#FFFDC4>Gson</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/google/gson/">https://github.com/</a>)
-        <br><i><font color=#FDFCDA>• Jin Cao (jinatonic): </font><font color=#FFFDC4>Confetti</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/jinatonic/confetti/">https://github.com/</a>)
-        <br><i><font color=#FDFCDA>• Nee Si Yao, Phu Tang, Umair Vatao: </font><font color=#FFFDC4>EasyAndroidAnimations</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/2359media/EasyAndroidAnimations/">https://github.com/</a>)
-        <br><i><font color=#FDFCDA>• Wouter Dullaert: </font><font color=#FFFDC4>Material DateTime Picker</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/wdullaer/MaterialDateTimePicker/">https://github.com/</a>)
-        <br><i><font color=#FDFCDA>• Zhang Hai: </font><font color=#FFFDC4>MaterialProgressBar</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/DreaminginCodeZH/MaterialProgressBar/">https://github.com/</a>)
-        <br><i><font color=#B9BCEE>• Drawable => grayscale</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/1793338/drawable-grayscale/">http://stackoverflow.com/</a>)
-        <br><i><font color=#B9BCEE>• Fade In Fade Out Android Animation in Java</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/6796139/fade-in-fade-out-android-animation-in-java/">http://stackoverflow.com/</a>)
-        <br><i><font color=#B9BCEE>• How do I disable orientation change on Android?</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/1512045/how-do-i-disable-orientation-change-on-android/">http://stackoverflow.com/</a>)
-        <br><i><font color=#B9BCEE>• How to get IP address of the device from code?</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/6064510/how-to-get-ip-address-of-the-device-from-code/">http://stackoverflow.com/</a>)
-        <br><i><font color=#B9BCEE>• How to set emoji by Unicode in Android TextView</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/26893796/how-set-emoji-by-unicode-in-android-textview/">http://stackoverflow.com/</a>)
-        <br><i><font color=#B9BCEE>• Html.fromHtml deprecated in Android N</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/37904739/html-fromhtml-deprecated-in-android-n/">http://stackoverflow.com/</a>)
-        <br><i><font color=#B9BCEE>• Java method to find difference between 2 date objects in years, months and days</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/13084651/java-method-to-find-difference-between-2-date-objects-in-years-months-and-days/">http://stackoverflow.com/</a>)
-        <br><i><font color=#B9BCEE>• MD5 hashing in Android</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://stackoverflow.com/questions/4846484/md5-hashing-in-android/">http://stackoverflow.com/</a>)
+        <br><i><font color=#FDFCDA>• Google Inc.: </font><font color=#FFFDC4>Gson</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/google/gson/">https://github.com/</a>)
+        <br><i><font color=#FDFCDA>• Jin Cao (jinatonic): </font><font color=#FFFDC4>Confetti</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/jinatonic/confetti/">https://github.com/</a>)
+        <br><i><font color=#FDFCDA>• Nee Si Yao, Phu Tang, Umair Vatao: </font><font color=#FFFDC4>EasyAndroidAnimations</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/2359media/EasyAndroidAnimations/">https://github.com/</a>)
+        <br><i><font color=#FDFCDA>• Wouter Dullaert: </font><font color=#FFFDC4>Material DateTime Picker</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/wdullaer/MaterialDateTimePicker/">https://github.com/</a>)
+        <br><i><font color=#FDFCDA>• Zhang Hai: </font><font color=#FFFDC4>MaterialProgressBar</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/DreaminginCodeZH/MaterialProgressBar/">https://github.com/</a>)
+        <br><i><font color=#B9BCEE>• Drawable => grayscale</font></i> [<font color=#FF9BB4>Licencia MIT</font>] (<a href="https://stackoverflow.com/questions/1793338/drawable-grayscale/">http://stackoverflow.com/</a>)
+        <br><i><font color=#B9BCEE>• Fade In Fade Out Android Animation in Java</font></i> [<font color=#FF9BB4>Licencia MIT</font>] (<a href="https://stackoverflow.com/questions/6796139/fade-in-fade-out-android-animation-in-java/">http://stackoverflow.com/</a>)
+        <br><i><font color=#B9BCEE>• How do I disable orientation change on Android?</font></i> [<font color=#FF9BB4>Licencia MIT</font>] (<a href="https://stackoverflow.com/questions/1512045/how-do-i-disable-orientation-change-on-android/">http://stackoverflow.com/</a>)
+        <br><i><font color=#B9BCEE>• How to get IP address of the device from code?</font></i> [<font color=#FF9BB4>Licencia MIT</font>] (<a href="https://stackoverflow.com/questions/6064510/how-to-get-ip-address-of-the-device-from-code/">http://stackoverflow.com/</a>)
+        <br><i><font color=#B9BCEE>• How to set emoji by Unicode in Android TextView</font></i> [<font color=#FF9BB4>Licencia MIT</font>] (<a href="https://stackoverflow.com/questions/26893796/how-set-emoji-by-unicode-in-android-textview/">http://stackoverflow.com/</a>)
+        <br><i><font color=#B9BCEE>• Html.fromHtml deprecated in Android N</font></i> [<font color=#FF9BB4>Licencia MIT</font>] (<a href="https://stackoverflow.com/questions/37904739/html-fromhtml-deprecated-in-android-n/">http://stackoverflow.com/</a>)
+        <br><i><font color=#B9BCEE>• Java method to find difference between 2 date objects in years, months and days</font></i> [<font color=#FF9BB4>Licencia MIT</font>] (<a href="https://stackoverflow.com/questions/13084651/java-method-to-find-difference-between-2-date-objects-in-years-months-and-days/">http://stackoverflow.com/</a>)
+        <br><i><font color=#B9BCEE>• MD5 hashing in Android</font></i> [<font color=#FF9BB4>Licencia MIT</font>] (<a href="https://stackoverflow.com/questions/4846484/md5-hashing-in-android/">http://stackoverflow.com/</a>)
         ]]>
     </string>
     <string name="adjectives">aburrid[o,a]¶ afectuos[o,a]¶ ágil¶ agradable¶ alegre¶ amable¶ amargad[o,a]¶ ambicios[o,a]¶ amigable¶ angelical¶ apasionad[o,a]¶ apátic[o,a]¶ ardiente¶ atent[o,a]¶ atontad[o,a]¶ atrevid[o,a]¶ aventurer[o,a]¶ avispad[o,a]¶ bast[o,a]¶ beligerante¶ brillante¶ burl[ón,ona]¶ cascarrabias¶ caut[o,a]¶ celos[o,a]¶ cínic[o,a]¶ cobarde¶ coherente¶ comprensiv[o,a]¶ concienzud[o,a]¶ conservador[,a]¶ considerad[o,a]¶ consternad[o,a]¶ convencional¶ conversador[,a]¶ coquet[o,a]¶ cordial¶ cortante¶ cortés¶ creíd[o,a]¶ cruel¶ cuidados[o,a]¶ curios[o,a]¶ de actitud abierta¶ de actitud relajada¶ de buen trato¶ de humor cambiante¶ de mal carácter¶ de mal genio¶ de mentalidad cerrada¶ débil¶ dependiente¶ deprimente¶ deprimid[o,a]¶ desaliñad[o,a]¶ desconfiad[o,a]¶ desconsiderad[o,a]¶ descuidad[o,a]¶ desocupad[o,a]¶ despreocupad[o,a]¶ dign[o,a]|de confianza¶ diligente¶ diplomátic[o,a]¶ direct[o,a]¶ discret[o,a]¶ discutidor[,a]¶ distante¶ distraíd[o,a]¶ divertid[o,a]¶ dubitativ[o,a]¶ dulce¶ educad[o,a]¶ eficiente¶ egoísta¶ elegante¶ embuster[o,a]¶ emotiv[o,a]¶ emprendedor[,a]¶ encantador[,a]¶ energétic[o,a]¶ enfadad[o,a]¶ engreíd[o,a]¶ entrometid[o,a]¶ entusiasmad[o,a]¶ equilibrad[o,a]¶ escandalos[o,a]¶ escrupulos[o,a]¶ estoic[o,a]¶ estrict[o,a]¶ estúpid[o,a]¶ excéntric[o,a]¶ exigente¶ experimentad[o,a]¶ extrañ[o,a]¶ extravertid[o,a]¶ fervoros[o,a]¶ fiable¶ fiel¶ fof[o,a]¶ formal¶ frí[o,a]¶ generos[o,a]¶ gentil¶ gracios[o,a]¶ gruñ[ón,ona]¶ hábil¶ hermos[o,a]¶ histéric[o,a]¶ holgaz[án,ana]¶ honest[o,a]¶ horrible¶ hurañ[o,a]¶ imaginativ[o,a]¶ imbécil¶ impaciente¶ impetuos[o,a]¶ impulsiv[o,a]¶ independiente¶ infantil¶ ingenu[o,a]¶ inmadur[o,a]¶ inquiet[o,a]¶ insensible¶ inteligente¶ interesante¶ intolerante¶ intrépid[o,a]¶ juguet[ón,ona]¶ list[o,a]¶ llor[ón,ona]¶ loc[o,a]¶ madur[o,a]¶ maleducad[o,a]¶ malhumorad[o,a]¶ malicios[o,a]¶ mal[o,a]¶ maternal¶ melancólic[o,a]¶ meticulos[o,a]¶ modest[o,a]¶ mordaz¶ nervios[o,a]¶ odios[o,a]¶ orgullos[o,a]¶ paciente¶ pacífic[o,a]¶ pasional¶ pensativ[o,a]¶ perezos[o,a]¶ perseverante¶ perturbador[,a]¶ pesad[o,a]¶ pícar[o,a]¶ poderos[o,a]¶ positiv[o,a]¶ práctic[o,a]¶ presumid[o,a]¶ pretencios[o,a]¶ provocador[,a]¶ prudente¶ puntual¶ quisquillos[o,a]¶ reaci[o,a]¶ realista¶ recelos[o,a]¶ reservad[o,a]¶ responsable¶ ridícul[o,a]¶ sagaz¶ segur[o,a]¶ segur[o,a]|de sí|mism[o,a]¶ sensat[o,a]¶ sensible¶ seren[o,a]¶ seri[o,a]¶ servicial¶ sever[o,a]¶ simpátic[o,a]¶ sincer[o,a]¶ sofisticad[o,a]¶ somnolient[o,a]¶ sos[o,a]¶ suci[o,a]¶ superficial¶ tacañ[o,a]¶ taciturn[o,a]¶ talentos[o,a]¶ terc[o,a]¶ tímid[o,a]¶ tont[o,a]¶ torpe¶ trabajador[,a]¶ tranquilizador[,a]¶ tranquil[o,a]¶ travies[o,a]¶ triste¶ útil¶ valiente¶ venenos[o,a]¶ vivaz</string>
@@ -188,22 +188,24 @@
         <br>%21$s
         <br><br><font color=#53E3B3>Nombre secreto:</font>
         <br>%22$s
-        <br><br><font color=#53E3B3>Nombre en la vida pasada:</font>
+        <br><br><font color=#53E3B3>Nombre demoniaco:</font>
         <br>%23$s
-        <br><br><font color=#53E3B3>Nombre en la vida futura:</font>
+        <br><br><font color=#53E3B3>Nombre en la vida pasada:</font>
         <br>%24$s
-        <br><br><font color=#53E3B3>Nombre de usuario recomendado:</font>
+        <br><br><font color=#53E3B3>Nombre en la vida futura:</font>
         <br>%25$s
+        <br><br><font color=#53E3B3>Nombre de usuario recomendado:</font>
+        <br>%26$s
         <br><br><font color=#53E3B3>Dígito personal:</font>
-        <br>%26$d
+        <br>%27$d
         <br><br><font color=#53E3B3>Números de la suerte únicos:</font>
-        <br>%27$s
-        <br><br><font color=#53E3B3>Identificador único universal (UUID):</font>
         <br>%28$s
+        <br><br><font color=#53E3B3>Identificador único universal (UUID):</font>
+        <br>%29$s
         <br><br><font color=#53E3B3>Días entre fecha actual y fecha de nacimiento:</font>
-        <br><font color=#E3E1A1><b>%29$s</b></font>
-        <br><br><font color=#53E3B3>Tiempo entre fecha actual y fecha de nacimiento:</font>
         <br><font color=#E3E1A1><b>%30$s</b></font>
+        <br><br><font color=#53E3B3>Tiempo entre fecha actual y fecha de nacimiento:</font>
+        <br><font color=#E3E1A1><b>%31$s</b></font>
         ]]>
     </string>
     <string name="pick">Seleccionar una fecha de consulta</string>
@@ -948,6 +950,7 @@
         <item>Nombre japonés</item>
         <item>Nombre mexicano</item>
         <item>Nombre ruso</item>
+        <item>Nombre generado mediante patrón</item>
         <item>Nombre natural generado</item>
         <item>Nombre definido generado</item>
         <item>Nombre místico generado</item>

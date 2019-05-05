@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="BaseTheme" parent="Theme.AppCompat">
+    <style name="BaseTheme" parent="PreferenceFixTheme">
         <item name="actionBarSize">56dp</item>
         <item name="android:actionBarSize">56dp</item>
         <item name="actionBarStyle">@style/BaseTheme.ActionBar</item>
@@ -75,5 +75,9 @@
     <style name="GrayTheme.ActionBar" parent="BaseTheme.ActionBar">
         <item name="android:background">@color/dark_gray</item>
         <item name="background">@color/dark_gray</item>
+    </style>
+
+    <style name="CustomDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorAccent">?attr/accent</item>
     </style>
 </resources>

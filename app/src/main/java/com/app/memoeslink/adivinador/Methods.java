@@ -15,6 +15,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -102,12 +103,13 @@ class Methods extends ContextWrapper {
     private static final String FULL_LOWERCASE_VOWELS = "aàáâãäåāăąǻȁȃạảấầẩẫậắằẳẵặḁæǽeȅȇḕḗḙḛḝẹẻẽếềểễệēĕėęěèéêëiȉȋḭḯỉịĩīĭįiìíîïĳoœøǿȍȏṍṏṑṓọỏốồổỗộớờởỡợōòóŏőôõöuũūŭůűųùúûüȕȗṳṵṷṹṻụủứừửữựyẙỳỵỷỹŷÿý";
     private static final String LOWERCASE_VOWELS = "aeiou";
     private static final String LOWERCASE_CONSONANTS = "bcdfghjklmnpqrstvwxyz";
-    private static final String LOWERCASE_ENDING_CONSONANTS = "lmnrsz";
+    private static final String LOWERCASE_ENDING_CONSONANTS = "lmnrstz";
     private static final String LOWERCASE_REPEATED_CONSONANTS = "bbbccccdddfffggghjjjkllllmmmmnnnnpppqrrrrsssssttttvwxyz";
     private static final String ROMANIZATION_CONSONANTS = "bcdfghjkmnprstvwyz";
     private static final String UPPERCASE_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String UNKNOWN_DATE = "????/??/??";
     private static final String DOUBLE_DOT_REGEX = "\\.(\\s*</?\\w+>\\s*)*\\.";
+    private static final String LATIN_OR_SPACE_REGEX = "[\\p{L}\\s]+";
     private static final String RANDOM_TAG_REGEX = "\\{rand:[^{}⸠⸡;]+(;[^{}⸠⸡;]+)*\\}";
     private static final String TAG_COMPONENT_REGEX = "(\\{(string|database|method):|\\}|\\s+|⦗\\d+⦘|⸻(\\⛌|\\⸮|\\d+))";
     private static final String TAG_REGEX = "\\{((string|database):[^{}⦗⦘⸡:⸻⛌⸮]+(⦗[\\d]+⦘)?(\\s*⸻(⛌|⸮|\\d+))?|method:[a-zA-Z0-9_$]+)\\s*\\}";
@@ -117,6 +119,7 @@ class Methods extends ContextWrapper {
     private static final int[] PROBABILITY_DISTRIBUTION = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
     private static final char[] REPLACEMENTS = {'⚨', '⚩', '⁇', '⍰', '�', '□', '?'};
     private static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
+    private static final String[] NAME_PATTERNS = {"cv", "cvc", "cvc kvc", "cvcv", "cvcve", "cvcvc cvcve", "cvcvmv", "cvcvmve", "cve", "cvmce", "cvmv", "cvmve", "cvvc", "cvvcvcv", "cvvcvve", "cvve", "cwcvce", "cwcve", "cwe", "cwe cve", "kvcv", "kvcve", "kve", "kvmv", "kvmvcv", "kvmvmv", "kwcv", "kwcve", "kwe", "kwmve", "vccv", "vccvc", "vccvcv", "vcv", "vcvc", "vcvccvc", "vcvcv", "vcvcvc", "vcvcvcv", "vcvcvcvc", "vcvcwcv", "vcve", "vcve vcw", "vmv", "vmvcv", "vmve", "vmvmv", "vmvmve", "wcv", "wcvcve", "wcve", "wmv", "wmvcv", "wmve"};
     private static final String[][] GENERATED_NAME_START = {
             {"a", "an", "as", "bra", "ce", "cen", "den", "e", "el", "en", "ghal", "gra", "i", "in", "is", "ka", "kan", "ken", "kha", "kra", "li", "me", "o", "os", "ren", "rha", "se", "sen", "te", "tra", "u", "ul", "un", "ze", "æ"},
             {"a", "a", "a", "a", "a", "ae", "ae", "ae", "ba", "ba", "ba", "be", "be", "be", "bi", "bi", "bi", "bla", "ble", "bli", "blo", "blu", "bo", "bo", "bo", "bra", "bre", "bri", "bro", "bru", "bu", "bu", "bu", "ca", "ca", "ca", "ce", "ce", "ce", "cha", "che", "chi", "cho", "chu", "ci", "ci", "ci", "cla", "cle", "cli", "clo", "clu", "co", "co", "co", "cra", "cre", "cri", "cro", "cru", "cu", "cu", "cu", "da", "da", "da", "de", "de", "de", "di", "di", "di", "dla", "dle", "dli", "dlo", "dlu", "do", "do", "do", "dra", "dre", "dri", "dro", "dru", "du", "du", "du", "e", "e", "e", "e", "e", "fa", "fa", "fa", "fe", "fe", "fe", "fi", "fi", "fi", "fla", "fle", "fli", "flo", "flu", "fo", "fo", "fo", "fra", "fre", "fri", "fro", "fru", "fu", "fu", "fu", "ga", "ga", "ga", "ge", "ge", "ge", "gi", "gi", "gi", "gla", "gle", "gli", "glo", "glu", "go", "go", "go", "gra", "gre", "gri", "gro", "gru", "gu", "gu", "gu", "gue", "gui", "güe", "güi", "ha", "he", "hi", "ho", "hu", "i", "i", "i", "i", "i", "ja", "ja", "ja", "je", "je", "je", "ji", "ji", "ji", "jo", "jo", "jo", "ju", "ju", "ju", "ka", "ka", "ke", "ke", "ki", "ki", "ko", "ko", "ku", "ku", "la", "la", "la", "le", "le", "le", "li", "li", "li", "li", "lla", "lle", "lli", "llo", "llu", "lo", "lo", "lo", "lu", "lu", "lu", "ma", "ma", "ma", "me", "me", "me", "mi", "mi", "mi", "mo", "mo", "mo", "mu", "mu", "mu", "na", "na", "na", "ne", "ne", "ne", "ni", "ni", "ni", "no", "no", "no", "nu", "nu", "nu", "o", "o", "o", "o", "o", "ou", "ou", "ou", "pa", "pa", "pa", "pe", "pe", "pe", "pi", "pi", "pi", "pla", "ple", "pli", "plo", "plu", "po", "po", "po", "pra", "pre", "pri", "pro", "pru", "pu", "pu", "pu", "que", "qui", "ra", "ra", "ra", "re", "re", "re", "ri", "ri", "ri", "ro", "ro", "ro", "ru", "ru", "ru", "sa", "sa", "sa", "se", "se", "se", "sha", "she", "shi", "sho", "shu", "si", "si", "si", "so", "so", "so", "su", "su", "su", "ta", "ta", "ta", "te", "te", "te", "ti", "ti", "ti", "tla", "tle", "tli", "tlo", "tlu", "to", "to", "to", "tra", "tre", "tri", "tro", "tru", "tu", "tu", "tu", "u", "u", "u", "u", "u", "va", "va", "va", "ve", "ve", "ve", "vi", "vi", "vi", "vo", "vo", "vo", "vu", "vu", "vu", "wa", "wa", "we", "we", "wi", "wi", "wo", "wo", "wu", "wu", "xa", "xe", "xi", "xo", "xu", "ya", "ya", "ye", "ye", "yi", "yi", "yo", "yo", "yu", "yu", "za", "za", "ze", "ze", "zi", "zi", "zo", "zo", "zu", "zu"},
@@ -134,13 +137,16 @@ class Methods extends ContextWrapper {
             {"aba", "abe", "abi", "aca", "ach", "aco", "ada", "ade", "adi", "ado", "aga", "ago", "ahi", "ain", "aiz", "aja", "ajo", "ala", "ale", "ali", "all", "alo", "ama", "ami", "amo", "ana", "ane", "ani", "ano", "ans", "anu", "any", "anz", "ara", "ard", "ari", "aro", "art", "aru", "asa", "aso", "ata", "ate", "ati", "ato", "aujo", "ave", "aya", "ayo", "aza", "azo", "bal", "ban", "bar", "bas", "bel", "bes", "bez", "bia", "bon", "bra", "cal", "can", "cas", "cea", "ces", "cha", "che", "chez", "chi", "cho", "cia", "cio", "ciu", "con", "cos", "dad", "dal", "dan", "dar", "das", "dea", "der", "des", "dez", "dia", "din", "dina", "dino", "dio", "don", "dor", "dos", "dra", "dro", "ean", "eca", "ech", "eco", "eda", "edo", "ega", "egi", "ego", "eja", "ejo", "ela", "ell", "elo", "ena", "eno", "ens", "ent", "er", "era", "eri", "ero", "ert", "esa", "eso", "eta", "ete", "eto", "eva", "ez", "eza", "gal", "gan", "gas", "ger", "ges", "gil", "gon", "gos", "gua", "gue", "guer", "guez", "gui", "hal", "han", "har", "hea", "her", "hir", "hou", "ia", "ian", "ias", "ibi", "ica", "ich", "ico", "ida", "ide", "idi", "ido", "iel", "ier", "ies", "iga", "igo", "ijo", "ila", "ili", "imi", "ina", "ine", "ini", "ino", "ion", "ios", "ira", "ire", "iri", "iro", "is", "isa", "iso", "ita", "iti", "ito", "iuc", "iva", "iz", "iza", "izo", "jar", "jas", "jon", "jos", "la", "lah", "lal", "lan", "lar", "las", "lat", "lda", "lde", "ldo", "lea", "ler", "les", "let", "lez", "li", "lia", "lin", "lio", "lis", "lla", "lle", "lli", "llo", "lls", "lo", "lon", "los", "lta", "lva", "man", "mar", "mas", "med", "mes", "mil", "min", "mon", "mpa", "na", "nal", "nas", "nau", "nca", "nce", "nco", "nda", "nde", "ndi", "ndo", "nea", "ner", "nes", "net", "nez", "nga", "ngo", "nis", "niz", "no", "nos", "nov", "nta", "nte", "nto", "nza", "nzo", "oba", "oca", "oiu", "ola", "oli", "olo", "ols", "ona", "oni", "ons", "ora", "oro", "ort", "osa", "oso", "ota", "ote", "oto", "oud", "ouh", "oui", "ouk", "oul", "oun", "our", "out", "ova", "oya", "oyo", "oza", "pez", "que", "qui", "ra", "ral", "ran", "ras", "rat", "ray", "raz", "rca", "rda", "rdi", "rdo", "rea", "ren", "res", "ret", "rey", "rez", "rga", "ria", "rin", "rio", "ris", "riu", "riz", "rna", "ron", "ronda", "rondo", "ros", "rra", "rre", "rri", "rro", "rta", "rte", "rto", "rza", "san", "sar", "sas", "sca", "sco", "scu", "sen", "ses", "sio", "son", "ssa", "ssi", "sta", "ste", "sti", "sto", "tal", "tan", "tar", "tas", "tea", "tel", "ter", "tes", "tia", "tin", "to", "ton", "tor", "tos", "tra", "tre", "tro", "tti", "uan", "ubi", "uca", "uch", "udi", "udo", "uel", "uer", "ues", "uet", "uez", "uin", "ula", "umi", "una", "uni", "ura", "uri", "uro", "uru", "usa", "uta", "uti", "uza", "val", "van", "vas", "ver", "ves", "via", "ya", "yan", "yes", "yo", "zan", "zar", "zas", "zo", "zon"},
             {"udaeus", "udalis", "udeus", "udhil", "udhur", "udyr", "udur", "udyl", "ufur", "ulden", "uldor", "uldur", "ulen", "ulenyr", "ulinor", "ulnur", "ulond", "ulur", "ulthur", "um", "umus", "umyr", "unden", "unor", "unor", "urde", "ureus", "urin", "uris", "urus", "uryn", "us", "ustur", "utur", "uvaeus", "uvaerus", "uvir", "uvur", "uvurus"}};
     private static final String[] MIDDLE_CONSONANTS = {"bd", "bn", "bs", "cc", "ct", "dj", "ds", "gn", "lf", "lm", "lp", "ls", "lt", "mb", "mn", "mp", "ms", "nc", "nf", "ng", "nj", "nk", "nl", "nm", "nn", "nr", "ns", "nz", "nt", "nv", "nz", "pc", "ps", "pt", "rb", "rc", "rd", "rg", "rj", "rl", "rm", "rn", "rp", "rr", "rs", "rt", "sb", "sc", "sc", "sf", "sl", "sn", "sp", "ss", "st"};
-    private static final String[] PAIR_OF_CONSONANTS = {"bl", "br", "ch", "cl", "cr", "dr", "fl", "fr", "gl", "gr", "kh", "kl", "kr", "ll", "pl", "pr", "rh", "sh", "tl", "tr", "vl"};
+    private static final String[] ENDING_CONSONANTS = {"ng", "nn", "nt", "rn", "rsk", "rst", "rg", "st", "th", "tt"};
+    private static final String[] PAIR_OF_CONSONANTS = {"bl", "br", "ch", "cl", "cr", "dl", "dr", "fl", "fr", "gl", "gr", "kh", "kl", "kr", "ll", "pl", "pr", "rh", "sh", "tl", "tr", "vl", "vr"};
     private static final String[] PAIR_OF_ROMANIZATION_CONSONANTS = {"by", "ch", "gy", "hy", "jy", "ky", "my", "ny", "py", "ry", "sh", "ts"};
     private static final String[] PAIR_OF_VOWELS = {"ae", "ai", "ao", "au", "ea", "ei", "eo", "eu", "ia", "ie", "io", "iu", "oa", "oe", "oi", "ou", "ua", "ue", "ui", "uo", "æ", "œ"};
+    private static final String[] STARTING_CONSONANTS = {"bh", "bj", "bl", "br", "by", "cc", "ch", "ck", "cl", "cn", "cr", "ct", "cy", "cz", "dd", "dh", "dm", "dn", "dr", "dw", "dy", "dz", "fl", "fr", "gh", "gl", "gm", "gn", "gr", "gs", "gw", "gy", "hj", "hl", "hm", "hn", "hr", "hs", "hw", "hy", "jd", "js", "jy", "kh", "kj", "kl", "kn", "kr", "kw", "ky", "ld", "lh", "lj", "ll", "lm", "ls", "lt", "lv", "ly", "mb", "mc", "ml", "mn", "mp", "mr", "my", "nc", "nd", "ng", "nn", "ns", "nt", "ny", "pf", "ph", "pl", "pr", "ps", "py", "rd", "rh", "rl", "rn", "rr", "rs", "rt", "rv", "rw", "ry", "sc", "sh", "sj", "sk", "sl", "sm", "sn", "sp", "sq", "sr", "ss", "st", "sv", "sw", "sy", "sz", "tc", "th", "tj", "tl", "tr", "ts", "tt", "tw", "ty", "tz", "vh", "vl", "vr", "vt", "vy", "wh", "wr", "ws", "wy", "xy", "yc", "yd", "yf", "yg", "yk", "yl", "ym", "yn", "ys", "yt", "yv", "yw", "zh", "zr", "zs", "zw", "zy"};
     private static final String[] SUPPORTED_LANGUAGES = {"ar", "de", "fr", "hi", "it", "pt"};
     private static final Pattern DOUBLE_CONSONANT_START_PATTERN = Pattern.compile("^[" + LOWERCASE_CONSONANTS + "]{2}.+");
     private static final Pattern DOUBLE_CONSONANT_AND_VOWEL_START_PATTERN = Pattern.compile("^[" + LOWERCASE_CONSONANTS + "]{2}[" + FULL_LOWERCASE_VOWELS + "](.+)");
     private static final Pattern DOUBLE_DOT_PATTERN = Pattern.compile(DOUBLE_DOT_REGEX);
+    private static final Pattern LATIN_OR_SPACE_PATTERN = Pattern.compile(LATIN_OR_SPACE_REGEX);
     private static final Pattern SEX_PATTERN = Pattern.compile("(｢[0-2]｣)");
     private static final Pattern SEX_APPENDIX_PATTERN = Pattern.compile("⸻\\d+");
     private static final Pattern RANDOM_TAG_PATTERN = Pattern.compile(RANDOM_TAG_REGEX);
@@ -555,6 +561,27 @@ class Methods extends ContextWrapper {
         }
     }
 
+    public String getDemonicName(String s) {
+        if (s == null || s.isEmpty())
+            return s;
+        else {
+            if (StringUtils.isAllBlank(s))
+                s = generateName(randomizer.getInt(6, 1));
+            if (StringUtils.isAlphaSpace(s) || LATIN_OR_SPACE_PATTERN.matcher(s).matches()) {
+            } else {
+                String temp = RegExUtils.removeAll(s, "[^\\p{Latin}\\s]");
+
+                if (StringUtils.isAllBlank(temp))
+                    s = generateName();
+            }
+            s = s.toLowerCase();
+            s = normalize(s);
+            s = StringUtils.reverse(s);
+            s = capitalize(s);
+            return s;
+        }
+    }
+
     private static List<String> extractMatches(String s, Pattern p) {
         List<String> matches = new ArrayList<>();
 
@@ -599,6 +626,53 @@ class Methods extends ContextWrapper {
             }
         }
         return sb.toString();
+    }
+
+    private String generateName() {
+        String name;
+        String namePattern = NAME_PATTERNS[randomizer.getInt(NAME_PATTERNS.length, 0)];
+        StringBuilder stringBuilder = new StringBuilder();
+
+        if (randomizer.getBoolean())
+            namePattern = StringUtils.replaceChars(namePattern, 'e', 'ɘ');
+
+        if (randomizer.getBoolean())
+            namePattern = StringUtils.replaceChars(namePattern, 'k', 'q');
+
+        for (char c : namePattern.toCharArray()) {
+            switch (c) {
+                case 'c':
+                    stringBuilder.append(LOWERCASE_CONSONANTS.charAt(randomizer.getInt(LOWERCASE_CONSONANTS.length(), 0)));
+                    break;
+                case 'e':
+                    stringBuilder.append(LOWERCASE_ENDING_CONSONANTS.charAt(randomizer.getInt(LOWERCASE_ENDING_CONSONANTS.length(), 0)));
+                    break;
+                case 'ɘ':
+                    stringBuilder.append(ENDING_CONSONANTS[randomizer.getInt(ENDING_CONSONANTS.length, 0)]);
+                    break;
+                case 'k':
+                    stringBuilder.append(PAIR_OF_CONSONANTS[randomizer.getInt(PAIR_OF_CONSONANTS.length, 0)]);
+                    break;
+                case 'm':
+                    stringBuilder.append(MIDDLE_CONSONANTS[randomizer.getInt(MIDDLE_CONSONANTS.length, 0)]);
+                    break;
+                case 'q':
+                    stringBuilder.append(STARTING_CONSONANTS[randomizer.getInt(STARTING_CONSONANTS.length, 0)]);
+                    break;
+                case 'v':
+                    stringBuilder.append(LOWERCASE_VOWELS.charAt(randomizer.getInt(LOWERCASE_VOWELS.length(), 0)));
+                    break;
+                case 'w':
+                    stringBuilder.append(PAIR_OF_VOWELS[randomizer.getInt(PAIR_OF_VOWELS.length, 0)]);
+                    break;
+                case ' ':
+                    stringBuilder.append(' ');
+                    break;
+            }
+        }
+        name = stringBuilder.toString();
+        name = capitalize(name);
+        return name;
     }
 
     private String generateName(String letters, int approximateLength, CharEnum bannedDuplicate, boolean dropped, boolean romanized) {
@@ -685,31 +759,31 @@ class Methods extends ContextWrapper {
     }
 
     public String generateName(int iterations) {
-        String s = "";
+        StringBuilder stringBuilder = new StringBuilder();
 
         if (iterations < 1 || iterations > 100)
             iterations = 1;
 
         if (randomizer.getInt(3, 0) == 0)
-            s = getVowels();
-        s = s + (randomizer.getBoolean() ? getStringFromStringArray(PAIR_OF_CONSONANTS) : getAChar(LOWERCASE_REPEATED_CONSONANTS));
-        s = s + getVowels();
+            stringBuilder.append(getVowels());
+        stringBuilder.append(randomizer.getBoolean() ? getStringFromStringArray(PAIR_OF_CONSONANTS) : getAChar(LOWERCASE_REPEATED_CONSONANTS));
+        stringBuilder.append(getVowels());
 
         for (int i = 1; i < iterations; i++) {
             float probability = randomizer.getFloat();
 
             if (probability <= 0.7F)
-                s = s + getAChar(LOWERCASE_REPEATED_CONSONANTS);
+                stringBuilder.append(getAChar(LOWERCASE_REPEATED_CONSONANTS));
             else if (probability <= 0.85F)
-                s = s + getStringFromStringArray(PAIR_OF_CONSONANTS);
+                stringBuilder.append(getStringFromStringArray(PAIR_OF_CONSONANTS));
             else
-                s = s + getStringFromStringArray(MIDDLE_CONSONANTS);
-            s = s + getVowels();
+                stringBuilder.append(getStringFromStringArray(MIDDLE_CONSONANTS));
+            stringBuilder.append(getVowels());
         }
 
         if (randomizer.getInt(5, 0) == 0)
-            s = s + getAChar(LOWERCASE_ENDING_CONSONANTS);
-        return capitalizeFirst(s);
+            stringBuilder.append(getAChar(LOWERCASE_ENDING_CONSONANTS));
+        return capitalizeFirst(stringBuilder.toString());
     }
 
     private String generateName(boolean different, boolean uppercase, boolean dropped, int... type) {
@@ -1591,12 +1665,26 @@ class Methods extends ContextWrapper {
     }
 
     public String capitalizeFirst(String s) {
-        if (!s.isEmpty()) {
+        if (s != null && !s.isEmpty()) {
             if (Character.isLowerCase(s.charAt(0)))
                 return s.substring(0, 1).toUpperCase() + s.substring(1);
             else
                 return s;
         } else return "";
+    }
+
+    public String capitalize(String s) {
+        if (s == null || s.isEmpty())
+            return s;
+        else {
+            String[] parts = StringUtils.split(s, " ");
+
+            for (int n = 0; n < parts.length; n++) {
+                parts[n] = capitalizeFirst(parts[n]);
+            }
+            s = StringUtils.joinWith(" ", parts);
+            return s;
+        }
     }
 
     public String swapFirstToLowercase(String s) {
@@ -2276,6 +2364,9 @@ class Methods extends ContextWrapper {
                     primitiveName[0] = sex == 1 ? getStringFromStringArray(R.array.russian_male_names) : getStringFromStringArray(R.array.russian_female_names);
                     primitiveName[1] = getStringFromStringArray(R.array.russian_family_names);
                     break;
+                case GENERATED_PATTERN_NAME:
+                    primitiveName[0] = generateName();
+                    break;
                 case GENERATED_NATURAL_NAME:
                     primitiveName[0] = generateName(randomizer.getInt(6, 1));
                     break;
@@ -2721,7 +2812,7 @@ class Methods extends ContextWrapper {
         try {
             Class methodsClass = Class.forName("com.app.memoeslink.adivinador.Methods");
             Constructor constructor = methodsClass.getConstructor(Context.class);
-            Object object = constructor.newInstance(getBaseContext());
+            Object object = constructor.newInstance(getApplicationContext());
             Method method = methodsClass.getDeclaredMethod(methodName);
             method.setAccessible(true);
             s = (String) method.invoke(object);
@@ -2897,14 +2988,31 @@ class Methods extends ContextWrapper {
 
     /* Other methods */
 
-    public static void showSimpleToast(Context context, String text) {
-        if (toast != null) {
-            if (toast.getView().isShown()) {
-                toast.cancel();
-                toast = null;
-            }
+    public static int getTextColor(Context context) {
+        int[] attrs = new int[]{android.R.attr.textColorPrimary};
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs);
+        int color = a.getColor(0, Color.GRAY);
+        a.recycle();
+        return color;
+    }
+
+    private static void cancelToast() {
+        if (toast != null && toast.getView().isShown()) {
+            toast.cancel();
+            toast = null;
         }
+    }
+
+    public static void showSimpleToast(Context context, String text) {
+        cancelToast();
         toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
+        playSound(context, null, "computer_chimes");
+        toast.show();
+    }
+
+    public static void showFormattedToast(Context context, Spanned spanned) {
+        cancelToast();
+        toast = Toast.makeText(context, spanned, Toast.LENGTH_SHORT);
         playSound(context, null, "computer_chimes");
         toast.show();
     }
@@ -3018,6 +3126,7 @@ class Methods extends ContextWrapper {
         permittedNames.add(NameEnum.JAPANESE_NAME);
         permittedNames.add(NameEnum.MEXICAN_NAME);
         permittedNames.add(NameEnum.RUSSIAN_NAME);
+        permittedNames.add(NameEnum.GENERATED_PATTERN_NAME);
         permittedNames.add(NameEnum.GENERATED_NATURAL_NAME);
         permittedNames.add(NameEnum.GENERATED_DEFINED_NAME);
         permittedNames.add(NameEnum.GENERATED_MYSTIC_NAME);
