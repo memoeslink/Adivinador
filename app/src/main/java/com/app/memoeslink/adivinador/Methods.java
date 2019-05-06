@@ -573,6 +573,8 @@ class Methods extends ContextWrapper {
 
                 if (StringUtils.isAllBlank(temp))
                     s = generateName();
+                else
+                    s = temp;
             }
             s = s.toLowerCase();
             s = normalize(s);
