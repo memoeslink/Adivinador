@@ -3,7 +3,7 @@
     <string name="about">
         <![CDATA[
         <big><b>Adivinador</b></big>
-        <br><b>Version: 1.3.3</b>
+        <br><b>Version: 1.3.4</b>
         <br><br>2014-2018 Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
@@ -615,6 +615,7 @@
         <item>will change.</item>
         <item>will change totally.</item>
         <item>will change inversely.</item>
+        <item>will be at {method:getPercentage}.</item>
         <item>will be reverted.</item>
         <item>will be as before.</item>
         <item>won\'t be as before.</item>
@@ -648,6 +649,7 @@
         <item>your {rand:health; health condition}</item>
         <item>your financial situation</item>
         <item>your love situation</item>
+        <item>your social life</item>
         <item>your {rand:sexuality; sex life}</item>
         <item>your {rand:relationships; interpersonal relationships}</item>
         <item>your {rand:love affairs; love relationships}</item>
@@ -699,7 +701,6 @@
         <item>your {rand:relevance; importance}</item>
         <item>your {rand:vigor; strength; physical condition}</item>
         <item>your {rand:stimuli; sources of pleasure}</item>
-        <item>the achievement of objectives {rand:∅; in projects; in couple relationships; in friendships or family relationships; in business; in school or work; in agreements, pacts, or resolutions}</item>
         <item>your success</item>
         <item>your {rand:wishes; expectations; dreams; ambitions}</item>
         <item>your passions</item>
@@ -712,6 +713,8 @@
         <item>your privacy</item>
         <item>your self-actualization</item>
         <item>your motivation</item>
+        <item>your decision making</item>
+        <item>the achievement of objectives related to ˧˟</item>
     </string-array>
     <string-array name="divination_start">
         <item>Within ‽1 days (‽2)</item>
@@ -731,6 +734,7 @@
         <item>From now</item>
         <item>Starting today</item>
         <item>Starting from now</item>
+        <item>Henceforth</item>
         <item>In this day</item>
         <item>In these days</item>
         <item>In a couple of days</item>
@@ -765,13 +769,16 @@
         <item>At a future time</item>
         <item>In a time to come</item>
         <item>Tomorrow</item>
+        <item>The day after tomorrow</item>
         <item>Between today and tomorrow</item>
         <item>At any moment</item>
         <item>Pretty soon</item>
-        <item>When you least expect it</item>
+        <item>At one point</item>
         <item>In the current period</item>
         <item>Presently</item>
         <item>At the present time</item>
+        <item>Momentarily</item>
+        <item>Temporarily</item>
     </string-array>
     <string-array name="element">
         <item>\?</item>
@@ -831,7 +838,6 @@
         <item>unexpected events</item>
         <item>personal experience</item>
         <item>experience of others</item>
-        <item>your needs</item>
         <item>others\' needs</item>
         <item>memories</item>
         <item>memories from a distant past</item>

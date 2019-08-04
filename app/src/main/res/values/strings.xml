@@ -3,7 +3,7 @@
     <string name="about">
         <![CDATA[
         <big><b>Adivinador</b></big>
-        <br><b>Versión: 1.3.3</b>
+        <br><b>Versión: 1.3.4</b>
         <br><br>2014-2018 Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
@@ -617,6 +617,7 @@
         <item>cambiará¦n¦.</item>
         <item>cambiará¦n¦ totalmente.</item>
         <item>cambiará¦n¦ a la inversa.</item>
+        <item>estará¦n¦ al {method:getPercentage}.</item>
         <item>se revertirá¦n¦.</item>
         <item>volverá¦n¦ a ser como antes.</item>
         <item>no será¦n¦ como antes.</item>
@@ -650,6 +651,7 @@
         <item>tu {rand:salud｢2｣; estado de salud｢1｣}</item>
         <item>tu situación financiera｢2｣</item>
         <item>tu situación amorosa｢2｣</item>
+        <item>tu vida social｢2｣</item>
         <item>tu {rand:sexualidad｢2｣; vida sexual｢2｣}</item>
         <item>˧˟ tus {rand:relaciones｢2｣; relaciones interpersonales｢2｣}</item>
         <item>˧˟ tus {rand:amoríos｢1｣; relaciones amorosas｢2｣}</item>
@@ -701,11 +703,10 @@
         <item>tu {rand:relevancia｢2｣; importancia｢2｣}</item>
         <item>tu {rand:vigor｢1｣; fuerza｢2｣; condición física｢2｣}</item>
         <item>˧˟ tus {rand:estímulos｢1｣; fuentes de placer｢2｣}</item>
-        <item>la consecución de objetivos｢2｣ {rand:∅; en los proyectos; en las relaciones de pareja; en las amistades o relaciones familiares; en los negocios; en los estudios o el trabajo; en los acuerdos, pactos, o resoluciones}</item>
         <item>tu éxito｢1｣</item>
         <item>˧˟ tus {rand:deseos｢1｣; expectativas｢2｣; sueños｢1｣; ambiciones｢2｣}</item>
         <item>˧˟ tus pasiones｢2｣</item>
-        <item>˧˟ tus talentos</item>
+        <item>˧˟ tus talentos｢1｣</item>
         <item>tu legado o herencia｢1｣</item>
         <item>˧˟ tus planes｢1｣</item>
         <item>˧˟ tus necesidades fisiológicas｢2｣</item>
@@ -714,6 +715,8 @@
         <item>tu privacidad｢2｣</item>
         <item>tu autorrealización｢1｣</item>
         <item>tu motivación｢1｣</item>
+        <item>tu toma de decisiones｢2｣</item>
+        <item>la consecución de objetivos relacionada con ˧*｢2｣</item>
     </string-array>
     <string-array name="divination_start">
         <item>Dentro de ‽1 días (‽2)</item>
@@ -733,6 +736,7 @@
         <item>A partir de ahora</item>
         <item>Comenzando desde hoy</item>
         <item>Empezando desde ahora</item>
+        <item>En lo sucesivo</item>
         <item>En este día</item>
         <item>En estos días</item>
         <item>En un par de días</item>
@@ -767,13 +771,16 @@
         <item>En un tiempo futuro</item>
         <item>En un tiempo por venir</item>
         <item>Mañana</item>
+        <item>Pasado mañana</item>
         <item>Entre hoy y mañana</item>
         <item>En cualquier momento</item>
         <item>Dentro de poco</item>
-        <item>Cuando menos te lo esperes</item>
+        <item>En un momento dado</item>
         <item>En el periodo actual</item>
         <item>En el presente</item>
         <item>En el momento actual</item>
+        <item>Momentáneamente</item>
+        <item>Temporalmente</item>
     </string-array>
     <string-array name="element">
         <item>\?</item>
@@ -831,9 +838,8 @@
         <item>eventos futuros</item>
         <item>eventos próximos</item>
         <item>eventos inesperados</item>
-        <item>la experiencia personal</item>
+        <item>la experiencia propia</item>
         <item>las experiencias de otros</item>
-        <item>tus necesidades</item>
         <item>las necesidades de otros</item>
         <item>recuerdos</item>
         <item>recuerdos de un pasado lejano</item>

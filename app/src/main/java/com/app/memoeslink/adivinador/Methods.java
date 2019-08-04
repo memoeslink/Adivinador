@@ -110,12 +110,13 @@ class Methods extends ContextWrapper {
     private static final String UNKNOWN_DATE = "????/??/??";
     private static final String DOUBLE_DOT_REGEX = "\\.(\\s*</?\\w+>\\s*)*\\.";
     private static final String LATIN_OR_SPACE_REGEX = "[\\p{L}\\s]+";
+    private static final String INTEGER_REGEX = "(-?[1-9]\\d*|0)";
     private static final String RANDOM_TAG_REGEX = "\\{rand:[^{}⸠⸡;]+(;[^{}⸠⸡;]+)*\\}";
-    private static final String TAG_COMPONENT_REGEX = "(\\{(string|database|method):|\\}|\\s+|⦗\\d+⦘|⸻(\\⛌|\\⸮|\\d+))";
-    private static final String TAG_REGEX = "\\{((string|database):[^{}⦗⦘⸡:⸻⛌⸮]+(⦗[\\d]+⦘)?(\\s*⸻(⛌|⸮|\\d+))?|method:[a-zA-Z0-9_$]+)\\s*\\}";
+    private static final String TAG_COMPONENT_REGEX = "(\\{(string|database|method):|\\}|\\s+|⦗\\d+⦘|⸻(⛌|⸮|" + INTEGER_REGEX + "))";
+    private static final String TAG_REGEX = "\\{((string|database):[^{}⦗⦘⸡:⸻⛌⸮]+(⦗[\\d]+⦘)?(\\s*⸻(⛌|⸮|" + INTEGER_REGEX + "))?|method:[a-zA-Z0-9_$]+)\\s*\\}";
     private static final String WORD_APPENDIX_REGEX = "\\[[\\w" + ACCENTED_CHARACTERS + "⁞∅'\\s]*(,[\\w" + ACCENTED_CHARACTERS + "⁞∅'\\s]*)*\\]";
-    private static final String WORD_COMPONENT_REGEX = "(\\{|\\}|(⸻(\\⛌|\\⸮|\\d+)))";
-    private static final String WORD_TAG_REGEX = "\\{([\\w" + ACCENTED_CHARACTERS + "⁞∅'\\s]*" + WORD_APPENDIX_REGEX + ")(⸻(⛌|⸮|\\d+))?\\}";
+    private static final String WORD_COMPONENT_REGEX = "(\\{|\\}|(⸻(⛌|⸮|" + INTEGER_REGEX + ")))";
+    private static final String WORD_TAG_REGEX = "\\{([\\w" + ACCENTED_CHARACTERS + "⁞∅'\\s]*" + WORD_APPENDIX_REGEX + ")(⸻(⛌|⸮|" + INTEGER_REGEX + "))?\\}";
     private static final int[] PROBABILITY_DISTRIBUTION = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
     private static final char[] REPLACEMENTS = {'⚨', '⚩', '⁇', '⍰', '�', '□', '?'};
     private static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
@@ -148,7 +149,7 @@ class Methods extends ContextWrapper {
     private static final Pattern DOUBLE_DOT_PATTERN = Pattern.compile(DOUBLE_DOT_REGEX);
     private static final Pattern LATIN_OR_SPACE_PATTERN = Pattern.compile(LATIN_OR_SPACE_REGEX);
     private static final Pattern SEX_PATTERN = Pattern.compile("(｢[0-2]｣)");
-    private static final Pattern SEX_APPENDIX_PATTERN = Pattern.compile("⸻\\d+");
+    private static final Pattern SEX_APPENDIX_PATTERN = Pattern.compile("⸻" + INTEGER_REGEX);
     private static final Pattern RANDOM_TAG_PATTERN = Pattern.compile(RANDOM_TAG_REGEX);
     private static final Pattern MULTIPLE_CONSONANT_PATTERN = Pattern.compile("([" + LOWERCASE_CONSONANTS + "]{2})([" + LOWERCASE_CONSONANTS + "]{1,})");
     private static final Pattern MULTIPLE_VOWEL_PATTERN = Pattern.compile("([" + FULL_LOWERCASE_VOWELS + "])[" + FULL_LOWERCASE_VOWELS + "]{1,}([" + FULL_LOWERCASE_VOWELS + "])");
@@ -1445,6 +1446,10 @@ class Methods extends ContextWrapper {
 
     private String getSpanishNoun() {
         return String.valueOf(getSpanishNoun(randomizer.getInt(spanishNouns.size() - 1, 0), randomizer.getBoolean() ? null : true)[0]);
+    }
+
+    private String getPercentage() {
+        return randomizer.getInt(101, 0) + "%";
     }
 
     private Object[] getSpanishNoun(Integer index, Boolean complete) {

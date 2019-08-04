@@ -1300,8 +1300,8 @@ public class MainActivity extends MenuActivity {
             }
             preferences.edit().remove("temp_busy").apply();
 
-            //Display name of the person, if possible
-            if (!isVisible(personInfo))
+            //Display name of the person, if active and possible
+            if (active && !isVisible(personInfo))
                 Methods.showFormattedToast(MainActivity.this, Methods.fromHtml(data[2].toString()));
 
             //Talk; if active, enabled and possible
