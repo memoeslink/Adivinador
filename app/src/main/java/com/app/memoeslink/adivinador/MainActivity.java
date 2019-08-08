@@ -274,8 +274,6 @@ public class MainActivity extends MenuActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, dateOptions);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dateSelector.setAdapter(adapter);
-        dateSelector.setBackgroundColor(Color.TRANSPARENT);
-        dateSelector.setPopupBackgroundResource(android.R.drawable.spinner_dropdown_background);
         adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, nameTypeOptions) {
             private final int[] positions = {0, 1, nameTypeOptions.length - 1};
             private final int defaultColor = Methods.getTextColor(MainActivity.this);

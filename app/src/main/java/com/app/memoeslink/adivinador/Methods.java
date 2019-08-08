@@ -1469,7 +1469,7 @@ class Methods extends ContextWrapper {
         };
 
         for (int n = -1, length = articles.length; ++n < length - 1; ) {
-            if (noun.startsWith(String.valueOf(articles[n][0]) + " ")) {
+            if (noun.startsWith(articles[n][0] + " ")) {
                 position = n;
                 temp = noun.replaceFirst(articles[n][0] + "\\s+", "");
 
@@ -2817,13 +2817,14 @@ class Methods extends ContextWrapper {
         String s = "?";
 
         try {
-            Class methodsClass = Class.forName("com.app.memoeslink.adivinador.Methods");
+            //Class methodClass = Class.forName('com.app.memoeslink.adivinador.Methods');
+            Class methodsClass = Methods.class;
             Constructor constructor = methodsClass.getConstructor(Context.class);
             Object object = constructor.newInstance(getApplicationContext());
             Method method = methodsClass.getDeclaredMethod(methodName);
             method.setAccessible(true);
             s = (String) method.invoke(object);
-        } catch (ClassNotFoundException | InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
+        } catch (InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
             e.printStackTrace();
         }
         return s;
@@ -2881,7 +2882,7 @@ class Methods extends ContextWrapper {
         Configuration configuration = activity.getResources().getConfiguration();
         int rotation = windowManager.getDefaultDisplay().getRotation();
 
-        // Search for the natural position of the device
+        //Search for the natural position of the device
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE && (rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) || configuration.orientation == Configuration.ORIENTATION_PORTRAIT && (rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270)) {
             switch (rotation) { //Natural position is Landscape
                 case Surface.ROTATION_0:
