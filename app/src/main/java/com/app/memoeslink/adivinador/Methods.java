@@ -61,6 +61,8 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.security.SecureRandom;
 import java.text.DateFormatSymbols;
 import java.text.Normalizer;
@@ -98,6 +100,7 @@ class Methods extends ContextWrapper {
     public static Locale[] locales;
     public static List<NameEnum> availableNames = new ArrayList<>();
     public static List<NameEnum> supportedNames = new ArrayList<>();
+    private static Long innerSeed = null;
     private static final String ACCENTED_CHARACTERS = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇØøÅåÆæǼǽǣŒœÐÞαßþðŠšÝýÝÿŽž";
     private static final String HEX_DIGITS = "0123456789ABCDEF";
     private static final String FULL_LOWERCASE_VOWELS = "aàáâãäåāăąǻȁȃạảấầẩẫậắằẳẵặḁæǽeȅȇḕḗḙḛḝẹẻẽếềểễệēĕėęěèéêëiȉȋḭḯỉịĩīĭįiìíîïĳoœøǿȍȏṍṏṑṓọỏốồổỗộớờởỡợōòóŏőôõöuũūŭůűųùúûüȕȗṳṵṷṹṻụủứừửữựyẙỳỵỷỹŷÿý";
@@ -111,6 +114,7 @@ class Methods extends ContextWrapper {
     private static final String DOUBLE_DOT_REGEX = "\\.(\\s*</?\\w+>\\s*)*\\.";
     private static final String LATIN_OR_SPACE_REGEX = "[\\p{L}\\s]+";
     private static final String INTEGER_REGEX = "(-?[1-9]\\d*|0)";
+    private static final String ROMAN_NUMERAL_REGEX = "M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})";
     private static final String RANDOM_TAG_REGEX = "\\{rand:[^{}⸠⸡;]+(;[^{}⸠⸡;]+)*\\}";
     private static final String TAG_COMPONENT_REGEX = "(\\{(string|database|method):|\\}|\\s+|⦗\\d+⦘|⸻(⛌|⸮|" + INTEGER_REGEX + "))";
     private static final String TAG_REGEX = "\\{((string|database):[^{}⦗⦘⸡:⸻⛌⸮]+(⦗[\\d]+⦘)?(\\s*⸻(⛌|⸮|" + INTEGER_REGEX + "))?|method:[a-zA-Z0-9_$]+)\\s*\\}";
@@ -150,6 +154,7 @@ class Methods extends ContextWrapper {
     private static final Pattern LATIN_OR_SPACE_PATTERN = Pattern.compile(LATIN_OR_SPACE_REGEX);
     private static final Pattern SEX_PATTERN = Pattern.compile("(｢[0-2]｣)");
     private static final Pattern SEX_APPENDIX_PATTERN = Pattern.compile("⸻" + INTEGER_REGEX);
+    private static final Pattern ROMAN_NUMERAL_PATTERN = Pattern.compile("(^|\\s+)" + ROMAN_NUMERAL_REGEX + "($|\\s+)");
     private static final Pattern RANDOM_TAG_PATTERN = Pattern.compile(RANDOM_TAG_REGEX);
     private static final Pattern MULTIPLE_CONSONANT_PATTERN = Pattern.compile("([" + LOWERCASE_CONSONANTS + "]{2})([" + LOWERCASE_CONSONANTS + "]{1,})");
     private static final Pattern MULTIPLE_VOWEL_PATTERN = Pattern.compile("([" + FULL_LOWERCASE_VOWELS + "])[" + FULL_LOWERCASE_VOWELS + "]{1,}([" + FULL_LOWERCASE_VOWELS + "])");
@@ -199,7 +204,11 @@ class Methods extends ContextWrapper {
         preferences = getSharedPreferences(PREFERENCES, Activity.MODE_PRIVATE);
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         myDB = new DatabaseConnection(context);
-        randomizer = new Randomizer();
+
+        if (innerSeed != null)
+            randomizer = new Randomizer(innerSeed);
+        else
+            randomizer = new Randomizer();
 
         if (!initialized) {
             commonNames = getStringAsList(R.string.common_names);
@@ -568,14 +577,18 @@ class Methods extends ContextWrapper {
         else {
             if (StringUtils.isAllBlank(s))
                 s = generateName(randomizer.getInt(6, 1));
-            if (StringUtils.isAlphaSpace(s) || LATIN_OR_SPACE_PATTERN.matcher(s).matches()) {
-            } else {
-                String temp = RegExUtils.removeAll(s, "[^\\p{Latin}\\s]");
+            else {
+                s = RegExUtils.replaceAll(s, ROMAN_NUMERAL_PATTERN, " ").trim();
 
-                if (StringUtils.isAllBlank(temp))
-                    s = generateName();
-                else
-                    s = temp;
+                if (StringUtils.isAlphaSpace(s) || LATIN_OR_SPACE_PATTERN.matcher(s).matches()) {
+                } else {
+                    String temp = RegExUtils.removeAll(s, "[^\\p{Latin}\\s]");
+
+                    if (StringUtils.isAllBlank(temp))
+                        s = generateName();
+                    else
+                        s = temp;
+                }
             }
             s = s.toLowerCase();
             s = normalize(s);
@@ -1424,18 +1437,6 @@ class Methods extends ContextWrapper {
         return myDB.selectEnglishAdjective(randomizer.getInt(myDB.countEnglishAdjectives(), 1));
     }
 
-    private String getEnglishNoun() {
-        return englishNouns.get(randomizer.getInt(englishNouns.size() - 1, 0));
-    }
-
-    private String getEnglishOccupation() {
-        return myDB.selectEnglishOccupation(randomizer.getInt(myDB.countEnglishOccupations(), 1));
-    }
-
-    private String getOccupation() {
-        return myDB.selectOccupation(randomizer.getInt(myDB.countOccupations(), 1));
-    }
-
     private String getCommonNoun() {
         return myDB.selectCommonNoun(randomizer.getInt(myDB.countCommonNouns(), 1));
     }
@@ -1444,11 +1445,23 @@ class Methods extends ContextWrapper {
         return myDB.selectUsername(randomizer.getInt(myDB.countUsernames(), 1));
     }
 
-    private String getSpanishNoun() {
+    public String getEnglishNoun() {
+        return englishNouns.get(randomizer.getInt(englishNouns.size() - 1, 0));
+    }
+
+    public String getEnglishOccupation() {
+        return myDB.selectEnglishOccupation(randomizer.getInt(myDB.countEnglishOccupations(), 1));
+    }
+
+    public String getOccupation() {
+        return myDB.selectOccupation(randomizer.getInt(myDB.countOccupations(), 1));
+    }
+
+    public String getSpanishNoun() {
         return String.valueOf(getSpanishNoun(randomizer.getInt(spanishNouns.size() - 1, 0), randomizer.getBoolean() ? null : true)[0]);
     }
 
-    private String getPercentage() {
+    public String getPercentage() {
         return randomizer.getInt(101, 0) + "%";
     }
 
@@ -1783,8 +1796,12 @@ class Methods extends ContextWrapper {
                             }
                         } else if (StringUtils.startsWith(matches.get(n), "{database:"))
                             replacement = index != null && index >= 0 ? myDB.selectUnknownRow(resourceName, index) : myDB.selectUnknownRow(resourceName, randomizer.getInt(myDB.countUnknownRow(resourceName), 1));
-                        else if (StringUtils.startsWith(matches.get(n), "{method:"))
-                            replacement = callMethod(resourceName);
+                        else if (StringUtils.startsWith(matches.get(n), "{method:")) {
+                            if ((replacement = invokeMethod(resourceName)) != null) {
+                            } else if ((replacement = callMethod(resourceName)) != null) {
+                            } else
+                                replacement = "?";
+                        }
                         int openingIndex = StringUtils.indexOf(replacement, '{');
                         int closingIndex;
 
@@ -2814,17 +2831,36 @@ class Methods extends ContextWrapper {
     /* Reflection methods */
 
     public String callMethod(String methodName) {
-        String s = "?";
+        return (String) AccessController.doPrivileged((PrivilegedAction) () -> {
+            String s = null;
+
+            try {
+                innerSeed = getRandomizer().getSeed(); //Store current Randomizer object seed so it can be used by any future Randomizer object initialization
+                Class methodsClass = Methods.class;
+                Constructor constructor = methodsClass.getConstructor(Context.class);
+                Object object = constructor.newInstance(getApplicationContext());
+                Method method = methodsClass.getDeclaredMethod(methodName);
+                method.setAccessible(true);
+                s = (String) method.invoke(object);
+                innerSeed = null;
+            } catch (InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            return s;
+        });
+    }
+
+    public String invokeMethod(String methodName) {
+        String s = null;
 
         try {
-            //Class methodClass = Class.forName('com.app.memoeslink.adivinador.Methods');
-            Class methodsClass = Methods.class;
-            Constructor constructor = methodsClass.getConstructor(Context.class);
-            Object object = constructor.newInstance(getApplicationContext());
-            Method method = methodsClass.getDeclaredMethod(methodName);
-            method.setAccessible(true);
-            s = (String) method.invoke(object);
-        } catch (InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
+            innerSeed = getRandomizer().getSeed(); //Store current Randomizer object seed so it can be used by any future Randomizer object initialization
+            Class<?> methodsClass = Class.forName("com.app.memoeslink.adivinador.Methods");
+            Method m = methodsClass.getDeclaredMethod(methodName);
+            m.setAccessible(true);
+            s = (String) m.invoke(new Methods(Methods.this));
+            innerSeed = null;
+        } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
         return s;
