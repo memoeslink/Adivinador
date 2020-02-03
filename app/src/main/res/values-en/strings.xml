@@ -3,7 +3,7 @@
     <string name="about">
         <![CDATA[
         <big><b>Adivinador</b></big>
-        <br><b>Version: 1.3.6</b>
+        <br><b>Version: 1.3.7</b>
         <br><br>2014-2018 Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
@@ -699,7 +699,7 @@
         <item>your associations</item>
         <item>your {rand:social status; social position}</item>
         <item>your {rand:relevance; importance}</item>
-        <item>your {rand:vigor; strength; physical condition}</item>
+        <item>your {rand:vigor; strength; physical condition; energy}</item>
         <item>your {rand:stimuli; sources of pleasure}</item>
         <item>your success</item>
         <item>your {rand:wishes; expectations; dreams; ambitions}</item>

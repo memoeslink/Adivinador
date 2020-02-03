@@ -18,13 +18,13 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
-import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatSpinner;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
@@ -44,7 +44,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.easyandroidanimations.library.BounceAnimation;
@@ -109,8 +108,8 @@ public class MainActivity extends MenuActivity {
     private TextView compatibility;
     private TextView copy;
     private EditText nameBox;
-    private Spinner dateSelector;
-    private Spinner nameTypeSelector;
+    private AppCompatSpinner dateSelector;
+    private AppCompatSpinner nameTypeSelector;
     private DatePickerDialog date;
     private MaterialProgressBar progressBar;
     private Button button;
@@ -271,36 +270,23 @@ public class MainActivity extends MenuActivity {
         methods.deleteTemp();
 
         //Set adapters
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_item, dateOptions);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, dateOptions);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dateSelector.setAdapter(adapter);
-        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, nameTypeOptions) {
+        adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, nameTypeOptions) {
             private final int[] positions = {0, 1, nameTypeOptions.length - 1};
-            private final int defaultColor = Methods.getTextColor(MainActivity.this);
 
             @Override
             public boolean isEnabled(int position) {
-                return !isContained(position);
+                return !ArrayUtils.contains(positions, position);
             }
 
             @Override
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 view.setTag(position);
-                TextView textView = (TextView) view;
-
-                if (isContained(position)) {
-                    textView.setTextColor(Color.GRAY);
-                    textView.setBackgroundColor(Color.DKGRAY);
-                } else {
-                    textView.setTextColor(defaultColor);
-                    textView.setBackgroundColor(Color.TRANSPARENT);
-                }
+                view.setAlpha(isEnabled(position) ? 1.0f : 0.35f);
                 return view;
-            }
-
-            private boolean isContained(int position) {
-                return ArrayUtils.contains(positions, position);
             }
         };
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -1071,8 +1057,8 @@ public class MainActivity extends MenuActivity {
 
         if (nameList != null && nameList.size() > 0) {
             String[] names = nameList.toArray(new String[0]);
-            initialName.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line, names));
-            finalName.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_dropdown_item_1line, names));
+            initialName.setAdapter(new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_dropdown_item_1line, names));
+            finalName.setAdapter(new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_dropdown_item_1line, names));
         }
     }
 
@@ -1109,7 +1095,7 @@ public class MainActivity extends MenuActivity {
             builder.setTitle(R.string.alert_select_enquiry_title);
             builder.setNegativeButton(R.string.action_cancel, (dialogInterface, i) -> dialog.dismiss());
             final ListView listView = new ListView(MainActivity.this);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, android.R.id.text1, items);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, items);
             listView.setAdapter(adapter);
 
             listView.setOnItemClickListener((parent, view, position, id) -> {
@@ -1475,7 +1461,7 @@ public class MainActivity extends MenuActivity {
                 hashMap.get("incompatibility").toString(),
                 hashMap.get("newZodiacSign").toString(),
                 hashMap.get("chineseZodiacSign").toString(),
-                hashMap.get("color").toString(), "⬛",
+                hashMap.get("color").toString(), "⬛&#xFE0E;",
                 hashMap.get("animal").toString(),
                 hashMap.get("psychologicalType").toString(),
                 hashMap.get("secretName").toString(),

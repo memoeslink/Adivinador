@@ -23,11 +23,11 @@
                 android:layout_height="1dp"
                 android:layout_weight="0.1"></View>
 
-            <Spinner
+            <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/dialog_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"></Spinner>
+                android:layout_weight="0.8"></android.support.v7.widget.AppCompatSpinner>
 
             <View
                 android:layout_width="0dp"

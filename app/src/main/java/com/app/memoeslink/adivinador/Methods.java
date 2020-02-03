@@ -100,7 +100,6 @@ class Methods extends ContextWrapper {
     public static Locale[] locales;
     public static List<NameEnum> availableNames = new ArrayList<>();
     public static List<NameEnum> supportedNames = new ArrayList<>();
-    private static Long innerSeed = null;
     private static final String ACCENTED_CHARACTERS = "àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇØøÅåÆæǼǽǣŒœÐÞαßþðŠšÝýÝÿŽž";
     private static final String HEX_DIGITS = "0123456789ABCDEF";
     private static final String FULL_LOWERCASE_VOWELS = "aàáâãäåāăąǻȁȃạảấầẩẫậắằẳẵặḁæǽeȅȇḕḗḙḛḝẹẻẽếềểễệēĕėęěèéêëiȉȋḭḯỉịĩīĭįiìíîïĳoœøǿȍȏṍṏṑṓọỏốồổỗộớờởỡợōòóŏőôõöuũūŭůűųùúûüȕȗṳṵṷṹṻụủứừửữựyẙỳỵỷỹŷÿý";
@@ -124,7 +123,7 @@ class Methods extends ContextWrapper {
     private static final int[] PROBABILITY_DISTRIBUTION = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
     private static final char[] REPLACEMENTS = {'⚨', '⚩', '⁇', '⍰', '�', '□', '?'};
     private static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
-    private static final String[] NAME_PATTERNS = {"cv", "cvc", "cvc kvc", "cvcv", "cvcve", "cvcvc cvcve", "cvcvmv", "cvcvmve", "cve", "cvmce", "cvmv", "cvmve", "cvvc", "cvvcvcv", "cvvcvve", "cvve", "cwcvce", "cwcve", "cwe", "cwe cve", "kvcv", "kvcve", "kve", "kvmv", "kvmvcv", "kvmvmv", "kwcv", "kwcve", "kwe", "kwmve", "vccv", "vccvc", "vccvcv", "vcv", "vcvc", "vcvccvc", "vcvcv", "vcvcvc", "vcvcvcv", "vcvcvcvc", "vcvcwcv", "vcve", "vcve vcw", "vmv", "vmvcv", "vmve", "vmvmv", "vmvmve", "wcv", "wcvcve", "wcve", "wmv", "wmvcv", "wmve"};
+    private static final String[] NAME_PATTERNS = {"cv", "cvc", "cvc kvc", "cvcv", "cvccv", "cvcve", "cvcvc cvcve", "cvcvmv", "cvcvmve", "cve", "cvmce", "cvmv", "cvmve", "cvvc", "cvvcvcv", "cvvcvve", "cvve", "cwcvce", "cwcve", "cw cwcv", "cwe", "cwe cve", "cwecvcwe", "kvcv", "kvcve", "kve", "kvmv", "kvmvcv", "kvmvmv", "kwcv", "kwcve", "kwe", "kwmve", "vccv", "vccvc", "vccvcv", "vcv", "vcvc", "vcvccvc", "vcvcv", "vcvcvc", "vcvcvcv", "vcvcvcvc", "vcvcwcv", "vcve", "vcve vcw", "vmv", "vmvcv", "vmve", "vmvmv", "vmvmve", "wcv", "wcvcve", "wcve", "wmv", "wmvcv", "wmve"};
     private static final String[][] GENERATED_NAME_START = {
             {"a", "an", "as", "bra", "ce", "cen", "den", "e", "el", "en", "ghal", "gra", "i", "in", "is", "ka", "kan", "ken", "kha", "kra", "li", "me", "o", "os", "ren", "rha", "se", "sen", "te", "tra", "u", "ul", "un", "ze", "æ"},
             {"a", "a", "a", "a", "a", "ae", "ae", "ae", "ba", "ba", "ba", "be", "be", "be", "bi", "bi", "bi", "bla", "ble", "bli", "blo", "blu", "bo", "bo", "bo", "bra", "bre", "bri", "bro", "bru", "bu", "bu", "bu", "ca", "ca", "ca", "ce", "ce", "ce", "cha", "che", "chi", "cho", "chu", "ci", "ci", "ci", "cla", "cle", "cli", "clo", "clu", "co", "co", "co", "cra", "cre", "cri", "cro", "cru", "cu", "cu", "cu", "da", "da", "da", "de", "de", "de", "di", "di", "di", "dla", "dle", "dli", "dlo", "dlu", "do", "do", "do", "dra", "dre", "dri", "dro", "dru", "du", "du", "du", "e", "e", "e", "e", "e", "fa", "fa", "fa", "fe", "fe", "fe", "fi", "fi", "fi", "fla", "fle", "fli", "flo", "flu", "fo", "fo", "fo", "fra", "fre", "fri", "fro", "fru", "fu", "fu", "fu", "ga", "ga", "ga", "ge", "ge", "ge", "gi", "gi", "gi", "gla", "gle", "gli", "glo", "glu", "go", "go", "go", "gra", "gre", "gri", "gro", "gru", "gu", "gu", "gu", "gue", "gui", "güe", "güi", "ha", "he", "hi", "ho", "hu", "i", "i", "i", "i", "i", "ja", "ja", "ja", "je", "je", "je", "ji", "ji", "ji", "jo", "jo", "jo", "ju", "ju", "ju", "ka", "ka", "ke", "ke", "ki", "ki", "ko", "ko", "ku", "ku", "la", "la", "la", "le", "le", "le", "li", "li", "li", "li", "lla", "lle", "lli", "llo", "llu", "lo", "lo", "lo", "lu", "lu", "lu", "ma", "ma", "ma", "me", "me", "me", "mi", "mi", "mi", "mo", "mo", "mo", "mu", "mu", "mu", "na", "na", "na", "ne", "ne", "ne", "ni", "ni", "ni", "no", "no", "no", "nu", "nu", "nu", "o", "o", "o", "o", "o", "ou", "ou", "ou", "pa", "pa", "pa", "pe", "pe", "pe", "pi", "pi", "pi", "pla", "ple", "pli", "plo", "plu", "po", "po", "po", "pra", "pre", "pri", "pro", "pru", "pu", "pu", "pu", "que", "qui", "ra", "ra", "ra", "re", "re", "re", "ri", "ri", "ri", "ro", "ro", "ro", "ru", "ru", "ru", "sa", "sa", "sa", "se", "se", "se", "sha", "she", "shi", "sho", "shu", "si", "si", "si", "so", "so", "so", "su", "su", "su", "ta", "ta", "ta", "te", "te", "te", "ti", "ti", "ti", "tla", "tle", "tli", "tlo", "tlu", "to", "to", "to", "tra", "tre", "tri", "tro", "tru", "tu", "tu", "tu", "u", "u", "u", "u", "u", "va", "va", "va", "ve", "ve", "ve", "vi", "vi", "vi", "vo", "vo", "vo", "vu", "vu", "vu", "wa", "wa", "we", "we", "wi", "wi", "wo", "wo", "wu", "wu", "xa", "xe", "xi", "xo", "xu", "ya", "ya", "ye", "ye", "yi", "yi", "yo", "yo", "yu", "yu", "za", "za", "ze", "ze", "zi", "zi", "zo", "zo", "zu", "zu"},
@@ -204,11 +203,7 @@ class Methods extends ContextWrapper {
         preferences = getSharedPreferences(PREFERENCES, Activity.MODE_PRIVATE);
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         myDB = new DatabaseConnection(context);
-
-        if (innerSeed != null)
-            randomizer = new Randomizer(innerSeed);
-        else
-            randomizer = new Randomizer();
+        randomizer = new Randomizer();
 
         if (!initialized) {
             commonNames = getStringAsList(R.string.common_names);
@@ -254,6 +249,11 @@ class Methods extends ContextWrapper {
             contactNames = getContactNames();
             retrieved = true;
         }
+    }
+
+    public Methods(Context context, Long seed){
+        this(context);
+        getRandomizer().bindSeed(seed);
     }
 
     public Randomizer getRandomizer() {
@@ -2834,15 +2834,14 @@ class Methods extends ContextWrapper {
         return (String) AccessController.doPrivileged((PrivilegedAction) () -> {
             String s = null;
 
+
             try {
-                innerSeed = getRandomizer().getSeed(); //Store current Randomizer object seed so it can be used by any future Randomizer object initialization
                 Class methodsClass = Methods.class;
                 Constructor constructor = methodsClass.getConstructor(Context.class);
-                Object object = constructor.newInstance(getApplicationContext());
+                Object object = constructor.newInstance(getApplicationContext(), getRandomizer().getSeed());
                 Method method = methodsClass.getDeclaredMethod(methodName);
                 method.setAccessible(true);
                 s = (String) method.invoke(object);
-                innerSeed = null;
             } catch (InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
                 e.printStackTrace();
             }
@@ -2854,12 +2853,10 @@ class Methods extends ContextWrapper {
         String s = null;
 
         try {
-            innerSeed = getRandomizer().getSeed(); //Store current Randomizer object seed so it can be used by any future Randomizer object initialization
             Class<?> methodsClass = Class.forName("com.app.memoeslink.adivinador.Methods");
             Method m = methodsClass.getDeclaredMethod(methodName);
             m.setAccessible(true);
-            s = (String) m.invoke(new Methods(Methods.this));
-            innerSeed = null;
+            s = (String) m.invoke(new Methods(Methods.this, getRandomizer().getSeed()));
         } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -2998,12 +2995,9 @@ class Methods extends ContextWrapper {
                         e.printStackTrace();
                     }
 
-                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            mp.reset();
-                            mp.release();
-                        }
+                    mediaPlayer.setOnCompletionListener(mp -> {
+                        mp.reset();
+                        mp.release();
                     });
                     mediaPlayer.start();
                     return false;
