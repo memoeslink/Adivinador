@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_gravity="center"
@@ -44,7 +44,7 @@
                 android:layout_height="1dp"
                 android:layout_weight="0.15"></View>
 
-            <android.support.v7.widget.AppCompatAutoCompleteTextView
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/input_name_field"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -81,19 +81,19 @@
             android:layout_marginBottom="10dp"
             android:checkedButton="@+id/input_sex_indefinite_option">
 
-            <android.support.v7.widget.AppCompatRadioButton
+            <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/input_sex_indefinite_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/input_sex_indefinite" />
 
-            <android.support.v7.widget.AppCompatRadioButton
+            <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/input_sex_male_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/input_sex_male" />
 
-            <android.support.v7.widget.AppCompatRadioButton
+            <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/input_sex_female_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

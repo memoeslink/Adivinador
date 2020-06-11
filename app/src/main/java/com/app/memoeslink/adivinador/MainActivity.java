@@ -18,13 +18,6 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.view.ContextThemeWrapper;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatSpinner;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
@@ -46,6 +39,14 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.core.content.ContextCompat;
+
 import com.easyandroidanimations.library.BounceAnimation;
 import com.easyandroidanimations.library.FadeInAnimation;
 import com.easyandroidanimations.library.FadeOutAnimation;
@@ -60,6 +61,8 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
+import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -83,7 +86,7 @@ import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 public class MainActivity extends MenuActivity {
     private static final String[] sounds = {"blip1", "blip2", "bum", "chime_notification", "counter", "level_up", "notification", "notification_sound", "waterdrop"};
-    private static final int CONTACT_PERMISSION_REQUEST = 1;
+    private static final int PERMISSION_REQUEST = 1;
     private RelativeLayout adContainer;
     private RelativeLayout header;
     private LinearLayout confettiLayout;
@@ -176,17 +179,20 @@ public class MainActivity extends MenuActivity {
     private Methods unseededMethods;
     private Methods seededMethods;
     private Randomizer randomizer;
+    private Enum designationEnum = NameEnum.EMPTY;
     private FortuneTeller fortuneTeller;
     private Enquiry enquiry;
-    private NameEnum nameEnum = NameEnum.EMPTY;
     private Person backupPerson = null;
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
+
+    private static void onInitializationComplete(InitializationStatus initializationStatus) {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MobileAds.initialize(getApplicationContext(), "ca-app-pub-9370416997367495~8891738071");
+        MobileAds.initialize(this, MainActivity::onInitializationComplete);
         tts = new TextToSpeech(this, this);
         preferences = getSharedPreferences(Methods.PREFERENCES, Activity.MODE_PRIVATE);
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -252,10 +258,14 @@ public class MainActivity extends MenuActivity {
         fortuneTeller = new FortuneTeller(MainActivity.this);
 
         //Request ads
-        adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice(methods.getTestDeviceId())
+        List<String> testDevices = new ArrayList<>();
+        testDevices.add(AdRequest.DEVICE_ID_EMULATOR);
+        testDevices.add(methods.getTestDeviceId());
+        RequestConfiguration requestConfiguration = new RequestConfiguration.Builder()
+                .setTestDeviceIds(testDevices)
                 .build();
+        MobileAds.setRequestConfiguration(requestConfiguration);
+        adRequest = new AdRequest.Builder().build();
 
         //Get a greeting, if enabled
         if (!defaultPreferences.getBoolean("preference_greetingsEnabled", true))
@@ -274,7 +284,7 @@ public class MainActivity extends MenuActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dateSelector.setAdapter(adapter);
         adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, nameTypeOptions) {
-            private final int[] positions = {0, 1, nameTypeOptions.length - 1};
+            private final int[] positions = {0, 1, NameEnum.values().length - 1};
 
             @Override
             public boolean isEnabled(int position) {
@@ -320,6 +330,7 @@ public class MainActivity extends MenuActivity {
 
             @Override
             public void onAdFailedToLoad(int errorCode) {
+                System.out.println("The ad couldn't be loaded: " + errorCode);
                 prepareAd(false); //Show, avoid, or hide ads
             }
 
@@ -374,7 +385,7 @@ public class MainActivity extends MenuActivity {
 
                 if (!date.isAdded() && !date.isVisible()) {
                     try {
-                        date.show(getFragmentManager(), "PICKER_TAG");
+                        date.show(getSupportFragmentManager(), "PICKER_TAG");
                         shown = true;
                         date = null;
                     } catch (Exception ignored) {
@@ -417,8 +428,11 @@ public class MainActivity extends MenuActivity {
         nameTypeSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                nameEnum = NameEnum.values()[position];
-                obtainName(); //Generate a random name
+                List<Enum> designationTypes = new ArrayList<>();
+                designationTypes.addAll(Arrays.asList(NameEnum.values()));
+                designationTypes.addAll(Arrays.asList(PseudonymEnum.values()));
+                designationEnum = designationTypes.get(position);
+                obtainDesignation(); //Generate a random designation (name or pseudonym)
             }
 
             @Override
@@ -495,7 +509,7 @@ public class MainActivity extends MenuActivity {
         nameGenerationDialog.setOnShowListener(dialog -> {
             Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
             button.setOnClickListener(view -> {
-                obtainName(); //Generate a random name
+                obtainDesignation(); //Generate a random designation (name or pseudonym)
             });
         });
 
@@ -575,9 +589,18 @@ public class MainActivity extends MenuActivity {
         super.onStart();
         setAdapter(); //Get stored names
 
+        //Request permissions
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED)
-                requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, CONTACT_PERMISSION_REQUEST);
+            boolean permissionsGranted = true;
+            String[] permissions = {Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION};
+
+            for (String permission : permissions) {
+                if (ContextCompat.checkSelfPermission(MainActivity.this, permission) != PackageManager.PERMISSION_GRANTED)
+                    permissionsGranted = false;
+            }
+
+            if (!permissionsGranted)
+                requestPermissions(permissions, PERMISSION_REQUEST);
         }
 
         //Show full-screen ads
@@ -798,7 +821,7 @@ public class MainActivity extends MenuActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case CONTACT_PERMISSION_REQUEST: {
+            case PERMISSION_REQUEST: {
                 if (grantResults != null && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                     methods.getContactNames();
                 else
@@ -910,7 +933,8 @@ public class MainActivity extends MenuActivity {
                             }
                         }
 
-                        public void onAdFailedToLoad(int var1) {
+                        public void onAdFailedToLoad(int errorCode) {
+                            System.out.println("The ad couldn't be loaded: " + errorCode);
                             destroyAd();
                         }
                     });
@@ -1028,7 +1052,7 @@ public class MainActivity extends MenuActivity {
 
         confettiManager = new ConfettiManager(this, confettoGenerator, new ConfettiSource(x, y), confettiLayout)
                 .setEmissionDuration(ConfettiManager.INFINITE_DURATION)
-                .setEmissionRate(50)
+                .setEmissionRate(30)
                 .setVelocityX(0, 360)
                 .setVelocityY(0, 360)
                 .setRotationalVelocity(180, 180)
@@ -1348,7 +1372,8 @@ public class MainActivity extends MenuActivity {
 
             if (anonymous = seededMethods.getRandomizer().getInt(3, 0) == 0) {
                 name = person.getUsername();
-                simpleName = " ";
+                seededMethods.getRandomizer().bindSeed(Methods.getSeed(name)); //Set seed to Randomizer
+                simpleName = seededMethods.getPerson().getSimpleName();
                 formattedName = Methods.formatText(new String[]{name}, "", "b,tt");
             } else {
                 simpleName = person.getForename() + (!person.getForename().isEmpty() && !person.getLastName().isEmpty() ? " " : "") + person.getLastName();
@@ -1599,17 +1624,11 @@ public class MainActivity extends MenuActivity {
         }
     }
 
-    private void obtainName() {
+    private void obtainDesignation() {
         if (!obtaining) {
             obtaining = true;
             nameTypeSelector.setEnabled(false);
-            List<NameEnum> preferredNames = new ArrayList<>();
-            preferredNames.add(NameEnum.EMPTY);
-            preferredNames.add(NameEnum.TEST_CASE);
-            preferredNames.add(nameEnum);
-            Entity entity = unseededMethods.getEntity(preferredNames);
-            String composedName = Methods.formatText(new String[]{entity.getPrimitiveName()[0], entity.getPrimitiveName()[1]}, "", "");
-            nameBox.setText(composedName);
+            nameBox.setText(unseededMethods.getDesignation(designationEnum));
             nameTypeSelector.setEnabled(true);
             obtaining = false;
         }

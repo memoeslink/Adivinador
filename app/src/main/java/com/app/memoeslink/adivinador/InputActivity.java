@@ -4,13 +4,14 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

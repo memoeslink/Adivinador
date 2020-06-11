@@ -7,13 +7,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import java.util.HashMap;
 
@@ -90,6 +91,13 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
             available = false;
             Methods.showSimpleToast(CommonActivity.this, getString(R.string.toast_unavailable_voices));
         }
+    }
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            context = Methods.changeLanguage(context);
+        super.attachBaseContext(context);
     }
 
     @SuppressWarnings("deprecation")

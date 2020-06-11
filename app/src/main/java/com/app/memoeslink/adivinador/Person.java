@@ -1,5 +1,7 @@
 package com.app.memoeslink.adivinador;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Date;
 
 /**
@@ -10,7 +12,7 @@ public class Person extends Entity {
     private Entity entity;
     private String forename;
     private String lastName;
-    private String titleOfHonor;
+    private String honoraryTitle;
     private String japaneseHonorific;
     private String suffix;
     private String postNominalLetters;
@@ -24,7 +26,7 @@ public class Person extends Entity {
         entity = new Entity();
         forename = "";
         lastName = "";
-        titleOfHonor = "";
+        honoraryTitle = "";
         japaneseHonorific = "";
         suffix = "";
         postNominalLetters = "";
@@ -35,11 +37,11 @@ public class Person extends Entity {
         birthdate = null;
     }
 
-    public Person(Entity entity, String forename, String lastName, String titleOfHonor, String japaneseHonorific, String suffix, String postNominalLetters, String nickname, String username, String address, String email, Date birthdate) {
+    public Person(Entity entity, String forename, String lastName, String honoraryTitle, String japaneseHonorific, String suffix, String postNominalLetters, String nickname, String username, String address, String email, Date birthdate) {
         this.entity = entity;
         this.forename = forename;
         this.lastName = lastName;
-        this.titleOfHonor = titleOfHonor;
+        this.honoraryTitle = honoraryTitle;
         this.japaneseHonorific = japaneseHonorific;
         this.suffix = suffix;
         this.postNominalLetters = postNominalLetters;
@@ -106,12 +108,12 @@ public class Person extends Entity {
         this.lastName = lastName;
     }
 
-    public String getTitleOfHonor() {
-        return titleOfHonor;
+    public String getHonoraryTitle() {
+        return honoraryTitle;
     }
 
-    public void setTitleOfHonor(String titleOfHonor) {
-        this.titleOfHonor = titleOfHonor;
+    public void setHonoraryTitle(String honoraryTitle) {
+        this.honoraryTitle = honoraryTitle;
     }
 
     public String getJapaneseHonorific() {
@@ -176,5 +178,9 @@ public class Person extends Entity {
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public String getSimpleName() {
+        return StringUtils.trimToEmpty(forename + (StringUtils.isNotBlank(forename) && StringUtils.isNotBlank(lastName) ? " " : "") + lastName);
     }
 }

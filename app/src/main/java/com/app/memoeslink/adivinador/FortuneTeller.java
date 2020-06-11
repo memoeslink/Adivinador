@@ -6,7 +6,8 @@ import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.preference.PreferenceManager;
-import android.support.annotation.DrawableRes;
+
+import androidx.annotation.DrawableRes;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -169,7 +170,7 @@ public class FortuneTeller extends ContextWrapper {
                 if (randomizer.getInt(4, 0) == 0)
                     formattedContent = "<font color=" + color + ">" + methods.formatText(new String[]{person.getUsername()}, "", "b,tt") + "</font>";
                 else
-                    formattedContent = (person.getTitleOfHonor().isEmpty() ? "" : "<i>" + person.getTitleOfHonor() + "</i>" + " ")
+                    formattedContent = (person.getHonoraryTitle().isEmpty() ? "" : "<i>" + person.getHonoraryTitle() + "</i>" + " ")
                             + "<font color=" + color + ">" + methods.formatText(new String[]{person.getForename(), person.getLastName()}, person.getSuffix(), "b")
                             + (person.getJapaneseHonorific().isEmpty() ? "" : person.getJapaneseHonorific())
                             + (person.getPostNominalLetters().isEmpty() ? "" : "," + " " + methods.formatText(new String[]{person.getPostNominalLetters()}, "", "b,i")) + "</font>";

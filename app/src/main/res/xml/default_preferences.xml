@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/preference_fortune_teller">
-        <ListPreference
-            android:defaultValue="20"
-            android:entries="@array/refresh_time"
-            android:entryValues="@array/refresh_time_values"
-            android:key="preference_refreshTime"
-            android:summary="@string/preference_refresh_frequency_summary"
-            android:title="@string/preference_refresh_frequency" />
-        <ListPreference
-            android:defaultValue="60"
-            android:entries="@array/update_time"
-            android:entryValues="@array/update_time_values"
-            android:key="preference_updateTime"
-            android:summary="@string/preference_update_frequency_summary"
-            android:title="@string/preference_update_frequency" />
-        <ListPreference
-            android:defaultValue="1"
-            android:entries="@array/fortune_teller_aspect"
-            android:entryValues="@array/fortune_teller_aspect_values"
-            android:key="preference_fortuneTellerAspect"
-            android:summary="@string/preference_fortune_teller_aspect_summary"
-            android:title="@string/preference_fortune_teller_aspect" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="preference_greetingsEnabled"
@@ -46,6 +25,27 @@
             android:persistent="true"
             android:summary="@string/preference_seed_summary"
             android:title="@string/preference_seed" />
+        <ListPreference
+            android:defaultValue="60"
+            android:entries="@array/update_time"
+            android:entryValues="@array/update_time_values"
+            android:key="preference_updateTime"
+            android:summary="@string/preference_update_frequency_summary"
+            android:title="@string/preference_update_frequency" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/fortune_teller_aspect"
+            android:entryValues="@array/fortune_teller_aspect_values"
+            android:key="preference_fortuneTellerAspect"
+            android:summary="@string/preference_fortune_teller_aspect_summary"
+            android:title="@string/preference_fortune_teller_aspect" />
+        <ListPreference
+            android:defaultValue="20"
+            android:entries="@array/refresh_time"
+            android:entryValues="@array/refresh_time_values"
+            android:key="preference_refreshTime"
+            android:summary="@string/preference_refresh_frequency_summary"
+            android:title="@string/preference_refresh_frequency" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/preference_audio">
@@ -81,20 +81,6 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/preference_interface">
-        <ListPreference
-            android:defaultValue="@string/default_language"
-            android:entries="@array/language"
-            android:entryValues="@array/language_values"
-            android:key="preference_language"
-            android:summary="@string/preference_language_summary"
-            android:title="@string/preference_language" />
-        <ListPreference
-            android:defaultValue="0"
-            android:entries="@array/theme"
-            android:entryValues="@array/theme_values"
-            android:key="preference_theme"
-            android:summary="@string/preference_theme_summary"
-            android:title="@string/preference_theme" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="preference_hideDrawer"
@@ -116,6 +102,20 @@
             android:summaryOff="@string/preference_enable_ads_summary_off"
             android:summaryOn="@string/preference_enable_ads_summary_on"
             android:title="@string/preference_enable_ads" />
+        <ListPreference
+            android:defaultValue="@string/default_language"
+            android:entries="@array/language"
+            android:entryValues="@array/language_values"
+            android:key="preference_language"
+            android:summary="@string/preference_language_summary"
+            android:title="@string/preference_language" />
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/theme"
+            android:entryValues="@array/theme_values"
+            android:key="preference_theme"
+            android:summary="@string/preference_theme_summary"
+            android:title="@string/preference_theme" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/preference_screen">

@@ -1,5 +1,8 @@
 package com.app.memoeslink.adivinador;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class TextComponent {
     private long id;
     private String uniqueId;
@@ -7,6 +10,7 @@ public class TextComponent {
     private String text;
     private Integer hegemonicSex;
     private boolean nullified;
+    private Set<String> attributes = new LinkedHashSet<>();
 
     public TextComponent() {
         id = -1;
@@ -72,5 +76,13 @@ public class TextComponent {
 
     public void setNullified(boolean nullified) {
         this.nullified = nullified;
+    }
+
+    public Set<String> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Set<String> attributes) {
+        this.attributes = attributes;
     }
 }

@@ -15,5 +15,5 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--keep public class * extends android.support.v7.preference.Preference
--keep class !mycode.** { *; }
+-keep public class * extends androidx.preference.Preference
+-keep class !com.easyandroidanimations.library.* { *; }

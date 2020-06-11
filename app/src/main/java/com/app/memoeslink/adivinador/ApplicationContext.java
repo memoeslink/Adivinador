@@ -2,14 +2,11 @@ package com.app.memoeslink.adivinador;
 
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
-import android.os.LocaleList;
 import android.preference.PreferenceManager;
-import android.support.multidex.MultiDexApplication;
+
+import androidx.multidex.MultiDexApplication;
 
 import java.io.File;
-import java.util.Locale;
 
 /**
  * Created by Memoeslink on 11/05/2016.
@@ -23,7 +20,7 @@ public class ApplicationContext extends MultiDexApplication {
         defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         //Set language (this needs to be before any other method)
-        changeLanguage(Methods.getLanguage(ApplicationContext.this));
+        Methods.changeLanguage(ApplicationContext.this);
 
         //Set preference default values
         PreferenceManager.setDefaultValues(ApplicationContext.this, R.xml.default_preferences, false);
@@ -35,7 +32,7 @@ public class ApplicationContext extends MultiDexApplication {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        changeLanguage(Methods.getLanguage(ApplicationContext.this));
+        Methods.changeLanguage(ApplicationContext.this);
     }
 
     private File[] getDatabaseList() {
@@ -85,27 +82,5 @@ public class ApplicationContext extends MultiDexApplication {
             }
         } else
             System.out.println("There wasn't any old database to delete.");
-    }
-
-    @SuppressWarnings("deprecation")
-    public void changeLanguage(String language) {
-        if (language != null && !language.isEmpty()) {
-            Locale locale = new Locale(language);
-            Locale.setDefault(locale);
-            Resources res = ApplicationContext.this.getResources();
-            Configuration config;
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                config = res.getConfiguration();
-                config.setLocale(locale);
-                LocaleList localeList = new LocaleList(locale);
-                LocaleList.setDefault(localeList);
-                config.setLocales(localeList);
-            } else {
-                config = res.getConfiguration();
-                config.setLocale(locale);
-                res.updateConfiguration(config, res.getDisplayMetrics());
-            }
-        }
     }
 }

@@ -3,7 +3,7 @@
     <string name="about">
         <![CDATA[
         <big><b>Adivinador</b></big>
-        <br><b>Version: 1.3.7</b>
+        <br><b>Version: 1.4.1</b>
         <br><br>2014-2018 Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
@@ -36,6 +36,7 @@
         <br><i><font color=#FDFCDA>• Alexandros Schillings, Cyril Mottier, Jeff Gilfelt, Jon Adams, Kevin (kevinchai): </font><font color=#FFFDC4>Android SQLiteAssetHelper</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/jgilfelt/android-sqlite-asset-helper/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Dominik Schürmann: </font><font color=#FFFDC4>Android Donations Lib</font></i> (<a href="https://github.com/PrivacyApps/donations/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Emil Sjölander: </font><font color=#FFFDC4>StickyScrollViewItems</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/emilsjolander/StickyScrollViewItems/">https://github.com/</a>)
+        <br><i><font color=#FDFCDA>• Encryptor Code: </font><font color=#FFFDC4>Pluralize</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://github.com/encryptorcode/pluralize/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Google Inc.: </font><font color=#FFFDC4>Gson</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/google/gson/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Jin Cao (jinatonic): </font><font color=#FFFDC4>Confetti</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/jinatonic/confetti/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Nee Si Yao, Phu Tang, Umair Vatao: </font><font color=#FFFDC4>EasyAndroidAnimations</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/2359media/EasyAndroidAnimations/">https://github.com/</a>)
@@ -75,7 +76,7 @@
     <string name="chain_negative_effect">negative</string>
     <string name="chain_positive_effect">positive</string>
     <string name="class_component">LVL %2$d %1$s</string>
-    <string name="classes">Alchemist¶ Archer¶ Assassin¶ Bard¶ Barbarian¶ Knight¶ Hunter¶ Cleric¶ Healer¶ Dragoon¶ Druid¶ Elementalist¶ Squire¶ Swordsman¶ Swordsmith¶ Exorcist¶ Scout¶ Warrior¶ Sorcerer¶ Illusionist¶ Engineer¶ Summoner¶ Dark Rider¶ Thief¶ Spearman¶ Mage¶ Red Mage¶ Magus¶ Mercenary¶ Monk¶ Doctor¶ Necromancer¶ Ninja¶ Oracle¶ Paladin¶ Rogue¶ Pirate¶ Tracker¶ Samurai¶ Soldier¶ Templar¶ Transmuter</string>
+    <string name="classes">[^alchemist[]]¶ [^archer[]]¶ [^assassin[]]¶ [^bard[]]¶ [^barbarian[]]¶ [^knight[,ess]]¶ [^hunter[]]¶ [^cleric[]]¶ [^healer[]]¶ [^dragoon[]]¶ [^druid[]]¶ [^elementalist[]]¶ [^squire[]]¶ [^swordsman[]]¶ [^swordsmith[]]¶ [^exorcist[]]¶ [^scout[]]¶ [^warrior[]]¶ [^sorcerer[]]¶ [^illusionist[]]¶ [^engineer[]]¶ [^summoner[]]¶ [^dark[]] [^rider[]]¶ [^thief[]]¶ [^spearman[]]¶ [^mage[]]¶ [^red[]] [^mage[]]¶ [^magus[]]¶ [^mercenary[]]¶ [^monk[]]¶ [^doctor[]]¶ [^necromancer[]]¶ [^ninja[]]¶ [^oracle[]]¶ [^paladin[]]¶ [^rogue[]]¶ [^pirate[]]¶ [^tracker[]]¶ [^samurai[]]¶ [^soldier[]]¶ [^templar[]]¶ [^transmuter[]]</string>
     <string name="clear">Clear form</string>
     <string name="common_last_names">Adams¶ Allen¶ Anderson¶ Bailey¶ Baker¶ Barnes¶ Bell¶ Bennett¶ Brooks¶ Brown¶ Campbell¶ Carter¶ Clark¶ Coleman¶ Collins¶ Cook¶ Cooper¶ Cox¶ Davis¶ Edwards¶ Evans¶ Flores¶ Garcia¶ Gonzalez¶ Gray¶ Green¶ Hall¶ Harris¶ Henderson¶ Hernandez¶ Hill¶ Howard¶ Hughes¶ Jackson¶ James¶ Jenkins¶ Johnson¶ Jones¶ Kelly¶ King¶ Lee¶ Lewis¶ Long¶ Lopez¶ Martin¶ Martinez¶ Miller¶ Mitchell¶ Moore¶ Morgan¶ Morris¶ Murphy¶ Nelson¶ Parker¶ Patterson¶ Perez¶ Perry¶ Peterson¶ Phillips¶ Powell¶ Price¶ Ramirez¶ Reed¶ Richardson¶ Rivera¶ Roberts¶ Robinson¶ Rodriguez¶ Rogers¶ Ross¶ Sanchez¶ Sanders¶ Scott¶ Smith¶ Stewart¶ Taylor¶ Thomas¶ Thompson¶ Torres¶ Turner¶ Walker¶ Ward¶ Watson¶ White¶ Williams¶ Wilson¶ Wood¶ Wright¶ Young</string>
     <string name="common_names">Aaron¶ Abigail¶ Adam¶ Aiden¶ Aisha¶ Albert¶ Alex¶ Alexander¶ Alfie¶ Alice¶ Amber¶ Amelia¶ Amelie¶ Amy¶ And¶ Anna¶ Annabelle¶ Archie¶ Arthur¶ Austin¶ Ava¶ Beatrice¶ Bella¶ Benjamin¶ Bethany¶ Blake¶ Bobby¶ Boys’¶ Brooke¶ Caleb¶ Callum¶ Cameron¶ Charles¶ Charlie¶ Charlotte¶ Chloe¶ Connor¶ Daisy¶ Daniel¶ Darcey¶ Darcy¶ David¶ Dexter¶ Dylan¶ Edward¶ Eleanor¶ Elijah¶ Eliza¶ Elizabeth¶ Ella¶ Ellie¶ Elliot¶ Elliott¶ Elsie¶ Emilia¶ Emily¶ Emma¶ England¶ Erin¶ Esme¶ Ethan¶ Eva¶ Evan¶ Evelyn¶ Evie¶ Faith¶ Felix¶ Finlay¶ Finley¶ Florence¶ Francesca¶ Frankie¶ Freddie¶ Frederick¶ Freya¶ Gabriel¶ George¶ Georgia¶ Grace¶ Gracie¶ Hannah¶ Harley¶ Harriet¶ Harrison¶ Harry¶ Harvey¶ Heidi¶ Henry¶ Hollie¶ Holly¶ Hugo¶ Ibrahim¶ Imogen¶ In¶ Isaac¶ Isabel¶ Isabella¶ Isabelle¶ Isla¶ Isobel¶ Ivy¶ Jack¶ Jacob¶ Jake¶ James¶ Jamie¶ Jasmine¶ Jayden¶ Jenson¶ Jessica¶ Joseph¶ Joshua¶ Jude¶ Julia¶ Kai¶ Katie¶ Kian¶ Lacey¶ Layla¶ Leah¶ Leo¶ Leon¶ Lewis¶ Lexi¶ Liam¶ Lilly¶ Lily¶ Logan¶ Lola¶ Louie¶ Louis¶ Luca¶ Lucas¶ Lucy¶ Luke¶ Lydia¶ Maddison¶ Madison¶ Maisie¶ Maria¶ Martha¶ Maryam¶ Mason¶ Matilda¶ Matthew¶ Max¶ Maya¶ Megan¶ Mia¶ Michael¶ Millie¶ Mohammad¶ Mohammed¶ Mollie¶ Molly¶ Muhammad¶ Names¶ Nathan¶ Niamh¶ Noah¶ Of¶ Oliver¶ Olivia¶ Ollie¶ Oscar¶ Owen¶ Paige¶ Phoebe¶ Poppy¶ Reuben¶ Riley¶ Robert¶ Ronnie¶ Rory¶ Rose¶ Rosie¶ Ruby¶ Ryan¶ Samuel¶ Sara¶ Sarah¶ Scarlett¶ Sebastian¶ Seth¶ Sienna¶ Skye¶ Sofia¶ Sonny¶ Sophia¶ Sophie¶ Stanley¶ Summer¶ Teddy¶ Theo¶ Theodore¶ Thomas¶ Tilly¶ Toby¶ Tommy¶ Top¶ Tyler¶ Victoria¶ Violet¶ Wales¶ William¶ Willow¶ Zachary¶ Zara¶ Zoe</string>
@@ -96,8 +97,7 @@
     <string name="disconnected_device_user">user of device with unknown IP address</string>
     <string name="donations_title">Donate</string>
     <string name="enquiry_information">Enquiry of the day 1$s for %2$s, %3$s (%4$s)</string>
-    <string name="extended_family_member">[father,mother]-in-law¶ [brother,sister]-in-law¶ [son,daughter]-in-law¶ step[father,mother]¶ step[son,daughter]¶ god[father,mother]¶ god[son,daughter]</string>
-    <string name="female_honorifics">Mrs.¶ Madam¶ Miss¶ Lady¶ Dame¶ Dr.¶ Professor¶ Pres.¶ Dir.¶ ∅¶ ∅</string>
+    <string name="extended_family_member">[[father,mother]]-in-law¶ [[brother,sister]]-in-law¶ [[son,daughter]]-in-law¶ [step[father,mother]]¶ [step[son,daughter]]¶ [god[father,mother]]¶ [god[son,daughter]]</string>
     <string name="full_date">EEEE, MMMM d, yyyy</string>
     <string name="generational_designation">Jr.¶ Sr.</string>
     <string name="greetings">Hi§!¶ Hello§.¶ Welcome§.¶ Good day§.¶ Good to see you§.¶ Long time no see§.¶ How are you§?¶ How have you been§?¶ How do you do§?¶ How is everything§?¶ What have you done§?¶ What have you done lately§?¶ What happens§?¶ What is there§?¶ What is new§?¶ What do you tell me§?</string>
@@ -106,7 +106,7 @@
     <string name="greetings_day">Good day§.¶ Beautiful day§.</string>
     <string name="greetings_default">Hello§.¶ Welcome§.</string>
     <string name="greetings_night">Good night§.¶ Beautiful night§.</string>
-    <string name="honorifics">Mr.¶ Sir¶ Sire¶ Mrs.¶ Madam¶ Miss¶ Sir¶ Esq.¶ Lord¶ Lady¶ Dame¶ Mx.¶ Dr.¶ Dr.¶ Professor¶ Professor¶ Pres.¶ Pres.¶ Dir.¶ Dir.¶ ∅¶ ∅¶ ∅</string>
+    <string name="honorifics">[Mr[,s]].¶ [^^[young gentleman,miss]].¶ [^[sir,dame]]¶ [^[lord,lady]]¶ Dr.¶ Prof.¶ ∅¶ Eng.¶ Dir.¶ Pres.</string>
     <string name="input_birthdate">Birthdate:</string>
     <string name="input_name_hint">Enter a name</string>
     <string name="input_other_name_hint">Enter another name</string>
@@ -117,7 +117,7 @@
     <string name="input_title">Enter data</string>
     <string name="inquiry">Get enquiry (%1$s)</string>
     <string name="interjections">absolutely¬¶ achoo¬¶ ack¬¶ adios¬¶ aha¬¶ ahoy¬¶ agreed¬¶ alack¬¶ alright¬¶ alrighty¬¶ alrighty-roo¬¶ alack¬¶ alleluia¬¶ all hail¬¶ aloha¬¶ amen¬¶ anytime¬¶ argh¬¶ anyhoo¬¶ anyhow¬¶ attaboy¬¶ attagirl¬¶ awww¬¶ awful¬¶ ay¬¶ bam¬¶ bah hambug¬¶ begorra¬¶ behold¬¶ bingo¬¶ blah¬¶ bravo¬¶ brrr¬¶ bye¬¶ cheers¬¶ ciao¬¶ cripes¬¶ crud¬¶ darn¬¶ dear¬¶ doh¬¶ drat¬¶ eek¬¶ encore¬¶ eureka¬¶ fiddlesticks¬¶ fie¬¶ gadzooks¬¶ gee¬¶ geepers¬¶ gee whiz¬¶ golly¬¶ goodbye¬¶ goodness¬¶ goodness gracious¬¶ gosh¬¶ great¬¶ ha¬¶ ha-ha¬¶ hail¬¶ hallelujah¬¶ heigh-ho¬¶ hello¬¶ hey¬¶ hi¬¶ holy cow¬¶ holy smokes¬¶ hotdog¬¶ huh¬¶ hurray¬¶ hush¬¶ indeed¬¶ jeepers creepers¬¶ lo and behold¬¶ man¬¶ my text¬¶ no¬¶ now¬¶ nah¬¶ oh¬¶ oh my¬¶ oh well¬¶ ooh¬¶ ouch¬¶ ow¬¶ phooey¬¶ please¬¶ pooh¬¶ pow¬¶ presto¬¶ pshaw¬¶ rats¬¶ right-o¬¶ scat¬¶ shh¬¶ shoo¬¶ shucks¬¶ so¬¶ so long¬¶ thanks¬¶ there¬¶ touché¬¶ ugh¬¶ uh-huh¬¶ uh-oh¬¶ ugh¬¶ viva¬¶ voila¬¶ waa¬¶ wahoo¬¶ well¬¶ whoopee¬¶ whoops¬¶ whoosh¬¶ wow¬¶ yay¬¶ yea¬¶ yes¬¶ yikes¬¶ yippee¬¶ yo¬¶ yuck¬¶ yummy¬¶ zap¬</string>
-    <string name="male_honorifics">Mr.¶ Sir¶ Sire¶ Sir¶ Esq.¶ Lord¶ Dr.¶ Professor¶ Pres.¶ Dir.¶ ∅¶ ∅</string>
+    <string name="locale">en</string>
     <string name="menu_donate">Donate</string>
     <string name="menu_set_data">Set data</string>
     <string name="menu_settings">Settings</string>
@@ -130,9 +130,9 @@
     <string name="network_user">user connected to network named %1$s</string>
     <string name="no_network_operator_user">user of unknown network operator</string>
     <string name="no_network_user">user without Internet connection through Wi-Fi</string>
-    <string name="nouns">human¶ entity¶ being¶ thing¶ creature¶ individual¶ organism¶ life form¶ existence¶ living entity¶ person¶ human being¶ [man,woman]¶ [boy,girl]¶ [lady,gentleman]¶ [male,female]¶ user</string>
+    <string name="nouns">human¶ entity¶ being¶ thing¶ creature¶ individual¶ organism¶ life form¶ existence¶ living entity¶ person¶ human being¶ [[,wo]man]¶ [[boy,girl]]¶ [[lady,gentleman]]¶ [[,fe]male]¶ user</string>
     <string name="ok">OK</string>
-    <string name="opinions">## has a terrific destiny.¶ ## has a bad destiny.¶ Good things await for ##.¶ Bad stuff awaits for ##.¶ I think ## is a bad person.¶ In my opinion, ## is a good individual.¶ I\'ll see what awaits for ##.¶ I feel sympathy towards ##.¶ ## has accepted {[his,her]} destiny.¶ ## has avoided {[his,her]} destiny.¶ I see good things for ##.¶ ## will have a great life.¶ ## is going to struggle.¶ ## secretly loves ##.¶ ## badmouths ##.¶ ## hates ##.¶ ## likes ##.¶ ## will have a good time with ##.¶ ## thinks ## is a good influence.¶ ## has a bad opinion about ##.¶ ##, ## and ## are some cool people.¶ I hate it when I can\'t see ##\'s future.¶ ## told ## that ## was a bad person.¶ ## has an enigmatic destiny.¶ ## has a mysterious life.¶ Even me can\'t see what will happen to ##.¶ I like ##, too.¶ Good things are going to happen to ##.¶ Always listen to what ## has to say.¶ ## has some cool tips.¶ ## has some good advices.¶ Whenever I need an advice, ## guides me through my thoughts.¶ Never talk to ##, {[he,she]} is a bad influence.¶ I really appreciate ##.¶ I revealed the whole life of ##.¶ ## thinks ## is a cute person.¶ ## made ## have a fight with ##.¶ ##, ##, ## and ## are some of my friends.¶ One of my best friends is ##.¶ ## is a/an {string:adjectives} person.¶ ## is the most {string:adjectives} person.¶ ## is the least {string:adjectives} person.¶ Your {string:relative⸻⸮}, ## and I are lovers. Truly a love triangle.¶ Your {string:relative⸻⸮} totally looks like ##.¶ Your {string:relative⸻⸮} loves ##.¶ Your {string:relative⸻⸮} hates ##.¶ Your {string:relative⸻⸮} ignores ##.¶ Your {string:relative⸻⸮} is good friends with ##.¶ Your {string:relative⸻⸮} and ## are enemies.¶ You and ## would be good friends.¶ ## and ## share a bad destiny.¶ ## and ## share a good destiny.¶ Once ## avoided what the destiny had for {[him,her]}.¶ Oh, {[boy,girl]⸻⛌}, look what ## did!¶ Future is a strange thing. I cannot comprehend how ## could harm ##.¶ We\'ll all experience the end, but not as painful and scary as ## experienced.¶ Life is something curious, but more is people and their actions. I find ## interesting.¶ Some say people don\'t have to follow the advice from a fortune-teller, and maybe they\'re right, except if that fortune-teller is giving you a wise advice that anyone with common sense would give. ## didn\'t follow my advice, and now {[he,she]} is gone.¶ ## is planning to do something terrible to ##.¶ Oh, yeah, I\'m that beautiful fortune-teller that ## was talking about, yeah, yeah.¶ I\'m too worried about ##, because {[he,she]}\'ll go through some hardships.¶ Never give up when you want to achieve something, just like ##.¶ Oh, {[man,m\'lady]⸻⛌}, I\'m excited about the things that will happen to ##.¶ Life is truly weird. Some experience the worst, some only happiness and pleasure, but ## experienced the most incredible things.¶ ## told ## that ## was trying to do something bad.¶ ## always surprises me.¶ I\'d rather not see what will happen to ##.¶ Never trust to ##. Once {[he,she]} said that {[he,she]} was going to pay me for my fortune-telling services, yet {[he,she]} didn\'t. How couldn\'t I see that was going to happen?¶ I guess it\'s true what people say about ##. This {[man,woman]} has done some weird stuff.¶ Hey, let me see what will happen to ##.¶ Do you even know who ## is?¶ Have you met ##?¶ Is there a way to contact ##? I\'ve got to tell {[him,her]} something important.¶ Do you know where I can find ##?¶ Oh, {[boy,girl]⸻⛌}, you should see what will happen to ##.¶ ## will do something good for ##.¶ ## told me that {[he,she]} wanted to know {[his,her]} future.¶ I need to see ##\'s future.</string>
+    <string name="opinions">## has a terrific destiny.¶ ## has a bad destiny.¶ Good things await for ##.¶ Bad stuff awaits for ##.¶ I think ## is a bad person.¶ In my opinion, ## is a good individual.¶ I\'ll see what awaits for ##.¶ I feel sympathy towards ##.¶ ## has accepted {[[his,her]]} destiny.¶ ## has avoided {[[his,her]]} destiny.¶ I see good things for ##.¶ ## will have a great life.¶ ## is going to struggle.¶ ## secretly loves ##.¶ ## badmouths ##.¶ ## hates ##.¶ ## likes ##.¶ ## will have a good time with ##.¶ ## thinks ## is a good influence.¶ ## has a bad opinion about ##.¶ ##, ## and ## are some cool people.¶ I hate it when I can\'t see ##\'s future.¶ ## told ## that ## was a bad person.¶ ## has an enigmatic destiny.¶ ## has a mysterious life.¶ Even me can\'t see what will happen to ##.¶ I like ##, too.¶ Good things are going to happen to ##.¶ Always listen to what ## has to say.¶ ## has some cool tips.¶ ## has some good advices.¶ Whenever I need an advice, ## guides me through my thoughts.¶ Never talk to ##, {[[he,she]]} is a bad influence.¶ I really appreciate ##.¶ I revealed the whole life of ##.¶ ## thinks ## is a cute person.¶ ## made ## have a fight with ##.¶ ##, ##, ## and ## are some of my friends.¶ One of my best friends is ##.¶ ## is a/an {string:adjectives} person.¶ ## is the most {string:adjectives} person.¶ ## is the least {string:adjectives} person.¶ Your {string:relative⸻⸮}, ## and I are lovers. Truly a love triangle.¶ Your {string:relative⸻⸮} totally looks like ##.¶ Your {string:relative⸻⸮} loves ##.¶ Your {string:relative⸻⸮} hates ##.¶ Your {string:relative⸻⸮} ignores ##.¶ Your {string:relative⸻⸮} is good friends with ##.¶ Your {string:relative⸻⸮} and ## are enemies.¶ You and ## would be good friends.¶ ## and ## share a bad destiny.¶ ## and ## share a good destiny.¶ Once ## avoided what the destiny had for {[[him,her]]}.¶ Oh, {[[boy,girl]]⸻⛌}, look what ## did!¶ Future is a strange thing. I cannot comprehend how ## could harm ##.¶ We\'ll all experience the end, but not as painful and scary as ## experienced.¶ Life is something curious, but more is people and their actions. I find ## interesting.¶ Some say people don\'t have to follow the advice from a fortune-teller, and maybe they\'re right, except if that fortune-teller is giving you a wise advice that anyone with common sense would give. ## didn\'t follow my advice, and now {[[he,she]]} is gone.¶ ## is planning to do something terrible to ##.¶ Oh, yeah, I\'m that beautiful fortune-teller that ## was talking about, yeah, yeah.¶ I\'m too worried about ##, because {[[he,she]]}\'ll go through some hardships.¶ Never give up when you want to achieve something, just like ##.¶ Oh, {[[man,m\'lady]]⸻⛌}, I\'m excited about the things that will happen to ##.¶ Life is truly weird. Some experience the worst, some only happiness and pleasure, but ## experienced the most incredible things.¶ ## told ## that ## was trying to do something bad.¶ ## always surprises me.¶ I\'d rather not see what will happen to ##.¶ Never trust to ##. Once {[[he,she]]} said that {[[he,she]]} was going to pay me for my fortune-telling services, yet {[[he,she]]} didn\'t. How couldn\'t I see that was going to happen?¶ I guess it\'s true what people say about ##. This {[[,wo]man]} has done some weird stuff.¶ Hey, let me see what will happen to ##.¶ Do you even know who ## is?¶ Have you met ##?¶ Is there a way to contact ##? I\'ve got to tell {[[him,her]]} something important.¶ Do you know where I can find ##?¶ Oh, {[[boy,girl]]⸻⛌}, you should see what will happen to ##.¶ ## will do something good for ##.¶ ## told me that {[[he,she]]} wanted to know {[[his,her]]} future.¶ I need to see ##\'s future.</string>
     <string name="person_data">
         <![CDATA[
         <i><font color=#53E3B3>Watching information (%1$s) for:</font></i> <b>%2$s</b><font color=#F6FBB2>, %3$s (%4$s)</font>
@@ -260,9 +260,9 @@
     <string name="preference_update_frequency">Frequency of update</string>
     <string name="preference_update_frequency_summary">Change the time between each prediction update</string>
     <string name="qualitative_adjectives">nice¶ brilliant¶ unpleasant¶ different¶ fragile¶ electrifying¶ great¶ better¶ normal¶ negative¶ dark¶ worse¶ positive¶ rare¶ solid¶ terrible</string>
-    <string name="relative">[father,mother]¶ [dad,mom]¶ [son,daughter]¶ cousin¶ [uncle,aunt]¶ [nephew,niece]¶ [brother,sister]¶ grand[father,mother]¶ grand[son,daughter]¶ great grand[father,mother]</string>
+    <string name="relative">[[father,mother]]¶ [[dad,mom]]¶ [[son,daughter]]¶ cousin¶ [[uncle,aunt]]¶ [[nephew,niece]]¶ [[brother,sister]]¶ [grand[father,mother]]¶ [grand[son,daughter]]¶ great [grand[father,mother]]</string>
     <string name="reload">Reload enquiry</string>
-    <string name="royal_titles">Baron¶ Baroness¶ Caliph¶ Caesar¶ Count¶ Countess¶ Duke¶ Duchess¶ Emperor¶ Empress¶ Kaiser¶ Marquess¶ Marchioness¶ Pope¶ Princess¶ Prince¶ Queen¶ Rex¶ King¶ Viscount¶ Viscountess¶ Tsar¶ Tsarina</string>
+    <string name="royal_titles">[^baron[,ess]]¶ [^count[,ess]]¶ [^du[ke,chess]]¶ [^emp[eror,ress]]¶ [^kaiser[,in]]¶ [^mar[quess,chioness]]¶ [^pope[]]¶ [^prince[,ss]]¶ [^[king,queen]]¶ [^viscount[,ess]]¶ [^tsar[,ina]]¶ [^r[ex,ēgīna]]¶ [^sultan[,a]]</string>
     <string name="save">Save enquiry</string>
     <string name="selector">Select enquiry</string>
     <string name="short_date">d \'of\' MMMM</string>
@@ -275,7 +275,7 @@
     <string name="title">%1$s %2$s %3$s</string>
     <string name="title_descriptor">Lead¶ Senior¶ Direct¶ Corporate¶ Dynamic¶ Future¶ Product¶ National¶ Regional¶ District¶ Central¶ Global¶ Customer¶ Investor¶ Dynamic¶ International¶ Legacy¶ Forward¶ Internal¶ Human¶ Chief¶ Principal</string>
     <string name="title_job">Supervisor¶ Associate¶ Executive¶ Liaison¶ Officer¶ Manager¶ Engineer¶ Specialist¶ Director¶ Coordinator¶ Administrator¶ Architect¶ Analyst¶ Designer¶ Planner¶ Orchestrator¶ Technician¶ Developer¶ Producer¶ Consultant¶ Assistant¶ Facilitator¶ Agent¶ Representative¶ Strategist</string>
-    <string name="title_level">Solutions¶ Program¶ Brand¶ Security¶ Research¶ Marketing¶ Directives¶ Implementation¶ Integration¶ Functionality¶ Response¶ Paradigm¶ Tactics¶ Identity¶ Markets¶ Group¶ Division¶ Applications¶ Optimization¶ Operations¶ Infrastructure¶ Intranet¶ Communications¶ Web¶ Branding¶ Quality¶ Assurance¶ Mobility¶ Accounts¶ Data¶ Creative¶ Configuration¶ Accountability¶ Interactions¶ Factors¶ Usability¶ Metrics</string>
+    <string name="title_level">Solutions¶ Program¶ Brand¶ Security¶ Research¶ Marketing¶ Directives¶ Implementation¶ Integration¶ Functionality¶ Response¶ Paradigm¶ Tactics¶ Identity¶ Markets¶ Group¶ Division¶ Applications¶ Optimization¶ Operations¶ Infrastructure¶ Intranet¶ Communications¶ Web¶ Branding¶ Quality¶ Assurance¶ Mobility¶ Accounts¶ Data¶ Creative¶ Configuration¶ Accountability¶ Interactions¶ Factors¶ Usability¶ Metrics¶ Support</string>
     <string name="toast_clipboard">Text copied to clipboard.</string>
     <string name="toast_enquiry_not_saved">The enquiry couldn\'t be saved.</string>
     <string name="toast_enquiry_saved">The enquiry was saved successfully.</string>
@@ -495,6 +495,65 @@
         <item>9th – House of Philosophy. Foreign travel and foreign countries. Culture. Long distance travels and journeys. Religion. Law and ethics. Higher education. Knowledge. Experience through expansion.</item>
         <item>10th – House of Social Status. Ambitions. Motivations. Career. Status in society. Government. Authority. Father or father figure. The breadwinner of the household. One\'s public appearance/impression at-large (audience).</item>
     </string-array>
+    <string-array name="augury_entity">
+        <item>a buddha</item>
+        <item>a demon</item>
+        <item>an angel</item>
+        <item>a blindfolded woman</item>
+        <item>a skeleton</item>
+        <item>a maiden</item>
+        <item>a beheaded man</item>
+        <item>a divinity</item>
+        <item>a god</item>
+        <item>an spirit</item>
+        <item>an apparition</item>
+        <item>an statue</item>
+        <item>a body</item>
+        <item>a corpse</item>
+        <item>an emperor</item>
+        <item>a knight</item>
+        <item>a dragon</item>
+        <item>a star</item>
+        <item>a criminal</item>
+        <item>an obscure animal</item>
+        <item>{string:individual⸻⸮}</item>
+        <item>{string:individual⸻⸮}</item>
+        <item>{string:individual⸻⸮}</item>
+        <item>{string:individual⸻⸮}</item>
+    </string-array>
+    <string-array name="augury_situation">
+        <item>amidst the void</item>
+        <item>bleeding</item>
+        <item>meditating</item>
+        <item>praying</item>
+        <item>{rand:fading away; materializing}</item>
+        <item>being born</item>
+        <item>dying</item>
+        <item>holding a sword</item>
+        <item>holding a coin</item>
+        <item>holding a scale</item>
+        <item>holding a heart</item>
+        <item>holding a chalice</item>
+        <item>devouring someone</item>
+        <item>chasing someone</item>
+        <item>on a horse</item>
+        <item>being consumed by the flames</item>
+        <item>being consumed by darkness</item>
+        <item>being purified</item>
+        <item>surrounded by flowers</item>
+        <item>surrounded by swords</item>
+        <item>surrounded by a halo</item>
+        <item>shining</item>
+        <item>becoming exalted</item>
+        <item>being buried</item>
+        <item>drenched in tears</item>
+        <item>falling</item>
+        <item>dancing</item>
+        <item>upside down or reversed</item>
+        <item>that is lost</item>
+        <item>that groans</item>
+        <item>that shrieks</item>
+    </string-array>
     <string-array name="chinese_zodiac_sign">
         <item>Monkey</item>
         <item>Rooster</item>
@@ -558,6 +617,7 @@
         <item>You are in a moment where you have to make {rand:∅; critical; hasty; important; well-thought; necessary; essential} decisions about {string:divination_middle}.</item>
         <item>In this moment others see you as a/an {string:personality_trait} person.</item>
         <item>{string:foreboding_start} {string:foreboding_end}</item>
+        <item>I {rand:see; perceive; visualize; contemplate} an image of {string:augury_entity} ⸠string:augury_situation⸡.</item>
     </string-array>
     <string-array name="divination_appendix">
         <item>Some keywords, related to this divination, are:</item>
@@ -664,6 +724,8 @@
         <item>your friendships</item>
         <item>your sense of community</item>
         <item>your sense of self</item>
+        <item>your group identity</item>
+        <item>your role</item>
         <item>your contribution</item>
         <item>your learning</item>
         <item>your work</item>
@@ -713,8 +775,9 @@
         <item>your privacy</item>
         <item>your self-actualization</item>
         <item>your motivation</item>
+        <item>your presence</item>
         <item>your decision making</item>
-        <item>the achievement of objectives related to ˧˟</item>
+        <item>the achievement of objectives related to {string:divination_middle}</item>
     </string-array>
     <string-array name="divination_start">
         <item>Within ‽1 days (‽2)</item>
@@ -726,7 +789,7 @@
         <item>In the near future</item>
         <item>In the foreseeable future</item>
         <item>In the immediate future</item>
-        <item>In your future</item>
+        <item>In the future</item>
         <item>In the following days</item>
         <item>From today</item>
         <item>From this moment on</item>
@@ -734,6 +797,7 @@
         <item>From now</item>
         <item>Starting today</item>
         <item>Starting from now</item>
+        <item>Starting tomorrow</item>
         <item>Henceforth</item>
         <item>In this day</item>
         <item>In these days</item>
@@ -768,6 +832,7 @@
         <item>After a while</item>
         <item>At a future time</item>
         <item>In a time to come</item>
+        <item>Now</item>
         <item>Tomorrow</item>
         <item>The day after tomorrow</item>
         <item>Between today and tomorrow</item>
@@ -924,12 +989,12 @@
         <item>Aries, Pisces, Aquarius.</item>
     </string-array>
     <string-array name="individual">
-        <item>a [man,woman]</item>
+        <item>a [[,wo]man]</item>
         <item>a kid</item>
-        <item>a [boy,girl]</item>
-        <item>a young [man,woman]</item>
-        <item>an old [man,woman]</item>
-        <item>a lad[,y]</item>
+        <item>a [[boy,girl]]</item>
+        <item>a young [[,wo]man]</item>
+        <item>an old [[,wo]man]</item>
+        <item>a [lad[,y]]</item>
         <item>an infant</item>
         <item>an adult</item>
         <item>a teenager</item>
@@ -941,11 +1006,25 @@
         <item>a baby</item>
         <item>a newborn</item>
         <item>a prepubescent</item>
-        <item>an elderly [man,woman]</item>
+        <item>an elderly [[,wo]man]</item>
     </string-array>
     <string-array name="language">
         <item>Spanish</item>
         <item>English</item>
+    </string-array>
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
     </string-array>
     <string-array name="name_type_options">
         <item>Empty</item>
@@ -973,7 +1052,8 @@
         <item>Generated pattern name</item>
         <item>Generated natural name</item>
         <item>Generated defined name</item>
-        <item>Generated mystic name</item>
+        <item>Generated frequency name</item>
+        <item>Generated adjusted name</item>
         <item>Arabic name</item>
         <item>French name</item>
         <item>German name</item>
@@ -981,6 +1061,12 @@
         <item>Italian name</item>
         <item>Portuguese name</item>
         <item>Supported name</item>
+        <item>Username</item>
+        <item>Compound username</item>
+        <item>Spanish compound username</item>
+        <item>Derived username</item>
+        <item>Anonymous name</item>
+        <item>Spanish anonymous name</item>
     </string-array>
     <string-array name="negative_trait">
         <item>boring</item>
@@ -1139,6 +1225,20 @@
         <item>Jupiter</item>
         <item>Saturn</item>
     </string-array>
+    <string-array name="short_months">
+        <item>JAN</item>
+        <item>FEB</item>
+        <item>MAR</item>
+        <item>APR</item>
+        <item>MAY</item>
+        <item>JUN</item>
+        <item>JUL</item>
+        <item>AUG</item>
+        <item>SEP</item>
+        <item>OCT</item>
+        <item>NOV</item>
+        <item>DEC</item>
+    </string-array>
     <string-array name="text_type">
         <item>Read phrases from the fortune-teller</item>
         <item>Read fortune-telling</item>
@@ -1222,7 +1322,6 @@
         <item>systematic</item>
         <item>sociable</item>
         <item>quiet</item>
-        <item>calm</item>
         <item>tolerant</item>
         <item>hard-working</item>
         <item>truthful</item>

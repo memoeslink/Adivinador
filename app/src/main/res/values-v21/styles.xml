@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="BlackTheme" parent="BaseTheme">
         <item name="accent">@color/blue</item>
         <item name="disabledItem">@color/dark_gray</item>

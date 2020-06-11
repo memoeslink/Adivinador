@@ -2,11 +2,13 @@ package com.app.memoeslink.adivinador;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import org.sufficientlysecure.donations.BuildConfig;
 import org.sufficientlysecure.donations.DonationsFragment;
 
 public class DonationsActivity extends CommonActivity {

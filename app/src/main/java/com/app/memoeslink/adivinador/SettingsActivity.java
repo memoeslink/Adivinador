@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 
-import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+
+import com.takisoft.preferencex.PreferenceFragmentCompat;
 
 /**
  * Created by Memoeslink on 10/08/2017.

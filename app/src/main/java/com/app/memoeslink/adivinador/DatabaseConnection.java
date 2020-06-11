@@ -7,45 +7,43 @@ import android.database.sqlite.SQLiteException;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by Memoeslink on 19/08/2017.
  */
 
 class DatabaseConnection extends SQLiteAssetHelper {
-    public static final String DATABASE_NAME = "words_upgrade_41-42.sqlite";
-    public static final int DATABASE_VERSION = 42;
+    public static final String DATABASE_NAME = "words_upgrade_43-44.sqlite";
+    public static final int DATABASE_VERSION = 44;
     private static final String ID_PREFIX = "ID";
-    private static final String TABLE_ENGLISH_ABSTRACT_NOUN = "EN_AbstractNoun";
-    private static final String TABLE_ENGLISH_ACTION = "EN_Action";
-    private static final String TABLE_ENGLISH_DIVINATION = "EN_Divination";
-    private static final String TABLE_ENGLISH_ADJECTIVE = "EN_Adjective";
-    private static final String TABLE_ENGLISH_FEMALE_NAME = "EN_FemaleName";
-    private static final String TABLE_ENGLISH_FORTUNE_COOKIE = "EN_FortuneCookie";
-    private static final String TABLE_ENGLISH_MALE_NAME = "EN_MaleName";
-    private static final String TABLE_ENGLISH_NOUN = "EN_Noun";
-    private static final String TABLE_ENGLISH_OCCUPATION = "EN_Occupation";
-    private static final String TABLE_ENGLISH_PHRASE = "EN_Phrase";
-    private static final String TABLE_ENGLISH_SURNAME = "EN_Surname";
-    private static final String TABLE_SPANISH_ABSTRACT_NOUN = "ES_AbstractNoun";
-    private static final String TABLE_SPANISH_ACTION = "ES_Action";
-    private static final String TABLE_SPANISH_ADJECTIVE = "ES_Adjective";
-    private static final String TABLE_SPANISH_DIVINATION = "ES_Divination";
-    private static final String TABLE_SPANISH_FEMALE_NAME = "ES_FemaleName";
-    private static final String TABLE_SPANISH_FORTUNE_COOKIE = "ES_FortuneCookie";
-    private static final String TABLE_SPANISH_MALE_NAME = "ES_MaleName";
-    private static final String TABLE_SPANISH_NOUN = "ES_Noun";
-    private static final String TABLE_SPANISH_OCCUPATION = "ES_Occupation";
-    private static final String TABLE_SPANISH_PHRASE = "ES_Phrase";
-    private static final String TABLE_SPANISH_SURNAME = "ES_Surname";
-    private static final String TABLE_FAMILY_NAME = "FamilyName";
-    private static final String TABLE_NAME = "Name";
-    private static final String TABLE_NOUN = "Noun";
-    private static final String TABLE_USERNAME = "Username";
-    private static final String FIELD_TYPE = "Type";
+    private static final String TABLE_ENGLISH_ABSTRACT_NOUNS = "EnglishAbstractNouns";
+    private static final String TABLE_ENGLISH_ACTIONS = "EnglishActions";
+    private static final String TABLE_ENGLISH_DIVINATIONS = "EnglishDivinations";
+    private static final String TABLE_ENGLISH_ADJECTIVES = "EnglishAdjectives";
+    private static final String TABLE_ENGLISH_FEMALE_NAMES = "EnglishFemaleNames";
+    private static final String TABLE_ENGLISH_FORTUNE_COOKIES = "EnglishFortuneCookies";
+    private static final String TABLE_ENGLISH_MALE_NAMES = "EnglishMaleNames";
+    private static final String TABLE_ENGLISH_NOUNS = "EnglishNouns";
+    private static final String TABLE_ENGLISH_OCCUPATIONS = "EnglishOccupations";
+    private static final String TABLE_ENGLISH_PHRASES = "EnglishPhrases";
+    private static final String TABLE_ENGLISH_SURNAMES = "EnglishSurnames";
+    private static final String TABLE_SPANISH_ABSTRACT_NOUNS = "SpanishAbstractNouns";
+    private static final String TABLE_SPANISH_ACTIONS = "SpanishActions";
+    private static final String TABLE_SPANISH_DIVINATIONS = "SpanishDivinations";
+    private static final String TABLE_SPANISH_FEMALE_NAMES = "SpanishFemaleNames";
+    private static final String TABLE_SPANISH_FORTUNE_COOKIES = "SpanishFortuneCookies";
+    private static final String TABLE_SPANISH_MALE_NAMES = "SpanishMaleNames";
+    private static final String TABLE_SPANISH_NOUNS = "SpanishNouns";
+    private static final String TABLE_SPANISH_OCCUPATIONS = "SpanishOccupations";
+    private static final String TABLE_SPANISH_PHRASES = "SpanishPhrases";
+    private static final String TABLE_SPANISH_PLURAL_ADJECTIVES = "SpanishPluralAdjectives";
+    private static final String TABLE_SPANISH_SINGULAR_ADJECTIVES = "SpanishSingularAdjectives";
+    private static final String TABLE_SPANISH_SURNAMES = "SpanishSurnames";
+    private static final String TABLE_FAMILY_NAMES = "FamilyNames";
+    private static final String TABLE_NAMES = "Names";
+    private static final String TABLE_NOUNS = "Nouns";
+    private static final String TABLE_USERNAMES = "Usernames";
     private static HashMap<String, Integer> hashMap = new HashMap<>();
     private SQLiteDatabase db;
 
@@ -56,21 +54,25 @@ class DatabaseConnection extends SQLiteAssetHelper {
 
     @SuppressWarnings("ReturnInsideFinallyBlock")
     private int countRows(String table) {
+        return countRows(table, "SELECT COUNT(*) FROM " + table);
+    }
+
+    private int countRows(String table, String query) {
         int count = -1;
         Integer value = getIntValue(table);
 
         if (value == -1) {
             try {
-                Cursor c = db.rawQuery("SELECT COUNT(*) FROM " + table, null);
+                Cursor c = db.rawQuery(query, null);
                 c.moveToFirst();
                 count = c.getInt(0);
                 c.close();
+                c = null;
                 hashMap.put(table, count);
             } catch (SQLiteException e) {
                 e.printStackTrace();
-            } finally {
-                return count;
             }
+            return count;
         } else
             return value;
     }
@@ -79,7 +81,7 @@ class DatabaseConnection extends SQLiteAssetHelper {
         Integer value = hashMap.get(key);
 
         if (value != null)
-            return hashMap.get(key).intValue();
+            return hashMap.get(key);
         else {
             if (hashMap.containsKey(key))
                 return -1;
@@ -90,265 +92,242 @@ class DatabaseConnection extends SQLiteAssetHelper {
 
     @SuppressWarnings({"ReturnInsideFinallyBlock", "finally"})
     private String selectRow(String query) {
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor c = db.rawQuery(query, null);
         String result = "";
 
         try {
-            cursor.moveToFirst();
-            result = cursor.getString(1);
+            c.moveToFirst();
+            result = c.getString(1);
         } catch (Exception e) {
             result = "?";
         } finally {
-            cursor.close();
+            c.close();
+            c = null;
             return result;
         }
     }
 
-    private List<String> selectRows(String query) {
-        Cursor cursor = db.rawQuery(query, null);
-        List<String> results = new ArrayList<>();
-
-        try {
-            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-                results.add(cursor.getString(1));
-            }
-        } catch (Exception e) {
-            results = null;
-        } finally {
-            cursor.close();
-            return results;
-        }
-    }
-
-    public int countUnknownRow(String table) {
+    public int countTableRows(String table) {
         return countRows(table);
     }
 
-    public String selectUnknownRow(String table, int id) {
+    public String selectFromTable(String table, int id) {
         return selectRow("SELECT * FROM " + table + " WHERE " + table + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishAdjectives() {
-        return countRows(TABLE_ENGLISH_ADJECTIVE);
+        return countRows(TABLE_ENGLISH_ADJECTIVES);
     }
 
     public String selectEnglishAdjective(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_ADJECTIVE + " WHERE " + TABLE_ENGLISH_ADJECTIVE + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_ADJECTIVES + " WHERE " + TABLE_ENGLISH_ADJECTIVES + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishAbstractNouns() {
-        return countRows(TABLE_ENGLISH_ABSTRACT_NOUN);
+        return countRows(TABLE_ENGLISH_ABSTRACT_NOUNS);
     }
 
     public String selectEnglishAbstractNoun(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_ABSTRACT_NOUN + " WHERE " + TABLE_ENGLISH_ABSTRACT_NOUN + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_ABSTRACT_NOUNS + " WHERE " + TABLE_ENGLISH_ABSTRACT_NOUNS + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishActions() {
-        return countRows(TABLE_ENGLISH_ACTION);
+        return countRows(TABLE_ENGLISH_ACTIONS);
     }
 
     public String selectEnglishAction(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_ACTION + " WHERE " + TABLE_ENGLISH_ACTION + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_ACTIONS + " WHERE " + TABLE_ENGLISH_ACTIONS + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishDivinations() {
-        return countRows(TABLE_ENGLISH_DIVINATION);
+        return countRows(TABLE_ENGLISH_DIVINATIONS);
     }
 
     public String selectEnglishDivination(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_DIVINATION + " WHERE " + TABLE_ENGLISH_DIVINATION + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_DIVINATIONS + " WHERE " + TABLE_ENGLISH_DIVINATIONS + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishFemaleNames() {
-        return countRows(TABLE_ENGLISH_FEMALE_NAME);
+        return countRows(TABLE_ENGLISH_FEMALE_NAMES);
     }
 
     public String selectEnglishFemaleName(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_FEMALE_NAME + " WHERE " + TABLE_ENGLISH_FEMALE_NAME + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_FEMALE_NAMES + " WHERE " + TABLE_ENGLISH_FEMALE_NAMES + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishFortuneCookies() {
-        return countRows(TABLE_ENGLISH_FORTUNE_COOKIE);
+        return countRows(TABLE_ENGLISH_FORTUNE_COOKIES);
     }
 
     public String selectEnglishFortuneCookie(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_FORTUNE_COOKIE + " WHERE " + TABLE_ENGLISH_FORTUNE_COOKIE + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_FORTUNE_COOKIES + " WHERE " + TABLE_ENGLISH_FORTUNE_COOKIES + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishMaleNames() {
-        return countRows(TABLE_ENGLISH_MALE_NAME);
+        return countRows(TABLE_ENGLISH_MALE_NAMES);
     }
 
     public String selectEnglishMaleName(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_MALE_NAME + " WHERE " + TABLE_ENGLISH_MALE_NAME + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_MALE_NAMES + " WHERE " + TABLE_ENGLISH_MALE_NAMES + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishNouns() {
-        return countRows(TABLE_ENGLISH_NOUN);
+        return countRows(TABLE_ENGLISH_NOUNS);
     }
 
     public String selectEnglishNoun(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_NOUN + " WHERE " + TABLE_ENGLISH_NOUN + ID_PREFIX + "=" + id);
-    }
-
-    public List<String> selectEnglishNouns() {
-        return selectRows("SELECT * FROM " + TABLE_ENGLISH_NOUN);
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_NOUNS + " WHERE " + TABLE_ENGLISH_NOUNS + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishOccupations() {
-        return countRows(TABLE_ENGLISH_OCCUPATION);
+        return countRows(TABLE_ENGLISH_OCCUPATIONS);
     }
 
     public String selectEnglishOccupation(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_OCCUPATION + " WHERE " + TABLE_ENGLISH_OCCUPATION + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_OCCUPATIONS + " WHERE " + TABLE_ENGLISH_OCCUPATIONS + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishPhrases() {
-        return countRows(TABLE_ENGLISH_PHRASE);
+        return countRows(TABLE_ENGLISH_PHRASES);
     }
 
     public String selectEnglishPhrase(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_PHRASE + " WHERE " + TABLE_ENGLISH_PHRASE + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_PHRASES + " WHERE " + TABLE_ENGLISH_PHRASES + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishSurnames() {
-        return countRows(TABLE_ENGLISH_SURNAME);
+        return countRows(TABLE_ENGLISH_SURNAMES);
     }
 
     public String selectEnglishSurname(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_SURNAME + " WHERE " + TABLE_ENGLISH_SURNAME + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_SURNAMES + " WHERE " + TABLE_ENGLISH_SURNAMES + ID_PREFIX + "=" + id);
     }
 
     public int countAbstractNouns() {
-        return countRows(TABLE_SPANISH_ABSTRACT_NOUN);
+        return countRows(TABLE_SPANISH_ABSTRACT_NOUNS);
     }
 
     public String selectAbstractNoun(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_ABSTRACT_NOUN + " WHERE " + TABLE_SPANISH_ABSTRACT_NOUN + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_ABSTRACT_NOUNS + " WHERE " + TABLE_SPANISH_ABSTRACT_NOUNS + ID_PREFIX + "=" + id);
     }
 
     public int countActions() {
-        return countRows(TABLE_SPANISH_ACTION);
+        return countRows(TABLE_SPANISH_ACTIONS);
     }
 
     public String selectAction(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_ACTION + " WHERE " + TABLE_SPANISH_ACTION + ID_PREFIX + "=" + id);
-    }
-
-    public int countAdjectives() {
-        return countRows(TABLE_SPANISH_ADJECTIVE);
-    }
-
-    public String selectAdjective(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_ADJECTIVE + " WHERE " + TABLE_SPANISH_ADJECTIVE + ID_PREFIX + "=" + id);
-    }
-
-    public List<String> selectPluralAdjectives() {
-        return selectRows("SELECT * FROM " + TABLE_SPANISH_ADJECTIVE + " WHERE " + FIELD_TYPE + "=" + "\'p\'");
-    }
-
-    public List<String> selectSingularAdjectives() {
-        return selectRows("SELECT * FROM " + TABLE_SPANISH_ADJECTIVE + " WHERE " + FIELD_TYPE + "=" + "\'s\'");
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_ACTIONS + " WHERE " + TABLE_SPANISH_ACTIONS + ID_PREFIX + "=" + id);
     }
 
     public int countDivinations() {
-        return countRows(TABLE_SPANISH_DIVINATION);
+        return countRows(TABLE_SPANISH_DIVINATIONS);
     }
 
     public String selectDivination(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_DIVINATION + " WHERE " + TABLE_SPANISH_DIVINATION + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_DIVINATIONS + " WHERE " + TABLE_SPANISH_DIVINATIONS + ID_PREFIX + "=" + id);
     }
 
     public int countFemaleNames() {
-        return countRows(TABLE_SPANISH_FEMALE_NAME);
+        return countRows(TABLE_SPANISH_FEMALE_NAMES);
     }
 
     public String selectFemaleName(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_FEMALE_NAME + " WHERE " + TABLE_SPANISH_FEMALE_NAME + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_FEMALE_NAMES + " WHERE " + TABLE_SPANISH_FEMALE_NAMES + ID_PREFIX + "=" + id);
     }
 
     public int countFortuneCookies() {
-        return countRows(TABLE_SPANISH_FORTUNE_COOKIE);
+        return countRows(TABLE_SPANISH_FORTUNE_COOKIES);
     }
 
     public String selectFortuneCookie(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_FORTUNE_COOKIE + " WHERE " + TABLE_SPANISH_FORTUNE_COOKIE + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_FORTUNE_COOKIES + " WHERE " + TABLE_SPANISH_FORTUNE_COOKIES + ID_PREFIX + "=" + id);
     }
 
     public int countMaleNames() {
-        return countRows(TABLE_SPANISH_MALE_NAME);
+        return countRows(TABLE_SPANISH_MALE_NAMES);
     }
 
     public String selectMaleName(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_MALE_NAME + " WHERE " + TABLE_SPANISH_MALE_NAME + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_MALE_NAMES + " WHERE " + TABLE_SPANISH_MALE_NAMES + ID_PREFIX + "=" + id);
     }
 
     public int countNouns() {
-        return countRows(TABLE_SPANISH_NOUN);
+        return countRows(TABLE_SPANISH_NOUNS);
     }
 
     public String selectNoun(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_NOUN + " WHERE " + TABLE_SPANISH_NOUN + ID_PREFIX + "=" + id);
-    }
-
-    public List<String> selectNouns() {
-        return selectRows("SELECT * FROM " + TABLE_SPANISH_NOUN);
-    }
-
-    public int countSurnames() {
-        return countRows(TABLE_SPANISH_SURNAME);
-    }
-
-    public String selectSurname(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_SURNAME + " WHERE " + TABLE_SPANISH_SURNAME + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_NOUNS + " WHERE " + TABLE_SPANISH_NOUNS + ID_PREFIX + "=" + id);
     }
 
     public int countOccupations() {
-        return countRows(TABLE_SPANISH_OCCUPATION);
+        return countRows(TABLE_SPANISH_OCCUPATIONS);
     }
 
     public String selectOccupation(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_OCCUPATION + " WHERE " + TABLE_SPANISH_OCCUPATION + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_OCCUPATIONS + " WHERE " + TABLE_SPANISH_OCCUPATIONS + ID_PREFIX + "=" + id);
     }
 
     public int countPhrases() {
-        return countRows(TABLE_SPANISH_PHRASE);
+        return countRows(TABLE_SPANISH_PHRASES);
     }
 
     public String selectPhrase(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_PHRASE + " WHERE " + TABLE_SPANISH_PHRASE + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_PHRASES + " WHERE " + TABLE_SPANISH_PHRASES + ID_PREFIX + "=" + id);
+    }
+
+    public int countPluralAdjectives() {
+        return countRows(TABLE_SPANISH_PLURAL_ADJECTIVES);
+    }
+
+    public String selectPluralAdjective(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_PLURAL_ADJECTIVES + " WHERE " + TABLE_SPANISH_PLURAL_ADJECTIVES + ID_PREFIX + "=" + id);
+    }
+
+    public int countSingularAdjectives() {
+        return countRows(TABLE_SPANISH_SINGULAR_ADJECTIVES);
+    }
+
+    public String selectSingularAdjective(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_SINGULAR_ADJECTIVES + " WHERE " + TABLE_SPANISH_SINGULAR_ADJECTIVES + ID_PREFIX + "=" + id);
+    }
+
+    public int countSurnames() {
+        return countRows(TABLE_SPANISH_SURNAMES);
+    }
+
+    public String selectSurname(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_SURNAMES + " WHERE " + TABLE_SPANISH_SURNAMES + ID_PREFIX + "=" + id);
     }
 
     public int countFamilyNames() {
-        return countRows(TABLE_FAMILY_NAME);
+        return countRows(TABLE_FAMILY_NAMES);
     }
 
     public String selectFamilyName(int id) {
-        return selectRow("SELECT * FROM " + TABLE_FAMILY_NAME + " WHERE " + TABLE_FAMILY_NAME + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_FAMILY_NAMES + " WHERE " + TABLE_FAMILY_NAMES + ID_PREFIX + "=" + id);
     }
 
     public int countNames() {
-        return countRows(TABLE_NAME);
+        return countRows(TABLE_NAMES);
     }
 
     public String selectName(int id) {
-        return selectRow("SELECT * FROM " + TABLE_NAME + " WHERE " + TABLE_NAME + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_NAMES + " WHERE " + TABLE_NAMES + ID_PREFIX + "=" + id);
     }
 
     public int countCommonNouns() {
-        return countRows(TABLE_NOUN);
+        return countRows(TABLE_NOUNS);
     }
 
     public String selectCommonNoun(int id) {
-        return selectRow("SELECT * FROM " + TABLE_NOUN + " WHERE " + TABLE_NOUN + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_NOUNS + " WHERE " + TABLE_NOUNS + ID_PREFIX + "=" + id);
     }
 
     public int countUsernames() {
-        return countRows(TABLE_USERNAME);
+        return countRows(TABLE_USERNAMES);
     }
 
     public String selectUsername(int id) {
-        return selectRow("SELECT * FROM " + TABLE_USERNAME + " WHERE " + TABLE_USERNAME + ID_PREFIX + "=" + id);
+        return selectRow("SELECT * FROM " + TABLE_USERNAMES + " WHERE " + TABLE_USERNAMES + ID_PREFIX + "=" + id);
     }
 }

@@ -1,6 +1,7 @@
 package com.app.memoeslink.adivinador;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -28,14 +29,11 @@ import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
+import android.os.LocaleList;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
-import android.support.annotation.AnyRes;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.StringRes;
-import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.text.Spanned;
@@ -47,12 +45,23 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Toast;
 
+import androidx.annotation.AnyRes;
+import androidx.annotation.ArrayRes;
+import androidx.annotation.RawRes;
+import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
+
 import com.google.gson.Gson;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -82,6 +91,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.github.encryptorcode.pluralize.Pluralize;
+
 /**
  * Created by Memoeslink on 03/08/2017.
  */
@@ -94,7 +105,7 @@ class Methods extends ContextWrapper {
     public static final String PREFERENCES = "app_prefs";
     public static final String FULL_STOP = ".";
     public static final String ZERO_WIDTH_SPACE = "\u200B";
-    public static final String[] SEPARATOR = {"-", "~", ".", "_"};
+    public static final String[] SEPARATOR = {"-", "~", ".", "_", " "};
     public static String language;
     public static String networkCountry = null;
     public static Locale[] locales;
@@ -107,7 +118,6 @@ class Methods extends ContextWrapper {
     private static final String LOWERCASE_CONSONANTS = "bcdfghjklmnpqrstvwxyz";
     private static final String LOWERCASE_ENDING_CONSONANTS = "lmnrstz";
     private static final String LOWERCASE_REPEATED_CONSONANTS = "bbbccccdddfffggghjjjkllllmmmmnnnnpppqrrrrsssssttttvwxyz";
-    private static final String ROMANIZATION_CONSONANTS = "bcdfghjkmnprstvwyz";
     private static final String UPPERCASE_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String UNKNOWN_DATE = "????/??/??";
     private static final String DOUBLE_DOT_REGEX = "\\.(\\s*</?\\w+>\\s*)*\\.";
@@ -115,11 +125,9 @@ class Methods extends ContextWrapper {
     private static final String INTEGER_REGEX = "(-?[1-9]\\d*|0)";
     private static final String ROMAN_NUMERAL_REGEX = "M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})";
     private static final String RANDOM_TAG_REGEX = "\\{rand:[^{}⸠⸡;]+(;[^{}⸠⸡;]+)*\\}";
-    private static final String TAG_COMPONENT_REGEX = "(\\{(string|database|method):|\\}|\\s+|⦗\\d+⦘|⸻(⛌|⸮|" + INTEGER_REGEX + "))";
-    private static final String TAG_REGEX = "\\{((string|database):[^{}⦗⦘⸡:⸻⛌⸮]+(⦗[\\d]+⦘)?(\\s*⸻(⛌|⸮|" + INTEGER_REGEX + "))?|method:[a-zA-Z0-9_$]+)\\s*\\}";
-    private static final String WORD_APPENDIX_REGEX = "\\[[\\w" + ACCENTED_CHARACTERS + "⁞∅'\\s]*(,[\\w" + ACCENTED_CHARACTERS + "⁞∅'\\s]*)*\\]";
-    private static final String WORD_COMPONENT_REGEX = "(\\{|\\}|(⸻(⛌|⸮|" + INTEGER_REGEX + ")))";
-    private static final String WORD_TAG_REGEX = "\\{([\\w" + ACCENTED_CHARACTERS + "⁞∅'\\s]*" + WORD_APPENDIX_REGEX + ")(⸻(⛌|⸮|" + INTEGER_REGEX + "))?\\}";
+    private static final String TAG_REGEX = "\\{((string|database):([^{}\\[\\]⸡:⸻⛌⸮]+)(\\[!?[\\d]+\\])?(\\s*⸻(⛌|⸮|" + INTEGER_REGEX + "))?|method:[a-zA-Z0-9_$]+)\\s*\\}";
+    private static final String WORD_REGEX = "\\[\\^?^?[\\w\\s\\p{L}ªº⁞∅']*\\[[\\w\\s\\p{L}ªº⁞∅']*(,[\\w\\s\\p{L}ªº⁞∅']*)*\\][\\w\\s\\p{L}ªº⁞∅']*\\]";
+    private static final String WORD_TAG_REGEX = "\\{(" + WORD_REGEX + ")(⸻(⛌|⸮|" + INTEGER_REGEX + "))?\\}";
     private static final int[] PROBABILITY_DISTRIBUTION = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
     private static final char[] REPLACEMENTS = {'⚨', '⚩', '⁇', '⍰', '�', '□', '?'};
     private static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
@@ -127,42 +135,40 @@ class Methods extends ContextWrapper {
     private static final String[][] GENERATED_NAME_START = {
             {"a", "an", "as", "bra", "ce", "cen", "den", "e", "el", "en", "ghal", "gra", "i", "in", "is", "ka", "kan", "ken", "kha", "kra", "li", "me", "o", "os", "ren", "rha", "se", "sen", "te", "tra", "u", "ul", "un", "ze", "æ"},
             {"a", "a", "a", "a", "a", "ae", "ae", "ae", "ba", "ba", "ba", "be", "be", "be", "bi", "bi", "bi", "bla", "ble", "bli", "blo", "blu", "bo", "bo", "bo", "bra", "bre", "bri", "bro", "bru", "bu", "bu", "bu", "ca", "ca", "ca", "ce", "ce", "ce", "cha", "che", "chi", "cho", "chu", "ci", "ci", "ci", "cla", "cle", "cli", "clo", "clu", "co", "co", "co", "cra", "cre", "cri", "cro", "cru", "cu", "cu", "cu", "da", "da", "da", "de", "de", "de", "di", "di", "di", "dla", "dle", "dli", "dlo", "dlu", "do", "do", "do", "dra", "dre", "dri", "dro", "dru", "du", "du", "du", "e", "e", "e", "e", "e", "fa", "fa", "fa", "fe", "fe", "fe", "fi", "fi", "fi", "fla", "fle", "fli", "flo", "flu", "fo", "fo", "fo", "fra", "fre", "fri", "fro", "fru", "fu", "fu", "fu", "ga", "ga", "ga", "ge", "ge", "ge", "gi", "gi", "gi", "gla", "gle", "gli", "glo", "glu", "go", "go", "go", "gra", "gre", "gri", "gro", "gru", "gu", "gu", "gu", "gue", "gui", "güe", "güi", "ha", "he", "hi", "ho", "hu", "i", "i", "i", "i", "i", "ja", "ja", "ja", "je", "je", "je", "ji", "ji", "ji", "jo", "jo", "jo", "ju", "ju", "ju", "ka", "ka", "ke", "ke", "ki", "ki", "ko", "ko", "ku", "ku", "la", "la", "la", "le", "le", "le", "li", "li", "li", "li", "lla", "lle", "lli", "llo", "llu", "lo", "lo", "lo", "lu", "lu", "lu", "ma", "ma", "ma", "me", "me", "me", "mi", "mi", "mi", "mo", "mo", "mo", "mu", "mu", "mu", "na", "na", "na", "ne", "ne", "ne", "ni", "ni", "ni", "no", "no", "no", "nu", "nu", "nu", "o", "o", "o", "o", "o", "ou", "ou", "ou", "pa", "pa", "pa", "pe", "pe", "pe", "pi", "pi", "pi", "pla", "ple", "pli", "plo", "plu", "po", "po", "po", "pra", "pre", "pri", "pro", "pru", "pu", "pu", "pu", "que", "qui", "ra", "ra", "ra", "re", "re", "re", "ri", "ri", "ri", "ro", "ro", "ro", "ru", "ru", "ru", "sa", "sa", "sa", "se", "se", "se", "sha", "she", "shi", "sho", "shu", "si", "si", "si", "so", "so", "so", "su", "su", "su", "ta", "ta", "ta", "te", "te", "te", "ti", "ti", "ti", "tla", "tle", "tli", "tlo", "tlu", "to", "to", "to", "tra", "tre", "tri", "tro", "tru", "tu", "tu", "tu", "u", "u", "u", "u", "u", "va", "va", "va", "ve", "ve", "ve", "vi", "vi", "vi", "vo", "vo", "vo", "vu", "vu", "vu", "wa", "wa", "we", "we", "wi", "wi", "wo", "wo", "wu", "wu", "xa", "xe", "xi", "xo", "xu", "ya", "ya", "ye", "ye", "yi", "yi", "yo", "yo", "yu", "yu", "za", "za", "ze", "ze", "zi", "zi", "zo", "zo", "zu", "zu"},
-            {"a", "au", "be", "ba", "da", "do", "dra", "dul", "e", "el", "gan", "gyl", "ha", "i", "il", "ki", "kin", "la", "le", "li", "lo", "ma", "mae", "mal", "mir", "mla", "nae", "ne", "ni", "nu", "ny", "o", "rau", "sa", "sae", "sal", "san", "sil", "syl", "ta", "tho", "ti", "ty", "u", "ua", "va", "vi", "vyr"}};
+            {"a", "au", "be", "ba", "da", "do", "dra", "dul", "e", "el", "ga", "gan", "gwen", "gwyn", "gyl", "ha", "i", "il", "ki", "kin", "la", "le", "li", "lo", "ma", "mae", "mal", "mir", "mla", "nae", "ne", "ni", "nu", "ny", "o", "rau", "sa", "sae", "sal", "san", "se", "sil", "syl", "ta", "tho", "ti", "ty", "u", "ua", "va", "vi", "vyr"}};
     private static final String[][] GENERATED_NAME_MIDDLE = {
             {"ba", "ce", "da", "de", "dho", "dra", "ga", "ge", "gen", "gha", "gi", "hla", "hlo", "ka", "kar", "ko", "ma", "na", "pa", "par", "ta", "tha", "va", "ve", "ze", "zhe"},
             {"", "", "", "", "", "", "", "ba", "ba", "ba", "be", "be", "be", "bi", "bi", "bi", "bla", "ble", "bli", "blo", "blu", "bo", "bo", "bo", "bra", "bre", "bri", "bro", "bru", "bu", "bu", "bu", "ca", "ca", "ca", "ce", "ce", "ce", "cha", "che", "chi", "cho", "chu", "ci", "ci", "ci", "cia", "cie", "cio", "ciu", "cla", "cle", "cli", "clo", "clu", "co", "co", "co", "cra", "cre", "cri", "cro", "cru", "cu", "cu", "cu", "da", "da", "da", "de", "de", "de", "di", "di", "di", "dia", "die", "dio", "diu", "dla", "dle", "dli", "dlo", "dlu", "do", "do", "do", "dra", "dre", "dri", "dro", "dru", "du", "du", "du", "fa", "fa", "fa", "fe", "fe", "fe", "fi", "fi", "fi", "fla", "fle", "fli", "flo", "flu", "fo", "fo", "fo", "fra", "fre", "fri", "fro", "fru", "fu", "fu", "fu", "ga", "ga", "ga", "ge", "ge", "ge", "gi", "gi", "gi", "gla", "gle", "gli", "glo", "glu", "gna", "gno", "go", "go", "go", "gra", "gre", "gri", "gro", "gru", "gu", "gu", "gu", "gue", "gui", "güe", "güi", "ha", "he", "hi", "ho", "hu", "ja", "ja", "ja", "je", "je", "je", "ji", "ji", "ji", "jo", "jo", "jo", "ju", "ju", "ju", "ka", "ka", "ke", "ke", "ki", "ki", "ko", "ko", "ku", "ku", "la", "la", "la", "lba", "lbo", "le", "le", "le", "li", "li", "li", "lla", "lle", "lli", "llo", "llu", "lma", "lmo", "lo", "lo", "lo", "lu", "lu", "lu", "ma", "ma", "ma", "me", "me", "me", "mi", "mi", "mi", "mo", "mo", "mo", "mu", "mu", "mu", "na", "na", "na", "nae", "nai", "nao", "nau", "ne", "ne", "ne", "ni", "ni", "ni", "nia", "nie", "nio", "niu", "no", "no", "no", "nu", "nu", "nu", "pa", "pa", "pa", "pe", "pe", "pe", "pi", "pi", "pi", "pla", "ple", "pli", "plo", "plu", "po", "po", "po", "pra", "pre", "pri", "pro", "pru", "pu", "pu", "pu", "que", "qui", "ra", "ra", "ra", "re", "re", "re", "ri", "ri", "ri", "ro", "ro", "ro", "rra", "rre", "rri", "rro", "rru", "ru", "ru", "ru", "sa", "sa", "sa", "se", "se", "se", "sha", "she", "shi", "sho", "shu", "si", "si", "si", "so", "so", "so", "su", "su", "su", "ta", "ta", "ta", "te", "te", "te", "ti", "ti", "ti", "tla", "tle", "tli", "tlo", "tlu", "to", "to", "to", "tra", "tre", "tri", "tro", "tru", "tu", "tu", "tu", "va", "va", "va", "ve", "ve", "ve", "vi", "vi", "vi", "vo", "vo", "vo", "vu", "vu", "vu", "wa", "wa", "we", "we", "wi", "wi", "wo", "wo", "wu", "wu", "xa", "xe", "xi", "xo", "xu", "ya", "ya", "ye", "ye", "yi", "yi", "yo", "yo", "yu", "yu", "za", "za", "ze", "ze", "zi", "zi", "zo", "zo", "zu", "zu", "ña", "ñe", "ñi", "ño", "ñu"},
-            {"bri", "ci", "cia", "da", "di", "dil", "dre", "dri", "dy", "dyr", "fyr", "la", "lan", "li", "lin", "lir", "los", "lu", "ma", "mi", "mil", "mir", "na", "nae", "nim", "nya", "ra", "re", "rea", "ri", "rina", "rio", "ryn", "sa", "sar", "sil", "sur", "tar", "tau", "to", "tou", "vha", "vi", "vil", "zi", "zi", "zur"}};
+            {"", "", "", "", "bri", "ci", "cia", "da", "di", "dil", "do", "dre", "dri", "dy", "dyr", "fyl", "fyr", "la", "lan", "li", "lin", "lir", "los", "lu", "ma", "mi", "mil", "mir", "na", "nae", "ni", "nim", "ny", "nya", "ra", "re", "rea", "ri", "rina", "rio", "ryn", "sa", "sar", "sil", "sur", "tar", "tau", "to", "tou", "ve", "vha", "vi", "vil", "zi", "zi", "zur"}};
     private static final String[][] GENERATED_NAME_ENDING = {
             {"drin", "gen", "ghar", "gra", "kan", "ken", "kin", "ko", "kyo", "ma", "na", "nen", "nia", "nin", "rar", "ria", "rin", "rio", "rion", "ryo", "ryon", "til", "vka", "vkin", "vko", "vrin", "vyon", "zen", "zin"},
             {"ba", "ba", "ba", "be", "be", "be", "bel", "bela", "bi", "bi", "bi", "bia", "bio", "bla", "ble", "bli", "blo", "blu", "bo", "bo", "bo", "bra", "bre", "bri", "bro", "bru", "bu", "bu", "bu", "ca", "ca", "ca", "ce", "ce", "ce", "cha", "che", "chi", "cho", "chu", "ci", "ci", "ci", "cia", "ciana", "ciano", "cio", "cion", "cla", "cle", "cli", "clo", "clu", "co", "co", "co", "cra", "cre", "cri", "crita", "crito", "cro", "cru", "cta", "cto", "cu", "cu", "cu", "da", "da", "da", "de", "de", "de", "dea", "deo", "des", "di", "di", "di", "dia", "dio", "dios", "dla", "dle", "dli", "dlo", "dlu", "dna", "dno", "do", "do", "do", "don", "dona", "dor", "dora", "dra", "dra", "dre", "dri", "dro", "dro", "dru", "du", "du", "du", "fa", "fa", "fa", "fas", "fe", "fe", "fe", "fi", "fi", "fi", "fla", "fle", "fli", "flo", "flu", "fo", "fo", "fo", "fra", "fre", "fri", "fro", "fru", "fu", "fu", "fu", "ga", "ga", "ga", "ge", "ge", "ge", "gi", "gi", "gi", "gla", "gle", "gli", "glo", "glu", "gna", "gno", "go", "go", "go", "gra", "gre", "gri", "gro", "gru", "gu", "gu", "gu", "gue", "gui", "güe", "güi", "ha", "he", "hi", "ho", "hu", "ja", "ja", "ja", "je", "je", "je", "ji", "ji", "ji", "jo", "jo", "jo", "ju", "ju", "ju", "ka", "ka", "ke", "ke", "ki", "ki", "ko", "ko", "ku", "ku", "l", "l", "l", "la", "la", "la", "lba", "lbo", "lda", "ldo", "le", "le", "le", "lea", "leo", "li", "li", "li", "lia", "liano", "lina", "lino", "lio", "lla", "lle", "lli", "llo", "llu", "lma", "lmo", "lo", "lo", "lo", "lon", "lona", "lu", "lu", "lu", "ma", "ma", "ma", "me", "me", "me", "mi", "mi", "mi", "mia", "min", "mina", "mio", "mo", "mo", "mo", "mu", "mu", "mu", "n", "n", "n", "n", "na", "na", "na", "nca", "ncia", "ncio", "nco", "nda", "ndo", "ne", "ne", "ne", "ni", "ni", "ni", "nia", "nio", "no", "no", "no", "nsa", "nso", "nta", "nto", "nu", "nu", "nu", "pa", "pa", "pa", "pe", "pe", "pe", "pi", "pi", "pi", "pla", "ple", "pli", "plo", "plu", "po", "po", "po", "pra", "pre", "pri", "pro", "pru", "pu", "pu", "pu", "que", "qui", "r", "r", "r", "r", "ra", "ra", "ra", "rda", "rda", "rdo", "rdo", "re", "re", "re", "rea", "reo", "res", "ri", "ri", "ri", "ria", "riana", "riano", "rio", "ro", "ro", "ro", "rra", "rrat", "rre", "rri", "rro", "rru", "rta", "rta", "rto", "rto", "ru", "ru", "ru", "s", "s", "s", "s", "sa", "sa", "sa", "sar", "sara", "sca", "sco", "se", "se", "se", "sha", "she", "shi", "sho", "shu", "si", "si", "si", "sia", "sio", "sme", "so", "so", "so", "su", "su", "su", "ta", "ta", "ta", "tan", "tano", "te", "te", "te", "tea", "teo", "ti", "ti", "ti", "tian", "tiana", "tilde", "tin", "tina", "tla", "tle", "tli", "tlo", "tlu", "to", "to", "to", "tra", "tre", "tri", "triz", "tro", "tru", "tu", "tu", "tu", "va", "va", "va", "ve", "ve", "ve", "vi", "vi", "vi", "via", "vio", "vo", "vo", "vo", "vu", "vu", "vu", "wa", "wa", "we", "we", "wi", "wi", "wo", "wo", "wu", "wu", "xa", "xe", "xi", "xo", "xu", "ya", "ya", "ye", "ye", "yi", "yi", "yo", "yo", "yu", "yu", "z", "z", "z", "z", "za", "za", "ze", "ze", "zi", "zi", "zo", "zo", "zon", "zona", "zu", "zu", "ña", "ñe", "ñi", "ño", "ñu"},
-            {"baus", "dam", "dar", "dha", "dhae", "dho", "dia", "dil", "dio", "dor", "dra", "driel", "druth", "dur", "dyl", "ema", "la", "lae", "len", "lis", "llien", "mir", "mor", "myr", "na", "nae", "nar", "nia", "nil", "nio", "nna", "nni", "nor", "nya", "ra", "rae", "rail", "ran", "rea", "rean", "reon", "reus", "rhial", "ria", "riel", "ril", "rio", "ris", "ron", "ryn", "sa", "sil", "sila", "sin", "tael", "tha", "thaus", "the", "thur", "tra", "tur", "via", "vil", "vio", "vir", "vis", "vlis"}};
+            {"baus", "dam", "dar", "dha", "dhae", "dho", "dia", "dil", "dio", "dor", "dra", "drian", "driel", "druth", "dur", "dyl", "ema", "la", "lae", "len", "lis", "lien", "lynn", "mir", "mor", "myr", "na", "nae", "nar", "nia", "nil", "nio", "nna", "nni", "nor", "nya", "ra", "rae", "rail", "ran", "rea", "rean", "reon", "reus", "rhial", "ria", "riel", "ril", "rio", "ris", "rium", "ron", "ryn", "sa", "sil", "sila", "sin", "tael", "tha", "thaus", "the", "thur", "tra", "tur", "ver", "via", "vil", "vio", "vir", "vis", "vlis"}};
     private static final String[][] GENERATED_NAME_FAMILY_NAME_SUFFIX = {
             {"gha", "gho", "kem", "kema", "ken", "kenna", "ma", "mi", "n", "na", "nem", "nema", "ni", "nma", "ra", "re", "rha", "rhin", "rho", "rin", "ten", "tenna", "zen", "zenna", "zha", "zho", "zya", "zya"},
             {"aba", "abe", "abi", "aca", "ach", "aco", "ada", "ade", "adi", "ado", "aga", "ago", "ahi", "ain", "aiz", "aja", "ajo", "ala", "ale", "ali", "all", "alo", "ama", "ami", "amo", "ana", "ane", "ani", "ano", "ans", "anu", "any", "anz", "ara", "ard", "ari", "aro", "art", "aru", "asa", "aso", "ata", "ate", "ati", "ato", "aujo", "ave", "aya", "ayo", "aza", "azo", "bal", "ban", "bar", "bas", "bel", "bes", "bez", "bia", "bon", "bra", "cal", "can", "cas", "cea", "ces", "cha", "che", "chez", "chi", "cho", "cia", "cio", "ciu", "con", "cos", "dad", "dal", "dan", "dar", "das", "dea", "der", "des", "dez", "dia", "din", "dina", "dino", "dio", "don", "dor", "dos", "dra", "dro", "ean", "eca", "ech", "eco", "eda", "edo", "ega", "egi", "ego", "eja", "ejo", "ela", "ell", "elo", "ena", "eno", "ens", "ent", "er", "era", "eri", "ero", "ert", "esa", "eso", "eta", "ete", "eto", "eva", "ez", "eza", "gal", "gan", "gas", "ger", "ges", "gil", "gon", "gos", "gua", "gue", "guer", "guez", "gui", "hal", "han", "har", "hea", "her", "hir", "hou", "ia", "ian", "ias", "ibi", "ica", "ich", "ico", "ida", "ide", "idi", "ido", "iel", "ier", "ies", "iga", "igo", "ijo", "ila", "ili", "imi", "ina", "ine", "ini", "ino", "ion", "ios", "ira", "ire", "iri", "iro", "is", "isa", "iso", "ita", "iti", "ito", "iuc", "iva", "iz", "iza", "izo", "jar", "jas", "jon", "jos", "la", "lah", "lal", "lan", "lar", "las", "lat", "lda", "lde", "ldo", "lea", "ler", "les", "let", "lez", "li", "lia", "lin", "lio", "lis", "lla", "lle", "lli", "llo", "lls", "lo", "lon", "los", "lta", "lva", "man", "mar", "mas", "med", "mes", "mil", "min", "mon", "mpa", "na", "nal", "nas", "nau", "nca", "nce", "nco", "nda", "nde", "ndi", "ndo", "nea", "ner", "nes", "net", "nez", "nga", "ngo", "nis", "niz", "no", "nos", "nov", "nta", "nte", "nto", "nza", "nzo", "oba", "oca", "oiu", "ola", "oli", "olo", "ols", "ona", "oni", "ons", "ora", "oro", "ort", "osa", "oso", "ota", "ote", "oto", "oud", "ouh", "oui", "ouk", "oul", "oun", "our", "out", "ova", "oya", "oyo", "oza", "pez", "que", "qui", "ra", "ral", "ran", "ras", "rat", "ray", "raz", "rca", "rda", "rdi", "rdo", "rea", "ren", "res", "ret", "rey", "rez", "rga", "ria", "rin", "rio", "ris", "riu", "riz", "rna", "ron", "ronda", "rondo", "ros", "rra", "rre", "rri", "rro", "rta", "rte", "rto", "rza", "san", "sar", "sas", "sca", "sco", "scu", "sen", "ses", "sio", "son", "ssa", "ssi", "sta", "ste", "sti", "sto", "tal", "tan", "tar", "tas", "tea", "tel", "ter", "tes", "tia", "tin", "to", "ton", "tor", "tos", "tra", "tre", "tro", "tti", "uan", "ubi", "uca", "uch", "udi", "udo", "uel", "uer", "ues", "uet", "uez", "uin", "ula", "umi", "una", "uni", "ura", "uri", "uro", "uru", "usa", "uta", "uti", "uza", "val", "van", "vas", "ver", "ves", "via", "ya", "yan", "yes", "yo", "zan", "zar", "zas", "zo", "zon"},
-            {"udaeus", "udalis", "udeus", "udhil", "udhur", "udyr", "udur", "udyl", "ufur", "ulden", "uldor", "uldur", "ulen", "ulenyr", "ulinor", "ulnur", "ulond", "ulur", "ulthur", "um", "umus", "umyr", "unden", "unor", "unor", "urde", "ureus", "urin", "uris", "urus", "uryn", "us", "ustur", "utur", "uvaeus", "uvaerus", "uvir", "uvur", "uvurus"}};
+            {"udaeus", "udalis", "udeus", "udhil", "udhur", "udyr", "udur", "udyl", "ufur", "ulden", "uldor", "uldur", "ulen", "ulenyr", "ulinor", "ulnur", "ulond", "ulur", "ulthur", "um", "umur", "umus", "umyr", "unden", "unor", "unor", "urde", "ureus", "urin", "uris", "urus", "uryn", "us", "ustur", "utur", "uvaeus", "uvaerus", "uvir", "uvur", "uvurus"}};
     private static final String[] MIDDLE_CONSONANTS = {"bd", "bn", "bs", "cc", "ct", "dj", "ds", "gn", "lf", "lm", "lp", "ls", "lt", "mb", "mn", "mp", "ms", "nc", "nf", "ng", "nj", "nk", "nl", "nm", "nn", "nr", "ns", "nz", "nt", "nv", "nz", "pc", "ps", "pt", "rb", "rc", "rd", "rg", "rj", "rl", "rm", "rn", "rp", "rr", "rs", "rt", "sb", "sc", "sc", "sf", "sl", "sn", "sp", "ss", "st"};
     private static final String[] ENDING_CONSONANTS = {"ng", "nn", "nt", "rn", "rsk", "rst", "rg", "st", "th", "tt"};
-    private static final String[] PAIR_OF_CONSONANTS = {"bl", "br", "ch", "cl", "cr", "dl", "dr", "fl", "fr", "gl", "gr", "kh", "kl", "kr", "ll", "pl", "pr", "rh", "sh", "tl", "tr", "vl", "vr"};
-    private static final String[] PAIR_OF_ROMANIZATION_CONSONANTS = {"by", "ch", "gy", "hy", "jy", "ky", "my", "ny", "py", "ry", "sh", "ts"};
-    private static final String[] PAIR_OF_VOWELS = {"ae", "ai", "ao", "au", "ea", "ei", "eo", "eu", "ia", "ie", "io", "iu", "oa", "oe", "oi", "ou", "ua", "ue", "ui", "uo", "æ", "œ"};
+    private static final String[] CONSONANT_PAIRS = {"bl", "br", "ch", "cl", "cr", "dl", "dr", "fl", "fr", "gl", "gr", "kh", "kl", "kr", "ll", "pl", "pr", "rh", "sh", "tl", "tr", "vl", "vr"};
+    private static final String[] ANY_CONSONANT_PAIRS = {"bl", "br", "by", "ch", "cl", "cr", "cy", "dr", "dw", "fl", "fn", "fr", "fy", "gh", "gl", "gn", "gr", "gw", "gy", "hl", "hw", "hy", "kn", "kr", "ky", "ly", "ny", "ph", "pr", "ps", "py", "rh", "ry", "sc", "my", "sh", "sk", "sl", "sm", "sn", "sp", "sq", "st", "sw", "sy", "pl", "tp", "tr", "tw", "ty", "vy", "wh", "wl", "th", "vl", "wr", "wy", "yb", "yc", "yd", "yf", "yh", "yl", "ym", "yn", "yp", "yr", "ys", "yt", "yv", "yw"};
+    private static final String[] VOWEL_PAIRS = {"ae", "ai", "ao", "au", "ea", "ei", "eo", "eu", "ia", "ie", "io", "iu", "oa", "oe", "oi", "ou", "ua", "ue", "ui", "uo", "æ", "œ"};
     private static final String[] STARTING_CONSONANTS = {"bh", "bj", "bl", "br", "by", "cc", "ch", "ck", "cl", "cn", "cr", "ct", "cy", "cz", "dd", "dh", "dm", "dn", "dr", "dw", "dy", "dz", "fl", "fr", "gh", "gl", "gm", "gn", "gr", "gs", "gw", "gy", "hj", "hl", "hm", "hn", "hr", "hs", "hw", "hy", "jd", "js", "jy", "kh", "kj", "kl", "kn", "kr", "kw", "ky", "ld", "lh", "lj", "ll", "lm", "ls", "lt", "lv", "ly", "mb", "mc", "ml", "mn", "mp", "mr", "my", "nc", "nd", "ng", "nn", "ns", "nt", "ny", "pf", "ph", "pl", "pr", "ps", "py", "rd", "rh", "rl", "rn", "rr", "rs", "rt", "rv", "rw", "ry", "sc", "sh", "sj", "sk", "sl", "sm", "sn", "sp", "sq", "sr", "ss", "st", "sv", "sw", "sy", "sz", "tc", "th", "tj", "tl", "tr", "ts", "tt", "tw", "ty", "tz", "vh", "vl", "vr", "vt", "vy", "wh", "wr", "ws", "wy", "xy", "yc", "yd", "yf", "yg", "yk", "yl", "ym", "yn", "ys", "yt", "yv", "yw", "zh", "zr", "zs", "zw", "zy"};
     private static final String[] SUPPORTED_LANGUAGES = {"ar", "de", "fr", "hi", "it", "pt"};
-    private static final Pattern DOUBLE_CONSONANT_START_PATTERN = Pattern.compile("^[" + LOWERCASE_CONSONANTS + "]{2}.+");
-    private static final Pattern DOUBLE_CONSONANT_AND_VOWEL_START_PATTERN = Pattern.compile("^[" + LOWERCASE_CONSONANTS + "]{2}[" + FULL_LOWERCASE_VOWELS + "](.+)");
+    private static final Pattern DOUBLE_CONSONANT_PATTERN = Pattern.compile("^[" + LOWERCASE_CONSONANTS + "ðᵹþſƿ" + "]{2}.+");
+    private static final Pattern DOUBLE_CONSONANT_AND_VOWEL_START_PATTERN = Pattern.compile("^[" + LOWERCASE_CONSONANTS + "ðᵹþſƿ" + "]{2}[" + FULL_LOWERCASE_VOWELS + "](.+)");
+    private static final Pattern TRIPLE_CONSONANT_PATTERN = Pattern.compile("([" + LOWERCASE_CONSONANTS + "ðᵹþſƿ" + "])[" + LOWERCASE_CONSONANTS + "ðᵹþſƿ" + "]([" + LOWERCASE_CONSONANTS + "ðᵹþſƿ" + "])");
+    private static final Pattern MULTIPLE_CONSONANT_PATTERN = Pattern.compile("([" + LOWERCASE_CONSONANTS + "ðᵹþſƿ" + "]{2})([" + LOWERCASE_CONSONANTS + "ðᵹþſƿ" + "]{1,})");
     private static final Pattern DOUBLE_DOT_PATTERN = Pattern.compile(DOUBLE_DOT_REGEX);
     private static final Pattern LATIN_OR_SPACE_PATTERN = Pattern.compile(LATIN_OR_SPACE_REGEX);
     private static final Pattern SEX_PATTERN = Pattern.compile("(｢[0-2]｣)");
     private static final Pattern SEX_APPENDIX_PATTERN = Pattern.compile("⸻" + INTEGER_REGEX);
     private static final Pattern ROMAN_NUMERAL_PATTERN = Pattern.compile("(^|\\s+)" + ROMAN_NUMERAL_REGEX + "($|\\s+)");
     private static final Pattern RANDOM_TAG_PATTERN = Pattern.compile(RANDOM_TAG_REGEX);
-    private static final Pattern MULTIPLE_CONSONANT_PATTERN = Pattern.compile("([" + LOWERCASE_CONSONANTS + "]{2})([" + LOWERCASE_CONSONANTS + "]{1,})");
     private static final Pattern MULTIPLE_VOWEL_PATTERN = Pattern.compile("([" + FULL_LOWERCASE_VOWELS + "])[" + FULL_LOWERCASE_VOWELS + "]{1,}([" + FULL_LOWERCASE_VOWELS + "])");
-    private static final Pattern TAG_COMPONENT_PATTERN = Pattern.compile(TAG_COMPONENT_REGEX);
     private static final Pattern TAG_PATTERN = Pattern.compile(TAG_REGEX);
-    private static final Pattern WORD_APPENDIX_PATTERN = Pattern.compile(WORD_APPENDIX_REGEX);
-    private static final Pattern WORD_COMPONENT_PATTERN = Pattern.compile(WORD_COMPONENT_REGEX);
+    private static final Pattern WORD_PATTERN = Pattern.compile(WORD_REGEX);
     private static final Pattern WORD_TAG_PATTERN = Pattern.compile(WORD_TAG_REGEX);
-    private static final Pattern THREE_CONSONANT_PATTERN = Pattern.compile("([" + LOWERCASE_CONSONANTS + "])[" + LOWERCASE_CONSONANTS + "]([" + LOWERCASE_CONSONANTS + "])");
     private static Field[] versionCodes;
     private static Toast toast;
     private static MediaPlayer mediaPlayer;
@@ -171,11 +177,7 @@ class Methods extends ContextWrapper {
     private static List<String> commonLastNames;
     private static List<String> compoundLastNames;
     private static List<String> adjectives;
-    private static List<String> spanishSingularAdjectives;
-    private static List<String> spanishPluralAdjectives;
     private static List<String> nouns;
-    private static List<String> spanishNouns;
-    private static List<String> englishNouns;
     private static List<String> interjections;
     private static List<String> royalTitles;
     private static List<String> romanNumerals;
@@ -183,6 +185,7 @@ class Methods extends ContextWrapper {
     private static List<String> opinions;
     private static List<String> colors;
     private static List<String> contactNames;
+    private static HashMap<Integer, Integer> countRegistry = new HashMap<>();
     private static boolean initialized = false;
     private static boolean retrieved = false;
     private static char[] sexes = {'⁇', '⚲', '♂', '♀'};
@@ -210,11 +213,7 @@ class Methods extends ContextWrapper {
             commonLastNames = getStringAsList(R.string.common_last_names);
             compoundLastNames = getStringAsList(R.string.compound_last_names);
             adjectives = getStringAsList(R.string.adjectives);
-            spanishSingularAdjectives = myDB.selectSingularAdjectives();
-            spanishPluralAdjectives = myDB.selectPluralAdjectives();
             nouns = getStringAsList(R.string.nouns);
-            spanishNouns = myDB.selectNouns();
-            englishNouns = myDB.selectEnglishNouns();
             interjections = getStringAsList(R.string.interjections);
             royalTitles = getStringAsList(R.string.royal_titles);
             romanNumerals = getStringAsList(R.string.roman_numerals);
@@ -251,7 +250,7 @@ class Methods extends ContextWrapper {
         }
     }
 
-    public Methods(Context context, Long seed){
+    public Methods(Context context, Long seed) {
         this(context);
         getRandomizer().bindSeed(seed);
     }
@@ -302,21 +301,21 @@ class Methods extends ContextWrapper {
                         e.printStackTrace();
                     }
                 }
-                return String.format(getResources().getString(R.string.device_version_user), genderify(getString(R.string.default_user), getSex()).getText(), name + " " + "(" + Build.VERSION.RELEASE + ")");
+                return String.format(getString(R.string.device_version_user), genderify(getString(R.string.default_user), getSex()).getText(), name + " " + "(" + Build.VERSION.RELEASE + ")");
             case 1:
-                return String.format(getResources().getString(R.string.device_user), genderify(getString(R.string.default_user), getSex()).getText(), (Build.MANUFACTURER.isEmpty() ? "?" : Build.MANUFACTURER) + (Build.MODEL.isEmpty() ? "" : " ") + Build.MODEL);
+                return String.format(getString(R.string.device_user), genderify(getString(R.string.default_user), getSex()).getText(), (Build.MANUFACTURER.isEmpty() ? "?" : Build.MANUFACTURER) + (Build.MODEL.isEmpty() ? "" : " ") + Build.MODEL);
             case 2:
-                return String.format(getResources().getString(R.string.device_user), genderify(getString(R.string.default_user), getSex()).getText(), (Build.BRAND.isEmpty() ? "?" : Build.BRAND) + (Build.MODEL.isEmpty() ? "" : " ") + Build.MODEL);
+                return String.format(getString(R.string.device_user), genderify(getString(R.string.default_user), getSex()).getText(), (Build.BRAND.isEmpty() ? "?" : Build.BRAND) + (Build.MODEL.isEmpty() ? "" : " ") + Build.MODEL);
             case 3:
-                return String.format(getResources().getString(R.string.device_user), genderify(getString(R.string.default_user), getSex()).getText(), Build.PRODUCT.isEmpty() ? "?" : Build.PRODUCT);
+                return String.format(getString(R.string.device_user), genderify(getString(R.string.default_user), getSex()).getText(), Build.PRODUCT.isEmpty() ? "?" : Build.PRODUCT);
             case 4:
-                return String.format(getResources().getString(R.string.android_device_user), genderify(getString(R.string.default_user), getSex()).getText(), getDeviceId());
+                return String.format(getString(R.string.android_device_user), genderify(getString(R.string.default_user), getSex()).getText(), getDeviceId());
             case 5:
-                return String.format(getResources().getString(R.string.device_brand_user), genderify(getString(R.string.default_user), getSex()).getText(), Build.BRAND.isEmpty() ? "?" : Build.BRAND);
+                return String.format(getString(R.string.device_brand_user), genderify(getString(R.string.default_user), getSex()).getText(), Build.BRAND.isEmpty() ? "?" : Build.BRAND);
             case 6:
                 if (isNetworkAvailable()) {
                     String networkName = getNetworkName().trim();
-                    return String.format(getResources().getString(R.string.network_user), networkName.isEmpty() ? "?" : networkName);
+                    return String.format(getString(R.string.network_user), networkName.isEmpty() ? "?" : networkName);
                 } else
                     return getStringFromRes(R.string.no_network_user);
             case 7:
@@ -325,14 +324,14 @@ class Methods extends ContextWrapper {
                 if (networkOperator.trim().isEmpty())
                     return getStringFromRes(R.string.no_network_operator_user);
                 else
-                    return String.format(getResources().getString(R.string.network_operator_user), networkOperator);
+                    return String.format(getString(R.string.network_operator_user), networkOperator);
             case 8:
                 String ipAddress = getLocalIpAddress();
 
                 if (ipAddress == null || ipAddress.isEmpty())
                     return getStringFromRes(R.string.disconnected_device_user);
                 else
-                    return String.format(getResources().getString(R.string.connected_device_user), ipAddress);
+                    return String.format(getString(R.string.connected_device_user), ipAddress);
             default:
                 return "";
         }
@@ -342,7 +341,7 @@ class Methods extends ContextWrapper {
         if (sex < -1 || sex > 2)
             sex = -1;
 
-        if (defaultPreferences.getString("preference_language", "es").equals("es")) {
+        if (getResources().getString(R.string.locale).equals("es")) {
             String subject;
             String noun = "";
             String adjective;
@@ -382,7 +381,7 @@ class Methods extends ContextWrapper {
                 subject += adjective;
             }
             return subject;
-        } else {
+        } else if (getResources().getString(R.string.locale).equals("en")) {
             if (toggled == null)
                 return getStringFromList(adjectives) + " " + genderify(getStringFromList(nouns), sex).getText();
             else if (toggled)
@@ -390,34 +389,34 @@ class Methods extends ContextWrapper {
             else
                 return getStringFromList(adjectives) + " " + getStringFromRes(R.string.default_person);
         }
+        return "";
     }
 
     public TextComponent genderify(String s, Integer sex) {
         TextComponent component = new TextComponent();
         component.setText(s);
         String result = "";
-        List<String> parts;
 
         if (sex == null)
             return component;
         else if (sex < -1 || sex > 2)
             sex = -1;
+        Matcher matcher = WORD_PATTERN.matcher(s);
+        StringBuffer sb = new StringBuffer();
 
-        if (s.contains("|"))
-            parts = Arrays.asList(s.split(Pattern.quote("|")));
-        else {
-            parts = new ArrayList<>();
-            parts.add(s);
-        }
+        while (matcher.find()) {
+            String replacement = "";
+            String substring = StringUtils.substring(matcher.group(), 1, matcher.group().length() - 1);
+            boolean capitalized = !substring.equals(substring = StringUtils.removeStart(substring, "^"));
+            boolean fullyCapitalized = capitalized && !substring.equals(substring = StringUtils.removeStart(substring, "^"));
+            String prefix = StringUtils.substringBefore(substring, "[");
+            String suffix = StringUtils.substringAfter(substring, "]");
+            substring = StringUtils.substringsBetween(substring, "[", "]")[0];
+            List<String> items = Arrays.asList(substring.split(",\\s*"));
+            boolean shortened = false;
 
-        for (int p = 0; p < parts.size(); p++) {
-            Matcher matcher = WORD_APPENDIX_PATTERN.matcher(parts.get(p));
-
-            if (matcher.find()) {
-                String substring = parts.get(p).substring(parts.get(p).indexOf("[") + 1, parts.get(p).indexOf("]"));
-                List<String> items = Arrays.asList(substring.split(","));
+            if (StringUtils.isNotEmpty(substring) && StringUtils.isBlank(suffix)) {
                 List<String> sortedItems = new ArrayList<>(items);
-                boolean shortened = false;
 
                 Collections.sort(sortedItems, (item, otherItem) -> {
                     if (item.length() > otherItem.length())
@@ -426,36 +425,54 @@ class Methods extends ContextWrapper {
                         return item.compareTo(otherItem);
                 });
 
-                if (sortedItems != null && sortedItems.size() >= 2) {
+                if (sortedItems.size() >= 2) {
                     if (sortedItems.get(0).length() <= 1 && sortedItems.get(sortedItems.size() - 1).length() <= 1)
                         shortened = true;
                 }
+            }
 
-                if (sex == -1 || sex == 0) {
-                    String appendix = "";
-
+            if (items.size() == 0)
+                replacement = prefix + suffix;
+            else if (items.size() == 1)
+                replacement = prefix + items.get(0) + suffix;
+            else if (sex == -1 || sex == 0) {
+                if (shortened)
+                    replacement = prefix + items.get(0) + "(" + StringUtils.join(items.subList(1, items.size()), ", ") + ")";
+                else {
                     for (int n = 0; n < items.size(); n++) {
-                        if (items.get(n) != null) {
-                            if (shortened)
-                                appendix += (appendix.isEmpty() ? parts.get(p).replaceAll(WORD_APPENDIX_REGEX, items.get(n)) : items.get(n)) + (appendix.isEmpty() ? "(" : "") + (n >= items.size() - 1 ? ")" : "");
-                            else
-                                appendix += parts.get(p).replaceAll(WORD_APPENDIX_REGEX, items.get(n)) + (n < items.size() - 1 ? "/" : "");
-                        }
+                        items.set(n, prefix + items.get(n) + suffix);
                     }
-                    result += appendix;
-                } else {
-                    substring = sex == 1 ? items.get(0) : items.get(1);
-                    result += parts.get(p).replaceAll(WORD_APPENDIX_REGEX, substring);
+                    replacement = StringUtils.join(items, "/");
                 }
             } else
-                result += parts.get(p);
-            result += (p < parts.size() - 1 ? " " : "");
-        }
+                replacement = prefix + (sex == 1 ? items.get(0) : items.get(1)) + suffix;
 
-        if (!result.isEmpty())
+            if (fullyCapitalized)
+                replacement = capitalize(replacement);
+            else if (capitalized)
+                replacement = capitalizeFirst(replacement);
+            matcher.appendReplacement(sb, replacement);
+        }
+        matcher.appendTail(sb);
+        result = sb.toString();
+
+        if (StringUtils.isNotBlank(result))
             component.setText(result);
         component.setHegemonicSex(sex);
         return component;
+    }
+
+    public String getDesignation(Enum designationType) {
+        if (designationType instanceof NameEnum) {
+            List<NameEnum> preferredNames = new ArrayList<>();
+            preferredNames.add(NameEnum.EMPTY);
+            preferredNames.add(NameEnum.TEST_CASE);
+            preferredNames.add((NameEnum) designationType);
+            Entity entity = getEntity(preferredNames);
+            return formatText(new String[]{entity.getPrimitiveName()[0], entity.getPrimitiveName()[1]}, "", "");
+        } else if (designationType instanceof PseudonymEnum)
+            return generatePseudonym((PseudonymEnum) designationType);
+        return "";
     }
 
     public String getNames(int sex) {
@@ -485,13 +502,36 @@ class Methods extends ContextWrapper {
         }
     }
 
-    public String[] getGeneratedNames(int length, String subtype) {
-        if (length <= 0)
-            length = 1;
+    public String[] getGeneratedAdjustedNames(int aggregate, String subtype) {
+        String[] names = aggregate <= 0 ? new String[]{""} : new String[aggregate];
         int index;
 
         if (subtype != null && !subtype.isEmpty()) {
-            String[] subtypes = {"english", "hawaiian", "japanese", "spanish"};
+            String[] subtypes = {"old_english", "spanish"};
+            index = ArrayUtils.lastIndexOf(subtypes, subtype);
+            index = index > -1 ? index : randomizer.getInt(subtypes.length, 0);
+        } else
+            index = randomizer.getInt(getResources().getStringArray(R.array.shaper_strings).length, 0);
+        String resourceName = getResources().getStringArray(R.array.shaper_strings)[index];
+        String letters = getRawStringByName(resourceName);
+
+        if (letters != null && !letters.isEmpty()) {
+            for (int n = -1; ++n < aggregate; ) {
+                names[n] = getPreformedName(letters, StringUtils.removeStart(resourceName, "shaper_"));
+            }
+        }
+
+        if (!ArrayUtils.isNotEmpty(names))
+            Arrays.fill(names, "");
+        return names;
+    }
+
+    public String[] getGeneratedNames(int aggregate, String subtype) {
+        String[] names = aggregate <= 0 ? new String[]{""} : new String[aggregate];
+        int index;
+
+        if (subtype != null && !subtype.isEmpty()) {
+            String[] subtypes = {"afrikaans", "english", "latin", "marshallese", "spanish"};
             index = 0;
 
             for (int n = 0; n < subtypes.length; n++) {
@@ -504,29 +544,18 @@ class Methods extends ContextWrapper {
             if (index == subtypes.length)
                 index = randomizer.getInt(index, 0);
         } else
-            index = randomizer.getInt(getResources().getStringArray(R.array.mystic_strings).length, 0);
-        String[] names = new String[length];
-        int minLength = 4, extraLength = getResources().getIntArray(R.array.name_extra_length)[index];
-        String letters = getResources().getStringArray(R.array.mystic_strings)[index];
-        boolean romanized = false, fixed = false;
-        CharEnum bannedDuplicate = CharEnum.NULL;
-
-        if (index == 2)
-            romanized = true;
-        else if (index == 3) {
-            bannedDuplicate = CharEnum.VOWEL;
-            fixed = true;
-        } else {
-            bannedDuplicate = CharEnum.ANY_CHARACTER;
-            fixed = true;
-        }
+            index = randomizer.getInt(getResources().getStringArray(R.array.frequency_strings).length, 0);
+        int minLength = 4, extraLength = new int[]{6, 4, 6, 4, 8}[index];
+        String letters = getResources().getStringArray(R.array.frequency_strings)[index];
 
         if (letters != null && !letters.isEmpty()) {
-            for (int n = 0; n < length; n++) {
-                names[n] = generateName(letters, randomizer.getInt(extraLength + 1, minLength), bannedDuplicate, fixed, romanized);
+            for (int n = 0; n < aggregate; n++) {
+                names[n] = generateName(letters, randomizer.getInt(extraLength + 1, minLength));
             }
-        } else
-            names = new String[]{"?", "?"};
+        }
+
+        if (!ArrayUtils.isNotEmpty(names))
+            Arrays.fill(names, "");
         return names;
     }
 
@@ -564,53 +593,32 @@ class Methods extends ContextWrapper {
                         return "<font color=" + getColorAsString() + ">" + contactName + "</font>";
                     }
                 }
-            } else
-                return contactName;
-        } catch (Exception e) {
-            return null;
+            }
+        } catch (Exception ignored) {
         }
+        return contactName;
     }
 
     public String getDemonicName(String s) {
-        if (s == null || s.isEmpty())
+        if (StringUtils.isBlank(s))
             return s;
         else {
-            if (StringUtils.isAllBlank(s))
-                s = generateName(randomizer.getInt(6, 1));
-            else {
-                s = RegExUtils.replaceAll(s, ROMAN_NUMERAL_PATTERN, " ").trim();
+            s = RegExUtils.replaceAll(s, ROMAN_NUMERAL_PATTERN, " ").trim();
 
-                if (StringUtils.isAlphaSpace(s) || LATIN_OR_SPACE_PATTERN.matcher(s).matches()) {
-                } else {
-                    String temp = RegExUtils.removeAll(s, "[^\\p{Latin}\\s]");
+            if (StringUtils.isAlphaSpace(s) || LATIN_OR_SPACE_PATTERN.matcher(s).matches()) {
+            } else {
+                String temp = RegExUtils.removeAll(s, "[^\\p{Latin}\\s]").trim();
 
-                    if (StringUtils.isAllBlank(temp))
-                        s = generateName();
-                    else
-                        s = temp;
-                }
+                if (StringUtils.isAllBlank(temp))
+                    s = generateName();
+                else
+                    s = temp;
             }
-            s = s.toLowerCase();
             s = normalize(s);
+            s = s.toLowerCase();
             s = StringUtils.reverse(s);
             s = capitalize(s);
             return s;
-        }
-    }
-
-    private static List<String> extractMatches(String s, Pattern p) {
-        List<String> matches = new ArrayList<>();
-
-        try {
-            Matcher m = p.matcher(s);
-
-            while (m.find()) {
-                matches.add(m.group());
-            }
-            return matches;
-        } catch (Exception e) {
-            matches.add(s);
-            return matches;
         }
     }
 
@@ -667,7 +675,7 @@ class Methods extends ContextWrapper {
                     stringBuilder.append(ENDING_CONSONANTS[randomizer.getInt(ENDING_CONSONANTS.length, 0)]);
                     break;
                 case 'k':
-                    stringBuilder.append(PAIR_OF_CONSONANTS[randomizer.getInt(PAIR_OF_CONSONANTS.length, 0)]);
+                    stringBuilder.append(CONSONANT_PAIRS[randomizer.getInt(CONSONANT_PAIRS.length, 0)]);
                     break;
                 case 'm':
                     stringBuilder.append(MIDDLE_CONSONANTS[randomizer.getInt(MIDDLE_CONSONANTS.length, 0)]);
@@ -679,7 +687,7 @@ class Methods extends ContextWrapper {
                     stringBuilder.append(LOWERCASE_VOWELS.charAt(randomizer.getInt(LOWERCASE_VOWELS.length(), 0)));
                     break;
                 case 'w':
-                    stringBuilder.append(PAIR_OF_VOWELS[randomizer.getInt(PAIR_OF_VOWELS.length, 0)]);
+                    stringBuilder.append(VOWEL_PAIRS[randomizer.getInt(VOWEL_PAIRS.length, 0)]);
                     break;
                 case ' ':
                     stringBuilder.append(' ');
@@ -691,7 +699,7 @@ class Methods extends ContextWrapper {
         return name;
     }
 
-    private String generateName(String letters, int approximateLength, CharEnum bannedDuplicate, boolean dropped, boolean romanized) {
+    private String generateName(String letters, int length) {
         String s;
         StringBuilder stringBuilder = new StringBuilder();
         char previousLetter = '\0';
@@ -707,10 +715,10 @@ class Methods extends ContextWrapper {
         if (letters == null || letters.length() == 0)
             letters = LOWERCASE_VOWELS + LOWERCASE_CONSONANTS;
 
-        if (approximateLength < 1 || approximateLength > 9999)
-            approximateLength = 1;
+        if (length < 1 || length > 9999)
+            length = 1;
 
-        for (int n = -1; ++n < approximateLength; ) {
+        for (int n = -1; ++n < length; ) {
             if (stringBuilder.length() >= 1) {
                 previousLetter = stringBuilder.charAt(stringBuilder.length() - 1);
 
@@ -725,17 +733,17 @@ class Methods extends ContextWrapper {
                         } else
                             equal = false;
                     }
-                    while ((vowelFound = isVowel(previousLetter)) != isVowel(currentLetter) || (!vowelFound && equalsAny(currentLetter, "ñç")) || (equal && isNonConsecutiveConsonant(currentLetter)) || !allowed);
+                    while ((vowelFound = isVowel(previousLetter)) != isVowel(currentLetter) || ((!vowelFound || n == length - 1) && equalsAny(currentLetter, "ñç")) || (equal && isNonConsecutiveConsonant(currentLetter)) || !allowed);
                 } else {
                     do {
                         currentLetter = getAChar(letters);
                     }
-                    while ((vowelFound = isVowel(previousLetter)) == (anotherVowelFound = isVowel(currentLetter)) || (!vowelFound && equalsAny(currentLetter, "ñç")) || (equalsAny(previousLetter, "ñç") && !anotherVowelFound));
+                    while ((vowelFound = isVowel(previousLetter)) == (anotherVowelFound = isVowel(currentLetter)) || ((!vowelFound || n == length - 1) && equalsAny(currentLetter, "ñç")) || (equalsAny(previousLetter, "ñç") && !anotherVowelFound));
                 }
             }
             stringBuilder.append(currentLetter);
 
-            if (randomizer.getFloat() <= approvalRate[count] && currentLetter != 'ñ') {
+            if (randomizer.getFloat() <= approvalRate[count] && !equalsAny(currentLetter, "ñç")) {
                 count++;
                 sameType = true;
             } else {
@@ -747,30 +755,9 @@ class Methods extends ContextWrapper {
 
         if (!hasVowels(s)) {
             char[] c = s.toCharArray();
-            c[randomizer.getInt(approximateLength, 0)] = getAChar(LOWERCASE_VOWELS);
+            c[randomizer.getInt(length, 0)] = getAChar(LOWERCASE_VOWELS);
             s = String.valueOf(c);
         }
-
-        if (s.length() > 1 && s.endsWith("ñ")) {
-            switch (randomizer.getInt(4, 0)) {
-                case 0:
-                    s = StringUtils.substring(s, 0, s.length() - 1) + StringUtils.stripAccents(Character.toString(s.charAt(s.length() - 1)));
-                    break;
-                case 1:
-                    s = StringUtils.substring(s, 0, s.length() - 1) + getAChar(LOWERCASE_CONSONANTS);
-                    break;
-                case 2:
-                    s = StringUtils.substring(s, 0, s.length() - 1);
-                    break;
-                case 3:
-                    s += getAChar(LOWERCASE_VOWELS);
-                    break;
-            }
-        }
-
-        if (dropped)
-            s = dropLetters(s);
-        s = fixLetters(s, bannedDuplicate, romanized);
         return capitalizeFirst(s);
     }
 
@@ -782,7 +769,7 @@ class Methods extends ContextWrapper {
 
         if (randomizer.getInt(3, 0) == 0)
             stringBuilder.append(getVowels());
-        stringBuilder.append(randomizer.getBoolean() ? getStringFromStringArray(PAIR_OF_CONSONANTS) : getAChar(LOWERCASE_REPEATED_CONSONANTS));
+        stringBuilder.append(randomizer.getBoolean() ? getStringFromStringArray(CONSONANT_PAIRS) : getAChar(LOWERCASE_REPEATED_CONSONANTS));
         stringBuilder.append(getVowels());
 
         for (int i = 1; i < iterations; i++) {
@@ -791,7 +778,7 @@ class Methods extends ContextWrapper {
             if (probability <= 0.7F)
                 stringBuilder.append(getAChar(LOWERCASE_REPEATED_CONSONANTS));
             else if (probability <= 0.85F)
-                stringBuilder.append(getStringFromStringArray(PAIR_OF_CONSONANTS));
+                stringBuilder.append(getStringFromStringArray(CONSONANT_PAIRS));
             else
                 stringBuilder.append(getStringFromStringArray(MIDDLE_CONSONANTS));
             stringBuilder.append(getVowels());
@@ -821,6 +808,29 @@ class Methods extends ContextWrapper {
         if (dropped)
             name = dropLetters(name);
         return uppercase ? capitalizeFirst(name) : name;
+    }
+
+    public String getPreformedName(String letters, String type) {
+        String name = "";
+        int length = 3 + randomizer.getInt(8, 0);
+
+        if (StringUtils.isNotBlank(letters) && letters.length() >= length) {
+            int firstMark = randomizer.getInt(letters.length(), 0), secondMark;
+
+            if (firstMark + length - 1 > letters.length()) {
+                secondMark = firstMark;
+                firstMark = secondMark - length + 1;
+            } else
+                secondMark = firstMark + length - 1;
+            name = StringUtils.substring(letters, firstMark, secondMark + 1);
+
+            while (!hasVowels(name)) {
+                name = getPreformedName(letters, type);
+            }
+            name = randomizer.getBoolean() ? StringUtils.reverse(name) : name;
+            name = fixLetters(name, type);
+        }
+        return capitalizeFirst(name);
     }
 
     private String generateLastName(boolean different, boolean uppercase, boolean dropped, int... type) {
@@ -856,7 +866,7 @@ class Methods extends ContextWrapper {
         return uppercase ? capitalizeFirst(lastName) : lastName;
     }
 
-    private String[] generateFullName(boolean different, boolean fixed, int... type) {
+    private String[] generateFullName(boolean different, boolean dropped, int... type) {
         int definedType;
 
         if (verifyIntVararg(type)) {
@@ -866,67 +876,125 @@ class Methods extends ContextWrapper {
                 definedType = type[0];
         } else
             definedType = randomizer.getInt(GENERATED_NAME_FAMILY_NAME_SUFFIX.length, 0);
-        return new String[]{generateName(different, true, fixed, definedType), generateLastName(different, true, fixed, definedType)};
+        return new String[]{generateName(different, true, dropped, definedType), generateLastName(different, true, dropped, definedType)};
     }
 
     public String generateUsername() {
-        String username;
-        float probability = randomizer.getFloat();
+        PseudonymEnum[] usernameTypes = {
+                PseudonymEnum.USERNAME,
+                PseudonymEnum.USERNAME,
+                PseudonymEnum.COMPOUND_USERNAME,
+                PseudonymEnum.SPANISH_COMPOUND_USERNAME,
+                PseudonymEnum.DERIVED_USERNAME
+        };
+        return generatePseudonym(usernameTypes[randomizer.getInt(usernameTypes.length, 0)]);
+    }
 
-        if (probability <= 0.4F) {
-            int separatorType = randomizer.getInt(SEPARATOR.length - 1, 1);
+    public String generatePseudonym(PseudonymEnum usernameType) {
+        switch (usernameType) {
+            case USERNAME:
+                return getUsername();
+            case COMPOUND_USERNAME:
+                return getCompositeUsername(PseudonymEnum.COMPOUND_USERNAME);
+            case SPANISH_COMPOUND_USERNAME:
+                return getCompositeUsername(PseudonymEnum.SPANISH_COMPOUND_USERNAME);
+            case DERIVED_USERNAME:
+                return getDerivedUsername();
+            case ANONYMOUS_NAME:
+                return getNickname(PseudonymEnum.ANONYMOUS_NAME);
+            case SPANISH_ANONYMOUS_NAME:
+                return getNickname(PseudonymEnum.SPANISH_ANONYMOUS_NAME);
+        }
+        return "";
+    }
 
-            if (randomizer.getBoolean()) {
-                Object[] noun = getSpanishNoun(null, false);
-                noun[0] = StringUtils.replace(noun[0].toString(), " ", SEPARATOR[separatorType]);
-                username = noun[0].toString() + SEPARATOR[separatorType] + getSpanishAdjective((Integer) noun[1], ((Boolean) noun[2]).booleanValue());
-                username = StringUtils.replace(username, "ñ", "ny");
-                username = normalize(username);
-            } else
-                username = getEnglishAdjective() + SEPARATOR[separatorType] + getCommonNoun();
+    private String getCompositeUsername(PseudonymEnum usernameType) {
+        String username = "";
+        String base = "";
+        int separatorType = randomizer.getInt(SEPARATOR.length - 1, 0);
 
-            if (randomizer.getBoolean()) {
-                username = username + SEPARATOR[separatorType];
+        //Get base username with a noun and an adjective
+        if (usernameType == PseudonymEnum.COMPOUND_USERNAME) {
+            base = getEnglishAdjective() + " " + getCommonNoun();
+            base = RegExUtils.replaceAll(base, "[^a-zA-Z0-9\\s]", " ");
+        } else if (usernameType == PseudonymEnum.SPANISH_COMPOUND_USERNAME) {
+            SpanishNoun spanishNoun = getSpanishNoun(null);
+            base = spanishNoun.getNoun() + " " + getSpanishAdjective(spanishNoun.getArticleType().getSex(), spanishNoun.getArticleType().isPlural());
+            base = normalize(base);
+        }
+        base = base.trim();
 
-                if (randomizer.getBoolean())
-                    username = username + randomizer.getInt(1000, 0);
-                else {
-                    int year = getYear();
-                    int difference = randomizer.getInt(201, 0);
+        //Separate words with characters or using camel case
+        if (StringUtils.isBlank(base)) {
+        } else if (randomizer.getBoolean()) {
+            base = StringUtils.replace(base, " ", SEPARATOR[separatorType]);
+        } else {
+            base = capitalize(base);
+            base = StringUtils.remove(base, " ");
+        }
+        username = base;
 
-                    if (difference < 0)
-                        year = year - difference;
-                    else
-                        year = year + difference;
+        //Append number, if required
+        if (StringUtils.isBlank(username)) {
+        } else if (randomizer.getBoolean()) {
+            username = username + (username.contains(SEPARATOR[separatorType]) ? SEPARATOR[separatorType] : "");
+            float probability = randomizer.getFloat();
 
-                    if (year < 1)
-                        year = 2000;
-                    username = username + year;
-                }
+            if (probability <= 0.45F) {
+                int number = randomizer.getInt(1000, 0);
+                username = username + (randomizer.getBoolean() ? String.format("%03d", number) : number);
+            } else if (probability <= 0.9F) {
+                int year = getYear();
+                int difference = randomizer.getInt(201, 0);
+
+                if (difference < 0)
+                    year = year - difference;
+                else
+                    year = year + difference;
+
+                if (year < 1)
+                    year = 2000;
+                username = username + year;
+            } else {
+                String[] numbers = {"0", "002", "007", "2", "69", "69", "69", "666", "777", "420", "420", "420", "911", "999"};
+                username += numbers[randomizer.getInt(numbers.length, 0)];
             }
-            username = username.toLowerCase();
-        } else if (probability <= 0.8F)
-            username = getUsername();
-        else {
-            String appendix = getFamilyName();
-            appendix = normalize(appendix);
-            appendix = RegExUtils.replaceAll(appendix, "[^a-zA-Z]", "");
-            username = Character.toString(getAChar(UPPERCASE_ALPHABET));
-
-            if (appendix.length() > 4)
-                username += StringUtils.substring(appendix, 0, 5);
-            else
-                username += appendix;
-            username += randomizer.getInt(101, 0);
         }
         return username;
+    }
+
+    private String getDerivedUsername() {
+        String username = "";
+        String appendix = getFamilyName();
+        appendix = normalize(appendix);
+        appendix = RegExUtils.replaceAll(appendix, "[^a-zA-Z]", "");
+        username = Character.toString(getAChar(UPPERCASE_ALPHABET));
+
+        if (appendix.length() > 4)
+            username += StringUtils.substring(appendix, 0, 5);
+        else
+            username += appendix;
+        username += randomizer.getInt(101, 0);
+        return username;
+    }
+
+    private String getNickname(PseudonymEnum nicknameType) {
+        String nickname = "";
+
+        if (nicknameType == PseudonymEnum.ANONYMOUS_NAME) {
+            nickname = getEnglishAdjective() + " " + getCommonNoun();
+        } else if (nicknameType == PseudonymEnum.SPANISH_ANONYMOUS_NAME) {
+            SpanishNoun spanishNoun = getSpanishNoun(null);
+            nickname = spanishNoun.getNoun() + " " + getSpanishAdjective(spanishNoun.getArticleType().getSex(), spanishNoun.getArticleType().isPlural());
+        }
+        return nickname;
     }
 
     private String getVowels() {
         if (randomizer.getInt(10, 0) > 0)
             return Character.toString(getAChar(LOWERCASE_VOWELS));
         else {
-            String vowels = getStringFromStringArray(PAIR_OF_VOWELS);
+            String vowels = getStringFromStringArray(VOWEL_PAIRS);
 
             if (vowels.length() == 1 && !isGlyphDisplayable(vowels.charAt(0)))
                 vowels = StringUtils.replaceEach(vowels, new String[]{"æ", "œ",}, new String[]{"ae", "oe"});
@@ -939,33 +1007,55 @@ class Methods extends ContextWrapper {
         return s;
     }
 
-    private String fixLetters(String s, CharEnum bannedDuplicate, boolean romanized) {
-        String consonants = romanized ? ROMANIZATION_CONSONANTS : LOWERCASE_CONSONANTS;
-        s = THREE_CONSONANT_PATTERN.matcher(s).replaceAll("$1" + getAChar(LOWERCASE_VOWELS) + "$2");
+    private String fixLetters(String s, String type) {
+        if (StringUtils.isBlank(s))
+            return s;
 
-        if (romanized) {
-            s = MULTIPLE_VOWEL_PATTERN.matcher(s).replaceAll("$1" + getAChar(consonants) + "$2");
-            s = DOUBLE_CONSONANT_AND_VOWEL_START_PATTERN.matcher(s).replaceFirst(PAIR_OF_ROMANIZATION_CONSONANTS[randomizer.getInt(PAIR_OF_ROMANIZATION_CONSONANTS.length, 0)] + getAChar("aou") + "$1");
-            s = StringUtils.replaceEach(s, new String[]{"aa", "ii", "uu", "ei", "ee", "ou", "oo"}, new String[]{"ā", "ī", "ū", "ē", "ē", "ō", "ō"});
-        } else {
-            if (DOUBLE_CONSONANT_START_PATTERN.matcher(s).matches()) {
-                boolean matching = false;
+        switch (type) {
+            case "standard":
+                s = TRIPLE_CONSONANT_PATTERN.matcher(s).replaceAll("$1" + getAChar(LOWERCASE_VOWELS) + "$2");
+                break;
+            case "common":
+                s = MULTIPLE_VOWEL_PATTERN.matcher(s).replaceAll("$1" + getAChar(LOWERCASE_CONSONANTS) + "$2");
 
-                for (int n = 0; n < PAIR_OF_CONSONANTS.length; n++) {
-                    if (s.startsWith(PAIR_OF_CONSONANTS[n]))
-                        matching = true;
+                if (DOUBLE_CONSONANT_AND_VOWEL_START_PATTERN.matcher(s).matches())
+                    s = StringUtils.startsWithAny(s, CONSONANT_PAIRS) ? s : CONSONANT_PAIRS[randomizer.getInt(CONSONANT_PAIRS.length, 0)] + StringUtils.substring(s, 2);
+                break;
+            case "japanese_romanization":
+                s = StringUtils.replaceEach(s, new String[]{"aa", "ii", "uu", "ei", "ee", "ou", "oo"}, new String[]{"ā", "ī", "ū", "ē", "ē", "ō", "ō"});
+                s = removeDuplicates(s, CharEnum.VOWEL);
+                break;
+            case "old_english":
+                s = TRIPLE_CONSONANT_PATTERN.matcher(s).replaceAll("$1" + getAChar(LOWERCASE_VOWELS + "æ") + "$2");
+
+                if (DOUBLE_CONSONANT_AND_VOWEL_START_PATTERN.matcher(s).matches()) {
+                    boolean matching = false;
+
+                    for (int n = 0; n < ANY_CONSONANT_PAIRS.length; n++) {
+                        if (StringUtils.startsWith(s, ANY_CONSONANT_PAIRS[n]))
+                            matching = true;
+                    }
+
+                    if (!matching)
+                        s = ANY_CONSONANT_PAIRS[randomizer.getInt(ANY_CONSONANT_PAIRS.length, 0)] + StringUtils.substring(s, 2);
                 }
+                break;
+            case "spanish":
+                s = TRIPLE_CONSONANT_PATTERN.matcher(s).replaceAll("$1" + getAChar(LOWERCASE_VOWELS) + "$2");
 
-                if (!matching)
-                    s = PAIR_OF_CONSONANTS[randomizer.getInt(PAIR_OF_CONSONANTS.length, 0)] + s.substring(2);
-            }
+                if (DOUBLE_CONSONANT_AND_VOWEL_START_PATTERN.matcher(s).matches())
+                    s = StringUtils.startsWithAny(s, CONSONANT_PAIRS) ? s : CONSONANT_PAIRS[randomizer.getInt(CONSONANT_PAIRS.length, 0)] + StringUtils.substring(s, 2);
+                s = StringUtils.endsWith(s, "ñ") ? StringUtils.removeEnd(s, "ñ") + "n" : s;
+                break;
+            default:
+                s = normalize(s);
+                break;
         }
-        s = removeDuplicates(s, bannedDuplicate);
         return s;
     }
 
-    public String removeDuplicates(String s, CharEnum bannedDuplicate) {
-        switch (bannedDuplicate) {
+    public String removeDuplicates(String s, CharEnum removalType) {
+        switch (removalType) {
             case ANY_CHARACTER:
                 return s.replaceAll("(.)\\1{1,}", "$1");
             case JAVA_LETTER:
@@ -983,52 +1073,28 @@ class Methods extends ContextWrapper {
         }
     }
 
-    private String getTitleOfHonor(int sex, boolean... prefixEnabled) {
-        boolean enabled;
-        String[] titles;
+    private String getHonoraryTitle(HonoraryTitleEnum titleType, int sex) {
         String temp = "";
 
         if (sex < -1 || sex > 2)
             sex = randomizer.getInt(4, 0) - 1;
 
-        if (verifyBooleanVararg(prefixEnabled))
-            enabled = prefixEnabled[0];
-        else
-            enabled = true;
-
-        if (sex == -1 || sex == 0) {
-            if (enabled)
-                titles = new String[]{"title", "class", "prefix", "occupation", "royal_title"};
-            else
-                titles = new String[]{"title", "class", "occupation"};
-        } else if (sex == 1)
-            titles = new String[]{"title", "class", "male_honorific", "occupation"};
-        else if (sex == 2)
-            titles = new String[]{"title", "class", "female_honorific", "occupation"};
-        else
-            titles = new String[0];
-
-        if (titles.length > 0) {
-            switch (titles[randomizer.getInt(titles.length, 0)]) {
-                case "title":
-                    return String.format(getResources().getString(R.string.title), genderify(getSplitString(R.string.title_descriptor), sex).getText(), getSplitString(R.string.title_level), genderify(getSplitString(R.string.title_job), sex).getText());
-                case "class":
-                    return genderify(String.format(getResources().getString(R.string.class_component), getSplitString(R.string.classes), randomizer.getInt(99, 1)), sex).getText();
-                case "prefix":
-                    return temp = getSplitString(R.string.honorifics) == "∅" ? "" : temp;
-                case "male_honorific":
-                    return temp = getSplitString(R.string.male_honorifics) == "∅" ? "" : temp;
-                case "female_honorific":
-                    return temp = getSplitString(R.string.female_honorifics) == "∅" ? "" : temp;
-                case "royal_title":
-                    return getStringFromList(royalTitles);
-                case "occupation":
-                    return replaceTags(getString(R.string.method_occupation), sex).getText();
-                default:
-                    return "";
-            }
-        } else
-            return "";
+        switch (titleType) {
+            case UNDEFINED:
+                return "";
+            case TITLE:
+                return genderify(String.format(getString(R.string.title), getSplitString(R.string.title_descriptor), getSplitString(R.string.title_level), getSplitString(R.string.title_job)), sex).getText();
+            case CLASS:
+                return genderify(String.format(getString(R.string.class_component), getSplitString(R.string.classes), randomizer.getInt(99, 1)), sex).getText();
+            case HONORIFIC:
+                return temp = getSplitString(R.string.honorifics) == "∅" ? "" : genderify(temp, sex).getText();
+            case ROYAL_TITLE:
+                return temp = getSplitString(R.string.royal_titles) == "∅" ? "" : genderify(temp, sex).getText();
+            case OCCUPATION:
+                return replaceTags(getString(R.string.method_occupation), sex).getText();
+            default:
+                return "";
+        }
     }
 
     @SuppressWarnings("deprecation")
@@ -1054,8 +1120,8 @@ class Methods extends ContextWrapper {
         if (!defaultPreferences.contains("preference_language")) {
             language = getDefaultLanguage();
 
-            if (!language.equals("en") && !language.equals("es"))
-                language = "en";
+            if (!language.equals(Locale.ENGLISH.getLanguage()) && !language.equals("es"))
+                language = Locale.ENGLISH.getLanguage();
             defaultPreferences.edit().putString("preference_language", language).apply();
         } else
             language = defaultPreferences.getString("preference_language", "es");
@@ -1113,17 +1179,12 @@ class Methods extends ContextWrapper {
     }
 
     public String getDeviceId() {
-        String android_id;
+        String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
-            android_id = Settings.Secure.ANDROID_ID;
-        else
-            android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-
-        if (android_id == null || android_id.trim().isEmpty())
+        if (StringUtils.isBlank(androidId) || androidId.length() <= 4)
             return getDevicePseudoId();
         else
-            return android_id;
+            return StringUtils.overlay(androidId, StringUtils.repeat("*", androidId.length() - 4), 0, androidId.length() - 4);
     }
 
     public String getDevicePseudoId() {
@@ -1185,10 +1246,10 @@ class Methods extends ContextWrapper {
             if (closestPerson == null)
                 closestPerson.setText("?");
         } else {
-            closestPerson = replaceTags("{string:person⦗" + typeOfSecondPerson + "⦘⸻⸮}");
+            closestPerson = replaceTags("{string:person[" + typeOfSecondPerson + "]⸻⸮}");
             closestPerson.setText(StringUtils.replace(closestPerson.getText(), "%%", name));
         }
-        thirdParty = replaceTags("{string:person⦗" + typeOfThirdPerson + "⦘⸻⸮}");
+        thirdParty = replaceTags("{string:person[" + typeOfThirdPerson + "]⸻⸮}");
         thirdParty.setText(StringUtils.replace(thirdParty.getText(), "%%", closestPerson.getText()));
         thirdParty.setText(StringUtils.replace(thirdParty.getText(), " de el ", " del "));
 
@@ -1247,10 +1308,10 @@ class Methods extends ContextWrapper {
             int karma = randomizer.getInt(21, -10);
             totalKarma = totalKarma + karma;
 
-            if (((Boolean) people.get(n)[2]).booleanValue())
-                chain += String.format(getResources().getString(R.string.chain_link), n + 1, String.valueOf(people.get(n)[0]) + descriptions[n], ",", getStringFromStringArray(R.array.uncertainty), String.valueOf(people.get(n + 1)[0]) + descriptions[n + 1], formatNumber(karma), formatNumber(totalKarma));
+            if ((Boolean) people.get(n)[2])
+                chain += String.format(getString(R.string.chain_link), n + 1, String.valueOf(people.get(n)[0]) + descriptions[n], ",", getStringFromStringArray(R.array.uncertainty), String.valueOf(people.get(n + 1)[0]) + descriptions[n + 1], formatNumber(karma), formatNumber(totalKarma));
             else
-                chain += String.format(getResources().getString(R.string.chain_link), n + 1, String.valueOf(people.get(n)[0]) + descriptions[n], "", "(" + getAction() + ")", String.valueOf(people.get(n + 1)[0]) + descriptions[n + 1], formatNumber(karma), formatNumber(totalKarma));
+                chain += String.format(getString(R.string.chain_link), n + 1, String.valueOf(people.get(n)[0]) + descriptions[n], "", "(" + getAction() + ")", String.valueOf(people.get(n + 1)[0]) + descriptions[n + 1], formatNumber(karma), formatNumber(totalKarma));
 
             //Define link delimiter
             if (isPrintable('⬇') && !isCharacterMissingInFont('⬇'))
@@ -1267,12 +1328,79 @@ class Methods extends ContextWrapper {
             effect = getStringFromRes(R.string.chain_negative_effect);
         else
             effect = getStringFromRes(R.string.chain_positive_effect);
-        chain += String.format(getResources().getString(R.string.chain_effect), "<b><font color=#FFF870>" + (totalKarma == 0 ? effect : String.format("%.2f", percentage) + "% " + effect) + "</font></b>", name);
+        chain += String.format(getString(R.string.chain_effect), "<b><font color=#FFF870>" + (totalKarma == 0 ? effect : String.format("%.2f", percentage) + "% " + effect) + "</font></b>", name);
         chain = StringUtils.replace(chain, " a el ", " al ");
-        return String.format(getResources().getString(R.string.html_format), chain);
+        return String.format(getString(R.string.html_format), chain);
     }
 
     /* String methods :: String retrieval */
+
+    public String getLineFromRaw(@RawRes int id) {
+        String s = "";
+
+        if (isResource(id) && getResources().getResourceTypeName(id).equals("raw")) {
+            InputStream is = getResources().openRawResource(id);
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+            LineNumberReader lnr = new LineNumberReader(br);
+            Integer lineCount = 0;
+
+            if (countRegistry.containsKey(id))
+                lineCount = countRegistry.get(id);
+            else {
+                try {
+                    lnr.skip(Long.MAX_VALUE);
+                    lineCount = lnr.getLineNumber() + 1;
+                    countRegistry.put(id, lineCount);
+                    lnr.close();
+                    lnr = null;
+                } catch (IOException ignored) {
+                }
+            }
+
+            if (lineCount != null && lineCount > 0) {
+                try {
+                    for (int x = -1, limit = randomizer.getInt(lineCount, 1); ++x < limit; ) {
+                        br.readLine();
+                    }
+                    s = br.readLine();
+                    br.close();
+                    br = null;
+                } catch (IOException ignored) {
+                }
+            }
+        }
+        return s;
+    }
+
+    public String getRawString(@RawRes int id) {
+        if (isResource(id) && getResources().getResourceTypeName(id).equals("raw")) {
+            try {
+                InputStream is = getResources().openRawResource(id);
+
+                byte[] b = new byte[is.available()];
+                is.read(b);
+                is.close();
+                is = null;
+                return new String(b);
+            } catch (IOException ignored) {
+            }
+        }
+        return "";
+    }
+
+    public String getRawStringByName(String s) {
+        if (s != null && !s.isEmpty()) {
+            try {
+                int resourceId = getResources().getIdentifier(s, "raw", getPackageName());
+
+                if (resourceId != 0)
+                    return getRawString(resourceId);
+            } catch (Exception ignored) {
+            }
+        }
+        return "";
+    }
 
     public String getStringFromRes(@StringRes int id) {
         if (id != 0)
@@ -1288,14 +1416,27 @@ class Methods extends ContextWrapper {
     public String getStringFromResByName(String s) {
         if (s != null && !s.isEmpty()) {
             try {
-                String packageName = getPackageName();
-                int resourceId = getResources().getIdentifier(s, "string", packageName);
-                return getString(resourceId);
-            } catch (Exception e) {
-                return "";
+                int resourceId = getResources().getIdentifier(s, "string", getPackageName());
+
+                if (resourceId != 0)
+                    return getString(resourceId);
+            } catch (Exception ignored) {
             }
-        } else
-            return "";
+        }
+        return "";
+    }
+
+    public String[] getStringArrayFromResByName(String s) {
+        if (s != null && !s.isEmpty()) {
+            try {
+                int resourceId = getResources().getIdentifier(s, "array", getPackageName());
+
+                if (resourceId != 0)
+                    return getResources().getStringArray(resourceId);
+            } catch (Exception ignored) {
+            }
+        }
+        return new String[]{};
     }
 
     public String getSplitString(@StringRes int id, int... index) {
@@ -1312,18 +1453,20 @@ class Methods extends ContextWrapper {
                 return stringList.get(position);
             }
         } catch (Exception e) {
-            return "##[ERROR]";
+            return "";
         }
     }
 
-    public String[] getStringAsArray() {
-        String string = getStringFromRes(R.string.days_of_week);
-        return string.split("¶[ ]*");
+    public String[] getStringAsArray(@StringRes int id) {
+        String s = getStringFromRes(id);
+
+        if (StringUtils.isNotBlank(s))
+            return s.split("¶[ ]*");
+        return new String[]{""};
     }
 
     public List<String> getStringAsList(@StringRes int id) {
-        String string = getStringFromRes(id);
-        return Arrays.asList(string.split("¶[ ]*"));
+        return Arrays.asList(getStringAsArray(id));
     }
 
     public String getStringFromList(List<String> stringList, int... index) {
@@ -1376,25 +1519,48 @@ class Methods extends ContextWrapper {
 
     /* String methods :: List or database retrieval */
 
-    public String getPhrase() {
-        if (defaultPreferences.getString("preference_language", "es").equals("es"))
-            return myDB.selectPhrase(randomizer.getInt(myDB.countPhrases(), 1));
-        else
-            return myDB.selectEnglishPhrase(randomizer.getInt(myDB.countEnglishPhrases(), 1));
-    }
-
     public String getAbstractNoun() {
-        if (defaultPreferences.getString("preference_language", "es").equals("es"))
-            return myDB.selectAbstractNoun(randomizer.getInt(myDB.countAbstractNouns(), 1));
-        else
-            return myDB.selectEnglishAbstractNoun(randomizer.getInt(myDB.countEnglishAbstractNouns(), 1));
+        switch (getResources().getString(R.string.locale)) {
+            case "es":
+                return myDB.selectAbstractNoun(randomizer.getInt(myDB.countAbstractNouns(), 1));
+            case "en":
+                return myDB.selectEnglishAbstractNoun(randomizer.getInt(myDB.countEnglishAbstractNouns(), 1));
+            default:
+                return "";
+        }
     }
 
     private String getAction() {
-        if (defaultPreferences.getString("preference_language", "es").equals("es"))
-            return myDB.selectAction(randomizer.getInt(myDB.countActions(), 1));
-        else
-            return myDB.selectEnglishAction(randomizer.getInt(myDB.countEnglishActions(), 1));
+        switch (getResources().getString(R.string.locale)) {
+            case "es":
+                return myDB.selectAction(randomizer.getInt(myDB.countActions(), 1));
+            case "en":
+                return myDB.selectEnglishAction(randomizer.getInt(myDB.countEnglishActions(), 1));
+            default:
+                return "";
+        }
+    }
+
+    public String getFortuneCookie() {
+        switch (getResources().getString(R.string.locale)) {
+            case "es":
+                return myDB.selectFortuneCookie(randomizer.getInt(myDB.countFortuneCookies(), 1));
+            case "en":
+                return myDB.selectEnglishFortuneCookie(randomizer.getInt(myDB.countEnglishFortuneCookies(), 1));
+            default:
+                return "";
+        }
+    }
+
+    public String getPhrase() {
+        switch (getResources().getString(R.string.locale)) {
+            case "es":
+                return myDB.selectPhrase(randomizer.getInt(myDB.countPhrases(), 1));
+            case "en":
+                return myDB.selectEnglishPhrase(randomizer.getInt(myDB.countEnglishPhrases(), 1));
+            default:
+                return "";
+        }
     }
 
     private String getName() {
@@ -1438,7 +1604,11 @@ class Methods extends ContextWrapper {
     }
 
     private String getCommonNoun() {
-        return myDB.selectCommonNoun(randomizer.getInt(myDB.countCommonNouns(), 1));
+        String noun = myDB.selectCommonNoun(randomizer.getInt(myDB.countCommonNouns(), 1));
+
+        if (randomizer.getBoolean() && Pluralize.isSingular(noun))
+            return Pluralize.plural(noun);
+        return noun;
     }
 
     private String getUsername() {
@@ -1446,7 +1616,7 @@ class Methods extends ContextWrapper {
     }
 
     public String getEnglishNoun() {
-        return englishNouns.get(randomizer.getInt(englishNouns.size() - 1, 0));
+        return myDB.selectEnglishNoun(randomizer.getInt(myDB.countEnglishNouns(), 1));
     }
 
     public String getEnglishOccupation() {
@@ -1457,47 +1627,35 @@ class Methods extends ContextWrapper {
         return myDB.selectOccupation(randomizer.getInt(myDB.countOccupations(), 1));
     }
 
-    public String getSpanishNoun() {
-        return String.valueOf(getSpanishNoun(randomizer.getInt(spanishNouns.size() - 1, 0), randomizer.getBoolean() ? null : true)[0]);
-    }
-
     public String getPercentage() {
         return randomizer.getInt(101, 0) + "%";
     }
 
-    private Object[] getSpanishNoun(Integer index, Boolean complete) {
-        if (index != null && (index < 0 || index >= spanishNouns.size()))
+    public String getSpanishNoun() {
+        SpanishNoun noun = getSpanishNoun(randomizer.getInt(myDB.countNouns() - 1, 1));
+        return randomizer.getBoolean() ? noun.getNounWithArticle() : noun.getNounWithIndefiniteArticle();
+    }
+
+    private SpanishNoun getSpanishNoun(Integer index) {
+        if (index != null && (index < 0 || index >= myDB.countNouns()))
             index = 0;
 
-        String noun = spanishNouns.get(index == null ? randomizer.getInt(spanishNouns.size(), 0) : index), temp;
-        int position = 4;
-        String[] indefinite_articles = {"un", "unos", "una", "unas", "uno", ""};
-        Object[][] articles = {
-                {"el", 1, false},
-                {"los", 1, true},
-                {"la", 2, false},
-                {"las", 2, true},
-                {"lo", 0, false},
-                {"", 0, false}
-        };
+        String noun = myDB.selectNoun(index == null ? randomizer.getInt(myDB.countNouns(), 0) : index), temp;
+        List<SpanishArticleEnum> articles = Arrays.asList(SpanishArticleEnum.values());
+        int position = 5;
 
-        for (int n = -1, length = articles.length; ++n < length - 1; ) {
-            if (noun.startsWith(articles[n][0] + " ")) {
+        for (int n = -1, length = articles.size(); ++n < length - 1; ) {
+            if (StringUtils.startsWith(noun, articles.get(n).getArticle() + " ")) {
                 position = n;
-                temp = noun.replaceFirst(articles[n][0] + "\\s+", "");
+                temp = RegExUtils.removeFirst(noun, articles.get(n).getArticle() + "\\s+");
 
-                if (n == 0 && (temp.startsWith("a") || temp.startsWith("á")) && temp.endsWith("a"))
-                    articles[n][1] = 2;
-
-                if (complete == null)
-                    noun = StringUtils.replaceOnce(noun, String.valueOf(articles[position][0]), indefinite_articles[position]);
-                else if (!complete)
-                    noun = temp;
-                n = length;
+                if (n == 0 && StringUtils.startsWithAny(temp, "a", "á") && StringUtils.endsWith(temp, "a"))
+                    articles.get(n).setSex(2);
+                noun = temp;
             }
         }
         noun = noun.trim();
-        return new Object[]{noun, articles[position][1], articles[position][2]};
+        return new SpanishNoun(articles.get(position), noun);
     }
 
     private String getSpanishAdjective(int sex, boolean plural) {
@@ -1510,31 +1668,30 @@ class Methods extends ContextWrapper {
 
         while (!proper) {
             if (plural)
-                adjective = spanishPluralAdjectives.get(randomizer.getInt(spanishPluralAdjectives.size(), 0));
+                adjective = myDB.selectPluralAdjective(randomizer.getInt(myDB.countPluralAdjectives(), 1));
             else
-                adjective = spanishSingularAdjectives.get(randomizer.getInt(spanishSingularAdjectives.size(), 0));
+                adjective = myDB.selectSingularAdjective(randomizer.getInt(myDB.countSingularAdjectives(), 1));
 
             if (sex == 0 && adjective.contains("AQ0C"))
                 proper = true;
-            else if (sex == 1 && (adjective.contains("AQ0C") || adjective.contains("AQ0M")))
+            else if (sex == 1 && StringUtils.containsAny(adjective, "AQ0C", "AQ0M", "AO0M", "AQSM"))
                 proper = true;
-            else if (sex == 2 && (adjective.contains("AQ0C") || adjective.contains("AQ0F")))
+            else if (sex == 2 && StringUtils.containsAny(adjective, "AQ0C", "AQ0F", "AO0F", "AQSF"))
                 proper = true;
-            else {
+            else if (sex == 1 && StringUtils.endsWith(adjective, "a")) {
+                adjective = StringUtils.substringBeforeLast(adjective, "a") + "o";
+                proper = true;
+            } else if (sex == 2 && StringUtils.endsWith(adjective, "o")) {
+                adjective = StringUtils.substringBeforeLast(adjective, "o") + "a";
+                proper = true;
+            } else {
                 if (tries > 9999)
                     proper = true;
             }
             tries++;
         }
-        adjective = adjective.replaceFirst("\\s*(AQ0(C|F|M)[A-Z\\d]{2})", "");
+        adjective = adjective.replaceFirst("\\s*(A[OQ][S0][CFM][A-Z\\d]{2})", "");
         return adjective;
-    }
-
-    public String getFortuneCookie() {
-        if (defaultPreferences.getString("preference_language", "es").equals("es"))
-            return myDB.selectFortuneCookie(randomizer.getInt(myDB.countFortuneCookies(), 1));
-        else
-            return myDB.selectEnglishFortuneCookie(randomizer.getInt(myDB.countEnglishFortuneCookies(), 1));
     }
 
     public String getDivination() {
@@ -1542,13 +1699,13 @@ class Methods extends ContextWrapper {
         float probability = randomizer.getFloat();
         int sex = -1;
 
-        if (probability <= 0.45F) {
-            if (defaultPreferences.getString("preference_language", "es").equals("es"))
+        if (probability <= 0.4F) {
+            if (getResources().getString(R.string.locale).equals("es"))
                 divination = myDB.selectDivination(randomizer.getInt(myDB.countDivinations(), 1));
-            else
+            else if (getResources().getString(R.string.locale).equals("en"))
                 divination = myDB.selectEnglishDivination(randomizer.getInt(myDB.countEnglishDivinations(), 1));
             divination = replaceTags(divination).getText();
-        } else if (probability <= 0.9F) {
+        } else if (probability <= 0.8F) {
             int days = 0;
             boolean plural = false;
             boolean done = false;
@@ -1581,7 +1738,7 @@ class Methods extends ContextWrapper {
             if (component.getHegemonicSex() != null && component.getHegemonicSex() != -1)
                 sex = component.getHegemonicSex();
 
-            if (!segment.equals(segment = RegExUtils.replaceAll(segment, "\\s*˧˟\\s*", "")))
+            if (StringUtils.startsWithAny(segment, "tus", "los"))
                 plural = true;
             segments.set(1, segment);
 
@@ -1590,24 +1747,15 @@ class Methods extends ContextWrapper {
             segment = StringUtils.replace(segment, "＃", String.valueOf(sex));
             segment = replaceTags(segment).getText();
 
-            if (defaultPreferences.getString("preference_language", "es").equals("es")) {
-                Character c = '\0';
-
-                if (!plural)
-                    segment = segment.replaceAll("¦\\p{L}+¦", "");
-                else {
-                    segment = StringUtils.replace(segment, "¦", "");
-                    c = 'e';
-                }
-                segment = StringUtils.replaceOnce(segment, "⁞", c.toString());
-            }
+            if (getResources().getString(R.string.locale).equals("es"))
+                segment = !plural ? segment.replaceAll("¦\\p{L}+¦", "") : StringUtils.replace(segment, "¦", "");
             segments.set(2, segment);
 
             //Format cause of divination
             segment = segments.get(3);
 
             if (!segment.isEmpty()) {
-                segment = StringUtils.replaceOnce(segment, "{}", getStringFromStringArray(new String[]{"{string:unspecific_person⸻⸮}", "{string:person⸻⸮}", "{string:individual⸻⸮}", "{string:individual⸻⸮}", "˧*", "˧*", "{string:explicit_cause⸻⸮}", "{string:explicit_cause⸻⸮}", "{string:explicit_cause⸻⸮}", "{string:explicit_cause⸻⸮}"}));
+                segment = StringUtils.replaceOnce(segment, "{}", getStringFromStringArray(new String[]{"{string:unspecific_person⸻⸮}", "{string:person⸻⸮}", "{string:individual⸻⸮}", "{string:individual⸻⸮}", "{string:divination_middle}", "{string:divination_middle}", "{string:explicit_cause⸻⸮}", "{string:explicit_cause⸻⸮}", "{string:explicit_cause⸻⸮}", "{string:explicit_cause⸻⸮}"}));
                 segment = replaceTags(segment).getText();
 
                 if (segment.contains("%%"))
@@ -1623,18 +1771,7 @@ class Methods extends ContextWrapper {
                 else {
                     segment = segments.get(n);
 
-                    if (StringUtils.contains(segment, "˧*")) {
-                        String replacement;
-                        int generated;
-
-                        while (indices.get(1) == (generated = randomizer.getInt(getArrayLength(R.array.divination_middle) - 1, 1))) {
-                        }
-                        replacement = replaceTags(getStringFromStringArray(R.array.divination_middle, generated)).getText();
-                        replacement = RegExUtils.replaceFirst(replacement, "\\s*˧˟\\s*", "");
-                        segment = RegExUtils.replaceFirst(segment, "\\s*˧\\*\\s*", " " + replacement);
-                    }
-
-                    if (segment.endsWith("꘎")) {
+                    if (StringUtils.endsWith(segment, "꘎")) {
                         segment = StringUtils.remove(segment, '꘎');
                         done = true;
                     }
@@ -1645,7 +1782,6 @@ class Methods extends ContextWrapper {
             divination = StringUtils.join(segments, " ");
         } else {
             divination = replaceTags(getStringFromStringArray(R.array.divination)).getText();
-            divination = RegExUtils.replaceAll(divination, "\\s*˧˟\\s*", " ");
             divination = StringUtils.replace(divination, " de el ", " del ");
         }
         return divination;
@@ -1686,10 +1822,13 @@ class Methods extends ContextWrapper {
 
     public String capitalizeFirst(String s) {
         if (s != null && !s.isEmpty()) {
-            if (Character.isLowerCase(s.charAt(0)))
-                return s.substring(0, 1).toUpperCase() + s.substring(1);
-            else
-                return s;
+            if (Character.isLowerCase(s.charAt(0))) {
+                char c = Character.toUpperCase(s.charAt(0));
+
+                if (Character.isLetter(c))
+                    return c + s.substring(1);
+            }
+            return s;
         } else return "";
     }
 
@@ -1709,10 +1848,13 @@ class Methods extends ContextWrapper {
 
     public String swapFirstToLowercase(String s) {
         if (!s.isEmpty()) {
-            if (Character.isUpperCase(s.charAt(0)))
-                return s.substring(0, 1).toLowerCase() + s.substring(1);
-            else
-                return s;
+            if (Character.isUpperCase(s.charAt(0))) {
+                char c = Character.toLowerCase(s.charAt(0));
+
+                if (Character.isLetter(c))
+                    return c + s.substring(1);
+            }
+            return s;
         } else return "";
     }
 
@@ -1732,13 +1874,12 @@ class Methods extends ContextWrapper {
                 defaultSex = randomizer.getInt(4, -1);
 
             //Verifies if the text contains curly brackets
-            if (s.contains("{") && s.contains("}")) {
+            if (StringUtils.containsAny(s, "{", "}")) {
                 int pairsOfBrackets = 0;
                 int counter = 0;
-                boolean interrupted = false;
 
                 //Counts the possible pairs of curly brackets within the text
-                for (int n = -1, length = s.length(); ++n < length && !interrupted; ) {
+                for (int n = -1, length = s.length(); ++n < length; ) {
                     boolean concluded = false;
 
                     if (s.charAt(n) == '{')
@@ -1748,118 +1889,101 @@ class Methods extends ContextWrapper {
                         concluded = true;
                     }
 
-                    if (counter < 0)
-                        interrupted = true;
-                    else if (concluded)
+                    if (counter < 0) {
+                        pairsOfBrackets = 0;
+                        break;
+                    } else if (concluded)
                         pairsOfBrackets++;
                 }
-
-                if (interrupted) {
-                    int openingBrackets = StringUtils.countMatches(s, "{");
-                    int closingBrackets = StringUtils.countMatches(s, "}");
-                    pairsOfBrackets = openingBrackets < closingBrackets ? openingBrackets : closingBrackets;
-                }
+                Matcher matcher;
 
                 //Replaces simple tags within the text, if there are any
-                if (pairsOfBrackets > 0 && TAG_PATTERN.matcher(s).find()) {
-                    List<String> matches = extractMatches(s, TAG_PATTERN);
+                while (pairsOfBrackets > 0 && (matcher = TAG_PATTERN.matcher(s)).find()) {
+                    String replacement = "";
+                    String resourceName = matcher.group().startsWith("{method:") ? StringUtils.substringBetween(matcher.group(), ":", "}") : matcher.group(3);
+                    String resourceType;
+                    sex = getTrueSex(matcher.group(), defaultSex);
+                    Integer index = null;
+                    boolean empty = false;
 
-                    for (int n = 0; n < matches.size(); n++) {
-                        String replacement = "";
-                        String resourceName = RegExUtils.replaceAll(matches.get(n), TAG_COMPONENT_PATTERN, "");
-                        String resourceType;
-                        sex = getTrueSex(matches.get(n), defaultSex);
-                        Integer index = null;
-                        boolean empty = false;
+                    try {
+                        Matcher indexMatcher = Pattern.compile("\\[!?\\d+\\]").matcher(matcher.group());
 
-                        try {
-                            Matcher m = Pattern.compile("⦗\\d+⦘").matcher(matches.get(n));
-
-                            while (m.find()) {
-                                String match = m.group();
-                                match = RegExUtils.replaceAll(match, "\\D+", "");
-                                index = Integer.valueOf(match);
-                            }
-                        } catch (Exception e) {
-                            index = -1;
+                        if (indexMatcher.find()) {
+                            String match = RegExUtils.removeAll(indexMatcher.group(), "[^\\d]");
+                            index = Integer.valueOf(match);
                         }
-
-                        if (StringUtils.startsWith(matches.get(n), "{string:")) {
-                            int resourceId = getArrayResourceId(resourceName);
-                            resourceId = (resourceId == 0 ? getStringResourceId(resourceName) : resourceId);
-
-                            if (resourceId != 0) {
-                                if ((resourceType = getResources().getResourceTypeName(resourceId)).equals("array"))
-                                    replacement = index != null && index >= 0 ? getStringFromStringArray(resourceId, index) : getStringFromStringArray(resourceId);
-                                else if (resourceType.equals("string"))
-                                    replacement = index != null && index >= 0 ? getSplitString(resourceId, index) : getSplitString(resourceId);
-                            }
-                        } else if (StringUtils.startsWith(matches.get(n), "{database:"))
-                            replacement = index != null && index >= 0 ? myDB.selectUnknownRow(resourceName, index) : myDB.selectUnknownRow(resourceName, randomizer.getInt(myDB.countUnknownRow(resourceName), 1));
-                        else if (StringUtils.startsWith(matches.get(n), "{method:")) {
-                            if ((replacement = invokeMethod(resourceName)) != null) {
-                            } else if ((replacement = callMethod(resourceName)) != null) {
-                            } else
-                                replacement = "?";
-                        }
-                        int openingIndex = StringUtils.indexOf(replacement, '{');
-                        int closingIndex;
-
-                        if (openingIndex >= 0 && (closingIndex = StringUtils.indexOf(replacement, '}')) >= 0 && openingIndex < closingIndex) {
-                            TextComponent tempWord;
-
-                            if (defaulted)
-                                tempWord = replaceTags(replacement, defaultSex);
-                            else
-                                tempWord = replaceTags(replacement);
-                            replacement = tempWord.getText();
-                            sex = tempWord.getHegemonicSex();
-                            empty = replacement.isEmpty() || tempWord.isNullified();
-                        }
-
-                        if (empty)
-                            s = RegExUtils.replaceFirst(s, "\\s*" + Pattern.quote(matches.get(n)), "");
-                        else
-                            s = StringUtils.replaceOnce(s, matches.get(n), genderify(replacement, sex).getText());
-                        pairsOfBrackets--;
+                    } catch (Exception e) {
+                        index = -1;
                     }
+
+                    if (StringUtils.startsWith(matcher.group(), "{string:")) {
+                        int resourceId = getArrayResourceId(resourceName);
+                        resourceId = (resourceId == 0 ? getStringResourceId(resourceName) : resourceId);
+
+                        if (resourceId != 0) {
+                            if ((resourceType = getResources().getResourceTypeName(resourceId)).equals("array"))
+                                replacement = index != null && index >= 0 ? getStringFromStringArray(resourceId, index) : getStringFromStringArray(resourceId);
+                            else if (resourceType.equals("string"))
+                                replacement = index != null && index >= 0 ? getSplitString(resourceId, index) : getSplitString(resourceId);
+                        }
+                    } else if (StringUtils.startsWith(matcher.group(), "{database:"))
+                        replacement = index != null && index >= 0 ? myDB.selectFromTable(resourceName, index) : myDB.selectFromTable(resourceName, randomizer.getInt(myDB.countTableRows(resourceName), 1));
+                    else if (StringUtils.startsWith(matcher.group(), "{method:")) {
+                        if ((replacement = invokeMethod(resourceName)) != null) {
+                        } else if ((replacement = callMethod(resourceName)) != null) {
+                        } else
+                            replacement = "?";
+                    }
+                    int openingIndex = StringUtils.indexOf(replacement, '{');
+                    int closingIndex;
+
+                    if (openingIndex >= 0 && (closingIndex = StringUtils.indexOf(replacement, '}')) >= 0 && openingIndex < closingIndex) {
+                        TextComponent tempComponent;
+
+                        if (defaulted)
+                            tempComponent = replaceTags(replacement, defaultSex);
+                        else
+                            tempComponent = replaceTags(replacement);
+                        replacement = tempComponent.getText();
+                        sex = tempComponent.getHegemonicSex();
+                        empty = replacement.isEmpty() || (tempComponent.isNullified() && StringUtils.isBlank(replacement));
+                    }
+
+                    if (empty)
+                        s = RegExUtils.replaceFirst(s, "\\s*" + Pattern.quote(matcher.group()), "");
+                    else
+                        s = StringUtils.replaceOnce(s, matcher.group(), genderify(replacement, sex).getText());
+                    pairsOfBrackets--;
                 }
 
                 //Replaces ‘word’ tags within the text, if there are any
-                if (pairsOfBrackets > 0 && WORD_TAG_PATTERN.matcher(s).find()) {
-                    List<String> matches = extractMatches(s, WORD_TAG_PATTERN);
-
-                    for (int n = 0; n < matches.size(); n++) {
-                        String replacement = RegExUtils.replaceAll(matches.get(n), WORD_COMPONENT_PATTERN, "");
-                        sex = getTrueSex(matches.get(n), defaultSex);
-                        replacement = genderify(replacement, sex).getText();
-                        s = StringUtils.replaceOnce(s, matches.get(n), replacement);
-                        pairsOfBrackets--;
-                    }
+                while (pairsOfBrackets > 0 && (matcher = WORD_TAG_PATTERN.matcher(s)).find()) {
+                    String replacement = matcher.group(1);
+                    sex = getTrueSex(matcher.group(), defaultSex);
+                    replacement = genderify(replacement, sex).getText();
+                    s = StringUtils.replaceOnce(s, matcher.group(), replacement);
+                    pairsOfBrackets--;
                 }
 
                 //Replaces ‘random’ tags within the text, if there are any
-                if (pairsOfBrackets > 0 && RANDOM_TAG_PATTERN.matcher(s).find()) {
-                    List<String> matches = extractMatches(s, RANDOM_TAG_PATTERN);
+                while (pairsOfBrackets > 0 && (matcher = RANDOM_TAG_PATTERN.matcher(s)).find()) {
+                    String substring = StringUtils.removeStart(matcher.group(), "{rand:");
+                    substring = StringUtils.removeEnd(substring, "}");
+                    List<String> items = Arrays.asList(substring.split("\\s*;\\s*"));
 
-                    for (int n = 0; n < matches.size(); n++) {
-                        String substring = StringUtils.removeStart(matches.get(n), "{rand:");
-                        substring = StringUtils.removeEnd(substring, "}");
-                        List<String> items = Arrays.asList(substring.split("\\s*;\\s*"));
+                    if (items != null && items.size() > 0) {
+                        String replacement;
+                        String regex;
 
-                        if (items != null && items.size() > 0) {
-                            String replacement;
-                            String regex;
-
-                            if ((replacement = getStringFromList(items)).trim().equals("∅")) {
-                                replacement = "";
-                                regex = "\\s*" + Pattern.quote(matches.get(n));
-                                nullified = true;
-                            } else
-                                regex = Pattern.quote(matches.get(n));
-                            s = RegExUtils.replaceFirst(s, regex, replacement);
-                            pairsOfBrackets--;
-                        }
+                        if ((replacement = getStringFromList(items)).trim().equals("∅")) {
+                            replacement = "";
+                            regex = "\\s*" + Pattern.quote(matcher.group());
+                            nullified = true;
+                        } else
+                            regex = Pattern.quote(matcher.group());
+                        s = RegExUtils.replaceFirst(s, regex, replacement);
+                        pairsOfBrackets--;
                     }
                 }
             }
@@ -1870,7 +1994,7 @@ class Methods extends ContextWrapper {
             s = pair.getSubKey();
 
             //Replaces subtags within the text, if there are any
-            if (s.contains("⸠") && s.contains("⸡")) {
+            if (StringUtils.containsAny(s, "⸠", "⸡")) {
                 s = StringUtils.replaceEach(s, new String[]{"⸠", "⸡"}, new String[]{"{", "}"});
                 s = replaceTags(s, sex != null ? sex : defaultSex).getText();
             }
@@ -1885,7 +2009,7 @@ class Methods extends ContextWrapper {
         if (s == null)
             return null;
         else {
-            if (!s.isEmpty() && s.contains("｢") && s.contains("｣")) {
+            if (!s.isEmpty() && StringUtils.containsAny(s, "｢", "｣")) {
                 List<Integer> matches = new ArrayList<>();
                 Matcher matcher = SEX_PATTERN.matcher(s);
 
@@ -1904,10 +2028,10 @@ class Methods extends ContextWrapper {
     public String fixDoubleDot(String s) {
         if (Pattern.compile(DOUBLE_DOT_REGEX).matcher(s).find()) {
             ArrayList<Integer> positions = new ArrayList<>();
-            Matcher m = DOUBLE_DOT_PATTERN.matcher(s);
+            Matcher matcher = DOUBLE_DOT_PATTERN.matcher(s);
 
-            while (m.find()) {
-                positions.add(m.end());
+            while (matcher.find()) {
+                positions.add(matcher.end());
             }
 
             if (positions.size() > 0) {
@@ -1928,16 +2052,16 @@ class Methods extends ContextWrapper {
         if (defaultSex < -1 || defaultSex > 2)
             defaultSex = -1;
 
-        if (StringUtils.contains(s, "⛌"))
+        if (s.contains("⛌"))
             definedSex = getSex();
-        else if (StringUtils.contains(s, "⸮"))
+        else if (s.contains("⸮"))
             definedSex = randomizer.getInt(2, 1);
         else {
-            List<String> matches = extractMatches(s, SEX_APPENDIX_PATTERN);
+            Matcher matcher = SEX_APPENDIX_PATTERN.matcher(s);
 
-            if (matches != null && matches.size() > 0) {
-                matches.set(0, StringUtils.replace(matches.get(0), "⸻", ""));
-                definedSex = Integer.parseInt(matches.get(0));
+            if (matcher.find()) {
+                String match = StringUtils.replace(matcher.group(), "⸻", "");
+                definedSex = Integer.parseInt(match);
 
                 if (definedSex < 0 || definedSex > 2)
                     definedSex = 0;
@@ -2022,8 +2146,8 @@ class Methods extends ContextWrapper {
             byte[] array = md.digest(md5.getBytes());
             StringBuffer sb = new StringBuffer();
 
-            for (int i = 0; i < array.length; ++i) {
-                sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
+            for (byte b : array) {
+                sb.append(Integer.toHexString((b & 0xFF) | 0x100).substring(1, 3));
             }
             return sb.toString();
         } catch (java.security.NoSuchAlgorithmException ignored) {
@@ -2031,13 +2155,13 @@ class Methods extends ContextWrapper {
         return null;
     }
 
-    public String getColor(String string) {
+    public String getColor(String seed) {
         String color;
 
-        if (string.equals("") || string.isEmpty())
+        if (seed.equals("") || seed.isEmpty())
             color = String.format("#%06X", (0xFFFFFF & Color.GRAY));
         else {
-            color = String.format("#%X", string.hashCode());
+            color = String.format("#%X", seed.hashCode());
 
             while (color.length() < 7)
                 color = "#" + StringUtils.replaceOnce(color, "#", Character.toString(getAChar(HEX_DIGITS)));
@@ -2047,6 +2171,10 @@ class Methods extends ContextWrapper {
     }
 
     /* char methods */
+
+    boolean isLetter(char c) {
+        return Character.isUpperCase(c) || Character.isLowerCase(c);
+    }
 
     private char getAChar(String s) {
         if (s != null && s.length() > 0)
@@ -2148,6 +2276,14 @@ class Methods extends ContextWrapper {
         }
     }
 
+    private int getSplitStringLength(@StringRes int id) {
+        try {
+            return getResources().getString(id).split("¶[ ]*").length;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
     /* boolean methods */
 
     private static boolean isVowel(char c) {
@@ -2238,6 +2374,14 @@ class Methods extends ContextWrapper {
             return true;
         else
             return false;
+    }
+
+    private boolean isResource(int id) {
+        try {
+            return getResources().getResourceName(id) != null;
+        } catch (Resources.NotFoundException ignore) {
+        }
+        return false;
     }
 
     /* long methods */
@@ -2400,12 +2544,11 @@ class Methods extends ContextWrapper {
                     primitiveName[0] = names[0];
                     primitiveName[1] = names[1];
                     break;
-                case GENERATED_MYSTIC_NAME:
-                    names = getGeneratedNames(randomizer.getInt(2, 1), nameType.getSubtype());
-                    primitiveName[0] = names[0];
-
-                    if (names.length == 2)
-                        primitiveName[1] = names[1];
+                case GENERATED_FREQUENCY_NAME:
+                    primitiveName[0] = getGeneratedNames(1, nameType.getSubtype())[0];
+                    break;
+                case GENERATED_ADJUSTED_NAME:
+                    primitiveName[0] = getGeneratedAdjustedNames(1, nameType.getSubtype())[0];
                     break;
                 case ARABIC_NAME:
                     resArray = new Integer[]{R.array.arabic_male_names, R.array.arabic_female_names, R.array.arabic_surnames};
@@ -2448,7 +2591,7 @@ class Methods extends ContextWrapper {
 
         //Remove unneeded words from name
         if (primitiveName[0].contains("┤")) {
-            if (primitiveName[0].startsWith("┤"))
+            if (StringUtils.startsWith(primitiveName[0], "┤"))
                 primitiveName[0] = RegExUtils.replaceFirst(primitiveName[0], "┤[^┤]+┤", "");
             primitiveName[0] = StringUtils.replace(primitiveName[0], "┤", "");
         }
@@ -2485,22 +2628,23 @@ class Methods extends ContextWrapper {
         //Set username
         person.setUsername(generateUsername());
 
-        //Set title of honor, if possible
+        //Set honorific title, if possible
         if (randomizer.getBoolean()) {
-            if (person.getSex() == 1 || person.getSex() == 2)
-                person.setTitleOfHonor(getTitleOfHonor(person.getSex()));
-            else if (person.getForename().isEmpty())
-                person.setTitleOfHonor(getTitleOfHonor(person.getSex(), true));
-            else
-                person.setTitleOfHonor(getTitleOfHonor(person.getSex(), false));
+            List<HonoraryTitleEnum> titles = new ArrayList<>(Arrays.asList(HonoraryTitleEnum.values()));
+            titles.remove(0);
+
+            if (!person.getForename().isEmpty())
+                titles.remove(HonoraryTitleEnum.HONORIFIC);
+            HonoraryTitleEnum titleType = titles.get(randomizer.getInt(titles.size(), 0));
+            person.setHonoraryTitle(getHonoraryTitle(titleType, person.getSex()));
         }
 
         //Set japanese honorific, if possible
-        if (person.getTitleOfHonor().isEmpty() && randomizer.getBoolean() && person.getSuffix().isEmpty() && (person.getForename().isEmpty() ^ person.getLastName().isEmpty()) && person.getNameType() == NameEnum.JAPANESE_NAME)
+        if (person.getNameType() == NameEnum.JAPANESE_NAME && person.getHonoraryTitle().isEmpty() && person.getSuffix().isEmpty() && (person.getForename().isEmpty() ^ person.getLastName().isEmpty()) && randomizer.getBoolean())
             person.setJapaneseHonorific(SEPARATOR[0] + getSplitString(R.string.japanese_honorifics));
 
-        //Set post-nominal letters, if possible and if the person doesn't have a title of honor
-        if (person.getTitleOfHonor().isEmpty() && randomizer.getBoolean())
+        //Set post-nominal letters, if possible and if the person doesn't have a honorific title
+        if (person.getHonoraryTitle().isEmpty() && randomizer.getBoolean())
             person.setPostNominalLetters(getStringFromList(postNominalLetters));
 
         //Set random birthdate
@@ -2647,7 +2791,7 @@ class Methods extends ContextWrapper {
 
     public String getDayOfWeekName() {
         Calendar c = getCalendarInstance();
-        String[] days = getStringAsArray();
+        String[] days = getStringAsArray(R.string.days_of_week);
         return days[c.get(Calendar.DAY_OF_WEEK)];
     }
 
@@ -2689,11 +2833,8 @@ class Methods extends ContextWrapper {
         else {
             Date now = new Date();
             DateFormatSymbols symbols = DateFormatSymbols.getInstance(Locale.getDefault());
-
-            if (defaultPreferences.getString("preference_language", "es").equals("es")) {
-                symbols.setShortMonths(new String[]{"ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"});
-                symbols.setMonths(new String[]{"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"});
-            }
+            symbols.setShortMonths(getResources().getStringArray(R.array.short_months));
+            symbols.setMonths(getResources().getStringArray(R.array.months));
 
             switch (type) {
                 case 0:
@@ -2709,7 +2850,7 @@ class Methods extends ContextWrapper {
                 case 5:
                     String date = new SimpleDateFormat(getString(R.string.date), symbols).format(now);
 
-                    if (defaultPreferences.getString("preference_language", "es").equals("en")) {
+                    if (getResources().getString(R.string.locale).equals(Locale.ENGLISH.getLanguage())) {
                         String day = new SimpleDateFormat("d").format(now);
 
                         if (day.endsWith("1") && !day.endsWith("11"))
@@ -2831,22 +2972,22 @@ class Methods extends ContextWrapper {
     /* Reflection methods */
 
     public String callMethod(String methodName) {
-        return (String) AccessController.doPrivileged((PrivilegedAction) () -> {
-            String s = null;
-
+        String s = (String) AccessController.doPrivileged((PrivilegedAction) () -> {
+            String r = null;
 
             try {
-                Class methodsClass = Methods.class;
-                Constructor constructor = methodsClass.getConstructor(Context.class);
+                Class<Methods> methodsClass = Methods.class;
+                Constructor<Methods> constructor = methodsClass.getConstructor(Context.class, Long.class);
                 Object object = constructor.newInstance(getApplicationContext(), getRandomizer().getSeed());
                 Method method = methodsClass.getDeclaredMethod(methodName);
                 method.setAccessible(true);
-                s = (String) method.invoke(object);
+                r = (String) method.invoke(object);
             } catch (InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
                 e.printStackTrace();
             }
-            return s;
+            return r;
         });
+        return s;
     }
 
     public String invokeMethod(String methodName) {
@@ -2910,10 +3051,11 @@ class Methods extends ContextWrapper {
 
     /* Activity-related methods */
 
+    @SuppressLint("SourceLockedOrientationActivity")
     public static void lockScreenOrientation(Activity activity) {
         WindowManager windowManager = (WindowManager) activity.getSystemService(Context.WINDOW_SERVICE);
         Configuration configuration = activity.getResources().getConfiguration();
-        int rotation = windowManager.getDefaultDisplay().getRotation();
+        int rotation = windowManager != null ? windowManager.getDefaultDisplay().getRotation() : 0;
 
         //Search for the natural position of the device
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE && (rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) || configuration.orientation == Configuration.ORIENTATION_PORTRAIT && (rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270)) {
@@ -3143,7 +3285,7 @@ class Methods extends ContextWrapper {
         permittedNames.add(NameEnum.INTERNATIONAL_FORENAME);
         permittedNames.add(NameEnum.INTERNATIONAL_SURNAME);
 
-        if (getLanguage().equals("en") || getSystemLanguage().equals("en") || complete) {
+        if (getLanguage().equals(Locale.ENGLISH.getLanguage()) || getSystemLanguage().equals(Locale.ENGLISH.getLanguage()) || complete) {
             for (int n = -1; ++n < 4; ) {
                 permittedNames.add(NameEnum.ENGLISH_NAME);
             }
@@ -3167,7 +3309,8 @@ class Methods extends ContextWrapper {
         permittedNames.add(NameEnum.GENERATED_PATTERN_NAME);
         permittedNames.add(NameEnum.GENERATED_NATURAL_NAME);
         permittedNames.add(NameEnum.GENERATED_DEFINED_NAME);
-        permittedNames.add(NameEnum.GENERATED_MYSTIC_NAME);
+        permittedNames.add(NameEnum.GENERATED_FREQUENCY_NAME);
+        permittedNames.add(NameEnum.GENERATED_ADJUSTED_NAME);
 
         for (int n = -1, length = SUPPORTED_LANGUAGES.length; ++n < length; ) {
             if (isLocaleAvailable(SUPPORTED_LANGUAGES[n], complete ? "" : networkCountry)) {
@@ -3222,6 +3365,33 @@ class Methods extends ContextWrapper {
             default:
                 return R.style.DefaultTheme;
         }
+    }
+
+    @SuppressWarnings("deprecation")
+    public static ContextWrapper changeLanguage(Context context) {
+        String language = Methods.getLanguage(context);
+
+        if (language != null && !language.isEmpty()) {
+            Locale locale = new Locale(language);
+            Locale.setDefault(locale);
+            Resources res = context.getResources();
+            Configuration config = res.getConfiguration();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                config.setLocale(locale);
+                LocaleList localeList = new LocaleList(locale);
+                LocaleList.setDefault(localeList);
+                config.setLocales(localeList);
+                context = context.createConfigurationContext(config);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                config.setLocale(locale);
+                context = context.createConfigurationContext(config);
+            } else {
+                config.locale = locale;
+                res.updateConfiguration(config, res.getDisplayMetrics());
+            }
+        }
+        return new ContextWrapper(context);
     }
 
     public Bitmap drawBitmap(String text) {

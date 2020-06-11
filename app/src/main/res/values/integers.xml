@@ -735,12 +735,6 @@
         <item>0x1F60C</item>
         <item>0x1F614</item>
     </integer-array>
-    <integer-array name="name_extra_length">
-        <item>6</item>
-        <item>4</item>
-        <item>4</item>
-        <item>8</item>
-    </integer-array>
     <integer-array name="new_zodiac_signs">
         <item>0x2049</item>
         <item>0x2652</item>

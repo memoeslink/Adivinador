@@ -23,11 +23,11 @@
                 android:layout_height="1dp"
                 android:layout_weight="0.1"></View>
 
-            <android.support.v7.widget.AppCompatSpinner
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/dialog_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"></android.support.v7.widget.AppCompatSpinner>
+                android:layout_weight="0.8"></androidx.appcompat.widget.AppCompatSpinner>
 
             <View
                 android:layout_width="0dp"
@@ -56,7 +56,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="0.8"
+                android:focusable="false"
                 android:inputType="none"
+                android:longClickable="false"
                 android:maxLines="2"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textIsSelectable="true" />
@@ -72,13 +74,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:clickable="true"
             android:drawableLeft="@drawable/emptiness"
-            android:drawablePadding="5dp"
             android:drawableRight="@drawable/page"
+            android:drawablePadding="5dp"
             android:ellipsize="end"
             android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceSmall" />
