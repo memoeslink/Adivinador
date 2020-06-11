@@ -16,4 +16,4 @@
 #   public *;
 #}
 -keep public class * extends androidx.preference.Preference
--keep class !com.easyandroidanimations.library.* { *; }
+-keep class !com.app.memoeslink.adivinador.* { *; }
