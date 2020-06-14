@@ -2,6 +2,7 @@ package com.app.memoeslink.adivinador;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -62,6 +63,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -1930,8 +1934,9 @@ class Methods extends ContextWrapper {
                     } else if (StringUtils.startsWith(matcher.group(), "{database:"))
                         replacement = index != null && index >= 0 ? myDB.selectFromTable(resourceName, index) : myDB.selectFromTable(resourceName, randomizer.getInt(myDB.countTableRows(resourceName), 1));
                     else if (StringUtils.startsWith(matcher.group(), "{method:")) {
-                        if ((replacement = invokeMethod(resourceName)) != null) {
-                        } else if ((replacement = callMethod(resourceName)) != null) {
+                        if ((replacement = callMethod(resourceName)) != null) {
+                        } else if ((replacement = invokeMethod(resourceName)) != null) {
+                        } else if ((replacement = invokeMethodHandle(resourceName)) != null) {
                         } else
                             replacement = "?";
                     }
@@ -2972,13 +2977,27 @@ class Methods extends ContextWrapper {
     /* Reflection methods */
 
     public String callMethod(String methodName) {
+        String s = null;
+
+        try {
+            Class<?> methodsClass = Class.forName("com.app.memoeslink.adivinador.Methods");
+            Method m = methodsClass.getDeclaredMethod(methodName);
+            m.setAccessible(true);
+            s = (String) m.invoke(new Methods(Methods.this, getRandomizer().getSeed()));
+        } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
+
+    public String invokeMethod(String methodName) {
         String s = (String) AccessController.doPrivileged((PrivilegedAction) () -> {
             String r = null;
 
             try {
                 Class<Methods> methodsClass = Methods.class;
                 Constructor<Methods> constructor = methodsClass.getConstructor(Context.class, Long.class);
-                Object object = constructor.newInstance(getApplicationContext(), getRandomizer().getSeed());
+                Object object = constructor.newInstance(Methods.this, getRandomizer().getSeed());
                 Method method = methodsClass.getDeclaredMethod(methodName);
                 method.setAccessible(true);
                 r = (String) method.invoke(object);
@@ -2990,16 +3009,19 @@ class Methods extends ContextWrapper {
         return s;
     }
 
-    public String invokeMethod(String methodName) {
+    @TargetApi(android.os.Build.VERSION_CODES.O)
+    public String invokeMethodHandle(String methodName) {
         String s = null;
 
-        try {
-            Class<?> methodsClass = Class.forName("com.app.memoeslink.adivinador.Methods");
-            Method m = methodsClass.getDeclaredMethod(methodName);
-            m.setAccessible(true);
-            s = (String) m.invoke(new Methods(Methods.this, getRandomizer().getSeed()));
-        } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            e.printStackTrace();
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            try {
+                MethodHandles.Lookup lookup = MethodHandles.lookup();
+                MethodType methodType = MethodType.methodType(String.class);
+                MethodHandle handle = lookup.findVirtual(Methods.class, methodName, methodType);
+                Methods tempMethods = new Methods(Methods.this, getRandomizer().getSeed());
+                s = (String) handle.invokeExact(tempMethods);
+            } catch (Throwable ignored) {
+            }
         }
         return s;
     }

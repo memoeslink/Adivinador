@@ -3,7 +3,7 @@
     <string name="about">
         <![CDATA[
         <big><b>Adivinador</b></big>
-        <br><b>Versión: 1.4.1</b>
+        <br><b>Versión: 1.4.2</b>
         <br><br>2014-2018 Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
@@ -511,12 +511,14 @@
         <item>una estatua｢2｣</item>
         <item>un cuerpo｢1｣</item>
         <item>un cadáver｢1｣</item>
+        <item>un rey｢1｣</item>
         <item>un emperador｢1｣</item>
         <item>un caballero｢1｣</item>
         <item>un dragón｢1｣</item>
         <item>una estrella｢2｣</item>
         <item>un criminal｢1｣</item>
         <item>un animal extraño｢1｣</item>
+        <item>un ave {rand:bicéfala; tricéfala}｢2｣</item>
         <item>{string:individual⸻⸮}</item>
         <item>{string:individual⸻⸮}</item>
         <item>{string:individual⸻⸮}</item>
@@ -535,6 +537,7 @@
         <item>sosteniendo una balanza</item>
         <item>sosteniendo un corazón</item>
         <item>sosteniendo una copa</item>
+        <item>portando una corona</item>
         <item>devorando a alguien</item>
         <item>persiguiendo a alguien</item>
         <item>encima de un caballo</item>
@@ -990,7 +993,7 @@
         <item>Aries, Piscis, Acuario.</item>
     </string-array>
     <string-array name="individual">
-        <item>[un[,a]] [hombre,mujer]</item>
+        <item>[un[,a]] [[hombre,mujer]]</item>
         <item>[un[,a]] [niñ[o,a]]</item>
         <item>[un[,a]] [chic[o,a]]</item>
         <item>[un[,a]] joven</item>

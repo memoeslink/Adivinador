@@ -3,7 +3,7 @@
     <string name="about">
         <![CDATA[
         <big><b>Adivinador</b></big>
-        <br><b>Version: 1.4.1</b>
+        <br><b>Version: 1.4.2</b>
         <br><br>2014-2018 Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
@@ -510,12 +510,14 @@
         <item>an statue</item>
         <item>a body</item>
         <item>a corpse</item>
+        <item>a king</item>
         <item>an emperor</item>
         <item>a knight</item>
         <item>a dragon</item>
         <item>a star</item>
         <item>a criminal</item>
         <item>an obscure animal</item>
+        <item>a {rand:two; three}-headed bird</item>
         <item>{string:individual⸻⸮}</item>
         <item>{string:individual⸻⸮}</item>
         <item>{string:individual⸻⸮}</item>
@@ -534,6 +536,7 @@
         <item>holding a scale</item>
         <item>holding a heart</item>
         <item>holding a chalice</item>
+        <item>wearing a crown</item>
         <item>devouring someone</item>
         <item>chasing someone</item>
         <item>on a horse</item>
