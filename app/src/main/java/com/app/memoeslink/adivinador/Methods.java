@@ -1936,7 +1936,6 @@ class Methods extends ContextWrapper {
                     else if (StringUtils.startsWith(matcher.group(), "{method:")) {
                         if ((replacement = callMethod(resourceName)) != null) {
                         } else if ((replacement = invokeMethod(resourceName)) != null) {
-                        } else if ((replacement = invokeMethodHandle(resourceName)) != null) {
                         } else
                             replacement = "?";
                     }
@@ -3006,23 +3005,6 @@ class Methods extends ContextWrapper {
             }
             return r;
         });
-        return s;
-    }
-
-    @TargetApi(android.os.Build.VERSION_CODES.O)
-    public String invokeMethodHandle(String methodName) {
-        String s = null;
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            try {
-                MethodHandles.Lookup lookup = MethodHandles.lookup();
-                MethodType methodType = MethodType.methodType(String.class);
-                MethodHandle handle = lookup.findVirtual(Methods.class, methodName, methodType);
-                Methods tempMethods = new Methods(Methods.this, getRandomizer().getSeed());
-                s = (String) handle.invokeExact(tempMethods);
-            } catch (Throwable ignored) {
-            }
-        }
         return s;
     }
 
