@@ -1,6 +1,5 @@
 package com.app.memoeslink.adivinador;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -26,7 +25,6 @@ public class MenuActivity extends CommonActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setHomeAsUpIndicator(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_list_menu, null));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        preferences = this.getSharedPreferences(Methods.PREFERENCES, Activity.MODE_PRIVATE);
     }
 
     @Override

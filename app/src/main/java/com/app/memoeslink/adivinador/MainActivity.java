@@ -1,7 +1,6 @@
 package com.app.memoeslink.adivinador;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +14,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.text.Editable;
@@ -50,6 +48,8 @@ import androidx.core.content.ContextCompat;
 import com.easyandroidanimations.library.BounceAnimation;
 import com.easyandroidanimations.library.FadeInAnimation;
 import com.easyandroidanimations.library.FadeOutAnimation;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jinatonic.confetti.ConfettiManager;
 import com.github.jinatonic.confetti.ConfettiSource;
 import com.github.jinatonic.confetti.ConfettoGenerator;
@@ -65,6 +65,10 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.networknt.schema.JsonSchema;
+import com.networknt.schema.JsonSchemaFactory;
+import com.networknt.schema.SpecVersion;
+import com.networknt.schema.ValidationMessage;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -73,10 +77,10 @@ import org.apache.commons.lang3.StringUtils;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
@@ -142,8 +146,8 @@ public class MainActivity extends MenuActivity {
     private boolean obtaining = false;
     private static boolean forceEffects = true;
     private Boolean adPaused = null;
-    private short startingReading = -1;
-    private short reading = -1;
+    private int startingReading = -1;
+    private int reading = -1;
     private int textType = 0;
     private int lastModified = 0;
     private int width = 0;
@@ -156,7 +160,7 @@ public class MainActivity extends MenuActivity {
     private int adSeconds = 0;
     private int frequency = 20;
     private int refreshFrequency = 60;
-    private int[] currentDate = {-1, -1, -1};
+    private SimpleDate currentDate = new SimpleDate(-1, -1, -1);
     private static int[][] particleColors = new int[][]{{Color.BLUE, Color.argb(255, 0, 128, 255), Color.argb(255, 51, 153, 255), Color.argb(255, 0, 192, 199), Color.argb(125, 0, 128, 255), Color.argb(125, 51, 153, 255), Color.argb(125, 0, 192, 199)}, {Color.YELLOW, Color.argb(255, 251, 255, 147), Color.argb(255, 224, 228, 124), Color.argb(255, 155, 215, 93), Color.argb(255, 120, 168, 71), Color.argb(125, 251, 255, 147), Color.argb(125, 224, 228, 124), Color.argb(125, 155, 215, 93), Color.argb(125, 120, 168, 71)}};
     private String formattedDate = "";
     private String currentName = "";
@@ -171,7 +175,7 @@ public class MainActivity extends MenuActivity {
     private String[] nameTypeOptions;
     private Object[] data = null;
     private Object[] backupData = null;
-    private ArrayList<Enquiry> enquiryList;
+    private ArrayList<Enquiry> enquiries;
     private Long measuredTimes = 0L;
     private Long confettiThrown = 0L;
     private Timer timer;
@@ -182,7 +186,7 @@ public class MainActivity extends MenuActivity {
     private Enum designationEnum = NameEnum.EMPTY;
     private FortuneTeller fortuneTeller;
     private Enquiry enquiry;
-    private Person backupPerson = null;
+    private Person preloadedPerson = null;
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
 
     private static void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -194,8 +198,6 @@ public class MainActivity extends MenuActivity {
         setContentView(R.layout.activity_main);
         MobileAds.initialize(this, MainActivity::onInitializationComplete);
         tts = new TextToSpeech(this, this);
-        preferences = getSharedPreferences(Methods.PREFERENCES, Activity.MODE_PRIVATE);
-        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         interstitialAd = new InterstitialAd(this);
         interstitialAd.setAdUnitId("ca-app-pub-9370416997367495/9592695166");
         adContainer = findViewById(R.id.ad_container);
@@ -210,17 +212,17 @@ public class MainActivity extends MenuActivity {
         fortuneTellerAspect = findViewById(R.id.main_fortune_teller);
         dateSelector = findViewById(R.id.main_date_selector);
         pick = findViewById(R.id.main_pick);
-        pick.setText(Methods.fromHtml(String.format(getString(R.string.link), getString(R.string.pick))));
+        pick.setText(Methods.fromHtml(getString(R.string.link, getString(R.string.pick))));
         dataEntry = findViewById(R.id.main_data_entry);
-        dataEntry.setText(Methods.fromHtml(String.format(getString(R.string.link), getString(R.string.data_entry))));
+        dataEntry.setText(Methods.fromHtml(getString(R.string.link, getString(R.string.data_entry))));
         reload = findViewById(R.id.main_reload);
-        reload.setText(Methods.fromHtml(String.format(getString(R.string.link), getString(R.string.reload))));
+        reload.setText(Methods.fromHtml(getString(R.string.link, getString(R.string.reload))));
         inquiry = findViewById(R.id.main_inquiry);
-        inquiry.setText(Methods.fromHtml(String.format(getString(R.string.link), String.format(getString(R.string.inquiry), "…"))));
+        inquiry.setText(Methods.fromHtml(getString(R.string.link, getString(R.string.inquiry, "…"))));
         selector = findViewById(R.id.main_selector);
-        selector.setText(Methods.fromHtml(String.format(getString(R.string.link), getString(R.string.selector))));
+        selector.setText(Methods.fromHtml(getString(R.string.link, getString(R.string.selector))));
         clear = findViewById(R.id.main_clear);
-        clear.setText(Methods.fromHtml(String.format(getString(R.string.link), getString(R.string.clear))));
+        clear.setText(Methods.fromHtml(getString(R.string.link, getString(R.string.clear))));
         phrase = findViewById(R.id.main_fortune_teller_phrase);
         personInfo = findViewById(R.id.main_person);
         personInfo.setSelected(true);
@@ -233,14 +235,14 @@ public class MainActivity extends MenuActivity {
         initialName = compatibilityView.findViewById(R.id.dialog_name_field);
         finalName = compatibilityView.findViewById(R.id.dialog_other_name_field);
         binder = compatibilityView.findViewById(R.id.dialog_binder_text);
-        binder.setText(Methods.fromHtml(String.format(getString(R.string.link), getString(R.string.binder))));
+        binder.setText(Methods.fromHtml(getString(R.string.link, getString(R.string.binder))));
         compatibility = compatibilityView.findViewById(R.id.dialog_text);
         progressBar = compatibilityView.findViewById(R.id.dialog_progress);
         nameGenerationView = inflater.inflate(R.layout.dialog_name_generation, null);
         nameTypeSelector = nameGenerationView.findViewById(R.id.dialog_spinner);
         nameBox = nameGenerationView.findViewById(R.id.dialog_generated_name);
         copy = nameGenerationView.findViewById(R.id.dialog_copy_text);
-        copy.setText(Methods.fromHtml(String.format(getString(R.string.link), getString(R.string.action_copy))));
+        copy.setText(Methods.fromHtml(getString(R.string.link, getString(R.string.action_copy))));
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setItemIconTintList(null);
@@ -268,10 +270,10 @@ public class MainActivity extends MenuActivity {
         adRequest = new AdRequest.Builder().build();
 
         //Get a greeting, if enabled
-        if (!defaultPreferences.getBoolean("preference_greetingsEnabled", true))
-            phrase.setText(fortuneTeller.comment());
-        else
+        if (defaultPreferences.getBoolean("preference_greetingsEnabled", true))
             phrase.setText(Methods.fromHtml(fortuneTeller.greet()));
+        else
+            phrase.setText(fortuneTeller.comment());
 
         //Change drawable for fortune teller
         fortuneTellerAspect.setImageResource(fortuneTeller.getRandomAppearance());
@@ -295,7 +297,7 @@ public class MainActivity extends MenuActivity {
             public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 view.setTag(position);
-                view.setAlpha(isEnabled(position) ? 1.0f : 0.35f);
+                view.setAlpha(isEnabled(position) ? 1.0F : 0.35F);
                 return view;
             }
         };
@@ -378,7 +380,7 @@ public class MainActivity extends MenuActivity {
 
         pick.setOnClickListener(view -> {
             if (!shown) {
-                date = DatePickerDialog.newInstance(dateSetListener, currentDate[0], currentDate[1], currentDate[2]);
+                date = DatePickerDialog.newInstance(dateSetListener, currentDate.getYear(), currentDate.getMonth() - 1, currentDate.getDay());
                 date.vibrate(true);
 
                 date.setOnDismissListener(dialogInterface -> shown = false);
@@ -413,7 +415,7 @@ public class MainActivity extends MenuActivity {
                         break;
                 }
 
-                if (!formattedDate.isEmpty() && !Methods.getFormattedDate(currentDate[0], currentDate[1] + 1, currentDate[2]).equals(methods.getDate())) {
+                if (!formattedDate.isEmpty() && !Methods.getFormattedDate(currentDate.getYear(), currentDate.getMonth(), currentDate.getDay()).equals(methods.getDate())) {
                     backupData = null;
                     same = true;
                     reloadPrediction(reloadHolder.getVisibility() != View.VISIBLE, false);
@@ -441,7 +443,7 @@ public class MainActivity extends MenuActivity {
         });
 
         fortuneTellerAspect.setOnClickListener(view -> {
-            if (Integer.parseInt(defaultPreferences.getString("preference_fortuneTellerAspect", "1")) != 0) {
+            if (defaultPreferences.getStringAsInt("preference_fortuneTellerAspect", 1) != 0) {
                 methods.playSound("jump");
                 new BounceAnimation(fortuneTellerAspect)
                         .setBounceDistance(7)
@@ -452,11 +454,11 @@ public class MainActivity extends MenuActivity {
         });
 
         personInfo.setOnClickListener(v -> {
-            if (enquiryList != null) {
-                if (methods.saveEnquiry(enquiryList, enquiry)) {
+            if (enquiries != null) {
+                if (methods.saveEnquiry(enquiries, enquiry)) {
                     Methods.showSimpleToast(MainActivity.this, getString(R.string.toast_enquiry_saved));
 
-                    if (getDataFromList(enquiryList.get(enquiryList.size() - 1), true)) {
+                    if (isPredictionReloaded(enquiries.get(enquiries.size() - 1), true)) {
                         inquiryHolder.setVisibility(View.GONE);
                         navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(false);
                         navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(125);
@@ -475,7 +477,7 @@ public class MainActivity extends MenuActivity {
 
         inquiryHolder.setOnClickListener(view -> {
             if (!busy) {
-                if (getDataFromList(enquiryList.get(0), false)) {
+                if (isPredictionReloaded(enquiries.get(0), false)) {
                     inquiryHolder.setEnabled(false);
                     inquiryHolder.setAlpha(0.7F);
                     navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(false);
@@ -612,8 +614,8 @@ public class MainActivity extends MenuActivity {
         super.onResume();
         active = true;
         pending = false;
-        textType = Integer.parseInt(defaultPreferences.getString("preference_textType", "0"));
-        enquiryList = new ArrayList<>();
+        textType = defaultPreferences.getStringAsInt("preference_textType");
+        enquiries = new ArrayList<>();
 
         //Restart Activity if required
         if (preferences.contains("temp_restartActivity")) {
@@ -622,15 +624,15 @@ public class MainActivity extends MenuActivity {
             finish();
             startActivity(intent);
         }
-        preferences.edit().remove("temp_restartActivity").commit();
+        preferences.remove("temp_restartActivity");
 
-        if (!defaultPreferences.getBoolean("preference_stickHeader", false))
-            header.setTag(null);
-        else
+        if (defaultPreferences.getBoolean("preference_stickHeader"))
             header.setTag("sticky-hasTransparency-nonConstant");
+        else
+            header.setTag(null);
 
         //Stop TTS if it is disabled and continues talking
-        if (available && (defaultPreferences.getBoolean("preference_audioEnabled", false) || defaultPreferences.getBoolean("preference_voiceEnabled", false))) {
+        if (available && (defaultPreferences.getBoolean("preference_audioEnabled") || defaultPreferences.getBoolean("preference_voiceEnabled"))) {
             if (tts.isSpeaking())
                 tts.stop();
         }
@@ -639,7 +641,7 @@ public class MainActivity extends MenuActivity {
         prepareAd(false);
 
         //Get a prediction for the fortune teller to display
-        if (recent || (verifyFields() && (!getFakeIdentifier().equals(fakeIdentifier))) || (!verifyFields() && lastModified == 1)) {
+        if (recent || (isDataValid() && (!getFakeIdentifier().equals(fakeIdentifier))) || (!isDataValid() && lastModified == 1)) {
             getPrediction();
             recent = false;
         }
@@ -647,7 +649,7 @@ public class MainActivity extends MenuActivity {
         //Change drawable if the 'fortune teller aspect' preference was changed
         if (preferences.contains("temp_changeFortuneTeller")) {
             fortuneTellerAspect.setImageResource(fortuneTeller.getRandomAppearance());
-            preferences.edit().remove("temp_changeFortuneTeller").commit();
+            preferences.remove("temp_changeFortuneTeller");
         }
 
         //Define Dialog
@@ -659,11 +661,11 @@ public class MainActivity extends MenuActivity {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    frequency = Integer.parseInt(defaultPreferences.getString("preference_refreshTime", "20"));
-                    refreshFrequency = Integer.parseInt(defaultPreferences.getString("preference_updateTime", "60"));
+                    frequency = defaultPreferences.getStringAsInt("preference_refreshTime", 20);
+                    refreshFrequency = defaultPreferences.getStringAsInt("preference_updateTime", 60);
 
                     if (resourceSeconds >= 1800) {
-                        Methods.language = Methods.getDefaultLanguage();
+                        Methods.language = LanguageHelper.getDefaultLanguage();
                         Methods.networkCountry = methods.getNetworkCountry();
                         Methods.locales = Locale.getAvailableLocales();
                         Methods.supportedNames = seededMethods.getPermittedNames(Methods.supportedNames, false);
@@ -677,7 +679,7 @@ public class MainActivity extends MenuActivity {
                                 methods.vanishAndMaterialize(phrase); //Fade out and fade in the fortune teller's text.
 
                             new Handler().postDelayed(() -> {
-                                int soundPosition = unseededMethods.getRandomizer().getInt(sounds.length, 0);
+                                int soundPosition = unseededMethods.getRandomizer().getInt(0, sounds.length);
 
                                 //Play sound, if active and enabled
                                 if (active)
@@ -689,17 +691,23 @@ public class MainActivity extends MenuActivity {
                                 //Get random text for the fortune teller to show
                                 List<String> phraseList = new ArrayList<>();
 
-                                if (defaultPreferences.getBoolean("preference_greetingsEnabled", true))
+                                if (defaultPreferences.getBoolean("preference_greetingsEnabled", true)) {
                                     phraseList.add("greetings");
+                                    phraseList.add("greetings");
+                                }
 
-                                if (defaultPreferences.getBoolean("preference_opinionsEnabled", true))
+                                if (defaultPreferences.getBoolean("preference_opinionsEnabled", true)) {
                                     phraseList.add("opinions");
+                                    phraseList.add("opinions");
+                                }
 
-                                if (defaultPreferences.getBoolean("preference_phrasesEnabled", true))
+                                if (defaultPreferences.getBoolean("preference_phrasesEnabled", true)) {
                                     phraseList.add("phrases");
+                                    phraseList.add("conversation");
+                                }
 
                                 if (phraseList.size() > 0) {
-                                    int index = methods.getRandomizer().getInt(phraseList.size(), 0);
+                                    int index = methods.getRandomizer().getInt(0, phraseList.size());
 
                                     switch (phraseList.get(index)) {
                                         case "greetings":
@@ -711,6 +719,9 @@ public class MainActivity extends MenuActivity {
                                         case "phrases":
                                             phrase.setText(Methods.fromHtml(fortuneTeller.talk()));
                                             break;
+                                        case "conversation":
+                                            phrase.setText(Methods.fromHtml(fortuneTeller.talk(randomizer.getInt(2, 3))));
+                                            break;
                                         default:
                                             phrase.setText("?");
                                             break;
@@ -719,8 +730,8 @@ public class MainActivity extends MenuActivity {
                                     phrase.setText(fortuneTeller.comment());
 
                                 //Talk; if active, enabled and possible
-                                if (active && (reading == (short) -1 || reading == (short) 0) && (textType == 0 || textType == 2)) {
-                                    startingReading = (short) 0;
+                                if (active && (reading == -1 || reading == 0) && (textType == 0 || textType == 2)) {
+                                    startingReading = 0;
                                     talk(phrase.getText().toString());
                                 }
                             }, 350);
@@ -842,7 +853,7 @@ public class MainActivity extends MenuActivity {
 
                     //Talk; if active, enabled and possible
                     if (active && pending && !personInfo.getText().toString().isEmpty() && data != null && data.length >= 5 && (textType == 1 || textType == 2)) {
-                        startingReading = (short) 1;
+                        startingReading = 1;
                         talk(personInfo.getText().toString() + "." + " " + data[1].toString());
                         pending = false;
                     }
@@ -865,9 +876,9 @@ public class MainActivity extends MenuActivity {
     DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
-            currentDate = new int[]{year, monthOfYear, dayOfMonth};
+            currentDate = new SimpleDate(year, monthOfYear + 1, dayOfMonth);
 
-            if (!formattedDate.isEmpty() && !formattedDate.equals(Methods.getFormattedDate(currentDate[0], currentDate[1] + 1, currentDate[2]))) {
+            if (!formattedDate.isEmpty() && !formattedDate.equals(Methods.getFormattedDate(currentDate.getYear(), currentDate.getMonth(), currentDate.getDay()))) {
                 backupData = null;
                 same = true;
                 reloadPrediction(reloadHolder.getVisibility() != View.VISIBLE, false);
@@ -878,7 +889,7 @@ public class MainActivity extends MenuActivity {
     private void prepareAd(boolean restarted) {
         if (adPaused == null || (adPaused != null && !adPaused)) {
             if (defaultPreferences.getBoolean("preference_adsEnabled", true)) {
-                if (restarted || !adAdded || defaultPreferences.getBoolean("temp_restartAds", false))
+                if (restarted || !adAdded || defaultPreferences.getBoolean("temp_restartAds"))
                     destroyAd();
 
                 if (!adAdded) {
@@ -962,7 +973,7 @@ public class MainActivity extends MenuActivity {
             adContainer.setVisibility(View.GONE);
             adContainer.removeAllViews();
             adView = null;
-            defaultPreferences.edit().remove("temp_restartAds");
+            defaultPreferences.remove("temp_restartAds");
             adAdded = false;
         }
     }
@@ -971,7 +982,7 @@ public class MainActivity extends MenuActivity {
         if (defaultPreferences.getBoolean("preference_adsEnabled", true)) {
             methods.getRandomizer().bindSeed(Methods.getSeed(Methods.getCurrentDateTime() + System.getProperty("line.separator") + methods.getDeviceId()));
 
-            if (randomizer.getInt(20, 0) == 0) {
+            if (randomizer.getInt(0, 20) == 0) {
                 if (adPaused == null)
                     adPaused = true;
 
@@ -1018,7 +1029,7 @@ public class MainActivity extends MenuActivity {
                 if (defaultPreferences.getBoolean("preference_particlesEnabled", true) && originInX != 0 && originInY != 0)
                     throwConfetti(originInX, originInY); //Start confetti animation
 
-                if (Integer.parseInt(defaultPreferences.getString("preference_fortuneTellerAspect", "1")) != 0) {
+                if (defaultPreferences.getStringAsInt("preference_fortuneTellerAspect", 1) != 0) {
                     methods.playSound("jump");
                     new BounceAnimation(fortuneTellerAspect)
                             .setBounceDistance(20)
@@ -1042,7 +1053,7 @@ public class MainActivity extends MenuActivity {
     }
 
     private void throwConfetti(int x, int y) {
-        final List<Bitmap> allPossibleConfetti = Utils.generateConfettiBitmaps(Integer.parseInt(defaultPreferences.getString("preference_fortuneTellerAspect", "0")) == 0 ? particleColors[0] : particleColors[1], 10 /* size */);
+        final List<Bitmap> allPossibleConfetti = Utils.generateConfettiBitmaps(defaultPreferences.getStringAsInt("preference_fortuneTellerAspect") == 0 ? particleColors[0] : particleColors[1], 10 /* size */);
         final int numConfetti = allPossibleConfetti.size();
 
         ConfettoGenerator confettoGenerator = random -> {
@@ -1077,7 +1088,7 @@ public class MainActivity extends MenuActivity {
         ArrayList<String> nameList = null;
 
         if (preferences.contains("nameList") && preferences.getStringSet("nameList", null).size() > 0)
-            nameList = new ArrayList(preferences.getStringSet("nameList", null));
+            nameList = new ArrayList(preferences.getStringSet("nameList"));
 
         if (nameList != null && nameList.size() > 0) {
             String[] names = nameList.toArray(new String[0]);
@@ -1089,29 +1100,70 @@ public class MainActivity extends MenuActivity {
     private void setDialog() {
         enquiryAvailable = false;
         inquiryHolder.setVisibility(View.GONE);
-        inquiry.setText(Methods.fromHtml(String.format(getString(R.string.link), String.format(getString(R.string.inquiry), "…"))));
-        navigationView.getMenu().findItem(R.id.nav_inquiry).setTitle(String.format(getString(R.string.inquiry), "…")); //Changes to text won't be reflected until the Drawer item is updated
+        inquiry.setText(Methods.fromHtml(getString(R.string.link, getString(R.string.inquiry, "…"))));
+        navigationView.getMenu().findItem(R.id.nav_inquiry).setTitle(getString(R.string.inquiry, "…")); //Changes to text won't be reflected until the Drawer item is updated
         navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(false);
         navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(125);
         selectorHolder.setVisibility(View.GONE);
         navigationView.getMenu().findItem(R.id.nav_selector).setEnabled(false);
         navigationView.getMenu().findItem(R.id.nav_selector).getIcon().setAlpha(125);
 
-        if (preferences.getString("enquiryList", null) != null) { //Get enquiries
+        //Get enquiries
+        if (StringUtils.isNotEmpty(preferences.getString("enquiryList"))) {
             Gson gson = new Gson();
-            String json = preferences.getString("enquiryList", null);
+            String json = preferences.getString("enquiryList");
             Type type = new TypeToken<ArrayList<Enquiry>>() {
             }.getType();
-            enquiryList = gson.fromJson(json, type);
+
+            //Validate JSON content
+            boolean valid = false;
+
+            validation:
+            {
+                if (json == null || !Methods.isJsonValid(json))
+                    break validation;
+
+                try {
+                    JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4);
+                    JsonSchema schema = factory.getSchema(methods.getRawString(R.raw.schema));
+                    JsonNode node = new ObjectMapper().readTree(json);
+                    Set<ValidationMessage> errors = schema.validate(node);
+
+                    if (errors.size() > 1)
+                        break validation;
+                } catch (Exception e) {
+                    break validation;
+                }
+
+                try {
+                    enquiries = gson.fromJson(json, type);
+                } catch (Exception e) {
+                    break validation;
+                }
+                valid = true;
+            }
+
+            if (!valid)
+                preferences.remove("enquiryList");
         }
 
         //Set inquiry list
-        if (enquiryList != null && enquiryList.size() > 1) {
+        if (enquiries == null) {
+        } else if (enquiries.size() == 1) {
+            enquiryAvailable = true;
+            inquiry.setText(Methods.fromHtml(getString(R.string.link, getString(R.string.inquiry, enquiries.get(0).getDescriptor()))));
+            navigationView.getMenu().findItem(R.id.nav_inquiry).setTitle(getString(R.string.inquiry, enquiries.get(0).getDescriptor())); //Changes to text won't be reflected until the Drawer item is updated
+
+            if (methods.isEnquiryDistinct(enquiries.get(0))) {
+                inquiryHolder.setVisibility(View.VISIBLE);
+                navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(true);
+                navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(255);
+            }
+        } else if (enquiries.size() > 1) {
             List<String> items = new ArrayList<>();
 
-            for (int n = 0; n < enquiryList.size(); n++) {
-                String date = enquiryList.get(n).getYear() + "/" + String.format("%02d", enquiryList.get(n).getMonth() + 1) + "/" + String.format("%02d", enquiryList.get(n).getDay());
-                items.add(enquiryList.get(n).getName() + " " + "(" + sexArray[enquiryList.get(n).getSex()].charAt(0) + ")," + " " + date);
+            for (Enquiry enquiry : enquiries) {
+                items.add(enquiry.getDescriptor() + " " + "(" + sexArray[enquiry.getPerson().getSex()].charAt(0) + ")," + " " + enquiry.getPerson().getFormattedBirthday());
             }
 
             //Define Dialog
@@ -1123,7 +1175,7 @@ public class MainActivity extends MenuActivity {
             listView.setAdapter(adapter);
 
             listView.setOnItemClickListener((parent, view, position, id) -> {
-                getDataFromList(enquiryList.get(position), false);
+                isPredictionReloaded(enquiries.get(position), false);
                 dialog.dismiss();
             });
             builder.setView(listView);
@@ -1131,99 +1183,54 @@ public class MainActivity extends MenuActivity {
             selectorHolder.setVisibility(View.VISIBLE);
             navigationView.getMenu().findItem(R.id.nav_selector).setEnabled(true);
             navigationView.getMenu().findItem(R.id.nav_selector).getIcon().setAlpha(255);
-        } else if (enquiryList != null && enquiryList.size() == 1) {
-            Boolean temp;
-            enquiryAvailable = true;
-            inquiry.setText(Methods.fromHtml(String.format(getString(R.string.link), String.format(getString(R.string.inquiry), enquiryList.get(0).getName()))));
-            navigationView.getMenu().findItem(R.id.nav_inquiry).setTitle(String.format(getString(R.string.inquiry), enquiryList.get(0).getName())); //Changes to text won't be reflected until the Drawer item is updated
-
-            if (enquiryList != null && enquiryList.size() > 0 && (temp = isDataDifferent(enquiryList.get(0))) != null && temp) {
-                inquiryHolder.setVisibility(View.VISIBLE);
-                navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(true);
-                navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(255);
-            }
         }
     }
 
-    private Boolean isDataDifferent(Enquiry enquiry) {
-        if (enquiry != null) {
-            Object[] item = new Object[]{
-                    enquiry.getName(),
-                    enquiry.getSex(),
-                    enquiry.getYear(),
-                    enquiry.getMonth(),
-                    enquiry.getDay()
-            };
-
-            Object[] object = new Object[]{
-                    preferences.getString("temp_name", ""),
-                    preferences.getInt("temp_sex", Methods.DEFAULT_SEX),
-                    preferences.getInt("temp_date_year", Methods.DEFAULT_YEAR),
-                    preferences.getInt("temp_date_month", Methods.DEFAULT_MONTH),
-                    preferences.getInt("temp_date_day", Methods.DEFAULT_DAY)
-            };
-            return !Arrays.equals(item, object);
-        } else return null;
-    }
-
-    private boolean getDataFromList(Enquiry enquiry, boolean mute) {
-        Boolean temp;
-
-        if (enquiryList != null && enquiryList.size() > 0 && (temp = isDataDifferent(enquiry)) != null && temp) {
-            preferences.edit().putString("temp_name", enquiry.getName()).apply();
-            preferences.edit().putString("temp_formatted_name", enquiry.getFormattedName()).apply();
-            preferences.edit().putInt("temp_sex", enquiry.getSex()).apply();
-            preferences.edit().putInt("temp_date_year", enquiry.getYear()).apply();
-            preferences.edit().putInt("temp_date_month", enquiry.getMonth()).apply();
-            preferences.edit().putInt("temp_date_day", enquiry.getDay()).apply();
-            preferences.edit().putBoolean("temp_user", enquiry.isUser()).apply();
-            preferences.edit().putBoolean("temp_anonymous", enquiry.isAnonymous() == null ? false : enquiry.isAnonymous()).apply();
+    private boolean isPredictionReloaded(Enquiry enquiry, boolean mute) {
+        if (enquiries != null && enquiries.size() > 0 && methods.isEnquiryDistinct(enquiry)) {
+            preferences.putString("temp_name", enquiry.getDescriptor());
+            preferences.putString("temp_formatted_name", enquiry.getFormattedDescriptor());
+            preferences.putInt("temp_sex", enquiry.getPerson().getSex());
+            preferences.putInt("temp_date_year", enquiry.getPerson().getBirthdate().getYear());
+            preferences.putInt("temp_date_month", enquiry.getPerson().getBirthdate().getMonth());
+            preferences.putInt("temp_date_day", enquiry.getPerson().getBirthdate().getDay());
+            preferences.putBoolean("temp_user", enquiry.isUserRequested());
+            preferences.putBoolean("temp_anonymous", enquiry.isAnonymous());
             reloadPrediction(true, mute);
             return true;
-        } else return false;
+        }
+        return false;
     }
 
-    private boolean verifyFields() {
-        boolean valid = true;
-        Object[] fields = new Object[5];
-        fields[0] = preferences.getString("temp_name", "");
-        fields[1] = preferences.getInt("temp_sex", -1);
-        fields[2] = preferences.getInt("temp_date_year", -1);
-        fields[3] = preferences.getInt("temp_date_month", -1);
-        fields[4] = preferences.getInt("temp_date_day", -1);
+    private boolean isDataValid() {
+        Object[] fields = new Object[]{
+                preferences.getString("temp_name"),
+                preferences.getInt("temp_sex", -1),
+                preferences.getInt("temp_date_year", -1),
+                preferences.getInt("temp_date_month", -1),
+                preferences.getInt("temp_date_day", -1)
+        };
 
-        for (int n = 0; n < fields.length; n++) {
-            int dataType;
-
-            if (fields[n].getClass() == Integer.class)
-                dataType = 0;
-            else if (fields[n].getClass() == String.class)
-                dataType = 1;
-            else
-                dataType = -1;
-
-            if (fields[n] == null)
-                valid = false;
-            else {
-                if (dataType == 0 && (int) fields[n] == -1)
-                    valid = false;
-
-                if (dataType == 1 && fields[n].toString().equals(""))
-                    valid = false;
-            }
+        for (Object field : fields) {
+            if (field == null)
+                return false;
+            else if (field.getClass() == Integer.class && (int) field == -1)
+                return false;
+            else if (field.getClass() == String.class && field.toString().equals(""))
+                return false;
         }
-        return valid;
+        return true;
     }
 
     private String getFakeIdentifier() {
-        return preferences.getInt("temp_date_year", Methods.DEFAULT_YEAR) + "/" + String.format("%02d", (preferences.getInt("temp_date_month", Methods.DEFAULT_MONTH) + 1)) + "/" + String.format("%02d", preferences.getInt("temp_date_day", Methods.DEFAULT_DAY)) + System.getProperty("line.separator") + preferences.getInt("temp_sex", Methods.DEFAULT_SEX) + System.getProperty("line.separator") + preferences.getString("temp_name", "?");
+        return preferences.getInt("temp_date_year", SimpleDate.DEFAULT_YEAR) + "/" + String.format("%02d", (preferences.getInt("temp_date_month", SimpleDate.DEFAULT_MONTH))) + "/" + String.format("%02d", preferences.getInt("temp_date_day", SimpleDate.DEFAULT_DAY)) + System.getProperty("line.separator") + preferences.getInt("temp_sex", Entity.DEFAULT_SEX) + System.getProperty("line.separator") + preferences.getString("temp_name", "?");
     }
 
     private void reloadPrediction(final boolean formCompleted, final boolean mute) {
         if (!busy) {
             busy = true;
             new FadeOutAnimation(confettiLayout).setDuration(200).animate();
-            preferences.edit().putBoolean("temp_busy", true).apply();
+            preferences.putBoolean("temp_busy", true);
             dateSelector.setEnabled(false);
             dateSelector.setClickable(false);
             pick.setEnabled(false);
@@ -1241,7 +1248,7 @@ public class MainActivity extends MenuActivity {
     private void getPrediction() {
         MainActivity.this.runOnUiThread(() -> {
             updateSeconds = 0;
-            boolean formCompleted = verifyFields();
+            boolean formCompleted = isDataValid();
 
             if (!inquiryHolder.isEnabled()) {
                 inquiryHolder.setVisibility(View.GONE);
@@ -1294,19 +1301,17 @@ public class MainActivity extends MenuActivity {
                 data = retrievePredictionData(false, formCompleted);
 
             //Display predictionView
-            personInfo.setText(Methods.fromHtml(String.format(getString(R.string.person_data), formattedDate.equals(methods.getDate()) ? getString(R.string.today) : formattedDate, data[2].toString(), methods.swapFirstToLowercase(sexArray[(Integer) data[3]]), data[4].toString())));
-            setTextAsLinkified(predictionView, data[0].toString());
+            personInfo.setText(Methods.fromHtml(getString(R.string.person_data, formattedDate.equals(methods.getDate()) ? getString(R.string.today) : formattedDate, data[2].toString(), methods.swapFirstToLowercase(sexArray[(Integer) data[3]]), data[4].toString())));
+            setLinksToText(predictionView, data[0].toString());
 
             if (enquiryAvailable) {
-                Boolean temp;
-
-                if (enquiryList != null && enquiryList.size() > 0 && (temp = isDataDifferent(enquiryList.get(0))) != null && temp) {
+                if (enquiries != null && enquiries.size() > 0 && methods.isEnquiryDistinct(enquiries.get(0))) {
                     inquiryHolder.setVisibility(View.VISIBLE);
                     navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(true);
                     navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(255);
                 }
             }
-            preferences.edit().remove("temp_busy").apply();
+            preferences.remove("temp_busy");
 
             //Display name of the person, if active and possible
             if (active && !isVisible(personInfo))
@@ -1316,9 +1321,9 @@ public class MainActivity extends MenuActivity {
             if (recent)
                 pending = true;
             else if (active && !personInfo.getText().toString().isEmpty() && data != null && data.length >= 5 && (textType == 1 || textType == 2)) {
-                if (reading == (short) -1 || reading == (short) 1) {
-                    startingReading = (short) 1;
-                    talk(personInfo.getText().toString() + "." + " " + data[1].toString());
+                if (reading == -1 || reading == 1) {
+                    startingReading = 1;
+                    talk(personInfo.getText().toString() + ". " + data[1].toString());
                 } else
                     pending = true;
             }
@@ -1337,7 +1342,7 @@ public class MainActivity extends MenuActivity {
         int year, month, day;
         int sex;
         int zodiacIndex, newZodiacIndex;
-        Boolean anonymous = null;
+        boolean anonymous;
         boolean user = false;
         String name, simpleName, formattedName;
         String date;
@@ -1347,53 +1352,46 @@ public class MainActivity extends MenuActivity {
             lastModified = 1;
             fakeIdentifier = getFakeIdentifier();
             name = simpleName = preferences.getString("temp_name", "?");
-            sex = preferences.getInt("temp_sex", Methods.DEFAULT_SEX);
-            year = preferences.getInt("temp_date_year", Methods.DEFAULT_YEAR);
-            month = preferences.getInt("temp_date_month", Methods.DEFAULT_MONTH) + 1;
-            day = preferences.getInt("temp_date_day", Methods.DEFAULT_DAY);
+            sex = preferences.getInt("temp_sex", Entity.DEFAULT_SEX);
+            year = preferences.getInt("temp_date_year", SimpleDate.DEFAULT_YEAR);
+            month = preferences.getInt("temp_date_month", SimpleDate.DEFAULT_MONTH);
+            day = preferences.getInt("temp_date_day", SimpleDate.DEFAULT_DAY);
 
-            if (preferences.getBoolean("temp_user", true)) {
-                formattedName = Methods.formatText(new String[]{name}, "", "b,i");
-                user = true;
-            } else
+            if (preferences.getBoolean("temp_user"))
                 formattedName = preferences.getString("temp_formatted_name", "?");
+            else {
+                formattedName = Methods.formatText(name, "b,i");
+                user = true;
+            }
         } else {
             lastModified = 2;
             fakeIdentifier = "";
             Person person;
 
-            if (same && backupPerson != null) {
-                person = backupPerson;
+            if (same && preloadedPerson != null) {
+                person = preloadedPerson;
                 same = false;
             } else {
                 person = seededMethods.getPerson();
-                backupPerson = person;
+                preloadedPerson = person;
             }
+            simpleName = person.getSimpleName();
 
-            if (anonymous = seededMethods.getRandomizer().getInt(3, 0) == 0) {
+            if (anonymous = seededMethods.getRandomizer().getInt(0, 3) == 0) {
                 name = person.getUsername();
-                seededMethods.getRandomizer().bindSeed(Methods.getSeed(name)); //Set seed to Randomizer
-                simpleName = seededMethods.getPerson().getSimpleName();
-                formattedName = Methods.formatText(new String[]{name}, "", "b,tt");
+                formattedName = person.getFormattedUsername();
             } else {
-                simpleName = person.getForename() + (!person.getForename().isEmpty() && !person.getLastName().isEmpty() ? " " : "") + person.getLastName();
-                name = simpleName + (person.getSuffix().isEmpty() ? "" : " " + person.getSuffix());
-                formattedName = Methods.formatText(new String[]{person.getForename(), person.getLastName()}, person.getSuffix(), "b");
+                name = person.getFullName();
+                formattedName = person.getFormattedFullName();
             }
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(person.getBirthdate());
-            year = calendar.get(Calendar.YEAR);
-            month = calendar.get(Calendar.MONTH) + 1;
-            day = calendar.get(Calendar.DAY_OF_MONTH);
+            year = person.getBirthdate().getYear();
+            month = person.getBirthdate().getMonth();
+            day = person.getBirthdate().getDay();
             sex = person.getSex() == -1 ? 0 : person.getSex();
+            person.setSex(sex);
 
             enquiry = new Enquiry(
-                    name,
-                    formattedName,
-                    sex,
-                    year,
-                    calendar.get(Calendar.MONTH),
-                    day,
+                    person,
                     false,
                     anonymous
             );
@@ -1409,8 +1407,8 @@ public class MainActivity extends MenuActivity {
         if (current)
             formattedDate = methods.getDate();
         else
-            formattedDate = Methods.getFormattedDate(currentDate[0], currentDate[1] + 1, currentDate[2]);
-        preferences.edit().putString("temp_enquiryDate", formattedDate).commit();
+            formattedDate = Methods.getFormattedDate(currentDate.getYear(), currentDate.getMonth(), currentDate.getDay());
+        preferences.putString("temp_enquiryDate", formattedDate);
 
         //Set seed
         String dailySeed = name + System.getProperty("line.separator") + formattedDate + Methods.SEPARATOR[0] + date + System.getProperty("line.separator") + sex;
@@ -1425,54 +1423,53 @@ public class MainActivity extends MenuActivity {
         seededMethods.getRandomizer().bindSeed(seed); //Set seed to Randomizer
         Entity entity = seededMethods.getEntity();
         hashMap.put("fortuneCookie", seededMethods.getFortuneCookie());
-        hashMap.put("gibberish", "<font color=#ECFE5B>" + Methods.formatText(new String[]{methods.generateGibberish(hashMap.get("fortuneCookie").toString().length())}, "", "i,tt") + "</font>");
-        hashMap.put("divination", seededMethods.getDivination());
+        hashMap.put("gibberish", "<font color=#ECFE5B>" + Methods.formatText(methods.generateGibberish(hashMap.get("fortuneCookie").toString().length()), "i,tt") + "</font>");
+        hashMap.put("divination", seededMethods.generateDivination());
         hashMap.put("fortuneNumbers", android.text.TextUtils.join(", ", seededMethods.getRandomizer().getIntegers(5, 100, true)));
         hashMap.put("emotions", seededMethods.getEmotions());
+        hashMap.put("bestTime", seededMethods.generateTime());
+        hashMap.put("worstTime", seededMethods.generateTime());
         hashMap.put("characteristic", seededMethods.capitalizeFirst(seededMethods.getAbstractNoun()));
         hashMap.put("chainOfEvents", seededMethods.getChainOfEvents(formattedName, user));
-        hashMap.put("influence", "<font color=" + seededMethods.getColorAsString() + ">" + Methods.formatText(new String[]{entity.getPrimitiveName()[0], entity.getPrimitiveName()[1]}, entity.getPrimitiveName()[2], "b") + "</font>");
+        hashMap.put("influence", "<font color=" + seededMethods.getColorString() + ">" + entity.getFormattedFullName() + "</font>");
 
         //Get zodiac information
-        hashMap.put("zodiacSign", methods.getStringFromStringArray(R.array.zodiac_sign, zodiacIndex) + " " + methods.getEmojiByUnicode(methods.getIntFromIntArray(R.array.zodiac_signs, zodiacIndex)));
+        hashMap.put("zodiacSign", methods.getStringFromStringArray(R.array.zodiac_sign, zodiacIndex) + " " + methods.getIdeogramByUnicode(methods.getIntFromIntArray(R.array.zodiac_signs, zodiacIndex)));
         hashMap.put("astrologicalHouse", methods.getStringFromStringArray(R.array.astrological_house, zodiacIndex));
         hashMap.put("ruler", methods.getStringFromStringArray(R.array.ruler, zodiacIndex));
         hashMap.put("element", methods.getStringFromStringArray(R.array.element, zodiacIndex));
-        hashMap.put("signColor", String.format(getString(R.string.zodiac_color), methods.getStringFromStringArray(R.array.color, zodiacIndex), methods.getStringFromStringArray(R.array.color_values, zodiacIndex)));
+        hashMap.put("signColor", getString(R.string.zodiac_color, methods.getStringFromStringArray(R.array.color, zodiacIndex), methods.getStringFromStringArray(R.array.color_values, zodiacIndex)));
         hashMap.put("signNumbers", methods.getStringFromStringArray(R.array.numbers, zodiacIndex));
         hashMap.put("compatibility", methods.getStringFromStringArray(R.array.compatibility, zodiacIndex));
         hashMap.put("incompatibility", methods.getStringFromStringArray(R.array.incompatibility, zodiacIndex));
-        hashMap.put("newZodiacSign", methods.getStringFromStringArray(R.array.new_zodiac_sign, newZodiacIndex) + " " + methods.getEmojiByUnicode(methods.getIntFromIntArray(R.array.new_zodiac_signs, newZodiacIndex)));
+        hashMap.put("newZodiacSign", methods.getStringFromStringArray(R.array.new_zodiac_sign, newZodiacIndex) + " " + methods.getIdeogramByUnicode(methods.getIntFromIntArray(R.array.new_zodiac_signs, newZodiacIndex)));
         hashMap.put("chineseZodiacSign", methods.getChineseZodiacSign(year));
 
         //Get identity information
         seededMethods.getRandomizer().bindSeed(personalSeed); //Set seed to Randomizer
-        formattedName = "<font color=" + seededMethods.getColorAsString() + ">" + formattedName + "</font>";
-        Entity[] entities = new Entity[2];
-
-        for (int i = 0; i < entities.length; i++) {
-            entities[i] = seededMethods.getEntity();
-        }
+        formattedName = "<font color=" + seededMethods.getColorString() + ">" + formattedName + "</font>";
         hashMap.put("color", seededMethods.getColor(uniqueSeed));
         hashMap.put("animal", methods.capitalizeFirst(seededMethods.getStringFromStringArray(R.array.animal)));
         hashMap.put("psychologicalType", seededMethods.getStringFromStringArray(R.array.psychological_type));
-        hashMap.put("secretName", "<font color=" + seededMethods.getColorAsString() + ">" + Methods.formatText(new String[]{methods.capitalizeFirst(seededMethods.generateName(seededMethods.getRandomizer().getInt(6, 1)))}, "", "b") + "</font>");
-        hashMap.put("demonicName", "<font color=" + seededMethods.getColorAsString() + ">" + Methods.formatText(new String[]{methods.getDemonicName(simpleName)}, "", "b") + "</font>");
-        hashMap.put("previousName", "<font color=" + seededMethods.getColorAsString() + ">" + Methods.formatText(new String[]{entities[0].getPrimitiveName()[0], entities[0].getPrimitiveName()[1]}, entities[0].getPrimitiveName()[2], "b") + "</font>");
-        hashMap.put("futureName", "<font color=" + seededMethods.getColorAsString() + ">" + Methods.formatText(new String[]{entities[1].getPrimitiveName()[0], entities[1].getPrimitiveName()[1]}, entities[1].getPrimitiveName()[2], "b") + "</font>");
-        hashMap.put("recommendedUsername", "<font color=" + seededMethods.getColorAsString() + ">" + Methods.formatText(new String[]{seededMethods.generateUsername()}, "", "b,tt") + "</font>");
-        hashMap.put("digit", seededMethods.getRandomizer().getInt(10, 0));
+        hashMap.put("secretName", "<font color=" + seededMethods.getColorString() + ">" + Methods.formatText(methods.capitalizeFirst(seededMethods.generateName(seededMethods.getRandomizer().getInt(1, 6))), "b") + "</font>");
+        hashMap.put("demonicName", "<font color=" + seededMethods.getColorString() + ">" + Methods.formatText(methods.getDemonicName(simpleName), "b") + "</font>");
+        hashMap.put("previousName", "<font color=" + seededMethods.getColorString() + ">" + seededMethods.getEntity().getFormattedFullName() + "</font>");
+        hashMap.put("futureName", "<font color=" + seededMethods.getColorString() + ">" + seededMethods.getEntity().getFormattedFullName() + "</font>");
+        hashMap.put("recommendedUsername", "<font color=" + seededMethods.getColorString() + ">" + Methods.formatText(seededMethods.generateUsername(), "b,tt") + "</font>");
+        hashMap.put("digit", seededMethods.getRandomizer().getInt(0, 10));
         hashMap.put("uniqueNumbers", android.text.TextUtils.join(", ", seededMethods.getRandomizer().getIntegers(3, 1000, true)));
         hashMap.put("uniqueIdentifier", UUID.nameUUIDFromBytes(uniqueSeed.getBytes()).toString());
         hashMap.put("daysBetweenDates", Long.toString(Methods.getDifferenceInDays(date, formattedDate)));
         hashMap.put("timeBetweenDates", methods.getTimeBetweenDates(date, formattedDate));
         seededMethods.getRandomizer().bindSeed(null); //Remove seed to Randomizer
 
-        prediction = String.format(getString(R.string.prediction),
+        prediction = getString(R.string.prediction,
                 Methods.ZERO_WIDTH_SPACE + hashMap.get("gibberish").toString() + Methods.ZERO_WIDTH_SPACE,
                 hashMap.get("divination").toString(),
                 hashMap.get("fortuneNumbers").toString(),
                 hashMap.get("emotions").toString(),
+                hashMap.get("worstTime").toString(),
+                hashMap.get("bestTime").toString(),
                 hashMap.get("characteristic").toString(),
                 hashMap.get("chainOfEvents").toString(),
                 hashMap.get("influence").toString(),
@@ -1501,11 +1498,13 @@ public class MainActivity extends MenuActivity {
                 hashMap.get("timeBetweenDates").toString()
         );
 
-        clipboardPrediction = String.format(getString(R.string.prediction),
+        clipboardPrediction = getString(R.string.prediction,
                 hashMap.get("fortuneCookie").toString(),
                 hashMap.get("divination").toString(),
                 hashMap.get("fortuneNumbers").toString(),
                 hashMap.get("emotions").toString(),
+                hashMap.get("worstTime").toString(),
+                hashMap.get("bestTime").toString(),
                 hashMap.get("characteristic").toString(),
                 hashMap.get("chainOfEvents").toString(),
                 hashMap.get("influence").toString(),
@@ -1538,7 +1537,7 @@ public class MainActivity extends MenuActivity {
         prediction = prediction.replaceFirst("꘍.?", unrevealedFortuneCookie);
         clipboardPrediction = Methods.fromHtml(clipboardPrediction).toString();
         clipboardPrediction = clipboardPrediction.replaceAll("(?m)꘍^.*(?:\\r?\\n)?", "");
-        clipboardPrediction = String.format(getString(R.string.enquiry_information), formattedDate, name, methods.swapFirstToLowercase(sexArray[sex]), date) + System.getProperty("line.separator") + System.getProperty("line.separator") + clipboardPrediction;
+        clipboardPrediction = getString(R.string.enquiry_information, formattedDate, name, methods.swapFirstToLowercase(sexArray[sex]), date) + System.getProperty("line.separator") + System.getProperty("line.separator") + clipboardPrediction;
         data[0] = prediction;
         data[1] = clipboardPrediction;
         data[2] = formattedName;
@@ -1550,23 +1549,23 @@ public class MainActivity extends MenuActivity {
         return data;
     }
 
-    private void setTextAsLinkified(TextView textView, String s) {
+    private void setLinksToText(TextView textView, String s) {
         CharSequence sequence = Methods.fromHtml(s);
-        SpannableStringBuilder stringBuilder = new SpannableStringBuilder(sequence);
-        URLSpan[] urls = stringBuilder.getSpans(0, sequence.length(), URLSpan.class);
+        SpannableStringBuilder ssb = new SpannableStringBuilder(sequence);
+        URLSpan[] urls = ssb.getSpans(0, sequence.length(), URLSpan.class);
 
         for (URLSpan span : urls) {
-            makeLinkClickable(stringBuilder, span);
+            makeLinkClickable(ssb, span);
         }
-        textView.setText(stringBuilder, TextView.BufferType.SPANNABLE);
+        textView.setText(ssb, TextView.BufferType.SPANNABLE);
         textView.setClickable(true);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-    private void makeLinkClickable(SpannableStringBuilder stringBuilder, final URLSpan span) {
-        int start = stringBuilder.getSpanStart(span);
-        int end = stringBuilder.getSpanEnd(span);
-        int flags = stringBuilder.getSpanFlags(span);
+    private void makeLinkClickable(SpannableStringBuilder ssb, final URLSpan span) {
+        int start = ssb.getSpanStart(span);
+        int end = ssb.getSpanEnd(span);
+        int flags = ssb.getSpanFlags(span);
 
         ClickableSpan clickable = new ClickableSpan() {
             public void onClick(@NonNull View view) {
@@ -1574,12 +1573,12 @@ public class MainActivity extends MenuActivity {
 
                 if (link.equals("prediction")) {
                     methods.playSound("crack");
-                    setTextAsLinkified(predictionView, data[0].toString().replaceFirst(unrevealedFortuneCookie + "(\r\n|\r|\n)?\\s*(<br>)?" + Methods.ZERO_WIDTH_SPACE + ".*" + Methods.ZERO_WIDTH_SPACE, fortuneCookie));
+                    setLinksToText(predictionView, data[0].toString().replaceFirst(unrevealedFortuneCookie + "(\r\n|\r|\n)?\\s*(<br>)?" + Methods.ZERO_WIDTH_SPACE + ".*" + Methods.ZERO_WIDTH_SPACE, fortuneCookie));
                 }
             }
         };
-        stringBuilder.setSpan(clickable, start, end, flags);
-        stringBuilder.removeSpan(span);
+        ssb.setSpan(clickable, start, end, flags);
+        ssb.removeSpan(span);
     }
 
     private void calculateCompatibility() {
@@ -1588,7 +1587,7 @@ public class MainActivity extends MenuActivity {
 
         if (!initialNameText.isEmpty() && !finalNameText.isEmpty()) {
             if (initialNameText.toLowerCase().equals(finalNameText.toLowerCase())) {
-                compatibility.setText(Methods.fromHtml(String.format(getString(R.string.compatibility_result), "<font color=#6666FF>" + 100 + "%</font>")));
+                compatibility.setText(Methods.fromHtml(getString(R.string.compatibility_result, "<font color=#6666FF>" + 100 + "%</font>")));
                 progressBar.setProgress(100);
             } else {
                 String formattedText, temp, tempName = initialNameText, tempOtherName = finalNameText;
@@ -1602,7 +1601,7 @@ public class MainActivity extends MenuActivity {
                 long seed = Methods.getSeed(tempName + System.getProperty("line.separator") + tempOtherName);
                 randomizer.bindSeed(seed);
 
-                if ((compatibilityPoints = randomizer.getInt(101, 0)) == 0)
+                if ((compatibilityPoints = randomizer.getInt(0, 101)) == 0)
                     formattedText = "<font color=#7F79D1>" + compatibilityPoints + "%</font>";
                 else if (compatibilityPoints < 25)
                     formattedText = "<font color=#F94C4C>" + compatibilityPoints + "%</font>";
@@ -1615,11 +1614,11 @@ public class MainActivity extends MenuActivity {
                 else
                     formattedText = "<font color=#6666FF>" + compatibilityPoints + "%</font>";
                 randomizer.bindSeed(null);
-                compatibility.setText(Methods.fromHtml(String.format(getString(R.string.compatibility_result), formattedText)));
+                compatibility.setText(Methods.fromHtml(getString(R.string.compatibility_result, formattedText)));
                 progressBar.setProgress(compatibilityPoints);
             }
         } else {
-            compatibility.setText(Methods.fromHtml(String.format(getString(R.string.compatibility_result), "<font color=#C0FF2B>?</font>")));
+            compatibility.setText(Methods.fromHtml(getString(R.string.compatibility_result, "<font color=#C0FF2B>?</font>")));
             progressBar.setProgress(0);
         }
     }

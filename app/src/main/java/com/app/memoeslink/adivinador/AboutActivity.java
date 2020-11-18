@@ -1,7 +1,6 @@
 package com.app.memoeslink.adivinador;
 
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.method.LinkMovementMethod;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -15,7 +14,6 @@ public class AboutActivity extends CommonActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         content = findViewById(R.id.about_content);
         content.setClickable(true);
         content.setText(Methods.fromHtml(getString(R.string.about)));
@@ -33,7 +31,7 @@ public class AboutActivity extends CommonActivity {
     }
 
     private void setScreenVisibility() {
-        if (defaultPreferences.getBoolean("preference_activeScreen", false))
+        if (defaultPreferences.getBoolean("preference_activeScreen"))
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         else
             getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

@@ -1,9 +1,7 @@
 package com.app.memoeslink.adivinador;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
@@ -17,10 +15,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.LocalDate;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,11 +27,11 @@ public class InputActivity extends CommonActivity {
     private RadioGroup sex;
     private CustomDatePicker date;
     private Button button;
-    private int[] currentDate;
-    private ArrayList<String> nameList;
-    private ArrayList<Enquiry> enquiryList;
-    private Calendar maxDate;
-    private Calendar minDate;
+    private SimpleDate currentDate;
+    private ArrayList<String> names;
+    private ArrayList<Enquiry> enquiries;
+    private LocalDate maxDate;
+    private LocalDate minDate;
     private Methods methods;
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
 
@@ -41,66 +39,58 @@ public class InputActivity extends CommonActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
-        preferences = this.getSharedPreferences(Methods.PREFERENCES, Activity.MODE_PRIVATE);
-        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         button = findViewById(R.id.input_back_button);
         name = findViewById(R.id.input_name_field);
         sex = findViewById(R.id.input_sex_radio);
         date = findViewById(R.id.input_date_picker);
-        nameList = new ArrayList<>();
-        enquiryList = new ArrayList<>();
+        names = new ArrayList<>();
+        enquiries = new ArrayList<>();
         methods = new Methods(InputActivity.this);
         currentDate = Methods.getCurrentDate();
 
         //Set max. and min. date
-        maxDate = Calendar.getInstance();
-        maxDate.set(Calendar.DAY_OF_MONTH, currentDate[2]);
-        maxDate.set(Calendar.MONTH, currentDate[1]);
-        maxDate.set(Calendar.YEAR, currentDate[0] + 200);
-        date.setMaxDate(maxDate.getTimeInMillis());
+        maxDate = new LocalDate(currentDate.getYear() + 200, currentDate.getMonth(), currentDate.getDay());
+        date.setMaxDate(maxDate.toDate().getTime());
 
-        minDate = Calendar.getInstance();
-        minDate.set(Calendar.DAY_OF_MONTH, currentDate[2]);
-        minDate.set(Calendar.MONTH, currentDate[1]);
-        minDate.set(Calendar.YEAR, currentDate[0] - 200);
-        date.setMinDate(minDate.getTimeInMillis());
+        minDate = new LocalDate(currentDate.getYear() - 200, currentDate.getMonth(), currentDate.getDay());
+        date.setMinDate(minDate.toDate().getTime());
 
         //Initialize values
         if (preferences.contains("temp_name"))
-            name.setText(preferences.getString("temp_name", ""));
+            name.setText(preferences.getString("temp_name"));
 
         if (!preferences.contains("temp_sex"))
-            preferences.edit().putInt("temp_sex", Methods.DEFAULT_SEX).commit();
+            preferences.putInt("temp_sex", Entity.DEFAULT_SEX);
         else
-            ((RadioButton) sex.getChildAt(preferences.getInt("temp_sex", Methods.DEFAULT_SEX))).setChecked(true);
+            ((RadioButton) sex.getChildAt(preferences.getInt("temp_sex", Entity.DEFAULT_SEX))).setChecked(true);
 
         if (preferences.contains("temp_date_year")) {
-            if (Math.abs(Methods.getYear() - preferences.getInt("temp_date_year", Methods.DEFAULT_YEAR)) >= 200)
-                currentDate[0] = Methods.getYear();
+            if (Math.abs(Methods.getYear() - preferences.getInt("temp_date_year", SimpleDate.DEFAULT_YEAR)) >= 200)
+                currentDate.setYear(Methods.getYear());
             else
-                currentDate[0] = preferences.getInt("temp_date_year", Methods.DEFAULT_YEAR);
+                currentDate.setYear(preferences.getInt("temp_date_year", SimpleDate.DEFAULT_YEAR));
         } else
-            preferences.edit().putInt("temp_date_year", currentDate[0]).commit();
+            preferences.putInt("temp_date_year", currentDate.getYear());
 
         if (preferences.contains("temp_date_month"))
-            currentDate[1] = preferences.getInt("temp_date_month", Methods.DEFAULT_MONTH);
+            currentDate.setMonth(preferences.getInt("temp_date_month", SimpleDate.DEFAULT_MONTH));
         else
-            preferences.edit().putInt("temp_date_month", currentDate[1]).commit();
+            preferences.putInt("temp_date_month", currentDate.getMonth());
 
         if (preferences.contains("temp_date_day"))
-            currentDate[2] = preferences.getInt("temp_date_day", Methods.DEFAULT_DAY);
+            currentDate.setDay(preferences.getInt("temp_date_day", SimpleDate.DEFAULT_DAY));
         else
-            preferences.edit().putInt("temp_date_day", currentDate[2]).commit();
+            preferences.putInt("temp_date_day", currentDate.getDay());
 
         //Disable form if app is retrieving prediction
-        if (preferences.getBoolean("temp_busy", false))
+        if (preferences.getBoolean("temp_busy"))
             toggleViews(false);
 
         //Set listeners
-        date.init(currentDate[0], currentDate[1], currentDate[2], (datePicker, year, month, dayOfMonth) -> {
-            preferences.edit().putInt("temp_date_year", year).commit();
-            preferences.edit().putInt("temp_date_month", month).commit();
-            preferences.edit().putInt("temp_date_day", dayOfMonth).commit();
+        date.init(currentDate.getYear(), currentDate.getMonth() - 1, currentDate.getDay(), (datePicker, year, month, dayOfMonth) -> {
+            preferences.putInt("temp_date_year", year);
+            preferences.putInt("temp_date_month", month + 1);
+            preferences.putInt("temp_date_day", dayOfMonth);
         });
 
         name.addTextChangedListener(new TextWatcher() {
@@ -116,9 +106,9 @@ public class InputActivity extends CommonActivity {
                 s = Methods.fromHtml(s).toString();
 
                 if (!s.isEmpty())
-                    preferences.edit().putString("temp_name", s).commit();
+                    preferences.putString("temp_name", s);
                 else
-                    preferences.edit().remove("temp_name").commit();
+                    preferences.remove("temp_name");
             }
 
             @Override
@@ -143,7 +133,7 @@ public class InputActivity extends CommonActivity {
                     index = 0;
                     break;
             }
-            preferences.edit().putInt("temp_sex", index).commit();
+            preferences.putInt("temp_sex", index);
         });
 
         button.setOnClickListener(view -> finish());
@@ -160,21 +150,21 @@ public class InputActivity extends CommonActivity {
         super.onStart();
 
         //Get stored names
-        if (preferences.contains("nameList") && preferences.getStringSet("nameList", null).size() > 0)
-            nameList = new ArrayList(preferences.getStringSet("nameList", null));
+        if (preferences.getStringSet("nameList").size() > 0)
+            names = new ArrayList(preferences.getStringSet("nameList"));
 
-        if (nameList.size() > 0) {
-            String[] names = nameList.toArray(new String[0]);
+        if (names.size() > 0) {
+            String[] names = this.names.toArray(new String[0]);
             name.setAdapter(new ArrayAdapter<>(InputActivity.this, android.R.layout.simple_dropdown_item_1line, names));
         }
 
         //Get stored enquiries
-        if (preferences.getString("enquiryList", null) != null) {
+        if (StringUtils.isNotBlank(preferences.getString("enquiryList"))) {
             Gson gson = new Gson();
-            String json = preferences.getString("enquiryList", null);
+            String json = preferences.getString("enquiryList");
             Type type = new TypeToken<ArrayList<Enquiry>>() {
             }.getType();
-            enquiryList = gson.fromJson(json, type);
+            enquiries = gson.fromJson(json, type);
         }
     }
 
@@ -184,33 +174,42 @@ public class InputActivity extends CommonActivity {
 
         if (defaultPreferences.getBoolean("preference_saveNames", true)) {
             if (!name.isEmpty()) {
-                if (!nameList.contains(name)) {
-                    if (nameList.size() >= 200)
-                        nameList.remove(0);
-                    nameList.add(name);
+                if (!names.contains(name)) {
+                    if (names.size() >= 200)
+                        names.remove(0);
+                    names.add(name);
                     Set<String> set = new HashSet<>();
-                    set.addAll(nameList);
-                    preferences.edit().putStringSet("nameList", set).apply();
+                    set.addAll(names);
+                    preferences.putStringSetSafely("nameList", set);
                 }
             }
         }
 
         if (defaultPreferences.getBoolean("preference_saveEnquiries", true)) {
             if (!name.isEmpty()) {
-                Enquiry enquiry = new Enquiry(
-                        preferences.getString("temp_name", ""),
+                Person person = new Person(new Entity(
+                        0,
+                        preferences.getInt("temp_sex", Entity.DEFAULT_SEX),
+                        preferences.getString("temp_name"),
                         "",
-                        preferences.getInt("temp_sex", Methods.DEFAULT_SEX),
-                        preferences.getInt("temp_date_year", Methods.DEFAULT_YEAR),
-                        preferences.getInt("temp_date_month", Methods.DEFAULT_MONTH),
-                        preferences.getInt("temp_date_day", Methods.DEFAULT_DAY),
+                        "",
+                        NameEnum.EMPTY
+                ));
+                person.setBirthdate(new SimpleDate(
+                        preferences.getInt("temp_date_year", SimpleDate.DEFAULT_YEAR),
+                        preferences.getInt("temp_date_month", SimpleDate.DEFAULT_MONTH),
+                        preferences.getInt("temp_date_day", SimpleDate.DEFAULT_DAY)
+                ));
+
+                Enquiry enquiry = new Enquiry(
+                        person,
                         true,
-                        null
+                        false
                 );
-                preferences.edit().putString("temp_formatted_name", "").apply();
-                preferences.edit().putBoolean("temp_user", true).apply();
-                preferences.edit().putBoolean("temp_anonymous", false).apply();
-                methods.saveEnquiry(enquiryList, enquiry);
+                preferences.putString("temp_formatted_name", enquiry.getFormattedDescriptor());
+                preferences.putBoolean("temp_user", true);
+                preferences.putBoolean("temp_anonymous", false);
+                methods.saveEnquiry(enquiries, enquiry);
             }
         }
         super.onDestroy();

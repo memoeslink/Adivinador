@@ -1,111 +1,51 @@
 package com.app.memoeslink.adivinador;
 
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.Date;
-
 /**
  * Created by Memoeslink on 13/08/2017.
  */
 
 public class Person extends Entity {
-    private Entity entity;
-    private String forename;
-    private String lastName;
     private String honoraryTitle;
     private String japaneseHonorific;
-    private String suffix;
     private String postNominalLetters;
     private String nickname;
     private String username;
     private String address;
     private String email;
-    private Date birthdate;
+    private SimpleDate birthdate;
 
     public Person() {
-        entity = new Entity();
-        forename = "";
-        lastName = "";
+        super();
         honoraryTitle = "";
         japaneseHonorific = "";
-        suffix = "";
         postNominalLetters = "";
         nickname = "";
         username = "";
         address = "";
         email = "";
-        birthdate = null;
+        birthdate = new SimpleDate();
     }
 
-    public Person(Entity entity, String forename, String lastName, String honoraryTitle, String japaneseHonorific, String suffix, String postNominalLetters, String nickname, String username, String address, String email, Date birthdate) {
-        this.entity = entity;
-        this.forename = forename;
-        this.lastName = lastName;
+    public Person(Entity entity) {
+        this();
+        this.id = entity.id;
+        this.sex = entity.sex;
+        this.forename = entity.forename;
+        this.surname = entity.surname;
+        this.generationalTitle = entity.generationalTitle;
+        this.nameType = entity.nameType;
+    }
+
+    public Person(int id, int sex, String forename, String surname, String generationalTitle, NameEnum nameType, String honoraryTitle, String japaneseHonorific, String postNominalLetters, String nickname, String username, String address, String email, SimpleDate birthdate) {
+        super(id, sex, forename, surname, generationalTitle, nameType);
         this.honoraryTitle = honoraryTitle;
         this.japaneseHonorific = japaneseHonorific;
-        this.suffix = suffix;
         this.postNominalLetters = postNominalLetters;
         this.nickname = nickname;
         this.username = username;
         this.address = address;
         this.email = email;
         this.birthdate = birthdate;
-    }
-
-    @Override
-    public int getId() {
-        return entity.getId();
-    }
-
-    @Override
-    public void setId(int id) {
-        this.entity.setId(id);
-    }
-
-    @Override
-    public int getSex() {
-        return entity.getSex();
-    }
-
-    @Override
-    public void setSex(int sex) {
-        this.entity.setSex(sex);
-    }
-
-    @Override
-    public String[] getPrimitiveName() {
-        return entity.getPrimitiveName();
-    }
-
-    @Override
-    public void setNameType(NameEnum nameType) {
-        this.entity.setNameType(nameType);
-    }
-
-    @Override
-    public NameEnum getNameType() {
-        return entity.getNameType();
-    }
-
-    @Override
-    public void setPrimitiveName(String[] primitiveName) {
-        this.entity.setPrimitiveName(primitiveName);
-    }
-
-    public String getForename() {
-        return forename;
-    }
-
-    public void setForename(String forename) {
-        this.forename = forename;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getHonoraryTitle() {
@@ -122,14 +62,6 @@ public class Person extends Entity {
 
     public void setJapaneseHonorific(String japaneseHonorific) {
         this.japaneseHonorific = japaneseHonorific;
-    }
-
-    public String getSuffix() {
-        return suffix;
-    }
-
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
     }
 
     public String getPostNominalLetters() {
@@ -172,15 +104,19 @@ public class Person extends Entity {
         this.email = email;
     }
 
-    public Date getBirthdate() {
+    public SimpleDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(SimpleDate birthdate) {
         this.birthdate = birthdate;
     }
 
-    public String getSimpleName() {
-        return StringUtils.trimToEmpty(forename + (StringUtils.isNotBlank(forename) && StringUtils.isNotBlank(lastName) ? " " : "") + lastName);
+    public String getFormattedBirthday() {
+        return birthdate.getYear() + "/" + String.format("%02d", birthdate.getMonth()) + "/" + String.format("%02d", birthdate.getDay());
+    }
+
+    public String getFormattedUsername() {
+        return Methods.formatText(username, "b,tt");
     }
 }

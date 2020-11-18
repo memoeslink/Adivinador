@@ -5,98 +5,51 @@ package com.app.memoeslink.adivinador;
  */
 
 public class Enquiry {
-    private String name;
-    private String formattedName;
-    private int sex;
-    private int year;
-    private int month;
-    private int day;
-    private boolean user;
-    private Boolean anonymous;
+    private Person person;
+    private boolean userRequested;
+    private boolean anonymous;
 
     public Enquiry() {
-        name = "?";
-        formattedName = "";
-        sex = -1;
-        year = 2000;
-        month = 0;
-        day = 1;
-        user = true;
-        anonymous = null;
+        person = null;
+        userRequested = true;
+        anonymous = false;
     }
 
-    public Enquiry(String name, String formattedName, int sex, int year, int month, int day, boolean user, Boolean anonymous) {
-        this.name = name;
-        this.formattedName = formattedName;
-        this.sex = sex;
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.user = user;
+    public Enquiry(Person person, boolean userRequested, Boolean anonymous) {
+        this.person = person;
+        this.userRequested = userRequested;
         this.anonymous = anonymous;
     }
 
-    public String getName() {
-        return name;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
-    public String getFormattedName() {
-        return formattedName;
+    public boolean isUserRequested() {
+        return userRequested;
     }
 
-    public void setFormattedName(String formattedName) {
-        this.formattedName = formattedName;
+    public void setUserRequested(boolean userRequested) {
+        this.userRequested = userRequested;
     }
 
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public int getDay() {
-        return day;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
-    }
-
-    public boolean isUser() {
-        return user;
-    }
-
-    public void setUser(boolean user) {
-        this.user = user;
-    }
-
-    public Boolean isAnonymous() {
+    public boolean isAnonymous() {
         return anonymous;
     }
 
-    public void setAnonymous(Boolean anonymous) {
+    public void setAnonymous(boolean anonymous) {
         this.anonymous = anonymous;
+    }
+
+    public String getDescriptor() {
+        return anonymous ? person.getUsername() : person.getFullName();
+    }
+
+    public String getFormattedDescriptor() {
+        return anonymous ? person.getFormattedUsername() : person.getFormattedFullName();
     }
 }

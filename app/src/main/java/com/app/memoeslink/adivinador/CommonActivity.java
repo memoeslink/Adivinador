@@ -1,11 +1,13 @@
 package com.app.memoeslink.adivinador;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.ContextWrapper;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.os.LocaleList;
 import android.speech.tts.TextToSpeech;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -17,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * Created by Memoeslink on 10/08/2017.
@@ -29,8 +32,8 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     HashMap<String, String> map;
     Bundle bundle;
     TextToSpeech tts;
-    SharedPreferences preferences;
-    SharedPreferences defaultPreferences;
+    SharedPreferencesHelper preferences;
+    SharedPreferencesHelper defaultPreferences;
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -40,20 +43,21 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     public void onCreate(Bundle savedInstanceState) {
         setTheme(Methods.getTheme(this));
         super.onCreate(savedInstanceState);
+        preferences = new SharedPreferencesHelper(this, SharedPreferencesHelper.PREFERENCES);
+        defaultPreferences = new SharedPreferencesHelper(this);
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         map = new HashMap<>();
         map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "UniqueID");
         bundle = new Bundle();
         bundle.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "");
         tts = new TextToSpeech(this, this);
-        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setCustomActionBar(); //Set ActionBar aspect
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Methods.setScreenVisibility(CommonActivity.this, defaultPreferences.getBoolean("preference_activeScreen", false));
+        Methods.setScreenVisibility(CommonActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
     }
 
     @Override
@@ -64,7 +68,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if (defaultPreferences.getBoolean("preference_audioEnabled", false))
+                    if (defaultPreferences.getBoolean("preference_audioEnabled"))
                         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
                     else
                         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
@@ -72,7 +76,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if (defaultPreferences.getBoolean("preference_audioEnabled", false))
+                    if (defaultPreferences.getBoolean("preference_audioEnabled"))
                         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
                     else
                         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
@@ -95,14 +99,13 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
 
     @Override
     protected void attachBaseContext(Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            context = Methods.changeLanguage(context);
+        context = wrap(context);
         super.attachBaseContext(context);
     }
 
     @SuppressWarnings("deprecation")
     void talk(String text) {
-        if (available && defaultPreferences.getBoolean("preference_audioEnabled", false) && defaultPreferences.getBoolean("preference_voiceEnabled", false)) {
+        if (available && defaultPreferences.getBoolean("preference_audioEnabled") && defaultPreferences.getBoolean("preference_voiceEnabled")) {
             lastText = text;
 
             if (tts.isSpeaking())
@@ -134,5 +137,32 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
             actionBar.setIcon(android.R.color.transparent);
             actionBar.setCustomView(v, params);
         }
+    }
+
+    public ContextWrapper wrap(Context context) {
+        SharedPreferencesHelper preferences = new SharedPreferencesHelper(context);
+        String language = LanguageHelper.getLanguage(preferences);
+
+        if (language != null && !language.isEmpty()) {
+            Locale locale = new Locale(language);
+            Locale.setDefault(locale);
+            Resources res = context.getResources();
+            Configuration config = res.getConfiguration();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                config.setLocale(locale);
+                LocaleList localeList = new LocaleList(locale);
+                LocaleList.setDefault(localeList);
+                config.setLocales(localeList);
+                context = context.createConfigurationContext(config);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                config.setLocale(locale);
+                context = context.createConfigurationContext(config);
+            } else {
+                config.locale = locale;
+                res.updateConfiguration(config, res.getDisplayMetrics());
+            }
+        }
+        return new ContextWrapper(context);
     }
 }

@@ -1,12 +1,15 @@
 package com.app.memoeslink.adivinador;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Memoeslink on 04/04/2018.
@@ -37,7 +40,7 @@ public class Randomizer {
         return seed;
     }
 
-    public int getInt(int n, int start) {
+    public int getInt(int start, int n) {
         int value;
         boolean negative = false;
 
@@ -115,7 +118,15 @@ public class Randomizer {
         return numbers;
     }
 
-    public Date getDate() {
-        return new Date(Math.abs(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(getInt(36501, 0))));
+    public SimpleDate getDate() {
+        long rangeStart = Timestamp.valueOf("1900-01-01 00:00:00").getTime();
+        long rangeEnd = Timestamp.valueOf(DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss").print(new LocalDateTime())).getTime();
+        long difference = rangeEnd - rangeStart + 1;
+        DateTime dateTime = new DateTime(rangeStart + (long) (Math.random() * difference));
+        return new SimpleDate(dateTime.getYear(), dateTime.getMonthOfYear(), dateTime.getDayOfMonth());
+    }
+
+    public SimpleTime getTime() {
+        return new SimpleTime(getInt(0, 24), getInt(0, 60), getInt(0, 60));
     }
 }

@@ -1,11 +1,9 @@
 package com.app.memoeslink.adivinador;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.view.KeyEvent;
 
@@ -19,25 +17,20 @@ import com.takisoft.preferencex.PreferenceFragmentCompat;
  */
 
 public class SettingsActivity extends CommonActivity implements TextToSpeech.OnInitListener {
-    private boolean available;
+    private boolean speechAvailable;
     private AlertDialog dialog;
     private AudioManager audioManager;
     private TextToSpeech tts;
-    private SharedPreferences preferences;
-    private SharedPreferences defaultPreferences;
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
     private FortuneTeller methods;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setTheme(Methods.getTheme(this));
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         tts = new TextToSpeech(this, this);
-        preferences = this.getSharedPreferences(Methods.PREFERENCES, Activity.MODE_PRIVATE);
-        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         methods = new FortuneTeller(SettingsActivity.this);
 
         //Define dialog to notify about application restart
@@ -52,15 +45,15 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
         //Set listeners
         listener = (prefs, key) -> {
             if (key.equals("preference_activeScreen"))
-                Methods.setScreenVisibility(SettingsActivity.this, defaultPreferences.getBoolean("preference_activeScreen", false));
+                Methods.setScreenVisibility(SettingsActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
 
             if (key.equals("preference_adsEnabled")) {
-                if (defaultPreferences.getBoolean("preference_adsEnabled", false))
-                    preferences.edit().putBoolean("temp_restartAds", true).commit();
+                if (defaultPreferences.getBoolean("preference_adsEnabled"))
+                    preferences.putBoolean("temp_restartAds", true);
             }
 
             if (key.equals("preference_fortuneTellerAspect"))
-                preferences.edit().putBoolean("temp_changeFortuneTeller", true).commit();
+                preferences.putBoolean("temp_changeFortuneTeller", true);
 
             if (key.equals("preference_language") || key.equals("preference_theme")) {
                 try {
@@ -72,19 +65,19 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
 
             if (key.equals("preference_saveNames")) {
                 if (!defaultPreferences.getBoolean("preference_saveNames", true))
-                    preferences.edit().remove("nameList").commit();
+                    preferences.remove("nameList");
             }
 
             if (key.equals("preference_saveEnquiries")) {
                 if (!defaultPreferences.getBoolean("preference_saveEnquiries", true))
-                    preferences.edit().remove("enquiryList").commit();
+                    preferences.remove("enquiryList");
             }
 
             if (key.equals("preference_seed"))
                 methods.setRandomizer();
 
             if (key.equals("preference_stickHeader"))
-                preferences.edit().putBoolean("temp_restartActivity", true).commit();
+                preferences.putBoolean("temp_restartActivity", true);
         };
         defaultPreferences.registerOnSharedPreferenceChangeListener(listener);
     }
@@ -92,7 +85,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
     @Override
     public void onResume() {
         super.onResume();
-        Methods.setScreenVisibility(SettingsActivity.this, defaultPreferences.getBoolean("preference_activeScreen", false));
+        Methods.setScreenVisibility(SettingsActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
     }
 
     @Override
@@ -109,7 +102,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if (defaultPreferences.getBoolean("preference_audioEnabled", false))
+                    if (defaultPreferences.getBoolean("preference_audioEnabled"))
                         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
                     else
                         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
@@ -117,7 +110,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if (defaultPreferences.getBoolean("preference_audioEnabled", false))
+                    if (defaultPreferences.getBoolean("preference_audioEnabled"))
                         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
                     else
                         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
@@ -130,10 +123,10 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
 
     @Override
     public void onInit(int i) {
-        if (i == TextToSpeech.SUCCESS) {
-            available = Methods.setTTS(tts, defaultPreferences.getString("preference_language", "es"));
-        } else {
-            available = false;
+        if (i == TextToSpeech.SUCCESS)
+            speechAvailable = Methods.setTTS(tts, defaultPreferences.getString("preference_language", "es"));
+        else {
+            speechAvailable = false;
             Methods.showSimpleToast(SettingsActivity.this, getString(R.string.toast_unavailable_voices));
         }
     }

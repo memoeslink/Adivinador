@@ -14,8 +14,9 @@ import java.util.HashMap;
  */
 
 class DatabaseConnection extends SQLiteAssetHelper {
-    public static final String DATABASE_NAME = "words_upgrade_43-44.sqlite";
     public static final int DATABASE_VERSION = 44;
+    public static final String DATABASE_NAME = "words_upgrade_43-44.sqlite";
+    public static final String DATABASE_NAME_FORMAT = "words%s.sqlite";
     private static final String ID_PREFIX = "ID";
     private static final String TABLE_ENGLISH_ABSTRACT_NOUNS = "EnglishAbstractNouns";
     private static final String TABLE_ENGLISH_ACTIONS = "EnglishActions";
@@ -77,17 +78,12 @@ class DatabaseConnection extends SQLiteAssetHelper {
             return value;
     }
 
-    private Integer getIntValue(String key) {
+    private int getIntValue(String key) {
         Integer value = hashMap.get(key);
 
         if (value != null)
-            return hashMap.get(key);
-        else {
-            if (hashMap.containsKey(key))
-                return -1;
-            else
-                return -1;
-        }
+            return value;
+        return -1;
     }
 
     @SuppressWarnings({"ReturnInsideFinallyBlock", "finally"})

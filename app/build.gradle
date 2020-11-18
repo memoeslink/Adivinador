@@ -7,8 +7,8 @@ android {
         applicationId "com.app.memoeslink.adivinador"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 104
-        versionName "1.4.2"
+        versionCode 105
+        versionName "1.5.0"
         resConfigs("es", "en")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "Adivinador-$versionName")
@@ -34,6 +34,18 @@ android {
     lintOptions {
         disable 'MissingTranslation'
     }
+    packagingOptions {
+        pickFirst 'draftv3/schema'
+        pickFirst 'draftv4/schema'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+    }
 }
 
 dependencies {
@@ -41,17 +53,22 @@ dependencies {
     androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation group: 'io.github.encryptorcode', name: 'pluralize', version: '1.0.0'
     implementation 'org.apache.commons:commons-text:1.8'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.11.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
+    implementation 'com.networknt:json-schema-validator:1.0.43'
+    implementation 'io.github.encryptorcode:pluralize:1.0.0'
     implementation 'com.takisoft.preferencex:preferencex:1.1.0'
     implementation 'com.github.jinatonic.confetti:confetti:1.1.2'
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
     implementation 'me.zhanghai.android.materialprogressbar:library:1.6.1'
     implementation 'org.sufficientlysecure:donations:2.6'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'net.danlew:android.joda:2.10.6.1'
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.browser:browser:1.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
@@ -59,6 +76,6 @@ dependencies {
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'com.google.android.gms:play-services-ads:19.1.0'
+    implementation 'com.google.android.gms:play-services-ads:19.4.0'
     testImplementation 'junit:junit:4.12'
 }

@@ -1,0 +1,100 @@
+{
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "anonymous": {
+          "type": "boolean"
+        },
+        "person": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "honoraryTitle": {
+              "type": "string"
+            },
+            "japaneseHonorific": {
+              "type": "string"
+            },
+            "nickname": {
+              "type": "string"
+            },
+            "postNominalLetters": {
+              "type": "string"
+            },
+            "simpleBirthdate": {
+              "type": "object",
+              "properties": {
+                "day": {
+                  "type": "integer"
+                },
+                "month": {
+                  "type": "integer"
+                },
+                "year": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "day",
+                "month",
+                "year"
+              ]
+            },
+            "username": {
+              "type": "string"
+            },
+            "forename": {
+              "type": "string"
+            },
+            "generationalTitle": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "nameType": {
+              "type": "string"
+            },
+            "sex": {
+              "type": "integer"
+            },
+            "surname": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "address",
+            "email",
+            "honoraryTitle",
+            "japaneseHonorific",
+            "nickname",
+            "postNominalLetters",
+            "simpleBirthdate",
+            "username",
+            "forename",
+            "generationalTitle",
+            "id",
+            "nameType",
+            "sex",
+            "surname"
+          ]
+        },
+        "userRequested": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "anonymous",
+        "person",
+        "userRequested"
+      ]
+    }
+  ]
+}

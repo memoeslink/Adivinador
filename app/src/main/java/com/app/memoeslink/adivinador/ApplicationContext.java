@@ -1,10 +1,10 @@
 package com.app.memoeslink.adivinador;
 
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 
 import androidx.multidex.MultiDexApplication;
+
+import net.danlew.android.joda.JodaTimeAndroid;
 
 import java.io.File;
 
@@ -12,15 +12,17 @@ import java.io.File;
  * Created by Memoeslink on 11/05/2016.
  */
 public class ApplicationContext extends MultiDexApplication {
-    private SharedPreferences defaultPreferences;
+    private SharedPreferencesHelper preferences;
+    private SharedPreferencesHelper defaultPreferences;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        defaultPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        preferences = new SharedPreferencesHelper(this, SharedPreferencesHelper.PREFERENCES);
+        defaultPreferences = new SharedPreferencesHelper(this);
 
-        //Set language (this needs to be before any other method)
-        Methods.changeLanguage(ApplicationContext.this);
+        //Initialize libraries
+        JodaTimeAndroid.init(this);
 
         //Set preference default values
         PreferenceManager.setDefaultValues(ApplicationContext.this, R.xml.default_preferences, false);
@@ -29,35 +31,37 @@ public class ApplicationContext extends MultiDexApplication {
         deleteOldDatabases();
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Methods.changeLanguage(ApplicationContext.this);
+    public File getDatabaseTrace(int version) {
+        if (version >= 1) {
+            String databaseName;
+
+            if (version > 1)
+                databaseName = String.format(DatabaseConnection.DATABASE_NAME_FORMAT, "_upgrade_" + (version - 1) + "-" + version);
+            else
+                databaseName = String.format(DatabaseConnection.DATABASE_NAME_FORMAT, "");
+            File database = getDatabasePath(databaseName);
+
+            if (database.exists())
+                return database;
+            getDatabaseTrace(version - 1);
+        }
+        return null;
     }
 
     private File[] getDatabaseList() {
         try {
-            File database = null;
+            File database = getDatabaseTrace(DatabaseConnection.DATABASE_VERSION);
 
-            for (int n = DatabaseConnection.DATABASE_VERSION; n >= 1; n--) {
-                if (n == DatabaseConnection.DATABASE_VERSION)
-                    database = getDatabasePath(DatabaseConnection.DATABASE_NAME);
-                else if (n == 1)
-                    database = getDatabasePath(getString(R.string.default_database));
-                else
-                    database = getDatabasePath(String.format(getString(R.string.default_database_version), n - 1, n));
+            if (database != null) {
+                File directory = database.getParentFile();
+                System.out.println("Database directory: " + directory);
+                File[] files = directory.listFiles();
+                System.out.println("Number of files in database directory: " + files.length);
 
-                if (database.exists()) {
-                    File directory = database.getParentFile();
-                    System.out.println("Database directory: " + directory);
-                    File[] files = directory.listFiles();
-                    System.out.println("Number of files in database directory: " + files.length);
-
-                    for (int i = 0; i < files.length; i++) {
-                        System.out.println("Database (" + (i + 1) + "): " + files[i].getName());
-                    }
-                    return files;
+                for (int i = 0; i < files.length; i++) {
+                    System.out.println("Database (" + (i + 1) + "): " + files[i].getName());
                 }
+                return files;
             }
             System.out.println("There's not any database.");
             return null;
@@ -70,13 +74,13 @@ public class ApplicationContext extends MultiDexApplication {
         File[] files = getDatabaseList();
 
         if (files != null && files.length > 0) {
-            for (int n = 0; n < files.length; n++) {
-                if (!files[n].getName().equals(DatabaseConnection.DATABASE_NAME)) {
-                    if (files[n].exists()) {
-                        if (files[n].delete())
-                            System.out.println("Database was successfully deleted: " + files[n].toURI());
+            for (File file : files) {
+                if (!file.getName().equals(DatabaseConnection.DATABASE_NAME)) {
+                    if (file.exists()) {
+                        if (file.delete())
+                            System.out.println("Database was successfully deleted: " + file.toURI());
                         else
-                            System.out.println("Database couldn't be deleted: " + files[n].toURI());
+                            System.out.println("Database couldn't be deleted: " + file.toURI());
                     }
                 }
             }

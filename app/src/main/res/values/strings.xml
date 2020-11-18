@@ -3,7 +3,7 @@
     <string name="about">
         <![CDATA[
         <big><b>Adivinador</b></big>
-        <br><b>Versión: 1.4.2</b>
+        <br><b>Versión: 1.5.0</b>
         <br><br>2014-2018 Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
@@ -80,7 +80,7 @@
     <string name="common_last_names">Acosta¶ Acuña¶ Agüero¶ Aguilar¶ Aguilera¶ Aguirre¶ Alarcón¶ Almaguer¶ Alonso¶ Alvarado¶ Álvarez¶ Aravena¶ Araya¶ Arce¶ Arias¶ Ávila¶ Ayala¶ Báez¶ Barrios¶ Benítez¶ Bermúdez¶ Blanco¶ Blesa¶ Bravo¶ Brítez¶ Bustamante¶ Bustos¶ Caballero¶ Cabrera¶ Cáceres¶ Calvo¶ Cambil¶ Campos¶ Cano¶ Cárdenas¶ Cardozo¶ Carmona¶ Carrasco¶ Carrizo¶ Carvajal¶ Castillo¶ Castro¶ Cedeño¶ Chávez¶ Contreras¶ Córdoba¶ Coronel¶ Correa¶ Cortés¶ Crespo¶ Cruz¶ D\'aubuisson¶ de la Cruz¶ Delgado¶ Díaz¶ Díez¶ Domínguez¶ Donoso¶ Duarte¶ Durán¶ Escobar¶ Espínola¶ Espinosa¶ Espinoza¶ Esteban¶ Farías¶ Fernández¶ Ferreira¶ Ferrer¶ Ferreyra¶ Figueroa¶ Flores¶ Flórez¶ Franco¶ Fuentes¶ Galeano¶ Gallardo¶ Gallego¶ García¶ Garrido¶ Gil¶ Giménez¶ Godoy¶ Gómez¶ González¶ Guerrero¶ Gutiérrez¶ Guzmán¶ Henríquez¶ Hernández¶ Herrera¶ Herrero¶ Hidalgo¶ Huamán¶ Ibáñez¶ Iglesias¶ Inca¶ Jara¶ Jaramillo¶ Jiménez¶ Juárez¶ Lagos¶ Ledesma¶ Leguizamón¶ Leiva¶ León¶ López¶ Lorenzo¶ Lozano¶ Lucero¶ Luna¶ Maidana¶ Maldonado¶ Mamani¶ Mansilla¶ Marín¶ Márquez¶ Martín¶ Martínez¶ Medina¶ Mejía¶ Méndez¶ Mendoza¶ Miranda¶ Molina¶ Montenegro¶ Montero¶ Montoro¶ Mora¶ Morales¶ Moreno¶ Moya¶ Moyano¶ Muñoz¶ Navarrete¶ Navarro¶ Nieto¶ Núñez¶ Ojeda¶ Olivares¶ Olivera¶ Orellana¶ Ortega¶ Ortiz¶ Páez¶ Palma¶ Paredes¶ Parra¶ Pascual¶ Pastor¶ Paz¶ Peña¶ Peralta¶ Pereira¶ Pereyra¶ Pérez¶ Pineda¶ Pino¶ Pizarro¶ Poblete¶ Ponce¶ Prieto¶ Quiroga¶ Quispe¶ Ramírez¶ Ramos¶ Rey¶ Reyes¶ Ríos¶ Riquelme¶ Rivera¶ Rivero ¶ Rodríguez¶ Rojas¶ Roldán¶ Román¶ Romero¶ Rubio¶ Ruiz¶ Saavedra¶ Sáez¶ Salazar¶ Salinas¶ San Martín¶ Sánchez¶ Sandoval¶ Sanhueza¶ Santana¶ Santiago¶ Santos¶ Sanz¶ Sepúlveda¶ Serrano¶ Silva¶ Soler¶ Soria¶ Sosa¶ Soto¶ Suárez¶ Tapia¶ Toledo¶ Toro¶ Torres¶ Valdés¶ Valdez¶ Valenzuela¶ Vargas¶ Vásquez¶ Vázquez¶ Vega¶ Velasco¶ Velázquez¶ Venegas¶ Vera¶ Vergara¶ Vicente¶ Vidal¶ Villalba¶ Yáñez¶ Zambrano¶ Zúñiga</string>
     <string name="common_names">Aarón¶ Abdón¶ Abel¶ Abelardo¶ Abrahán¶ Absalón¶ Acacio¶ Adalberto¶ Adán¶ Adela¶ Adelaida¶ Adolfo¶ Adón¶ Adrián¶ Agustín¶ Aitor¶ Alba¶ Albert¶ Alberto¶ Albina¶ Alejandra¶ Alejandro¶ Alejo¶ Alfonso¶ Alfredo¶ Alicia¶ Alipio¶ Almudena¶ Alonso¶ Álvaro¶ Amadeo¶ Amaro¶ Ambrosio¶ Amelia¶ Amparo¶ Ana¶ Ananías¶ Anastasia¶ Anatolio¶ Andrea¶ Andrés¶ Ángel¶ Ángela¶ Ángeles¶ Aniano¶ Anna¶ Anselmo¶ Antero¶ Antonia¶ Antonio¶ Aquiles¶ Araceli¶ Aránzazu¶ Arcadio¶ Aresio¶ Ariadna¶ Aristides¶ Arnaldo¶ Artemio¶ Arturo¶ Ascensión¶ Asunción¶ Atanasio¶ Augusto¶ Áurea¶ Aurelia¶ Aureliano¶ Aurelio¶ Aurora¶ Azael¶ Baldomero¶ Balduino¶ Baltasar¶ Bárbara¶ Bartolomé¶ Basileo¶ Beatriz¶ Begoña¶ Belén¶ Beltrán¶ Benedicto¶ Benigno¶ Benito¶ Benjamín¶ Bernabé¶ Bernarda¶ Bernardo¶ Blanca¶ Blas¶ Bonifacio¶ Borja¶ Bruno¶ Calixto¶ Camilo¶ Cándida¶ Carina¶ Carlos¶ Carmelo¶ Carmen¶ Carolina¶ Casiano¶ Casimiro¶ Casio¶ Catalina¶ Cayetano¶ Cayo¶ Cecilia¶ Ceferino¶ Celia¶ Celina¶ Celso¶ César¶ Cesáreo¶ Cipriano¶ Cirilo¶ Cirino¶ Ciro¶ Clara¶ Claudia¶ Claudio¶ Cleofás¶ Clotilde¶ Colombo¶ Columba¶ Columbano¶ Concepción¶ Conrado¶ Constancio¶ Constantino¶ Consuelo¶ Cosme¶ Cristian¶ Cristina¶ Cristóbal¶ Daciano¶ Dacio¶ Dámaso¶ Damián¶ Daniel¶ Dario¶ David¶ Demócrito¶ Diego¶ Dimas¶ Dolores¶ Domingo¶ Donato¶ Dorotea¶ Edgar¶ Edmundo¶ Eduardo¶ Eduvigis¶ Efrén¶ Elena¶ Elías¶ Elisa¶ Eliseo¶ Elvira¶ Emilia¶ Emiliano¶ Emilio¶ Encarnación¶ Enrique¶ Epifanía¶ Erico¶ Ernesto¶ Esdras¶ Esiquio¶ Esperanza¶ Esteban¶ Ester¶ Esther¶ Eugenia¶ Eugenio¶ Eulalia¶ Eusebio¶ Eva¶ Evaristo¶ Ezequiel¶ Fabián¶ Fabio¶ Fabiola¶ Facundo¶ Fátima¶ Faustino¶ Fausto¶ Federico¶ Feliciano¶ Felipe¶ Félix¶ Fermín¶ Fernando¶ Fidel¶ Fortunato¶ Francesc¶ Francisca¶ Francisco¶ Fulgencio¶ Gabriel¶ Gema¶ Genoveva¶ Gerardo¶ Germán¶ Gertrudis¶ Gisela¶ Gloria¶ Godofredo¶ Gonzalo¶ Gregorio¶ Guadalupe¶ Guido¶ Guillermo¶ Gustavo¶ Guzmán¶ Héctor¶ Heliodoro¶ Heraclio¶ Heriberto¶ Hilarión¶ Hildegarda¶ Homero¶ Honorato¶ Honorio¶ Hugo¶ Humberto¶ Ifigenia¶ Ignacio¶ Ildefonso¶ Inés¶ Inmaculada¶ Inocencio¶ Irene¶ Ireneo¶ Isaac¶ Isabel¶ Isaías¶ Isidro¶ Ismael¶ Iván¶ Jacinto¶ Jacob¶ Jacobo¶ Jaime¶ Jaume¶ Javier¶ Jeremías¶ Jerónimo¶ Jesús¶ Joan¶ Joaquím¶ Joaquín¶ Joel¶ Jonás¶ Jonathan¶ Jordi¶ Jorge¶ Josafat¶ José¶ Josefa¶ Josefina¶ Josep¶ Josué¶ Juan¶ Juana¶ Julia¶ Julián¶ Julio¶ Justino¶ Juvenal¶ Ladislao¶ Laura¶ Laureano¶ Lázaro¶ Leandro¶ Leocadia¶ León¶ Leonardo¶ Leoncio¶ Leonor¶ Leopoldo¶ Lidia¶ Liduvina¶ Lino¶ Lorena¶ Lorenzo¶ Lourdes¶ Lucano¶ Lucas¶ Lucía¶ Luciano¶ Lucrecia¶ Luis¶ Luisa¶ Luz¶ Macario¶ Magdalena¶ Manuel¶ Manuela¶ Mar¶ Marc¶ Marcelino¶ Marcelo¶ Marcial¶ Marciano¶ Marcos¶ Margarita¶ María¶ Mariano¶ Marina¶ Mario¶ Marta¶ Martín¶ Mateo¶ Matías¶ Matilde¶ Mauricio¶ Maximiliano¶ Melchor¶ Mercedes¶ Miguel¶ Milagros¶ Miqueas¶ Míriam¶ Mohamed¶ Moisés¶ Mónica¶ Montserrat¶ Narciso¶ Natalia¶ Natividad¶ Nazario¶ Nemesio¶ Nicanor¶ Nicodemo¶ Nicolás¶ Nicomedes¶ Nieves¶ Noé¶ Noelia¶ Norberto¶ Nuria¶ Octavio¶ Odón¶ Olga¶ Onésimo¶ Orestes¶ Oriol¶ Oscar¶ Óscar¶ Oseas¶ Oswaldo¶ Otilia¶ Oto¶ Pablo¶ Pancracio¶ Pascual¶ Patricia¶ Patricio¶ Paula¶ Pedro¶ Petronila¶ Pilar¶ Pío¶ Poncio¶ Porfirio¶ Primo¶ Priscila¶ Probo¶ Purificación¶ Rafael¶ Raimundo¶ Ramiro¶ Ramón¶ Raquel¶ Raúl¶ Rebeca¶ Reinaldo¶ Remedios¶ Renato¶ Ricardo¶ Rigoberto¶ Rita¶ Roberto¶ Rocío¶ Rodrigo¶ Rogelio¶ Román¶ Romualdo¶ Roque¶ Rosa¶ Rosalia¶ Rosario¶ Rosendo¶ Rubén¶ Rufo¶ Ruperto¶ Salomé¶ Salomón¶ Salvador¶ Salvio¶ Samuel¶ Sandra¶ Sansón¶ Santiago¶ Sara¶ Sebastián¶ Segismundo¶ Sergio¶ Severino¶ Silvia¶ Simeón¶ Simón¶ Siro¶ Sixto¶ Sofía¶ Soledad¶ Sonia¶ Susana¶ Tadeo¶ Tarsicio¶ Teodora¶ Teodosia¶ Teófanes¶ Teófila¶ Teresa¶ Timoteo¶ Tito¶ Tobías¶ Tomas¶ Tomás¶ Toribio¶ Trinidad¶ Ubaldo¶ Urbano¶ Úrsula¶ Valentín¶ Valeriano¶ Vanesa¶ Velerio¶ Venancio¶ Verónica¶ Vicenta¶ Vicente¶ Víctor¶ Victoria¶ Victorino¶ Victorio¶ Vidal¶ Virgilio¶ Virginia¶ Vladimiro¶ Wilfredo¶ Xavier¶ Yolanda¶ Zacarías¶ Zaqueo</string>
     <string name="compatibility">Ver compatibilidad</string>
-    <string name="compatibility_result"><![CDATA[Compatibilidad: <b>%1$s</b>]]></string>
+    <string name="compatibility_result">Compatibilidad: &lt;b&gt;%1$s&lt;/b&gt;</string>
     <string name="connected_device_user">{[usuari[o,a]]⸻⛌} de dispositivo con dirección IP %1$s</string>
     <string name="data_entry">Introducir datos</string>
     <string name="date">MMMM d \'de\' yyyy</string>
@@ -97,7 +97,7 @@
     <string name="donations_title">Donar</string>
     <string name="enquiry_information">Consulta para el día %1$s de %2$s, de sexo %3$s (%4$s)</string>
     <string name="extended_family_member">[suegr[o,a]]¶ [cuñad[o,a]]¶ [[yerno,nuera]]¶ [[padrastro,madrastra]]¶ [hijastr[o,a]]¶ [[padrino,madrina]]¶ [ahijad[o,a]]</string>
-    <string name="family_member" translatable="false">{string:relative⸻⸮}¶ {string:extended_family_member⸻⸮}</string>
+    <string name="family_member">{string:relative⸻⸮}¶ {string:extended_family_member⸻⸮}</string>
     <string name="full_date">EEEE d \'de\' MMMM \'de\' yyyy</string>
     <string name="generational_designation">Jnr¶ Snr</string>
     <string name="greetings">Hola§.¶ Bienvenido§.¶ Buen día§.¶ ¡Qué gusto de verte§!¶ Tanto tiempo sin verte§.¶ ¿Cómo estás§?¶ ¿Qué tal§?¶ ¿Cómo has estado§?¶ ¿Cómo te ha ido§?¶ ¿Cómo te va§?¶ ¿Cómo está todo§?¶ ¿Cómo va todo§?¶ ¿Qué has hecho§?¶ ¿Qué has hecho últimamente§?¶ ¿Qué pasa§?¶ ¿Qué hay§?¶ ¿Qué hay de nuevo§?¶ ¿Qué cuentas§?¶ ¿Qué me cuentas§?</string>
@@ -116,15 +116,13 @@
     <string name="input_sex_male">Masculino</string>
     <string name="input_title">Definir datos</string>
     <string name="inquiry">Obtener consulta (%1$s)</string>
-    <string name="interjections">agua va¬¶ ah¬¶ ahí va¬¶ ajá¬¶ al loro¬¶ anda¬¶ arre¬¶ arrea¬¶ aúpa¬¶ ay¬¶ ay de mí¬¶ bah¬¶ buah¬¶ buu¬¶ cachis¬¶ caracoles¬¶ caramba¬¶ caray¬¶ cáspita¬¶ chachi¬¶ chao¬¶ chitón¬¶ chupi¬¶ cielo santo¬¶ cielos¬¶ cojonudo¬¶ diablos¬¶ Dios santo¬¶ ea¬¶ eh¬¶ ejem¬¶ em¬¶ equilicuá¬¶ eureka¬¶ ey¬¶ genial¬¶ guau¬¶ guay¬¶ hala¬¶ hale¬¶ ay Dios mío¬¶ huh¬¶ hum¬¶ hurra¬¶ huy¬¶ jaque¬¶ jo¬¶ jobar¬¶ jolín¬¶ leñe¬¶ madre mía¬¶ nanay¬¶ narices¬¶ oh¬¶ ojalá¬¶ ojú¬¶ okay¬¶ olé¬¶ oops¬¶ ostras¬¶ puaj¬¶ puf¬¶ rayos¬¶ recórcholis¬¶ rediez¬¶ so¬¶ toma¬¶ tongo¬¶ tururú¬¶ uh¬¶ um¬¶ válgame Dios¬¶ vamos¬¶ viva¬¶ yupi¬</string>
+    <string name="interjections">Dios¶ Dios santo¶ ah¶ ahí va¶ ajajá¶ ajá¶ ajó¶ anda¶ ar¶ arre¶ arrea¶ ay¶ ay Dios mío¶ ay de mí¶ ay, güey¶ aúpa¶ bah¶ bravo¶ bua¶ buah¶ bum¶ buu¶ buuu¶ ca¶ caracoles¶ carajo¶ caramba¶ caray¶ cataplof¶ cataplúm¶ chas¶ chist¶ cielo santo¶ cielos¶ cojonudo¶ cáspita¶ dale¶ diablos¶ ea¶ eh¶ ejem¶ em¶ epa¶ equilicuá¶ eso es¶ ey¶ gluglú¶ guau¶ guay¶ hala¶ hale¶ hey¶ hola¶ huh¶ hum¶ hurra¶ huy¶ ja¶ ja, ja¶ ja, ja, ja¶ je¶ jo¶ jolín¶ madre mía¶ maldición¶ miau¶ mm¶ mmm¶ muak¶ narices¶ oh¶ oiga¶ ojalá¶ ojú¶ okey¶ ole¶ olé¶ ostras¶ paf¶ pché¶ plas¶ ps¶ psh¶ pss¶ pu¶ puaf¶ puaj¶ puf¶ pum¶ quiá¶ recórcholis¶ rin rin¶ shhh¶ ssh¶ tatata¶ tictac¶ tururú¶ uf¶ uh¶ ups¶ urra¶ uy¶ vaya¶ válgame Dios¶ yey¶ yupi¶ zas¶ zaz¶ ñam¶ órale</string>
     <string name="locale">es</string>
     <string name="menu_donate">Donar</string>
     <string name="menu_set_data">Definir datos</string>
     <string name="menu_settings">Configuración</string>
     <string name="menu_about">Acerca de</string>
     <string name="menu_exit">Salir</string>
-    <string name="method_noun">{method:getSpanishNoun}</string>
-    <string name="method_occupation">{method:getOccupation}</string>
     <string name="name_generation">Generar nombre</string>
     <string name="network_operator_user">{[usuari[o,a]]⸻⛌} %1$s</string>
     <string name="network_user">{[usuari[o,a]]⸻⛌} de red llamada %1$s</string>
@@ -132,13 +130,7 @@
     <string name="no_network_user">{[usuari[o,a]]⸻⛌} sin conexión a Internet por Wi-Fi</string>
     <string name="nouns">existencia｢2｣¶ materia｢2｣¶ persona｢2｣¶ ser｢1｣¶ [human[o,a]]¶ [individu[o,a]]¶ entidad｢2｣¶ [[hombre,mujer]]¶ [client[e,a]]¶ sujeto｢1｣¶ ente｢1｣¶ esencia｢2｣¶ cosa｢2｣¶ sustancia｢2｣¶ criatura｢2｣¶ organismo｢1｣¶ forma｢2｣¶ espécimen｢1｣¶ forma de vida｢2｣¶ ser｢1｣ ¶ ser vivo｢1｣¶ [usuari[o,a]]¶ [amig[o,a]]¶ [conocid[o,a]]¶ [desconocid[o,a]]¶ colega｢0｣¶ camarada｢0｣¶ mejor [amig[o,a]]¶ [novi[o,a]]¶ [tip[o,a]]¶ personaje｢1｣¶ vástago｢1｣¶ figura｢2｣¶ habitante｢1｣¶ [muchach[o,a]]¶ joven｢0｣¶ [chic[o,a]]</string>
     <string name="ok">OK</string>
-    <string name="opinions">¿Has oído de ##? Es mi peor enemigo.¶ Tú te pareces a alguien que conozco, se llama ##.¶ ¿De casualidad no conoces a ##?¶ Tengo que ir con ##. Me debe dinero.¶ Estoy enamorado de ##.¶ ¿Acaso has visto a {[un[,a]]} tal ##?¶ Tu {string:relative⸻⸮}, ## y yo somos amantes. Todo un triángulo amoroso.¶ ¿Eres {string:relative⸻⛌} de ##? Se parecen mucho.¶ ¿Eres acaso {string:relative⸻⛌} de ##? Comparten ciertas características ustedes dos.¶ Me agrada verte por aquí, no como a ##.¶ Oh, sí, revelé un futuro terrorífico para ##.¶ El otro día ## me pidió que le leyera el futuro.¶ Tantas trágicas historias se han escrito, como las de ##.¶ Revelar el futuro es algo agotador, y más el futuro de ##.¶ Muchas personas acuden a mí, en especial ##, ## y ##.¶ ¿Sabías que ## y ## son pareja?¶ Hay un destino muy cruel entre ## y ##.¶ Una fuerte rivalidad crece entre ## y ##.¶ ¿Quieres saber qué pasó con ##?¶ ## acudió a mí para obtener mis conocimientos secretos.¶ Cuidado con ##, es una persona muy peligrosa.¶ Hay una persona muy agradable llamada ##.¶ Me gusta la comida, en especial aquella hecha por ##.¶ Hay dos personas en este mundo a quienes deberías conocer. Ellas son ## y ##.¶ Tengo muchos hermanos, y mi {[favorit[o,a]]} es ##.¶ Nunca vayas a hablar con ##, es muy {[molest[o,a]]}.¶ Me encanta hacer adivinaciones para ##.¶ Sí, ¿has visto a ##? Necesito hablar con esta persona.¶ A ver, a ver, uh, ##, ##, ##, ##, ##, uh… y ##. Listo, anotados los que me faltan para predecirles su futuro.¶ Si te portas mal, ## va a venir y te va a llevar.¶ ¿Has escuchado la triste historia de ##?¶ ¿Has escuchado las aventuras de ##?¶ ¿Has escuchado las buenas noticias sobre ##?¶ ¿Te importaría dejarme adivinar algo sobre ##?¶ ¿Quién es ##?¶ ¿Te has encontrado con ##?¶ Me gusta una persona llamada ##.¶ Me gusta alguien que se llama ##.¶ ¿Por qué odias a ##?¶ ¿Te gusta una persona llamada ##?¶ ¿Qué sabes acerca de ##?¶ ## y ## son personas muy similares.¶ Dime si algún día ves a ##.¶ Dime si un día conoces a ##.¶ Soy una persona muy ocupada. Hoy saldré con ##.¶ ## y ## son muy buenos amigos.¶ ## y ## son los peores enemigos.¶ ## y ## se odian demasiado.¶ ## y ## se aman.¶ ## y ## siempre pelean.¶ ## y ## siempre tienen buenas ideas.¶ ## y ## se llevan muy bien.¶ ## y ## no se llevan bien.¶ ## y ## no se toleran.¶ ## y ## son muy cercanos.¶ ## y ## se entienden muy bien.¶ Necesito encontrar a ##. Me debe dinero.¶ Estoy buscando a ##. ¿Tú {[l[o,a]]} has visto?¶ Me parece que ## tiene un destino muy malo.¶ Creo que ## tiene un buen futuro.¶ ¿Crees que no soy real? ## cree lo contrario.¶ ## me cae muy mal.¶ ## me cae muy bien.¶ Siento indiferencia hacia ##.¶ Me agrada estar con ##.¶ Odio estar con ##.¶ En alguna parte, ## conspira contra nosotros.¶ En algún lugar, ## hace planes que nos beneficiarán.¶ ## habla mal de ##.¶ ## no para de hablar de ##.¶ ## siempre tiene buenas cosas qué decir sobre ##.¶ Estoy cansado de ##.¶ Me gusta tratar con ##.¶ Hay muchas personas a las cuales realizo predicciones, pero a ## es a la que más le hago.¶ ¿Conoces la leyenda de ##?¶ ## tiene un buen futuro.¶ ## tiene un futuro malo.¶ ## sabe muchas cosas.¶ ## asegura haber visto a ##.¶ Yo no creo que ## haya encontrado a ##.¶ El destino alguna vez indicó que ## y ## se habrían de encontrar, y así pasó.¶ ## hará cosas increíbles.¶ ## hará cosas terribles.¶ Me preocupa alguien que se llama ##.¶ ¿No has sabido algo sobre ##?¶ ## ya no se ha comunicado conmigo, y es preocupante.¶ ## puede ganarle a ## en una pelea.¶ ## va a hacer cosas malas hoy.¶ ## hará algo muy bueno en este día.¶ El destino no favorece a ##.¶ El destino está a favor de ##.¶ Esta vida quiere que triunfe ##.¶ La vida ajusta las posibilidades en contra de ##.¶ Esta existencia tiene cosas muy curiosas, una de ellas es una persona llamada ##.¶ No me interrumpas, estoy viendo la vida de ##.¶ Es interesante ver lo que pasa con ##.¶ ¡Quieto! Déjame ver qué sucede con ##.¶ ¡Alto! Necesito saber qué ocurre con ##.¶ ¡Oye! Tengo que conocer lo que pasará con ##.¶ ¡Me gusta estar con ##!¶ ¡Odio estar con ##!¶ No, no, no, todo está mal con ##.¶ Y así es la triste vida de ##.¶ ¡Vaya! Deberías ver lo increíble que es la vida de ##.¶ Ver el futuro es entretenido. Me gusta, sobre todo, ver lo que acontece en la vida de ##.¶ Estoy harto de ##.¶ Estoy feliz por ##.¶ Existe una tensión fuerte entre ## y ##.¶ ## y ## aparentemente se odian, aunque realmente se aman.¶ El futuro es felicidad para ##.¶ El futuro es tristeza para ##.¶ Si tuviera una moneda cada vez que ## dice una tontería, sería millonario.¶ Si tuviera una moneda por cada cosa ingeniosa que ## dice, estaría debiendo dinero.¶ No hay nada como molestar a ##.¶ Me gusta pasar el rato con ##.¶ Tal parece que las cosas van mal entre ## y ##.¶ Las cosas irán mal entre ## y ##.¶ ## trata de causar mal entre ## y ##.¶ ## siempre da malos consejos a ##.¶ ## es una persona muy agradable. Deberías tratarla.¶ Sí, lo tengo. Aquí está el destino de ##.¶ Deberías ver lo que ## está haciendo.¶ Tal parece que ## está haciendo cosas malas.¶ ## se está portando muy bien.¶ Con el fin de enfrentar a su destino, ## hace cosas que cree que lo evitarán.¶ Casi nadie puede huir de su destino, en especial ##.¶ ¿Crees en el destino? ## logró una vez salirse con la suya y evitarlo.¶ El futuro es algo inaudito, sobre todo el de ##.¶ ##, ## y ## son muy buenos amigos.¶ Necesito ver a ##. Es urgente.¶ ¿Has visto a ##? Tengo que decirle algo.¶ Si ves a ## dile que me pague.¶ ¿Sabes quién es ##?¶ ¿Conoces a ##?¶ ¿Quieres oír acerca de ##?¶ Ten cuidado con ##, es {[mal[o,a]]} con las personas que lo rodean.¶ Deberías ver a ##, es muy agradable.¶ Honestamente, estoy cansado de predecirle el futuro a ##.¶ ¿Sabes algo de ##?¶ ¿Quieres saber lo que pasó con ##?¶ ¡Calma! Ya te tocará saber qué pasará contigo. Debo ver lo que ## vivirá.¶ ¡Déjame ver a ##!¶ ¡Tengo que encontrar a ##!¶ ¡Necesito decirle algo a ##!¶ No, es muy triste lo que ocurre con ##, ##, ## y ##.¶ Si pudiera armar un grupo de tontos, elegiría a ##, ##, ## y ##.¶ El mejor grupo con el cual salir es ##, ##, ## y ##.¶ Siempre es bueno escuchar los consejos de ##.¶ Tengo {[un[,a]]} {[conocid[o,a]]} {[llamad[o,a]]} ##.¶ Tengo {[un[,a]]} {[amig[o,a]]} {[llamad[o,a]]} ##.¶ Tengo {[un[,a]]} {[enemig[o,a]]} {[llamad[o,a]]} ##.¶ Soy mejor que una persona llamada ##.¶ ## tiene asegurado un buen futuro.¶ A ## no le espera un buen futuro.¶ ## tendrá una vida llena de felicidad.¶ ## tendrá una vida acompañada de tristezas.¶ ## espera una vida de soledad.¶ ## recibirá la fortuna con los brazos abiertos.¶ ## tendrá una larga vida.¶ La desgracia será parte de la vida de ##.¶ Ejemplos de destinos totalmente distintos entre sí serían los de ## y ##.¶ Buenas posibilidades le esperan a ##.¶ Posibilidades malas le aguardan a ##.¶ ¿Sabes lo que pasará con ##?¶ Parece que ## y ## se pertenecen.¶ Vaya, vaya, ## tiene buen presagio.¶ La profecía indica que ## es {[[el,la]]} {[elegid[o,a]]}.¶ ## ha aceptado su destino.¶ ## lucha vanamente contra su destino.¶ Tengo el presentimiento de que te has cruzado con ##.¶ Tengo muy buenas noticias para ##.¶ Hay muy malas noticias sobre ##.¶ Tengo malas noticias para ##.¶ La profecía dice que ## será {[exitos[o,a]]}.¶ ## es la persona mencionada en la profecía.¶ El augurio señala prosperidad para ##.¶ El augurio muestra que ## tendrá una larga vida.¶ El augurio dice que ## tendrá una vida buena.¶ ## y ## son personas que no se llevan entre sí.¶ ## y ## comparten vidas llenas de conflictos.¶ El destino ha sido complaciente con ##.¶ La vida se encarga una y otra vez de que ## falle.¶ Una cadena de éxitos ha sido predestinada para ##.¶ ## va a tener una vida normal.¶ ## va a tener una vida libre de problemas.¶ ## tendrá una vida llena de dificultades, sin embargo, su recompensa será grande.¶ Aquí dice que ## ha cometido muchos crímenes.¶ La vida secreta de ## es muy aterradora.¶ Aparentemente ## es una buena persona, pero todo indica lo contrario.¶ La vida de ## dará un giro completo.¶ Las cosas se invertirán para ##.¶ La situación cambiará para ##.¶ ## recibirá lo que merece.¶ ## recibirá un castigo.¶ ## será {[recompensad[o,a]]}.¶ ## tendrá una vida llena de intrigas y suspenso.¶ Así como lo indica el augurio, ## será una persona exitosa.¶ El futuro muestra cosas buenas y malas, pero ## parece tener la vida más sencilla.¶ El destino de ## es realmente complejo.¶ Dicen que ## hará cosas tan increíbles que cambiarán a la sociedad.¶ Uh, ## será {[un[,a]]} {[visionari[o,a]]}.¶ Hay cosas tan oscuras en el futuro de ##.¶ Incluso yo no puedo descifrar del todo lo que pasará con ##.¶ ## desafía todas las posibilidades.¶ El destino de ## no es muy claro.¶ ## y ## comparten una rivalidad.¶ ##, ## y ## serán parte de una disputa.¶ Incluso yo le temo a ##, pues es una persona realmente aterradora.¶ Todos debemos cuidarnos de ##.¶ Todos deberían conocer a ##.¶ Tal parece que las predicciones nunca han sido correctas para ##. Esta persona realmente desafía al futuro.¶ ## estima a ##.¶ ## ignora el hecho de que ## puede llegar a ser un gran problema.¶ ## no se rinde a pesar de las desgracias.¶ La valentía es algo que a ## no le falta.¶ ## hará cosas inauditas.¶ Encuentro a ## realmente interesante.¶ ## tiene una vida intrincada.¶ ## es una de las personas menos conocidas que hay.¶ Si te das la oportunidad, ## te sorprenderá.¶ Un sabio alguna vez dijo que errar es humano. La persona más humana que hay, posiblemente, es ##.¶ Si los fracasos nos hacen sabios, ## debe ser uno de los más grandes eruditos que hay.¶ Te contaré la breve historia de ##, quien nació siendo {[un[,a]]} de los más talentosos individuos y que, sin embargo, terminó negándose el éxito debido a su actitud.¶ ## es realmente egoísta.¶ ## acepta su destino.¶ ## es de las pocas personas que no sé cómo es que siguen aquí a pesar de todo lo que les ha pasado.¶ Si me preguntas, considero que ## tiene la vida más interesante.¶ No sé cómo es que ## puede salirse con la suya.¶ ## me debe mucho dinero por todas las adivinaciones.¶ Nunca se puede confiar en ##.¶ Si ves a ##, aléjate.¶ Me estresa lidiar con ##.¶ Muchos creen que pueden enfrentarse a su destino, como {[es[e,a]]} tal ##.¶ Hay personas quienes no hacen caso de lo que sucederá, lo cual es el caso de ##.¶ Nunca debes tratar con ##, pues es {[peligros[o,a]]}.¶ Es difícil ver el futuro de ##. Todo es borroso.¶ No he podido ver el futuro de {[un[,a]]} tal ##.¶ ## es una de las pocas personas cuyo futuro es incierto.¶ ## es de las pocas personas a las cuales no se les puede realizar una adivinación.¶ Si ves a ##, dile que le mando saludos.¶ Si ves a ##, dile que {[l[o,a]]} espero para una consulta.¶ Relaciónate con ##, ## y ##, pues son personas buenas.¶ Trata con ##, pues buenas cosas podrían salir de esa relación.¶ Es bien sabido que ## es {[un[,a]]} {[vag[o,a]]}.¶ Se sabe muy bien que ## una vez logró evitar la muerte.¶ ## se ha salvado muchas veces de morir.¶ Algunos están hechos para morir hasta que logren lo inaudito, tal como ##.¶ ## llevó una muy buena vida.¶ ## fue una de las pocas personas que se pueden considerar totalmente íntegras.¶ ## es una persona de fiar.¶ Se puede confiar totalmente en ##.¶ ## es una de las personas más discretas. Yo, por otro lado, soy de las más chismosas.¶ ## y ## tienen problemas.¶ ## y ## quieren destruirse entre ellos.¶ ## y ## enfrentan una serie de hechos curiosos.¶ ¿Conoces la historia de ##? ¿Uh? Pues esta es de las pocas cosas que no puedo revelar.¶ Revelé toda la vida de ##.¶ Pude adivinar todo lo que sucedería con ##.¶ Yo soy una entidad que ha vivido mucho tiempo. ## tuvo una vida que, a comparación de la mía, ha sido realmente mínima, casi nula.¶ Una vez ## dijo que ## y ## se atraían.¶ ## siempre ha sido indiferente.¶ ## por lo general es indiferente.¶ ## es muy egoísta.¶ ## es una persona muy compartida.¶ Auguro cosas buenas para ##.¶ En definitiva, ## es un desastre.¶ ## quiere dañar a ##.¶ ## quiere que ## sea feliz.¶ ## actúa de manera totalmente distinta a como dice ser.¶ ## es {[un[,a]]} cobarde.¶ ## enfrenta valientemente su destino.¶ ¿Quién diría que ## y ## se llevarían muy bien?¶ ¿Quién pensaría que ## y ## serían muy cercanos?¶ Si te das la oportunidad, ## podría caerte muy bien.¶ Te recomiendo tratar a ##.¶ Debo aceptar que ## ha logrado evadir el destino.¶ Cuidado con ##, es una persona tramposa.¶ ## y ## en realidad se odian.¶ ## y ## desearían no haberse conocido.¶ ## está buscando a ##.¶ Muy pocos saben llevar una buena vida, como ##.¶ ¿Has conocido a ##?¶ ¿Tienes idea de quién es ##?¶ Largos conflictos les aguardan a ## y a ##.¶ Una vida de paz existirá entre ## y ##.¶ Puedo asegurarte que ##, ## y ## van a hacer cosas buenas.¶ ## tiene una vida sorprendente.¶ Muchos sólo esperamos ver hacia el futuro, pero muchos deberíamos ver hacia el pasado, para evitar que todo se repita, como con ##.¶ Me agrada mucho ##.¶ Me desagrada ##.¶ Me gusta ##.¶ No me gusta ##.¶ Trágica y triste es la vida de ##.¶ La vida de ## es una auténtica comedia.¶ Me agrada la forma de ser de ##.¶ ¿Sabes dónde está ##?¶ ## y ## comparten un buen destino.¶ Pocos logran el éxito como ##.¶ Deberías aprender algo de ##.¶ ## conoce a ##.¶ Tengo que decirle algo a ##.¶ Debo ver el futuro de ##.¶ ## es una persona {string:adjectives⸻2}.¶ ## es un sujeto {string:adjectives⸻1}.¶ ## es un individuo {string:adjectives⸻1}.¶ ## y su {string:relative⸻⸮} se llevan muy bien.¶ ## y su {string:relative⸻⸮} tienen una mala relación.¶ ## y su {string:relative⸻⸮} se tratan muy mal.¶ ## y su {string:relative⸻⸮} tienen una relación armoniosa.¶ ## y su {string:relative⸻⸮} han hecho cosas indecibles.¶ ## y su {string:relative⸻⸮} han hecho cosas muy malas.¶ Tu {string:relative⸻⸮} se parece mucho a ##.¶ Tu {string:relative⸻⸮} ama a ##.¶ Tu {string:relative⸻⸮} odia a ##.¶ Tu {string:relative⸻⸮} ignora a ##.¶ Tu {string:relative⸻⸮} es buen amigo de ##.¶ Tu {string:relative⸻⸮} se lleva mal con ##.¶ Tu {string:relative⸻⸮} y ## son enemigos.</string>
-    <string name="person_data">
-        <![CDATA[
-        <i><font color=#53E3B3>Información para %1$s de:</font></i> %2$s<font color=#F6FBB2>, de sexo %3$s (%4$s)</font>
-        ]]>
-    </string>
-    <string name="phrase_fortune_telling">Veamos qué te depara el futuro.¶ Veamos qué tenemos para ti.¶ Veamos qué dice la adivinación.¶ ¿Listo para la adivinación?¶ Es momento de realizar la adivinación.¶ Veamos lo que la predicción indica.¶ ¿Quieres que te enseñe mi bola de cristal?¶ Analicemos lo que hay en tu futuro.¶ Veamos cómo te irá.¶ Veamos cómo te percibe el mundo.¶ Conozcamos qué hay en tu futuro.¶ Conozcamos lo que el destino te depara.¶ Haré la adivinación en este momento.¶ ¿Listo para saber qué hay?¶ Te diré enseguida lo que tu destino marca.¶ Mira, aquí está lo que indica tu destino:¶ Tu destino marca esto:¶ Aquí está la predicción de hoy:¶ Haré la predicción para ti.¶ Este es tu futuro:¶ Aquí está lo que pasará:¶ Observa las cosas que ocurrirán:¶ Mira lo que tu futuro muestra:¶ Tengo lista la adivinación.¶ Tengo lista la predicción.¶ Aquí tengo ya tu futuro.¶ Ocurrirá esto:¶ Esto es lo que pasará:¶ Mira lo que indica tu futuro:¶ Observa, sí, es lo que pasará:¶ Esto es lo que te depara el destino:¶ El destino dice que esto sucederá:¶ Ocurrirá esto, míralo:¶ Ve lo que pasará en la actualidad.¶ Esto es lo que ocurrirá:¶ Mira, esto sucederá:¶ Aquí tengo tu predicción.¶ La predicción muestra esto:¶ Si la predicción es fidedigna, esto ocurrirá:¶ Es muy probable que esto ocurra:¶ Mira, esto puede que pase:¶ ¿Qué sucederá? Mira:¶ ¿Qué va a ocurrir? Observa:¶ ¿Quieres saber qué pasará?¶ ¡Pon atención, ve esto!¶ ¿Tienes miedo a que te diga qué sucederá?¶ Esto tendrá lugar en los días por venir:¶ Esto tendrá lugar en los días venideros:¶ A ti te pasará esto:¶ Esto es un déjà vu.¶ ¿Ya hemos hecho esto antes?¶ ¿Sientes como que ya has vivido esto?¶ Aquí vamos, mira:¶ Observa lo que pasará:¶ Esto va a pasar:¶ Las cosas serán así en los días por venir:¶ Tengo preparada la adivinación.¶ Estas cosas van a suceder:¶ Estos son los hechos por venir:¶ Estos son los eventos venideros:¶ Así están las cosas al día de hoy:¶ Los eventos que rodean a tu persona son:¶ El mañana luce así para ti:¶ Este es tu porvenir:¶ La suerte muestra esto para ti:¶ La fortuna marca que sucederá esto:¶ Averigua tu futuro.¶ Averigüemos tu futuro.¶ ¿Quieres ver mi varita mágica? ¡Ah, no soy un mago, cierto!¶ Mira lo que te aguarda para el día de hoy:¶ Observa con atención lo que te sucederá:¶ Ve lo que podría pasarte:¶ ¿Estás al tanto de lo que podría sucederte?¶ ¡Pon atención! Esto podría pasarte:¶ Aquí están algunas cosas que podrían suceder:¶ Lee lo que podría ocurrir:¶ Checa esto, pues podría pasar:¶ ¿Sabes qué pasará? Mira:¶ ¿Quieres saber lo que sucederá? Aquí lo tengo:¶ Esto es lo que mi bola de cristal me muestra:¶ Mira con detenimiento esto que podría ocurrir:</string>
+    <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Información para %1$s de:&lt;/i&gt;&lt;/font&gt; %2$s&lt;font color="#F6FBB2"&gt;, de sexo %3$s (%4$s)&lt;/font&gt;</string>
     <string name="prediction">
         <![CDATA[
         <big><b><font color=#869DEE>Fortuna</font></b></big>
@@ -151,64 +143,67 @@
         <br>%3$s
         <br><br><font color=#53E3B3>Emociones de hoy:</font>
         <br>%4$s
-        <br><br><font color=#53E3B3>Lo que te caracterizará hoy:</font>
+        <br><br><font color=#53E3B3>Mejor momento del día:</font>
         <br>%5$s
-        <br><br><font color=#53E3B3>Cadena de eventos para hoy:</font>
+        <br><br><font color=#53E3B3>Peor momento del día:</font>
         <br>%6$s
-        <br><br><font color=#53E3B3>Persona que te afectará más, indirectamente, hoy:</font>
+        <br><br><font color=#53E3B3>Lo que te caracterizará hoy:</font>
         <br>%7$s
+        <br><br><font color=#53E3B3>Cadena de eventos para hoy:</font>
+        <br>%8$s
+        <br><br><font color=#53E3B3>Persona que te afectará más, indirectamente, hoy:</font>
+        <br>%9$s
         <br><br><big><b><font color=#869DEE>Zodiaco</font></b></big>
         <br><br><font color=#53E3B3>Signo zodiacal:</font>
-        <br>%8$s
-        <br><br><font color=#53E3B3>Casa astrológica:</font>
-        <br>%9$s
-        <br><br><font color=#53E3B3>Regente:</font>
         <br>%10$s
-        <br><br><font color=#53E3B3>Elemento:</font>
+        <br><br><font color=#53E3B3>Casa astrológica:</font>
         <br>%11$s
-        <br><br><font color=#53E3B3>Color:</font>
+        <br><br><font color=#53E3B3>Regente:</font>
         <br>%12$s
-        <br><br><font color=#53E3B3>Números de la suerte:</font>
+        <br><br><font color=#53E3B3>Elemento:</font>
         <br>%13$s
-        <br><br><font color=#53E3B3>Es compatible con:</font>
+        <br><br><font color=#53E3B3>Color:</font>
         <br>%14$s
-        <br><br><font color=#53E3B3>No se lleva con:</font>
+        <br><br><font color=#53E3B3>Números de la suerte:</font>
         <br>%15$s
-        <br><br><font color=#53E3B3>Nuevo signo zodiacal:</font>
+        <br><br><font color=#53E3B3>Es compatible con:</font>
         <br>%16$s
-        <br><br><font color=#53E3B3>Signo zodiacal chino:</font>
+        <br><br><font color=#53E3B3>No se lleva con:</font>
         <br>%17$s
+        <br><br><font color=#53E3B3>Nuevo signo zodiacal:</font>
+        <br>%18$s
+        <br><br><font color=#53E3B3>Signo zodiacal chino:</font>
+        <br>%19$s
         <br><br><big><b><font color=#869DEE>Identidad</font></b></big>
         <br><br><font color=#53E3B3>Color:</font>
-        <br><big><big><font color=%18$s>%19$s</font></big></big>
+        <br><big><big><font color=%20$s>%21$s</font></big></big>
         <br><br><font color=#53E3B3>Animal:</font>
-        <br>%20$s
-        <br><br><font color=#53E3B3>Tipo psicológico según Jung:</font>
-        <br>%21$s
-        <br><br><font color=#53E3B3>Nombre secreto:</font>
         <br>%22$s
-        <br><br><font color=#53E3B3>Nombre demoniaco:</font>
+        <br><br><font color=#53E3B3>Tipo psicológico según Jung:</font>
         <br>%23$s
-        <br><br><font color=#53E3B3>Nombre en la vida pasada:</font>
+        <br><br><font color=#53E3B3>Nombre secreto:</font>
         <br>%24$s
-        <br><br><font color=#53E3B3>Nombre en la vida futura:</font>
+        <br><br><font color=#53E3B3>Nombre demoniaco:</font>
         <br>%25$s
-        <br><br><font color=#53E3B3>Nombre de usuario recomendado:</font>
+        <br><br><font color=#53E3B3>Nombre en la vida pasada:</font>
         <br>%26$s
-        <br><br><font color=#53E3B3>Dígito personal:</font>
-        <br>%27$d
-        <br><br><font color=#53E3B3>Números de la suerte únicos:</font>
+        <br><br><font color=#53E3B3>Nombre en la vida futura:</font>
+        <br>%27$s
+        <br><br><font color=#53E3B3>Nombre de usuario recomendado:</font>
         <br>%28$s
+        <br><br><font color=#53E3B3>Dígito personal:</font>
+        <br>%29$d
+        <br><br><font color=#53E3B3>Números de la suerte únicos:</font>
+        <br>%30$s
         <br><br><font color=#53E3B3>Identificador único universal (UUID):</font>
-        <br>%29$s
+        <br>%31$s
         <br><br><font color=#53E3B3>Días entre fecha actual y fecha de nacimiento:</font>
-        <br><font color=#E3E1A1><b>%30$s</b></font>
+        <br><font color=#E3E1A1><b>%32$s</b></font>
         <br><br><font color=#53E3B3>Tiempo entre fecha actual y fecha de nacimiento:</font>
-        <br><font color=#E3E1A1><b>%31$s</b></font>
+        <br><font color=#E3E1A1><b>%33$s</b></font>
         ]]>
     </string>
     <string name="pick">Seleccionar una fecha de consulta</string>
-    <string name="personality"></string>
     <string name="prediction_action">Da clic aquí para revelar</string>
     <string name="preference_active_screen">Siempre encendido</string>
     <string name="preference_active_screen_summary">Mantiene la pantalla encendida mientras la aplicación esté activa</string>
@@ -270,9 +265,7 @@
     <string name="simple_date">d \'de\' MMMM \'de\' yyyy</string>
     <string name="situation_descriptor">{rand:∅; bueno; malo; extraño; sorprendente; desconcertante; favorable; desfavorable}</string>
     <string name="time_component">La hora es¶ La hora actual es¶ En este momento la hora es¶ El reloj marca la(s)¶ La hora en este momento es¶ Tengo la hora</string>
-    <string name="time_days">día(s)</string>
-    <string name="time_months">mes(es)</string>
-    <string name="time_years">año(s)</string>
+    <string name="time_elapsed">%1$d año(s), %2$d mes(es), %3$d día(s)</string>
     <string name="title">%3$s de %2$s %1$s</string>
     <string name="title_descriptor">[^superior[]]¶ [^senior[]]¶ [^adjunt[o,a]]¶ [^corporativ[o,a]]¶ [^dinámic[o,a]]¶ [^futur[o,a]]¶ de [^producto[]]¶ [^nacional[]]¶ [^regional[]]¶ [^distrital[]]¶ [^central[]]¶ [^global[]]¶ del [^cliente[]]¶ de [^inversión[]]¶ [^dinámic[o,a]]¶ [^internacional[]]¶ [^patrimonial[]]¶ [^avanzad[o,a]]¶ [^intern[o,a]]¶ [^human[o,a]]¶ [^jefe[,a]]¶ [^principal[]]</string>
     <string name="title_job">[^supervisor[,a]]¶ [^asociad[o,a]]¶ [^ejecutiv[o,a]]¶ [^intermediari[o,a]]¶ [^oficial[]]¶ [^gerente[]]¶ [^ingenier[o,a]]¶ [^especialista[]]¶ [^director[,a]]¶ [^coordinador[,a]]¶ [^administrador[,a]]¶ [^arquitect[o,a]]¶ [^analista[]]¶ [^diseñador[,a]]¶ [^planificador[,a]]¶ [^orquestador[,a]]¶ [^técnic[o,a]]¶ [^desarrollador[,a]]¶ [^productor[,a]]¶ [^consultor[,a]]¶ [^asistente[]]¶ [^facilitador[,a]]¶ [^agente[]]¶ [^representante[]]¶ [^estratega[]]</string>
@@ -485,16 +478,16 @@
         <item>\?</item>
         <item>Undécima – Identificación con un ideal: objetivos, metas, amigos, grupos. Equilibrio psicológico y afectivo, relaciones de amor y amistad, capacidad para elaborar y ejecutar proyectos.</item>
         <item>Duodécima – Introspección: regreso al estado inicial, karma. Misticismo. Capacidad de abstracción, de transformación. Fortaleza moral y espiritual.</item>
-        <item><![CDATA[Primera – Identidad: <i>yo</i>, identidad, nacimiento, apariencia física. Persona, carácter, constitución física e iniciativa]]></item>
-        <item><![CDATA[Segunda – Valores: consolidación del <i>yo</i>, mundo material, lo que tenemos y valoramos. Instinto de conservación, posesión del medio natural, relación con los bienes materiales y el dinero.]]></item>
-        <item>Tercera – Mente concreta: ambiente cercano, hermanos, desarrollo del lenguaje. Costumbres, inteligencia práctica, intercambios con los demás.</item>
+        <item>Primera – Identidad: &lt;i&gt;yo&lt;/i&gt;, identidad, nacimiento, apariencia física. Persona, carácter, constitución física e iniciativa</item>
+        <item>Segunda – Valores: consolidación del &lt;i&gt;yo&lt;/i&gt;, mundo material, lo que tenemos y valoramos. Instinto de conservación, posesión del medio natural, relación con los bienes materiales y el dinero.</item>
+        <item>Tercera – Mente concreta: ambiente cercano, hermanos, desarrollo del lenguaje.</item>
         <item>Cuarta – Centro emocional: casa, hogar, familia, seguridad emocional. Ancestros, herencia. bases de la existencia, país de origen.</item>
         <item>Quinta – Autoexpresión, creatividad: hijos, romances, placer, riesgos. Energía vital, sentimientos, creatividad, capacidad de amar.</item>
         <item>Sexta – Selectividad: actitud hacia el trabajo, salud, servicio. Aptitudes de trabajo y capacidad de preservar su bienestar y salud.</item>
         <item>Séptima – Relaciones de compromiso: pareja, matrimonio, socio. Disposición para la unión y la asociación, adaptación social.</item>
         <item>Octava – Depuraciones y renovación: muerte, sexualidad, bienes y valores del otro. Instinto de vida y muerte, capacidad de regeneración.</item>
         <item>Novena – Búsqueda de la verdad: universidad, viajes largos, extranjero, maestros. Inteligencia superior, horizonte intelectual o geográfico. Viajes y aventura.</item>
-        <item><![CDATA[Décima – Integración del <i>yo</i>: profesión, vocación, carrera, estatus social. Ambición, Independencia social, capacidad para asumir responsabilidades y triunfar.]]></item>
+        <item>Décima – Integración del &lt;i&gt;yo&lt;/i&gt;: profesión, vocación, carrera, estatus social. Ambición, Independencia social, capacidad para asumir responsabilidades y triunfar.</item>
     </string-array>
     <string-array name="augury_entity">
         <item>un buda｢1｣</item>
@@ -515,6 +508,7 @@
         <item>un emperador｢1｣</item>
         <item>un caballero｢1｣</item>
         <item>un dragón｢1｣</item>
+        <item>un perro｢1｣</item>
         <item>una estrella｢2｣</item>
         <item>un criminal｢1｣</item>
         <item>un animal extraño｢1｣</item>
@@ -557,6 +551,7 @@
         <item>[perdid[o,a]]</item>
         <item>que gime</item>
         <item>que chilla</item>
+        <item>frente a {string:augury_entity}</item>
     </string-array>
     <string-array name="chinese_zodiac_sign">
         <item>Mono</item>
@@ -602,17 +597,24 @@
         <item>Leo, Géminis, Cáncer, Virgo, Piscis.</item>
         <item>Leo, Escorpio, Géminis, Cáncer, Virgo.</item>
     </string-array>
+    <string-array name="conversation_addendum">
+        <item></item>
+        <item></item>
+        <item>&lt;font color="{method:getColorString}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;i&gt;{string:interjections}&lt;/i&gt;</item>
+        <item>&lt;font color="{method:getColorString}"&gt;&lt;b&gt;{method:getDeviceCommonUser}&lt;/b&gt;&lt;/font&gt;</item>
+    </string-array>
     <string-array name="date_options">
         <item>Consulta de hoy</item>
         <item>Consulta de fecha específica</item>
     </string-array>
     <string-array name="divination">
-        <item>Pasará algo {rand:∅; favorable; desfavorable} acerca de {method:getSpanishNoun}.</item>
-        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {method:getSpanishNoun}.</item>
+        <item>Pasará algo {rand:∅; favorable; desfavorable} acerca de {method:getNoun}.</item>
+        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {method:getNoun}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas}, relacionadas con {string:divination_middle}, provenientes de {string:unspecific_person⸻⸮}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {string:divination_middle}.</item>
         <item>Pasará algo {string:situation_descriptor} relacionado con {string:divination_middle}.</item>
-        <item>Un evento {string:situation_descriptor}, relacionado con {method:getSpanishNoun}, ocurrirá.</item>
+        <item>Un evento {string:situation_descriptor}, relacionado con {method:getNoun}, ocurrirá.</item>
         <item>Ocurrirá algo relacionado con {string:unspecific_person⸻⸮}.</item>
         <item>Tendrás problemas con una persona de signo {string:astrological_sign}.</item>
         <item>Una persona de signo {string:astrological_sign} te ayudará a resolver tus problemas.</item>
@@ -636,27 +638,39 @@
     </string-array>
     <string-array name="divination_cause">
         <item></item>
-        <item>Todo parece indicar que esto podría deberse a {}.</item>
-        <item>Posiblemente se deba a {}.</item>
-        <item>Se presume que esto podría ser causado por {}.</item>
-        <item>Esto se debe a {}.</item>
-        <item>Esto es causado por {}.</item>
-        <item>Esto puede ser debido a {}.</item>
-        <item>Esto podría ser causado por {}.</item>
-        <item>Puede que esto se deba a {}.</item>
-        <item>Aparentemente esto es causado por {}.</item>
-        <item>Esto es gracias a {}.</item>
-        <item>Podría decirse que esto es causado por {}.</item>
-        <item>Si no me equivoco, esto es debido a {}.</item>
-        <item>Creo que esto se debe a {}.</item>
-        <item>Supongo que lo anterior es causado por {}.</item>
-        <item>Puedo {rand:ver; percibir; detectar; sentir; observar; notar} que eso es debido a {}.</item>
+        <item>Todo parece indicar que esto podría deberse a {string:divination_causative_factor}.</item>
+        <item>Posiblemente se deba a {string:divination_causative_factor}.</item>
+        <item>Se presume que esto podría ser causado por {string:divination_causative_factor}.</item>
+        <item>Esto se debe a {string:divination_causative_factor}.</item>
+        <item>Esto es causado por {string:divination_causative_factor}.</item>
+        <item>Esto puede ser debido a {string:divination_causative_factor}.</item>
+        <item>Esto podría ser causado por {string:divination_causative_factor}.</item>
+        <item>Puede que esto se deba a {string:divination_causative_factor}.</item>
+        <item>Aparentemente esto es causado por {string:divination_causative_factor}.</item>
+        <item>Esto es gracias a {string:divination_causative_factor}.</item>
+        <item>Podría decirse que esto es causado por {string:divination_causative_factor}.</item>
+        <item>Si no me equivoco, esto es debido a {string:divination_causative_factor}.</item>
+        <item>Creo que esto se debe a {string:divination_causative_factor}.</item>
+        <item>Supongo que lo anterior es causado por {string:divination_causative_factor}.</item>
+        <item>Puedo {rand:ver; percibir; detectar; sentir; observar; notar} que eso es debido a {string:divination_causative_factor}.</item>
         <item>Se puede decir que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:explicit_cause⸻⸮}.</item>
         <item>Veo que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:explicit_cause⸻⸮}.</item>
         <item>El {rand:responsable; causante; motivo} de ello podría ser {string:unspecific_person⸻⸮}.</item>
         <item>La adivinación dice que, posiblemente, quien causa esto sea {string:person⸻⸮}.</item>
         <item>Aparentemente {string:individual⸻⸮} podría ser quien causa esto, de acuerdo a lo que puedo {rand:ver; percibir; detectar; sentir; observar; notar} en ⸠[est[e,a]]⸡ {rand:fortuna｢2｣; adivinación｢2｣; predicción｢2｣; augurio｢1｣}.</item>
         <item>Es posible que {string:individual⸻⸮} tenga algo que ver.</item>
+    </string-array>
+    <string-array name="divination_causative_factor">
+        <item>{string:unspecific_person⸻⸮}</item>
+        <item>{string:person⸻⸮}</item>
+        <item>{string:individual⸻⸮}</item>
+        <item>{string:individual⸻⸮}</item>
+        <item>{string:divination_middle}</item>
+        <item>{string:divination_middle}</item>
+        <item>{string:explicit_cause⸻⸮}</item>
+        <item>{string:explicit_cause⸻⸮}</item>
+        <item>{string:explicit_cause⸻⸮}</item>
+        <item>{string:explicit_cause⸻⸮}</item>
     </string-array>
     <string-array name="divination_end">
         <item>será¦n¦ {string:qualitative_adjectives⸻＃}.</item>
@@ -679,7 +693,7 @@
         <item>cambiará¦n¦.</item>
         <item>cambiará¦n¦ totalmente.</item>
         <item>cambiará¦n¦ a la inversa.</item>
-        <item>estará¦n¦ al {method:getPercentage}.</item>
+        <item>estará¦n¦ al {method:generatePercentage}.</item>
         <item>se revertirá¦n¦.</item>
         <item>volverá¦n¦ a ser como antes.</item>
         <item>no será¦n¦ como antes.</item>
@@ -1012,6 +1026,50 @@
         <item>[un[,a]] preadolescente</item>
         <item>[un[,a]] [ancian[o,a]]</item>
     </string-array>
+    <string-array name="individual_build">
+        <item>[regordet[e,a]]</item>
+        <item>con sobrepeso</item>
+        <item>[baj[o,a]] y [fornid[o,a]]</item>
+        <item>fuerte</item>
+        <item>[corpulent[o,a]]</item>
+        <item>[esbelt[o,a]]</item>
+        <item>[delgad[o,a]]</item>
+    </string-array>
+    <string-array name="individual_hair">
+        <item>[calv[o,a]]</item>
+        <item>de cabello claro</item>
+        <item>de cabello blanquecino</item>
+        <item>de cabello rubio</item>
+        <item>de cabello castaño</item>
+        <item>de cabello castaño rojizo</item>
+        <item>[pelirroj[o,a]]</item>
+        <item>de cabello grisáceo</item>
+        <item>de cabello oscuro</item>
+        <item>de cabello oscuro</item>
+        <item>de cabello negro</item>
+        <item>de cabello largo</item>
+        <item>de cabello corto</item>
+        <item>de cabello hasta los hombros</item>
+        <item>de cabello en punta</item>
+        <item>de cabello rizado</item>
+        <item>de cabello liso</item>
+        <item>de cabello ondulado</item>
+    </string-array>
+    <string-array name="individual_height">
+        <item>muy [baj[o,a]]</item>
+        <item>[baj[o,a]]</item>
+        <item>[baj[o,a]]</item>
+        <item>de estatura media</item>
+        <item>de estatura media</item>
+        <item>[alt[o,a]]</item>
+        <item>[alt[o,a]]</item>
+        <item>muy [alt[o,a]]</item>
+    </string-array>
+    <string-array name="individual_trait">
+        <item>{string:individual_build}</item>
+        <item>{string:individual_hair}</item>
+        <item>{string:individual_height}</item>
+    </string-array>
     <string-array name="language">
         <item>Español</item>
         <item>Inglés</item>
@@ -1145,6 +1203,327 @@
         <item>Sagitario (18 de diciembre - 8 de enero)</item>
         <item>Capricornio (9 de enero - 15 de febrero)</item>
     </string-array>
+    <string-array name="opinions">
+        <item>¿Has oído de ##? Es mi peor enemigo.</item>
+        <item>Tú te pareces a alguien que conozco, se llama ##.</item>
+        <item>¿De casualidad no conoces a ##?</item>
+        <item>Tengo que ir con ##. Me debe dinero.</item>
+        <item>Estoy enamorado de ##.</item>
+        <item>¿Acaso has visto a {[un[,a]]} tal ##?</item>
+        <item>Tu {string:relative⸻⸮}, ## y yo somos amantes. Todo un triángulo amoroso.</item>
+        <item>¿Eres {string:relative⸻⛌} de ##? Se parecen mucho.</item>
+        <item>¿Eres acaso {string:relative⸻⛌} de ##? Comparten ciertas características ustedes dos.</item>
+        <item>Me agrada verte por aquí, no como a ##.</item>
+        <item>Oh, sí, revelé un futuro terrorífico para ##.</item>
+        <item>El otro día ## me pidió que le leyera el futuro.</item>
+        <item>Tantas trágicas historias se han escrito, como las de ##.</item>
+        <item>Revelar el futuro es algo agotador, y más el futuro de ##.</item>
+        <item>Muchas personas acuden a mí, en especial ##, ## y ##.</item>
+        <item>¿Sabías que ## y ## son pareja?</item>
+        <item>Hay un destino muy cruel entre ## y ##.</item>
+        <item>Una fuerte rivalidad crece entre ## y ##.</item>
+        <item>¿Quieres saber qué pasó con ##?</item>
+        <item>## acudió a mí para obtener mis conocimientos secretos.</item>
+        <item>Cuidado con ##, es una persona muy peligrosa.</item>
+        <item>Hay una persona muy agradable llamada ##.</item>
+        <item>Me gusta la comida, en especial aquella hecha por ##.</item>
+        <item>Hay dos personas en este mundo a quienes deberías conocer. Ellas son ## y ##.</item>
+        <item>Tengo muchos hermanos, y mi {[favorit[o,a]]} es ##.</item>
+        <item>Nunca vayas a hablar con ##, es muy {[molest[o,a]]}.</item>
+        <item>Me encanta hacer adivinaciones para ##.</item>
+        <item>Sí, ¿has visto a ##? Necesito hablar con esta persona.</item>
+        <item>A ver, a ver, uh, ##, ##, ##, ##, ##, uh… y ##. Listo, anotados los que me faltan para predecirles su futuro.</item>
+        <item>Si te portas mal, ## va a venir y te va a llevar.</item>
+        <item>¿Has escuchado la triste historia de ##?</item>
+        <item>¿Has escuchado las aventuras de ##?</item>
+        <item>¿Has escuchado las buenas noticias sobre ##?</item>
+        <item>¿Te importaría dejarme adivinar algo sobre ##?</item>
+        <item>¿Quién es ##?</item>
+        <item>¿Te has encontrado con ##?</item>
+        <item>Me gusta una persona llamada ##.</item>
+        <item>Me gusta alguien que se llama ##.</item>
+        <item>¿Por qué odias a ##?</item>
+        <item>¿Te gusta una persona llamada ##?</item>
+        <item>¿Qué sabes acerca de ##?</item>
+        <item>## y ## son personas muy similares.</item>
+        <item>Dime si algún día ves a ##.</item>
+        <item>Dime si un día conoces a ##.</item>
+        <item>Soy una persona muy ocupada. Hoy saldré con ##.</item>
+        <item>## y ## son muy buenos amigos.</item>
+        <item>## y ## son los peores enemigos.</item>
+        <item>## y ## se odian demasiado.</item>
+        <item>## y ## se aman.</item>
+        <item>## y ## siempre pelean.</item>
+        <item>## y ## siempre tienen buenas ideas.</item>
+        <item>## y ## se llevan muy bien.</item>
+        <item>## y ## no se llevan bien.</item>
+        <item>## y ## no se toleran.</item>
+        <item>## y ## son muy cercanos.</item>
+        <item>## y ## se entienden muy bien.</item>
+        <item>Necesito encontrar a ##. Me debe dinero.</item>
+        <item>Estoy buscando a ##. ¿Tú {[l[o,a]]} has visto?</item>
+        <item>Me parece que ## tiene un destino muy malo.</item>
+        <item>Creo que ## tiene un buen futuro.</item>
+        <item>¿Crees que no soy real? ## cree lo contrario.</item>
+        <item>## me cae muy mal.</item>
+        <item>## me cae muy bien.</item>
+        <item>Siento indiferencia hacia ##.</item>
+        <item>Me agrada estar con ##.</item>
+        <item>Odio estar con ##.</item>
+        <item>En alguna parte, ## conspira contra nosotros.</item>
+        <item>En algún lugar, ## hace planes que nos beneficiarán.</item>
+        <item>## habla mal de ##.</item>
+        <item>## no para de hablar de ##.</item>
+        <item>## siempre tiene buenas cosas qué decir sobre ##.</item>
+        <item>Estoy cansado de ##.</item>
+        <item>Me gusta tratar con ##.</item>
+        <item>Hay muchas personas a las cuales realizo predicciones, pero a ## es a la que más le hago.</item>
+        <item>¿Conoces la leyenda de ##?</item>
+        <item>## tiene un buen futuro.</item>
+        <item>## tiene un futuro malo.</item>
+        <item>## sabe muchas cosas.</item>
+        <item>## asegura haber visto a ##.</item>
+        <item>Yo no creo que ## haya encontrado a ##.</item>
+        <item>El destino alguna vez indicó que ## y ## se habrían de encontrar, y así pasó.</item>
+        <item>## hará cosas increíbles.</item>
+        <item>## hará cosas terribles.</item>
+        <item>Me preocupa alguien que se llama ##.</item>
+        <item>¿No has sabido algo sobre ##?</item>
+        <item>## ya no se ha comunicado conmigo, y es preocupante.</item>
+        <item>## puede ganarle a ## en una pelea.</item>
+        <item>## va a hacer cosas malas hoy.</item>
+        <item>## hará algo muy bueno en este día.</item>
+        <item>El destino no favorece a ##.</item>
+        <item>El destino está a favor de ##.</item>
+        <item>Esta vida quiere que triunfe ##.</item>
+        <item>La vida ajusta las posibilidades en contra de ##.</item>
+        <item>Esta existencia tiene cosas muy curiosas, una de ellas es una persona llamada ##.</item>
+        <item>No me interrumpas, estoy viendo la vida de ##.</item>
+        <item>Es interesante ver lo que pasa con ##.</item>
+        <item>¡Quieto! Déjame ver qué sucede con ##.</item>
+        <item>¡Alto! Necesito saber qué ocurre con ##.</item>
+        <item>¡Oye! Tengo que conocer lo que pasará con ##.</item>
+        <item>¡Me gusta estar con ##!</item>
+        <item>¡Odio estar con ##!</item>
+        <item>No, no, no, todo está mal con ##.</item>
+        <item>Y así es la triste vida de ##.</item>
+        <item>¡Vaya! Deberías ver lo increíble que es la vida de ##.</item>
+        <item>Ver el futuro es entretenido. Me gusta, sobre todo, ver lo que acontece en la vida de ##.</item>
+        <item>Estoy harto de ##.</item>
+        <item>Estoy feliz por ##.</item>
+        <item>Existe una tensión fuerte entre ## y ##.</item>
+        <item>## y ## aparentemente se odian, aunque realmente se aman.</item>
+        <item>El futuro es felicidad para ##.</item>
+        <item>El futuro es tristeza para ##.</item>
+        <item>Si tuviera una moneda cada vez que ## dice una tontería, sería millonario.</item>
+        <item>Si tuviera una moneda por cada cosa ingeniosa que ## dice, estaría debiendo dinero.</item>
+        <item>No hay nada como molestar a ##.</item>
+        <item>Me gusta pasar el rato con ##.</item>
+        <item>Tal parece que las cosas van mal entre ## y ##.</item>
+        <item>Las cosas irán mal entre ## y ##.</item>
+        <item>## trata de causar mal entre ## y ##.</item>
+        <item>## siempre da malos consejos a ##.</item>
+        <item>## es una persona muy agradable. Deberías tratarla.</item>
+        <item>Sí, lo tengo. Aquí está el destino de ##.</item>
+        <item>Deberías ver lo que ## está haciendo.</item>
+        <item>Tal parece que ## está haciendo cosas malas.</item>
+        <item>## se está portando muy bien.</item>
+        <item>Con el fin de enfrentar a su destino, ## hace cosas que cree que lo evitarán.</item>
+        <item>Casi nadie puede huir de su destino, en especial ##.</item>
+        <item>¿Crees en el destino? ## logró una vez salirse con la suya y evitarlo.</item>
+        <item>El futuro es algo inaudito, sobre todo el de ##.</item>
+        <item>##, ## y ## son muy buenos amigos.</item>
+        <item>Necesito ver a ##. Es urgente.</item>
+        <item>¿Has visto a ##? Tengo que decirle algo.</item>
+        <item>Si ves a ## dile que me pague.</item>
+        <item>¿Sabes quién es ##?</item>
+        <item>¿Conoces a ##?</item>
+        <item>¿Quieres oír acerca de ##?</item>
+        <item>Ten cuidado con ##, es {[mal[o,a]]} con las personas que lo rodean.</item>
+        <item>Deberías ver a ##, es muy agradable.</item>
+        <item>Honestamente, estoy cansado de predecirle el futuro a ##.</item>
+        <item>¿Sabes algo de ##?</item>
+        <item>¿Quieres saber lo que pasó con ##?</item>
+        <item>¡Calma! Ya te tocará saber qué pasará contigo. Debo ver lo que ## vivirá.</item>
+        <item>¡Déjame ver a ##!</item>
+        <item>¡Tengo que encontrar a ##!</item>
+        <item>¡Necesito decirle algo a ##!</item>
+        <item>No, es muy triste lo que ocurre con ##, ##, ## y ##.</item>
+        <item>Si pudiera armar un grupo de tontos, elegiría a ##, ##, ## y ##.</item>
+        <item>El mejor grupo con el cual salir es ##, ##, ## y ##.</item>
+        <item>Siempre es bueno escuchar los consejos de ##.</item>
+        <item>Tengo {[un[,a]]} {[conocid[o,a]]} {[llamad[o,a]]} ##.</item>
+        <item>Tengo {[un[,a]]} {[amig[o,a]]} {[llamad[o,a]]} ##.</item>
+        <item>Tengo {[un[,a]]} {[enemig[o,a]]} {[llamad[o,a]]} ##.</item>
+        <item>Tengo {[un[,a]]} amante {[llamad[o,a]]} ##.</item>
+        <item>Soy mejor que una persona llamada ##.</item>
+        <item>## tiene asegurado un buen futuro.</item>
+        <item>A ## no le espera un buen futuro.</item>
+        <item>## tendrá una vida llena de felicidad.</item>
+        <item>## tendrá una vida acompañada de tristezas.</item>
+        <item>## espera una vida de soledad.</item>
+        <item>## recibirá la fortuna con los brazos abiertos.</item>
+        <item>## tendrá una larga vida.</item>
+        <item>La desgracia será parte de la vida de ##.</item>
+        <item>Ejemplos de destinos totalmente distintos entre sí serían los de ## y ##.</item>
+        <item>Buenas posibilidades le esperan a ##.</item>
+        <item>Posibilidades malas le aguardan a ##.</item>
+        <item>¿Sabes lo que pasará con ##?</item>
+        <item>Parece que ## y ## se pertenecen.</item>
+        <item>Vaya, vaya, ## tiene buen presagio.</item>
+        <item>La profecía indica que ## es {[[el,la]]} {[elegid[o,a]]}.</item>
+        <item>## ha aceptado su destino.</item>
+        <item>## lucha vanamente contra su destino.</item>
+        <item>Tengo el presentimiento de que te has cruzado con ##.</item>
+        <item>Tengo muy buenas noticias para ##.</item>
+        <item>Hay muy malas noticias sobre ##.</item>
+        <item>Tengo malas noticias para ##.</item>
+        <item>La profecía dice que ## será {[exitos[o,a]]}.</item>
+        <item>## es la persona mencionada en la profecía.</item>
+        <item>El augurio señala prosperidad para ##.</item>
+        <item>El augurio muestra que ## tendrá una larga vida.</item>
+        <item>El augurio dice que ## tendrá una vida buena.</item>
+        <item>## y ## son personas que no se llevan entre sí.</item>
+        <item>## y ## comparten vidas llenas de conflictos.</item>
+        <item>El destino ha sido complaciente con ##.</item>
+        <item>La vida se encarga una y otra vez de que ## falle.</item>
+        <item>Una cadena de éxitos ha sido predestinada para ##.</item>
+        <item>## va a tener una vida normal.</item>
+        <item>## va a tener una vida libre de problemas.</item>
+        <item>## tendrá una vida llena de dificultades, sin embargo, su recompensa será grande.</item>
+        <item>Aquí dice que ## ha cometido muchos crímenes.</item>
+        <item>La vida secreta de ## es muy aterradora.</item>
+        <item>Aparentemente ## es una buena persona, pero todo indica lo contrario.</item>
+        <item>La vida de ## dará un giro completo.</item>
+        <item>Las cosas se invertirán para ##.</item>
+        <item>La situación cambiará para ##.</item>
+        <item>## recibirá lo que merece.</item>
+        <item>## recibirá un castigo.</item>
+        <item>## será {[recompensad[o,a]]}.</item>
+        <item>## tendrá una vida llena de intrigas y suspenso.</item>
+        <item>Así como lo indica el augurio, ## será una persona exitosa.</item>
+        <item>El futuro muestra cosas buenas y malas, pero ## parece tener la vida más sencilla.</item>
+        <item>El destino de ## es realmente complejo.</item>
+        <item>Dicen que ## hará cosas tan increíbles que cambiarán a la sociedad.</item>
+        <item>Uh, ## será {[un[,a]]} {[visionari[o,a]]}.</item>
+        <item>Hay cosas tan oscuras en el futuro de ##.</item>
+        <item>Incluso yo no puedo descifrar del todo lo que pasará con ##.</item>
+        <item>## desafía todas las posibilidades.</item>
+        <item>El destino de ## no es muy claro.</item>
+        <item>## y ## comparten una rivalidad.</item>
+        <item>##, ## y ## serán parte de una disputa.</item>
+        <item>Incluso yo le temo a ##, pues es una persona realmente aterradora.</item>
+        <item>Todos debemos cuidarnos de ##.</item>
+        <item>Todos deberían conocer a ##.</item>
+        <item>Tal parece que las predicciones nunca han sido correctas para ##. Esta persona realmente desafía al futuro.</item>
+        <item>## estima a ##.</item>
+        <item>## ignora el hecho de que ## puede llegar a ser un gran problema.</item>
+        <item>## no se rinde a pesar de las desgracias.</item>
+        <item>La valentía es algo que a ## no le falta.</item>
+        <item>## hará cosas inauditas.</item>
+        <item>Encuentro a ## realmente interesante.</item>
+        <item>## tiene una vida intrincada.</item>
+        <item>## es una de las personas menos conocidas que hay.</item>
+        <item>Si te das la oportunidad, ## te sorprenderá.</item>
+        <item>Un sabio alguna vez dijo que errar es humano. La persona más humana que hay, posiblemente, es ##.</item>
+        <item>Si los fracasos nos hacen sabios, ## debe ser uno de los más grandes eruditos que hay.</item>
+        <item>Te contaré la breve historia de ##, quien nació siendo {[un[,a]]} de los más talentosos individuos y que, sin embargo, terminó negándose el éxito debido a su actitud.</item>
+        <item>## es realmente egoísta.</item>
+        <item>## acepta su destino.</item>
+        <item>## es de las pocas personas que no sé cómo es que siguen aquí a pesar de todo lo que les ha pasado.</item>
+        <item>Si me preguntas, considero que ## tiene la vida más interesante.</item>
+        <item>No sé cómo es que ## puede salirse con la suya.</item>
+        <item>## me debe mucho dinero por todas las adivinaciones.</item>
+        <item>Nunca se puede confiar en ##.</item>
+        <item>Si ves a ##, aléjate.</item>
+        <item>Me estresa lidiar con ##.</item>
+        <item>Muchos creen que pueden enfrentarse a su destino, como {[es[e,a]]} tal ##.</item>
+        <item>Hay personas quienes no hacen caso de lo que sucederá, lo cual es el caso de ##.</item>
+        <item>Nunca debes tratar con ##, pues es {[peligros[o,a]]}.</item>
+        <item>Es difícil ver el futuro de ##. Todo es borroso.</item>
+        <item>No he podido ver el futuro de {[un[,a]]} tal ##.</item>
+        <item>## es una de las pocas personas cuyo futuro es incierto.</item>
+        <item>## es de las pocas personas a las cuales no se les puede realizar una adivinación.</item>
+        <item>Si ves a ##, dile que le mando saludos.</item>
+        <item>Si ves a ##, dile que {[l[o,a]]} espero para una consulta.</item>
+        <item>Relaciónate con ##, ## y ##, pues son personas buenas.</item>
+        <item>Trata con ##, pues buenas cosas podrían salir de esa relación.</item>
+        <item>Es bien sabido que ## es {[un[,a]]} {[vag[o,a]]}.</item>
+        <item>Se sabe muy bien que ## una vez logró evitar la muerte.</item>
+        <item>## se ha salvado muchas veces de morir.</item>
+        <item>Algunos están hechos para morir hasta que logren lo inaudito, tal como ##.</item>
+        <item>## llevó una muy buena vida.</item>
+        <item>## fue una de las pocas personas que se pueden considerar totalmente íntegras.</item>
+        <item>## es una persona de fiar.</item>
+        <item>Se puede confiar totalmente en ##.</item>
+        <item>## es una de las personas más discretas. Yo, por otro lado, soy de las más chismosas.</item>
+        <item>## y ## tienen problemas.</item>
+        <item>## y ## quieren destruirse entre ellos.</item>
+        <item>## y ## enfrentan una serie de hechos curiosos.</item>
+        <item>¿Conoces la historia de ##? ¿Uh? Pues esta es de las pocas cosas que no puedo revelar.</item>
+        <item>Revelé toda la vida de ##.</item>
+        <item>Pude adivinar todo lo que sucedería con ##.</item>
+        <item>Yo soy una entidad que ha vivido mucho tiempo. ## tuvo una vida que, a comparación de la mía, ha sido realmente mínima, casi nula.</item>
+        <item>Una vez ## dijo que ## y ## se atraían.</item>
+        <item>## siempre ha sido indiferente.</item>
+        <item>## por lo general es indiferente.</item>
+        <item>## es muy egoísta.</item>
+        <item>## es una persona muy compartida.</item>
+        <item>Auguro cosas buenas para ##.</item>
+        <item>En definitiva, ## es un desastre.</item>
+        <item>## quiere dañar a ##.</item>
+        <item>## quiere que ## sea feliz.</item>
+        <item>## actúa de manera totalmente distinta a como dice ser.</item>
+        <item>## es {[un[,a]]} cobarde.</item>
+        <item>## enfrenta valientemente su destino.</item>
+        <item>¿Quién diría que ## y ## se llevarían muy bien?</item>
+        <item>¿Quién pensaría que ## y ## serían muy cercanos?</item>
+        <item>Si te das la oportunidad, ## podría caerte muy bien.</item>
+        <item>Te recomiendo tratar a ##.</item>
+        <item>Debo aceptar que ## ha logrado evadir el destino.</item>
+        <item>Cuidado con ##, es una persona tramposa.</item>
+        <item>## y ## en realidad se odian.</item>
+        <item>## y ## desearían no haberse conocido.</item>
+        <item>## está buscando a ##.</item>
+        <item>Muy pocos saben llevar una buena vida, como ##.</item>
+        <item>¿Has conocido a ##?</item>
+        <item>¿Tienes idea de quién es ##?</item>
+        <item>Largos conflictos les aguardan a ## y a ##.</item>
+        <item>Una vida de paz existirá entre ## y ##.</item>
+        <item>Puedo asegurarte que ##, ## y ## van a hacer cosas buenas.</item>
+        <item>## tiene una vida sorprendente.</item>
+        <item>Muchos sólo esperamos ver hacia el futuro, pero muchos deberíamos ver hacia el pasado, para evitar que todo se repita, como con ##.</item>
+        <item>Me agrada mucho ##.</item>
+        <item>Me desagrada ##.</item>
+        <item>Me gusta ##.</item>
+        <item>No me gusta ##.</item>
+        <item>Trágica y triste es la vida de ##.</item>
+        <item>La vida de ## es una auténtica comedia.</item>
+        <item>Me agrada la forma de ser de ##.</item>
+        <item>¿Sabes dónde está ##?</item>
+        <item>## y ## comparten un buen destino.</item>
+        <item>Pocos logran el éxito como ##.</item>
+        <item>Deberías aprender algo de ##.</item>
+        <item>## conoce a ##.</item>
+        <item>Tengo que decirle algo a ##.</item>
+        <item>Debo ver el futuro de ##.</item>
+        <item>## es una persona {string:adjectives⸻2}.</item>
+        <item>## es un sujeto {string:adjectives⸻1}.</item>
+        <item>## es un individuo {string:adjectives⸻1}.</item>
+        <item>## y su {string:relative⸻⸮} se llevan muy bien.</item>
+        <item>## y su {string:relative⸻⸮} tienen una mala relación.</item>
+        <item>## y su {string:relative⸻⸮} se tratan muy mal.</item>
+        <item>## y su {string:relative⸻⸮} tienen una relación armoniosa.</item>
+        <item>## y su {string:relative⸻⸮} han hecho cosas indecibles.</item>
+        <item>## y su {string:relative⸻⸮} han hecho cosas muy malas.</item>
+        <item>Tu {string:relative⸻⸮} se parece mucho a ##.</item>
+        <item>Tu {string:relative⸻⸮} ama a ##.</item>
+        <item>Tu {string:relative⸻⸮} odia a ##.</item>
+        <item>Tu {string:relative⸻⸮} ignora a ##.</item>
+        <item>Tu {string:relative⸻⸮} es buen amigo de ##.</item>
+        <item>Tu {string:relative⸻⸮} se lleva mal con ##.</item>
+        <item>Tu {string:relative⸻⸮} y ## son enemigos.</item>
+    </string-array>
     <string-array name="person">
         <item>una persona</item>
         <item>la pareja de %%</item>
@@ -1181,6 +1560,89 @@
         <item>[un[,a]] rival de %%</item>
         <item>[un[,a]] aprendiz de %%</item>
         <item>[un[,a]] [mentor[,a]] de %%</item>
+    </string-array>
+    <string-array name="phrase_augury">
+        <item>Veamos qué te depara el futuro.</item>
+        <item>Veamos qué tenemos para ti.</item>
+        <item>Veamos qué dice la adivinación.</item>
+        <item>¿Listo para la adivinación?</item>
+        <item>Es momento de realizar la adivinación.</item>
+        <item>Veamos lo que la predicción indica.</item>
+        <item>¿Quieres que te enseñe mi bola de cristal?</item>
+        <item>Analicemos lo que hay en tu futuro.</item>
+        <item>Veamos cómo te irá.</item>
+        <item>Veamos cómo te percibe el mundo.</item>
+        <item>Conozcamos qué hay en tu futuro.</item>
+        <item>Conozcamos lo que el destino te depara.</item>
+        <item>Haré la adivinación en este momento.</item>
+        <item>¿Listo para saber qué hay?</item>
+        <item>Te diré enseguida lo que tu destino marca.</item>
+        <item>Mira, aquí está lo que indica tu destino:</item>
+        <item>Tu destino marca esto:</item>
+        <item>Aquí está la predicción de hoy:</item>
+        <item>Haré la predicción para ti.</item>
+        <item>Este es tu futuro:</item>
+        <item>Aquí está lo que pasará:</item>
+        <item>Observa las cosas que ocurrirán:</item>
+        <item>Mira lo que tu futuro muestra:</item>
+        <item>Tengo lista la adivinación.</item>
+        <item>Tengo lista la predicción.</item>
+        <item>Aquí tengo ya tu futuro.</item>
+        <item>Ocurrirá esto:</item>
+        <item>Esto es lo que pasará:</item>
+        <item>Mira lo que indica tu futuro:</item>
+        <item>Observa, sí, es lo que pasará:</item>
+        <item>Esto es lo que te depara el destino:</item>
+        <item>El destino dice que esto sucederá:</item>
+        <item>Ocurrirá esto, míralo:</item>
+        <item>Ve lo que pasará en la actualidad.</item>
+        <item>Esto es lo que ocurrirá:</item>
+        <item>Mira, esto sucederá:</item>
+        <item>Aquí tengo tu predicción.</item>
+        <item>La predicción muestra esto:</item>
+        <item>Si la predicción es fidedigna, esto ocurrirá:</item>
+        <item>Es muy probable que esto ocurra:</item>
+        <item>Mira, esto puede que pase:</item>
+        <item>¿Qué sucederá? Mira:</item>
+        <item>¿Qué va a ocurrir? Observa:</item>
+        <item>¿Quieres saber qué pasará?</item>
+        <item>¡Pon atención, ve esto!</item>
+        <item>¿Tienes miedo a que te diga qué sucederá?</item>
+        <item>Esto tendrá lugar en los días por venir:</item>
+        <item>Esto tendrá lugar en los días venideros:</item>
+        <item>A ti te pasará esto:</item>
+        <item>Esto es un déjà vu.</item>
+        <item>¿Ya hemos hecho esto antes?</item>
+        <item>¿Sientes como que ya has vivido esto?</item>
+        <item>Aquí vamos, mira:</item>
+        <item>Observa lo que pasará:</item>
+        <item>Esto va a pasar:</item>
+        <item>Las cosas serán así en los días por venir:</item>
+        <item>Tengo preparada la adivinación.</item>
+        <item>Estas cosas van a suceder:</item>
+        <item>Estos son los hechos por venir:</item>
+        <item>Estos son los eventos venideros:</item>
+        <item>Así están las cosas al día de hoy:</item>
+        <item>Los eventos que rodean a tu persona son:</item>
+        <item>El mañana luce así para ti:</item>
+        <item>Este es tu porvenir:</item>
+        <item>La suerte muestra esto para ti:</item>
+        <item>La fortuna marca que sucederá esto:</item>
+        <item>Averigua tu futuro.</item>
+        <item>Averigüemos tu futuro.</item>
+        <item>¿Quieres ver mi varita mágica? ¡Ah, no soy un mago, cierto!</item>
+        <item>Mira lo que te aguarda para el día de hoy:</item>
+        <item>Observa con atención lo que te sucederá:</item>
+        <item>Ve lo que podría pasarte:</item>
+        <item>¿Estás al tanto de lo que podría sucederte?</item>
+        <item>¡Pon atención! Esto podría pasarte:</item>
+        <item>Aquí están algunas cosas que podrían suceder:</item>
+        <item>Lee lo que podría ocurrir:</item>
+        <item>Checa esto, pues podría pasar:</item>
+        <item>¿Sabes qué pasará? Mira:</item>
+        <item>¿Quieres saber lo que sucederá? Aquí lo tengo:</item>
+        <item>Esto es lo que mi bola de cristal me muestra:</item>
+        <item>Mira con detenimiento esto que podría ocurrir:</item>
     </string-array>
     <string-array name="probability">
         <item>quizá</item>
@@ -1329,6 +1791,11 @@
         <item>tolerante</item>
         <item>[trabajador[,a]]</item>
         <item>veraz</item>
+    </string-array>
+    <string-array name="subject">
+        <item name="subject">{string:nouns} ⸠string:adjectives⸡</item>
+        <item name="subject">{string:nouns}</item>
+        <item name="subject">{string:adjectives}</item>
     </string-array>
     <string-array name="uncertainty">
         <item>no sé qué</item>
