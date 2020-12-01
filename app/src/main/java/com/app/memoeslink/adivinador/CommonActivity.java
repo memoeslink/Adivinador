@@ -21,10 +21,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import java.util.HashMap;
 import java.util.Locale;
 
-/**
- * Created by Memoeslink on 10/08/2017.
- */
-
 public class CommonActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
     private AudioManager audioManager;
     protected boolean available = false;
@@ -41,7 +37,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setTheme(Methods.getTheme(this));
+        setTheme(Methods.getThemeId(this));
         super.onCreate(savedInstanceState);
         preferences = new SharedPreferencesHelper(this, SharedPreferencesHelper.PREFERENCES);
         defaultPreferences = new SharedPreferencesHelper(this);
@@ -57,7 +53,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     @Override
     public void onResume() {
         super.onResume();
-        Methods.setScreenVisibility(CommonActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
+        Screen.setContinuance(CommonActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
     }
 
     @Override
@@ -93,7 +89,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
             available = Methods.setTTS(tts, defaultPreferences.getString("preference_language", "es"));
         else {
             available = false;
-            Methods.showSimpleToast(CommonActivity.this, getString(R.string.toast_unavailable_voices));
+            Methods.showSimpleToast(CommonActivity.this, getString(R.string.toast_voice_unavailability));
         }
     }
 
@@ -101,21 +97,6 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     protected void attachBaseContext(Context context) {
         context = wrap(context);
         super.attachBaseContext(context);
-    }
-
-    @SuppressWarnings("deprecation")
-    void talk(String text) {
-        if (available && defaultPreferences.getBoolean("preference_audioEnabled") && defaultPreferences.getBoolean("preference_voiceEnabled")) {
-            lastText = text;
-
-            if (tts.isSpeaking())
-                tts.stop();
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, "UniqueID");
-            else
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, map);
-        }
     }
 
     protected void setCustomActionBar() {
@@ -164,5 +145,19 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
             }
         }
         return new ContextWrapper(context);
+    }
+
+    final void talk(String text) {
+        if (available && defaultPreferences.getBoolean("preference_audioEnabled") && defaultPreferences.getBoolean("preference_voiceEnabled")) {
+            lastText = text;
+
+            if (tts.isSpeaking())
+                tts.stop();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, "UniqueID");
+            else
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, map);
+        }
     }
 }

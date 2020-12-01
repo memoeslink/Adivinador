@@ -1,9 +1,5 @@
 package com.app.memoeslink.adivinador;
 
-/**
- * Created by Memoeslink on 14/03/2018.
- */
-
 public class Enquiry {
     private Person person;
     private boolean userRequested;

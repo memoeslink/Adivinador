@@ -2,10 +2,6 @@ package com.app.memoeslink.adivinador;
 
 import org.apache.commons.lang3.StringUtils;
 
-/**
- * Created by Memoeslink on 02/09/2017.
- */
-
 public class Entity {
     public static final int DEFAULT_SEX = 0;
     protected int id;
@@ -13,7 +9,7 @@ public class Entity {
     protected String forename;
     protected String surname;
     protected String generationalTitle;
-    protected NameEnum nameType;
+    protected Name name;
 
     public Entity() {
         id = -1;
@@ -21,16 +17,16 @@ public class Entity {
         forename = "";
         surname = "";
         generationalTitle = "";
-        nameType = NameEnum.EMPTY;
+        name = Name.EMPTY;
     }
 
-    public Entity(int id, int sex, String forename, String surname, String generationalTitle, NameEnum nameType) {
+    public Entity(int id, int sex, String forename, String surname, String generationalTitle, Name name) {
         this.id = id;
         this.sex = sex;
         this.forename = forename;
         this.surname = surname;
         this.generationalTitle = generationalTitle;
-        this.nameType = nameType;
+        this.name = name;
     }
 
     public int getId() {
@@ -73,12 +69,12 @@ public class Entity {
         this.generationalTitle = generationalTitle;
     }
 
-    public NameEnum getNameType() {
-        return nameType;
+    public Name getName() {
+        return name;
     }
 
-    public void setNameType(NameEnum nameType) {
-        this.nameType = nameType;
+    public void setName(Name name) {
+        this.name = name;
     }
 
     public String getSimpleName() {

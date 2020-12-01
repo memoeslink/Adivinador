@@ -11,10 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Memoeslink on 04/04/2018.
- */
-
 public class FortuneTeller extends BaseWrapper {
     private Long seed;
     private Methods methods;

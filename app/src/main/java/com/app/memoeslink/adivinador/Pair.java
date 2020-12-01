@@ -1,9 +1,5 @@
 package com.app.memoeslink.adivinador;
 
-/**
- * Created by Memoeslink on 27/03/2018.
- */
-
 public class Pair<A, B> {
     private A subKey = null;
     private B subValue = null;

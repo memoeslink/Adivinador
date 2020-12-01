@@ -1,9 +1,5 @@
 package com.app.memoeslink.adivinador;
 
-/**
- * Created by Memoeslink on 13/08/2017.
- */
-
 public class Person extends Entity {
     private String honoraryTitle;
     private String japaneseHonorific;
@@ -33,11 +29,11 @@ public class Person extends Entity {
         this.forename = entity.forename;
         this.surname = entity.surname;
         this.generationalTitle = entity.generationalTitle;
-        this.nameType = entity.nameType;
+        this.name = entity.name;
     }
 
-    public Person(int id, int sex, String forename, String surname, String generationalTitle, NameEnum nameType, String honoraryTitle, String japaneseHonorific, String postNominalLetters, String nickname, String username, String address, String email, SimpleDate birthdate) {
-        super(id, sex, forename, surname, generationalTitle, nameType);
+    public Person(int id, int sex, String forename, String surname, String generationalTitle, Name name, String honoraryTitle, String japaneseHonorific, String postNominalLetters, String nickname, String username, String address, String email, SimpleDate birthdate) {
+        super(id, sex, forename, surname, generationalTitle, name);
         this.honoraryTitle = honoraryTitle;
         this.japaneseHonorific = japaneseHonorific;
         this.postNominalLetters = postNominalLetters;

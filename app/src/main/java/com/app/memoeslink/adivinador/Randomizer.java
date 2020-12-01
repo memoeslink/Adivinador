@@ -11,10 +11,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-/**
- * Created by Memoeslink on 04/04/2018.
- */
-
 public class Randomizer {
     private Random r;
     private Long seed;

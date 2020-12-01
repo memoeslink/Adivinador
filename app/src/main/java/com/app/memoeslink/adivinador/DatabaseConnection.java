@@ -9,14 +9,11 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.util.HashMap;
 
-/**
- * Created by Memoeslink on 19/08/2017.
- */
-
 class DatabaseConnection extends SQLiteAssetHelper {
-    public static final int DATABASE_VERSION = 44;
-    public static final String DATABASE_NAME = "words_upgrade_43-44.sqlite";
+    public static final int DATABASE_VERSION = 45;
+    public static final String DATABASE_NAME = "words_upgrade_44-45.sqlite";
     public static final String DATABASE_NAME_FORMAT = "words%s.sqlite";
+    public static final String DEFAULT_VALUE = "?";
     private static final String ID_PREFIX = "ID";
     private static final String TABLE_ENGLISH_ABSTRACT_NOUNS = "EnglishAbstractNouns";
     private static final String TABLE_ENGLISH_ACTIONS = "EnglishActions";
@@ -27,6 +24,7 @@ class DatabaseConnection extends SQLiteAssetHelper {
     private static final String TABLE_ENGLISH_MALE_NAMES = "EnglishMaleNames";
     private static final String TABLE_ENGLISH_NOUNS = "EnglishNouns";
     private static final String TABLE_ENGLISH_OCCUPATIONS = "EnglishOccupations";
+    private static final String TABLE_ENGLISH_PHONETICS = "EnglishPhonetics";
     private static final String TABLE_ENGLISH_PHRASES = "EnglishPhrases";
     private static final String TABLE_ENGLISH_SURNAMES = "EnglishSurnames";
     private static final String TABLE_SPANISH_ABSTRACT_NOUNS = "SpanishAbstractNouns";
@@ -95,7 +93,7 @@ class DatabaseConnection extends SQLiteAssetHelper {
             c.moveToFirst();
             result = c.getString(1);
         } catch (Exception e) {
-            result = "?";
+            result = DEFAULT_VALUE;
         } finally {
             c.close();
             c = null;
@@ -181,6 +179,18 @@ class DatabaseConnection extends SQLiteAssetHelper {
 
     public String selectEnglishOccupation(int id) {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_OCCUPATIONS + " WHERE " + TABLE_ENGLISH_OCCUPATIONS + ID_PREFIX + "=" + id);
+    }
+
+    public int countEnglishPhonetics() {
+        return countRows(TABLE_ENGLISH_PHONETICS);
+    }
+
+    public String selectEnglishWord(int id) {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_PHONETICS + " WHERE " + TABLE_ENGLISH_PHONETICS + ID_PREFIX + "=" + id);
+    }
+
+    public String selectEnglishPhoneticScript(String word) {
+        return selectRow("SELECT Word, Phonetics FROM " + TABLE_ENGLISH_PHONETICS + " WHERE Word='" + word + "'");
     }
 
     public int countEnglishPhrases() {

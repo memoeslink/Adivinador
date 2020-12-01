@@ -6,11 +6,10 @@ import androidx.multidex.MultiDexApplication;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 
-/**
- * Created by Memoeslink on 11/05/2016.
- */
 public class ApplicationContext extends MultiDexApplication {
     private SharedPreferencesHelper preferences;
     private SharedPreferencesHelper defaultPreferences;
@@ -32,7 +31,7 @@ public class ApplicationContext extends MultiDexApplication {
     }
 
     public File getDatabaseTrace(int version) {
-        if (version >= 1) {
+        if (version >= preferences.getInt("revisedDatabaseVersion", 1)) {
             String databaseName;
 
             if (version > 1)
@@ -41,8 +40,10 @@ public class ApplicationContext extends MultiDexApplication {
                 databaseName = String.format(DatabaseConnection.DATABASE_NAME_FORMAT, "");
             File database = getDatabasePath(databaseName);
 
-            if (database.exists())
+            if (database.exists()) {
+                preferences.putInt("revisedDatabaseVersion", version);
                 return database;
+            }
             getDatabaseTrace(version - 1);
         }
         return null;
@@ -64,10 +65,9 @@ public class ApplicationContext extends MultiDexApplication {
                 return files;
             }
             System.out.println("There's not any database.");
-            return null;
-        } catch (Exception e) {
-            return null;
+        } catch (Exception ignored) {
         }
+        return null;
     }
 
     public void deleteOldDatabases() {
@@ -75,7 +75,7 @@ public class ApplicationContext extends MultiDexApplication {
 
         if (files != null && files.length > 0) {
             for (File file : files) {
-                if (!file.getName().equals(DatabaseConnection.DATABASE_NAME)) {
+                if (!StringUtils.startsWith(file.getName(), "google_") && !file.getName().equals(DatabaseConnection.DATABASE_NAME)) {
                     if (file.exists()) {
                         if (file.delete())
                             System.out.println("Database was successfully deleted: " + file.toURI());

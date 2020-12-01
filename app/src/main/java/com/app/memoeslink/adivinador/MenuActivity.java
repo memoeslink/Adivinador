@@ -12,10 +12,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-/**
- * Created by Memoeslink on 03/08/2017.
- */
-
 public class MenuActivity extends CommonActivity {
     protected DrawerLayout drawerLayout = null;
     protected NavigationView navigationView = null;

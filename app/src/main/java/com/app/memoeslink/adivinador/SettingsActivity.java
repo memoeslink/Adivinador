@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.speech.tts.TextToSpeech;
 import android.view.KeyEvent;
 
@@ -12,16 +13,11 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 
-/**
- * Created by Memoeslink on 10/08/2017.
- */
-
 public class SettingsActivity extends CommonActivity implements TextToSpeech.OnInitListener {
     private boolean speechAvailable;
     private AlertDialog dialog;
     private AudioManager audioManager;
     private TextToSpeech tts;
-    private SharedPreferences.OnSharedPreferenceChangeListener listener;
     private FortuneTeller methods;
 
     @Override
@@ -43,9 +39,9 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
         dialog = builder.create();
 
         //Set listeners
-        listener = (prefs, key) -> {
+        SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
             if (key.equals("preference_activeScreen"))
-                Methods.setScreenVisibility(SettingsActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
+                Screen.setContinuance(SettingsActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
 
             if (key.equals("preference_adsEnabled")) {
                 if (defaultPreferences.getBoolean("preference_adsEnabled"))
@@ -59,7 +55,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
                 try {
                     SettingsActivity.this.runOnUiThread(() -> dialog.show());
                 } catch (Exception e) {
-                    new Handler().postDelayed(() -> Methods.restartApplication(SettingsActivity.this), 500);
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> Methods.restartApplication(SettingsActivity.this), 500);
                 }
             }
 
@@ -85,7 +81,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
     @Override
     public void onResume() {
         super.onResume();
-        Methods.setScreenVisibility(SettingsActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
+        Screen.setContinuance(SettingsActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
     }
 
     @Override
@@ -127,7 +123,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
             speechAvailable = Methods.setTTS(tts, defaultPreferences.getString("preference_language", "es"));
         else {
             speechAvailable = false;
-            Methods.showSimpleToast(SettingsActivity.this, getString(R.string.toast_unavailable_voices));
+            Methods.showSimpleToast(SettingsActivity.this, getString(R.string.toast_voice_unavailability));
         }
     }
 

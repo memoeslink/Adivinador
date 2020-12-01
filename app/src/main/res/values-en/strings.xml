@@ -3,7 +3,7 @@
     <string name="about">
         <![CDATA[
         <big><b>Adivinador</b></big>
-        <br><b>Version: 1.5.0</b>
+        <br><b>Version: 1.5.1</b>
         <br><br>2014-2018 Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
@@ -273,7 +273,7 @@
     <string name="toast_clipboard">Text copied to clipboard.</string>
     <string name="toast_enquiry_not_saved">The enquiry couldn\'t be saved.</string>
     <string name="toast_enquiry_saved">The enquiry was saved successfully.</string>
-    <string name="toast_unavailable_voices">There\'s not any available voice for TTS in your device.</string>
+    <string name="toast_voice_unavailability">There\'s not any available voice for TTS in your device.</string>
     <string name="today">today</string>
     <string-array name="animal">
         <item>bee</item>
@@ -1074,7 +1074,7 @@
         <item>Spanish</item>
         <item>English</item>
     </string-array>
-    <string-array name="months">
+    <string-array name="month">
         <item>January</item>
         <item>February</item>
         <item>March</item>
@@ -1087,6 +1087,20 @@
         <item>October</item>
         <item>November</item>
         <item>December</item>
+    </string-array>
+    <string-array name="month_short">
+        <item>JAN</item>
+        <item>FEB</item>
+        <item>MAR</item>
+        <item>APR</item>
+        <item>MAY</item>
+        <item>JUN</item>
+        <item>JUL</item>
+        <item>AUG</item>
+        <item>SEP</item>
+        <item>OCT</item>
+        <item>NOV</item>
+        <item>DEC</item>
     </string-array>
     <string-array name="name_type_options">
         <item>Empty</item>
@@ -1690,20 +1704,6 @@
         <item>Pluto</item>
         <item>Jupiter</item>
         <item>Saturn</item>
-    </string-array>
-    <string-array name="short_months">
-        <item>JAN</item>
-        <item>FEB</item>
-        <item>MAR</item>
-        <item>APR</item>
-        <item>MAY</item>
-        <item>JUN</item>
-        <item>JUL</item>
-        <item>AUG</item>
-        <item>SEP</item>
-        <item>OCT</item>
-        <item>NOV</item>
-        <item>DEC</item>
     </string-array>
     <string-array name="text_type">
         <item>Read phrases from the fortune-teller</item>

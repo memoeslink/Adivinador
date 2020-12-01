@@ -33,7 +33,6 @@ public class InputActivity extends CommonActivity {
     private LocalDate maxDate;
     private LocalDate minDate;
     private Methods methods;
-    private SharedPreferences.OnSharedPreferenceChangeListener listener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -138,7 +137,7 @@ public class InputActivity extends CommonActivity {
 
         button.setOnClickListener(view -> finish());
 
-        listener = (prefs, key) -> {
+        SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
             if (key.equals("temp_busy"))
                 toggleViews(true);
         };
@@ -193,7 +192,7 @@ public class InputActivity extends CommonActivity {
                         preferences.getString("temp_name"),
                         "",
                         "",
-                        NameEnum.EMPTY
+                        Name.EMPTY
                 ));
                 person.setBirthdate(new SimpleDate(
                         preferences.getInt("temp_date_year", SimpleDate.DEFAULT_YEAR),

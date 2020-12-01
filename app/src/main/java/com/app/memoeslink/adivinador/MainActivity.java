@@ -1,6 +1,8 @@
 package com.app.memoeslink.adivinador;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -46,8 +48,6 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.content.ContextCompat;
 
 import com.easyandroidanimations.library.BounceAnimation;
-import com.easyandroidanimations.library.FadeInAnimation;
-import com.easyandroidanimations.library.FadeOutAnimation;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jinatonic.confetti.ConfettiManager;
@@ -60,6 +60,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
@@ -89,8 +90,9 @@ import me.zhanghai.android.materialprogressbar.CircularProgressDrawable;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 public class MainActivity extends MenuActivity {
-    private static final String[] sounds = {"blip1", "blip2", "bum", "chime_notification", "counter", "level_up", "notification", "notification_sound", "waterdrop"};
     private static final int PERMISSION_REQUEST = 1;
+    private static boolean forceEffects = true;
+    private static int[][] particleColors = new int[][]{{Color.BLUE, Color.argb(255, 0, 128, 255), Color.argb(255, 51, 153, 255), Color.argb(255, 0, 192, 199), Color.argb(125, 0, 128, 255), Color.argb(125, 51, 153, 255), Color.argb(125, 0, 192, 199)}, {Color.YELLOW, Color.argb(255, 251, 255, 147), Color.argb(255, 224, 228, 124), Color.argb(255, 155, 215, 93), Color.argb(255, 120, 168, 71), Color.argb(125, 251, 255, 147), Color.argb(125, 224, 228, 124), Color.argb(125, 155, 215, 93), Color.argb(125, 120, 168, 71)}};
     private RelativeLayout adContainer;
     private RelativeLayout header;
     private LinearLayout confettiLayout;
@@ -144,7 +146,6 @@ public class MainActivity extends MenuActivity {
     private boolean enquiryAvailable = false;
     private boolean pending = false;
     private boolean obtaining = false;
-    private static boolean forceEffects = true;
     private Boolean adPaused = null;
     private int startingReading = -1;
     private int reading = -1;
@@ -161,7 +162,6 @@ public class MainActivity extends MenuActivity {
     private int frequency = 20;
     private int refreshFrequency = 60;
     private SimpleDate currentDate = new SimpleDate(-1, -1, -1);
-    private static int[][] particleColors = new int[][]{{Color.BLUE, Color.argb(255, 0, 128, 255), Color.argb(255, 51, 153, 255), Color.argb(255, 0, 192, 199), Color.argb(125, 0, 128, 255), Color.argb(125, 51, 153, 255), Color.argb(125, 0, 192, 199)}, {Color.YELLOW, Color.argb(255, 251, 255, 147), Color.argb(255, 224, 228, 124), Color.argb(255, 155, 215, 93), Color.argb(255, 120, 168, 71), Color.argb(125, 251, 255, 147), Color.argb(125, 224, 228, 124), Color.argb(125, 155, 215, 93), Color.argb(125, 120, 168, 71)}};
     private String formattedDate = "";
     private String currentName = "";
     private String fakeIdentifier = "";
@@ -183,11 +183,22 @@ public class MainActivity extends MenuActivity {
     private Methods unseededMethods;
     private Methods seededMethods;
     private Randomizer randomizer;
-    private Enum designationEnum = NameEnum.EMPTY;
+    private Enum designation = Name.EMPTY;
     private FortuneTeller fortuneTeller;
     private Enquiry enquiry;
     private Person preloadedPerson = null;
-    private SharedPreferences.OnSharedPreferenceChangeListener listener;
+    DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
+            currentDate = new SimpleDate(year, monthOfYear + 1, dayOfMonth);
+
+            if (!formattedDate.isEmpty() && !formattedDate.equals(Methods.getFormattedDate(currentDate.getYear(), currentDate.getMonth(), currentDate.getDay()))) {
+                backupData = null;
+                same = true;
+                reloadPrediction(reloadHolder.getVisibility() != View.VISIBLE, false);
+            }
+        }
+    };
 
     private static void onInitializationComplete(InitializationStatus initializationStatus) {
     }
@@ -199,7 +210,7 @@ public class MainActivity extends MenuActivity {
         MobileAds.initialize(this, MainActivity::onInitializationComplete);
         tts = new TextToSpeech(this, this);
         interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId("ca-app-pub-9370416997367495/9592695166");
+        interstitialAd.setAdUnitId(AdUnitId.getInterstitialId());
         adContainer = findViewById(R.id.ad_container);
         header = findViewById(R.id.main_header);
         confettiLayout = findViewById(R.id.main_confetti_layout);
@@ -263,11 +274,17 @@ public class MainActivity extends MenuActivity {
         List<String> testDevices = new ArrayList<>();
         testDevices.add(AdRequest.DEVICE_ID_EMULATOR);
         testDevices.add(methods.getTestDeviceId());
-        RequestConfiguration requestConfiguration = new RequestConfiguration.Builder()
-                .setTestDeviceIds(testDevices)
-                .build();
+        RequestConfiguration requestConfiguration = new RequestConfiguration.Builder().build();
+
+        if (BuildConfig.DEBUG)
+            requestConfiguration = new RequestConfiguration.Builder()
+                    .setTestDeviceIds(testDevices)
+                    .build();
         MobileAds.setRequestConfiguration(requestConfiguration);
         adRequest = new AdRequest.Builder().build();
+
+        if (BuildConfig.DEBUG && !adRequest.isTestDevice(this))
+            System.out.println("This device will not show test ads.");
 
         //Get a greeting, if enabled
         if (defaultPreferences.getBoolean("preference_greetingsEnabled", true))
@@ -286,7 +303,7 @@ public class MainActivity extends MenuActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dateSelector.setAdapter(adapter);
         adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, nameTypeOptions) {
-            private final int[] positions = {0, 1, NameEnum.values().length - 1};
+            private final int[] positions = {0, 1, Name.values().length - 1};
 
             @Override
             public boolean isEnabled(int position) {
@@ -331,8 +348,8 @@ public class MainActivity extends MenuActivity {
             }
 
             @Override
-            public void onAdFailedToLoad(int errorCode) {
-                System.out.println("The ad couldn't be loaded: " + errorCode);
+            public void onAdFailedToLoad(LoadAdError error) {
+                System.out.println("The ad couldn't be loaded: " + error.getMessage());
                 prepareAd(false); //Show, avoid, or hide ads
             }
 
@@ -430,10 +447,10 @@ public class MainActivity extends MenuActivity {
         nameTypeSelector.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                List<Enum> designationTypes = new ArrayList<>();
-                designationTypes.addAll(Arrays.asList(NameEnum.values()));
-                designationTypes.addAll(Arrays.asList(PseudonymEnum.values()));
-                designationEnum = designationTypes.get(position);
+                List<Enum> designations = new ArrayList<>();
+                designations.addAll(Arrays.asList(Name.values()));
+                designations.addAll(Arrays.asList(Pseudonym.values()));
+                designation = designations.get(position);
                 obtainDesignation(); //Generate a random designation (name or pseudonym)
             }
 
@@ -444,7 +461,7 @@ public class MainActivity extends MenuActivity {
 
         fortuneTellerAspect.setOnClickListener(view -> {
             if (defaultPreferences.getStringAsInt("preference_fortuneTellerAspect", 1) != 0) {
-                methods.playSound("jump");
+                Sound.play(MainActivity.this, "jump");
                 new BounceAnimation(fortuneTellerAspect)
                         .setBounceDistance(7)
                         .setNumOfBounces(1)
@@ -570,7 +587,7 @@ public class MainActivity extends MenuActivity {
         copy.setOnClickListener(v -> methods.copyTextToClipboard(nameBox.getText().toString()));
 
         //Set listener to SharedPreferences
-        listener = (prefs, key) -> {
+        SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
             if (key.equals("enquiryList")) {
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
@@ -665,7 +682,6 @@ public class MainActivity extends MenuActivity {
                     refreshFrequency = defaultPreferences.getStringAsInt("preference_updateTime", 60);
 
                     if (resourceSeconds >= 1800) {
-                        Methods.language = LanguageHelper.getDefaultLanguage();
                         Methods.networkCountry = methods.getNetworkCountry();
                         Methods.locales = Locale.getAvailableLocales();
                         Methods.supportedNames = seededMethods.getPermittedNames(Methods.supportedNames, false);
@@ -678,12 +694,9 @@ public class MainActivity extends MenuActivity {
                             if (active)
                                 methods.vanishAndMaterialize(phrase); //Fade out and fade in the fortune teller's text.
 
-                            new Handler().postDelayed(() -> {
-                                int soundPosition = unseededMethods.getRandomizer().getInt(0, sounds.length);
-
-                                //Play sound, if active and enabled
-                                if (active)
-                                    methods.playSound(sounds[soundPosition]);
+                            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                                if (active) //Play sound, if active and enabled
+                                    Sound.play(MainActivity.this, methods.getStringFromStringArray(R.array.sound_names));
 
                                 //Change drawable for the fortune teller
                                 fortuneTellerAspect.setImageResource(fortuneTeller.getRandomAppearance());
@@ -854,7 +867,7 @@ public class MainActivity extends MenuActivity {
                     //Talk; if active, enabled and possible
                     if (active && pending && !personInfo.getText().toString().isEmpty() && data != null && data.length >= 5 && (textType == 1 || textType == 2)) {
                         startingReading = 1;
-                        talk(personInfo.getText().toString() + "." + " " + data[1].toString());
+                        talk(personInfo.getText().toString() + ". " + data[1].toString());
                         pending = false;
                     }
                 }
@@ -862,7 +875,7 @@ public class MainActivity extends MenuActivity {
                 @Override
                 public void onError(String utteranceId) {
                     if (active) //Try to talk again, if active
-                        talk(personInfo.getText().toString() + "." + " " + data[1].toString());
+                        talk(personInfo.getText().toString() + ". " + data[1].toString());
                 }
 
                 @Override
@@ -873,19 +886,6 @@ public class MainActivity extends MenuActivity {
         }
     }
 
-    DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
-            currentDate = new SimpleDate(year, monthOfYear + 1, dayOfMonth);
-
-            if (!formattedDate.isEmpty() && !formattedDate.equals(Methods.getFormattedDate(currentDate.getYear(), currentDate.getMonth(), currentDate.getDay()))) {
-                backupData = null;
-                same = true;
-                reloadPrediction(reloadHolder.getVisibility() != View.VISIBLE, false);
-            }
-        }
-    };
-
     private void prepareAd(boolean restarted) {
         if (adPaused == null || (adPaused != null && !adPaused)) {
             if (defaultPreferences.getBoolean("preference_adsEnabled", true)) {
@@ -895,7 +895,7 @@ public class MainActivity extends MenuActivity {
                 if (!adAdded) {
                     adView = new AdView(MainActivity.this);
                     adView.setAdSize(AdSize.BANNER);
-                    adView.setAdUnitId("ca-app-pub-9370416997367495/4952493068");
+                    adView.setAdUnitId(AdUnitId.getBannerId());
 
                     //Set observer to get ad view height
                     ViewTreeObserver viewTreeObserver = adView.getViewTreeObserver();
@@ -944,8 +944,8 @@ public class MainActivity extends MenuActivity {
                             }
                         }
 
-                        public void onAdFailedToLoad(int errorCode) {
-                            System.out.println("The ad couldn't be loaded: " + errorCode);
+                        public void onAdFailedToLoad(LoadAdError error) {
+                            System.out.println("The ad couldn't be loaded: " + error.getMessage());
                             destroyAd();
                         }
                     });
@@ -997,7 +997,7 @@ public class MainActivity extends MenuActivity {
     }
 
     private void prepareAnimation() {
-        Methods.lockScreenOrientation(MainActivity.this); //Lock orientation
+        Screen.lockScreenOrientation(MainActivity.this); //Lock orientation
         stopConfetti(); //Finish previous confetti animation;
 
         //Redraw view
@@ -1030,14 +1030,14 @@ public class MainActivity extends MenuActivity {
                     throwConfetti(originInX, originInY); //Start confetti animation
 
                 if (defaultPreferences.getStringAsInt("preference_fortuneTellerAspect", 1) != 0) {
-                    methods.playSound("jump");
+                    Sound.play(MainActivity.this, "jump");
                     new BounceAnimation(fortuneTellerAspect)
                             .setBounceDistance(20)
                             .setNumOfBounces(1)
                             .setDuration(500)
                             .animate();
                 }
-                Methods.unlockScreenOrientation(MainActivity.this); //Unlock orientation
+                Screen.unlockScreenOrientation(MainActivity.this); //Unlock orientation
                 forceEffects = false;
             }
         }
@@ -1229,14 +1229,24 @@ public class MainActivity extends MenuActivity {
     private void reloadPrediction(final boolean formCompleted, final boolean mute) {
         if (!busy) {
             busy = true;
-            new FadeOutAnimation(confettiLayout).setDuration(200).animate();
+            confettiLayout.animate() //Fade particles layout out
+                    .alpha(0.0f)
+                    .setDuration(200)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            view.clearAnimation();
+                            view.setVisibility(View.INVISIBLE);
+                        }
+                    });
             preferences.putBoolean("temp_busy", true);
             dateSelector.setEnabled(false);
             dateSelector.setClickable(false);
             pick.setEnabled(false);
 
             if (!mute)
-                methods.playSound("wind");
+                Sound.play(MainActivity.this, "wind");
 
             new Thread(() -> {
                 retrievePredictionData(true, formCompleted);
@@ -1332,7 +1342,7 @@ public class MainActivity extends MenuActivity {
             pick.setEnabled(true);
             busy = false;
 
-            confettiLayout.post(() -> new FadeInAnimation(confettiLayout).setDuration(200).animate());
+            confettiLayout.animate().alpha(1.0f).setDuration(200); //Fade particles layout in
         });
     }
 
@@ -1572,7 +1582,7 @@ public class MainActivity extends MenuActivity {
                 String link = StringUtils.substringAfterLast(span.getURL(), "/");
 
                 if (link.equals("prediction")) {
-                    methods.playSound("crack");
+                    Sound.play(MainActivity.this, "crack");
                     setLinksToText(predictionView, data[0].toString().replaceFirst(unrevealedFortuneCookie + "(\r\n|\r|\n)?\\s*(<br>)?" + Methods.ZERO_WIDTH_SPACE + ".*" + Methods.ZERO_WIDTH_SPACE, fortuneCookie));
                 }
             }
@@ -1627,7 +1637,7 @@ public class MainActivity extends MenuActivity {
         if (!obtaining) {
             obtaining = true;
             nameTypeSelector.setEnabled(false);
-            nameBox.setText(unseededMethods.getDesignation(designationEnum));
+            nameBox.setText(unseededMethods.getDesignation(designation));
             nameTypeSelector.setEnabled(true);
             obtaining = false;
         }

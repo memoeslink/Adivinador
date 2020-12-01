@@ -6014,6 +6014,17 @@
         <item>shaper_old_english</item>
         <item>shaper_spanish</item>
     </string-array>
+    <string-array name="sound_names">
+        <item>blip1</item>
+        <item>blip2</item>
+        <item>bum</item>
+        <item>chime_notification</item>
+        <item>counter</item>
+        <item>level_up</item>
+        <item>notification</item>
+        <item>notification_sound</item>
+        <item>water_drop</item>
+    </string-array>
     <string-array name="text_type_values">
         <item>0</item>
         <item>1</item>
