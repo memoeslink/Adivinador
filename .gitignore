@@ -1,4 +1,4 @@
-#built application files
+# built application files
 *.apk
 *.ap_
 
@@ -29,7 +29,7 @@ Thumbs.db
 build/
 .navigation
 captures/
-output.json 
+output.json
 
 #NDK
 obj/

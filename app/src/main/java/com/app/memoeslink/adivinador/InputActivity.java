@@ -33,6 +33,7 @@ public class InputActivity extends CommonActivity {
     private LocalDate maxDate;
     private LocalDate minDate;
     private Methods methods;
+    private SharedPreferences.OnSharedPreferenceChangeListener listener; //Declared as global to avoid destruction by Java Garbage Collector
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -137,7 +138,7 @@ public class InputActivity extends CommonActivity {
 
         button.setOnClickListener(view -> finish());
 
-        SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
+        listener = (prefs, key) -> {
             if (key.equals("temp_busy"))
                 toggleViews(true);
         };

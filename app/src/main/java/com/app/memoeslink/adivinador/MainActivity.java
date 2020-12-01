@@ -187,18 +187,7 @@ public class MainActivity extends MenuActivity {
     private FortuneTeller fortuneTeller;
     private Enquiry enquiry;
     private Person preloadedPerson = null;
-    DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
-            currentDate = new SimpleDate(year, monthOfYear + 1, dayOfMonth);
-
-            if (!formattedDate.isEmpty() && !formattedDate.equals(Methods.getFormattedDate(currentDate.getYear(), currentDate.getMonth(), currentDate.getDay()))) {
-                backupData = null;
-                same = true;
-                reloadPrediction(reloadHolder.getVisibility() != View.VISIBLE, false);
-            }
-        }
-    };
+    private SharedPreferences.OnSharedPreferenceChangeListener listener; //Declared as global to avoid destruction by Java Garbage Collector
 
     private static void onInitializationComplete(InitializationStatus initializationStatus) {
     }
@@ -395,6 +384,16 @@ public class MainActivity extends MenuActivity {
             return false;
         });
 
+        DatePickerDialog.OnDateSetListener dateSetListener = (dialog, year, monthOfYear, dayOfMonth) -> {
+            currentDate = new SimpleDate(year, monthOfYear + 1, dayOfMonth);
+
+            if (!formattedDate.isEmpty() && !formattedDate.equals(Methods.getFormattedDate(currentDate.getYear(), currentDate.getMonth(), currentDate.getDay()))) {
+                backupData = null;
+                same = true;
+                reloadPrediction(reloadHolder.getVisibility() != View.VISIBLE, false);
+            }
+        };
+
         pick.setOnClickListener(view -> {
             if (!shown) {
                 date = DatePickerDialog.newInstance(dateSetListener, currentDate.getYear(), currentDate.getMonth() - 1, currentDate.getDay());
@@ -587,7 +586,7 @@ public class MainActivity extends MenuActivity {
         copy.setOnClickListener(v -> methods.copyTextToClipboard(nameBox.getText().toString()));
 
         //Set listener to SharedPreferences
-        SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
+        listener = (prefs, key) -> {
             if (key.equals("enquiryList")) {
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();

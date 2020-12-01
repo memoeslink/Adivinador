@@ -19,6 +19,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
     private AudioManager audioManager;
     private TextToSpeech tts;
     private FortuneTeller methods;
+    private SharedPreferences.OnSharedPreferenceChangeListener listener; //Declared as global to avoid destruction by Java Garbage Collector
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
         dialog = builder.create();
 
         //Set listeners
-        SharedPreferences.OnSharedPreferenceChangeListener listener = (prefs, key) -> {
+        listener = (prefs, key) -> {
             if (key.equals("preference_activeScreen"))
                 Screen.setContinuance(SettingsActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
 
