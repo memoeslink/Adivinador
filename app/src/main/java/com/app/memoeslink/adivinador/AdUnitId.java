@@ -27,36 +27,36 @@ public class AdUnitId {
     public static String getBannerId() {
         if (BuildConfig.DEBUG)
             return TEST_BANNER;
-        return StringUtils.defaultString(BANNER, TEST_BANNER);
+        return StringUtils.defaultIfBlank(BANNER, TEST_BANNER);
     }
 
     public static String getInterstitialId() {
         if (BuildConfig.DEBUG)
             return TEST_INTERSTITIAL;
-        return StringUtils.defaultString(INTERSTITIAL, TEST_INTERSTITIAL);
+        return StringUtils.defaultIfBlank(INTERSTITIAL, TEST_INTERSTITIAL);
     }
 
     public static String getInterstitialVideoId() {
         if (BuildConfig.DEBUG)
             return TEST_INTERSTITIAL_VIDEO;
-        return StringUtils.defaultString(INTERSTITIAL_VIDEO, TEST_INTERSTITIAL_VIDEO);
+        return StringUtils.defaultIfBlank(INTERSTITIAL_VIDEO, TEST_INTERSTITIAL_VIDEO);
     }
 
     public static String getRewardedVideoId() {
         if (BuildConfig.DEBUG)
             return TEST_REWARDED_VIDEO;
-        return StringUtils.defaultString(REWARDED_VIDEO, TEST_REWARDED_VIDEO);
+        return StringUtils.defaultIfBlank(REWARDED_VIDEO, TEST_REWARDED_VIDEO);
     }
 
     public static String getNativeAdvancedId() {
         if (BuildConfig.DEBUG)
             return TEST_NATIVE_ADVANCED;
-        return StringUtils.defaultString(NATIVE_ADVANCED, TEST_NATIVE_ADVANCED);
+        return StringUtils.defaultIfBlank(NATIVE_ADVANCED, TEST_NATIVE_ADVANCED);
     }
 
     public static String getNativeAdvancedVideoId() {
         if (BuildConfig.DEBUG)
             return TEST_NATIVE_ADVANCED_VIDEO;
-        return StringUtils.defaultString(NATIVE_ADVANCED_VIDEO, TEST_NATIVE_ADVANCED_VIDEO);
+        return StringUtils.defaultIfBlank(NATIVE_ADVANCED_VIDEO, TEST_NATIVE_ADVANCED_VIDEO);
     }
 }
