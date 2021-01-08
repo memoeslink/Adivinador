@@ -3,7 +3,8 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
 
 import java.util.Collections;
 import java.util.Map;

@@ -31,6 +31,6 @@ build/
 captures/
 output.json
 
-#NDK
+# NDK
 obj/
 .externalNativeBuild
