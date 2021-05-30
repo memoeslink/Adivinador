@@ -39,6 +39,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ContextThemeWrapper;
@@ -46,6 +48,7 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.content.ContextCompat;
+import androidx.multidex.BuildConfig;
 
 import com.easyandroidanimations.library.BounceAnimation;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -59,11 +62,12 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.networknt.schema.JsonSchema;
@@ -90,7 +94,6 @@ import me.zhanghai.android.materialprogressbar.CircularProgressDrawable;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 public class MainActivity extends MenuActivity {
-    private static final int PERMISSION_REQUEST = 1;
     private static boolean forceEffects = true;
     private static int[][] particleColors = new int[][]{{Color.BLUE, Color.argb(255, 0, 128, 255), Color.argb(255, 51, 153, 255), Color.argb(255, 0, 192, 199), Color.argb(125, 0, 128, 255), Color.argb(125, 51, 153, 255), Color.argb(125, 0, 192, 199)}, {Color.YELLOW, Color.argb(255, 251, 255, 147), Color.argb(255, 224, 228, 124), Color.argb(255, 155, 215, 93), Color.argb(255, 120, 168, 71), Color.argb(125, 251, 255, 147), Color.argb(125, 224, 228, 124), Color.argb(125, 155, 215, 93), Color.argb(125, 120, 168, 71)}};
     private RelativeLayout adContainer;
@@ -198,8 +201,6 @@ public class MainActivity extends MenuActivity {
         setContentView(R.layout.activity_main);
         MobileAds.initialize(this, MainActivity::onInitializationComplete);
         tts = new TextToSpeech(this, this);
-        interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId(AdUnitId.getInterstitialId());
         adContainer = findViewById(R.id.ad_container);
         header = findViewById(R.id.main_header);
         confettiLayout = findViewById(R.id.main_confetti_layout);
@@ -330,25 +331,6 @@ public class MainActivity extends MenuActivity {
         currentDate = Methods.getCurrentDate();
 
         //Set listeners
-        interstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                interstitialAd.show();
-            }
-
-            @Override
-            public void onAdFailedToLoad(LoadAdError error) {
-                System.out.println("The ad couldn't be loaded: " + error.getMessage());
-                prepareAd(false); //Show, avoid, or hide ads
-            }
-
-            @Override
-            public void onAdClosed() {
-                prepareAd(false); //Show, avoid, or hide ads
-                selector.invalidate(); //Force view to be redrawn
-            }
-        });
-
         navigationView.setNavigationItemSelectedListener(item -> {
             if (defaultPreferences.getBoolean("preference_hideDrawer", true))
                 closeDrawer();
@@ -609,6 +591,12 @@ public class MainActivity extends MenuActivity {
 
         //Request permissions
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ActivityResultLauncher<String[]> launcher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), isGranted -> {
+                if (isGranted.containsValue(false))
+                    Methods.showSimpleToast(MainActivity.this, getString(R.string.denied_contact_permission));
+                else
+                    methods.getContactNames();
+            });
             boolean permissionsGranted = true;
             String[] permissions = {Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION};
 
@@ -618,7 +606,7 @@ public class MainActivity extends MenuActivity {
             }
 
             if (!permissionsGranted)
-                requestPermissions(permissions, PERMISSION_REQUEST);
+                launcher.launch(new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION});
         }
 
         //Show full-screen ads
@@ -842,18 +830,6 @@ public class MainActivity extends MenuActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQUEST: {
-                if (grantResults != null && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    methods.getContactNames();
-                else
-                    Methods.showSimpleToast(MainActivity.this, getString(R.string.denied_contact_permission));
-            }
-        }
-    }
-
-    @Override
     public void onInit(int i) {
         super.onInit(i);
 
@@ -886,7 +862,7 @@ public class MainActivity extends MenuActivity {
     }
 
     private void prepareAd(boolean restarted) {
-        if (adPaused == null || (adPaused != null && !adPaused)) {
+        if (adPaused == null || !adPaused) {
             if (defaultPreferences.getBoolean("preference_adsEnabled", true)) {
                 if (restarted || !adAdded || defaultPreferences.getBoolean("temp_restartAds"))
                     destroyAd();
@@ -988,7 +964,22 @@ public class MainActivity extends MenuActivity {
                 MainActivity.this.runOnUiThread(() -> {
                     if (adView != null && adView.getVisibility() == View.VISIBLE)
                         destroyAd();
-                    interstitialAd.loadAd(adRequest);
+
+                    InterstitialAd.load(this, AdUnitId.getInterstitialId(), adRequest, new InterstitialAdLoadCallback() {
+                        @Override
+                        public void onAdLoaded(InterstitialAd ad) {
+                            super.onAdLoaded(interstitialAd);
+                            interstitialAd = ad;
+                            interstitialAd.show(MainActivity.this);
+                        }
+
+                        @Override
+                        public void onAdFailedToLoad(LoadAdError error) {
+                            System.out.println("The ad couldn't be loaded: " + error.getMessage());
+                            prepareAd(false); //Show, avoid, or hide ads@Override
+                            selector.invalidate(); //Force view to be redrawn
+                        }
+                    });
                 });
             }
             methods.getRandomizer().bindSeed(null);
