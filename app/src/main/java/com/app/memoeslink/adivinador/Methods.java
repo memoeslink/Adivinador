@@ -1550,9 +1550,9 @@ class Methods extends BaseWrapper {
     public String getAdjective() {
         switch (getString(R.string.locale)) {
             case "es":
-                return myDB.selectSingularAdjective(randomizer.getInt(1, myDB.countActions()));
+                return myDB.selectSingularAdjective(randomizer.getInt(1, myDB.countSingularAdjectives()));
             case "en":
-                return myDB.selectEnglishAdjective(randomizer.getInt(1, myDB.countEnglishActions()));
+                return myDB.selectEnglishAdjective(randomizer.getInt(1, myDB.countEnglishAdjectives()));
             default:
                 return "";
         }
