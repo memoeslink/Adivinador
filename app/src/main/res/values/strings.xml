@@ -71,21 +71,15 @@
     <string name="binder">Usar nombre de consulta actual</string>
     <string name="chain_effect">• Resultado de la cadena: los efectos serán %1$s en el día de %2$s.</string>
     <string name="chain_null_effect">nulos</string>
-    <string name="chain_link">• Eslabón %1$d: %2$s realiza una acción%3$s %4$s, y esta afecta a %5$s (%6$s karma; %7$s karma acumulado).</string>
+    <string name="chain_link">• Eslabón %1$d: %2$s%3$s realiza una acción%4$s %5$s, y esta afecta a %6$s (%7$s karma; %8$s karma acumulado).</string>
     <string name="chain_negative_effect">negativos</string>
     <string name="chain_positive_effect">positivos</string>
-    <string name="class_component">%1$s de nivel %2$d</string>
-    <string name="classes">[^alquimista[]]¶ [^arquer[o,a]]¶ [^asesin[o,a]]¶ [^[bardo,trovadora]]¶ [^bárbar[o,a]]¶ [^[caballero,amazona]]¶ [^cazador[,a]]¶ [^[clérigo,sacerdotisa]]¶ [^curander[o,a]]¶ [^dragoon[]]¶ [^druida[]]¶ [^elementalista[]]¶ [^escuder[o,a]]¶ [^espadach[ín,ina]]¶ [^espader[o,a]]¶ [^exorcista[]]¶ [^explorador[,a]]¶ [^guerrer[o,a]]¶ [^hechicer[o,a]]¶ [^ilusionista[]]¶ [^ingenier[o,a]]¶ [^invocador[,a]]¶ [^jinete [oscur[o,a]]¶ [^ladr[ón,ona]]¶ [^lancer[o,a]]¶ [^mag[o,a]]¶ [^mag[o,a]] [roj[o,a]]¶ [^magus]¶ [^mercenari[o,a]]¶ [^[monje,peleadora]]¶ [^médic[o,a]]¶ [^nigromante[]]¶ [^ninja[]]¶ [^oráculo[]]¶ [^paladín[]]¶ [^pícar[o,a]]¶ [^pirata[]]¶ [^rastreador[,a]]¶ [^samurai[]]¶ [^soldado[]]¶ [^templari[o,a]]¶ [^trasmutador[,a]]</string>
     <string name="clear">Limpiar formulario</string>
-    <string name="common_last_names">Acosta¶ Acuña¶ Agüero¶ Aguilar¶ Aguilera¶ Aguirre¶ Alarcón¶ Almaguer¶ Alonso¶ Alvarado¶ Álvarez¶ Aravena¶ Araya¶ Arce¶ Arias¶ Ávila¶ Ayala¶ Báez¶ Barrios¶ Benítez¶ Bermúdez¶ Blanco¶ Blesa¶ Bravo¶ Brítez¶ Bustamante¶ Bustos¶ Caballero¶ Cabrera¶ Cáceres¶ Calvo¶ Cambil¶ Campos¶ Cano¶ Cárdenas¶ Cardozo¶ Carmona¶ Carrasco¶ Carrizo¶ Carvajal¶ Castillo¶ Castro¶ Cedeño¶ Chávez¶ Contreras¶ Córdoba¶ Coronel¶ Correa¶ Cortés¶ Crespo¶ Cruz¶ D\'aubuisson¶ de la Cruz¶ Delgado¶ Díaz¶ Díez¶ Domínguez¶ Donoso¶ Duarte¶ Durán¶ Escobar¶ Espínola¶ Espinosa¶ Espinoza¶ Esteban¶ Farías¶ Fernández¶ Ferreira¶ Ferrer¶ Ferreyra¶ Figueroa¶ Flores¶ Flórez¶ Franco¶ Fuentes¶ Galeano¶ Gallardo¶ Gallego¶ García¶ Garrido¶ Gil¶ Giménez¶ Godoy¶ Gómez¶ González¶ Guerrero¶ Gutiérrez¶ Guzmán¶ Henríquez¶ Hernández¶ Herrera¶ Herrero¶ Hidalgo¶ Huamán¶ Ibáñez¶ Iglesias¶ Inca¶ Jara¶ Jaramillo¶ Jiménez¶ Juárez¶ Lagos¶ Ledesma¶ Leguizamón¶ Leiva¶ León¶ López¶ Lorenzo¶ Lozano¶ Lucero¶ Luna¶ Maidana¶ Maldonado¶ Mamani¶ Mansilla¶ Marín¶ Márquez¶ Martín¶ Martínez¶ Medina¶ Mejía¶ Méndez¶ Mendoza¶ Miranda¶ Molina¶ Montenegro¶ Montero¶ Montoro¶ Mora¶ Morales¶ Moreno¶ Moya¶ Moyano¶ Muñoz¶ Navarrete¶ Navarro¶ Nieto¶ Núñez¶ Ojeda¶ Olivares¶ Olivera¶ Orellana¶ Ortega¶ Ortiz¶ Páez¶ Palma¶ Paredes¶ Parra¶ Pascual¶ Pastor¶ Paz¶ Peña¶ Peralta¶ Pereira¶ Pereyra¶ Pérez¶ Pineda¶ Pino¶ Pizarro¶ Poblete¶ Ponce¶ Prieto¶ Quiroga¶ Quispe¶ Ramírez¶ Ramos¶ Rey¶ Reyes¶ Ríos¶ Riquelme¶ Rivera¶ Rivero ¶ Rodríguez¶ Rojas¶ Roldán¶ Román¶ Romero¶ Rubio¶ Ruiz¶ Saavedra¶ Sáez¶ Salazar¶ Salinas¶ San Martín¶ Sánchez¶ Sandoval¶ Sanhueza¶ Santana¶ Santiago¶ Santos¶ Sanz¶ Sepúlveda¶ Serrano¶ Silva¶ Soler¶ Soria¶ Sosa¶ Soto¶ Suárez¶ Tapia¶ Toledo¶ Toro¶ Torres¶ Valdés¶ Valdez¶ Valenzuela¶ Vargas¶ Vásquez¶ Vázquez¶ Vega¶ Velasco¶ Velázquez¶ Venegas¶ Vera¶ Vergara¶ Vicente¶ Vidal¶ Villalba¶ Yáñez¶ Zambrano¶ Zúñiga</string>
-    <string name="common_names">Aarón¶ Abdón¶ Abel¶ Abelardo¶ Abrahán¶ Absalón¶ Acacio¶ Adalberto¶ Adán¶ Adela¶ Adelaida¶ Adolfo¶ Adón¶ Adrián¶ Agustín¶ Aitor¶ Alba¶ Albert¶ Alberto¶ Albina¶ Alejandra¶ Alejandro¶ Alejo¶ Alfonso¶ Alfredo¶ Alicia¶ Alipio¶ Almudena¶ Alonso¶ Álvaro¶ Amadeo¶ Amaro¶ Ambrosio¶ Amelia¶ Amparo¶ Ana¶ Ananías¶ Anastasia¶ Anatolio¶ Andrea¶ Andrés¶ Ángel¶ Ángela¶ Ángeles¶ Aniano¶ Anna¶ Anselmo¶ Antero¶ Antonia¶ Antonio¶ Aquiles¶ Araceli¶ Aránzazu¶ Arcadio¶ Aresio¶ Ariadna¶ Aristides¶ Arnaldo¶ Artemio¶ Arturo¶ Ascensión¶ Asunción¶ Atanasio¶ Augusto¶ Áurea¶ Aurelia¶ Aureliano¶ Aurelio¶ Aurora¶ Azael¶ Baldomero¶ Balduino¶ Baltasar¶ Bárbara¶ Bartolomé¶ Basileo¶ Beatriz¶ Begoña¶ Belén¶ Beltrán¶ Benedicto¶ Benigno¶ Benito¶ Benjamín¶ Bernabé¶ Bernarda¶ Bernardo¶ Blanca¶ Blas¶ Bonifacio¶ Borja¶ Bruno¶ Calixto¶ Camilo¶ Cándida¶ Carina¶ Carlos¶ Carmelo¶ Carmen¶ Carolina¶ Casiano¶ Casimiro¶ Casio¶ Catalina¶ Cayetano¶ Cayo¶ Cecilia¶ Ceferino¶ Celia¶ Celina¶ Celso¶ César¶ Cesáreo¶ Cipriano¶ Cirilo¶ Cirino¶ Ciro¶ Clara¶ Claudia¶ Claudio¶ Cleofás¶ Clotilde¶ Colombo¶ Columba¶ Columbano¶ Concepción¶ Conrado¶ Constancio¶ Constantino¶ Consuelo¶ Cosme¶ Cristian¶ Cristina¶ Cristóbal¶ Daciano¶ Dacio¶ Dámaso¶ Damián¶ Daniel¶ Dario¶ David¶ Demócrito¶ Diego¶ Dimas¶ Dolores¶ Domingo¶ Donato¶ Dorotea¶ Edgar¶ Edmundo¶ Eduardo¶ Eduvigis¶ Efrén¶ Elena¶ Elías¶ Elisa¶ Eliseo¶ Elvira¶ Emilia¶ Emiliano¶ Emilio¶ Encarnación¶ Enrique¶ Epifanía¶ Erico¶ Ernesto¶ Esdras¶ Esiquio¶ Esperanza¶ Esteban¶ Ester¶ Esther¶ Eugenia¶ Eugenio¶ Eulalia¶ Eusebio¶ Eva¶ Evaristo¶ Ezequiel¶ Fabián¶ Fabio¶ Fabiola¶ Facundo¶ Fátima¶ Faustino¶ Fausto¶ Federico¶ Feliciano¶ Felipe¶ Félix¶ Fermín¶ Fernando¶ Fidel¶ Fortunato¶ Francesc¶ Francisca¶ Francisco¶ Fulgencio¶ Gabriel¶ Gema¶ Genoveva¶ Gerardo¶ Germán¶ Gertrudis¶ Gisela¶ Gloria¶ Godofredo¶ Gonzalo¶ Gregorio¶ Guadalupe¶ Guido¶ Guillermo¶ Gustavo¶ Guzmán¶ Héctor¶ Heliodoro¶ Heraclio¶ Heriberto¶ Hilarión¶ Hildegarda¶ Homero¶ Honorato¶ Honorio¶ Hugo¶ Humberto¶ Ifigenia¶ Ignacio¶ Ildefonso¶ Inés¶ Inmaculada¶ Inocencio¶ Irene¶ Ireneo¶ Isaac¶ Isabel¶ Isaías¶ Isidro¶ Ismael¶ Iván¶ Jacinto¶ Jacob¶ Jacobo¶ Jaime¶ Jaume¶ Javier¶ Jeremías¶ Jerónimo¶ Jesús¶ Joan¶ Joaquím¶ Joaquín¶ Joel¶ Jonás¶ Jonathan¶ Jordi¶ Jorge¶ Josafat¶ José¶ Josefa¶ Josefina¶ Josep¶ Josué¶ Juan¶ Juana¶ Julia¶ Julián¶ Julio¶ Justino¶ Juvenal¶ Ladislao¶ Laura¶ Laureano¶ Lázaro¶ Leandro¶ Leocadia¶ León¶ Leonardo¶ Leoncio¶ Leonor¶ Leopoldo¶ Lidia¶ Liduvina¶ Lino¶ Lorena¶ Lorenzo¶ Lourdes¶ Lucano¶ Lucas¶ Lucía¶ Luciano¶ Lucrecia¶ Luis¶ Luisa¶ Luz¶ Macario¶ Magdalena¶ Manuel¶ Manuela¶ Mar¶ Marc¶ Marcelino¶ Marcelo¶ Marcial¶ Marciano¶ Marcos¶ Margarita¶ María¶ Mariano¶ Marina¶ Mario¶ Marta¶ Martín¶ Mateo¶ Matías¶ Matilde¶ Mauricio¶ Maximiliano¶ Melchor¶ Mercedes¶ Miguel¶ Milagros¶ Miqueas¶ Míriam¶ Mohamed¶ Moisés¶ Mónica¶ Montserrat¶ Narciso¶ Natalia¶ Natividad¶ Nazario¶ Nemesio¶ Nicanor¶ Nicodemo¶ Nicolás¶ Nicomedes¶ Nieves¶ Noé¶ Noelia¶ Norberto¶ Nuria¶ Octavio¶ Odón¶ Olga¶ Onésimo¶ Orestes¶ Oriol¶ Oscar¶ Óscar¶ Oseas¶ Oswaldo¶ Otilia¶ Oto¶ Pablo¶ Pancracio¶ Pascual¶ Patricia¶ Patricio¶ Paula¶ Pedro¶ Petronila¶ Pilar¶ Pío¶ Poncio¶ Porfirio¶ Primo¶ Priscila¶ Probo¶ Purificación¶ Rafael¶ Raimundo¶ Ramiro¶ Ramón¶ Raquel¶ Raúl¶ Rebeca¶ Reinaldo¶ Remedios¶ Renato¶ Ricardo¶ Rigoberto¶ Rita¶ Roberto¶ Rocío¶ Rodrigo¶ Rogelio¶ Román¶ Romualdo¶ Roque¶ Rosa¶ Rosalia¶ Rosario¶ Rosendo¶ Rubén¶ Rufo¶ Ruperto¶ Salomé¶ Salomón¶ Salvador¶ Salvio¶ Samuel¶ Sandra¶ Sansón¶ Santiago¶ Sara¶ Sebastián¶ Segismundo¶ Sergio¶ Severino¶ Silvia¶ Simeón¶ Simón¶ Siro¶ Sixto¶ Sofía¶ Soledad¶ Sonia¶ Susana¶ Tadeo¶ Tarsicio¶ Teodora¶ Teodosia¶ Teófanes¶ Teófila¶ Teresa¶ Timoteo¶ Tito¶ Tobías¶ Tomas¶ Tomás¶ Toribio¶ Trinidad¶ Ubaldo¶ Urbano¶ Úrsula¶ Valentín¶ Valeriano¶ Vanesa¶ Velerio¶ Venancio¶ Verónica¶ Vicenta¶ Vicente¶ Víctor¶ Victoria¶ Victorino¶ Victorio¶ Vidal¶ Virgilio¶ Virginia¶ Vladimiro¶ Wilfredo¶ Xavier¶ Yolanda¶ Zacarías¶ Zaqueo</string>
     <string name="compatibility">Ver compatibilidad</string>
     <string name="compatibility_result">Compatibilidad: &lt;b&gt;%1$s&lt;/b&gt;</string>
     <string name="connected_device_user">{[usuari[o,a]]⸻⛌} de dispositivo con dirección IP %1$s</string>
     <string name="data_entry">Introducir datos</string>
-    <string name="date">MMMM d \'de\' yyyy</string>
     <string name="date_component">Ya es¶ Hoy es¶ Estamos a¶ El día de hoy es¶ La fecha es¶ Hoy estamos a¶ El día es</string>
-    <string name="days_of_week">​¶ domingo¶ lunes¶ martes¶ miércoles¶ jueves¶ viernes¶ sábado</string>
     <string name="default_comments">La predicción es la siguiente:¶ La adivinación marca lo siguiente:¶ El futuro muestra esto:¶ El destino indica esto:¶ La predicción muestra lo siguiente:¶ Esto va a suceder:¶ Esto ocurrirá en algún momento:¶ La adivinación da a conocer esto:¶ Estos hechos podrían tener lugar:¶ Puede que esto suceda:</string>
     <string name="default_person">tú</string>
     <string name="default_user">[usuari[o,a]]</string>
@@ -95,25 +89,22 @@
     <string name="device_version_user">%1$s de dispositivo Android %2$s</string>
     <string name="disconnected_device_user">{[usuari[o,a]]⸻⛌} de dispositivo con dirección IP desconocida</string>
     <string name="donations_title">Donar</string>
-    <string name="enquiry_information">Consulta para el día %1$s de %2$s, de sexo %3$s (%4$s)</string>
+    <string name="enquiry_information">Consulta para el día %1$s de %2$s, de género %3$s (%4$s)</string>
     <string name="extended_family_member">[suegr[o,a]]¶ [cuñad[o,a]]¶ [[yerno,nuera]]¶ [[padrastro,madrastra]]¶ [hijastr[o,a]]¶ [[padrino,madrina]]¶ [ahijad[o,a]]</string>
     <string name="family_member">{string:relative⸻⸮}¶ {string:extended_family_member⸻⸮}</string>
-    <string name="full_date">EEEE d \'de\' MMMM \'de\' yyyy</string>
-    <string name="generational_designation">Jnr¶ Snr</string>
     <string name="greetings">Hola§.¶ Bienvenido§.¶ Buen día§.¶ ¡Qué gusto de verte§!¶ Tanto tiempo sin verte§.¶ ¿Cómo estás§?¶ ¿Qué tal§?¶ ¿Cómo has estado§?¶ ¿Cómo te ha ido§?¶ ¿Cómo te va§?¶ ¿Cómo está todo§?¶ ¿Cómo va todo§?¶ ¿Qué has hecho§?¶ ¿Qué has hecho últimamente§?¶ ¿Qué pasa§?¶ ¿Qué hay§?¶ ¿Qué hay de nuevo§?¶ ¿Qué cuentas§?¶ ¿Qué me cuentas§?</string>
     <string name="greetings_afternoon">Buena tarde§.¶ Buenas tardes§.¶ Bonita tarde§.</string>
     <string name="greetings_component">Buen¶ Bonito¶ Hermoso¶ Genial¶ Ya es¶ Hoy es¶ Estamos a</string>
     <string name="greetings_day">Buen día§.¶ Buenos días§.¶ Bonito día§.</string>
     <string name="greetings_default">Hola§.¶ Bienvenido§.</string>
     <string name="greetings_night">Buena noche§.¶ Buenas noches§.¶ Bonita noche§.</string>
-    <string name="honorifics">[Sr[,a]].¶ [Srit[o,a]].¶ D.[[,ª]]¶ [Sr[,a]].¶ [Dr[,a]].¶ [Prof[,a]].¶ [Lcd[o,a]].¶ Ing.¶ Dir.[[,ª]]¶ [Pdt[e,a]].</string>
     <string name="input_birthdate">Fecha de nacimiento:</string>
+    <string name="input_gender_description">Género:</string>
+    <string name="input_gender_female">Femenino</string>
+    <string name="input_gender_indefinite">Indefinido</string>
+    <string name="input_gender_male">Masculino</string>
     <string name="input_name_hint">Introduce un nombre</string>
     <string name="input_other_name_hint">Introduce otro nombre</string>
-    <string name="input_sex_description">Sexo:</string>
-    <string name="input_sex_female">Femenino</string>
-    <string name="input_sex_indefinite">Indefinido</string>
-    <string name="input_sex_male">Masculino</string>
     <string name="input_title">Definir datos</string>
     <string name="inquiry">Obtener consulta (%1$s)</string>
     <string name="interjections">Dios¶ Dios santo¶ ah¶ ahí va¶ ajajá¶ ajá¶ ajó¶ anda¶ ar¶ arre¶ arrea¶ ay¶ ay Dios mío¶ ay de mí¶ ay, güey¶ aúpa¶ bah¶ bravo¶ bua¶ buah¶ bum¶ buu¶ buuu¶ ca¶ caracoles¶ carajo¶ caramba¶ caray¶ cataplof¶ cataplúm¶ chas¶ chist¶ cielo santo¶ cielos¶ cojonudo¶ cáspita¶ dale¶ diablos¶ ea¶ eh¶ ejem¶ em¶ epa¶ equilicuá¶ eso es¶ ey¶ gluglú¶ guau¶ guay¶ hala¶ hale¶ hey¶ hola¶ huh¶ hum¶ hurra¶ huy¶ ja¶ ja, ja¶ ja, ja, ja¶ je¶ jo¶ jolín¶ madre mía¶ maldición¶ miau¶ mm¶ mmm¶ muak¶ narices¶ oh¶ oiga¶ ojalá¶ ojú¶ okey¶ ole¶ olé¶ ostras¶ paf¶ pché¶ plas¶ ps¶ psh¶ pss¶ pu¶ puaf¶ puaj¶ puf¶ pum¶ quiá¶ recórcholis¶ rin rin¶ shhh¶ ssh¶ tatata¶ tictac¶ tururú¶ uf¶ uh¶ ups¶ urra¶ uy¶ vaya¶ válgame Dios¶ yey¶ yupi¶ zas¶ zaz¶ ñam¶ órale</string>
@@ -130,77 +121,77 @@
     <string name="no_network_user">{[usuari[o,a]]⸻⛌} sin conexión a Internet por Wi-Fi</string>
     <string name="nouns">existencia｢2｣¶ materia｢2｣¶ persona｢2｣¶ ser｢1｣¶ [human[o,a]]¶ [individu[o,a]]¶ entidad｢2｣¶ [[hombre,mujer]]¶ [client[e,a]]¶ sujeto｢1｣¶ ente｢1｣¶ esencia｢2｣¶ cosa｢2｣¶ sustancia｢2｣¶ criatura｢2｣¶ organismo｢1｣¶ forma｢2｣¶ espécimen｢1｣¶ forma de vida｢2｣¶ ser｢1｣ ¶ ser vivo｢1｣¶ [usuari[o,a]]¶ [amig[o,a]]¶ [conocid[o,a]]¶ [desconocid[o,a]]¶ colega｢0｣¶ camarada｢0｣¶ mejor [amig[o,a]]¶ [novi[o,a]]¶ [tip[o,a]]¶ personaje｢1｣¶ vástago｢1｣¶ figura｢2｣¶ habitante｢1｣¶ [muchach[o,a]]¶ joven｢0｣¶ [chic[o,a]]</string>
     <string name="ok">OK</string>
-    <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Información para %1$s de:&lt;/i&gt;&lt;/font&gt; %2$s&lt;font color="#F6FBB2"&gt;, de sexo %3$s (%4$s)&lt;/font&gt;</string>
+    <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Información para %1$s de:&lt;/i&gt;&lt;/font&gt; %2$s&lt;font color="#F6FBB2"&gt;, de género %3$s (%4$s)&lt;/font&gt;</string>
     <string name="prediction">
         <![CDATA[
         <big><b><font color=#869DEE>Fortuna</font></b></big>
         <br><br><font color=#53E3B3>Galleta de la suerte:</font>
-        <br>꘍
         <br>%1$s
-        <br><br><font color=#53E3B3>Adivinación:</font>
         <br>%2$s
-        <br><br><font color=#53E3B3>Números de la suerte para hoy:</font>
+        <br><br><font color=#53E3B3>Adivinación:</font>
         <br>%3$s
-        <br><br><font color=#53E3B3>Emociones de hoy:</font>
+        <br><br><font color=#53E3B3>Números de la suerte para hoy:</font>
         <br>%4$s
-        <br><br><font color=#53E3B3>Mejor momento del día:</font>
+        <br><br><font color=#53E3B3>Emociones de hoy:</font>
         <br>%5$s
-        <br><br><font color=#53E3B3>Peor momento del día:</font>
+        <br><br><font color=#53E3B3>Mejor momento del día:</font>
         <br>%6$s
-        <br><br><font color=#53E3B3>Lo que te caracterizará hoy:</font>
+        <br><br><font color=#53E3B3>Peor momento del día:</font>
         <br>%7$s
-        <br><br><font color=#53E3B3>Cadena de eventos para hoy:</font>
+        <br><br><font color=#53E3B3>Lo que te caracterizará hoy:</font>
         <br>%8$s
-        <br><br><font color=#53E3B3>Persona que te afectará más, indirectamente, hoy:</font>
+        <br><br><font color=#53E3B3>Cadena de eventos para hoy:</font>
         <br>%9$s
+        <br><br><font color=#53E3B3>Persona que te afectará más, indirectamente, hoy:</font>
+        <br>%10$s
         <br><br><big><b><font color=#869DEE>Zodiaco</font></b></big>
         <br><br><font color=#53E3B3>Signo zodiacal:</font>
-        <br>%10$s
-        <br><br><font color=#53E3B3>Casa astrológica:</font>
         <br>%11$s
-        <br><br><font color=#53E3B3>Regente:</font>
+        <br><br><font color=#53E3B3>Casa astrológica:</font>
         <br>%12$s
-        <br><br><font color=#53E3B3>Elemento:</font>
+        <br><br><font color=#53E3B3>Regente:</font>
         <br>%13$s
-        <br><br><font color=#53E3B3>Color:</font>
+        <br><br><font color=#53E3B3>Elemento:</font>
         <br>%14$s
-        <br><br><font color=#53E3B3>Números de la suerte:</font>
+        <br><br><font color=#53E3B3>Color:</font>
         <br>%15$s
-        <br><br><font color=#53E3B3>Es compatible con:</font>
+        <br><br><font color=#53E3B3>Números de la suerte:</font>
         <br>%16$s
-        <br><br><font color=#53E3B3>No se lleva con:</font>
+        <br><br><font color=#53E3B3>Es compatible con:</font>
         <br>%17$s
-        <br><br><font color=#53E3B3>Nuevo signo zodiacal:</font>
+        <br><br><font color=#53E3B3>No se lleva con:</font>
         <br>%18$s
-        <br><br><font color=#53E3B3>Signo zodiacal chino:</font>
+        <br><br><font color=#53E3B3>Signo zodiacal de Walter Berg:</font>
         <br>%19$s
+        <br><br><font color=#53E3B3>Signo zodiacal chino:</font>
+        <br>%20$s
         <br><br><big><b><font color=#869DEE>Identidad</font></b></big>
         <br><br><font color=#53E3B3>Color:</font>
-        <br><big><big><font color=%20$s>%21$s</font></big></big>
+        <br><big><big><font color=%21$s>%22$s</font></big></big>
         <br><br><font color=#53E3B3>Animal:</font>
-        <br>%22$s
-        <br><br><font color=#53E3B3>Tipo psicológico según Jung:</font>
         <br>%23$s
-        <br><br><font color=#53E3B3>Nombre secreto:</font>
+        <br><br><font color=#53E3B3>Tipo psicológico según Jung:</font>
         <br>%24$s
-        <br><br><font color=#53E3B3>Nombre demoniaco:</font>
+        <br><br><font color=#53E3B3>Nombre secreto:</font>
         <br>%25$s
-        <br><br><font color=#53E3B3>Nombre en la vida pasada:</font>
+        <br><br><font color=#53E3B3>Nombre demoniaco:</font>
         <br>%26$s
-        <br><br><font color=#53E3B3>Nombre en la vida futura:</font>
+        <br><br><font color=#53E3B3>Nombre en la vida pasada:</font>
         <br>%27$s
-        <br><br><font color=#53E3B3>Nombre de usuario recomendado:</font>
+        <br><br><font color=#53E3B3>Nombre en la vida futura:</font>
         <br>%28$s
+        <br><br><font color=#53E3B3>Nombre de usuario recomendado:</font>
+        <br>%29$s
         <br><br><font color=#53E3B3>Dígito personal:</font>
-        <br>%29$d
+        <br>%30$d
         <br><br><font color=#53E3B3>Números de la suerte únicos:</font>
-        <br>%30$s
-        <br><br><font color=#53E3B3>Identificador único universal (UUID):</font>
         <br>%31$s
+        <br><br><font color=#53E3B3>Identificador único universal (UUID):</font>
+        <br>%32$s
         <br><br><font color=#53E3B3>Días entre fecha actual y fecha de nacimiento:</font>
-        <br><font color=#E3E1A1><b>%32$s</b></font>
-        <br><br><font color=#53E3B3>Tiempo entre fecha actual y fecha de nacimiento:</font>
         <br><font color=#E3E1A1><b>%33$s</b></font>
+        <br><br><font color=#53E3B3>Tiempo entre fecha actual y fecha de nacimiento:</font>
+        <br><font color=#E3E1A1><b>%34$s</b></font>
         ]]>
     </string>
     <string name="pick">Seleccionar una fecha de consulta</string>
@@ -258,11 +249,8 @@
     <string name="qualitative_adjectives">agradable¦s¦¶ brillante¦s¦¶ desagradable¦s¦¶ diferente¦s¦¶ frágil¦es¦¶ electrizante¦s¦¶ [grandios[o,a]]¦s¦¶ mejor¦es¦¶ normal¦es¦¶ [negativ[o,a]]¦s¦¶ [oscur[o,a]]¦s¦¶ peor¦es¦¶ [positiv[o,a]]¦s¦¶ [rar[o,a]]¦s¦¶ [sólid[o,a]]¦s¦¶ terrible¦s¦</string>
     <string name="relative">[[padre,madre]]¶ [[papá,mamá]]¶ [hij[o,a]]¶ [prim[o,a]]¶ [tí[o,a]]¶ [sobrin[o,a]]¶ [herman[o,a]]¶ [abuel[o,a]]¶ [niet[o,a]]¶ [bisabuel[o,a]]</string>
     <string name="reload">Cargar otra consulta</string>
-    <string name="royal_titles">[^bar[ón,onesa]]¶ [^conde[,sa]]¶ [^duque[,sa]]¶ [^empera[dor,triz]]¶ [^k[áiser,aiserin]]¶ [^marqu[és,esa]]¶ [^pap[a,isa]]¶ [^pr[íncipe,incesa]]¶ [^re[y,ina]]¶ [^vizconde[,sa]]¶ [^zar[,ina]]¶ [^r[ex,ēgīna]]¶ [^sult[án,ana]]</string>
     <string name="save">Guardar consulta</string>
     <string name="selector">Seleccionar consulta</string>
-    <string name="short_date">d \'de\' MMMM</string>
-    <string name="simple_date">d \'de\' MMMM \'de\' yyyy</string>
     <string name="situation_descriptor">{rand:∅; bueno; malo; extraño; sorprendente; desconcertante; favorable; desfavorable}</string>
     <string name="time_component">La hora es¶ La hora actual es¶ En este momento la hora es¶ El reloj marca la(s)¶ La hora en este momento es¶ Tengo la hora</string>
     <string name="time_elapsed">%1$d año(s), %2$d mes(es), %3$d día(s)</string>
@@ -600,21 +588,21 @@
     <string-array name="conversation_addendum">
         <item></item>
         <item></item>
-        <item>&lt;font color="{method:getColorString}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;font color="{method:getColorStr}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
         <item>&lt;i&gt;{string:interjections}&lt;/i&gt;</item>
-        <item>&lt;font color="{method:getColorString}"&gt;&lt;b&gt;{method:getDeviceCommonUser}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;font color="{method:getColorStr}"&gt;&lt;b&gt;{method:getDeviceUser}&lt;/b&gt;&lt;/font&gt;</item>
     </string-array>
     <string-array name="date_options">
         <item>Consulta de hoy</item>
         <item>Consulta de fecha específica</item>
     </string-array>
     <string-array name="divination">
-        <item>Pasará algo {rand:∅; favorable; desfavorable} acerca de {method:getNoun}.</item>
-        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {method:getNoun}.</item>
+        <item>Pasará algo {rand:∅; favorable; desfavorable} acerca de {method:getNounWithArticle}.</item>
+        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {method:getNounWithArticle}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas}, relacionadas con {string:divination_middle}, provenientes de {string:unspecific_person⸻⸮}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {string:divination_middle}.</item>
         <item>Pasará algo {string:situation_descriptor} relacionado con {string:divination_middle}.</item>
-        <item>Un evento {string:situation_descriptor}, relacionado con {method:getNoun}, ocurrirá.</item>
+        <item>Un evento {string:situation_descriptor}, relacionado con {method:getNounWithArticle}, ocurrirá.</item>
         <item>Ocurrirá algo relacionado con {string:unspecific_person⸻⸮}.</item>
         <item>Tendrás problemas con una persona de signo {string:astrological_sign}.</item>
         <item>Una persona de signo {string:astrological_sign} te ayudará a resolver tus problemas.</item>
@@ -693,7 +681,7 @@
         <item>cambiará¦n¦.</item>
         <item>cambiará¦n¦ totalmente.</item>
         <item>cambiará¦n¦ a la inversa.</item>
-        <item>estará¦n¦ al {method:generatePercentage}.</item>
+        <item>estará¦n¦ al {method:getPercentage}.</item>
         <item>se revertirá¦n¦.</item>
         <item>volverá¦n¦ a ser como antes.</item>
         <item>no será¦n¦ como antes.</item>
@@ -878,7 +866,7 @@
         <item>Fuego</item>
         <item>Tierra</item>
     </string-array>
-    <string-array name="emotions">
+    <string-array name="emotion">
         <item>Miedo</item>
         <item>Alegría</item>
         <item>Ira</item>
@@ -1074,75 +1062,64 @@
         <item>Español</item>
         <item>Inglés</item>
     </string-array>
-    <string-array name="month">
-        <item>enero</item>
-        <item>febrero</item>
-        <item>marzo</item>
-        <item>abril</item>
-        <item>mayo</item>
-        <item>junio</item>
-        <item>julio</item>
-        <item>agosto</item>
-        <item>septiembre</item>
-        <item>octubre</item>
-        <item>noviembre</item>
-        <item>diciembre</item>
-    </string-array>
-    <string-array name="month_short">
-        <item>ENE</item>
-        <item>FEB</item>
-        <item>MAR</item>
-        <item>ABR</item>
-        <item>MAY</item>
-        <item>JUN</item>
-        <item>JUL</item>
-        <item>AGO</item>
-        <item>SEP</item>
-        <item>OCT</item>
-        <item>NOV</item>
-        <item>DIC</item>
-    </string-array>
-    <string-array name="name_type_options">
+    <string-array name="name_type">
         <item>Sin nombre</item>
+        <item>Nombre por defecto</item>
         <item>Caso de prueba</item>
-        <item>Nombre</item>
-        <item>Nombre de pila</item>
+        <item>Nombre masculino</item>
+        <item>Nombre femenino</item>
+        <item>Nombre masculino compuesto</item>
+        <item>Nombre femenino compuesto</item>
+        <item>Nombre masculino doble</item>
+        <item>Nombre femenino doble</item>
         <item>Apellido</item>
-        <item>Apellido compuesto</item>
-        <item>Apellido compuesto con guion</item>
-        <item>Nombre internacional</item>
-        <item>Nombre de pila internacional</item>
-        <item>Apellido internacional</item>
-        <item>Nombre inglés</item>
-        <item>Nombre compuesto inglés</item>
-        <item>Nombre de pila inglés</item>
-        <item>Apellido inglés</item>
-        <item>Nombre hispánico</item>
-        <item>Nombre compuesto hispánico</item>
-        <item>Nombre(s) de pila hispánico</item>
-        <item>Nombre de pila hispánico</item>
-        <item>Apellido hispánico</item>
-        <item>Nombre japonés</item>
-        <item>Nombre mexicano</item>
-        <item>Nombre ruso</item>
-        <item>Nombre generado mediante patrón</item>
-        <item>Nombre natural generado</item>
-        <item>Nombre definido generado</item>
-        <item>Nombre frecuencial generado</item>
-        <item>Nombre con ajustes generado</item>
-        <item>Nombre arábigo</item>
-        <item>Nombre francés</item>
-        <item>Nombre alemán</item>
-        <item>Nombre hindú</item>
-        <item>Nombre italiano</item>
-        <item>Nombre portugués</item>
-        <item>Nombre permitido</item>
+        <item>Apellido doble</item>
+        <item>Nombre masculino simple</item>
+        <item>Nombre femenino simple</item>
+        <item>Nombre masculino completo</item>
+        <item>Nombre femenino completo</item>
+        <item>Nombre completo</item>
+        <item>Nombre masculino definido</item>
+        <item>Nombre femenino definido</item>
+        <item>Apellido definido</item>
+        <item>Nombre masculino definido completo</item>
+        <item>Nombre femenino definido completo</item>
+        <item>Nombre definido completo</item>
+        <item>Nombre masculino iterativo</item>
+        <item>Nombre femenino iterativo</item>
+        <item>Apellido iterativo</item>
+        <item>Nombre masculino iterativo completo</item>
+        <item>Nombre femenino iterativo completo</item>
+        <item>Nombre iterativo completo</item>
+        <item>Nombre masculino con patrón</item>
+        <item>Nombre femenino con patrón</item>
+        <item>Apellido con patrón</item>
+        <item>Nombre masculino con patrón completo</item>
+        <item>Nombre femenino con patrón completo</item>
+        <item>Nombre con patrón completo</item>
+        <item>Nombre masculino frecuencial</item>
+        <item>Nombre femenino frecuencial</item>
+        <item>Apellido frecuencial</item>
+        <item>Nombre masculino frecuencial completo</item>
+        <item>Nombre femenino frecuencial completo</item>
+        <item>Nombre frecuencial completo</item>
+        <item>Nombre masculino preformado</item>
+        <item>Nombre femenino preformado</item>
+        <item>Apellido preformado</item>
+        <item>Nombre masculino preformado completo</item>
+        <item>Nombre femenino preformado completo</item>
+        <item>Nombre preformado completo</item>
+        <item>Nombre masculino markoviano</item>
+        <item>Nombre femenino markoviano</item>
+        <item>Apellido markoviano</item>
+        <item>Nombre masculino markoviano completo</item>
+        <item>Nombre femenino markoviano completo</item>
+        <item>Nombre markoviano completo</item>
         <item>Nombre de usuario</item>
         <item>Nombre de usuario compuesto</item>
-        <item>Nombre de usuario compuesto hispánico</item>
         <item>Nombre de usuario derivado</item>
-        <item>Nombre de anónimo</item>
-        <item>Nombre de anónimo hispánico</item>
+        <item>Nombre anónimo</item>
+        <item>Animal anónimo</item>
     </string-array>
     <string-array name="negative_trait">
         <item>[aburrid[o,a]]</item>
@@ -1201,23 +1178,7 @@
         <item>[trampos[o,a]]</item>
         <item>[vanidos[o,a]]</item>
     </string-array>
-    <string-array name="new_zodiac_sign">
-        <item>\?</item>
-        <item>Acuario (16 de febrero - 11 de marzo)</item>
-        <item>Piscis (12 de marzo - 18 de abril)</item>
-        <item>Aries (19 de abril - 13 de mayo)</item>
-        <item>Tauro (14 de mayo - 20 de junio)</item>
-        <item>Géminis (21 de junio - 19 de julio)</item>
-        <item>Cáncer (20 de julio - 19 de agosto)</item>
-        <item>Leo (20 de agosto - 15 de septiembre)</item>
-        <item>Virgo (16 de septiembre - 30 de octubre)</item>
-        <item>Libra (31 de octubre - 22 de noviembre)</item>
-        <item>Escorpio (23 de noviembre - 29 de noviembre)</item>
-        <item>Ofiuco (30 de noviembre - 17 de diciembre)</item>
-        <item>Sagitario (18 de diciembre - 8 de enero)</item>
-        <item>Capricornio (9 de enero - 15 de febrero)</item>
-    </string-array>
-    <string-array name="opinions">
+    <string-array name="opinion">
         <item>¿Has oído de ##? Es mi peor enemigo.</item>
         <item>Tú te pareces a alguien que conozco, se llama ##.</item>
         <item>¿De casualidad no conoces a ##?</item>
@@ -1854,6 +1815,22 @@
         <item>10 minutos</item>
         <item>15 minutos</item>
         <item>20 minutos</item>
+    </string-array>
+    <string-array name="walter_berg_zodiac_sign">
+        <item>\?</item>
+        <item>Acuario (16 de febrero - 11 de marzo)</item>
+        <item>Piscis (12 de marzo - 18 de abril)</item>
+        <item>Aries (19 de abril - 13 de mayo)</item>
+        <item>Tauro (14 de mayo - 20 de junio)</item>
+        <item>Géminis (21 de junio - 19 de julio)</item>
+        <item>Cáncer (20 de julio - 19 de agosto)</item>
+        <item>Leo (20 de agosto - 15 de septiembre)</item>
+        <item>Virgo (16 de septiembre - 30 de octubre)</item>
+        <item>Libra (31 de octubre - 22 de noviembre)</item>
+        <item>Escorpio (23 de noviembre - 29 de noviembre)</item>
+        <item>Ofiuco (30 de noviembre - 17 de diciembre)</item>
+        <item>Sagitario (18 de diciembre - 8 de enero)</item>
+        <item>Capricornio (9 de enero - 15 de febrero)</item>
     </string-array>
     <string-array name="zodiac_sign">
         <item>\?</item>

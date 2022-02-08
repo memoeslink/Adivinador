@@ -14,21 +14,18 @@ import androidx.appcompat.app.AlertDialog;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 
 public class SettingsActivity extends CommonActivity implements TextToSpeech.OnInitListener {
-    private boolean speechAvailable;
     private AlertDialog dialog;
     private AudioManager audioManager;
     private TextToSpeech tts;
-    private FortuneTeller methods;
-    private SharedPreferences.OnSharedPreferenceChangeListener listener; //Declared as global to avoid destruction by Java Garbage Collector
+    private SharedPreferences.OnSharedPreferenceChangeListener listener; //Declared as global to avoid destruction by JVM Garbage Collector
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new CustomPreferenceFragment()).commit();
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         tts = new TextToSpeech(this, this);
-        methods = new FortuneTeller(SettingsActivity.this);
 
         //Define dialog to notify about application restart
         AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
@@ -36,7 +33,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
         builder.setMessage(getString(R.string.alert_app_restart_message));
         builder.setIcon(R.drawable.door);
         builder.setNeutralButton(getString(R.string.ok), (dialog, which) -> dialog.dismiss());
-        builder.setOnDismissListener(arg0 -> Methods.restartApplication(SettingsActivity.this));
+        builder.setOnDismissListener(arg0 -> restartApplication());
         dialog = builder.create();
 
         //Set listeners
@@ -56,22 +53,21 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
                 try {
                     SettingsActivity.this.runOnUiThread(() -> dialog.show());
                 } catch (Exception e) {
-                    new Handler(Looper.getMainLooper()).postDelayed(() -> Methods.restartApplication(SettingsActivity.this), 500);
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> restartApplication(), 500);
                 }
             }
 
             if (key.equals("preference_saveNames")) {
-                if (!defaultPreferences.getBoolean("preference_saveNames", true))
+                if (!defaultPreferences.getBoolean("preference_saveNames", true)) {
                     preferences.remove("nameList");
+                }
             }
 
             if (key.equals("preference_saveEnquiries")) {
-                if (!defaultPreferences.getBoolean("preference_saveEnquiries", true))
-                    preferences.remove("enquiryList");
+                if (!defaultPreferences.getBoolean("preference_saveEnquiries", true)) {
+                    preferences.remove("peopleList");
+                }
             }
-
-            if (key.equals("preference_seed"))
-                methods.setRandomizer();
 
             if (key.equals("preference_stickHeader"))
                 preferences.putBoolean("temp_restartActivity", true);
@@ -121,14 +117,14 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
     @Override
     public void onInit(int i) {
         if (i == TextToSpeech.SUCCESS)
-            speechAvailable = Methods.setTTS(tts, defaultPreferences.getString("preference_language", "es"));
+            speechAvailable = isTTSAvailable(tts, defaultPreferences.getString("preference_language", "es"));
         else {
             speechAvailable = false;
-            Methods.showSimpleToast(SettingsActivity.this, getString(R.string.toast_voice_unavailability));
+            showSimpleToast(SettingsActivity.this, getString(R.string.toast_voice_unavailability));
         }
     }
 
-    public static class MyPreferenceFragment extends PreferenceFragmentCompat {
+    public static class CustomPreferenceFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferencesFix(@Nullable Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.default_preferences, rootKey);

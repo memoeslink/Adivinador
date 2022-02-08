@@ -723,47 +723,4 @@
         <item>0x1F566</item>
         <item>0x1F567</item>
     </integer-array>
-    <integer-array name="feelings">
-        <item>0x1F631</item>
-        <item>0x1F601</item>
-        <item>0x1F620</item>
-        <item>0x1F622</item>
-        <item>0x1F60D</item>
-        <item>0x1F61D</item>
-        <item>0x1F62E</item>
-        <item>0x1F633</item>
-        <item>0x1F60C</item>
-        <item>0x1F614</item>
-    </integer-array>
-    <integer-array name="new_zodiac_signs">
-        <item>0x2049</item>
-        <item>0x2652</item>
-        <item>0x2653</item>
-        <item>0x2648</item>
-        <item>0x2649</item>
-        <item>0x264A</item>
-        <item>0x264B</item>
-        <item>0x264C</item>
-        <item>0x264D</item>
-        <item>0x264E</item>
-        <item>0x264F</item>
-        <item>0x26CE</item>
-        <item>0x2650</item>
-        <item>0x2651</item>
-    </integer-array>
-    <integer-array name="zodiac_signs">
-        <item>0x2049</item>
-        <item>0x2652</item>
-        <item>0x2653</item>
-        <item>0x2648</item>
-        <item>0x2649</item>
-        <item>0x264A</item>
-        <item>0x264B</item>
-        <item>0x264C</item>
-        <item>0x264D</item>
-        <item>0x264E</item>
-        <item>0x264F</item>
-        <item>0x2650</item>
-        <item>0x2651</item>
-    </integer-array>
 </resources>

@@ -1,99 +1,49 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "array",
   "items": [
     {
       "type": "object",
       "properties": {
-        "anonymous": {
-          "type": "boolean"
-        },
-        "person": {
-          "type": "object",
-          "properties": {
-            "address": {
-              "type": "string"
-            },
-            "email": {
-              "type": "string"
-            },
-            "honoraryTitle": {
-              "type": "string"
-            },
-            "japaneseHonorific": {
-              "type": "string"
-            },
-            "nickname": {
-              "type": "string"
-            },
-            "postNominalLetters": {
-              "type": "string"
-            },
-            "simpleBirthdate": {
-              "type": "object",
-              "properties": {
-                "day": {
-                  "type": "integer"
-                },
-                "month": {
-                  "type": "integer"
-                },
-                "year": {
-                  "type": "integer"
-                }
-              },
-              "required": [
-                "day",
-                "month",
-                "year"
-              ]
-            },
-            "username": {
-              "type": "string"
-            },
-            "forename": {
-              "type": "string"
-            },
-            "generationalTitle": {
-              "type": "string"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "nameType": {
-              "type": "string"
-            },
-            "sex": {
-              "type": "integer"
-            },
-            "surname": {
+        "attributes": {
+          "type": "array",
+          "items": [
+            {
               "type": "string"
             }
-          },
-          "required": [
-            "address",
-            "email",
-            "honoraryTitle",
-            "japaneseHonorific",
-            "nickname",
-            "postNominalLetters",
-            "simpleBirthdate",
-            "username",
-            "forename",
-            "generationalTitle",
-            "id",
-            "nameType",
-            "sex",
-            "surname"
           ]
         },
-        "userRequested": {
-          "type": "boolean"
+        "birthdate": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "nickname": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "japaneseHonorific": {
+          "type": "string"
+        },
+        "occupation": {
+          "type": "string"
+        },
+        "postNominalLetters": {
+          "type": "string"
         }
       },
       "required": [
-        "anonymous",
-        "person",
-        "userRequested"
+        "birthdate",
+        "gender"
       ]
     }
   ]

@@ -99,6 +99,7 @@ public class MenuActivity extends CommonActivity {
         if (drawerLayout != null && navigationView != null && drawerLayout.isDrawerOpen(navigationView)) {
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
-        } else return false;
+        }
+        return false;
     }
 }

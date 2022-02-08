@@ -3,6 +3,8 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 import android.media.MediaPlayer;
 
+import com.memoeslink.helper.SharedPreferencesHelper;
+
 import java.io.IOException;
 
 public class Sound {

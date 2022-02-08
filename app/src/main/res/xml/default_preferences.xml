@@ -35,7 +35,7 @@
         <ListPreference
             android:defaultValue="1"
             android:entries="@array/fortune_teller_aspect"
-            android:entryValues="@array/fortune_teller_aspect_values"
+            android:entryValues="@array/fortune_teller_aspects"
             android:key="preference_fortuneTellerAspect"
             android:summary="@string/preference_fortune_teller_aspect_summary"
             android:title="@string/preference_fortune_teller_aspect" />
@@ -105,7 +105,7 @@
         <ListPreference
             android:defaultValue="@string/default_language"
             android:entries="@array/language"
-            android:entryValues="@array/language_values"
+            android:entryValues="@array/languages"
             android:key="preference_language"
             android:summary="@string/preference_language_summary"
             android:title="@string/preference_language" />

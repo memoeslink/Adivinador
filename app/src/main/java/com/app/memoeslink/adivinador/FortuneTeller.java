@@ -3,37 +3,30 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 import android.content.res.TypedArray;
 
-import androidx.annotation.DrawableRes;
-
-import org.apache.commons.lang3.StringUtils;
+import com.memoeslink.generator.common.DateTimeHelper;
+import com.memoeslink.generator.common.Gender;
+import com.memoeslink.generator.common.LongHelper;
+import com.memoeslink.generator.common.Person;
+import com.memoeslink.generator.common.Randomizer;
+import com.memoeslink.generator.common.StringHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FortuneTeller extends BaseWrapper {
-    private Long seed;
-    private Methods methods;
-    private Randomizer randomizer;
+public class FortuneTeller extends TextFormatter {
 
     public FortuneTeller(Context context) {
         super(context);
-        methods = new Methods(context);
-        randomizer = new Randomizer(null);
-        setRandomizer(); //Initialize Randomizer with or without seed
-    }
 
-    public void setRandomizer() {
-        if (!StringUtils.isBlank(defaultPreferences.getString("preference_seed")))
-            seed = Methods.getSeed(defaultPreferences.getString("preference_seed"));
+        if (StringHelper.isNotNullOrBlank(defaultPreferences.getString("preference_seed")))
+            r = new Randomizer(LongHelper.getSeed(defaultPreferences.getString("preference_seed")));
         else
-            seed = null;
-        methods.getRandomizer().bindSeed(seed);
-        randomizer.bindSeed(seed);
+            r = new Randomizer();
     }
 
     public String comment() {
-        return methods.getIdeogramSet(0, 0, 1) + " " + methods.getSplitString(R.string.default_comments);
+        return getEmojis(r.getInt(1, 4)) + " " + getStrFromSplitStrRes(R.string.default_comments);
     }
 
     public String greet() {
@@ -42,32 +35,33 @@ public class FortuneTeller extends BaseWrapper {
 
     public String greet(int index) {
         String s;
-        String addendum = methods.replaceTags(methods.getStringFromStringArray(R.array.conversation_addendum)).getText();
+        String addendum = replaceTags(getStrFromStrArrayRes(R.array.conversation_addendum)).getText();
 
-        if (index >= 0)
-            s = methods.getSplitString(R.string.greetings, index).replace("§", addendum);
-        else {
-            String ideogramSet = methods.getIdeogramSet(60, 20, 2);
+        if (index >= 0) {
+            s = getStrFromSplitStrRes(R.string.greetings, index);
+            s = StringHelper.replace(s, "§", addendum);
+        } else {
+            String ideogramSet = getEmojis(r.getInt(1, 4));
 
-            switch (randomizer.getInt(0, 6)) {
+            switch (r.getInt(6)) {
                 case 0:
-                    s = greetShortly(addendum) + " " + methods.getStringFromStringArray(R.array.phrase_augury);
+                    s = greetShortly(addendum) + " " + getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 case 1:
-                    s = methods.getSplitString(R.string.greetings_component) + " " + methods.getDayOfWeekName() + (StringUtils.isNotBlank(addendum) ? ", " + addendum : "") + Methods.FULL_STOP + " " + (StringUtils.isNotBlank(ideogramSet) ? ideogramSet + " " : ideogramSet) + methods.getStringFromStringArray(R.array.phrase_augury);
+                    s = getStrFromSplitStrRes(R.string.greetings_component) + " " + DateTimeHelper.getStrCurrentDayOfWeek() + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 case 2:
-                    s = methods.getSplitString(R.string.date_component) + " " + methods.getCurrentDate(randomizer.getInt(0, 9)) + (StringUtils.isNotBlank(addendum) ? ", " + addendum : "") + Methods.FULL_STOP + " " + (StringUtils.isNotBlank(ideogramSet) ? ideogramSet + " " : ideogramSet) + methods.getStringFromStringArray(R.array.phrase_augury);
+                    s = getStrFromSplitStrRes(R.string.date_component) + " " + DateTimeHelper.getStrCurrentDate(r.getInt(1, 11)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 case 3:
-                    s = methods.getSplitString(R.string.time_component) + " " + methods.getCurrentTime(randomizer.getInt(0, 4)) + (StringUtils.isNotBlank(addendum) ? ", " + addendum : "") + Methods.FULL_STOP + " " + (StringUtils.isNotBlank(ideogramSet) ? ideogramSet + " " : ideogramSet) + methods.getStringFromStringArray(R.array.phrase_augury);
+                    s = getStrFromSplitStrRes(R.string.time_component) + " " + DateTimeHelper.getStrCurrentTime(r.getInt(1, 8)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 default:
-                    s = methods.getSplitString(R.string.greetings).replace("§", StringUtils.isNotBlank(addendum) ? ", " + addendum : "") + " " + (StringUtils.isNotBlank(ideogramSet) ? ideogramSet + " " : ideogramSet) + methods.getStringFromStringArray(R.array.phrase_augury);
+                    s = StringHelper.replaceOnce(getStrFromSplitStrRes(R.string.greetings), "§", StringHelper.prependIfNotEmpty(addendum, ", ")) + " " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
             }
         }
-        s = StringUtils.replace(s, "..", ".");
+        s = StringHelper.replace(s, "..", ".");
         return getString(R.string.html_format, s);
     }
 
@@ -76,34 +70,33 @@ public class FortuneTeller extends BaseWrapper {
     }
 
     public String greetShortly(String addendum) {
-        addendum = StringUtils.defaultIfBlank(addendum, "");
-        addendum = StringUtils.isNotEmpty(addendum) ? ", " + addendum : "";
-        int timeOfDay = Methods.getHourOfDay();
+        addendum = StringHelper.defaultIfBlank(addendum);
+        addendum = StringHelper.prependIfNotEmpty(addendum, ", ");
+        int hour = DateTimeHelper.getCurrentTime().getHour();
 
-        if (timeOfDay >= 0 && timeOfDay < 12)
-            return methods.getSplitString(R.string.greetings_day).replace("§", addendum);
-        else if (timeOfDay >= 12 && timeOfDay < 19)
-            return methods.getSplitString(R.string.greetings_afternoon).replace("§", addendum);
-        else if (timeOfDay >= 19 && timeOfDay < 24)
-            return methods.getSplitString(R.string.greetings_night).replace("§", addendum);
+        if (hour >= 0 && hour < 12)
+            return StringHelper.replace(getStrFromSplitStrRes(R.string.greetings_day), "§", addendum);
+        else if (hour >= 12 && hour < 19)
+            return StringHelper.replace(getStrFromSplitStrRes(R.string.greetings_afternoon), "§", addendum);
+        else if (hour >= 19 && hour < 24)
+            return StringHelper.replace(getStrFromSplitStrRes(R.string.greetings_night), "§", addendum);
         else
-            return methods.getSplitString(R.string.greetings_default).replace("§", addendum);
+            return StringHelper.replace(getStrFromSplitStrRes(R.string.greetings_default), "§", addendum);
     }
 
     public String talk() {
-        String ideogramSet = methods.getIdeogramSet(70, 14, 1);
-        return methods.getPhrase() + (ideogramSet.isEmpty() ? "" : " " + ideogramSet);
+        return talk(1);
     }
 
     public String talk(int times) {
         String conversation = "";
-        String ideogramSet = methods.getIdeogramSet(70, 14, 1);
+        String ideogramSet = getEmojis(r.getInt(1, 4));
 
         while (times > 0) {
-            conversation += (StringUtils.isNotEmpty(conversation) ? " " : "") + methods.getPhrase();
+            conversation = StringHelper.appendIfNotEmpty(conversation, " ") + getPhrase();
             times--;
         }
-        return StringUtils.stripToEmpty(conversation) + (ideogramSet.isEmpty() ? "" : " " + ideogramSet);
+        return StringHelper.trimToEmpty(conversation) + StringHelper.prependSpaceIfNotEmpty(ideogramSet);
     }
 
     public String talkAboutSomeone() {
@@ -115,9 +108,9 @@ public class FortuneTeller extends BaseWrapper {
         String extra;
 
         if (index >= 0)
-            s = methods.getStringFromStringArray(R.array.opinions, index);
+            s = getStrFromStrArrayRes(R.array.opinion, index);
         else
-            s = methods.getStringFromStringArray(R.array.opinions);
+            s = getStrFromStrArrayRes(R.array.opinion);
 
         //Initialize person sources
         List<String> personSources = new ArrayList<>(Collections.nCopies(50, "random"));
@@ -129,63 +122,60 @@ public class FortuneTeller extends BaseWrapper {
         while (s.contains("##")) {
             String name;
             String content;
-            int sex = -1;
+            Gender gender = Gender.UNDEFINED;
 
-            switch (personSources.get(randomizer.getInt(0, personSources.size()))) {
+            switch (r.getItem(personSources)) {
                 case "contact":
-                    name = methods.getContactName(true);
-                    content = "<font color=" + methods.getColorString() + ">" + name + "</font>";
+                    name = getContactName();
+                    content = formatContactName(name);
                     personSources.remove("contact");
                     break;
                 case "random":
-                    Person person = methods.getPerson();
-                    name = person.getFullName();
-                    sex = person.getSex();
+                    gender = Gender.values()[r.getInt(1, 3)];
 
-                    if (randomizer.getInt(4, 0) == 0)
-                        content = "<font color=" + methods.getColorString() + ">" + person.getFormattedUsername() + "</font>";
-                    else
-                        content = (StringUtils.isNotBlank(person.getHonoraryTitle()) ? Methods.formatText(person.getHonoraryTitle(), "i") + " " : "")
-                                + "<font color=" + methods.getColorString() + ">" + person.getFormattedFullName()
-                                + (StringUtils.defaultIfBlank(person.getJapaneseHonorific(), ""))
-                                + (StringUtils.isNotBlank(person.getPostNominalLetters()) ? ", " + Methods.formatText(person.getPostNominalLetters(), "b,i") : "")
-                                + "</font>";
+                    if (r.getInt(4) == 0) {
+                        name = getUsername();
+                        content = formatUsername(name);
+                    } else {
+                        Person person = getPerson();
+                        name = person.getFullName();
+                        content = formatName(person);
+                    }
                     break;
                 case "suggestion":
-                    name = methods.getSuggestedName(true);
-                    content = "<font color=" + methods.getColorString() + ">" + name + "</font>";
+                    name = getSuggestedName();
+                    content = formatSuggestedName(name);
                     personSources.remove("suggestion");
                     break;
                 default:
                     name = "?";
-                    content = Methods.formatText("?", "b,tt");
+                    content = formatText("?", "b,tt");
                     break;
             }
 
-            if (StringUtils.isEmpty(name))
+            if (StringHelper.isNullOrEmpty(name))
                 continue;
-            s = methods.replaceTags(s, sex).getText();
-            s = StringUtils.replaceOnce(s, "##", content);
+            s = replaceTags(s, gender).getText();
+            s = StringHelper.replaceOnce(s, "##", content);
         }
-        s = StringUtils.replace(s, " a el ", " al ");
-        s = methods.fixDoubleFullStop(s);
+        s = StringHelper.replace(s, " a el ", " al ");
+        s = fixDoubleFullStop(s);
 
         //Add ideogram, emoticon or nothing
-        float probability = randomizer.getFloat();
+        float probability = r.getFloat();
 
         if (probability <= 0.25F) {
-            extra = methods.getSplitString(R.string.emoticons);
-            extra = "<b><font color=" + methods.getColorString() + ">" + extra + "</font></b>";
+            extra = getStrFromSplitStrRes(R.string.emoticons);
+            extra = "<b><font color=" + getColorStr() + ">" + extra + "</font></b>";
         } else if (probability <= 0.5F)
-            extra = methods.getIdeogramSet(60, 20, 2);
+            extra = getEmojis(r.getInt(1, 4));
         else
             extra = "";
-        s = s + (extra.isEmpty() ? "" : " " + extra);
+        s = s + StringHelper.prependSpaceIfNotEmpty(extra);
         return getString(R.string.html_format, s);
     }
 
-    public @DrawableRes
-    int getRandomAppearance() {
+    public int getRandomAppearance() {
         int resId;
         int arrayId;
         int initialRes;
@@ -210,7 +200,7 @@ public class FortuneTeller extends BaseWrapper {
                 break;
         }
         TypedArray images = getResources().obtainTypedArray(arrayId);
-        int randomRes = (int) (randomizer.getDouble() * images.length());
+        int randomRes = (int) (r.getDouble() * images.length());
         resId = images.getResourceId(randomRes, initialRes);
         images.recycle();
         return resId;

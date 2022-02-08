@@ -71,21 +71,15 @@
     <string name="binder">Use current enquiry name</string>
     <string name="chain_effect">• Chain results: the effects will be %1$s in the day of %2$s.</string>
     <string name="chain_null_effect">null</string>
-    <string name="chain_link">• Link %1$d: %2$s executes an action%3$s %4$s, and that causes a reaction in %5$s (%6$s karma; %7$s total karma).</string>
+    <string name="chain_link">• Link %1$d: %2$s%3$s executes an action%4$s %5$s, and that causes a reaction in %6$s (%7$s karma; %8$s total karma).</string>
     <string name="chain_negative_effect">negative</string>
     <string name="chain_positive_effect">positive</string>
-    <string name="class_component">LVL %2$d %1$s</string>
-    <string name="classes">[^alchemist[]]¶ [^archer[]]¶ [^assassin[]]¶ [^bard[]]¶ [^barbarian[]]¶ [^knight[,ess]]¶ [^hunter[]]¶ [^cleric[]]¶ [^healer[]]¶ [^dragoon[]]¶ [^druid[]]¶ [^elementalist[]]¶ [^squire[]]¶ [^swordsman[]]¶ [^swordsmith[]]¶ [^exorcist[]]¶ [^scout[]]¶ [^warrior[]]¶ [^sorcerer[]]¶ [^illusionist[]]¶ [^engineer[]]¶ [^summoner[]]¶ [^dark[]] [^rider[]]¶ [^thief[]]¶ [^spearman[]]¶ [^mage[]]¶ [^red[]] [^mage[]]¶ [^magus[]]¶ [^mercenary[]]¶ [^monk[]]¶ [^doctor[]]¶ [^necromancer[]]¶ [^ninja[]]¶ [^oracle[]]¶ [^paladin[]]¶ [^rogue[]]¶ [^pirate[]]¶ [^tracker[]]¶ [^samurai[]]¶ [^soldier[]]¶ [^templar[]]¶ [^transmuter[]]</string>
     <string name="clear">Clear form</string>
-    <string name="common_last_names">Adams¶ Allen¶ Anderson¶ Bailey¶ Baker¶ Barnes¶ Bell¶ Bennett¶ Brooks¶ Brown¶ Campbell¶ Carter¶ Clark¶ Coleman¶ Collins¶ Cook¶ Cooper¶ Cox¶ Davis¶ Edwards¶ Evans¶ Flores¶ Garcia¶ Gonzalez¶ Gray¶ Green¶ Hall¶ Harris¶ Henderson¶ Hernandez¶ Hill¶ Howard¶ Hughes¶ Jackson¶ James¶ Jenkins¶ Johnson¶ Jones¶ Kelly¶ King¶ Lee¶ Lewis¶ Long¶ Lopez¶ Martin¶ Martinez¶ Miller¶ Mitchell¶ Moore¶ Morgan¶ Morris¶ Murphy¶ Nelson¶ Parker¶ Patterson¶ Perez¶ Perry¶ Peterson¶ Phillips¶ Powell¶ Price¶ Ramirez¶ Reed¶ Richardson¶ Rivera¶ Roberts¶ Robinson¶ Rodriguez¶ Rogers¶ Ross¶ Sanchez¶ Sanders¶ Scott¶ Smith¶ Stewart¶ Taylor¶ Thomas¶ Thompson¶ Torres¶ Turner¶ Walker¶ Ward¶ Watson¶ White¶ Williams¶ Wilson¶ Wood¶ Wright¶ Young</string>
-    <string name="common_names">Aaron¶ Abigail¶ Adam¶ Aiden¶ Aisha¶ Albert¶ Alex¶ Alexander¶ Alfie¶ Alice¶ Amber¶ Amelia¶ Amelie¶ Amy¶ And¶ Anna¶ Annabelle¶ Archie¶ Arthur¶ Austin¶ Ava¶ Beatrice¶ Bella¶ Benjamin¶ Bethany¶ Blake¶ Bobby¶ Boys’¶ Brooke¶ Caleb¶ Callum¶ Cameron¶ Charles¶ Charlie¶ Charlotte¶ Chloe¶ Connor¶ Daisy¶ Daniel¶ Darcey¶ Darcy¶ David¶ Dexter¶ Dylan¶ Edward¶ Eleanor¶ Elijah¶ Eliza¶ Elizabeth¶ Ella¶ Ellie¶ Elliot¶ Elliott¶ Elsie¶ Emilia¶ Emily¶ Emma¶ England¶ Erin¶ Esme¶ Ethan¶ Eva¶ Evan¶ Evelyn¶ Evie¶ Faith¶ Felix¶ Finlay¶ Finley¶ Florence¶ Francesca¶ Frankie¶ Freddie¶ Frederick¶ Freya¶ Gabriel¶ George¶ Georgia¶ Grace¶ Gracie¶ Hannah¶ Harley¶ Harriet¶ Harrison¶ Harry¶ Harvey¶ Heidi¶ Henry¶ Hollie¶ Holly¶ Hugo¶ Ibrahim¶ Imogen¶ In¶ Isaac¶ Isabel¶ Isabella¶ Isabelle¶ Isla¶ Isobel¶ Ivy¶ Jack¶ Jacob¶ Jake¶ James¶ Jamie¶ Jasmine¶ Jayden¶ Jenson¶ Jessica¶ Joseph¶ Joshua¶ Jude¶ Julia¶ Kai¶ Katie¶ Kian¶ Lacey¶ Layla¶ Leah¶ Leo¶ Leon¶ Lewis¶ Lexi¶ Liam¶ Lilly¶ Lily¶ Logan¶ Lola¶ Louie¶ Louis¶ Luca¶ Lucas¶ Lucy¶ Luke¶ Lydia¶ Maddison¶ Madison¶ Maisie¶ Maria¶ Martha¶ Maryam¶ Mason¶ Matilda¶ Matthew¶ Max¶ Maya¶ Megan¶ Mia¶ Michael¶ Millie¶ Mohammad¶ Mohammed¶ Mollie¶ Molly¶ Muhammad¶ Names¶ Nathan¶ Niamh¶ Noah¶ Of¶ Oliver¶ Olivia¶ Ollie¶ Oscar¶ Owen¶ Paige¶ Phoebe¶ Poppy¶ Reuben¶ Riley¶ Robert¶ Ronnie¶ Rory¶ Rose¶ Rosie¶ Ruby¶ Ryan¶ Samuel¶ Sara¶ Sarah¶ Scarlett¶ Sebastian¶ Seth¶ Sienna¶ Skye¶ Sofia¶ Sonny¶ Sophia¶ Sophie¶ Stanley¶ Summer¶ Teddy¶ Theo¶ Theodore¶ Thomas¶ Tilly¶ Toby¶ Tommy¶ Top¶ Tyler¶ Victoria¶ Violet¶ Wales¶ William¶ Willow¶ Zachary¶ Zara¶ Zoe</string>
     <string name="compatibility">See compatibility</string>
     <string name="compatibility_result">Compatibility: &lt;b&gt;%1$s&lt;/b&gt;</string>
     <string name="connected_device_user">user of device with IP address %1$s</string>
     <string name="data_entry">Enter data</string>
-    <string name="date">MMMM d\'#\', yyyy</string>
     <string name="date_component">It is¶ Today is¶ It\'s¶ The date is¶ The day is</string>
-    <string name="days_of_week">​¶ Sunday¶ Monday¶ Tuesday¶ Wednesday¶ Thursday¶ Friday¶ Saturday</string>
     <string name="default_comments">The prediction is the following:¶ The divination indicates the following:¶ The future shows this:¶ Your fate indicates this:¶ The prediction shows the following:¶ This is going to happen:¶ This will happen at some point:¶ My divination reveals this:¶ These facts could take place:¶ This might happen:</string>
     <string name="default_person">one</string>
     <string name="default_user">user</string>
@@ -95,25 +89,22 @@
     <string name="device_version_user">%1$s of Android %2$s device</string>
     <string name="disconnected_device_user">user of device with unknown IP address</string>
     <string name="donations_title">Donate</string>
-    <string name="enquiry_information">Enquiry of the day 1$s for %2$s, %3$s (%4$s)</string>
+    <string name="enquiry_information">Daily enquiry for 1$s for %2$s, %3$s (%4$s)</string>
     <string name="extended_family_member">[[father,mother]]-in-law¶ [[brother,sister]]-in-law¶ [[son,daughter]]-in-law¶ [step[father,mother]]¶ [step[son,daughter]]¶ [god[father,mother]]¶ [god[son,daughter]]</string>
     <string name="family_member">{string:relative⸻⸮}¶ {string:extended_family_member⸻⸮}</string>
-    <string name="full_date">EEEE, MMMM d, yyyy</string>
-    <string name="generational_designation">Jr.¶ Sr.</string>
     <string name="greetings">Hi§!¶ Hello§.¶ Welcome§.¶ Good day§.¶ Good to see you§.¶ Long time no see§.¶ How are you§?¶ How have you been§?¶ How do you do§?¶ How is everything§?¶ What have you done§?¶ What have you done lately§?¶ What happens§?¶ What is there§?¶ What is new§?¶ What do you tell me§?</string>
     <string name="greetings_afternoon">Good afternoon§.¶ Beautiful afternoon§.</string>
     <string name="greetings_component">Good¶ Beautiful¶ Nice¶ Great¶ Today is¶ The day is</string>
     <string name="greetings_day">Good day§.¶ Beautiful day§.</string>
     <string name="greetings_default">Hello§.¶ Welcome§.</string>
     <string name="greetings_night">Good night§.¶ Beautiful night§.</string>
-    <string name="honorifics">[Mr[,s]].¶ [^^[young gentleman,miss]].¶ [^[sir,dame]]¶ [^[lord,lady]]¶ Dr.¶ Prof.¶ ∅¶ Eng.¶ Dir.¶ Pres.</string>
     <string name="input_birthdate">Birthdate:</string>
+    <string name="input_gender_description">Gender:</string>
+    <string name="input_gender_female">Female</string>
+    <string name="input_gender_indefinite">Undefined</string>
+    <string name="input_gender_male">Male</string>
     <string name="input_name_hint">Enter a name</string>
     <string name="input_other_name_hint">Enter another name</string>
-    <string name="input_sex_description">Sex:</string>
-    <string name="input_sex_female">Female</string>
-    <string name="input_sex_indefinite">Undefined</string>
-    <string name="input_sex_male">Male</string>
     <string name="input_title">Enter data</string>
     <string name="inquiry">Get enquiry (%1$s)</string>
     <string name="interjections">achoo¶ ack¶ ah¶ aha¶ ahem¶ ahh¶ arg¶ argh¶ aw¶ bah¶ bam¶ blah¶ blech¶ boo¶ boo-hoo¶ boo-yah¶ brrr¶ bwah-hah-hah¶ d\'oh¶ dang¶ darn¶ drats¶ duh¶ eek¶ eep¶ egads¶ eh¶ er¶ ew¶ feh¶ gak¶ gee¶ golly¶ gosh¶ gulp¶ ha¶ ha-ha¶ hamana-hamana¶ hardy-har-har¶ hehe¶ hey¶ hist¶ hmph¶ ho-ho¶ ho-hum¶ huh¶ humph¶ hup¶ hurrah¶ hurray¶ ick¶ lah-de-dah¶ mh-hmm¶ mmmm¶ mwah¶ nana na nana na¶ neener-neener¶ now¶ oh¶ olé¶ oof¶ ooh¶ ooh-la-la¶ oops¶ ouch¶ ow¶ oy¶ pff¶ phew¶ phoar¶ phooey¶ poof¶ pooh¶ pow¶ pshaw¶ psst¶ rah¶ sheesh¶ shh¶ shoo¶ shucks¶ sis boom dah¶ skrreeek¶ ta-da¶ tchah¶ tsk-tsk¶ tut-tut¶ ugh¶ uh¶ uh-huh¶ uh-oh¶ uh-uh¶ uhm¶ ummm¶ va-va-voom¶ wahoo¶ whee¶ whew¶ whiz¶ whoa¶ whoop-de-doo¶ whoopee¶ whoops¶ woo¶ woopsie¶ wow¶ wowie¶ yay¶ yee-haw¶ yep¶ yikes¶ yippee¶ yo¶ yo-ho-ho¶ yoow¶ yoowza¶ yuck¶ yum¶ zoinks¶ zowie¶ zzzz</string>
@@ -130,77 +121,77 @@
     <string name="no_network_user">user without Internet connection through Wi-Fi</string>
     <string name="nouns">human¶ entity¶ being¶ thing¶ creature¶ individual¶ organism¶ life form¶ existence¶ living entity¶ person¶ human being¶ [[,wo]man]¶ [[boy,girl]]¶ [[lady,gentleman]]¶ [[,fe]male]¶ user</string>
     <string name="ok">OK</string>
-    <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Watching information (%1$s) for:&lt;/i&gt;&lt;/font&gt; &lt;b&gt;%2$s&lt;/b&gt;&lt;font color="#F6FBB2"&gt;, %3$s (%4$s)&lt;/font&gt;</string>
+    <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Watching information (%1$s) for:&lt;/i&gt;&lt;/font&gt; %2$s&lt;font color="#F6FBB2"&gt;, %3$s (%4$s)&lt;/font&gt;</string>
     <string name="prediction">
         <![CDATA[
         <big><b><font color=#869DEE>Fortune</font></b></big>
         <br><br><font color=#53E3B3>Fortune cookie:</font>
-        <br>꘍
         <br>%1$s
-        <br><br><font color=#53E3B3>Divination:</font>
         <br>%2$s
-        <br><br><font color=#53E3B3>Fortune numbers for today:</font>
+        <br><br><font color=#53E3B3>Divination:</font>
         <br>%3$s
-        <br><br><font color=#53E3B3>Today\'s emotions:</font>
+        <br><br><font color=#53E3B3>Fortune numbers for today:</font>
         <br>%4$s
-        <br><br><font color=#53E3B3>Today\'s best moment:</font>
+        <br><br><font color=#53E3B3>Today\'s emotions:</font>
         <br>%5$s
-        <br><br><font color=#53E3B3>Today\'s worst moment:</font>
+        <br><br><font color=#53E3B3>Today\'s best moment:</font>
         <br>%6$s
-        <br><br><font color=#53E3B3>What defines you in this day:</font>
+        <br><br><font color=#53E3B3>Today\'s worst moment:</font>
         <br>%7$s
-        <br><br><font color=#53E3B3>Chain of events for today:</font>
+        <br><br><font color=#53E3B3>What defines you in this day:</font>
         <br>%8$s
-        <br><br><font color=#53E3B3>Person who will affect you more, indirectly, today:</font>
+        <br><br><font color=#53E3B3>Chain of events for today:</font>
         <br>%9$s
+        <br><br><font color=#53E3B3>Person who will affect you more, indirectly, today:</font>
+        <br>%10$s
         <br><br><big><b><font color=#869DEE>Zodiac</font></b></big>
         <br><br><font color=#53E3B3>Zodiac sign:</font>
-        <br>%10$s
-        <br><br><font color=#53E3B3>Astrological house:</font>
         <br>%11$s
-        <br><br><font color=#53E3B3>Ruler:</font>
+        <br><br><font color=#53E3B3>Astrological house:</font>
         <br>%12$s
-        <br><br><font color=#53E3B3>Element:</font>
+        <br><br><font color=#53E3B3>Ruler:</font>
         <br>%13$s
-        <br><br><font color=#53E3B3>Color:</font>
+        <br><br><font color=#53E3B3>Element:</font>
         <br>%14$s
-        <br><br><font color=#53E3B3>Fortune numbers:</font>
+        <br><br><font color=#53E3B3>Color:</font>
         <br>%15$s
-        <br><br><font color=#53E3B3>They are compatible with:</font>
+        <br><br><font color=#53E3B3>Fortune numbers:</font>
         <br>%16$s
-        <br><br><font color=#53E3B3>They don\'t get along with:</font>
+        <br><br><font color=#53E3B3>They are compatible with:</font>
         <br>%17$s
-        <br><br><font color=#53E3B3>New zodiac sign:</font>
+        <br><br><font color=#53E3B3>They don\'t get along with:</font>
         <br>%18$s
-        <br><br><font color=#53E3B3>Chinese zodiac sign:</font>
+        <br><br><font color=#53E3B3>Walter Berg\'s zodiac sign:</font>
         <br>%19$s
+        <br><br><font color=#53E3B3>Chinese zodiac sign:</font>
+        <br>%20$s
         <br><br><big><b><font color=#869DEE>Identity</font></b></big>
         <br><br><font color=#53E3B3>Color:</font>
-        <br><big><big><font color=%20$s>%21$s</font></big></big>
+        <br><big><big><font color=%21$s>%22$s</font></big></big>
         <br><br><font color=#53E3B3>Animal:</font>
-        <br>%22$s
-        <br><br><font color=#53E3B3>Psychological type according to Jung:</font>
         <br>%23$s
-        <br><br><font color=#53E3B3>Secret name:</font>
+        <br><br><font color=#53E3B3>Psychological type according to Jung:</font>
         <br>%24$s
-        <br><br><font color=#53E3B3>Demonic name:</font>
+        <br><br><font color=#53E3B3>Secret name:</font>
         <br>%25$s
-        <br><br><font color=#53E3B3>Name in the previous life:</font>
+        <br><br><font color=#53E3B3>Demonic name:</font>
         <br>%26$s
-        <br><br><font color=#53E3B3>Name in the next life:</font>
+        <br><br><font color=#53E3B3>Name in the previous life:</font>
         <br>%27$s
-        <br><br><font color=#53E3B3>Recommended username:</font>
+        <br><br><font color=#53E3B3>Name in the next life:</font>
         <br>%28$s
+        <br><br><font color=#53E3B3>Recommended username:</font>
+        <br>%29$s
         <br><br><font color=#53E3B3>Personal digit:</font>
-        <br>%29$d
+        <br>%30$d
         <br><br><font color=#53E3B3>Unique fortune numbers:</font>
-        <br>%30$s
-        <br><br><font color=#53E3B3>Universally unique identifier (UUID):</font>
         <br>%31$s
+        <br><br><font color=#53E3B3>Universally unique identifier (UUID):</font>
+        <br>%32$s
         <br><br><font color=#53E3B3>Days between current date and birthdate:</font>
-        <br><font color=#E3E1A1><b>%32$s</b></font>
-        <br><br><font color=#53E3B3>Time between current date and birthdate:</font>
         <br><font color=#E3E1A1><b>%33$s</b></font>
+        <br><br><font color=#53E3B3>Time between current date and birthdate:</font>
+        <br><font color=#E3E1A1><b>%34$s</b></font>
         ]]>
     </string>
     <string name="pick">Pick an enquiry date</string>
@@ -258,11 +249,8 @@
     <string name="qualitative_adjectives">nice¶ brilliant¶ unpleasant¶ different¶ fragile¶ electrifying¶ great¶ better¶ normal¶ negative¶ dark¶ worse¶ positive¶ rare¶ solid¶ terrible</string>
     <string name="relative">[[father,mother]]¶ [[dad,mom]]¶ [[son,daughter]]¶ cousin¶ [[uncle,aunt]]¶ [[nephew,niece]]¶ [[brother,sister]]¶ [grand[father,mother]]¶ [grand[son,daughter]]¶ great [grand[father,mother]]</string>
     <string name="reload">Reload enquiry</string>
-    <string name="royal_titles">[^baron[,ess]]¶ [^count[,ess]]¶ [^du[ke,chess]]¶ [^emp[eror,ress]]¶ [^kaiser[,in]]¶ [^mar[quess,chioness]]¶ [^pope[]]¶ [^prince[,ss]]¶ [^[king,queen]]¶ [^viscount[,ess]]¶ [^tsar[,ina]]¶ [^r[ex,ēgīna]]¶ [^sultan[,a]]</string>
     <string name="save">Save enquiry</string>
     <string name="selector">Select enquiry</string>
-    <string name="short_date">d \'of\' MMMM</string>
-    <string name="simple_date">dd-MMMM-yyyy</string>
     <string name="situation_descriptor">{rand:∅; good; bad; strange; surprising; baffling; favorable; unfavorable}</string>
     <string name="time_component">The time is ¶ The current time is ¶ At this moment the time is ¶ The time at this moment is</string>
     <string name="time_elapsed">%1$d year(s), %2$d month(s), %3$d day(s)</string>
@@ -600,21 +588,21 @@
     <string-array name="conversation_addendum">
         <item></item>
         <item></item>
-        <item>&lt;font color="{method:getColorString}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;font color="{method:getColorStr}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
         <item>&lt;i&gt;{string:interjections}&lt;/i&gt;</item>
-        <item>&lt;font color="{method:getColorString}"&gt;&lt;b&gt;{method:getDeviceCommonUser}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;font color="{method:getColorStr}"&gt;&lt;b&gt;{method:getDeviceUser}&lt;/b&gt;&lt;/font&gt;</item>
     </string-array>
     <string-array name="date_options">
         <item>Today\'s enquiry</item>
         <item>Enquiry for a specific date</item>
     </string-array>
     <string-array name="divination">
-        <item>Something {rand:∅; favorable; unfavorable}, related to a certain thing ({method:getNoun}), will happen.</item>
-        <item>You will get {rand:∅; good; bad; rare} news about something ({method:getNoun}).</item>
+        <item>Something {rand:∅; favorable; unfavorable}, related to a certain thing ({method:getNounWithArticle}), will happen.</item>
+        <item>You will get {rand:∅; good; bad; rare} news about something ({method:getNounWithArticle}).</item>
         <item>You will get {rand:∅; good; bad; rare} news, related to {string:divination_middle}, from {string:unspecific_person}.</item>
         <item>You will get {rand:∅; good; bad; rare} news about {string:divination_middle}.</item>
         <item>Something {string:situation_descriptor}, related to {string:divination_middle}, will happen.</item>
-        <item>A {string:situation_descriptor} event, related to something ({method:getNoun}), will happen.</item>
+        <item>A {string:situation_descriptor} event, related to something ({method:getNounWithArticle}), will happen.</item>
         <item>Something related to {string:unspecific_person} will happen.</item>
         <item>You\'re gonna have problems with a person whose sign is {string:astrological_sign}.</item>
         <item>A person, whose sign is {string:astrological_sign}, will help you with your problems.</item>
@@ -693,7 +681,7 @@
         <item>will change.</item>
         <item>will change totally.</item>
         <item>will change inversely.</item>
-        <item>will be at {method:generatePercentage}.</item>
+        <item>will be at {method:getPercentage}.</item>
         <item>will be reverted.</item>
         <item>will be as before.</item>
         <item>won\'t be as before.</item>
@@ -878,7 +866,7 @@
         <item>Fire</item>
         <item>Earth</item>
     </string-array>
-    <string-array name="emotions">
+    <string-array name="emotion">
         <item>Fear</item>
         <item>Joy</item>
         <item>Anger</item>
@@ -1074,75 +1062,64 @@
         <item>Spanish</item>
         <item>English</item>
     </string-array>
-    <string-array name="month">
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
-        <item>April</item>
-        <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
-        <item>September</item>
-        <item>October</item>
-        <item>November</item>
-        <item>December</item>
-    </string-array>
-    <string-array name="month_short">
-        <item>JAN</item>
-        <item>FEB</item>
-        <item>MAR</item>
-        <item>APR</item>
-        <item>MAY</item>
-        <item>JUN</item>
-        <item>JUL</item>
-        <item>AUG</item>
-        <item>SEP</item>
-        <item>OCT</item>
-        <item>NOV</item>
-        <item>DEC</item>
-    </string-array>
-    <string-array name="name_type_options">
+    <string-array name="name_type">
         <item>Empty</item>
+        <item>Default</item>
         <item>Test case</item>
-        <item>Name</item>
-        <item>Forename</item>
+        <item>Male forename</item>
+        <item>Female forename</item>
+        <item>Double-barrelled male forename</item>
+        <item>Double-barrelled female forename</item>
+        <item>Double male forename</item>
+        <item>Double female forename</item>
         <item>Surname</item>
-        <item>Compound surname</item>
-        <item>Double-barrelled surname</item>
-        <item>International name</item>
-        <item>International forename</item>
-        <item>International surname</item>
-        <item>English name</item>
-        <item>English double-barrelled name</item>
-        <item>English forename</item>
-        <item>English surname</item>
-        <item>Spanish name</item>
-        <item>Spanish compound name</item>
-        <item>Spanish forename</item>
-        <item>Spanish given name</item>
-        <item>Spanish surname</item>
-        <item>Japanese name</item>
-        <item>Mexican name</item>
-        <item>Russian name</item>
-        <item>Generated pattern name</item>
-        <item>Generated natural name</item>
-        <item>Generated defined name</item>
-        <item>Generated frequency name</item>
-        <item>Generated adjusted name</item>
-        <item>Arabic name</item>
-        <item>French name</item>
-        <item>German name</item>
-        <item>Indian name</item>
-        <item>Italian name</item>
-        <item>Portuguese name</item>
-        <item>Supported name</item>
+        <item>Dual surname</item>
+        <item>Male simple name</item>
+        <item>Female simple name</item>
+        <item>Male full name</item>
+        <item>Female full name</item>
+        <item>Full name</item>
+        <item>Male defined forename</item>
+        <item>Female defined forename</item>
+        <item>Defined family name</item>
+        <item>Male defined full name</item>
+        <item>Female defined full name</item>
+        <item>Defined full name</item>
+        <item>Male iterative forename</item>
+        <item>Female iterative forename</item>
+        <item>Iterative family name</item>
+        <item>Male iterative full name</item>
+        <item>Female iterative full name</item>
+        <item>Iterative full name</item>
+        <item>Male pattern forename</item>
+        <item>Female pattern forename</item>
+        <item>Pattern family name</item>
+        <item>Male pattern full name</item>
+        <item>Female pattern full name</item>
+        <item>Pattern full name</item>
+        <item>Male frequency forename</item>
+        <item>Female frequency forename</item>
+        <item>Frequency family name</item>
+        <item>Male frequency full name</item>
+        <item>Female frequency full name</item>
+        <item>Frequency full name</item>
+        <item>Male preformed forename</item>
+        <item>Female preformed forename</item>
+        <item>Preformed family name</item>
+        <item>Male preformed full name</item>
+        <item>Female preformed full name</item>
+        <item>Preformed full name</item>
+        <item>Male Markovian forename</item>
+        <item>Female Markovian forename</item>
+        <item>Markovian family name</item>
+        <item>Male Markovian full name</item>
+        <item>Female Markovian full name</item>
+        <item>Markovian full name</item>
         <item>Username</item>
-        <item>Compound username</item>
-        <item>Spanish compound username</item>
+        <item>Composite username</item>
         <item>Derived username</item>
         <item>Anonymous name</item>
-        <item>Spanish anonymous name</item>
+        <item>Anonymous animal</item>
     </string-array>
     <string-array name="negative_trait">
         <item>boring</item>
@@ -1201,23 +1178,7 @@
         <item>deceitful</item>
         <item>vain</item>
     </string-array>
-    <string-array name="new_zodiac_sign">
-        <item>\?</item>
-        <item>Aquarius (February 16 - March 11)</item>
-        <item>Pisces (March 12 - April 18)</item>
-        <item>Aries (April 19 - May 13)</item>
-        <item>Taurus (May 14 - June 20)</item>
-        <item>Gemini (June 21 - July 19)</item>
-        <item>Cancer (July 20 - August 19)</item>
-        <item>Leo (August 20 - September 15)</item>
-        <item>Virgo (September 16 - October 30)</item>
-        <item>Libra (October 31 - November 22)</item>
-        <item>Scorpio (November 23 - November 29)</item>
-        <item>Ophiuchus (November 30 - December 17)</item>
-        <item>Sagittarius (December 18 - January 8)</item>
-        <item>Capricorn (January 9 - February 15)</item>
-    </string-array>
-    <string-array name="opinions">
+    <string-array name="opinion">
         <item>Have you heard about ##? They are my worst enemy.</item>
         <item>You look like someone I know, their name is ##.</item>
         <item>You don\'t happen to know ##?</item>
@@ -1854,6 +1815,22 @@
         <item>10 minutes</item>
         <item>15 minutes</item>
         <item>20 minutes</item>
+    </string-array>
+    <string-array name="walter_berg_zodiac_sign">
+        <item>\?</item>
+        <item>Aquarius (February 16 - March 11)</item>
+        <item>Pisces (March 12 - April 18)</item>
+        <item>Aries (April 19 - May 13)</item>
+        <item>Taurus (May 14 - June 20)</item>
+        <item>Gemini (June 21 - July 19)</item>
+        <item>Cancer (July 20 - August 19)</item>
+        <item>Leo (August 20 - September 15)</item>
+        <item>Virgo (September 16 - October 30)</item>
+        <item>Libra (October 31 - November 22)</item>
+        <item>Scorpio (November 23 - November 29)</item>
+        <item>Ophiuchus (November 30 - December 17)</item>
+        <item>Sagittarius (December 18 - January 8)</item>
+        <item>Capricorn (January 9 - February 15)</item>
     </string-array>
     <string-array name="zodiac_sign">
         <item>\?</item>

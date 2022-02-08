@@ -69,35 +69,35 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
             android:gravity="center"
-            android:text="@string/input_sex_description"
+            android:text="@string/input_gender_description"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#FFFBCC"></TextView>
 
         <RadioGroup
-            android:id="@+id/input_sex_radio"
+            android:id="@+id/input_gender_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:checkedButton="@+id/input_sex_indefinite_option">
+            android:checkedButton="@+id/input_gender_indefinite_option">
 
             <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/input_sex_indefinite_option"
+                android:id="@+id/input_gender_indefinite_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/input_sex_indefinite" />
+                android:text="@string/input_gender_indefinite" />
 
             <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/input_sex_male_option"
+                android:id="@+id/input_gender_male_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/input_sex_male" />
+                android:text="@string/input_gender_male" />
 
             <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/input_sex_female_option"
+                android:id="@+id/input_gender_female_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/input_sex_female" />
+                android:text="@string/input_gender_female" />
         </RadioGroup>
 
         <TextView

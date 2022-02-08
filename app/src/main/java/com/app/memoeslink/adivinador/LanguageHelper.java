@@ -1,22 +1,16 @@
 package com.app.memoeslink.adivinador;
 
 import android.content.Context;
-import android.content.res.Resources;
 
-import org.apache.commons.lang3.StringUtils;
+import com.memoeslink.generator.common.StringHelper;
+import com.memoeslink.helper.SharedPreferencesHelper;
 
 import java.util.Locale;
 
 public class LanguageHelper {
-    @SuppressWarnings("deprecation")
-    public static String getSystemLanguage() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N)
-            return Resources.getSystem().getConfiguration().getLocales().get(0).getLanguage();
-        else
-            return Resources.getSystem().getConfiguration().locale.getLanguage();
-    }
+    public static final String[] PERMITTED_LANGUAGES = {"en", "es"};
 
-    public static String getDefaultLanguage() {
+    public static String getDeviceLanguage() {
         return Locale.getDefault().getLanguage();
     }
 
@@ -25,13 +19,13 @@ public class LanguageHelper {
         String language;
 
         if (!preferences.contains("preference_language")) {
-            language = getDefaultLanguage();
+            language = getDeviceLanguage();
 
-            if (!StringUtils.equalsAny(language, Locale.ENGLISH.getLanguage(), "es"))
-                language = Locale.ENGLISH.getLanguage();
+            if (!StringHelper.equalsAny(language, PERMITTED_LANGUAGES))
+                language = "en";
             preferences.putString("preference_language", language);
         } else
-            language = preferences.getString("preference_language", "es");
+            language = preferences.getString("preference_language", "en");
         return language;
     }
 }
