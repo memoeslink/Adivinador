@@ -72,15 +72,12 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.reflect.TypeToken;
 import com.memoeslink.generator.common.DateTimeHelper;
-import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.GeneratorManager;
 import com.memoeslink.generator.common.LongHelper;
 import com.memoeslink.generator.common.NameType;
 import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.Randomizer;
 import com.memoeslink.generator.common.StringHelper;
-import com.memoeslink.generator.common.TextProcessor;
-import com.memoeslink.generator.common.ZeroWidthChar;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
@@ -91,13 +88,11 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.UUID;
 
 import me.zhanghai.android.materialprogressbar.CircularProgressDrawable;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
@@ -158,7 +153,6 @@ public class MainActivity extends MenuActivity {
     private int startingReading = -1;
     private int reading = -1;
     private int textType = 0;
-    private int lastModified = 0;
     private int width = 0;
     private int height = 0;
     private int originInX = 0;
@@ -177,8 +171,8 @@ public class MainActivity extends MenuActivity {
     private long confettiThrown = 0L;
     private Timer timer;
     private Methods methods;
-    private Methods seededMethods;
     private Randomizer r;
+    private ResourceFinder resourceFinder;
     private FortuneTeller fortuneTeller;
     private Prediction prediction = null;
     private Prediction backupPrediction = null;
@@ -242,8 +236,8 @@ public class MainActivity extends MenuActivity {
 
         //Load methods
         methods = new Methods(MainActivity.this);
-        seededMethods = new Methods(MainActivity.this);
         r = new Randomizer();
+        resourceFinder = new ResourceFinder(MainActivity.this);
         fortuneTeller = new FortuneTeller(MainActivity.this);
         hardware = new Hardware(MainActivity.this);
 
@@ -273,7 +267,7 @@ public class MainActivity extends MenuActivity {
         ivFortuneTeller.setImageResource(fortuneTeller.getRandomAppearance());
 
         //Delete temporary preferences
-        methods.deleteTemp();
+        resourceFinder.deleteTemp();
 
         //Set adapters
         ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.date_options));
@@ -461,7 +455,7 @@ public class MainActivity extends MenuActivity {
         });
 
         llClearHolder.setOnClickListener(view -> {
-            methods.clearForm(); //Delete form data
+            resourceFinder.clearForm(); //Delete form data
             reloadPrediction(false, false);
         });
 
@@ -584,7 +578,7 @@ public class MainActivity extends MenuActivity {
         textType = defaultPreferences.getStringAsInt("preference_textType");
         Long seed = LongHelper.getSeed(preferences.getString("preference_seed"));
 
-        if (seed != null && fortuneTeller.r.getSeed() != null && seed.equals(fortuneTeller.r.getSeed()))
+        if (seed != null && fortuneTeller.getSeed() != null && seed.equals(fortuneTeller.getSeed()))
             fortuneTeller = new FortuneTeller(MainActivity.this);
 
         //Restart Activity if required
@@ -611,7 +605,7 @@ public class MainActivity extends MenuActivity {
         prepareAd(false);
 
         //Get a prediction for the fortune teller to display
-        if (recent || (isDataValid() && (!getPreferencesPerson().getSummary().equals(currentSummary))) || (!isDataValid() && lastModified == 1)) {
+        if (recent || (!getPreferencesPerson().getSummary().equals(currentSummary) && isDataValid()) || (StringHelper.isNotNullOrBlank(currentSummary) && !isDataValid())) {
             getPrediction();
             recent = false;
         }
@@ -646,51 +640,13 @@ public class MainActivity extends MenuActivity {
 
                             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                                 if (active) //Play sound, if active and enabled
-                                    Sound.play(MainActivity.this, methods.getStrFromStrArrayRes(R.array.sound_names));
+                                    Sound.play(MainActivity.this, resourceFinder.getStrFromStrArrayRes(R.array.sound_names));
 
                                 //Change drawable for the fortune teller
                                 ivFortuneTeller.setImageResource(fortuneTeller.getRandomAppearance());
 
-                                //Get random text for the fortune teller to show
-                                List<String> phraseTypes = new ArrayList<>();
-
-                                if (defaultPreferences.getBoolean("preference_greetingsEnabled", true)) {
-                                    phraseTypes.add("greetings");
-                                    phraseTypes.add("greetings");
-                                }
-
-                                if (defaultPreferences.getBoolean("preference_opinionsEnabled", true)) {
-                                    phraseTypes.add("opinions");
-                                    phraseTypes.add("opinions");
-                                }
-
-                                if (defaultPreferences.getBoolean("preference_phrasesEnabled", true)) {
-                                    phraseTypes.add("phrases");
-                                    phraseTypes.add("conversation");
-                                }
-
-                                if (phraseTypes.size() > 0) {
-                                    int index = methods.r.getInt(phraseTypes.size());
-
-                                    switch (phraseTypes.get(index)) {
-                                        case "greetings":
-                                            tvPhrase.setText(TextFormatter.fromHtml(fortuneTeller.greet()));
-                                            break;
-                                        case "opinions":
-                                            tvPhrase.setText(TextFormatter.fromHtml(fortuneTeller.talkAboutSomeone()));
-                                            break;
-                                        case "phrases":
-                                            tvPhrase.setText(TextFormatter.fromHtml(fortuneTeller.talk()));
-                                            break;
-                                        case "conversation":
-                                            tvPhrase.setText(TextFormatter.fromHtml(fortuneTeller.talk(r.getInt(2, 3))));
-                                            break;
-                                        default:
-                                            tvPhrase.setText("?");
-                                            break;
-                                    }
-                                } else
-                                    tvPhrase.setText(fortuneTeller.comment());
+                                //Get random text from the fortune teller
+                                tvPhrase.setText(TextFormatter.fromHtml(fortuneTeller.talk()));
 
                                 //Talk; if active, enabled and possible
                                 if (active && (reading == -1 || reading == 0) && (textType == 0 || textType == 2)) {
@@ -706,7 +662,7 @@ public class MainActivity extends MenuActivity {
                     }
 
                     if (updateSeconds >= refreshFrequency) {
-                        if (lastModified != 1) //Get a prediction for the fortune teller to display, if possible
+                        if (StringHelper.isNotNullOrBlank(currentSummary)) //Get a prediction for the fortune teller to display, if possible
                             getPrediction();
                         else {
                             if (!lastDate.equals(DateTimeHelper.getStrCurrentDate()))
@@ -917,7 +873,7 @@ public class MainActivity extends MenuActivity {
 
     private void showInterstitialAd() {
         if (defaultPreferences.getBoolean("preference_adsEnabled", true)) {
-            methods.bindSeed(LongHelper.getSeed(DateTimeHelper.getStrCurrentDateTime() + System.getProperty("line.separator") + hardware.getDeviceId()));
+            r.bindSeed(LongHelper.getSeed(DateTimeHelper.getStrCurrentDateTime() + System.getProperty("line.separator") + hardware.getDeviceId()));
 
             if (r.getInt(20) == 0) {
                 if (adPaused == null)
@@ -944,7 +900,7 @@ public class MainActivity extends MenuActivity {
                     });
                 });
             }
-            methods.unbindSeed();
+            r.unbindSeed();
         }
     }
 
@@ -1086,7 +1042,7 @@ public class MainActivity extends MenuActivity {
 
                 try {
                     JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4);
-                    JsonSchema schema = factory.getSchema(methods.getRawRes(R.raw.schema));
+                    JsonSchema schema = factory.getSchema(resourceFinder.getRawRes(R.raw.schema));
                     JsonNode node = new ObjectMapper().readTree(json);
                     Set<ValidationMessage> errors = schema.validate(node);
 
@@ -1126,7 +1082,7 @@ public class MainActivity extends MenuActivity {
             List<String> items = new ArrayList<>();
 
             for (Person person : people) {
-                items.add(person.getDescriptor() + " " + "(" + methods.getGenderName(person.getGender(), 3) + ")," + " " + person.getBirthdate());
+                items.add(person.getDescriptor() + " " + "(" + resourceFinder.getGenderName(person.getGender(), 3) + ")," + " " + person.getBirthdate());
             }
 
             //Define Dialog
@@ -1266,8 +1222,8 @@ public class MainActivity extends MenuActivity {
             //Show predictionView
             tvPersonInfo.setText(TextFormatter.fromHtml(getString(R.string.person_data,
                     enquiryDate.equals(DateTimeHelper.getStrCurrentDate()) ? getString(R.string.today) : enquiryDate,
-                    methods.formatDescriptor(prediction.getPerson()),
-                    methods.getGenderName(prediction.getPerson().getGender(), 2),
+                    prediction.getPerson().getDescription(),
+                    resourceFinder.getGenderName(prediction.getPerson().getGender(), 2),
                     DateTimeHelper.getStrDate(prediction.getPerson().getBirthdate())
             )));
             setLinksToText(tvPrediction, prediction.getFormattedContent());
@@ -1281,7 +1237,7 @@ public class MainActivity extends MenuActivity {
 
             //Show person's name, if active and possible
             if (active && !isViewVisible(tvPersonInfo))
-                showFormattedToast(MainActivity.this, TextFormatter.fromHtml(methods.formatDescriptor(prediction.getPerson())));
+                showFormattedToast(MainActivity.this, TextFormatter.fromHtml(prediction.getPerson().getDescription()));
 
             //Talk; if active, enabled and possible
             if (recent)
@@ -1303,172 +1259,18 @@ public class MainActivity extends MenuActivity {
     }
 
     public Prediction getPredictionData(boolean formCompleted) {
-        Prediction prediction = new Prediction();
         lastDate = DateTimeHelper.getStrCurrentDate();
         currentSummary = "";
-        Person person;
-        String name;
+        Prediction prediction;
 
         if (formCompleted) {
-            lastModified = 1;
-            person = getPreferencesPerson();
+            Person person = getPreferencesPerson();
             person.addAttribute("entered");
-            name = person.getDescriptor();
-            currentSummary = person.getSummary();
-        } else {
-            lastModified = 2;
-
-            if (seededMethods.r.getInt(3) == 0) {
-                person = seededMethods.getAnonymousPerson();
-                name = person.getUsername();
-            } else {
-                person = seededMethods.getPerson();
-                name = person.getFullName();
-            }
-        }
-        prediction.setPerson(person);
-        currentName = name;
-        int birthdateYear = person.getBirthdate().getYear();
-        int birthdateMonth = person.getBirthdate().getMonthValue();
-        int birthdateDay = person.getBirthdate().getDayOfMonth();
-        String birthdate = DateTimeHelper.getStrDate(birthdateYear, birthdateMonth, birthdateDay);
-        Gender gender = person.getGender();
-
-        //Get zodiac information
-        ZodiacSign zodiacSign = methods.getZodiacSign(birthdateMonth, birthdateDay);
-        WalterBergZodiacSign walterBergZodiacSign = methods.getWalterBergZodiacSign(birthdateMonth, birthdateDay);
-
-        //Set seed
-        String dailySeed = name + System.getProperty("line.separator") + enquiryDate + System.getProperty("line.separator") + birthdate + System.getProperty("line.separator") + gender.getGlyph();
-        String uniqueSeed = name + System.getProperty("line.separator") + birthdate + System.getProperty("line.separator") + gender;
-        long seed = LongHelper.getSeed(dailySeed);
-        long personalSeed = LongHelper.getSeed(uniqueSeed);
-
-        //Define HashMap
-        HashMap<String, String> divination = new HashMap<>();
-
-        //Get predictionView information
-        seededMethods.bindSeed(seed);
-        divination.put("link", String.format("<a href='links/prediction'>%s</a>", getString(R.string.prediction_action)));
-        divination.put("fortuneCookie", seededMethods.getFortuneCookie());
-        divination.put("gibberish", "<font color=#ECFE5B>" + seededMethods.formatText(TextProcessor.turnIntoGibberish(divination.get("fortuneCookie")), "i,tt") + "</font>");
-        divination.put("divination", seededMethods.generateDivination());
-        divination.put("fortuneNumbers", android.text.TextUtils.join(", ", seededMethods.r.getIntegers(5, 100, true)));
-        divination.put("emotions", seededMethods.getEmotions());
-        divination.put("bestTime", seededMethods.getTime());
-        divination.put("worstTime", seededMethods.getTime());
-        divination.put("characteristic", StringHelper.capitalizeFirst(seededMethods.getAbstractNoun()));
-        divination.put("chainOfEvents", seededMethods.getChainOfEvents(person));
-        divination.put("influence", seededMethods.formatName(seededMethods.getPerson()));
-
-        //Get zodiac information
-        divination.put("zodiacSign", zodiacSign.getName(MainActivity.this) + " " + zodiacSign.getEmoji());
-        divination.put("astrologicalHouse", zodiacSign.getAstrologicalHouse(MainActivity.this));
-        divination.put("ruler", zodiacSign.getRuler(MainActivity.this));
-        divination.put("element", zodiacSign.getElement(MainActivity.this));
-        divination.put("signColor", getString(R.string.zodiac_color, zodiacSign.getColor(MainActivity.this), zodiacSign.getHexColor()));
-        divination.put("signNumbers", zodiacSign.getNumbers(MainActivity.this));
-        divination.put("compatibility", zodiacSign.getCompatibility(MainActivity.this));
-        divination.put("incompatibility", zodiacSign.getIncompatibility(MainActivity.this));
-        divination.put("walterBergZodiacSign", walterBergZodiacSign.getName(MainActivity.this) + " " + walterBergZodiacSign.getEmoji());
-        divination.put("chineseZodiacSign", methods.getChineseZodiacSign(birthdateYear));
-
-        //Get identity information
-        seededMethods.bindSeed(personalSeed);
-        divination.put("color", seededMethods.getColor(uniqueSeed));
-        divination.put("animal", StringHelper.capitalizeFirst(seededMethods.getStrFromStrArrayRes(R.array.animal)));
-        divination.put("psychologicalType", seededMethods.getStrFromStrArrayRes(R.array.psychological_type));
-        divination.put("secretName", seededMethods.formatName(seededMethods.getSecretName()));
-        divination.put("demonicName", seededMethods.formatName(TextProcessor.demonize(name, seededMethods.getSecretName())));
-        divination.put("previousName", seededMethods.formatName(seededMethods.getPerson()));
-        divination.put("futureName", seededMethods.formatName(seededMethods.getPerson()));
-        divination.put("recommendedUsername", seededMethods.formatUsername(seededMethods.getUsername()));
-        divination.put("digit", String.valueOf(seededMethods.r.getInt(10)));
-        divination.put("uniqueNumbers", android.text.TextUtils.join(", ", seededMethods.r.getIntegers(3, 1000, true)));
-        divination.put("uniqueIdentifier", UUID.nameUUIDFromBytes(uniqueSeed.getBytes()).toString());
-        divination.put("daysBetweenDates", String.valueOf(DateTimeHelper.getDifferenceInDays(birthdate, enquiryDate)));
-        divination.put("timeBetweenDates", seededMethods.getDateDifference(birthdate, enquiryDate));
-        seededMethods.unbindSeed();
-
-        String content = getString(R.string.prediction,
-                "",
-                divination.get("fortuneCookie"),
-                divination.get("divination"),
-                divination.get("fortuneNumbers"),
-                divination.get("emotions"),
-                divination.get("worstTime"),
-                divination.get("bestTime"),
-                divination.get("characteristic"),
-                divination.get("chainOfEvents"),
-                divination.get("influence"),
-                divination.get("zodiacSign"),
-                divination.get("astrologicalHouse"),
-                divination.get("ruler"),
-                divination.get("element"),
-                zodiacSign.getColor(MainActivity.this),
-                divination.get("signNumbers"),
-                divination.get("compatibility"),
-                divination.get("incompatibility"),
-                divination.get("walterBergZodiacSign"),
-                divination.get("chineseZodiacSign"),
-                "#FFFFFF", divination.get("color"),
-                divination.get("animal"),
-                divination.get("psychologicalType"),
-                divination.get("secretName"),
-                divination.get("demonicName"),
-                divination.get("previousName"),
-                divination.get("futureName"),
-                divination.get("recommendedUsername"),
-                Integer.valueOf(divination.get("digit")),
-                divination.get("uniqueNumbers"),
-                divination.get("uniqueIdentifier"),
-                divination.get("daysBetweenDates"),
-                divination.get("timeBetweenDates")
-        );
-        content = TextFormatter.fromHtml(content).toString();
-        content = getString(R.string.enquiry_information, enquiryDate, name, methods.getGenderName(gender, 2), birthdate) +
-                System.getProperty("line.separator") + System.getProperty("line.separator") +
-                content;
-        prediction.setContent(content);
-
-        String formattedContent = getString(R.string.prediction,
-                ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter() + divination.get("link"),
-                divination.get("gibberish") + ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter(),
-                divination.get("divination"),
-                divination.get("fortuneNumbers"),
-                divination.get("emotions"),
-                divination.get("worstTime"),
-                divination.get("bestTime"),
-                divination.get("characteristic"),
-                divination.get("chainOfEvents"),
-                divination.get("influence"),
-                divination.get("zodiacSign"),
-                divination.get("astrologicalHouse"),
-                divination.get("ruler"),
-                divination.get("element"),
-                divination.get("signColor"),
-                divination.get("signNumbers"),
-                divination.get("compatibility"),
-                divination.get("incompatibility"),
-                divination.get("walterBergZodiacSign"),
-                divination.get("chineseZodiacSign"),
-                divination.get("color"), "⬛&#xFE0E;",
-                divination.get("animal"),
-                divination.get("psychologicalType"),
-                divination.get("secretName"),
-                divination.get("demonicName"),
-                divination.get("previousName"),
-                divination.get("futureName"),
-                divination.get("recommendedUsername"),
-                Integer.valueOf(divination.get("digit")),
-                divination.get("uniqueNumbers"),
-                divination.get("uniqueIdentifier"),
-                divination.get("daysBetweenDates"),
-                divination.get("timeBetweenDates")
-        );
-        prediction.setFormattedContent(formattedContent);
-        prediction.setFortuneCookie(divination.get("fortuneCookie"));
-        prediction.setUnrevealedFortuneCookie(divination.get("gibberish"));
+            prediction = methods.getPrediction(person, enquiryDate);
+            currentSummary = prediction.getPerson().getSummary();
+        } else
+            prediction = methods.getPrediction(enquiryDate);
+        currentName = prediction.getPerson().getDescriptor();
         return prediction;
     }
 

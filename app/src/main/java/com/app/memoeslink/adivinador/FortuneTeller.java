@@ -14,19 +14,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FortuneTeller extends TextFormatter {
+public class FortuneTeller extends BaseWrapper {
+    private final Randomizer r;
+    private final ResourceFinder resourceFinder;
+    private final TextFormatter textFormatter;
 
     public FortuneTeller(Context context) {
         super(context);
+        r = new Randomizer();
+        resourceFinder = new ResourceFinder(context);
+        textFormatter = new TextFormatter(context);
+        bindSeed();
+    }
 
+    public Long getSeed() {
         if (StringHelper.isNotNullOrBlank(defaultPreferences.getString("preference_seed")))
-            r = new Randomizer(LongHelper.getSeed(defaultPreferences.getString("preference_seed")));
-        else
-            r = new Randomizer();
+            return LongHelper.getSeed(defaultPreferences.getString("preference_seed"));
+        return null;
+    }
+
+    public void bindSeed() {
+        Long seed = getSeed();
+        r.bindSeed(seed);
+        resourceFinder.bindSeed(seed);
+        textFormatter.bindSeed(seed);
     }
 
     public String comment() {
-        return getEmojis(r.getInt(1, 4)) + " " + getStrFromSplitStrRes(R.string.default_comments);
+        return resourceFinder.getEmojis(r.getInt(1, 4)) + " " + resourceFinder.getStrFromSplitStrRes(R.string.default_comments);
     }
 
     public String greet() {
@@ -35,29 +50,29 @@ public class FortuneTeller extends TextFormatter {
 
     public String greet(int index) {
         String s;
-        String addendum = replaceTags(getStrFromStrArrayRes(R.array.conversation_addendum)).getText();
+        String addendum = textFormatter.replaceTags(resourceFinder.getStrFromStrArrayRes(R.array.conversation_addendum)).getText();
 
         if (index >= 0) {
-            s = getStrFromSplitStrRes(R.string.greetings, index);
+            s = resourceFinder.getStrFromSplitStrRes(R.string.greetings, index);
             s = StringHelper.replace(s, "§", addendum);
         } else {
-            String ideogramSet = getEmojis(r.getInt(1, 4));
+            String ideogramSet = resourceFinder.getEmojis(r.getInt(1, 4));
 
             switch (r.getInt(6)) {
                 case 0:
-                    s = greetShortly(addendum) + " " + getStrFromStrArrayRes(R.array.phrase_augury);
+                    s = greetShortly(addendum) + " " + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 case 1:
-                    s = getStrFromSplitStrRes(R.string.greetings_component) + " " + DateTimeHelper.getStrCurrentDayOfWeek() + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + getStrFromStrArrayRes(R.array.phrase_augury);
+                    s = resourceFinder.getStrFromSplitStrRes(R.string.greetings_component) + " " + DateTimeHelper.getStrCurrentDayOfWeek() + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 case 2:
-                    s = getStrFromSplitStrRes(R.string.date_component) + " " + DateTimeHelper.getStrCurrentDate(r.getInt(1, 11)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + getStrFromStrArrayRes(R.array.phrase_augury);
+                    s = resourceFinder.getStrFromSplitStrRes(R.string.date_component) + " " + DateTimeHelper.getStrCurrentDate(r.getInt(1, 11)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 case 3:
-                    s = getStrFromSplitStrRes(R.string.time_component) + " " + DateTimeHelper.getStrCurrentTime(r.getInt(1, 8)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + getStrFromStrArrayRes(R.array.phrase_augury);
+                    s = resourceFinder.getStrFromSplitStrRes(R.string.time_component) + " " + DateTimeHelper.getStrCurrentTime(r.getInt(1, 8)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 default:
-                    s = StringHelper.replaceOnce(getStrFromSplitStrRes(R.string.greetings), "§", StringHelper.prependIfNotEmpty(addendum, ", ")) + " " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + getStrFromStrArrayRes(R.array.phrase_augury);
+                    s = StringHelper.replaceOnce(resourceFinder.getStrFromSplitStrRes(R.string.greetings), "§", StringHelper.prependIfNotEmpty(addendum, ", ")) + " " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
             }
         }
@@ -75,25 +90,62 @@ public class FortuneTeller extends TextFormatter {
         int hour = DateTimeHelper.getCurrentTime().getHour();
 
         if (hour >= 0 && hour < 12)
-            return StringHelper.replace(getStrFromSplitStrRes(R.string.greetings_day), "§", addendum);
+            return StringHelper.replace(resourceFinder.getStrFromSplitStrRes(R.string.greetings_day), "§", addendum);
         else if (hour >= 12 && hour < 19)
-            return StringHelper.replace(getStrFromSplitStrRes(R.string.greetings_afternoon), "§", addendum);
+            return StringHelper.replace(resourceFinder.getStrFromSplitStrRes(R.string.greetings_afternoon), "§", addendum);
         else if (hour >= 19 && hour < 24)
-            return StringHelper.replace(getStrFromSplitStrRes(R.string.greetings_night), "§", addendum);
+            return StringHelper.replace(resourceFinder.getStrFromSplitStrRes(R.string.greetings_night), "§", addendum);
         else
-            return StringHelper.replace(getStrFromSplitStrRes(R.string.greetings_default), "§", addendum);
+            return StringHelper.replace(resourceFinder.getStrFromSplitStrRes(R.string.greetings_default), "§", addendum);
     }
 
     public String talk() {
-        return talk(1);
+        List<String> phraseTypes = new ArrayList<>();
+
+        if (defaultPreferences.getBoolean("preference_greetingsEnabled", true)) {
+            phraseTypes.add("greetings");
+            phraseTypes.add("greetings");
+        }
+
+        if (defaultPreferences.getBoolean("preference_opinionsEnabled", true)) {
+            phraseTypes.add("opinions");
+            phraseTypes.add("opinions");
+        }
+
+        if (defaultPreferences.getBoolean("preference_phrasesEnabled", true)) {
+            phraseTypes.add("phrases");
+            phraseTypes.add("conversation");
+        }
+
+        if (phraseTypes.size() > 0) {
+            int index = r.getInt(phraseTypes.size());
+
+            switch (phraseTypes.get(index)) {
+                case "greetings":
+                    return greet();
+                case "opinions":
+                    return talkAboutSomeone();
+                case "phrases":
+                    return talkAboutSomething();
+                case "conversation":
+                    return talkAboutSomething(r.getInt(2, 3));
+                default:
+                    return "?";
+            }
+        }
+        return comment();
     }
 
-    public String talk(int times) {
+    public String talkAboutSomething() {
+        return talkAboutSomething(1);
+    }
+
+    public String talkAboutSomething(int times) {
         String conversation = "";
-        String ideogramSet = getEmojis(r.getInt(1, 4));
+        String ideogramSet = resourceFinder.getEmojis(r.getInt(1, 4));
 
         while (times > 0) {
-            conversation = StringHelper.appendIfNotEmpty(conversation, " ") + getPhrase();
+            conversation = StringHelper.appendIfNotEmpty(conversation, " ") + resourceFinder.getPhrase();
             times--;
         }
         return StringHelper.trimToEmpty(conversation) + StringHelper.prependSpaceIfNotEmpty(ideogramSet);
@@ -108,9 +160,9 @@ public class FortuneTeller extends TextFormatter {
         String extra;
 
         if (index >= 0)
-            s = getStrFromStrArrayRes(R.array.opinion, index);
+            s = resourceFinder.getStrFromStrArrayRes(R.array.opinion, index);
         else
-            s = getStrFromStrArrayRes(R.array.opinion);
+            s = resourceFinder.getStrFromStrArrayRes(R.array.opinion);
 
         //Initialize person sources
         List<String> personSources = new ArrayList<>(Collections.nCopies(50, "random"));
@@ -126,49 +178,49 @@ public class FortuneTeller extends TextFormatter {
 
             switch (r.getItem(personSources)) {
                 case "contact":
-                    name = getContactName();
-                    content = formatContactName(name);
+                    name = resourceFinder.getContactName();
+                    content = textFormatter.formatContactName(name);
                     personSources.remove("contact");
                     break;
                 case "random":
                     gender = Gender.values()[r.getInt(1, 3)];
 
                     if (r.getInt(4) == 0) {
-                        name = getUsername();
-                        content = formatUsername(name);
+                        name = resourceFinder.getUsername();
+                        content = textFormatter.formatUsername(name);
                     } else {
-                        Person person = getPerson();
+                        Person person = resourceFinder.getPerson();
                         name = person.getFullName();
-                        content = formatName(person);
+                        content = textFormatter.formatName(person);
                     }
                     break;
                 case "suggestion":
-                    name = getSuggestedName();
-                    content = formatSuggestedName(name);
+                    name = resourceFinder.getSuggestedName();
+                    content = textFormatter.formatSuggestedName(name);
                     personSources.remove("suggestion");
                     break;
                 default:
                     name = "?";
-                    content = formatText("?", "b,tt");
+                    content = textFormatter.formatText("?", "b,tt");
                     break;
             }
 
             if (StringHelper.isNullOrEmpty(name))
                 continue;
-            s = replaceTags(s, gender).getText();
+            s = textFormatter.replaceTags(s, gender).getText();
             s = StringHelper.replaceOnce(s, "##", content);
         }
         s = StringHelper.replace(s, " a el ", " al ");
-        s = fixDoubleFullStop(s);
+        s = textFormatter.fixDoubleFullStop(s);
 
         //Add ideogram, emoticon or nothing
         float probability = r.getFloat();
 
         if (probability <= 0.25F) {
-            extra = getStrFromSplitStrRes(R.string.emoticons);
-            extra = "<b><font color=" + getColorStr() + ">" + extra + "</font></b>";
+            extra = resourceFinder.getStrFromSplitStrRes(R.string.emoticons);
+            extra = "<b><font color=" + resourceFinder.getColorStr() + ">" + extra + "</font></b>";
         } else if (probability <= 0.5F)
-            extra = getEmojis(r.getInt(1, 4));
+            extra = resourceFinder.getEmojis(r.getInt(1, 4));
         else
             extra = "";
         s = s + StringHelper.prependSpaceIfNotEmpty(extra);

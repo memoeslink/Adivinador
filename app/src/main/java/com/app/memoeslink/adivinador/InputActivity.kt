@@ -25,7 +25,6 @@ class InputActivity : CommonActivity() {
     private var rgGender: RadioGroup? = null
     private var dpBirthdate: CustomDatePicker? = null
     private var btBack: Button? = null
-    private var methods: Methods? = null
     private var listener: OnSharedPreferenceChangeListener? =
         null //Declared as global to avoid destruction by JVM Garbage Collector
 
@@ -36,7 +35,6 @@ class InputActivity : CommonActivity() {
         tvName = findViewById(R.id.input_name_field)
         rgGender = findViewById(R.id.input_gender_radio)
         dpBirthdate = findViewById(R.id.input_date_picker)
-        methods = Methods(this@InputActivity)
 
         //Set max. and min. date
         val currentDate = DateTimeHelper.getCurrentDate()
