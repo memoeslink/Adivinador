@@ -36,7 +36,8 @@ public class FortuneTeller extends BaseWrapper {
     private void bindSeed() {
         Long seed = getSeed();
         r.bindSeed(seed);
-
+        resourceFinder.bindSeed(seed);
+        textFormatter.bindSeed(seed);
     }
 
     public String comment() {
