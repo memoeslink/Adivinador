@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TextFormatter extends ResourceFinder implements Validation {
+public class TextFormatter extends BaseWrapper implements Validation {
     private static final String INTEGER_REGEX = "(-?[1-9]\\d*|0)";
     private static final Pattern GENDER_PATTERN = Pattern.compile("｢([0-2])｣");
     private static final String TAG_REGEX = "\\{((string|database):([\\w\\p{L}]+)(\\[!?[\\d]+\\])?(\\s*⸻(⛌|⸮|" + INTEGER_REGEX + "))?|method:[a-zA-Z0-9_$]+)\\}";
@@ -32,15 +32,31 @@ public class TextFormatter extends ResourceFinder implements Validation {
     private static final Pattern DOUBLE_FULL_STOP_PATTERN = Pattern.compile(DOUBLE_FULL_STOP_REGEX);
     private static final String FORMAT_REGEX = "^((a|b|big|i|s|small|tt|u),)*(a|b|big|i|s|small|tt|u)$";
     private static final Pattern FORMAT_PATTERN = Pattern.compile(FORMAT_REGEX);
+    private final Randomizer r;
+    private final ResourceFinder resourceFinder;
 
     public TextFormatter(Context context) {
-        super(context);
-        r = new Randomizer();
+        this(context, null);
     }
 
     public TextFormatter(Context context, Long seed) {
-        super(context, seed);
+        super(context);
         r = new Randomizer(seed);
+        resourceFinder = new ResourceFinder(context, seed);
+    }
+
+    public static Spanned fromHtml(String html) {
+        return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY);
+    }
+
+    public void bindSeed(Long seed) {
+        r.bindSeed(seed);
+        resourceFinder.bindSeed(seed);
+    }
+
+    public void unbindSeed() {
+        r.unbindSeed();
+        resourceFinder.unbindSeed();
     }
 
     public TextComponent replaceTags(String s) {
@@ -106,14 +122,14 @@ public class TextFormatter extends ResourceFinder implements Validation {
                 }
 
                 if (StringHelper.startsWith(matcher.group(), "{string:")) {
-                    int resourceId = getArrayResourceId(resourceName);
-                    resourceId = (resourceId == 0 ? getStringResourceId(resourceName) : resourceId);
+                    int resourceId = resourceFinder.getArrayResourceId(resourceName);
+                    resourceId = (resourceId == 0 ? resourceFinder.getStringResourceId(resourceName) : resourceId);
 
                     if (resourceId != 0) {
                         if ((resourceType = getResources().getResourceTypeName(resourceId)).equals("array"))
-                            replacement = index != null && index >= 0 ? getStrFromStrArrayRes(resourceId, index) : getStrFromStrArrayRes(resourceId);
+                            replacement = index != null && index >= 0 ? resourceFinder.getStrFromStrArrayRes(resourceId, index) : resourceFinder.getStrFromStrArrayRes(resourceId);
                         else if (resourceType.equals("string"))
-                            replacement = index != null && index >= 0 ? getStrFromSplitStrRes(resourceId, index) : getStrFromSplitStrRes(resourceId);
+                            replacement = index != null && index >= 0 ? resourceFinder.getStrFromSplitStrRes(resourceId, index) : resourceFinder.getStrFromSplitStrRes(resourceId);
                     }
                 } else if (StringHelper.startsWith(matcher.group(), "{database:")) {
                     if (index == null || index < 0)
@@ -122,8 +138,8 @@ public class TextFormatter extends ResourceFinder implements Validation {
                         index = IntegerHelper.defaultIndex(index, Database.getInstance(this).countTableRows(resourceName));
                     replacement = Database.getInstance(this).selectFromTable(resourceName, index);
                 } else if (StringHelper.startsWith(matcher.group(), "{method:")) {
-                    if ((replacement = callMethod(resourceName)) != null) {
-                    } else if ((replacement = invokeMethod(resourceName)) != null) {
+                    if ((replacement = resourceFinder.callMethod(resourceName)) != null) {
+                    } else if ((replacement = resourceFinder.invokeMethod(resourceName)) != null) {
                     } else
                         replacement = "?";
                 }
@@ -168,7 +184,7 @@ public class TextFormatter extends ResourceFinder implements Validation {
                     String replacement;
                     String regex;
 
-                    if ((replacement = getStrFromList(items)).trim().equals("∅")) {
+                    if ((replacement = resourceFinder.getStrFromList(items)).trim().equals("∅")) {
                         replacement = "";
                         regex = "\\s*" + Pattern.quote(matcher.group());
                         nullified = true;
@@ -220,7 +236,7 @@ public class TextFormatter extends ResourceFinder implements Validation {
             return defaultGender;
 
         if (s.equals("⛌"))
-            return getGender();
+            return resourceFinder.getGender();
 
         if (s.equals("⸮"))
             return r.getBoolean() ? Gender.MASCULINE : Gender.FEMININE;
@@ -314,7 +330,7 @@ public class TextFormatter extends ResourceFinder implements Validation {
         if (person.hasAttribute("anonymous"))
             formattedDescriptor = formatUsername(person.getUsername());
         else
-            formattedDescriptor = String.format("<font color=%s>%s</font>", getColorStr(person.getSummary()), formatName(person.getDescriptor()));
+            formattedDescriptor = String.format("<font color=%s>%s</font>", resourceFinder.getColorStr(person.getSummary()), formatName(person.getDescriptor()));
 
         if (person.hasAttribute("requested"))
             formattedDescriptor = formatText(formattedDescriptor, "u");
@@ -324,7 +340,7 @@ public class TextFormatter extends ResourceFinder implements Validation {
     public String formatName(String s) {
         if (StringHelper.isNullOrBlank(s))
             return s;
-        return String.format("<font color=%s>%s</font>", getColorStr(s), formatText(s, "b"));
+        return String.format("<font color=%s>%s</font>", resourceFinder.getColorStr(s), formatText(s, "b"));
     }
 
     public String formatName(Person person) {
@@ -332,7 +348,7 @@ public class TextFormatter extends ResourceFinder implements Validation {
             return "";
         return String.format("%s<font color=%s>%s%s%s</font>",
                 (StringHelper.isNotNullOrBlank(person.getOccupation()) ? formatText(person.getOccupation(), "i") + " " : ""),
-                getColorStr(person.getFullName()),
+                resourceFinder.getColorStr(person.getFullName()),
                 formatText(person.getFullName(), "b"),
                 StringHelper.defaultIfBlank(person.getJapaneseHonorific()),
                 (StringHelper.isNotNullOrBlank(person.getPostNominalLetters()) ? ", " + formatText(person.getPostNominalLetters(), "b,i") : "")
@@ -342,7 +358,7 @@ public class TextFormatter extends ResourceFinder implements Validation {
     public String formatUsername(String s) {
         if (StringHelper.isNullOrBlank(s))
             return s;
-        return String.format("<font color=%s>%s</font>", getColorStr(s), formatText(s, "b,tt"));
+        return String.format("<font color=%s>%s</font>", resourceFinder.getColorStr(s), formatText(s, "b,tt"));
     }
 
     public String formatContactName(String s) {
@@ -353,11 +369,11 @@ public class TextFormatter extends ResourceFinder implements Validation {
             return "<font color=#FFFFC6>" + s + "</font>";
 
         if (isUrl(s))
-            return String.format("<font color=%s>%s</font>", getColorStr(s), formatText(s, "s"));
+            return String.format("<font color=%s>%s</font>", resourceFinder.getColorStr(s), formatText(s, "s"));
 
         if (!StringHelper.containsSpace(s))
-            return String.format("<font color=%s>%s</font>", getColorStr(s), formatText(s, "b,tt"));
-        return String.format("<font color=%s>%s</font>", getColorStr(s), formatText(s, "b"));
+            return String.format("<font color=%s>%s</font>", resourceFinder.getColorStr(s), formatText(s, "b,tt"));
+        return String.format("<font color=%s>%s</font>", resourceFinder.getColorStr(s), formatText(s, "b"));
     }
 
     public String formatSuggestedName(String s) {
@@ -365,11 +381,7 @@ public class TextFormatter extends ResourceFinder implements Validation {
             return s;
 
         if (StringHelper.equalsIgnoreCase(s, Constant.DEVELOPER))
-            return String.format("<font color=%s>%s</font>", getColorStr(s), formatText(s, "b,i"));
-        return String.format("<font color=%s>%s</font>", getColorStr(s), formatText(s, "b"));
-    }
-
-    public static Spanned fromHtml(String html) {
-        return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY);
+            return String.format("<font color=%s>%s</font>", resourceFinder.getColorStr(s), formatText(s, "b,i"));
+        return String.format("<font color=%s>%s</font>", resourceFinder.getColorStr(s), formatText(s, "b"));
     }
 }

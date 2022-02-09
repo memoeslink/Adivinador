@@ -21,9 +21,9 @@ class ApplicationContext : MultiDexApplication() {
 
         //Set preference default values
         PreferenceManager.setDefaultValues(
-                this@ApplicationContext,
-                R.xml.default_preferences,
-                false
+            this@ApplicationContext,
+            R.xml.default_preferences,
+            false
         )
 
         //Delete old databases
@@ -34,8 +34,8 @@ class ApplicationContext : MultiDexApplication() {
         if (version >= preferences?.getInt("revisedDatabaseVersion", 1) ?: 1) {
             val databaseName = if (version > 1) {
                 String.format(
-                        Database.DATABASE_NAME_FORMAT,
-                        "_upgrade_" + (version - 1) + "-" + version
+                    Database.DATABASE_NAME_FORMAT,
+                    "_upgrade_" + (version - 1) + "-" + version
                 )
             } else {
                 String.format(Database.DATABASE_NAME_FORMAT, "")
@@ -76,9 +76,9 @@ class ApplicationContext : MultiDexApplication() {
             files.isEmpty()
         }?.forEach { file ->
             if (!StringHelper.startsWith(
-                            file.name,
-                            "google_"
-                    ) && file.name != Database.DATABASE_NAME
+                    file.name,
+                    "google_"
+                ) && file.name != Database.DATABASE_NAME
             ) {
                 when {
                     !file.exists() -> println("Database couldn't be found to be deleted: " + file.toURI())

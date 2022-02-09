@@ -141,7 +141,8 @@ public class Hardware extends BaseWrapper {
                 sb.append(Integer.toHexString((b & 0xFF) | 0x100).substring(1, 3));
             }
             return sb.toString();
-        } catch (java.security.NoSuchAlgorithmException ignored) {
+        } catch (java.security.NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
         return null;
     }

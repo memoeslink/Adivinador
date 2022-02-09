@@ -27,7 +27,7 @@ class InputActivity : CommonActivity() {
     private var btBack: Button? = null
     private var methods: Methods? = null
     private var listener: OnSharedPreferenceChangeListener? =
-            null //Declared as global to avoid destruction by JVM Garbage Collector
+        null //Declared as global to avoid destruction by JVM Garbage Collector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,9 +98,9 @@ class InputActivity : CommonActivity() {
         }
 
         dpBirthdate?.init(
-                currentDate.year,
-                currentDate.monthValue - 1,
-                currentDate.dayOfMonth
+            currentDate.year,
+            currentDate.monthValue - 1,
+            currentDate.dayOfMonth
         ) { _: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
             preferences.putInt("temp_date_year", year)
             preferences.putInt("temp_date_month", month + 1)
@@ -124,11 +124,11 @@ class InputActivity : CommonActivity() {
             if (storedNames.isNotEmpty()) {
                 names = storedNames
                 tvName?.setAdapter(
-                        ArrayAdapter(
-                                this@InputActivity,
-                                android.R.layout.simple_dropdown_item_1line,
-                                names.toTypedArray()
-                        )
+                    ArrayAdapter(
+                        this@InputActivity,
+                        android.R.layout.simple_dropdown_item_1line,
+                        names.toTypedArray()
+                    )
                 )
             }
         }
@@ -136,12 +136,12 @@ class InputActivity : CommonActivity() {
         //Get stored enquiries
         if (StringHelper.isNotNullOrBlank(preferences.getString("peopleList"))) {
             val gson = GsonBuilder().registerTypeAdapter(
-                    LocalDate::class.java,
-                    JsonDeserializer { json: JsonElement, _: Type?, _: JsonDeserializationContext? ->
-                        LocalDate.parse(
-                                json.asJsonPrimitive.asString
-                        )
-                    } as JsonDeserializer<LocalDate>).create()
+                LocalDate::class.java,
+                JsonDeserializer { json: JsonElement, _: Type?, _: JsonDeserializationContext? ->
+                    LocalDate.parse(
+                        json.asJsonPrimitive.asString
+                    )
+                } as JsonDeserializer<LocalDate>).create()
             val json = preferences.getString("peopleList")
             val type = object : TypeToken<ArrayList<Person?>?>() {}.type
             people = gson.fromJson(json, type)
@@ -153,7 +153,7 @@ class InputActivity : CommonActivity() {
             name.isBlank()
         }?.let { name ->
             if (defaultPreferences.getBoolean("preference_saveNames", true)
-                    && !names.contains(name)
+                && !names.contains(name)
             ) {
                 if (names.size >= 200) names.removeAt(0)
                 names.add(name)

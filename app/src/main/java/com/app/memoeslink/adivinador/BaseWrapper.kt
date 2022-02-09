@@ -5,7 +5,7 @@ import android.content.ContextWrapper
 import com.memoeslink.helper.SharedPreferencesHelper
 import com.memoeslink.helper.SharedPreferencesHelper.Companion.getPreferencesHelper
 
-open class BaseWrapper(@JvmField protected var context: Context): ContextWrapper(context) {
+abstract class BaseWrapper(@JvmField protected var context: Context) : ContextWrapper(context) {
     @JvmField
     protected var preferences: SharedPreferencesHelper = getPreferencesHelper(context)
 

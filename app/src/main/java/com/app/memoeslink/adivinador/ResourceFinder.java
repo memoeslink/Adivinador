@@ -46,9 +46,9 @@ public class ResourceFinder extends BaseWrapper {
     private static final HashMap<Integer, String[]> RESOURCE_REGISTRY = new HashMap<>();
     private static List<String> contactNames = null;
     private static List<String> suggestedNames = null;
-    protected Randomizer r;
-    protected GeneratorManager manager;
-    protected Hardware hardware;
+    private final Randomizer r;
+    private final GeneratorManager manager;
+    private final Hardware hardware;
 
     public ResourceFinder(Context context) {
         this(context, null);
@@ -73,7 +73,7 @@ public class ResourceFinder extends BaseWrapper {
     }
 
     public void unbindSeed() {
-        r.bindSeed(null);
+        r.unbindSeed();
         manager.setSeed(null);
     }
 
@@ -407,10 +407,10 @@ public class ResourceFinder extends BaseWrapper {
 
     public String getAbstractNoun() {
         switch (getString(R.string.locale)) {
-            case "es":
-                return Database.getInstance(this).selectSpanishAbstractNoun(r.getInt(1, Database.getInstance(this).countSpanishAbstractNouns()));
             case "en":
                 return Database.getInstance(this).selectEnglishAbstractNoun(r.getInt(1, Database.getInstance(this).countEnglishAbstractNouns()));
+            case "es":
+                return Database.getInstance(this).selectSpanishAbstractNoun(r.getInt(1, Database.getInstance(this).countSpanishAbstractNouns()));
             default:
                 return RESOURCE_NOT_FOUND;
         }
@@ -418,10 +418,10 @@ public class ResourceFinder extends BaseWrapper {
 
     public String getAction() {
         switch (getString(R.string.locale)) {
-            case "es":
-                return Database.getInstance(this).selectSpanishAction(r.getInt(1, Database.getInstance(this).countSpanishActions()));
             case "en":
                 return Database.getInstance(this).selectEnglishAction(r.getInt(1, Database.getInstance(this).countEnglishActions()));
+            case "es":
+                return Database.getInstance(this).selectSpanishAction(r.getInt(1, Database.getInstance(this).countSpanishActions()));
             default:
                 return RESOURCE_NOT_FOUND;
         }
@@ -429,10 +429,10 @@ public class ResourceFinder extends BaseWrapper {
 
     public String getDivination() {
         switch (getString(R.string.locale)) {
-            case "es":
-                return Database.getInstance(this).selectSpanishPrediction(r.getInt(1, Database.getInstance(this).countSpanishPredictions()));
             case "en":
                 return Database.getInstance(this).selectEnglishPrediction(r.getInt(1, Database.getInstance(this).countEnglishPredictions()));
+            case "es":
+                return Database.getInstance(this).selectSpanishPrediction(r.getInt(1, Database.getInstance(this).countSpanishPredictions()));
             default:
                 return RESOURCE_NOT_FOUND;
         }
@@ -440,10 +440,10 @@ public class ResourceFinder extends BaseWrapper {
 
     public String getFortuneCookie() {
         switch (getString(R.string.locale)) {
-            case "es":
-                return Database.getInstance(this).selectSpanishFortuneCookie(r.getInt(1, Database.getInstance(this).countSpanishFortuneCookies()));
             case "en":
                 return Database.getInstance(this).selectEnglishFortuneCookie(r.getInt(1, Database.getInstance(this).countEnglishFortuneCookies()));
+            case "es":
+                return Database.getInstance(this).selectSpanishFortuneCookie(r.getInt(1, Database.getInstance(this).countSpanishFortuneCookies()));
             default:
                 return RESOURCE_NOT_FOUND;
         }
@@ -451,10 +451,10 @@ public class ResourceFinder extends BaseWrapper {
 
     public String getPhrase() {
         switch (getString(R.string.locale)) {
-            case "es":
-                return Database.getInstance(this).selectSpanishPhrase(r.getInt(1, Database.getInstance(this).countSpanishPhrases()));
             case "en":
                 return Database.getInstance(this).selectEnglishPhrase(r.getInt(1, Database.getInstance(this).countEnglishPhrases()));
+            case "es":
+                return Database.getInstance(this).selectSpanishPhrase(r.getInt(1, Database.getInstance(this).countSpanishPhrases()));
             default:
                 return RESOURCE_NOT_FOUND;
         }

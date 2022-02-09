@@ -41,14 +41,6 @@ public class StickyScrollView extends ScrollView {
     private ArrayList<View> stickyViews;
     private View currentlyStickingView;
     private float stickyViewTopOffset;
-    private int stickyViewLeftOffset;
-    private boolean redirectTouchesToStickyView;
-    private boolean clippingToPadding;
-    private boolean clipToPaddingHasBeenSet;
-
-    private int mShadowHeight;
-    private Drawable mShadowDrawable;
-
     private final Runnable invalidateRunnable = new Runnable() {
 
         @Override
@@ -63,6 +55,13 @@ public class StickyScrollView extends ScrollView {
             postDelayed(this, 16);
         }
     };
+    private int stickyViewLeftOffset;
+    private boolean redirectTouchesToStickyView;
+    private boolean clippingToPadding;
+    private boolean clipToPaddingHasBeenSet;
+    private int mShadowHeight;
+    private Drawable mShadowDrawable;
+    private boolean hasNotDoneActionDown = true;
 
     public StickyScrollView(Context context) {
         this(context, null);
@@ -106,7 +105,6 @@ public class StickyScrollView extends ScrollView {
     public void setShadowHeight(int height) {
         mShadowHeight = height;
     }
-
 
     public void setup() {
         stickyViews = new ArrayList<View>();
@@ -248,8 +246,6 @@ public class StickyScrollView extends ScrollView {
         }
         return super.dispatchTouchEvent(ev);
     }
-
-    private boolean hasNotDoneActionDown = true;
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {

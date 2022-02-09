@@ -47,6 +47,12 @@ import java.util.Locale;
 public class CommonActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
     protected static Toast toast;
     protected static Locale[] locales;
+
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        locales = Locale.getAvailableLocales();
+    }
+
     protected boolean speechAvailable;
     protected Bundle bundle;
     protected TextToSpeech tts;
@@ -55,11 +61,6 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     protected List<Person> people = new ArrayList<>();
     protected List<String> names = new ArrayList<>();
     protected AudioManager audioManager;
-
-    static {
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-        locales = Locale.getAvailableLocales();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -109,7 +110,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     @Override
     public void onInit(int i) {
         if (i == TextToSpeech.SUCCESS)
-            speechAvailable = isTTSAvailable(tts, defaultPreferences.getString("preference_language", "es"));
+            speechAvailable = isTTSAvailable(tts, defaultPreferences.getString("preference_language", "en"));
         else {
             speechAvailable = false;
             showSimpleToast(CommonActivity.this, getString(R.string.toast_voice_unavailability));
