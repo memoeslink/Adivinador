@@ -181,7 +181,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     }
 
     protected void cancelToast() {
-        if (toast != null && toast.getView().isShown()) {
+        if (toast != null && toast.getView() != null && toast.getView().isShown()) {
             toast.cancel();
             toast = null;
         }
