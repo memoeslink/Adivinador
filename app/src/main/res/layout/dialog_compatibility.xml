@@ -15,8 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -50,13 +50,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:clickable="true"
             android:drawableLeft="@drawable/emptiness"
-            android:drawablePadding="5dp"
             android:drawableRight="@drawable/group_link"
+            android:drawablePadding="5dp"
             android:ellipsize="end"
             android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -98,9 +98,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
             android:ellipsize="middle"
             android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -114,9 +114,9 @@
             style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
             app:mpb_progressStyle="horizontal" />
     </LinearLayout>
 </ScrollView>
