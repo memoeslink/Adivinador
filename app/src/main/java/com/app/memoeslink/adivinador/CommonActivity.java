@@ -1,7 +1,5 @@
 package com.app.memoeslink.adivinador;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -325,11 +323,9 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     }
 
     protected void restartApplication() {
-        Intent i = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 9999, i, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + 500, pendingIntent);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(0);
+        Intent i = getPackageManager().getLaunchIntentForPackage(getPackageName());
+        Intent mainIntent = Intent.makeRestartActivityTask(i.getComponent());
+        startActivity(mainIntent);
+        Runtime.getRuntime().exit(0);
     }
 }
