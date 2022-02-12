@@ -14,6 +14,7 @@
         <item>100 MXN</item>
         <item>200 MXN</item>
         <item>500 MXN</item>
+        <item>1000 MXN</item>
     </string-array>
     <string-array name="fortune_teller_aspects">
         <item>0</item>

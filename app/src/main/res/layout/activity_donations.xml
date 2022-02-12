@@ -33,14 +33,52 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:text="@string/donations_title"
-            android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <FrameLayout
-            android:id="@+id/donations_container"
+        <TextView
+            android:id="@+id/donations_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"></FrameLayout>
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="@string/donations_description"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.1" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/donations_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0.4" />
+
+            <Button
+                android:id="@+id/donations_donate_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.4"
+                android:text="@string/donations_donate" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="0.1" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,7 +88,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.3"></View>
+                android:layout_weight="0.3" />
 
             <Button
                 android:id="@+id/donations_back_button"
@@ -62,7 +100,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.3"></View>
+                android:layout_weight="0.3" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -33,11 +33,11 @@
         <br><i><font color=#BABBFF>• Frequency lists by Neri</font></i> [<font color=#A268FF>Public domain</font>] (<a href="http://frequencylists.blogspot.mx/2016/08/5000-spanish-sentences-sorted-from.html/">https://blogger.com/</a>)
         <br><br><font color=#53E3B3>Code:</font>
         <br><i><font color=#FDFCDA>• Alexandros Schillings, Cyril Mottier, Jeff Gilfelt, Jon Adams, Kevin (kevinchai): </font><font color=#FFFDC4>Android SQLiteAssetHelper</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/jgilfelt/android-sqlite-asset-helper/">https://github.com/</a>)
-        <br><i><font color=#FDFCDA>• Dominik Schürmann: </font><font color=#FFFDC4>Android Donations Lib</font></i> (<a href="https://github.com/PrivacyApps/donations/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Emil Sjölander: </font><font color=#FFFDC4>StickyScrollViewItems</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/emilsjolander/StickyScrollViewItems/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Encryptor Code: </font><font color=#FFFDC4>Pluralize</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://github.com/encryptorcode/pluralize/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Google Inc.: </font><font color=#FFFDC4>Gson</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/google/gson/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Jin Cao (jinatonic): </font><font color=#FFFDC4>Confetti</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/jinatonic/confetti/">https://github.com/</a>)
+        <br><i><font color=#FDFCDA>• Mahadev Code: </font><font color=#FFFDC4>Android In-App Billing Library v4+</font></i> (<a href="https://github.com/Mahadev-code/Android-inApp-Billing">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Nee Si Yao, Phu Tang, Umair Vatao: </font><font color=#FFFDC4>EasyAndroidAnimations</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/2359media/EasyAndroidAnimations/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Wouter Dullaert: </font><font color=#FFFDC4>Material DateTime Picker</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/wdullaer/MaterialDateTimePicker/">https://github.com/</a>)
         <br><i><font color=#FDFCDA>• Zhang Hai: </font><font color=#FFFDC4>MaterialProgressBar</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/DreaminginCodeZH/MaterialProgressBar/">https://github.com/</a>)
@@ -88,6 +88,8 @@
     <string name="device_user">%1$s of %2$s device</string>
     <string name="device_version_user">%1$s of Android %2$s device</string>
     <string name="disconnected_device_user">user of device with unknown IP address</string>
+    <string name="donations_description">Please, consider donating some money for the app development, that would allow me to make this app even better! Google Play Store applies a tax percentage depending on your country.</string>
+    <string name="donations_donate">¡DONATE!</string>
     <string name="donations_title">Donate</string>
     <string name="enquiry_information">Daily enquiry for 1$s for %2$s, %3$s (%4$s)</string>
     <string name="extended_family_member">[[father,mother]]-in-law¶ [[brother,sister]]-in-law¶ [[son,daughter]]-in-law¶ [step[father,mother]]¶ [step[son,daughter]]¶ [god[father,mother]]¶ [god[son,daughter]]</string>
