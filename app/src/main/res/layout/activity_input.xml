@@ -31,7 +31,7 @@
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:text="@string/input_title"
-            android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.15"></View>
+                android:layout_weight="0.15" />
 
             <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/input_name_field"
@@ -59,7 +59,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.15"></View>
+                android:layout_weight="0.15" />
         </LinearLayout>
 
         <TextView
@@ -71,7 +71,7 @@
             android:gravity="center"
             android:text="@string/input_gender_description"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFBCC"></TextView>
+            android:textColor="#FFFBCC" />
 
         <RadioGroup
             android:id="@+id/input_gender_radio"
@@ -111,7 +111,7 @@
             android:singleLine="true"
             android:text="@string/input_birthdate"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFBCC"></TextView>
+            android:textColor="#FFFBCC" />
 
         <com.app.memoeslink.adivinador.CustomDatePicker
             android:id="@+id/input_date_picker"
@@ -121,7 +121,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:calendarViewShown="false"
-            android:datePickerMode="spinner"></com.app.memoeslink.adivinador.CustomDatePicker>
+            android:datePickerMode="spinner" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,7 +132,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.3"></View>
+                android:layout_weight="0.3" />
 
             <Button
                 android:id="@+id/input_back_button"
@@ -144,7 +144,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.3"></View>
+                android:layout_weight="0.3" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

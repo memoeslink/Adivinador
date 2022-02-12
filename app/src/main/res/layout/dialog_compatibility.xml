@@ -23,7 +23,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.1"></View>
+                android:layout_weight="0.1" />
 
             <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/dialog_name_field"
@@ -42,7 +42,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.1"></View>
+                android:layout_weight="0.1" />
         </LinearLayout>
 
         <TextView
@@ -71,7 +71,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.1"></View>
+                android:layout_weight="0.1" />
 
             <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/dialog_other_name_field"
@@ -90,7 +90,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.1"></View>
+                android:layout_weight="0.1" />
         </LinearLayout>
 
         <TextView
@@ -107,7 +107,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="5dp"></View>
+            android:layout_height="5dp" />
 
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/dialog_progress"

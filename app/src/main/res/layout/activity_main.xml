@@ -34,7 +34,7 @@
                         android:id="@+id/main_confetti_layout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"></LinearLayout>
+                        android:orientation="vertical" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                         <View
                             android:layout_width="0dp"
                             android:layout_height="1dp"
-                            android:layout_weight="0.25"></View>
+                            android:layout_weight="0.25" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/main_fortune_teller"
@@ -60,7 +60,7 @@
                         <View
                             android:layout_width="0dp"
                             android:layout_height="1dp"
-                            android:layout_weight="0.25"></View>
+                            android:layout_weight="0.25" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -72,7 +72,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <RelativeLayout
                     android:id="@+id/main_header"
@@ -88,7 +88,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginBottom="11dp"
+                        android:layout_marginBottom="10dp"
                         android:animateLayoutChanges="true"
                         android:divider="@drawable/divider"
                         android:orientation="horizontal"
@@ -241,7 +241,7 @@
                         android:layout_height="1dp"
                         android:layout_alignParentBottom="true"
                         android:alpha="225"
-                        android:background="?accent"></LinearLayout>
+                        android:background="?accent" />
                 </RelativeLayout>
 
                 <TextView
@@ -257,7 +257,7 @@
                     android:enabled="false"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:textAppearance="?android:attr/textAppearanceSmall"></TextView>
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/main_date_selector"
@@ -266,7 +266,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"></androidx.appcompat.widget.AppCompatSpinner>
+                    android:layout_marginRight="10dp" />
 
                 <TextView
                     android:id="@+id/main_pick"
@@ -286,7 +286,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"></View>
+                    android:layout_height="20dp" />
 
                 <TextView
                     android:id="@+id/main_prediction"
@@ -300,7 +300,7 @@
                     android:gravity="center"
                     android:longClickable="true"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textIsSelectable="true"></TextView>
+                    android:textIsSelectable="true" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -310,7 +310,7 @@
                     <View
                         android:layout_width="0dp"
                         android:layout_height="1dp"
-                        android:layout_weight="0.1"></View>
+                        android:layout_weight="0.1" />
 
                     <Button
                         android:id="@+id/main_copy_button"
@@ -331,13 +331,13 @@
                     <View
                         android:layout_width="0dp"
                         android:layout_height="1dp"
-                        android:layout_weight="0.1"></View>
+                        android:layout_weight="0.1" />
                 </LinearLayout>
 
                 <View
                     android:id="@+id/main_view"
                     android:layout_width="match_parent"
-                    android:layout_height="1px"></View>
+                    android:layout_height="1px" />
             </LinearLayout>
         </com.app.memoeslink.adivinador.StickyScrollView>
 
@@ -348,7 +348,7 @@
             android:layout_alignParentBottom="true"
             android:background="#80000000"
             android:orientation="vertical"
-            android:visibility="gone"></RelativeLayout>
+            android:visibility="gone" />
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -356,5 +356,5 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/navigation_menu"></com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/navigation_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

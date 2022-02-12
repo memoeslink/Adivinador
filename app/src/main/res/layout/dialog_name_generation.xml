@@ -6,7 +6,7 @@
     android:fillViewport="true"
     android:fitsSystemWindows="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -21,18 +21,18 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.1"></View>
+                android:layout_weight="0.1" />
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/dialog_spinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"></androidx.appcompat.widget.AppCompatSpinner>
+                android:layout_weight="0.8" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.1"></View>
+                android:layout_weight="0.1" />
         </LinearLayout>
 
         <LinearLayout
@@ -46,7 +46,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.1"></View>
+                android:layout_weight="0.1" />
 
             <EditText
                 android:id="@+id/dialog_generated_name"
@@ -66,7 +66,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="0.1"></View>
+                android:layout_weight="0.1" />
         </LinearLayout>
 
         <TextView
