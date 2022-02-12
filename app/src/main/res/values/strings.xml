@@ -66,6 +66,8 @@
     <string name="alert_exit_message">Do you really want to leave?</string>
     <string name="alert_exit_title">Exit application</string>
     <string name="alert_select_enquiry_title">Select enquiry</string>
+    <string name="alert_successful_donation_message">Thanks a lot for contributing to the project!</string>
+    <string name="alert_successful_donation_title">Successful donation</string>
     <string name="android_device_user">%1$s of Android device with ID %2$s</string>
     <string name="astrological_sign">Aquarius¶ Pisces¶ Aries¶ Taurus¶ Gemini¶ Cancer¶ Leo¶ Virgo¶ Libra¶ Scorpio¶ Sagittarius¶ Capricorn</string>
     <string name="binder">Use current enquiry name</string>

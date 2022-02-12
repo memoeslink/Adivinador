@@ -66,6 +66,8 @@
     <string name="alert_exit_message">¿Realmente deseas salir de la aplicación?</string>
     <string name="alert_exit_title">Abandonar aplicación</string>
     <string name="alert_select_enquiry_title">Seleccionar consulta</string>
+    <string name="alert_successful_donation_message">¡Muchas gracias por contribuir con el proyecto!</string>
+    <string name="alert_successful_donation_title">Donación exitosa</string>
     <string name="android_device_user">%1$s de dispositivo Android con ID %2$s</string>
     <string name="astrological_sign">Acuario¶ Piscis¶ Aries¶ Tauro¶ Géminis¶ Cáncer¶ Leo¶ Virgo¶ Libra¶ Escorpio¶ Sagitario¶ Capricornio</string>
     <string name="binder">Usar nombre de consulta actual</string>

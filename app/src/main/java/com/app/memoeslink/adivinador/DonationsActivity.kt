@@ -1,8 +1,10 @@
 package com.app.memoeslink.adivinador
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatSpinner
 import games.moisoni.google_iab.BillingConnector
 import games.moisoni.google_iab.BillingEventListener
@@ -17,6 +19,7 @@ class DonationsActivity : CommonActivity() {
     private var btBack: Button? = null
     private var spnDonation: AppCompatSpinner? = null
     private var bc: BillingConnector? = null
+    private var dialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,16 @@ class DonationsActivity : CommonActivity() {
             .autoConsume()
             .enableLogging()
             .connect()
+
+        //Define dialog to thank user for donating
+        val builder = AlertDialog.Builder(this@DonationsActivity)
+        builder.setTitle(getString(R.string.alert_successful_donation_title))
+        builder.setMessage(getString(R.string.alert_successful_donation_message))
+        builder.setIcon(R.drawable.money)
+        builder.setNeutralButton(getString(R.string.ok)) { dialog: DialogInterface, _: Int ->
+            dialog.dismiss()
+        }
+        dialog = builder.create()
 
         //Set adapters
         val adapter = ArrayAdapter(
@@ -51,6 +64,7 @@ class DonationsActivity : CommonActivity() {
             }
 
             override fun onProductsPurchased(purchases: List<PurchaseInfo>) {
+                dialog?.show()
             }
 
             override fun onPurchaseAcknowledged(purchase: PurchaseInfo) {
@@ -87,7 +101,7 @@ class DonationsActivity : CommonActivity() {
 
         btDonate?.setOnClickListener {
             spnDonation?.selectedItemPosition?.let { index ->
-                bc?.purchase(this@DonationsActivity, GOOGLE_CATALOG[index]);
+                bc?.purchase(this@DonationsActivity, GOOGLE_CATALOG[index])
             }
         }
 
