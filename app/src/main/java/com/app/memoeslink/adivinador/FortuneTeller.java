@@ -7,9 +7,9 @@ import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.LongHelper;
 import com.memoeslink.generator.common.Person;
-import com.memoeslink.generator.common.Randomizer;
 import com.memoeslink.generator.common.StringHelper;
 
+import java.main.common.Randomizer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

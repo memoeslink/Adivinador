@@ -8,19 +8,18 @@ import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.IntegerHelper;
 import com.memoeslink.generator.common.LongHelper;
 import com.memoeslink.generator.common.Person;
-import com.memoeslink.generator.common.Randomizer;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextComponent;
 import com.memoeslink.generator.common.TextProcessor;
 import com.memoeslink.generator.common.ZeroWidthChar;
 
+import java.main.common.Randomizer;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class Methods extends BaseWrapper {
     public static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
@@ -64,8 +63,8 @@ public class Methods extends BaseWrapper {
 
     public Prediction getPrediction(Person person, String enquiryDate) {
         Prediction prediction = new Prediction();
-        String name = person.getDescriptor();
         prediction.setPerson(person);
+        String name = person.getDescriptor();
         int birthdateYear = person.getBirthdate().getYear();
         int birthdateMonth = person.getBirthdate().getMonthValue();
         int birthdateDay = person.getBirthdate().getDayOfMonth();
@@ -77,8 +76,9 @@ public class Methods extends BaseWrapper {
         WalterBergZodiacSign walterBergZodiacSign = getWalterBergZodiacSign(birthdateMonth, birthdateDay);
 
         //Set seed
-        String dailySeed = name + System.getProperty("line.separator") + enquiryDate + System.getProperty("line.separator") + birthdate + System.getProperty("line.separator") + gender.getGlyph();
-        String uniqueSeed = name + System.getProperty("line.separator") + birthdate + System.getProperty("line.separator") + gender;
+        String dailySeed = person.getDescription() + System.getProperty("line.separator") + enquiryDate;
+        dailySeed = StringHelper.sha256(dailySeed);
+        String uniqueSeed = person.getSha256();
         long seed = LongHelper.getSeed(dailySeed);
         long personalSeed = LongHelper.getSeed(uniqueSeed);
 
@@ -122,7 +122,6 @@ public class Methods extends BaseWrapper {
         divination.put("recommendedUsername", textFormatter.formatUsername(resourceFinder.getUsername()));
         divination.put("digit", String.valueOf(r.getInt(10)));
         divination.put("uniqueNumbers", android.text.TextUtils.join(", ", r.getIntegers(3, 1000, true)));
-        divination.put("uniqueIdentifier", UUID.nameUUIDFromBytes(uniqueSeed.getBytes()).toString());
         divination.put("daysBetweenDates", String.valueOf(DateTimeHelper.getDifferenceInDays(birthdate, enquiryDate)));
         divination.put("timeBetweenDates", getDateDifference(birthdate, enquiryDate));
         unbindSeed();
@@ -158,7 +157,6 @@ public class Methods extends BaseWrapper {
                 divination.get("recommendedUsername"),
                 Integer.valueOf(divination.get("digit")),
                 divination.get("uniqueNumbers"),
-                divination.get("uniqueIdentifier"),
                 divination.get("daysBetweenDates"),
                 divination.get("timeBetweenDates")
         );
@@ -199,7 +197,6 @@ public class Methods extends BaseWrapper {
                 divination.get("recommendedUsername"),
                 Integer.valueOf(divination.get("digit")),
                 divination.get("uniqueNumbers"),
-                divination.get("uniqueIdentifier"),
                 divination.get("daysBetweenDates"),
                 divination.get("timeBetweenDates")
         );

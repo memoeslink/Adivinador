@@ -80,7 +80,7 @@ public class Hardware extends BaseWrapper {
     }
 
     public String getTestDeviceId() {
-        return MD5(getDeviceId()).toUpperCase();
+        return StringHelper.md5(getDeviceId()).toUpperCase();
     }
 
     public String getDeviceId() {
@@ -129,22 +129,6 @@ public class Hardware extends BaseWrapper {
                 return versionName;
         }
         return ResourceFinder.RESOURCE_NOT_FOUND;
-    }
-
-    private String MD5(String s) {
-        try {
-            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
-            byte[] array = md.digest(s.getBytes());
-            StringBuffer sb = new StringBuffer();
-
-            for (byte b : array) {
-                sb.append(Integer.toHexString((b & 0xFF) | 0x100).substring(1, 3));
-            }
-            return sb.toString();
-        } catch (java.security.NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     private boolean isNetworkAvailable() {

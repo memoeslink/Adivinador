@@ -24,7 +24,6 @@ import com.memoeslink.generator.common.IntegerHelper;
 import com.memoeslink.generator.common.LongHelper;
 import com.memoeslink.generator.common.NameType;
 import com.memoeslink.generator.common.Person;
-import com.memoeslink.generator.common.Randomizer;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextProcessor;
 
@@ -33,6 +32,7 @@ import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.main.common.Randomizer;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.ArrayList;

@@ -8,11 +8,11 @@ import com.memoeslink.generator.common.Constant;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.IntegerHelper;
 import com.memoeslink.generator.common.Person;
-import com.memoeslink.generator.common.Randomizer;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextComponent;
 import com.memoeslink.generator.common.TextProcessor;
 
+import java.main.common.Randomizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

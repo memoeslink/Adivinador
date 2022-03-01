@@ -76,7 +76,6 @@ import com.memoeslink.generator.common.GeneratorManager;
 import com.memoeslink.generator.common.LongHelper;
 import com.memoeslink.generator.common.NameType;
 import com.memoeslink.generator.common.Person;
-import com.memoeslink.generator.common.Randomizer;
 import com.memoeslink.generator.common.StringHelper;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
@@ -86,6 +85,7 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.main.common.Randomizer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
