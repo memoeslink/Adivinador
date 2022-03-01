@@ -2,9 +2,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:locale="en">
     <string name="about">
         <![CDATA[
-        <big><b>Adivinador</b></big>
-        <br><b>Version: 1.5.1</b>
-        <br><br>2014-2018 Memoeslink Futura
+        <big><b>%1$s</b></big>
+        <br><b>Version: %2$s (%3$d)</b>
+        <br><br>2014-%4$d Memoeslink Futura
         <br><small>Guillermo Almaguer (memoeslink)</small>
         <br><small>memocad@gmail.com</small>
         <br><br>Application to predict the future
