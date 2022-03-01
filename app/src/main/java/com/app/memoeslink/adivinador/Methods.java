@@ -24,9 +24,14 @@ import java.util.Map;
 public class Methods extends BaseWrapper {
     public static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
     public static final Integer[] PROBABILITY_DISTRIBUTION = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
+    private static final char separator;
     private final Randomizer r;
     private final ResourceFinder resourceFinder;
     private final TextFormatter textFormatter;
+
+    static {
+        separator = CharHelper.getFirstDisplayableGlyph('↓', '⬇', '⇣');
+    }
 
     public Methods(Context context) {
         this(context, null);
@@ -398,8 +403,8 @@ public class Methods extends BaseWrapper {
                 chain.append(getString(R.string.chain_link, n + 1, people.get(n).getDescription(), "", "", "(" + resourceFinder.getAction() + ")", people.get(n + 1).getDescription(), textFormatter.formatNumber(karma), textFormatter.formatNumber(totalKarma)));
 
             //Define link delimiter
-            if (CharHelper.isGlyphDisplayable('↓'))
-                chain.append("<br><font color=#A0A8C7>↓</font><br>");
+            if (separator != '\0')
+                chain.append("<br><font color=#A0A8C7>" + separator + "</font><br>");
             else
                 chain.append("<br>");
         }
