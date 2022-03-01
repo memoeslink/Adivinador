@@ -859,8 +859,8 @@ public class MainActivity extends MenuActivity {
         if (adView != null) {
             ViewGroup.LayoutParams params = vMain.getLayoutParams();
             params.height = 0;
-            //view.requestLayout();
-            //view.getLayoutParams().height = 0; This is slower!
+            //vMain.requestLayout();
+            //vMain.getLayoutParams().height = 0; This is slower!
             adView.destroy();
             adView.destroyDrawingCache();
             rlAdContainer.setVisibility(View.GONE);
