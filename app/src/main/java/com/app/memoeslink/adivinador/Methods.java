@@ -76,7 +76,7 @@ public class Methods extends BaseWrapper {
         WalterBergZodiacSign walterBergZodiacSign = getWalterBergZodiacSign(birthdateMonth, birthdateDay);
 
         //Set seed
-        String dailySeed = person.getDescription() + System.getProperty("line.separator") + enquiryDate;
+        String dailySeed = person.getSummary() + System.getProperty("line.separator") + enquiryDate;
         dailySeed = StringHelper.sha256(dailySeed);
         String uniqueSeed = person.getSha256();
         long seed = LongHelper.getSeed(dailySeed);
