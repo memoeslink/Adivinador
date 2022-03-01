@@ -491,6 +491,7 @@
         <item>un espíritu｢1｣</item>
         <item>una aparición｢2｣</item>
         <item>una estatua｢2｣</item>
+        <item>una edificación｢2｣</item>
         <item>un cuerpo｢1｣</item>
         <item>un cadáver｢1｣</item>
         <item>un rey｢1｣</item>
@@ -502,6 +503,8 @@
         <item>un criminal｢1｣</item>
         <item>un animal extraño｢1｣</item>
         <item>un ave {rand:bicéfala; tricéfala}｢2｣</item>
+        <item>un rosario｢1｣</item>
+        <item>un ojo｢1｣</item>
         <item>{string:individual⸻⸮}</item>
         <item>{string:individual⸻⸮}</item>
         <item>{string:individual⸻⸮}</item>
@@ -527,20 +530,30 @@
         <item>siendo [consumid[o,a]] por las llamas</item>
         <item>siendo [consumid[o,a]] por la oscuridad</item>
         <item>siendo [purificad[o,a]]</item>
+        <item>siendo [atravesad[o,a]] por una espada</item>
+        <item>[lauread[o,a]]</item>
+        <item>[rodead[o,a]] de personas</item>
         <item>[rodead[o,a]] de flores</item>
         <item>[rodead[o,a]] de espadas</item>
         <item>[rodead[o,a]] por una aureola</item>
         <item>resplandeciendo</item>
+        <item>siendo [vitoread[o,a]]</item>
         <item>siendo [exaltad[o,a]]</item>
         <item>siendo [sepultad[o,a]]</item>
         <item>[sumergid[o,a]] en lágrimas</item>
+        <item>levitando</item>
+        <item>volando</item>
         <item>cayendo</item>
         <item>danzando</item>
+        <item>girando</item>
         <item>de cabeza o [invertid[o,a]]</item>
         <item>[perdid[o,a]]</item>
         <item>que gime</item>
         <item>que chilla</item>
+        <item>emitiendo un sonido</item>
         <item>frente a {string:augury_entity}</item>
+        <item>rodeando a {string:augury_entity}</item>
+        <item>devorando a algo como {string:augury_entity}</item>
     </string-array>
     <string-array name="chinese_zodiac_sign">
         <item>Mono</item>

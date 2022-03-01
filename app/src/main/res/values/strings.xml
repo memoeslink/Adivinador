@@ -490,7 +490,8 @@
         <item>a god</item>
         <item>an spirit</item>
         <item>an apparition</item>
-        <item>an statue</item>
+        <item>a statue</item>
+        <item>a building</item>
         <item>a body</item>
         <item>a corpse</item>
         <item>a king</item>
@@ -502,6 +503,8 @@
         <item>a criminal</item>
         <item>an obscure animal</item>
         <item>a {rand:two; three}-headed bird</item>
+        <item>a rosary</item>
+        <item>an eye</item>
         <item>{string:individual⸻⸮}</item>
         <item>{string:individual⸻⸮}</item>
         <item>{string:individual⸻⸮}</item>
@@ -527,20 +530,30 @@
         <item>being consumed by the flames</item>
         <item>being consumed by darkness</item>
         <item>being purified</item>
+        <item>being pierced with a sword</item>
+        <item>crowned with laurel</item>
+        <item>surrounded by people</item>
         <item>surrounded by flowers</item>
         <item>surrounded by swords</item>
         <item>surrounded by a halo</item>
         <item>shining</item>
+        <item>being acclaimed</item>
         <item>becoming exalted</item>
         <item>being buried</item>
         <item>drenched in tears</item>
+        <item>levitating</item>
+        <item>flying</item>
         <item>falling</item>
         <item>dancing</item>
+        <item>spinning</item>
         <item>upside down or reversed</item>
         <item>that is lost</item>
         <item>that groans</item>
         <item>that shrieks</item>
+        <item>emitting a sound</item>
         <item>facing {string:augury_entity}</item>
+        <item>surrounding {string:augury_entity}</item>
+        <item>devouring {string:augury_entity}</item>
     </string-array>
     <string-array name="chinese_zodiac_sign">
         <item>Monkey</item>
