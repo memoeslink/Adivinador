@@ -70,11 +70,8 @@
     <string name="android_device_user">%1$s of Android device with ID %2$s</string>
     <string name="astrological_sign">Aquarius¶ Pisces¶ Aries¶ Taurus¶ Gemini¶ Cancer¶ Leo¶ Virgo¶ Libra¶ Scorpio¶ Sagittarius¶ Capricorn</string>
     <string name="binder">Use current enquiry name</string>
-    <string name="chain_effect">• Chain results: the effects will be %1$s in the day of %2$s.</string>
-    <string name="chain_null_effect">null</string>
+    <string name="chain_effect">• Chain results: the effect will be %1$s in the day of %2$s.</string>
     <string name="chain_link">• Link %1$d: %2$s%3$s executes an action%4$s %5$s, and that causes a reaction in %6$s (%7$s karma; %8$s total karma).</string>
-    <string name="chain_negative_effect">negative</string>
-    <string name="chain_positive_effect">positive</string>
     <string name="clear">Clear form</string>
     <string name="compatibility">See compatibility</string>
     <string name="compatibility_result">Compatibility: &lt;b&gt;%1$s&lt;/b&gt;</string>
@@ -264,6 +261,10 @@
     <string name="toast_enquiry_saved">The enquiry was saved successfully.</string>
     <string name="toast_voice_unavailability">There\'s not any available voice for TTS in your device.</string>
     <string name="today">today</string>
+    <string name="value_as_negative">negative</string>
+    <string name="value_as_null">null</string>
+    <string name="value_as_positive">positive</string>
+    <string name="value_as_zero">zero</string>
     <string-array name="animal">
         <item>bee</item>
         <item>eagle</item>

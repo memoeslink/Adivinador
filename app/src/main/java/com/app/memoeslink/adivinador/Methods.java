@@ -404,20 +404,13 @@ public class Methods extends BaseWrapper {
 
             //Define link delimiter
             if (separator != '\0')
-                chain.append("<br><font color=#A0A8C7>" + separator + "</font><br>");
+                chain.append("<br><font color=#A0A8C7>").append(separator).append("</font><br>");
             else
                 chain.append("<br>");
         }
-        float percentage = (float) Math.abs(totalKarma) / (people.size() - 1) * 10;
-        String effect;
-
-        if (totalKarma == 0)
-            effect = getString(R.string.chain_null_effect);
-        else if (totalKarma < 0)
-            effect = getString(R.string.chain_negative_effect);
-        else
-            effect = getString(R.string.chain_positive_effect);
-        chain.append(getString(R.string.chain_effect, "<b><font color=#FFF870>" + (totalKarma == 0 ? effect : String.format("%.2f", percentage) + "% " + effect) + "</font></b>", person.getDescription()));
+        float percentage = (float) totalKarma / (people.size() - 1) * 10;
+        String effect = textFormatter.formatPercentageWithText(percentage);
+        chain.append(getString(R.string.chain_effect, effect, person.getDescription()));
         chain = new StringBuilder(StringHelper.replace(chain.toString(), " a el ", " al "));
         return getString(R.string.html_format, chain.toString());
     }

@@ -1139,7 +1139,7 @@ public class MainActivity extends MenuActivity {
         if (!busy) {
             busy = true;
             llConfetti.animate() //Fade particles layout out
-                    .alpha(0.0f)
+                    .alpha(0.0F)
                     .setDuration(200)
                     .setListener(new AnimatorListenerAdapter() {
                         @Override

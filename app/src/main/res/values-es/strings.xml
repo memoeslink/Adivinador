@@ -70,11 +70,8 @@
     <string name="android_device_user">%1$s de dispositivo Android con ID %2$s</string>
     <string name="astrological_sign">Acuario¶ Piscis¶ Aries¶ Tauro¶ Géminis¶ Cáncer¶ Leo¶ Virgo¶ Libra¶ Escorpio¶ Sagitario¶ Capricornio</string>
     <string name="binder">Usar nombre de consulta actual</string>
-    <string name="chain_effect">• Resultado de la cadena: los efectos serán %1$s en el día de %2$s.</string>
-    <string name="chain_null_effect">nulos</string>
+    <string name="chain_effect">• Resultado de la cadena: el efecto será %1$s en el día de %2$s.</string>
     <string name="chain_link">• Eslabón %1$d: %2$s%3$s realiza una acción%4$s %5$s, y esta afecta a %6$s (%7$s karma; %8$s karma acumulado).</string>
-    <string name="chain_negative_effect">negativos</string>
-    <string name="chain_positive_effect">positivos</string>
     <string name="clear">Limpiar formulario</string>
     <string name="compatibility">Ver compatibilidad</string>
     <string name="compatibility_result">Compatibilidad: &lt;b&gt;%1$s&lt;/b&gt;</string>
@@ -264,6 +261,10 @@
     <string name="toast_enquiry_saved">Se ha guardado la consulta con éxito.</string>
     <string name="toast_voice_unavailability">No hay ningún idioma disponible para voces en tu dispositivo.</string>
     <string name="today">hoy</string>
+    <string name="value_as_negative">negativo</string>
+    <string name="value_as_null">nulo</string>
+    <string name="value_as_positive">positivo</string>
+    <string name="value_as_zero">cero</string>
     <string-array name="animal">
         <item>abeja</item>
         <item>águila</item>

@@ -311,15 +311,27 @@ public class TextFormatter extends BaseWrapper implements Validation {
     }
 
     public String formatNumber(int number) {
-        String formattedNumber;
-
         if (number == 0)
-            formattedNumber = "<b><font color=#5E84EC>" + number + "</font></b>";
+            return "<b><font color=#5E84EC>" + number + "</font></b>";
         else if (number < 0)
-            formattedNumber = "<b><font color=#F94C4C>" + number + "</font></b>";
-        else
-            formattedNumber = "<b><font color=#2FCC2F>" + number + "</font></b>";
-        return formattedNumber;
+            return "<b><font color=#F94C4C>" + number + "</font></b>";
+        return "<b><font color=#2FCC2F>" + number + "</font></b>";
+    }
+
+    public String formatPercentage(float percentage) {
+        if (percentage >= -100.0F)
+            return "<b><font color=#FFF870>" + String.format("%1.2f%%", percentage) + "</font></b>";
+        return "<b><font color=#FFF870>?%%</font></b>";
+    }
+
+    public String formatPercentageWithText(float percentage) {
+        if (percentage < -100.0F)
+            return "<b><font color=#FFF870>?%%</font></b>";
+        else if (percentage < 0.0F)
+            return "<b><font color=#FFF870>" + String.format("%1.2f%% %2$s", Math.abs(percentage), getString(R.string.value_as_negative)) + "</font></b>";
+        else if (percentage == 0.0F)
+            return "<b><font color=#FFF870>" + getString(R.string.value_as_null) + "</font></b>";
+        return "<b><font color=#FFF870>" + String.format("%1.2f%% %2$s", Math.abs(percentage), getString(R.string.value_as_positive)) + "</font></b>";
     }
 
     public String formatDescriptor(Person person) {
