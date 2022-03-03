@@ -373,7 +373,7 @@ public class Methods extends BaseWrapper {
         int closePersonType = r.getInt(1, arrayLength - 1);
         int thirdPartyType = closePersonType <= 9 ? r.getInt(11, arrayLength - 11) : r.getInt(1, arrayLength - 1);
         Person closePerson = getClosePerson(person, closePersonType);
-        Person thirdParty = getThirdParty(person, closePerson, thirdPartyType);
+        Person thirdParty = getThirdParty(closePerson, thirdPartyType);
         people.add(thirdParty);
         people.add(closePerson);
 
@@ -418,10 +418,10 @@ public class Methods extends BaseWrapper {
     public Person getThirdParty(Person person) {
         Person closePerson = getClosePerson(person);
         int index = r.getInt(1, resourceFinder.getArrayResLength(R.array.person) - 1);
-        return getThirdParty(person, closePerson, index);
+        return getThirdParty(closePerson, index);
     }
 
-    private Person getThirdParty(Person person, Person closePerson, int index) {
+    private Person getThirdParty(Person closePerson, int index) {
         TextComponent thirdParty = textFormatter.replaceTags("{string:person[" + index + "]⸻⸮}");
         thirdParty.setText(StringHelper.replace(thirdParty.getText(), "%%", closePerson.getDescription()));
         thirdParty.setText(StringHelper.replace(thirdParty.getText(), " de el ", " del "));
