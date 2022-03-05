@@ -21,10 +21,12 @@ import java.util.regex.Pattern;
 
 public class TextFormatter extends BaseWrapper implements Validation {
     private static final String INTEGER_REGEX = "(-?[1-9]\\d*|0)";
+    private static final String TAG_GENDER_REGEX = "(;\\s?gender:((user|⛌)|(random|⸮)|(default|＃)|" + INTEGER_REGEX + "))?";
+    private static final String TAG_PLURAL_REGEX = "(;\\s?plural:(\\+?\\p{L}+))?";
     private static final Pattern GENDER_PATTERN = Pattern.compile("｢([0-2])｣");
-    private static final String TAG_REGEX = "\\{((string|database):([\\w\\p{L}]+)(\\[!?[\\d]+\\])?(\\s*⸻(⛌|⸮|" + INTEGER_REGEX + "))?|method:[a-zA-Z0-9_$]+)\\}";
+    private static final String TAG_REGEX = "\\{((string|database):([\\w\\p{L}]+)(\\[!?[\\d]+\\])?" + TAG_GENDER_REGEX + "|method:[a-zA-Z0-9_$]+)\\}";
     private static final Pattern TAG_PATTERN = Pattern.compile(TAG_REGEX);
-    private static final String WORD_TAG_REGEX = "\\{(" + TextProcessor.EXTENDED_WORD_REGEX + ")(⸻(⛌|⸮|" + INTEGER_REGEX + "))?\\}";
+    private static final String WORD_TAG_REGEX = "\\{(" + TextProcessor.EXTENDED_WORD_REGEX + ")" + TAG_GENDER_REGEX + TAG_PLURAL_REGEX + "\\}";
     private static final Pattern WORD_TAG_PATTERN = Pattern.compile(WORD_TAG_REGEX);
     private static final String RANDOM_TAG_REGEX = "\\{rand:[^{}⸠⸡;]+(;[^{}⸠⸡;]+)*\\}";
     private static final Pattern RANDOM_TAG_PATTERN = Pattern.compile(RANDOM_TAG_REGEX);
@@ -60,19 +62,18 @@ public class TextFormatter extends BaseWrapper implements Validation {
     }
 
     public TextComponent replaceTags(String s) {
-        return replaceTags(s, null);
+        return replaceTags(s, null, false);
     }
 
-    public TextComponent replaceTags(String s, Gender predefinedGender) {
+    public TextComponent replaceTags(String s, Gender predefinedGender, boolean plural) {
         if (StringHelper.isNullOrBlank(s))
             return new TextComponent();
         TextComponent component = new TextComponent();
         Gender gender = null;
         Gender defaultGender;
-        boolean defaulted = false;
         boolean nullified = false;
 
-        if (defaulted = (predefinedGender != null))
+        if (predefinedGender != null)
             defaultGender = predefinedGender;
         else
             defaultGender = r.getElement(Gender.values());
@@ -104,7 +105,7 @@ public class TextFormatter extends BaseWrapper implements Validation {
             //Replaces simple tags within the text, if there are any
             while (pairsOfBrackets > 0 && (matcher = TAG_PATTERN.matcher(s)).find()) {
                 String replacement = "";
-                String resourceName = matcher.group().startsWith("{method:") ? StringHelper.substringBetween(matcher.group(), ":", "}") : matcher.group(3);
+                String resourceName = StringHelper.startsWith(matcher.group(), "{method:") ? StringHelper.substringBetween(matcher.group(), ":", "}") : matcher.group(3);
                 String resourceType;
                 gender = getTrueGender(matcher.group(6), defaultGender);
                 Integer index = null;
@@ -148,11 +149,7 @@ public class TextFormatter extends BaseWrapper implements Validation {
 
                 if (openingIndex >= 0 && (closingIndex = StringHelper.indexOf(replacement, '}')) >= 0 && openingIndex < closingIndex) {
                     TextComponent tempComponent;
-
-                    if (defaulted)
-                        tempComponent = replaceTags(replacement, defaultGender);
-                    else
-                        tempComponent = replaceTags(replacement);
+                    tempComponent = replaceTags(replacement, defaultGender, plural);
                     replacement = tempComponent.getText();
                     gender = tempComponent.getHegemonicGender();
                     empty = replacement.isEmpty() || (tempComponent.isNullified() && StringHelper.isNullOrBlank(replacement));
@@ -160,8 +157,10 @@ public class TextFormatter extends BaseWrapper implements Validation {
 
                 if (empty)
                     s = StringHelper.removeFirst(s, "\\s*" + Pattern.quote(matcher.group()));
-                else
-                    s = StringHelper.replaceOnce(s, matcher.group(), TextProcessor.genderifyStr(replacement, gender).getText());
+                else {
+                    replacement = TextProcessor.genderifyStr(replacement, gender).getText();
+                    s = StringHelper.replaceOnce(s, matcher.group(), replacement);
+                }
                 pairsOfBrackets--;
             }
 
@@ -170,6 +169,13 @@ public class TextFormatter extends BaseWrapper implements Validation {
                 String replacement = matcher.group(1);
                 gender = getTrueGender(matcher.group(5), defaultGender);
                 replacement = TextProcessor.genderifyStr(replacement, gender).getText();
+
+                if (matcher.group(11) != null && plural) {
+                    if (StringHelper.startsWith(matcher.group(11), '+'))
+                        replacement = replacement + StringHelper.removeStart(matcher.group(11), "+");
+                    else
+                        replacement = matcher.group(11);
+                }
                 s = StringHelper.replaceOnce(s, matcher.group(), replacement);
                 pairsOfBrackets--;
             }
@@ -204,7 +210,7 @@ public class TextFormatter extends BaseWrapper implements Validation {
         //Replaces subtags within the text, if there are any
         if (StringHelper.containsAny(s, "⸠", "⸡")) {
             s = StringHelper.replaceEach(s, new String[]{"⸠", "⸡"}, new String[]{"{", "}"});
-            s = replaceTags(s, gender != null ? gender : defaultGender).getText();
+            s = replaceTags(s, gender != null ? gender : defaultGender, plural).getText();
         }
         component.setText(s);
         component.setHegemonicGender(gender);
@@ -235,11 +241,14 @@ public class TextFormatter extends BaseWrapper implements Validation {
         if (StringHelper.isNullOrEmpty(s))
             return defaultGender;
 
-        if (s.equals("⛌"))
+        if (StringHelper.equalsAny(s, "user", "⛌"))
             return resourceFinder.getGender();
 
-        if (s.equals("⸮"))
+        if (StringHelper.equalsAny(s, "random", "⸮"))
             return r.getBoolean() ? Gender.MASCULINE : Gender.FEMININE;
+
+        if (StringHelper.equalsAny(s, "default", "＃"))
+            return defaultGender;
 
         try {
             int genderValue = Integer.parseInt(s);

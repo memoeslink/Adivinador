@@ -207,7 +207,7 @@ public class FortuneTeller extends BaseWrapper {
 
             if (StringHelper.isNullOrEmpty(name))
                 continue;
-            s = textFormatter.replaceTags(s, gender).getText();
+            s = textFormatter.replaceTags(s, gender, false).getText();
             s = StringHelper.replaceOnce(s, "##", content);
         }
         s = StringHelper.replace(s, " a el ", " al ");

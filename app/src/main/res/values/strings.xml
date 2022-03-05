@@ -91,7 +91,7 @@
     <string name="donations_title">Donate</string>
     <string name="enquiry_information">Daily enquiry for 1$s for %2$s, %3$s (%4$s)</string>
     <string name="extended_family_member">[[father,mother]]-in-law¶ [[brother,sister]]-in-law¶ [[son,daughter]]-in-law¶ [step[father,mother]]¶ [step[son,daughter]]¶ [god[father,mother]]¶ [god[son,daughter]]</string>
-    <string name="family_member">{string:relative⸻⸮}¶ {string:extended_family_member⸻⸮}</string>
+    <string name="family_member">{string:relative; gender:⸮}¶ {string:extended_family_member; gender:⸮}</string>
     <string name="greetings">Hi§!¶ Hello§.¶ Welcome§.¶ Good day§.¶ Good to see you§.¶ Long time no see§.¶ How are you§?¶ How have you been§?¶ How do you do§?¶ How is everything§?¶ What have you done§?¶ What have you done lately§?¶ What happens§?¶ What is there§?¶ What is new§?¶ What do you tell me§?</string>
     <string name="greetings_afternoon">Good afternoon§.¶ Beautiful afternoon§.</string>
     <string name="greetings_component">Good¶ Beautiful¶ Nice¶ Great¶ Today is¶ The day is</string>
@@ -253,7 +253,7 @@
     <string name="time_component">The time is ¶ The current time is ¶ At this moment the time is ¶ The time at this moment is</string>
     <string name="time_elapsed">%1$d year(s), %2$d month(s), %3$d day(s)</string>
     <string name="title">%1$s %2$s %3$s</string>
-    <string name="title_descriptor">Lead¶ Senior¶ Direct¶ Corporate¶ Dynamic¶ Future¶ Product¶ National¶ Regional¶ District¶ Central¶ Global¶ Customer¶ Investor¶ Dynamic¶ International¶ Legacy¶ Forward¶ Internal¶ Human¶ Chief¶ Principal</string>
+    <string name="title_descriptor">Lead¶ Senior¶ Direct¶ Corporate¶ Dynamic¶ Future¶ Product¶ National¶ Regional¶ Local¶ District¶ Central¶ Global¶ Customer¶ Investor¶ Dynamic¶ International¶ Legacy¶ Forward¶ Internal¶ Human¶ Chief¶ Principal</string>
     <string name="title_job">Supervisor¶ Associate¶ Executive¶ Liaison¶ Officer¶ Manager¶ Engineer¶ Specialist¶ Director¶ Coordinator¶ Administrator¶ Architect¶ Analyst¶ Designer¶ Planner¶ Orchestrator¶ Technician¶ Developer¶ Producer¶ Consultant¶ Assistant¶ Facilitator¶ Agent¶ Representative¶ Strategist</string>
     <string name="title_level">Solutions¶ Program¶ Brand¶ Security¶ Research¶ Marketing¶ Directives¶ Implementation¶ Integration¶ Functionality¶ Response¶ Paradigm¶ Tactics¶ Identity¶ Markets¶ Group¶ Division¶ Applications¶ Optimization¶ Operations¶ Infrastructure¶ Intranet¶ Communications¶ Web¶ Branding¶ Quality¶ Assurance¶ Mobility¶ Accounts¶ Data¶ Creative¶ Configuration¶ Accountability¶ Interactions¶ Factors¶ Usability¶ Metrics¶ Support</string>
     <string name="toast_clipboard">Text copied to clipboard.</string>
@@ -506,10 +506,10 @@
         <item>a {rand:two; three}-headed bird</item>
         <item>a rosary</item>
         <item>an eye</item>
-        <item>{string:individual⸻⸮}</item>
-        <item>{string:individual⸻⸮}</item>
-        <item>{string:individual⸻⸮}</item>
-        <item>{string:individual⸻⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
     </string-array>
     <string-array name="augury_situation">
         <item>amidst the void</item>
@@ -656,24 +656,24 @@
         <item>I think this is due to {string:divination_causative_factor}.</item>
         <item>I guess the above is caused by {string:divination_causative_factor}.</item>
         <item>I can {rand:see; perceive; perceive; detect; feel; observe; note} that this is due to {string:divination_causative_factor}.</item>
-        <item>It can be said that the {rand:reason; cause; circumstance; reason} of this could be {string:explicit_cause⸻⸮}.</item>
-        <item>I can see that the {rand:reason; cause; circumstance; reason} of this might be {string:explicit_cause⸻⸮}.</item>
-        <item>The {rand:responsible; cause; motive} of this could be {string:unspecific_person⸻⸮}.</item>
-        <item>The divination says that, possibly, the cause of this is {string:person⸻⸮}.</item>
-        <item>I can {rand:see; perceive; detect; sense; feel; observe; note} in this {rand:fortune; divination; prediction; augury} that {string:individual⸻⸮} could be the one who causes this.</item>
-        <item>It is possible that {string:individual⸻⸮} has something to do with it.</item>
+        <item>It can be said that the {rand:reason; cause; circumstance; reason} of this could be {string:explicit_cause; gender:⸮}.</item>
+        <item>I can see that the {rand:reason; cause; circumstance; reason} of this might be {string:explicit_cause; gender:⸮}.</item>
+        <item>The {rand:responsible; cause; motive} of this could be {string:unspecific_person; gender:⸮}.</item>
+        <item>The divination says that, possibly, the cause of this is {string:person; gender:⸮}.</item>
+        <item>I can {rand:see; perceive; detect; sense; feel; observe; note} in this {rand:fortune; divination; prediction; augury} that {string:individual; gender:⸮} could be the one who causes this.</item>
+        <item>It is possible that {string:individual; gender:⸮} has something to do with it.</item>
     </string-array>
     <string-array name="divination_causative_factor">
-        <item>{string:unspecific_person⸻⸮}</item>
-        <item>{string:person⸻⸮}</item>
-        <item>{string:individual⸻⸮}</item>
-        <item>{string:individual⸻⸮}</item>
+        <item>{string:unspecific_person; gender:⸮}</item>
+        <item>{string:person; gender:⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
         <item>{string:divination_middle}</item>
         <item>{string:divination_middle}</item>
-        <item>{string:explicit_cause⸻⸮}</item>
-        <item>{string:explicit_cause⸻⸮}</item>
-        <item>{string:explicit_cause⸻⸮}</item>
-        <item>{string:explicit_cause⸻⸮}</item>
+        <item>{string:explicit_cause; gender:⸮}</item>
+        <item>{string:explicit_cause; gender:⸮}</item>
+        <item>{string:explicit_cause; gender:⸮}</item>
+        <item>{string:explicit_cause; gender:⸮}</item>
     </string-array>
     <string-array name="divination_end">
         <item>will be {string:qualitative_adjectives}.</item>
@@ -1200,9 +1200,9 @@
         <item>I have to go with ##. They owe me money.</item>
         <item>I\'m in love with ##.</item>
         <item>Have you seen a person named ##?</item>
-        <item>Your {string:relative⸻⸮}, ## and I are lovers. A real love triangle.</item>
-        <item>Are you {string:relative⸻⛌} of ##? You look very much alike.</item>
-        <item>Are you, by chance, {string:relative⸻⛌} of ##? You both share certain traits.</item>
+        <item>Your {string:relative; gender:⸮}, ## and I are lovers. A real love triangle.</item>
+        <item>Are you {string:relative; gender:⛌} of ##? You look very much alike.</item>
+        <item>Are you, by chance, {string:relative; gender:⛌} of ##? You both share certain traits.</item>
         <item>It\'s nice to see you here, unlike ##.</item>
         <item>Oh, yes, I revealed a frightening future for ##.</item>
         <item>The other day ## asked me to look into their future.</item>
@@ -1497,22 +1497,22 @@
         <item>## knows ##.</item>
         <item>I have something to say to ##.</item>
         <item>I must see the future of ##.</item>
-        <item>## is a/an {string:adjectives⸻2} person.</item>
-        <item>## is a/an {string:adjectives⸻2} character.</item>
-        <item>## is a/an {string:adjectives⸻2} individual.</item>
-        <item>## and their {string:relative⸻⸮} get along very well.</item>
-        <item>## and their {string:relative⸻⸮} have a bad relationship.</item>
-        <item>## and their {string:relative⸻⸮} treat each other badly.</item>
-        <item>## and their {string:relative⸻⸮} have a harmonious relationship.</item>
-        <item>## and their {string:relative⸻⸮} have done unspeakable things.</item>
-        <item>## and their {string:relative⸻⸮} have done very bad things.</item>
-        <item>Your {string:relative⸻⸮} looks a lot like ##.</item>
-        <item>Your {string:relative⸻⸮} loves ##.</item>
-        <item>Your {string:relative⸻⸮} hates ##.</item>
-        <item>Your {string:relative⸻⸮} ignores ##.</item>
-        <item>Your {string:relative⸻⸮} is good friends with ##.</item>
-        <item>Your {string:relative⸻⸮} has a poor relationship with ##.</item>
-        <item>Your {string:relative⸻⸮} and ## are enemies.</item>
+        <item>## is a/an {string:adjectives; gender:2} person.</item>
+        <item>## is a/an {string:adjectives; gender:2} character.</item>
+        <item>## is a/an {string:adjectives; gender:2} individual.</item>
+        <item>## and their {string:relative; gender:⸮} get along very well.</item>
+        <item>## and their {string:relative; gender:⸮} have a bad relationship.</item>
+        <item>## and their {string:relative; gender:⸮} treat each other badly.</item>
+        <item>## and their {string:relative; gender:⸮} have a harmonious relationship.</item>
+        <item>## and their {string:relative; gender:⸮} have done unspeakable things.</item>
+        <item>## and their {string:relative; gender:⸮} have done very bad things.</item>
+        <item>Your {string:relative; gender:⸮} looks a lot like ##.</item>
+        <item>Your {string:relative; gender:⸮} loves ##.</item>
+        <item>Your {string:relative; gender:⸮} hates ##.</item>
+        <item>Your {string:relative; gender:⸮} ignores ##.</item>
+        <item>Your {string:relative; gender:⸮} is good friends with ##.</item>
+        <item>Your {string:relative; gender:⸮} has a poor relationship with ##.</item>
+        <item>Your {string:relative; gender:⸮} and ## are enemies.</item>
     </string-array>
     <string-array name="person">
         <item>a person</item>

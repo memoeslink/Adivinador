@@ -8,8 +8,8 @@ android {
         applicationId "com.app.memoeslink.adivinador"
         minSdkVersion 26
         targetSdkVersion 31
-        versionCode 111
-        versionName "1.6.3"
+        versionCode 112
+        versionName "1.6.4"
         resConfigs 'es', 'en'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "Adivinador-$versionName")
@@ -47,7 +47,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
-    implementation 'com.github.memoeslink.android-generator:release:2022.0.7'
+    implementation 'com.github.memoeslink.android-generator:release:2022.0.9'
     implementation 'com.github.memoeslink.sharedpreferences-helper:final:2022.0.0'
     implementation 'io.github.memoeslink:randomizer:2021.0.0-release'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.12.4'

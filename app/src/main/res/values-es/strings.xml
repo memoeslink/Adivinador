@@ -75,7 +75,7 @@
     <string name="clear">Limpiar formulario</string>
     <string name="compatibility">Ver compatibilidad</string>
     <string name="compatibility_result">Compatibilidad: &lt;b&gt;%1$s&lt;/b&gt;</string>
-    <string name="connected_device_user">{[usuari[o,a]]⸻⛌} de dispositivo con dirección IP %1$s</string>
+    <string name="connected_device_user">{[usuari[o,a]]; gender:⛌} de dispositivo con dirección IP %1$s</string>
     <string name="data_entry">Introducir datos</string>
     <string name="date_component">Ya es¶ Hoy es¶ Estamos a¶ El día de hoy es¶ La fecha es¶ Hoy estamos a¶ El día es</string>
     <string name="default_comments">La predicción es la siguiente:¶ La adivinación marca lo siguiente:¶ El futuro muestra esto:¶ El destino indica esto:¶ La predicción muestra lo siguiente:¶ Esto va a suceder:¶ Esto ocurrirá en algún momento:¶ La adivinación da a conocer esto:¶ Estos hechos podrían tener lugar:¶ Puede que esto suceda:</string>
@@ -85,13 +85,13 @@
     <string name="device_brand_user">%1$s de dispositivo de marca %2$s</string>
     <string name="device_user">%1$s de %2$s</string>
     <string name="device_version_user">%1$s de dispositivo Android %2$s</string>
-    <string name="disconnected_device_user">{[usuari[o,a]]⸻⛌} de dispositivo con dirección IP desconocida</string>
+    <string name="disconnected_device_user">{[usuari[o,a]]; gender:⛌} de dispositivo con dirección IP desconocida</string>
     <string name="donations_description">¡Por favor, considera donar algo de dinero para el desarrollo de la aplicación, eso me permitirá hacer esta aplicación aun mejor! Google Play Store aplica un porcentaje de impuestos dependiendo de tu país.</string>
     <string name="donations_donate">¡DONAR!</string>
     <string name="donations_title">Donar</string>
     <string name="enquiry_information">Consulta para el día %1$s de %2$s, de género %3$s (%4$s)</string>
     <string name="extended_family_member">[suegr[o,a]]¶ [cuñad[o,a]]¶ [[yerno,nuera]]¶ [[padrastro,madrastra]]¶ [hijastr[o,a]]¶ [[padrino,madrina]]¶ [ahijad[o,a]]</string>
-    <string name="family_member">{string:relative⸻⸮}¶ {string:extended_family_member⸻⸮}</string>
+    <string name="family_member">{string:relative; gender:⸮}¶ {string:extended_family_member; gender:⸮}</string>
     <string name="greetings">Hola§.¶ Bienvenido§.¶ Buen día§.¶ ¡Qué gusto de verte§!¶ Tanto tiempo sin verte§.¶ ¿Cómo estás§?¶ ¿Qué tal§?¶ ¿Cómo has estado§?¶ ¿Cómo te ha ido§?¶ ¿Cómo te va§?¶ ¿Cómo está todo§?¶ ¿Cómo va todo§?¶ ¿Qué has hecho§?¶ ¿Qué has hecho últimamente§?¶ ¿Qué pasa§?¶ ¿Qué hay§?¶ ¿Qué hay de nuevo§?¶ ¿Qué cuentas§?¶ ¿Qué me cuentas§?</string>
     <string name="greetings_afternoon">Buena tarde§.¶ Buenas tardes§.¶ Bonita tarde§.</string>
     <string name="greetings_component">Buen¶ Bonito¶ Hermoso¶ Genial¶ Ya es¶ Hoy es¶ Estamos a</string>
@@ -115,10 +115,10 @@
     <string name="menu_about">Acerca de</string>
     <string name="menu_exit">Salir</string>
     <string name="name_generation">Generar nombre</string>
-    <string name="network_operator_user">{[usuari[o,a]]⸻⛌} %1$s</string>
-    <string name="network_user">{[usuari[o,a]]⸻⛌} de red llamada %1$s</string>
-    <string name="no_network_operator_user">{[usuari[o,a]]⸻⛌} de operador de red desconocido</string>
-    <string name="no_network_user">{[usuari[o,a]]⸻⛌} sin conexión a Internet por Wi-Fi</string>
+    <string name="network_operator_user">{[usuari[o,a]]; gender:⛌} %1$s</string>
+    <string name="network_user">{[usuari[o,a]]; gender:⛌} de red llamada %1$s</string>
+    <string name="no_network_operator_user">{[usuari[o,a]]; gender:⛌} de operador de red desconocido</string>
+    <string name="no_network_user">{[usuari[o,a]]; gender:⛌} sin conexión a Internet por Wi-Fi</string>
     <string name="nouns">existencia｢2｣¶ materia｢2｣¶ persona｢2｣¶ ser｢1｣¶ [human[o,a]]¶ [individu[o,a]]¶ entidad｢2｣¶ [[hombre,mujer]]¶ [client[e,a]]¶ sujeto｢1｣¶ ente｢1｣¶ esencia｢2｣¶ cosa｢2｣¶ sustancia｢2｣¶ criatura｢2｣¶ organismo｢1｣¶ forma｢2｣¶ espécimen｢1｣¶ forma de vida｢2｣¶ ser｢1｣ ¶ ser vivo｢1｣¶ [usuari[o,a]]¶ [amig[o,a]]¶ [conocid[o,a]]¶ [desconocid[o,a]]¶ colega｢0｣¶ camarada｢0｣¶ mejor [amig[o,a]]¶ [novi[o,a]]¶ [tip[o,a]]¶ personaje｢1｣¶ vástago｢1｣¶ figura｢2｣¶ habitante｢1｣¶ [muchach[o,a]]¶ joven｢0｣¶ [chic[o,a]]</string>
     <string name="ok">OK</string>
     <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Información para %1$s de:&lt;/i&gt;&lt;/font&gt; %2$s&lt;font color="#F6FBB2"&gt;, de género %3$s (%4$s)&lt;/font&gt;</string>
@@ -244,7 +244,7 @@
     <string name="preference_theme_summary">Cambia el tema de la aplicación</string>
     <string name="preference_update_frequency">Frecuencia de actualización</string>
     <string name="preference_update_frequency_summary">Cambia el tiempo que tarda en actualizarse la predicción</string>
-    <string name="qualitative_adjectives">agradable¦s¦¶ brillante¦s¦¶ desagradable¦s¦¶ diferente¦s¦¶ frágil¦es¦¶ electrizante¦s¦¶ [grandios[o,a]]¦s¦¶ mejor¦es¦¶ normal¦es¦¶ [negativ[o,a]]¦s¦¶ [oscur[o,a]]¦s¦¶ peor¦es¦¶ [positiv[o,a]]¦s¦¶ [rar[o,a]]¦s¦¶ [sólid[o,a]]¦s¦¶ terrible¦s¦</string>
+    <string name="qualitative_adjectives">{[agradable]; plural:+s}¶ {[brillante]; plural:+s}¶ {[desagradable]; plural:+s}¶ {[diferente]; plural:+s}¶ {[frágil]; plural:+es}¶ {[electrizante]; plural:+s}¶ {[grandios[o,a]]; plural:+s}¶ {[mejor]; plural:+es}¶ {[normal]; plural:+es}¶ {[negativ[o,a]]; plural:+s}¶ {[oscur[o,a]]; plural:+s}¶ {[peor]; plural:+es}¶ {[positiv[o,a]]; plural:+s}¶ {[rar[o,a]]; plural:+s}¶ {[sólid[o,a]]; plural:+s}¶ {[terrible]; plural:+s}</string>
     <string name="relative">[[padre,madre]]¶ [[papá,mamá]]¶ [hij[o,a]]¶ [prim[o,a]]¶ [tí[o,a]]¶ [sobrin[o,a]]¶ [herman[o,a]]¶ [abuel[o,a]]¶ [niet[o,a]]¶ [bisabuel[o,a]]</string>
     <string name="reload">Cargar otra consulta</string>
     <string name="save">Guardar consulta</string>
@@ -253,9 +253,9 @@
     <string name="time_component">La hora es¶ La hora actual es¶ En este momento la hora es¶ El reloj marca la(s)¶ La hora en este momento es¶ Tengo la hora</string>
     <string name="time_elapsed">%1$d año(s), %2$d mes(es), %3$d día(s)</string>
     <string name="title">%3$s de %2$s %1$s</string>
-    <string name="title_descriptor">[^superior[]]¶ [^senior[]]¶ [^adjunt[o,a]]¶ [^corporativ[o,a]]¶ [^dinámic[o,a]]¶ [^futur[o,a]]¶ de [^producto[]]¶ [^nacional[]]¶ [^regional[]]¶ [^distrital[]]¶ [^central[]]¶ [^global[]]¶ del [^cliente[]]¶ de [^inversión[]]¶ [^dinámic[o,a]]¶ [^internacional[]]¶ [^patrimonial[]]¶ [^avanzad[o,a]]¶ [^intern[o,a]]¶ [^human[o,a]]¶ [^jefe[,a]]¶ [^principal[]]</string>
-    <string name="title_job">[^supervisor[,a]]¶ [^asociad[o,a]]¶ [^ejecutiv[o,a]]¶ [^intermediari[o,a]]¶ [^oficial[]]¶ [^gerente[]]¶ [^ingenier[o,a]]¶ [^especialista[]]¶ [^director[,a]]¶ [^coordinador[,a]]¶ [^administrador[,a]]¶ [^arquitect[o,a]]¶ [^analista[]]¶ [^diseñador[,a]]¶ [^planificador[,a]]¶ [^orquestador[,a]]¶ [^técnic[o,a]]¶ [^desarrollador[,a]]¶ [^productor[,a]]¶ [^consultor[,a]]¶ [^asistente[]]¶ [^facilitador[,a]]¶ [^agente[]]¶ [^representante[]]¶ [^estratega[]]</string>
-    <string name="title_level">[^soluciones[]]¶ [^programa[]]¶ [^marca[]]¶ [^seguridad[]]¶ [^investigación[]]¶ [^soluciones[]]¶ [^directivas[]]¶ [^implementación[]]¶ [^integración[]]¶ [^funcionalidad[]]¶ [^respuesta[]]¶ [^integración[]]¶ [^tácticas[]]¶ [^identidad[]]¶ [^mercados[]]¶ [^grupo[]]¶ [^división[]]¶ [^aplicaciones[]]¶ [^optimización[]]¶ [^operaciones[]]¶ [^infraestructura[]]¶ [^intranet[]]¶ [^comunicaciones[]]¶ [^web[]]¶ [^marca[]]¶ [^calidad[]]¶ [^aseguramiento[]]¶ [^movilidad[]]¶ [^cuentas[]]¶ [^integración[]]¶ [^creativo[]]¶ [^configuración[]]¶ [^rendición[]] de [^cuentas[]]¶ [^interacciones[]]¶ [^factores[]]¶ [^usabilidad[]]¶ [^métricas[]]¶ [^atención[]]</string>
+    <string name="title_descriptor">[^superior]¶ [^senior]¶ [^adjunt[o,a]]¶ [^corporativ[o,a]]¶ [^dinámic[o,a]]¶ [^futur[o,a]]¶ de [^producto]¶ [^nacional]¶ [^regional]¶ [^local]¶ [^distrital]¶ [^central]¶ [^global]¶ del [^cliente]¶ de [^inversión]¶ [^dinámic[o,a]]¶ [^internacional]¶ [^patrimonial]¶ [^avanzad[o,a]]¶ [^intern[o,a]]¶ [^human[o,a]]¶ [^jefe[,a]]¶ [^principal]</string>
+    <string name="title_job">[^supervisor[,a]]¶ [^asociad[o,a]]¶ [^ejecutiv[o,a]]¶ [^intermediari[o,a]]¶ [^oficial]¶ [^gerente]¶ [^ingenier[o,a]]¶ [^especialista]¶ [^director[,a]]¶ [^coordinador[,a]]¶ [^administrador[,a]]¶ [^arquitect[o,a]]¶ [^analista]¶ [^diseñador[,a]]¶ [^planificador[,a]]¶ [^orquestador[,a]]¶ [^técnic[o,a]]¶ [^desarrollador[,a]]¶ [^productor[,a]]¶ [^consultor[,a]]¶ [^asistente]¶ [^facilitador[,a]]¶ [^agente]¶ [^representante]¶ [^estratega]</string>
+    <string name="title_level">[^soluciones]¶ [^programa]¶ [^marca]¶ [^seguridad]¶ [^investigación]¶ [^soluciones]¶ [^directivas]¶ [^implementación]¶ [^integración]¶ [^funcionalidad]¶ [^respuesta]¶ [^integración]¶ [^tácticas]¶ [^identidad]¶ [^mercados]¶ [^grupo]¶ [^división]¶ [^aplicaciones]¶ [^optimización]¶ [^operaciones]¶ [^infraestructura]¶ [^intranet]¶ [^comunicaciones]¶ [^web]¶ [^marca]¶ [^calidad]¶ [^aseguramiento]¶ [^movilidad]¶ [^cuentas]¶ [^integración]¶ [^creativo]¶ [^configuración]¶ [^rendición] de [^cuentas]¶ [^interacciones]¶ [^factores]¶ [^usabilidad]¶ [^métricas]¶ [^atención]</string>
     <string name="toast_clipboard">Texto copiado a portapapeles.</string>
     <string name="toast_enquiry_not_saved">No se pudo guardar la consulta.</string>
     <string name="toast_enquiry_saved">Se ha guardado la consulta con éxito.</string>
@@ -506,10 +506,10 @@
         <item>un ave {rand:bicéfala; tricéfala}｢2｣</item>
         <item>un rosario｢1｣</item>
         <item>un ojo｢1｣</item>
-        <item>{string:individual⸻⸮}</item>
-        <item>{string:individual⸻⸮}</item>
-        <item>{string:individual⸻⸮}</item>
-        <item>{string:individual⸻⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
     </string-array>
     <string-array name="augury_situation">
         <item>en medio del vacío</item>
@@ -614,17 +614,17 @@
     <string-array name="divination">
         <item>Pasará algo {rand:∅; favorable; desfavorable} acerca de {method:getNounWithArticle}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {method:getNounWithArticle}.</item>
-        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas}, relacionadas con {string:divination_middle}, provenientes de {string:unspecific_person⸻⸮}.</item>
+        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas}, relacionadas con {string:divination_middle}, provenientes de {string:unspecific_person; gender:⸮}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {string:divination_middle}.</item>
         <item>Pasará algo {string:situation_descriptor} relacionado con {string:divination_middle}.</item>
         <item>Un evento {string:situation_descriptor}, relacionado con {method:getNounWithArticle}, ocurrirá.</item>
-        <item>Ocurrirá algo relacionado con {string:unspecific_person⸻⸮}.</item>
+        <item>Ocurrirá algo relacionado con {string:unspecific_person; gender:⸮}.</item>
         <item>Tendrás problemas con una persona de signo {string:astrological_sign}.</item>
         <item>Una persona de signo {string:astrological_sign} te ayudará a resolver tus problemas.</item>
         <item>Una persona de signo {string:astrological_sign} te {rand:perjudicará; beneficiará; ayudará; abandonará; ignorará; verá}.</item>
         <item>Una persona de signo {string:astrological_sign} te afectará {rand:negativamente; positivamente} en {string:divination_middle}.</item>
         <item>Estás en un momento en el que debes tomar decisiones {rand:∅; críticas; apresuradas; importantes; bien pensadas; necesarias; esenciales} sobre {string:divination_middle}.</item>
-        <item>En este momento otros te perciben como una persona｢2｣ ⸠string:personality_trait⸻2⸡.</item>
+        <item>En este momento otros te perciben como una persona｢2｣ ⸠string:personality_trait; gender:2⸡.</item>
         <item>{string:foreboding_start} {string:foreboding_end}</item>
         <item>Yo {rand:veo; percibo; visualizo; contemplo} una imagen de {string:augury_entity} ⸠string:augury_situation⸡.</item>
     </string-array>
@@ -656,70 +656,70 @@
         <item>Creo que esto se debe a {string:divination_causative_factor}.</item>
         <item>Supongo que lo anterior es causado por {string:divination_causative_factor}.</item>
         <item>Puedo {rand:ver; percibir; detectar; sentir; observar; notar} que eso es debido a {string:divination_causative_factor}.</item>
-        <item>Se puede decir que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:explicit_cause⸻⸮}.</item>
-        <item>Veo que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:explicit_cause⸻⸮}.</item>
-        <item>El {rand:responsable; causante; motivo} de ello podría ser {string:unspecific_person⸻⸮}.</item>
-        <item>La adivinación dice que, posiblemente, quien causa esto sea {string:person⸻⸮}.</item>
-        <item>Aparentemente {string:individual⸻⸮} podría ser quien causa esto, de acuerdo a lo que puedo {rand:ver; percibir; detectar; sentir; observar; notar} en ⸠[est[e,a]]⸡ {rand:fortuna｢2｣; adivinación｢2｣; predicción｢2｣; augurio｢1｣}.</item>
-        <item>Es posible que {string:individual⸻⸮} tenga algo que ver.</item>
+        <item>Se puede decir que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:explicit_cause; gender:⸮}.</item>
+        <item>Veo que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:explicit_cause; gender:⸮}.</item>
+        <item>El {rand:responsable; causante; motivo} de ello podría ser {string:unspecific_person; gender:⸮}.</item>
+        <item>La adivinación dice que, posiblemente, quien causa esto sea {string:person; gender:⸮}.</item>
+        <item>Aparentemente {string:individual; gender:⸮} podría ser quien causa esto, de acuerdo a lo que puedo {rand:ver; percibir; detectar; sentir; observar; notar} en ⸠[est[e,a]]⸡ {rand:fortuna｢2｣; adivinación｢2｣; predicción｢2｣; augurio｢1｣}.</item>
+        <item>Es posible que {string:individual; gender:⸮} tenga algo que ver.</item>
     </string-array>
     <string-array name="divination_causative_factor">
-        <item>{string:unspecific_person⸻⸮}</item>
-        <item>{string:person⸻⸮}</item>
-        <item>{string:individual⸻⸮}</item>
-        <item>{string:individual⸻⸮}</item>
+        <item>{string:unspecific_person; gender:⸮}</item>
+        <item>{string:person; gender:⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
+        <item>{string:individual; gender:⸮}</item>
         <item>{string:divination_middle}</item>
         <item>{string:divination_middle}</item>
-        <item>{string:explicit_cause⸻⸮}</item>
-        <item>{string:explicit_cause⸻⸮}</item>
-        <item>{string:explicit_cause⸻⸮}</item>
-        <item>{string:explicit_cause⸻⸮}</item>
+        <item>{string:explicit_cause; gender:⸮}</item>
+        <item>{string:explicit_cause; gender:⸮}</item>
+        <item>{string:explicit_cause; gender:⸮}</item>
+        <item>{string:explicit_cause; gender:⸮}</item>
     </string-array>
     <string-array name="divination_end">
-        <item>será¦n¦ {string:qualitative_adjectives⸻＃}.</item>
-        <item>tendrá¦n¦ cambios positivos.</item>
-        <item>tendrá¦n¦ cambios negativos.</item>
-        <item>se verá¦n¦ {[afectad[o,a]]⸻＃}¦s¦ de manera positiva.</item>
-        <item>se verá¦n¦ {[afectad[o,a]]⸻＃}¦s¦ de manera negativa.</item>
-        <item>será¦n¦ {[afectad[o,a]]⸻＃}¦s¦ positivamente.</item>
-        <item>será¦n¦ {[afectad[o,a]]⸻＃}¦s¦ negativamente.</item>
-        <item>mejorará¦n¦.</item>
-        <item>empeorará¦n¦.</item>
-        <item>será¦n¦ {[buen[o,a]]⸻＃}¦s¦, o se remediará¦n¦ o reparará¦n¦.</item>
-        <item>será¦n¦ {[mal[o,a]]⸻＃}¦s¦ o se deteriorará¦n¦.</item>
-        <item>estará¦n¦ bien o será¦n¦ {[óptim[o,a]]⸻＃}¦s¦.</item>
-        <item>estará¦n¦ mal o será¦n¦ {[pésim[o,a]]⸻＃}¦s¦.</item>
-        <item>no será¦n¦ {[afectad[o,a]]⸻＃}¦s¦ en modo alguno.</item>
-        <item>no se verá¦n¦ {[afectad[o,a]]⸻＃}¦s¦.</item>
-        <item>no cambiará¦n¦.</item>
-        <item>seguirá¦n¦ igual.</item>
-        <item>cambiará¦n¦.</item>
-        <item>cambiará¦n¦ totalmente.</item>
-        <item>cambiará¦n¦ a la inversa.</item>
-        <item>estará¦n¦ al {method:getPercentage}.</item>
-        <item>se revertirá¦n¦.</item>
-        <item>volverá¦n¦ a ser como antes.</item>
-        <item>no será¦n¦ como antes.</item>
-        <item>se verá¦n¦ seriamente {[perjudicad[o,a]]⸻＃}¦s¦.</item>
-        <item>se verá¦n¦ realmente {[mejorad[o,a]]⸻＃}¦s¦.</item>
-        <item>será¦n¦ {[debilitad[o,a]]⸻＃}¦s¦ o {[menguad[o,a]]⸻＃}¦s¦.</item>
-        <item>será¦n¦ {[potenciad[o,a]]⸻＃}¦s¦ o crecerá¦n¦.</item>
-        <item>traerá¦n¦ soluciones o bienestar a otras personas.</item>
-        <item>causará¦n¦ problemas o perjuicios a otras personas.</item>
-        <item>pasará¦n¦ a segundo plano.</item>
-        <item>pasará¦n¦ a primer plano.</item>
-        <item>saldrá¦n¦ a la luz.</item>
-        <item>será¦n¦ {[revelad[o,a]]⸻＃}¦s¦.</item>
-        <item>será¦n¦ {[recuperad[o,a]]⸻＃}¦s¦.</item>
-        <item>se perderá¦n¦.</item>
-        <item>regresará¦n¦.</item>
-        <item>terminará¦n¦.</item>
-        <item>aumentará¦n¦ o se fortalecerá¦n¦ {rand:∅; aunque de manera gradual; súbitamente; de repente; poco a poco; un poco; demasiado}.</item>
-        <item>disminuirá¦n¦ o se deteriorará¦n¦ {rand:∅; aunque de manera gradual; súbitamente; de repente; poco a poco; un poco; demasiado}.</item>
-        <item>traerá¦n¦ buenos resultados, beneficios o ventajas en otros ámbitos de tu vida.꘎</item>
-        <item>traerá¦n¦ malos resultados, perjuicios o desventajas en otros ámbitos de tu vida.꘎</item>
-        <item>repercutirá¦n¦ positivamente en {string:divination_middle}.꘎</item>
-        <item>repercutirá¦n¦ negativamente en {string:divination_middle}.꘎</item>
+        <item>{[será]; plural:serán} {string:qualitative_adjectives; gender:＃}.</item>
+        <item>{[tendrá]; plural:tendrán} cambios positivos.</item>
+        <item>{[tendrá]; plural:tendrán} cambios negativos.</item>
+        <item>se {[verá]; plural:verán} {[afectad[o,a]]; gender:＃; plural:+s} de manera positiva.</item>
+        <item>se {[verá]; plural:verán} {[afectad[o,a]]; gender:＃; plural:+s} de manera negativa.</item>
+        <item>{[será]; plural:serán} {[afectad[o,a]]; gender:＃; plural:+s} positivamente.</item>
+        <item>{[será]; plural:serán} {[afectad[o,a]]; gender:＃; plural:+s} negativamente.</item>
+        <item>{[mejorará]; plural:mejorarán}.</item>
+        <item>{[empeorará]; plural:empeorarán}.</item>
+        <item>{[será]; plural:serán} {[buen[o,a]]; gender:＃; plural:+s}, o se {[remediará]; plural:remediarán} o {[reparará]; plural:repararán}.</item>
+        <item>{[será]; plural:serán} {[mal[o,a]]; gender:＃; plural:+s} o se {[deteriorará]; plural:deteriorarán}.</item>
+        <item>{[estará]; plural:estarán} bien o {[será]; plural:serán} {[óptim[o,a]]; gender:＃; plural:+s}.</item>
+        <item>{[estará]; plural:estarán} mal o {[será]; plural:serán} {[pésim[o,a]]; gender:＃; plural:+s}.</item>
+        <item>no {[será]; plural:serán} {[afectad[o,a]]; gender:＃; plural:+s} en modo alguno.</item>
+        <item>no se {[verá]; plural:verán} {[afectad[o,a]]; gender:＃; plural:+s}.</item>
+        <item>no {[cambiará]; plural:cambiarán}.</item>
+        <item>{[seguirá]; plural:seguirán} igual.</item>
+        <item>{[cambiará]; plural:cambiarán}.</item>
+        <item>{[cambiará]; plural:cambiarán} totalmente.</item>
+        <item>{[cambiará]; plural:cambiarán} a la inversa.</item>
+        <item>{[estará]; plural:estarán} al {method:getPercentage}.</item>
+        <item>se {[revertirá]; plural:revertirán}.</item>
+        <item>{[volverá]; plural:volverán} a ser como antes.</item>
+        <item>no {[será]; plural:serán} como antes.</item>
+        <item>se {[verá]; plural:verán} seriamente {[perjudicad[o,a]]; gender:＃; plural:+s}.</item>
+        <item>se {[verá]; plural:verán} realmente {[mejorad[o,a]]; gender:＃; plural:+s}.</item>
+        <item>{[será]; plural:serán} {[debilitad[o,a]]; gender:＃; plural:+s} o {[menguad[o,a]]; gender:＃; plural:+s}.</item>
+        <item>{[será]; plural:serán} {[potenciad[o,a]]; gender:＃; plural:+s} o {[crecerá]; plural:crecerán}.</item>
+        <item>{[traerá]; plural:traerán} soluciones o bienestar a otras personas.</item>
+        <item>{[causará]; plural:causarán} problemas o perjuicios a otras personas.</item>
+        <item>{[pasará]; plural:pasarán} a segundo plano.</item>
+        <item>{[pasará]; plural:pasarán} a primer plano.</item>
+        <item>{[saldrá]; plural:saldrán} a la luz.</item>
+        <item>{[será]; plural:serán} {[revelad[o,a]]; gender:＃; plural:+s}.</item>
+        <item>{[será]; plural:serán} {[recuperad[o,a]]; gender:＃; plural:+s}.</item>
+        <item>se {[perderá]; plural:perderán}.</item>
+        <item>{[regresará]; plural:regresarán}.</item>
+        <item>{[terminará]; plural:terminarán}.</item>
+        <item>{[aumentará]; plural:aumentarán} o se {[fortalecerá]; plural:fortalecerán} {rand:∅; aunque de manera gradual; súbitamente; de repente; poco a poco; un poco; demasiado}.</item>
+        <item>{[disminuirá]; plural:disminuirán} o se {[deteriorará]; plural:deteriorarán} {rand:∅; aunque de manera gradual; súbitamente; de repente; poco a poco; un poco; demasiado}.</item>
+        <item>{[traerá]; plural:traerán} buenos resultados, beneficios o ventajas en otros ámbitos de tu vida.꘎</item>
+        <item>{[traerá]; plural:traerán} malos resultados, perjuicios o desventajas en otros ámbitos de tu vida.꘎</item>
+        <item>{[repercutirá]; plural:repercutirán} positivamente en {string:divination_middle}.꘎</item>
+        <item>{[repercutirá]; plural:repercutirán} negativamente en {string:divination_middle}.꘎</item>
     </string-array>
     <string-array name="divination_middle">
         <item>tu {rand:vida｢2｣; destino｢1｣; karma｢1｣}</item>
@@ -1200,9 +1200,9 @@
         <item>Tengo que ir con ##. Me debe dinero.</item>
         <item>Estoy enamorado de ##.</item>
         <item>¿Acaso has visto a {[un[,a]]} tal ##?</item>
-        <item>Tu {string:relative⸻⸮}, ## y yo somos amantes. Todo un triángulo amoroso.</item>
-        <item>¿Eres {string:relative⸻⛌} de ##? Se parecen mucho.</item>
-        <item>¿Eres acaso {string:relative⸻⛌} de ##? Comparten ciertas características ustedes dos.</item>
+        <item>Tu {string:relative; gender:⸮}, ## y yo somos amantes. Todo un triángulo amoroso.</item>
+        <item>¿Eres {string:relative; gender:⛌} de ##? Se parecen mucho.</item>
+        <item>¿Eres acaso {string:relative; gender:⛌} de ##? Comparten ciertas características ustedes dos.</item>
         <item>Me agrada verte por aquí, no como a ##.</item>
         <item>Oh, sí, revelé un futuro terrorífico para ##.</item>
         <item>El otro día ## me pidió que le leyera el futuro.</item>
@@ -1497,22 +1497,22 @@
         <item>## conoce a ##.</item>
         <item>Tengo que decirle algo a ##.</item>
         <item>Debo ver el futuro de ##.</item>
-        <item>## es una persona {string:adjectives⸻2}.</item>
-        <item>## es un sujeto {string:adjectives⸻1}.</item>
-        <item>## es un individuo {string:adjectives⸻1}.</item>
-        <item>## y su {string:relative⸻⸮} se llevan muy bien.</item>
-        <item>## y su {string:relative⸻⸮} tienen una mala relación.</item>
-        <item>## y su {string:relative⸻⸮} se tratan muy mal.</item>
-        <item>## y su {string:relative⸻⸮} tienen una relación armoniosa.</item>
-        <item>## y su {string:relative⸻⸮} han hecho cosas indecibles.</item>
-        <item>## y su {string:relative⸻⸮} han hecho cosas muy malas.</item>
-        <item>Tu {string:relative⸻⸮} se parece mucho a ##.</item>
-        <item>Tu {string:relative⸻⸮} ama a ##.</item>
-        <item>Tu {string:relative⸻⸮} odia a ##.</item>
-        <item>Tu {string:relative⸻⸮} ignora a ##.</item>
-        <item>Tu {string:relative⸻⸮} es buen amigo de ##.</item>
-        <item>Tu {string:relative⸻⸮} se lleva mal con ##.</item>
-        <item>Tu {string:relative⸻⸮} y ## son enemigos.</item>
+        <item>## es una persona {string:adjectives; gender:2}.</item>
+        <item>## es un sujeto {string:adjectives; gender:1}.</item>
+        <item>## es un individuo {string:adjectives; gender:1}.</item>
+        <item>## y su {string:relative; gender:⸮} se llevan muy bien.</item>
+        <item>## y su {string:relative; gender:⸮} tienen una mala relación.</item>
+        <item>## y su {string:relative; gender:⸮} se tratan muy mal.</item>
+        <item>## y su {string:relative; gender:⸮} tienen una relación armoniosa.</item>
+        <item>## y su {string:relative; gender:⸮} han hecho cosas indecibles.</item>
+        <item>## y su {string:relative; gender:⸮} han hecho cosas muy malas.</item>
+        <item>Tu {string:relative; gender:⸮} se parece mucho a ##.</item>
+        <item>Tu {string:relative; gender:⸮} ama a ##.</item>
+        <item>Tu {string:relative; gender:⸮} odia a ##.</item>
+        <item>Tu {string:relative; gender:⸮} ignora a ##.</item>
+        <item>Tu {string:relative; gender:⸮} es buen amigo de ##.</item>
+        <item>Tu {string:relative; gender:⸮} se lleva mal con ##.</item>
+        <item>Tu {string:relative; gender:⸮} y ## son enemigos.</item>
     </string-array>
     <string-array name="person">
         <item>una persona</item>

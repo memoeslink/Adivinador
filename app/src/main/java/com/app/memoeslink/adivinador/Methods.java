@@ -30,7 +30,7 @@ public class Methods extends BaseWrapper {
     private final TextFormatter textFormatter;
 
     static {
-        separator = CharHelper.getFirstDisplayableGlyph('↓', '⬇', '⇣');
+        separator = CharHelper.getFirstDisplayableGlyph('↓', '⬇', '⇣', '•');
     }
 
     public Methods(Context context) {
@@ -253,17 +253,13 @@ public class Methods extends BaseWrapper {
             if (component.getHegemonicGender() != null && component.getHegemonicGender() != Gender.UNDEFINED)
                 gender = component.getHegemonicGender();
 
-            if (StringHelper.startsWithAny(segment, "tus", "los", "las"))
+            if (StringHelper.startsWithAny(segment, "tus ", "los ", "las "))
                 plural = true;
             segments.set(1, segment);
 
             //Format end of divination
             segment = segments.get(2);
-            segment = StringHelper.replace(segment, "＃", String.valueOf(gender.getValue()));
-            segment = textFormatter.replaceTags(segment).getText();
-
-            if (getString(R.string.locale).equals("es"))
-                segment = !plural ? StringHelper.removeAll(segment, "¦\\p{L}+¦") : StringHelper.remove(segment, "¦");
+            segment = textFormatter.replaceTags(segment, gender, plural).getText();
             segments.set(2, segment);
 
             //Format cause of divination
@@ -273,7 +269,7 @@ public class Methods extends BaseWrapper {
                 segment = textFormatter.replaceTags(segment).getText();
 
                 if (segment.contains("%%"))
-                    segment = StringHelper.replace(segment, "%%", textFormatter.replaceTags("{string:unspecific_person⸻⸮}").getText());
+                    segment = StringHelper.replace(segment, "%%", textFormatter.replaceTags("{string:unspecific_person; gender:⸮}").getText());
                 segment = StringHelper.replace(segment, " a el ", " al ");
             }
             segments.set(3, segment);
@@ -422,7 +418,7 @@ public class Methods extends BaseWrapper {
     }
 
     private Person getThirdParty(Person closePerson, int index) {
-        TextComponent thirdParty = textFormatter.replaceTags("{string:person[" + index + "]⸻⸮}");
+        TextComponent thirdParty = textFormatter.replaceTags("{string:person[" + index + "]; gender:⸮}");
         thirdParty.setText(StringHelper.replace(thirdParty.getText(), "%%", closePerson.getDescription()));
         thirdParty.setText(StringHelper.replace(thirdParty.getText(), " de el ", " del "));
         return new Person.PersonBuilder()
@@ -450,7 +446,7 @@ public class Methods extends BaseWrapper {
             if (closePerson.getText().isEmpty())
                 closePerson.setText("?");
         } else {
-            closePerson = textFormatter.replaceTags("{string:person[" + index + "]⸻⸮}");
+            closePerson = textFormatter.replaceTags("{string:person[" + index + "]; gender:⸮}");
             closePerson.setText(StringHelper.replace(closePerson.getText(), "%%", person.getDescription()));
         }
         return new Person.PersonBuilder()
