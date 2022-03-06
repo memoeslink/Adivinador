@@ -319,7 +319,7 @@ public class MainActivity extends MenuActivity {
                     startActivity(i);
                     break;
                 case R.id.nav_reload:
-                    reloadPrediction(false, false);
+                    reloadPrediction(false);
                     break;
                 case R.id.nav_save:
                     tvPersonInfo.performClick();
@@ -347,13 +347,13 @@ public class MainActivity extends MenuActivity {
         DatePickerDialog.OnDateSetListener dateSetListener = (dialog, year, monthOfYear, dayOfMonth) -> {
             enquiryDate = DateTimeHelper.getStrDate(year, monthOfYear + 1, dayOfMonth);
             preferences.putString("temp_enquiryDate", enquiryDate);
-
-            if (!enquiryDate.equals(DateTimeHelper.getStrCurrentDate()))
-                reloadPrediction(llReloadHolder.getVisibility() != View.VISIBLE, false);
+            reloadPrediction(false);
         };
         enquiryDate = DateTimeHelper.getStrCurrentDate();
 
         tvPick.setOnClickListener(view -> {
+            dpdEnquiryDate = new DatePickerDialog();
+
             if (!dpdEnquiryDate.isVisible()) {
                 LocalDate currentDate = LocalDate.now();
                 dpdEnquiryDate = DatePickerDialog.newInstance(dateSetListener, currentDate.getYear(), currentDate.getMonthValue() - 1, currentDate.getDayOfMonth());
@@ -382,13 +382,14 @@ public class MainActivity extends MenuActivity {
                     case 0:
                     default:
                         tvPick.setVisibility(View.GONE);
+
+                        if (!enquiryDate.equals(DateTimeHelper.getStrCurrentDate())) {
+                            enquiryDate = DateTimeHelper.getStrCurrentDate();
+                            preferences.putString("temp_enquiryDate", enquiryDate);
+                            reloadPrediction(false);
+                        }
                         break;
                 }
-                enquiryDate = DateTimeHelper.getStrCurrentDate();
-                preferences.putString("temp_enquiryDate", enquiryDate);
-
-                if (!enquiryDate.equals(DateTimeHelper.getStrCurrentDate()))
-                    reloadPrediction(llReloadHolder.getVisibility() != View.VISIBLE, false);
             }
 
             @Override
@@ -436,7 +437,7 @@ public class MainActivity extends MenuActivity {
             startActivity(i);
         });
 
-        llReloadHolder.setOnClickListener(view -> reloadPrediction(false, false));
+        llReloadHolder.setOnClickListener(view -> reloadPrediction(false));
 
         llInquiryHolder.setOnClickListener(view -> {
             if (!busy) {
@@ -456,7 +457,7 @@ public class MainActivity extends MenuActivity {
 
         llClearHolder.setOnClickListener(view -> {
             resourceFinder.clearForm(); //Delete form data
-            reloadPrediction(false, false);
+            reloadPrediction(false);
         });
 
         btDataEntry.setOnClickListener(view -> {
@@ -604,7 +605,7 @@ public class MainActivity extends MenuActivity {
         //Show, avoid, or hide ads
         prepareAd(false);
 
-        //Get a prediction for the fortune teller to display
+        //Get a prediction
         if (recent || (!getPreferencesPerson().getSummary().equals(currentSummary) && isDataValid()) || (StringHelper.isNotNullOrBlank(currentSummary) && !isDataValid())) {
             getPrediction();
             recent = false;
@@ -634,7 +635,7 @@ public class MainActivity extends MenuActivity {
                         resourceSeconds++;
 
                     if (seconds >= frequency && frequency != 0) {
-                        runOnUiThread(() -> {
+                        MainActivity.this.runOnUiThread(() -> {
                             if (active)
                                 vanishAndMaterializeView(tvPhrase); //Fade out and fade in the fortune teller's text.
 
@@ -661,15 +662,10 @@ public class MainActivity extends MenuActivity {
                             seconds++;
                     }
 
-                    if (updateSeconds >= refreshFrequency) {
-                        if (StringHelper.isNotNullOrBlank(currentSummary)) //Get a prediction for the fortune teller to display, if possible
+                    if (updateSeconds >= refreshFrequency) { //Get another prediction if current is auto-generated, or refresh user-entered enquiry at day start
+                        if (StringHelper.isNullOrBlank(currentSummary) || !lastDate.equals(DateTimeHelper.getStrCurrentDate()))
                             getPrediction();
-                        else {
-                            if (!lastDate.equals(DateTimeHelper.getStrCurrentDate()))
-                                getPrediction();
-                            else
-                                updateSeconds = 0;
-                        }
+                        updateSeconds = 0;
                     } else {
                         if (updateSeconds >= refreshFrequency / 2) {
                             if (!started && backupPrediction != null) {
@@ -681,9 +677,7 @@ public class MainActivity extends MenuActivity {
                                 }).start();
                             }
                         }
-
-                        if (updateSeconds < 600)
-                            updateSeconds++;
+                        updateSeconds++;
                     }
 
                     if (adSeconds >= 3600) {
@@ -1113,7 +1107,7 @@ public class MainActivity extends MenuActivity {
             preferences.putInt("temp_date_month", person.getBirthdate().getMonthValue());
             preferences.putInt("temp_date_day", person.getBirthdate().getDayOfMonth());
             preferences.putBoolean("temp_anonymous", person.hasAttribute("anonymous"));
-            reloadPrediction(true, mute);
+            reloadPrediction(mute);
             return true;
         }
         return false;
@@ -1135,7 +1129,7 @@ public class MainActivity extends MenuActivity {
         return true;
     }
 
-    private void reloadPrediction(final boolean formCompleted, final boolean mute) {
+    private void reloadPrediction(final boolean mute) {
         if (!busy) {
             busy = true;
             llConfetti.animate() //Fade particles layout out
@@ -1156,106 +1150,103 @@ public class MainActivity extends MenuActivity {
 
             if (!mute)
                 Sound.play(MainActivity.this, "wind");
-
-            new Thread(() -> {
-                backupPrediction = getPredictionData(formCompleted);
-                getPrediction(); //Get a prediction for the fortune teller to display
-            }).start();
+            getPrediction();
         }
     }
 
     private void getPrediction() {
-        MainActivity.this.runOnUiThread(() -> {
-            updateSeconds = 0;
+        new Thread(() -> {
             boolean formCompleted = isDataValid();
 
-            if (!llInquiryHolder.isEnabled()) {
-                llInquiryHolder.setVisibility(View.GONE);
-                llInquiryHolder.setAlpha(1.0F);
-                llInquiryHolder.setEnabled(true);
-            }
-
-            if (formCompleted) {
-                tvPersonInfo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                tvPersonInfo.setEnabled(false);
-                tvPersonInfo.setClickable(false);
-                navigationView.getMenu().findItem(R.id.nav_save).setEnabled(false);
-                navigationView.getMenu().findItem(R.id.nav_save).getIcon().setAlpha(125);
-                llDataEntryHolder.setEnabled(false);
-                llDataEntryHolder.setVisibility(View.GONE);
-                navigationView.getMenu().findItem(R.id.nav_data_entry).setEnabled(false);
-                navigationView.getMenu().findItem(R.id.nav_data_entry).getIcon().setAlpha(125);
-                llReloadHolder.setEnabled(false);
-                llReloadHolder.setVisibility(View.GONE);
-                navigationView.getMenu().findItem(R.id.nav_reload).setEnabled(false);
-                navigationView.getMenu().findItem(R.id.nav_reload).getIcon().setAlpha(125);
-                llClearHolder.setEnabled(true);
-                llClearHolder.setVisibility(View.VISIBLE);
-                navigationView.getMenu().findItem(R.id.nav_clear).setEnabled(true);
-                navigationView.getMenu().findItem(R.id.nav_clear).getIcon().setAlpha(255);
-            } else {
-                tvPersonInfo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.save, 0, 0, 0);
-                tvPersonInfo.setEnabled(true);
-                tvPersonInfo.setClickable(true);
-                navigationView.getMenu().findItem(R.id.nav_save).setEnabled(true);
-                navigationView.getMenu().findItem(R.id.nav_save).getIcon().setAlpha(255);
-                llDataEntryHolder.setEnabled(true);
-                llDataEntryHolder.setVisibility(View.VISIBLE);
-                navigationView.getMenu().findItem(R.id.nav_data_entry).setEnabled(true);
-                navigationView.getMenu().findItem(R.id.nav_data_entry).getIcon().setAlpha(255);
-                llReloadHolder.setEnabled(true);
-                llReloadHolder.setVisibility(View.VISIBLE);
-                navigationView.getMenu().findItem(R.id.nav_reload).setEnabled(true);
-                navigationView.getMenu().findItem(R.id.nav_reload).getIcon().setAlpha(255);
-                llClearHolder.setEnabled(false);
-                llClearHolder.setVisibility(View.GONE);
-                navigationView.getMenu().findItem(R.id.nav_clear).setEnabled(false);
-                navigationView.getMenu().findItem(R.id.nav_clear).getIcon().setAlpha(125);
-            }
-
-            if (backupPrediction != null) {
+            if (!formCompleted && backupPrediction != null) {
                 prediction = backupPrediction;
                 backupPrediction = null;
             } else
                 prediction = getPredictionData(formCompleted);
 
-            //Show predictionView
-            tvPersonInfo.setText(TextFormatter.fromHtml(getString(R.string.person_data,
-                    enquiryDate.equals(DateTimeHelper.getStrCurrentDate()) ? getString(R.string.today) : enquiryDate,
-                    prediction.getPerson().getDescription(),
-                    resourceFinder.getGenderName(prediction.getPerson().getGender(), 2),
-                    DateTimeHelper.getStrDate(prediction.getPerson().getBirthdate())
-            )));
-            setLinksToText(tvPrediction, prediction.getFormattedContent());
+            MainActivity.this.runOnUiThread(() -> {
+                if (!llInquiryHolder.isEnabled()) {
+                    llInquiryHolder.setVisibility(View.GONE);
+                    llInquiryHolder.setAlpha(1.0F);
+                    llInquiryHolder.setEnabled(true);
+                }
 
-            if (people.size() == 1 && isNoPersonTempStored()) {
-                llInquiryHolder.setVisibility(View.VISIBLE);
-                navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(true);
-                navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(255);
-            }
-            preferences.remove("temp_busy");
+                if (formCompleted) {
+                    tvPersonInfo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                    tvPersonInfo.setEnabled(false);
+                    tvPersonInfo.setClickable(false);
+                    navigationView.getMenu().findItem(R.id.nav_save).setEnabled(false);
+                    navigationView.getMenu().findItem(R.id.nav_save).getIcon().setAlpha(125);
+                    llDataEntryHolder.setEnabled(false);
+                    llDataEntryHolder.setVisibility(View.GONE);
+                    navigationView.getMenu().findItem(R.id.nav_data_entry).setEnabled(false);
+                    navigationView.getMenu().findItem(R.id.nav_data_entry).getIcon().setAlpha(125);
+                    llReloadHolder.setEnabled(false);
+                    llReloadHolder.setVisibility(View.GONE);
+                    navigationView.getMenu().findItem(R.id.nav_reload).setEnabled(false);
+                    navigationView.getMenu().findItem(R.id.nav_reload).getIcon().setAlpha(125);
+                    llClearHolder.setEnabled(true);
+                    llClearHolder.setVisibility(View.VISIBLE);
+                    navigationView.getMenu().findItem(R.id.nav_clear).setEnabled(true);
+                    navigationView.getMenu().findItem(R.id.nav_clear).getIcon().setAlpha(255);
+                } else {
+                    tvPersonInfo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.save, 0, 0, 0);
+                    tvPersonInfo.setEnabled(true);
+                    tvPersonInfo.setClickable(true);
+                    navigationView.getMenu().findItem(R.id.nav_save).setEnabled(true);
+                    navigationView.getMenu().findItem(R.id.nav_save).getIcon().setAlpha(255);
+                    llDataEntryHolder.setEnabled(true);
+                    llDataEntryHolder.setVisibility(View.VISIBLE);
+                    navigationView.getMenu().findItem(R.id.nav_data_entry).setEnabled(true);
+                    navigationView.getMenu().findItem(R.id.nav_data_entry).getIcon().setAlpha(255);
+                    llReloadHolder.setEnabled(true);
+                    llReloadHolder.setVisibility(View.VISIBLE);
+                    navigationView.getMenu().findItem(R.id.nav_reload).setEnabled(true);
+                    navigationView.getMenu().findItem(R.id.nav_reload).getIcon().setAlpha(255);
+                    llClearHolder.setEnabled(false);
+                    llClearHolder.setVisibility(View.GONE);
+                    navigationView.getMenu().findItem(R.id.nav_clear).setEnabled(false);
+                    navigationView.getMenu().findItem(R.id.nav_clear).getIcon().setAlpha(125);
+                }
 
-            //Show person's name, if active and possible
-            if (active && !isViewVisible(tvPersonInfo))
-                showFormattedToast(MainActivity.this, TextFormatter.fromHtml(prediction.getPerson().getDescription()));
+                //Show predictionView
+                tvPersonInfo.setText(TextFormatter.fromHtml(getString(R.string.person_data,
+                        enquiryDate.equals(DateTimeHelper.getStrCurrentDate()) ? getString(R.string.today) : enquiryDate,
+                        prediction.getPerson().getDescription(),
+                        resourceFinder.getGenderName(prediction.getPerson().getGender(), 2),
+                        DateTimeHelper.getStrDate(prediction.getPerson().getBirthdate())
+                )));
+                setLinksToText(tvPrediction, prediction.getFormattedContent());
 
-            //Talk; if active, enabled and possible
-            if (recent)
-                pending = true;
-            else if (active && !tvPersonInfo.getText().toString().isEmpty() && prediction != null && (textType == 1 || textType == 2)) {
-                if (reading == -1 || reading == 1) {
-                    startingReading = 1;
-                    talk(tvPersonInfo.getText().toString() + ". " + prediction.getContent());
-                } else
+                if (people.size() == 1 && isNoPersonTempStored()) {
+                    llInquiryHolder.setVisibility(View.VISIBLE);
+                    navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(true);
+                    navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(255);
+                }
+                preferences.remove("temp_busy");
+
+                //Show person's name, if active and possible
+                if (active && !isViewVisible(tvPersonInfo))
+                    showFormattedToast(MainActivity.this, TextFormatter.fromHtml(prediction.getPerson().getDescription()));
+
+                //Talk; if active, enabled and possible
+                if (recent)
                     pending = true;
-            }
-            spnDateType.setClickable(true);
-            spnDateType.setEnabled(true);
-            tvPick.setEnabled(true);
-            busy = false;
+                else if (active && !tvPersonInfo.getText().toString().isEmpty() && prediction != null && (textType == 1 || textType == 2)) {
+                    if (reading == -1 || reading == 1) {
+                        startingReading = 1;
+                        talk(tvPersonInfo.getText().toString() + ". " + prediction.getContent());
+                    } else
+                        pending = true;
+                }
+                spnDateType.setClickable(true);
+                spnDateType.setEnabled(true);
+                tvPick.setEnabled(true);
+                busy = false;
 
-            llConfetti.animate().alpha(1.0f).setDuration(200); //Fade particles layout in
-        });
+                llConfetti.animate().alpha(1.0f).setDuration(200); //Fade particles layout in
+            });
+        }).start();
     }
 
     public Prediction getPredictionData(boolean formCompleted) {

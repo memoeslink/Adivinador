@@ -8,8 +8,8 @@ android {
         applicationId "com.app.memoeslink.adivinador"
         minSdkVersion 26
         targetSdkVersion 31
-        versionCode 112
-        versionName "1.6.4"
+        versionCode 113
+        versionName "1.6.5"
         resConfigs 'es', 'en'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "Adivinador-$versionName")
