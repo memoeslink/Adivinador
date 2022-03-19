@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 113,
-      "versionName": "1.6.5",
-      "outputFile": "Adivinador-1.6.5-release.apk"
+      "versionCode": 114,
+      "versionName": "1.6.6",
+      "outputFile": "Adivinador-1.6.6-release.apk"
     }
   ],
   "elementType": "File"
