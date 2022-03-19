@@ -1,4 +1,4 @@
-package com.app.memoeslink.adivinador;
+package com.app.memoeslink.adivinador.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.app.memoeslink.adivinador.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class MenuActivity extends CommonActivity {
@@ -31,7 +32,7 @@ public class MenuActivity extends CommonActivity {
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         invalidateOptionsMenu();
     }

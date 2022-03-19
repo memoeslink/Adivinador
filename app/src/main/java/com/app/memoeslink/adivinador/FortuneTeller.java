@@ -3,13 +3,13 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 import android.content.res.TypedArray;
 
+import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.LongHelper;
 import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.StringHelper;
 
-import java.main.common.Randomizer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.app.memoeslink.adivinador;
+package com.app.memoeslink.adivinador.activity;
 
 import android.Manifest;
 import android.animation.Animator;
@@ -46,7 +46,19 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.core.content.ContextCompat;
 import androidx.multidex.BuildConfig;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.app.memoeslink.adivinador.AdUnitId;
+import com.app.memoeslink.adivinador.Divination;
+import com.app.memoeslink.adivinador.FortuneTeller;
+import com.app.memoeslink.adivinador.Hardware;
+import com.app.memoeslink.adivinador.Prediction;
+import com.app.memoeslink.adivinador.PredictionHistory;
+import com.app.memoeslink.adivinador.R;
+import com.app.memoeslink.adivinador.ResourceFinder;
+import com.app.memoeslink.adivinador.Screen;
+import com.app.memoeslink.adivinador.Sound;
+import com.app.memoeslink.adivinador.TextFormatter;
 import com.easyandroidanimations.library.BounceAnimation;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -71,6 +83,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.reflect.TypeToken;
+import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.GeneratorManager;
 import com.memoeslink.generator.common.LongHelper;
@@ -85,7 +98,6 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.main.common.Randomizer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +112,7 @@ import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 public class MainActivity extends MenuActivity {
     private static final int[][] PARTICLE_COLORS = {{Color.BLUE, Color.argb(255, 0, 128, 255), Color.argb(255, 51, 153, 255), Color.argb(255, 0, 192, 199), Color.argb(125, 0, 128, 255), Color.argb(125, 51, 153, 255), Color.argb(125, 0, 192, 199)}, {Color.YELLOW, Color.argb(255, 251, 255, 147), Color.argb(255, 224, 228, 124), Color.argb(255, 155, 215, 93), Color.argb(255, 120, 168, 71), Color.argb(125, 251, 255, 147), Color.argb(125, 224, 228, 124), Color.argb(125, 155, 215, 93), Color.argb(125, 120, 168, 71)}};
     private static boolean forceEffects = true;
+    private SwipeRefreshLayout srlRefresher;
     private RelativeLayout rlAdContainer;
     private RelativeLayout rlHeader;
     private LinearLayout llConfetti;
@@ -164,19 +177,17 @@ public class MainActivity extends MenuActivity {
     private int frequency = 20;
     private int refreshFrequency = 60;
     private String enquiryDate = "";
-    private String currentName = "";
     private String currentSummary = "";
-    private String lastDate = "";
     private long measuredTimes = 0L;
     private long confettiThrown = 0L;
     private Timer timer;
-    private Methods methods;
-    private Randomizer r;
-    private ResourceFinder resourceFinder;
+    private Divination divination;
     private FortuneTeller fortuneTeller;
-    private Prediction prediction = null;
-    private Prediction backupPrediction = null;
+    private ResourceFinder resourceFinder;
     private Hardware hardware;
+    private Randomizer r;
+    private PredictionHistory predictionHistory;
+    private PredictionHistory backupPredictions;
     private SharedPreferences.OnSharedPreferenceChangeListener listener; //Declared as global to avoid destruction by JVM Garbage Collector
 
     private static void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -187,6 +198,7 @@ public class MainActivity extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MobileAds.initialize(this, MainActivity::onInitializationComplete);
+        srlRefresher = findViewById(R.id.main_refresh_layout);
         rlAdContainer = findViewById(R.id.ad_container);
         rlHeader = findViewById(R.id.main_header);
         llConfetti = findViewById(R.id.main_confetti_layout);
@@ -234,12 +246,14 @@ public class MainActivity extends MenuActivity {
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setItemIconTintList(null);
 
-        //Load methods
-        methods = new Methods(MainActivity.this);
-        r = new Randomizer();
-        resourceFinder = new ResourceFinder(MainActivity.this);
+        //Initialize resources
+        divination = new Divination(MainActivity.this);
         fortuneTeller = new FortuneTeller(MainActivity.this);
+        resourceFinder = new ResourceFinder(MainActivity.this);
         hardware = new Hardware(MainActivity.this);
+        r = new Randomizer();
+        predictionHistory = new PredictionHistory();
+        backupPredictions = new PredictionHistory();
 
         //Request ads
         List<String> testDevices = new ArrayList<>();
@@ -309,6 +323,11 @@ public class MainActivity extends MenuActivity {
         nameGeneratorDialog = builder.create();
 
         //Set listeners
+        srlRefresher.setOnRefreshListener(() -> {
+            reloadPrediction(false);
+            srlRefresher.setRefreshing(false);
+        });
+
         navigationView.setNavigationItemSelectedListener(item -> {
             if (defaultPreferences.getBoolean("preference_hideDrawer", true))
                 closeDrawer();
@@ -420,7 +439,7 @@ public class MainActivity extends MenuActivity {
         });
 
         tvPersonInfo.setOnClickListener(v -> {
-            if (people != null && savePerson(prediction.getPerson())) {
+            if (people != null && savePerson(predictionHistory.getLatest().getPerson())) {
                 showSimpleToast(MainActivity.this, getString(R.string.toast_enquiry_saved));
 
                 if (isPredictionReloaded(people.get(people.size() - 1), true)) {
@@ -466,8 +485,8 @@ public class MainActivity extends MenuActivity {
         });
 
         btTextCopy.setOnClickListener(view -> {
-            if (prediction != null)
-                copyTextToClipboard(prediction.getContent());
+            if (!predictionHistory.isEmpty())
+                copyTextToClipboard(predictionHistory.getLatest().getContent());
         });
 
         compatibilityDialog.setOnShowListener(dialog -> calculateCompatibility());
@@ -507,7 +526,7 @@ public class MainActivity extends MenuActivity {
             }
         });
 
-        tvBinder.setOnClickListener(v -> atvInitialName.setText(currentName));
+        tvBinder.setOnClickListener(v -> atvInitialName.setText(predictionHistory.getLatest().getPerson().getDescriptor()));
 
         tvNameBox.addTextChangedListener(new TextWatcher() {
             @Override
@@ -606,7 +625,7 @@ public class MainActivity extends MenuActivity {
         prepareAd(false);
 
         //Get a prediction
-        if (recent || (!getPreferencesPerson().getSummary().equals(currentSummary) && isDataValid()) || (StringHelper.isNotNullOrBlank(currentSummary) && !isDataValid())) {
+        if (recent || (!getPreferencesPerson().getSummary().equals(currentSummary) && isFormEntered()) || (StringHelper.isNotNullOrBlank(currentSummary) && !isFormEntered())) {
             getPrediction();
             recent = false;
         }
@@ -663,16 +682,15 @@ public class MainActivity extends MenuActivity {
                     }
 
                     if (updateSeconds >= refreshFrequency) { //Get another prediction if current is auto-generated, or refresh user-entered enquiry at day start
-                        if (StringHelper.isNullOrBlank(currentSummary) || !lastDate.equals(DateTimeHelper.getStrCurrentDate()))
+                        if (StringHelper.isNullOrBlank(currentSummary) || !predictionHistory.getLatest().getRetrievalDate().equals(DateTimeHelper.getStrCurrentDate()))
                             getPrediction();
                         updateSeconds = 0;
                     } else {
-                        if (updateSeconds >= refreshFrequency / 2) {
-                            if (!started && backupPrediction != null) {
-                                started = true;
-
+                        if (updateSeconds != 0 && updateSeconds % 10 == 0) {
+                            if (!started && !backupPredictions.isFull()) {
                                 new Thread(() -> {
-                                    backupPrediction = getPredictionData(false);
+                                    started = true;
+                                    backupPredictions.add(getPredictionData(false));
                                     started = false;
                                 }).start();
                             }
@@ -752,9 +770,9 @@ public class MainActivity extends MenuActivity {
                     reading = -1;
 
                     //Talk; if active, enabled and possible
-                    if (active && pending && !tvPersonInfo.getText().toString().isEmpty() && prediction != null && (textType == 1 || textType == 2)) {
+                    if (active && pending && !tvPersonInfo.getText().toString().isEmpty() && !predictionHistory.isEmpty() && (textType == 1 || textType == 2)) {
                         startingReading = 1;
-                        talk(tvPersonInfo.getText().toString() + ". " + prediction.getContent());
+                        talk(tvPersonInfo.getText().toString() + ". " + predictionHistory.getLatest().getContent());
                         pending = false;
                     }
                 }
@@ -762,7 +780,7 @@ public class MainActivity extends MenuActivity {
                 @Override
                 public void onError(String utteranceId) {
                     if (active) //Try to talk again, if active
-                        talk(tvPersonInfo.getText().toString() + ". " + prediction.getContent());
+                        talk(tvPersonInfo.getText().toString() + ". " + predictionHistory.getLatest().getContent());
                 }
 
                 @Override
@@ -1113,7 +1131,7 @@ public class MainActivity extends MenuActivity {
         return false;
     }
 
-    private boolean isDataValid() {
+    private boolean isFormEntered() {
         Object[] fields = new Object[]{
                 preferences.getStringOrNull("temp_name"),
                 preferences.getIntOrNull("temp_gender"),
@@ -1156,13 +1174,12 @@ public class MainActivity extends MenuActivity {
 
     private void getPrediction() {
         new Thread(() -> {
-            boolean formCompleted = isDataValid();
+            boolean formEntered = isFormEntered();
 
-            if (!formCompleted && backupPrediction != null) {
-                prediction = backupPrediction;
-                backupPrediction = null;
-            } else
-                prediction = getPredictionData(formCompleted);
+            if (!formEntered && !backupPredictions.isEmpty())
+                predictionHistory.add(backupPredictions.dispenseOldest());
+            else
+                predictionHistory.add(getPredictionData(formEntered));
 
             MainActivity.this.runOnUiThread(() -> {
                 if (!llInquiryHolder.isEnabled()) {
@@ -1171,7 +1188,7 @@ public class MainActivity extends MenuActivity {
                     llInquiryHolder.setEnabled(true);
                 }
 
-                if (formCompleted) {
+                if (formEntered) {
                     tvPersonInfo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                     tvPersonInfo.setEnabled(false);
                     tvPersonInfo.setClickable(false);
@@ -1212,11 +1229,11 @@ public class MainActivity extends MenuActivity {
                 //Show predictionView
                 tvPersonInfo.setText(TextFormatter.fromHtml(getString(R.string.person_data,
                         enquiryDate.equals(DateTimeHelper.getStrCurrentDate()) ? getString(R.string.today) : enquiryDate,
-                        prediction.getPerson().getDescription(),
-                        resourceFinder.getGenderName(prediction.getPerson().getGender(), 2),
-                        DateTimeHelper.getStrDate(prediction.getPerson().getBirthdate())
+                        predictionHistory.getLatest().getPerson().getDescription(),
+                        resourceFinder.getGenderName(predictionHistory.getLatest().getPerson().getGender(), 2),
+                        DateTimeHelper.getStrDate(predictionHistory.getLatest().getPerson().getBirthdate())
                 )));
-                setLinksToText(tvPrediction, prediction.getFormattedContent());
+                setLinksToText(tvPrediction, predictionHistory.getLatest().getFormattedContent());
 
                 if (people.size() == 1 && isNoPersonTempStored()) {
                     llInquiryHolder.setVisibility(View.VISIBLE);
@@ -1227,15 +1244,15 @@ public class MainActivity extends MenuActivity {
 
                 //Show person's name, if active and possible
                 if (active && !isViewVisible(tvPersonInfo))
-                    showFormattedToast(MainActivity.this, TextFormatter.fromHtml(prediction.getPerson().getDescription()));
+                    showFormattedToast(MainActivity.this, TextFormatter.fromHtml(predictionHistory.getLatest().getPerson().getDescription()));
 
                 //Talk; if active, enabled and possible
                 if (recent)
                     pending = true;
-                else if (active && !tvPersonInfo.getText().toString().isEmpty() && prediction != null && (textType == 1 || textType == 2)) {
+                else if (active && !tvPersonInfo.getText().toString().isEmpty() && predictionHistory.isEmpty() && (textType == 1 || textType == 2)) {
                     if (reading == -1 || reading == 1) {
                         startingReading = 1;
-                        talk(tvPersonInfo.getText().toString() + ". " + prediction.getContent());
+                        talk(tvPersonInfo.getText().toString() + ". " + predictionHistory.getLatest().getContent());
                     } else
                         pending = true;
                 }
@@ -1249,19 +1266,17 @@ public class MainActivity extends MenuActivity {
         }).start();
     }
 
-    public Prediction getPredictionData(boolean formCompleted) {
-        lastDate = DateTimeHelper.getStrCurrentDate();
+    public Prediction getPredictionData(boolean formEntered) {
         currentSummary = "";
         Prediction prediction;
 
-        if (formCompleted) {
+        if (formEntered) {
             Person person = getPreferencesPerson();
             person.addAttribute("entered");
-            prediction = methods.getPrediction(person, enquiryDate);
+            prediction = divination.getPrediction(person, enquiryDate);
             currentSummary = prediction.getPerson().getSummary();
         } else
-            prediction = methods.getPrediction(enquiryDate);
-        currentName = prediction.getPerson().getDescriptor();
+            prediction = divination.getPrediction(enquiryDate);
         return prediction;
     }
 
@@ -1290,7 +1305,7 @@ public class MainActivity extends MenuActivity {
 
                 if (link.equals("prediction")) {
                     Sound.play(MainActivity.this, "crack");
-                    setLinksToText(tvPrediction, StringHelper.replaceBetweenZeroWidthSpaces(prediction.getFormattedContent(), prediction.getFortuneCookie()));
+                    setLinksToText(tvPrediction, StringHelper.replaceBetweenZeroWidthSpaces(predictionHistory.getLatest().getFormattedContent(), predictionHistory.getLatest().getFortuneCookie()));
                 }
             }
         };

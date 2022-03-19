@@ -2,6 +2,7 @@ package com.app.memoeslink.adivinador;
 
 import android.content.Context;
 
+import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.CharHelper;
 import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.Gender;
@@ -13,7 +14,6 @@ import com.memoeslink.generator.common.TextComponent;
 import com.memoeslink.generator.common.TextProcessor;
 import com.memoeslink.generator.common.ZeroWidthChar;
 
-import java.main.common.Randomizer;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Methods extends BaseWrapper {
+public class Divination extends BaseWrapper {
     public static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
     public static final Integer[] PROBABILITY_DISTRIBUTION = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
     private static final char separator;
@@ -33,11 +33,11 @@ public class Methods extends BaseWrapper {
         separator = CharHelper.getFirstDisplayableGlyph('↓', '⬇', '⇣', '•');
     }
 
-    public Methods(Context context) {
+    public Divination(Context context) {
         this(context, null);
     }
 
-    public Methods(Context context, Long seed) {
+    public Divination(Context context, Long seed) {
         super(context);
         r = new Randomizer(seed);
         resourceFinder = new ResourceFinder(context, seed);

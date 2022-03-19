@@ -1,4 +1,4 @@
-package com.app.memoeslink.adivinador;
+package com.app.memoeslink.adivinador.activity;
 
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -11,6 +11,8 @@ import android.view.KeyEvent;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.app.memoeslink.adivinador.R;
+import com.app.memoeslink.adivinador.Screen;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 
 public class SettingsActivity extends CommonActivity implements TextToSpeech.OnInitListener {

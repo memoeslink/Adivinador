@@ -1,4 +1,4 @@
-package com.app.memoeslink.adivinador
+package com.app.memoeslink.adivinador.activity
 
 import android.content.DialogInterface
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatSpinner
+import com.app.memoeslink.adivinador.R
 import games.moisoni.google_iab.BillingConnector
 import games.moisoni.google_iab.BillingEventListener
 import games.moisoni.google_iab.enums.ErrorType

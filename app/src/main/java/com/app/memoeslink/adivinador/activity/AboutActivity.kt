@@ -1,9 +1,12 @@
-package com.app.memoeslink.adivinador
+package com.app.memoeslink.adivinador.activity
 
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.widget.Button
 import android.widget.TextView
+import com.app.memoeslink.adivinador.BuildConfig
+import com.app.memoeslink.adivinador.R
+import com.app.memoeslink.adivinador.TextFormatter
 import com.memoeslink.generator.common.DateTimeHelper
 
 class AboutActivity : CommonActivity() {

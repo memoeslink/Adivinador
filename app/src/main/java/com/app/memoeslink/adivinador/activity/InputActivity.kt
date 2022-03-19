@@ -1,4 +1,4 @@
-package com.app.memoeslink.adivinador
+package com.app.memoeslink.adivinador.activity
 
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
@@ -7,6 +7,9 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
+import com.app.memoeslink.adivinador.CustomDatePicker
+import com.app.memoeslink.adivinador.R
+import com.app.memoeslink.adivinador.TextFormatter
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer

@@ -4,6 +4,7 @@ import com.memoeslink.generator.common.Person;
 
 public class Prediction {
     private String date;
+    private String retrievalDate;
     private String content;
     private String formattedContent;
     private String fortuneCookie;
@@ -12,6 +13,7 @@ public class Prediction {
 
     public Prediction() {
         date = "";
+        retrievalDate = "";
         content = "";
         formattedContent = "";
         fortuneCookie = "";
@@ -19,8 +21,9 @@ public class Prediction {
         person = new Person.PersonBuilder().build();
     }
 
-    public Prediction(String date, String content, String formattedContent, String fortuneCookie, String unrevealedFortuneCookie, Person person) {
+    public Prediction(String date, String retrievalDate, String content, String formattedContent, String fortuneCookie, String unrevealedFortuneCookie, Person person) {
         this.date = date;
+        this.retrievalDate = retrievalDate;
         this.content = content;
         this.formattedContent = formattedContent;
         this.fortuneCookie = fortuneCookie;
@@ -34,6 +37,14 @@ public class Prediction {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getRetrievalDate() {
+        return retrievalDate;
+    }
+
+    public void setRetrievalDate(String retrievalDate) {
+        this.retrievalDate = retrievalDate;
     }
 
     public String getContent() {

@@ -1,4 +1,4 @@
-package com.app.memoeslink.adivinador;
+package com.app.memoeslink.adivinador.activity;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -25,6 +25,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.app.memoeslink.adivinador.LanguageHelper;
+import com.app.memoeslink.adivinador.R;
+import com.app.memoeslink.adivinador.Screen;
+import com.app.memoeslink.adivinador.Sound;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonPrimitive;
@@ -42,28 +46,29 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-public class CommonActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
+public abstract class CommonActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
     protected static Toast toast;
     protected static Locale[] locales;
+    protected boolean speechAvailable;
+    protected Bundle bundle;
+    protected TextToSpeech tts;
+    protected SharedPreferencesHelper preferences;
+    protected SharedPreferencesHelper defaultPreferences;
+    protected AudioManager audioManager;
+    protected List<Person> people = new ArrayList<>();
+    protected List<String> names = new ArrayList<>();
+    protected ActivityStatus activityStatus = ActivityStatus.LAUNCHED;
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         locales = Locale.getAvailableLocales();
     }
 
-    protected boolean speechAvailable;
-    protected Bundle bundle;
-    protected TextToSpeech tts;
-    protected SharedPreferencesHelper preferences;
-    protected SharedPreferencesHelper defaultPreferences;
-    protected List<Person> people = new ArrayList<>();
-    protected List<String> names = new ArrayList<>();
-    protected AudioManager audioManager;
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         setTheme(getThemeId());
         super.onCreate(savedInstanceState);
+        activityStatus = ActivityStatus.CREATED;
         preferences = SharedPreferencesHelper.Companion.getPreferencesHelper(CommonActivity.this);
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         bundle = new Bundle();
@@ -73,9 +78,34 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     }
 
     @Override
-    public void onResume() {
+    protected void onStart() {
+        super.onStart();
+        activityStatus = ActivityStatus.STARTED;
+    }
+
+    @Override
+    protected void onResume() {
         super.onResume();
+        activityStatus = ActivityStatus.RESUMED;
         Screen.setContinuance(CommonActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        activityStatus = ActivityStatus.PAUSED;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        activityStatus = ActivityStatus.STOPPED;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        activityStatus = ActivityStatus.DESTROYED;
     }
 
     @Override
@@ -116,12 +146,12 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     }
 
     @Override
-    protected void attachBaseContext(Context context) {
+    protected final void attachBaseContext(Context context) {
         context = wrap(context);
         super.attachBaseContext(context);
     }
 
-    protected void setCustomActionBar() {
+    protected final void setCustomActionBar() {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE); //Set ActionBar params
         View v = inflater.inflate(R.layout.actionbar, null);
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(
@@ -142,7 +172,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         }
     }
 
-    protected ContextWrapper wrap(Context context) {
+    protected final ContextWrapper wrap(Context context) {
         SharedPreferencesHelper preferences = new SharedPreferencesHelper(context);
         String language = LanguageHelper.getLanguage(preferences);
 
@@ -160,7 +190,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         return new ContextWrapper(context);
     }
 
-    protected boolean isViewVisible(View view) {
+    protected final boolean isViewVisible(View view) {
         if (view == null)
             return false;
         if (!view.isShown())
@@ -169,7 +199,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         return view.getGlobalVisibleRect(rect) && view.getHeight() == rect.height() && view.getWidth() == rect.width();
     }
 
-    protected void vanishAndMaterializeView(View v) {
+    protected final void vanishAndMaterializeView(View v) {
         v.clearAnimation();
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0F, 0.0F);
         alphaAnimation.setDuration(350);
@@ -178,35 +208,35 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         v.startAnimation(alphaAnimation);
     }
 
-    protected void cancelToast() {
+    protected final void cancelToast() {
         if (toast != null && toast.getView() != null && toast.getView().isShown()) {
             toast.cancel();
             toast = null;
         }
     }
 
-    protected void showSimpleToast(Context context, String text) {
+    protected final void showSimpleToast(Context context, String text) {
         cancelToast();
         toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
         Sound.play(context, "computer_chimes");
         toast.show();
     }
 
-    protected void showFormattedToast(Context context, Spanned spanned) {
+    protected final void showFormattedToast(Context context, Spanned spanned) {
         cancelToast();
         toast = Toast.makeText(context, spanned, Toast.LENGTH_SHORT);
         Sound.play(context, "computer_chimes");
         toast.show();
     }
 
-    protected void copyTextToClipboard(String text) {
+    protected final void copyTextToClipboard(String text) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText(null, text);
         clipboard.setPrimaryClip(clipData);
         showSimpleToast(this, getString(R.string.toast_clipboard));
     }
 
-    protected boolean isTTSAvailable(TextToSpeech tts, String language) {
+    protected final boolean isTTSAvailable(TextToSpeech tts, String language) {
         if (tts != null) {
             List<String> regionNames = new ArrayList<>();
 
@@ -240,7 +270,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         }
     }
 
-    protected Person getPreferencesPerson() {
+    protected final Person getPreferencesPerson() {
         Person person = new Person.PersonBuilder()
                 .setGender(Gender.get(preferences.getInt("temp_gender")))
                 .setBirthdate(LocalDate.of(
@@ -259,7 +289,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         return person;
     }
 
-    protected boolean isNoPersonTempStored() {
+    protected final boolean isNoPersonTempStored() {
         return (!preferences.contains("temp_name")
                 && !preferences.contains("temp_gender")
                 && !preferences.contains("temp_date_year")
@@ -268,12 +298,12 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         ) || isPersonNotTempStored(getPreferencesPerson());
     }
 
-    protected boolean isPersonNotTempStored(Person person) {
+    protected final boolean isPersonNotTempStored(Person person) {
         List<Person> people = Arrays.asList(getPreferencesPerson());
         return isPersonDistinct(person, people);
     }
 
-    protected boolean isPersonDistinct(Person person) {
+    protected final boolean isPersonDistinct(Person person) {
         return isPersonDistinct(person, people);
     }
 
@@ -291,7 +321,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         return true;
     }
 
-    protected boolean savePerson(Person person) {
+    protected final boolean savePerson(Person person) {
         if (defaultPreferences.getBoolean("preference_saveEnquiries", true) && isPersonDistinct(person)) {
             if (people.size() >= 100)
                 people.remove(0);
@@ -306,7 +336,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         return false;
     }
 
-    protected int getThemeId() {
+    protected final int getThemeId() {
         defaultPreferences = new SharedPreferencesHelper(CommonActivity.this);
 
         switch (defaultPreferences.getStringAsInt("preference_theme")) {
@@ -322,7 +352,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         }
     }
 
-    protected void restartApplication() {
+    protected final void restartApplication() {
         Intent i = getPackageManager().getLaunchIntentForPackage(getPackageName());
         Intent mainIntent = Intent.makeRestartActivityTask(i.getComponent());
         startActivity(mainIntent);

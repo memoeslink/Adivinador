@@ -1083,6 +1083,8 @@
         <item>Test case</item>
         <item>Male forename</item>
         <item>Female forename</item>
+        <item>Male patronymic</item>
+        <item>Female patronymic</item>
         <item>Double-barrelled male forename</item>
         <item>Double-barrelled female forename</item>
         <item>Double male forename</item>

@@ -16,6 +16,7 @@ import androidx.annotation.RawRes;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
+import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.Constant;
 import com.memoeslink.generator.common.Form;
 import com.memoeslink.generator.common.Gender;
@@ -32,7 +33,6 @@ import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.main.common.Randomizer;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.ArrayList;

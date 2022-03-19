@@ -22,7 +22,7 @@
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
         tools:targetApi="lollipop">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing">
@@ -32,19 +32,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activity.SettingsActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true" />
         <activity
-            android:name=".AboutActivity"
+            android:name=".activity.AboutActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true" />
         <activity
-            android:name=".DonationsActivity"
+            android:name=".activity.DonationsActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true" />
         <activity
-            android:name=".InputActivity"
+            android:name=".activity.InputActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:windowSoftInputMode="stateHidden|adjustPan" />

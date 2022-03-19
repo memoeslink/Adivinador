@@ -6,340 +6,346 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.app.memoeslink.adivinador.MainActivity">
+    tools:context="com.app.memoeslink.adivinador.activity.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.app.memoeslink.adivinador.StickyScrollView
-            stuckShadowDrawable="@drawable/below_shadow"
-            stuckShadowHeight="10dp"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/main_refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:scrollbars="vertical">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <com.app.memoeslink.adivinador.StickyScrollView
+                stuckShadowDrawable="@drawable/below_shadow"
+                stuckShadowHeight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:descendantFocusability="blocksDescendants"
-                android:orientation="vertical">
+                android:fillViewport="true"
+                android:scrollbars="vertical">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    android:layout_height="match_parent"
+                    android:descendantFocusability="blocksDescendants"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/main_confetti_layout"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical" />
+                        android:layout_height="200dp">
+
+                        <LinearLayout
+                            android:id="@+id/main_confetti_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp">
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="0.25" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/main_fortune_teller"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/ic_image" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="0.25" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/main_fortune_teller_phrase"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <RelativeLayout
+                        android:id="@+id/main_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="?android:windowBackground">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:animateLayoutChanges="true"
+                            android:divider="@drawable/divider"
+                            android:orientation="horizontal"
+                            android:showDividers="middle">
+
+                            <LinearLayout
+                                android:id="@+id/main_data_entry_holder"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:id="@+id/main_data_entry"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="2.5dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="2"
+                                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2.5dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/application_link" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/main_reload_holder"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:id="@+id/main_reload"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="2.5dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="2"
+                                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2.5dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/reload" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/main_inquiry_holder"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:id="@+id/main_inquiry"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="2.5dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="2"
+                                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2.5dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/enquiry" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/main_selector_holder"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:id="@+id/main_selector"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="2.5dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="2"
+                                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2.5dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/form" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/main_clear_holder"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:id="@+id/main_clear"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="2.5dp"
+                                    android:ellipsize="end"
+                                    android:gravity="center"
+                                    android:maxLines="2"
+                                    android:singleLine="true"
+                                    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2.5dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/clear" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:alpha="225"
+                            android:background="?accent" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/main_person"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="10dp"
+                        android:clickable="false"
+                        android:drawablePadding="5px"
+                        android:ellipsize="marquee"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/main_date_selector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp" />
+
+                    <TextView
+                        android:id="@+id/main_pick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:drawableLeft="@drawable/emptiness"
+                        android:drawableRight="@drawable/calendar"
+                        android:drawablePadding="5dp"
+                        android:ellipsize="middle"
+                        android:singleLine="true"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:visibility="gone" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:id="@+id/main_prediction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:enabled="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:longClickable="true"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textIsSelectable="true" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:layout_marginBottom="20dp">
 
                         <View
                             android:layout_width="0dp"
                             android:layout_height="1dp"
-                            android:layout_weight="0.25" />
+                            android:layout_weight="0.1" />
 
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/main_fortune_teller"
+                        <Button
+                            android:id="@+id/main_copy_button"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="0.5"
-                            android:adjustViewBounds="true"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/ic_image" />
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="0.4"
+                            android:text="@string/action_copy" />
+
+                        <Button
+                            android:id="@+id/main_edit_button"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="0.4"
+                            android:text="@string/action_set" />
 
                         <View
                             android:layout_width="0dp"
                             android:layout_height="1dp"
-                            android:layout_weight="0.25" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/main_fortune_teller_phrase"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <RelativeLayout
-                    android:id="@+id/main_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="?android:windowBackground">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="10dp"
-                        android:animateLayoutChanges="true"
-                        android:divider="@drawable/divider"
-                        android:orientation="horizontal"
-                        android:showDividers="middle">
-
-                        <LinearLayout
-                            android:id="@+id/main_data_entry_holder"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <TextView
-                                android:id="@+id/main_data_entry"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="2.5dp"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="2"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="2.5dp"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/application_link" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/main_reload_holder"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <TextView
-                                android:id="@+id/main_reload"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="2.5dp"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="2"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="2.5dp"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/reload" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/main_inquiry_holder"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <TextView
-                                android:id="@+id/main_inquiry"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="2.5dp"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="2"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="2.5dp"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/enquiry" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/main_selector_holder"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <TextView
-                                android:id="@+id/main_selector"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="2.5dp"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="2"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="2.5dp"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/form" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/main_clear_holder"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:visibility="gone">
-
-                            <TextView
-                                android:id="@+id/main_clear"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="2.5dp"
-                                android:ellipsize="end"
-                                android:gravity="center"
-                                android:maxLines="2"
-                                android:singleLine="true"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="2.5dp"
-                                android:adjustViewBounds="true"
-                                android:src="@drawable/clear" />
-                        </LinearLayout>
+                            android:layout_weight="0.1" />
                     </LinearLayout>
 
-                    <LinearLayout
+                    <View
+                        android:id="@+id/main_view"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_alignParentBottom="true"
-                        android:alpha="225"
-                        android:background="?accent" />
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/main_person"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:clickable="false"
-                    android:drawablePadding="5px"
-                    android:ellipsize="marquee"
-                    android:enabled="false"
-                    android:gravity="center"
-                    android:singleLine="true"
-                    android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/main_date_selector"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp" />
-
-                <TextView
-                    android:id="@+id/main_pick"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:drawableLeft="@drawable/emptiness"
-                    android:drawableRight="@drawable/calendar"
-                    android:drawablePadding="5dp"
-                    android:ellipsize="middle"
-                    android:singleLine="true"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp" />
-
-                <TextView
-                    android:id="@+id/main_prediction"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:enabled="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:longClickable="true"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textIsSelectable="true" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_weight="0.1" />
-
-                    <Button
-                        android:id="@+id/main_copy_button"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.4"
-                        android:text="@string/action_copy" />
-
-                    <Button
-                        android:id="@+id/main_edit_button"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="0.4"
-                        android:text="@string/action_set" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_weight="0.1" />
+                        android:layout_height="1px" />
                 </LinearLayout>
-
-                <View
-                    android:id="@+id/main_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="1px" />
-            </LinearLayout>
-        </com.app.memoeslink.adivinador.StickyScrollView>
+            </com.app.memoeslink.adivinador.StickyScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <RelativeLayout
             android:id="@+id/ad_container"
