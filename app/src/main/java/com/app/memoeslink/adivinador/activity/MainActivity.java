@@ -271,6 +271,10 @@ public class MainActivity extends MenuActivity {
         if (BuildConfig.DEBUG && !adRequest.isTestDevice(MainActivity.this))
             System.out.println("This device will not show test ads.");
 
+        //Preload prediction
+        enquiryDate = DateTimeHelper.getStrCurrentDate();
+        predictionHistory.add(getPredictionData(isFormEntered()));
+
         //Get a greeting, if enabled
         if (defaultPreferences.getBoolean("preference_greetingsEnabled", true))
             tvPhrase.setText(TextFormatter.fromHtml(fortuneTeller.greet()));
@@ -368,7 +372,6 @@ public class MainActivity extends MenuActivity {
             preferences.putString("temp_enquiryDate", enquiryDate);
             reloadPrediction(false);
         };
-        enquiryDate = DateTimeHelper.getStrCurrentDate();
 
         tvPick.setOnClickListener(view -> {
             dpdEnquiryDate = new DatePickerDialog();
