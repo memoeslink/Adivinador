@@ -579,7 +579,7 @@ public class MainActivity extends MenuActivity {
                 showSimpleToast(MainActivity.this, getString(R.string.denied_contact_permission));
         });
         boolean permissionsGranted = true;
-        String[] permissions = {Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION};
+        String[] permissions = {Manifest.permission.READ_CONTACTS};
 
         for (String permission : permissions) {
             if (ContextCompat.checkSelfPermission(MainActivity.this, permission) != PackageManager.PERMISSION_GRANTED)
@@ -587,7 +587,7 @@ public class MainActivity extends MenuActivity {
         }
 
         if (!permissionsGranted)
-            launcher.launch(new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_FINE_LOCATION});
+            launcher.launch(permissions);
 
         //Show full-screen ads
         showInterstitialAd();

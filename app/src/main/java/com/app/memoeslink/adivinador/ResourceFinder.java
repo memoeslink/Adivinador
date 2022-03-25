@@ -561,10 +561,8 @@ public class ResourceFinder extends BaseWrapper {
         boolean proceed = false;
         Cursor c = null;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)
-                proceed = true;
-        } else proceed = true;
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)
+            proceed = true;
 
         try {
             if (proceed) {
