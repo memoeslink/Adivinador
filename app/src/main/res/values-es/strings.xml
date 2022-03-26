@@ -78,7 +78,6 @@
     <string name="connected_device_user">{[usuari[o,a]]; gender:⛌} de dispositivo con dirección IP %1$s</string>
     <string name="data_entry">Introducir datos</string>
     <string name="date_component">Ya es¶ Hoy es¶ Estamos a¶ El día de hoy es¶ La fecha es¶ Hoy estamos a¶ El día es</string>
-    <string name="default_comments">La predicción es la siguiente:¶ La adivinación marca lo siguiente:¶ El futuro muestra esto:¶ El destino indica esto:¶ La predicción muestra lo siguiente:¶ Esto va a suceder:¶ Esto ocurrirá en algún momento:¶ La adivinación da a conocer esto:¶ Estos hechos podrían tener lugar:¶ Puede que esto suceda:</string>
     <string name="default_person">tú</string>
     <string name="default_user">[usuari[o,a]]</string>
     <string name="denied_contact_permission">Algunas funciones serán deshabilitadas debido a que no se pueden ver los contactos.</string>

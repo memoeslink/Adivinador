@@ -66,6 +66,53 @@ public class Divination extends BaseWrapper {
         return getPrediction(person, enquiryDate);
     }
 
+    public Prediction getEmptyPrediction() {
+        Prediction prediction = new Prediction();
+
+        String formattedContent = getString(R.string.prediction,
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "#FFFFFF", "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                "…",
+                0,
+                "…",
+                "…",
+                "…"
+        );
+        prediction.setFormattedContent(formattedContent);
+        String content = formattedContent;
+        content = TextFormatter.fromHtml(content).toString();
+        content = getString(R.string.enquiry_information, "…", "…", "…", "…") +
+                System.getProperty("line.separator") + System.getProperty("line.separator") +
+                content;
+        prediction.setContent(content);
+        return prediction;
+    }
+
     public Prediction getPrediction(Person person, String enquiryDate) {
         Prediction prediction = new Prediction();
         prediction.setPerson(person);

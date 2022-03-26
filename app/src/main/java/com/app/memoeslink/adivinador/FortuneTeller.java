@@ -40,10 +40,6 @@ public class FortuneTeller extends BaseWrapper {
         textFormatter.bindSeed(seed);
     }
 
-    public String comment() {
-        return resourceFinder.getEmojis(r.getInt(1, 4)) + " " + resourceFinder.getStrFromSplitStrRes(R.string.default_comments);
-    }
-
     public String greet() {
         return greet(-1);
     }
@@ -102,17 +98,17 @@ public class FortuneTeller extends BaseWrapper {
     public String talk() {
         List<String> phraseTypes = new ArrayList<>();
 
-        if (defaultPreferences.getBoolean("preference_greetingsEnabled", true)) {
+        if (defaultPreferences.getBoolean("preference_greetingsEnabled")) {
             phraseTypes.add("greetings");
             phraseTypes.add("greetings");
         }
 
-        if (defaultPreferences.getBoolean("preference_opinionsEnabled", true)) {
+        if (defaultPreferences.getBoolean("preference_opinionsEnabled")) {
             phraseTypes.add("opinions");
             phraseTypes.add("opinions");
         }
 
-        if (defaultPreferences.getBoolean("preference_phrasesEnabled", true)) {
+        if (defaultPreferences.getBoolean("preference_phrasesEnabled")) {
             phraseTypes.add("phrases");
             phraseTypes.add("conversation");
         }
@@ -133,7 +129,7 @@ public class FortuneTeller extends BaseWrapper {
                     return "?";
             }
         }
-        return comment();
+        return "…";
     }
 
     public String talkAboutSomething() {

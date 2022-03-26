@@ -78,7 +78,6 @@
     <string name="connected_device_user">user of device with IP address %1$s</string>
     <string name="data_entry">Enter data</string>
     <string name="date_component">It is¶ Today is¶ It\'s¶ The date is¶ The day is</string>
-    <string name="default_comments">The prediction is the following:¶ The divination indicates the following:¶ The future shows this:¶ Your fate indicates this:¶ The prediction shows the following:¶ This is going to happen:¶ This will happen at some point:¶ My divination reveals this:¶ These facts could take place:¶ This might happen:</string>
     <string name="default_person">one</string>
     <string name="default_user">user</string>
     <string name="denied_contact_permission">Some functions will be disabled due to a denied contact permission.</string>

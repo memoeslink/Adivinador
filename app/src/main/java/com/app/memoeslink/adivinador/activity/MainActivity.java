@@ -275,11 +275,14 @@ public class MainActivity extends MenuActivity {
         enquiryDate = DateTimeHelper.getStrCurrentDate();
         predictionHistory.add(getPredictionData(isFormEntered()));
 
+        //Set empty prediction
+        tvPrediction.setText(TextFormatter.fromHtml(divination.getEmptyPrediction().getFormattedContent()));
+
         //Get a greeting, if enabled
-        if (defaultPreferences.getBoolean("preference_greetingsEnabled", true))
+        if (defaultPreferences.getBoolean("preference_greetingsEnabled"))
             tvPhrase.setText(TextFormatter.fromHtml(fortuneTeller.greet()));
         else
-            tvPhrase.setText(fortuneTeller.comment());
+            tvPhrase.setText("…");
 
         //Change drawable for fortune teller
         ivFortuneTeller.setImageResource(fortuneTeller.getRandomAppearance());
