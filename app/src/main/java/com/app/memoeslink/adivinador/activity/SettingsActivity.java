@@ -51,7 +51,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
             if (key.equals("preference_fortuneTellerAspect"))
                 preferences.putBoolean("temp_changeFortuneTeller", true);
 
-            if (key.equals("preference_language") || key.equals("preference_theme")) {
+            if (key.equals("preference_language") || key.equals("preference_theme") || key.equals("preference_seed")) {
                 try {
                     SettingsActivity.this.runOnUiThread(() -> dialog.show());
                 } catch (Exception e) {
