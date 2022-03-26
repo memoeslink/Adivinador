@@ -582,7 +582,7 @@ public class MainActivity extends MenuActivity {
                 showSimpleToast(MainActivity.this, getString(R.string.denied_contact_permission));
         });
         boolean permissionsGranted = true;
-        String[] permissions = {Manifest.permission.READ_CONTACTS};
+        String[] permissions = {Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_COARSE_LOCATION};
 
         for (String permission : permissions) {
             if (ContextCompat.checkSelfPermission(MainActivity.this, permission) != PackageManager.PERMISSION_GRANTED)

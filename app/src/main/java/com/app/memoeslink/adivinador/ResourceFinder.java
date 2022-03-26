@@ -628,16 +628,18 @@ public class ResourceFinder extends BaseWrapper {
                 String networkName = hardware.getNetworkName();
 
                 if (StringHelper.isNullOrEmpty(networkName))
-                    return getString(R.string.no_network_user);
+                    return getString(R.string.network_disconnected_user);
+                else if (networkName.equals("<unknown ssid>"))
+                    return getString(R.string.network_unspecific_user);
                 return getString(R.string.network_user, networkName);
             case 7:
                 String networkOperator = hardware.getNetworkOperator();
-                return StringHelper.isNullOrBlank(networkOperator) ? getString(R.string.no_network_operator_user) :
+                return StringHelper.isNullOrBlank(networkOperator) ? getString(R.string.network_operator_disconnected_user) :
                         getString(R.string.network_operator_user, networkOperator);
             case 8:
                 String ipAddress = hardware.getLocalIpAddress();
-                return StringHelper.isNullOrEmpty(ipAddress) ? getString(R.string.disconnected_device_user) :
-                        getString(R.string.connected_device_user, ipAddress);
+                return StringHelper.isNullOrEmpty(ipAddress) ? getString(R.string.device_unspecific_user) :
+                        getString(R.string.device_connected_user, ipAddress);
             default:
                 return TextProcessor.genderifyStr(getString(R.string.default_user), getGender()).getText();
         }

@@ -89,7 +89,6 @@ public class Divination extends BaseWrapper {
                 "…",
                 "…",
                 "…",
-                "…",
                 "#FFFFFF", "…",
                 "…",
                 "…",
@@ -179,7 +178,6 @@ public class Divination extends BaseWrapper {
         unbindSeed();
 
         String content = getString(R.string.prediction,
-                "",
                 divination.get("fortuneCookie"),
                 divination.get("divination"),
                 divination.get("fortuneNumbers"),
@@ -219,8 +217,8 @@ public class Divination extends BaseWrapper {
         prediction.setContent(content);
 
         String formattedContent = getString(R.string.prediction,
-                ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter() + divination.get("link"),
-                divination.get("gibberish") + ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter(),
+                ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter() + divination.get("link") + "<br>" +
+                        divination.get("gibberish") + ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter(),
                 divination.get("divination"),
                 divination.get("fortuneNumbers"),
                 divination.get("emotions"),

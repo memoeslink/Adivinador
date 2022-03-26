@@ -75,16 +75,16 @@
     <string name="clear">Clear form</string>
     <string name="compatibility">See compatibility</string>
     <string name="compatibility_result">Compatibility: &lt;b&gt;%1$s&lt;/b&gt;</string>
-    <string name="connected_device_user">user of device with IP address %1$s</string>
     <string name="data_entry">Enter data</string>
     <string name="date_component">It is¶ Today is¶ It\'s¶ The date is¶ The day is</string>
     <string name="default_person">one</string>
     <string name="default_user">user</string>
     <string name="denied_contact_permission">Some functions will be disabled due to a denied contact permission.</string>
     <string name="device_brand_user">%1$s of %2$s brand device</string>
+    <string name="device_connected_user">user of device with IP address %1$s</string>
+    <string name="device_unspecific_user">user of device with unknown IP address</string>
     <string name="device_user">%1$s of %2$s device</string>
     <string name="device_version_user">%1$s of Android %2$s device</string>
-    <string name="disconnected_device_user">user of device with unknown IP address</string>
     <string name="donations_description">Please, consider donating some money for the app development, that would allow me to make this app even better! Google Play Store applies a tax percentage depending on your country.</string>
     <string name="donations_donate">¡DONATE!</string>
     <string name="donations_title">Donate</string>
@@ -114,10 +114,11 @@
     <string name="menu_about">About</string>
     <string name="menu_exit">Exit</string>
     <string name="name_generation">Generate name</string>
-    <string name="network_operator_user">%1$s user</string>
+    <string name="network_disconnected_user">user without Internet connection through Wi-Fi</string>
+    <string name="network_unspecific_user">user connected to unknown network through Wi-Fi</string>
     <string name="network_user">user connected to network named %1$s</string>
-    <string name="no_network_operator_user">user of unknown network operator</string>
-    <string name="no_network_user">user without Internet connection through Wi-Fi</string>
+    <string name="network_operator_disconnected_user">user of unknown network operator</string>
+    <string name="network_operator_user">%1$s user</string>
     <string name="nouns">human¶ entity¶ being¶ thing¶ creature¶ individual¶ organism¶ life form¶ existence¶ living entity¶ person¶ human being¶ [[,wo]man]¶ [[boy,girl]]¶ [[lady,gentleman]]¶ [[,fe]male]¶ user</string>
     <string name="ok">OK</string>
     <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Watching information (%1$s) for:&lt;/i&gt;&lt;/font&gt; %2$s&lt;font color="#F6FBB2"&gt;, %3$s (%4$s)&lt;/font&gt;</string>
@@ -126,69 +127,68 @@
         <big><b><font color=#869DEE>Fortune</font></b></big>
         <br><br><font color=#53E3B3>Fortune cookie:</font>
         <br>%1$s
-        <br>%2$s
         <br><br><font color=#53E3B3>Divination:</font>
-        <br>%3$s
+        <br>%2$s
         <br><br><font color=#53E3B3>Fortune numbers for today:</font>
-        <br>%4$s
+        <br>%3$s
         <br><br><font color=#53E3B3>Today\'s emotions:</font>
-        <br>%5$s
+        <br>%4$s
         <br><br><font color=#53E3B3>Today\'s best moment:</font>
-        <br>%6$s
+        <br>%5$s
         <br><br><font color=#53E3B3>Today\'s worst moment:</font>
-        <br>%7$s
+        <br>%6$s
         <br><br><font color=#53E3B3>What defines you in this day:</font>
-        <br>%8$s
+        <br>%7$s
         <br><br><font color=#53E3B3>Chain of events for today:</font>
-        <br>%9$s
+        <br>%8$s
         <br><br><font color=#53E3B3>Person who will affect you more, indirectly, today:</font>
-        <br>%10$s
+        <br>%9$s
         <br><br><big><b><font color=#869DEE>Zodiac</font></b></big>
         <br><br><font color=#53E3B3>Zodiac sign:</font>
-        <br>%11$s
+        <br>%10$s
         <br><br><font color=#53E3B3>Astrological house:</font>
-        <br>%12$s
+        <br>%11$s
         <br><br><font color=#53E3B3>Ruler:</font>
-        <br>%13$s
+        <br>%12$s
         <br><br><font color=#53E3B3>Element:</font>
-        <br>%14$s
+        <br>%13$s
         <br><br><font color=#53E3B3>Color:</font>
-        <br>%15$s
+        <br>%14$s
         <br><br><font color=#53E3B3>Fortune numbers:</font>
-        <br>%16$s
+        <br>%15$s
         <br><br><font color=#53E3B3>They are compatible with:</font>
-        <br>%17$s
+        <br>%16$s
         <br><br><font color=#53E3B3>They don\'t get along with:</font>
-        <br>%18$s
+        <br>%17$s
         <br><br><font color=#53E3B3>Walter Berg\'s zodiac sign:</font>
-        <br>%19$s
+        <br>%18$s
         <br><br><font color=#53E3B3>Chinese zodiac sign:</font>
-        <br>%20$s
+        <br>%19$s
         <br><br><big><b><font color=#869DEE>Identity</font></b></big>
         <br><br><font color=#53E3B3>Color:</font>
-        <br><big><big><font color=%21$s>%22$s</font></big></big>
+        <br><big><big><font color=%20$s>%21$s</font></big></big>
         <br><br><font color=#53E3B3>Animal:</font>
-        <br>%23$s
+        <br>%22$s
         <br><br><font color=#53E3B3>Psychological type according to Jung:</font>
-        <br>%24$s
+        <br>%23$s
         <br><br><font color=#53E3B3>Secret name:</font>
-        <br>%25$s
+        <br>%24$s
         <br><br><font color=#53E3B3>Demonic name:</font>
-        <br>%26$s
+        <br>%25$s
         <br><br><font color=#53E3B3>Name in the previous life:</font>
-        <br>%27$s
+        <br>%26$s
         <br><br><font color=#53E3B3>Name in the next life:</font>
-        <br>%28$s
+        <br>%27$s
         <br><br><font color=#53E3B3>Recommended username:</font>
-        <br>%29$s
+        <br>%28$s
         <br><br><font color=#53E3B3>Personal digit:</font>
-        <br>%30$d
+        <br>%29$d
         <br><br><font color=#53E3B3>Unique fortune numbers:</font>
-        <br>%31$s
+        <br>%30$s
         <br><br><font color=#53E3B3>Days between current date and birthdate:</font>
-        <br><font color=#E3E1A1><b>%32$s</b></font>
+        <br><font color=#E3E1A1><b>%31$s</b></font>
         <br><br><font color=#53E3B3>Time between current date and birthdate:</font>
-        <br><font color=#E3E1A1><b>%33$s</b></font>
+        <br><font color=#E3E1A1><b>%32$s</b></font>
         ]]>
     </string>
     <string name="pick">Pick an enquiry date</string>

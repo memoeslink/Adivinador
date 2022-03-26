@@ -75,16 +75,16 @@
     <string name="clear">Limpiar formulario</string>
     <string name="compatibility">Ver compatibilidad</string>
     <string name="compatibility_result">Compatibilidad: &lt;b&gt;%1$s&lt;/b&gt;</string>
-    <string name="connected_device_user">{[usuari[o,a]]; gender:⛌} de dispositivo con dirección IP %1$s</string>
     <string name="data_entry">Introducir datos</string>
     <string name="date_component">Ya es¶ Hoy es¶ Estamos a¶ El día de hoy es¶ La fecha es¶ Hoy estamos a¶ El día es</string>
     <string name="default_person">tú</string>
     <string name="default_user">[usuari[o,a]]</string>
     <string name="denied_contact_permission">Algunas funciones serán deshabilitadas debido a que no se pueden ver los contactos.</string>
     <string name="device_brand_user">%1$s de dispositivo de marca %2$s</string>
+    <string name="device_connected_user">{[usuari[o,a]]; gender:⛌} de dispositivo con dirección IP %1$s</string>
+    <string name="device_unspecific_user">{[usuari[o,a]]; gender:⛌} de dispositivo con dirección IP desconocida</string>
     <string name="device_user">%1$s de %2$s</string>
     <string name="device_version_user">%1$s de dispositivo Android %2$s</string>
-    <string name="disconnected_device_user">{[usuari[o,a]]; gender:⛌} de dispositivo con dirección IP desconocida</string>
     <string name="donations_description">¡Por favor, considera donar algo de dinero para el desarrollo de la aplicación, eso me permitirá hacer esta aplicación aun mejor! Google Play Store aplica un porcentaje de impuestos dependiendo de tu país.</string>
     <string name="donations_donate">¡DONAR!</string>
     <string name="donations_title">Donar</string>
@@ -114,10 +114,11 @@
     <string name="menu_about">Acerca de</string>
     <string name="menu_exit">Salir</string>
     <string name="name_generation">Generar nombre</string>
-    <string name="network_operator_user">{[usuari[o,a]]; gender:⛌} %1$s</string>
+    <string name="network_disconnected_user">{[usuari[o,a]]; gender:⛌} sin conexión a Internet por Wi-Fi</string>
+    <string name="network_unspecific_user">{[usuari[o,a]]; gender:⛌} {[conectad[o,a]]; gender:⛌} a una red desconocida mediante Wi-Fi</string>
     <string name="network_user">{[usuari[o,a]]; gender:⛌} de red llamada %1$s</string>
-    <string name="no_network_operator_user">{[usuari[o,a]]; gender:⛌} de operador de red desconocido</string>
-    <string name="no_network_user">{[usuari[o,a]]; gender:⛌} sin conexión a Internet por Wi-Fi</string>
+    <string name="network_operator_disconnected_user">{[usuari[o,a]]; gender:⛌} de operador de red desconocido</string>
+    <string name="network_operator_user">{[usuari[o,a]]; gender:⛌} %1$s</string>
     <string name="nouns">existencia｢2｣¶ materia｢2｣¶ persona｢2｣¶ ser｢1｣¶ [human[o,a]]¶ [individu[o,a]]¶ entidad｢2｣¶ [[hombre,mujer]]¶ [client[e,a]]¶ sujeto｢1｣¶ ente｢1｣¶ esencia｢2｣¶ cosa｢2｣¶ sustancia｢2｣¶ criatura｢2｣¶ organismo｢1｣¶ forma｢2｣¶ espécimen｢1｣¶ forma de vida｢2｣¶ ser｢1｣ ¶ ser vivo｢1｣¶ [usuari[o,a]]¶ [amig[o,a]]¶ [conocid[o,a]]¶ [desconocid[o,a]]¶ colega｢0｣¶ camarada｢0｣¶ mejor [amig[o,a]]¶ [novi[o,a]]¶ [tip[o,a]]¶ personaje｢1｣¶ vástago｢1｣¶ figura｢2｣¶ habitante｢1｣¶ [muchach[o,a]]¶ joven｢0｣¶ [chic[o,a]]</string>
     <string name="ok">OK</string>
     <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Información para %1$s de:&lt;/i&gt;&lt;/font&gt; %2$s&lt;font color="#F6FBB2"&gt;, de género %3$s (%4$s)&lt;/font&gt;</string>
@@ -126,69 +127,68 @@
         <big><b><font color=#869DEE>Fortuna</font></b></big>
         <br><br><font color=#53E3B3>Galleta de la suerte:</font>
         <br>%1$s
-        <br>%2$s
         <br><br><font color=#53E3B3>Adivinación:</font>
-        <br>%3$s
+        <br>%2$s
         <br><br><font color=#53E3B3>Números de la suerte para hoy:</font>
-        <br>%4$s
+        <br>%3$s
         <br><br><font color=#53E3B3>Emociones de hoy:</font>
-        <br>%5$s
+        <br>%4$s
         <br><br><font color=#53E3B3>Mejor momento del día:</font>
-        <br>%6$s
+        <br>%5$s
         <br><br><font color=#53E3B3>Peor momento del día:</font>
-        <br>%7$s
+        <br>%6$s
         <br><br><font color=#53E3B3>Lo que te caracterizará hoy:</font>
-        <br>%8$s
+        <br>%7$s
         <br><br><font color=#53E3B3>Cadena de eventos para hoy:</font>
-        <br>%9$s
+        <br>%8$s
         <br><br><font color=#53E3B3>Persona que te afectará más, indirectamente, hoy:</font>
-        <br>%10$s
+        <br>%9$s
         <br><br><big><b><font color=#869DEE>Zodiaco</font></b></big>
         <br><br><font color=#53E3B3>Signo zodiacal:</font>
-        <br>%11$s
+        <br>%10$s
         <br><br><font color=#53E3B3>Casa astrológica:</font>
-        <br>%12$s
+        <br>%11$s
         <br><br><font color=#53E3B3>Regente:</font>
-        <br>%13$s
+        <br>%12$s
         <br><br><font color=#53E3B3>Elemento:</font>
-        <br>%14$s
+        <br>%13$s
         <br><br><font color=#53E3B3>Color:</font>
-        <br>%15$s
+        <br>%14$s
         <br><br><font color=#53E3B3>Números de la suerte:</font>
-        <br>%16$s
+        <br>%15$s
         <br><br><font color=#53E3B3>Es compatible con:</font>
-        <br>%17$s
+        <br>%16$s
         <br><br><font color=#53E3B3>No se lleva con:</font>
-        <br>%18$s
+        <br>%17$s
         <br><br><font color=#53E3B3>Signo zodiacal de Walter Berg:</font>
-        <br>%19$s
+        <br>%18$s
         <br><br><font color=#53E3B3>Signo zodiacal chino:</font>
-        <br>%20$s
+        <br>%19$s
         <br><br><big><b><font color=#869DEE>Identidad</font></b></big>
         <br><br><font color=#53E3B3>Color:</font>
-        <br><big><big><font color=%21$s>%22$s</font></big></big>
+        <br><big><big><font color=%20$s>%21$s</font></big></big>
         <br><br><font color=#53E3B3>Animal:</font>
-        <br>%23$s
+        <br>%22$s
         <br><br><font color=#53E3B3>Tipo psicológico según Jung:</font>
-        <br>%24$s
+        <br>%23$s
         <br><br><font color=#53E3B3>Nombre secreto:</font>
-        <br>%25$s
+        <br>%24$s
         <br><br><font color=#53E3B3>Nombre demoniaco:</font>
-        <br>%26$s
+        <br>%25$s
         <br><br><font color=#53E3B3>Nombre en la vida pasada:</font>
-        <br>%27$s
+        <br>%26$s
         <br><br><font color=#53E3B3>Nombre en la vida futura:</font>
-        <br>%28$s
+        <br>%27$s
         <br><br><font color=#53E3B3>Nombre de usuario recomendado:</font>
-        <br>%29$s
+        <br>%28$s
         <br><br><font color=#53E3B3>Dígito personal:</font>
-        <br>%30$d
+        <br>%29$d
         <br><br><font color=#53E3B3>Números de la suerte únicos:</font>
-        <br>%31$s
+        <br>%30$s
         <br><br><font color=#53E3B3>Días entre fecha actual y fecha de nacimiento:</font>
-        <br><font color=#E3E1A1><b>%32$s</b></font>
+        <br><font color=#E3E1A1><b>%31$s</b></font>
         <br><br><font color=#53E3B3>Tiempo entre fecha actual y fecha de nacimiento:</font>
-        <br><font color=#E3E1A1><b>%33$s</b></font>
+        <br><font color=#E3E1A1><b>%32$s</b></font>
         ]]>
     </string>
     <string name="pick">Seleccionar una fecha de consulta</string>
