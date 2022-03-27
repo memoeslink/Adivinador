@@ -28,12 +28,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:drawableLeft="@drawable/money"
-            android:drawableRight="@drawable/money"
             android:drawablePadding="5dp"
             android:gravity="center"
             android:text="@string/donations_title"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="@android:style/TextAppearance.Large"
+            app:drawableLeftCompat="@drawable/money"
+            app:drawableRightCompat="@drawable/money" />
 
         <TextView
             android:id="@+id/donations_description"
@@ -44,7 +44,7 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="@string/donations_description"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="@android:style/TextAppearance.Medium" />
 
         <LinearLayout
             android:layout_width="match_parent"

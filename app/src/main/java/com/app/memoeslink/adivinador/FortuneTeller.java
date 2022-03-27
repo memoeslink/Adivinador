@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 
 import com.memoeslink.common.Randomizer;
+import com.memoeslink.generator.common.DateTimeGetter;
 import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.LongHelper;
@@ -59,13 +60,13 @@ public class FortuneTeller extends BaseWrapper {
                     s = greetShortly(addendum) + " " + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 case 1:
-                    s = resourceFinder.getStrFromSplitStrRes(R.string.greetings_component) + " " + DateTimeHelper.getStrCurrentDayOfWeek() + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
+                    s = resourceFinder.getStrFromSplitStrRes(R.string.greetings_component) + " " + DateTimeGetter.with(LanguageHelper.getLocale(this)).getCurrentDayOfWeek() + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 case 2:
-                    s = resourceFinder.getStrFromSplitStrRes(R.string.date_component) + " " + DateTimeHelper.getStrCurrentDate(r.getInt(1, 11)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
+                    s = resourceFinder.getStrFromSplitStrRes(R.string.date_component) + " " + DateTimeGetter.with(LanguageHelper.getLocale(this)).getCurrentDate(r.getInt(1, 14)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 case 3:
-                    s = resourceFinder.getStrFromSplitStrRes(R.string.time_component) + " " + DateTimeHelper.getStrCurrentTime(r.getInt(1, 8)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
+                    s = resourceFinder.getStrFromSplitStrRes(R.string.time_component) + " " + DateTimeGetter.with(LanguageHelper.getLocale(this)).getCurrentTime(r.getInt(1, 11)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);
                     break;
                 default:
                     s = StringHelper.replaceOnce(resourceFinder.getStrFromSplitStrRes(R.string.greetings), "§", StringHelper.prependIfNotEmpty(addendum, ", ")) + " " + StringHelper.appendSpaceIfNotEmpty(ideogramSet) + resourceFinder.getStrFromStrArrayRes(R.array.phrase_augury);

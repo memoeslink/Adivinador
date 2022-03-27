@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:fadeScrollbars="false"
@@ -60,7 +61,7 @@
                 android:inputType="none"
                 android:longClickable="false"
                 android:maxLines="2"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textAppearance="@android:style/TextAppearance.Medium"
                 android:textIsSelectable="true" />
 
             <View
@@ -78,11 +79,11 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:clickable="true"
-            android:drawableLeft="@drawable/emptiness"
-            android:drawableRight="@drawable/page"
             android:drawablePadding="5dp"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="@android:style/TextAppearance.Small"
+            app:drawableLeftCompat="@drawable/emptiness"
+            app:drawableRightCompat="@drawable/page" />
     </LinearLayout>
 </ScrollView>

@@ -28,4 +28,8 @@ public class LanguageHelper {
             language = preferences.getString("preference_language", "en");
         return language;
     }
+
+    public static Locale getLocale(Context context) {
+        return context.getResources().getConfiguration().getLocales().get(0);
+    }
 }

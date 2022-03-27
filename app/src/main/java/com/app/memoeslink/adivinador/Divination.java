@@ -119,7 +119,7 @@ public class Divination extends BaseWrapper {
         int birthdateYear = person.getBirthdate().getYear();
         int birthdateMonth = person.getBirthdate().getMonthValue();
         int birthdateDay = person.getBirthdate().getDayOfMonth();
-        String birthdate = DateTimeHelper.getStrDate(birthdateYear, birthdateMonth, birthdateDay);
+        String birthdate = DateTimeHelper.toIso8601Date(birthdateYear, birthdateMonth, birthdateDay);
         Gender gender = person.getGender();
 
         //Get zodiac information

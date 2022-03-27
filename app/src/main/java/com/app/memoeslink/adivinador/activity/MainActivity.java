@@ -84,6 +84,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.reflect.TypeToken;
 import com.memoeslink.common.Randomizer;
+import com.memoeslink.generator.common.DateTimeGetter;
 import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.GeneratorManager;
 import com.memoeslink.generator.common.LongHelper;
@@ -371,7 +372,7 @@ public class MainActivity extends MenuActivity {
         });
 
         DatePickerDialog.OnDateSetListener dateSetListener = (dialog, year, monthOfYear, dayOfMonth) -> {
-            enquiryDate = DateTimeHelper.getStrDate(year, monthOfYear + 1, dayOfMonth);
+            enquiryDate = DateTimeHelper.toIso8601Date(year, monthOfYear + 1, dayOfMonth);
             preferences.putString("temp_enquiryDate", enquiryDate);
             reloadPrediction(false);
         };
@@ -688,7 +689,7 @@ public class MainActivity extends MenuActivity {
                     }
 
                     if (updateSeconds >= refreshFrequency) { //Get another prediction if current is auto-generated, or refresh user-entered enquiry at day start
-                        if (StringHelper.isNullOrBlank(currentSummary) || !predictionHistory.getLatest().getRetrievalDate().equals(DateTimeHelper.getStrCurrentDate()))
+                        if (StringHelper.isNullOrBlank(currentSummary) || !predictionHistory.getLatest().getRetrievalDate().equals(DateTimeGetter.getCurrentDate()))
                             getPrediction();
                         updateSeconds = 0;
                     } else {
@@ -891,7 +892,7 @@ public class MainActivity extends MenuActivity {
 
     private void showInterstitialAd() {
         if (defaultPreferences.getBoolean("preference_adsEnabled", true)) {
-            r.bindSeed(LongHelper.getSeed(DateTimeHelper.getStrCurrentDateTime() + System.getProperty("line.separator") + hardware.getDeviceId()));
+            r.bindSeed(LongHelper.getSeed(DateTimeGetter.getCurrentDateTime() + System.getProperty("line.separator") + hardware.getDeviceId()));
 
             if (r.getInt(20) == 0) {
                 if (adPaused == null)
@@ -1237,7 +1238,7 @@ public class MainActivity extends MenuActivity {
                         enquiryDate.equals(DateTimeHelper.getStrCurrentDate()) ? getString(R.string.today) : enquiryDate,
                         predictionHistory.getLatest().getPerson().getDescription(),
                         resourceFinder.getGenderName(predictionHistory.getLatest().getPerson().getGender(), 2),
-                        DateTimeHelper.getStrDate(predictionHistory.getLatest().getPerson().getBirthdate())
+                        DateTimeHelper.toIso8601Date(predictionHistory.getLatest().getPerson().getBirthdate())
                 )));
                 setLinksToText(tvPrediction, predictionHistory.getLatest().getFormattedContent());
 
