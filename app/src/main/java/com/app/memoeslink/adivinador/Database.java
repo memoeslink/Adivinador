@@ -9,7 +9,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 import java.util.HashMap;
 
-class Database extends SQLiteAssetHelper {
+public class Database extends SQLiteAssetHelper {
     public static final int DATABASE_VERSION = 47;
     public static final String DATABASE_NAME = "words_upgrade_46-47.sqlite";
     public static final String DATABASE_NAME_FORMAT = "words%s.sqlite";

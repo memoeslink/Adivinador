@@ -25,8 +25,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.app.memoeslink.adivinador.ActivityStatus;
 import com.app.memoeslink.adivinador.LanguageHelper;
+import com.app.memoeslink.adivinador.Preference;
 import com.app.memoeslink.adivinador.R;
+import com.app.memoeslink.adivinador.ResourceExplorer;
 import com.app.memoeslink.adivinador.Screen;
 import com.app.memoeslink.adivinador.Sound;
 import com.google.gson.Gson;
@@ -41,7 +44,6 @@ import com.memoeslink.helper.SharedPreferencesHelper;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -54,6 +56,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     protected TextToSpeech tts;
     protected SharedPreferencesHelper preferences;
     protected SharedPreferencesHelper defaultPreferences;
+    protected ResourceExplorer resourceExplorer;
     protected AudioManager audioManager;
     protected List<Person> people = new ArrayList<>();
     protected List<String> names = new ArrayList<>();
@@ -70,6 +73,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
         super.onCreate(savedInstanceState);
         activityStatus = ActivityStatus.CREATED;
         preferences = SharedPreferencesHelper.Companion.getPreferencesHelper(CommonActivity.this);
+        resourceExplorer = new ResourceExplorer(CommonActivity.this);
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         bundle = new Bundle();
         bundle.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "");
@@ -87,7 +91,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     protected void onResume() {
         super.onResume();
         activityStatus = ActivityStatus.RESUMED;
-        Screen.setContinuance(CommonActivity.this, defaultPreferences.getBoolean("preference_activeScreen"));
+        Screen.setContinuance(CommonActivity.this, defaultPreferences.getBoolean(Preference.SETTING_ACTIVE_SCREEN.getName()));
     }
 
     @Override
@@ -116,7 +120,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if (defaultPreferences.getBoolean("preference_audioEnabled"))
+                    if (defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getName()))
                         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
                     else
                         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
@@ -124,7 +128,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if (defaultPreferences.getBoolean("preference_audioEnabled"))
+                    if (defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getName()))
                         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
                     else
                         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
@@ -138,7 +142,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     @Override
     public void onInit(int i) {
         if (i == TextToSpeech.SUCCESS)
-            speechAvailable = isTTSAvailable(tts, defaultPreferences.getString("preference_language", "en"));
+            speechAvailable = isTTSAvailable(tts, defaultPreferences.getString(Preference.SETTING_LANGUAGE.getName(), "en"));
         else {
             speechAvailable = false;
             showSimpleToast(CommonActivity.this, getString(R.string.toast_voice_unavailability));
@@ -191,9 +195,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     }
 
     protected final boolean isViewVisible(View view) {
-        if (view == null)
-            return false;
-        if (!view.isShown())
+        if (view == null || !view.isShown())
             return false;
         Rect rect = new Rect();
         return view.getGlobalVisibleRect(rect) && view.getHeight() == rect.height() && view.getWidth() == rect.width();
@@ -258,48 +260,66 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
                 position++;
             }
             return anyAvailable;
-        } else
-            return false;
+        }
+        return false;
     }
 
     protected final void talk(String text) {
-        if (speechAvailable && defaultPreferences.getBoolean("preference_audioEnabled") && defaultPreferences.getBoolean("preference_voiceEnabled")) {
+        if (speechAvailable && defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getName()) && defaultPreferences.getBoolean(Preference.SETTING_VOICE_ENABLED.getName())) {
             if (tts.isSpeaking())
                 tts.stop();
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, "UniqueID");
         }
     }
 
-    protected final Person getPreferencesPerson() {
+    protected final void deleteTemp() {
+        preferences.remove(Preference.TEMP_BUSY.getName());
+        preferences.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER.getName());
+        preferences.remove(Preference.TEMP_RESTART_ACTIVITY.getName());
+        preferences.remove(Preference.TEMP_RESTART_ADS.getName());
+
+        if (!defaultPreferences.getBoolean(Preference.SETTING_KEEP_FORM.getName())) clearForm();
+    }
+
+    protected final void clearForm() {
+        preferences.remove(Preference.TEMP_NAME.getName());
+        preferences.remove(Preference.TEMP_GENDER.getName());
+        preferences.remove(Preference.TEMP_YEAR_OF_BIRTH.getName());
+        preferences.remove(Preference.TEMP_MONTH_OF_BIRTH.getName());
+        preferences.remove(Preference.TEMP_DAY_OF_BIRTH.getName());
+        preferences.remove(Preference.TEMP_ANONYMOUS.getName());
+    }
+
+    protected final Person getFormPerson() {
         Person person = new Person.PersonBuilder()
-                .setGender(Gender.get(preferences.getInt("temp_gender")))
+                .setGender(Gender.get(preferences.getInt(Preference.TEMP_GENDER.getName())))
                 .setBirthdate(LocalDate.of(
-                        preferences.getInt("temp_date_year", 1900),
-                        preferences.getInt("temp_date_month", 1),
-                        preferences.getInt("temp_date_day", 1)
+                        preferences.getInt(Preference.TEMP_YEAR_OF_BIRTH.getName(), 1900),
+                        preferences.getInt(Preference.TEMP_MONTH_OF_BIRTH.getName(), 1),
+                        preferences.getInt(Preference.TEMP_DAY_OF_BIRTH.getName(), 1)
                 ))
                 .setAttribute("requested")
                 .build();
 
-        if (preferences.getBoolean("temp_anonymous")) {
-            person.setUsername(preferences.getString("temp_name"));
+        if (preferences.getBoolean(Preference.TEMP_ANONYMOUS.getName())) {
+            person.setUsername(preferences.getString(Preference.TEMP_NAME.getName()));
             person.addAttribute("anonymous");
         } else
-            person.setFullName(preferences.getString("temp_name"));
+            person.setFullName(preferences.getString(Preference.TEMP_NAME.getName()));
         return person;
     }
 
     protected final boolean isNoPersonTempStored() {
-        return (!preferences.contains("temp_name")
-                && !preferences.contains("temp_gender")
-                && !preferences.contains("temp_date_year")
-                && !preferences.contains("temp_date_month")
-                && !preferences.contains("temp_date_day")
-        ) || isPersonNotTempStored(getPreferencesPerson());
+        return (!preferences.contains(Preference.TEMP_NAME.getName())
+                && !preferences.contains(Preference.TEMP_GENDER.getName())
+                && !preferences.contains(Preference.TEMP_YEAR_OF_BIRTH.getName())
+                && !preferences.contains(Preference.TEMP_MONTH_OF_BIRTH.getName())
+                && !preferences.contains(Preference.TEMP_DAY_OF_BIRTH.getName())
+        ) || isPersonNotTempStored(getFormPerson());
     }
 
     protected final boolean isPersonNotTempStored(Person person) {
-        List<Person> people = Arrays.asList(getPreferencesPerson());
+        List<Person> people = Collections.singletonList(getFormPerson());
         return isPersonDistinct(person, people);
     }
 
@@ -322,7 +342,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     }
 
     protected final boolean savePerson(Person person) {
-        if (defaultPreferences.getBoolean("preference_saveEnquiries", true) && isPersonDistinct(person)) {
+        if (defaultPreferences.getBoolean(Preference.SETTING_SAVE_ENQUIRIES.getName(), true) && isPersonDistinct(person)) {
             if (people.size() >= 100)
                 people.remove(0);
             people.add(person);
@@ -330,7 +350,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
                 return new JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE)); // "yyyy-mm-dd"
             }).create();
             String json = gson.toJson(people);
-            preferences.putStringSafely("peopleList", json);
+            preferences.save(Preference.DATA_STORED_PEOPLE.getName(), json);
             return true;
         }
         return false;
@@ -339,7 +359,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     protected final int getThemeId() {
         defaultPreferences = new SharedPreferencesHelper(CommonActivity.this);
 
-        switch (defaultPreferences.getStringAsInt("preference_theme")) {
+        switch (defaultPreferences.getStringAsInt(Preference.SETTING_THEME.getName())) {
             case 1:
                 return R.style.BlackTheme;
             case 2:

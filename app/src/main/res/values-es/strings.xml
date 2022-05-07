@@ -67,7 +67,6 @@
     <string name="alert_select_enquiry_title">Seleccionar consulta</string>
     <string name="alert_successful_donation_message">¡Muchas gracias por contribuir con el proyecto!</string>
     <string name="alert_successful_donation_title">Donación exitosa</string>
-    <string name="android_device_user">%1$s de dispositivo Android con ID %2$s</string>
     <string name="astrological_sign">Acuario¶ Piscis¶ Aries¶ Tauro¶ Géminis¶ Cáncer¶ Leo¶ Virgo¶ Libra¶ Escorpio¶ Sagitario¶ Capricornio</string>
     <string name="binder">Usar nombre de consulta actual</string>
     <string name="chain_effect">• Resultado de la cadena: el efecto será %1$s en el día de %2$s.</string>
@@ -80,11 +79,6 @@
     <string name="default_person">tú</string>
     <string name="default_user">[usuari[o,a]]</string>
     <string name="denied_contact_permission">Algunas funciones serán deshabilitadas debido a que no se pueden ver los contactos.</string>
-    <string name="device_brand_user">%1$s de dispositivo de marca %2$s</string>
-    <string name="device_connected_user">{[usuari[o,a]]; gender:⛌} de dispositivo con dirección IP %1$s</string>
-    <string name="device_unspecific_user">{[usuari[o,a]]; gender:⛌} de dispositivo con dirección IP desconocida</string>
-    <string name="device_user">%1$s de %2$s</string>
-    <string name="device_version_user">%1$s de dispositivo Android %2$s</string>
     <string name="donations_description">¡Por favor, considera donar algo de dinero para el desarrollo de la aplicación, eso me permitirá hacer esta aplicación aun mejor! Google Play Store aplica un porcentaje de impuestos dependiendo de tu país.</string>
     <string name="donations_donate">¡DONAR!</string>
     <string name="donations_title">Donar</string>
@@ -114,11 +108,6 @@
     <string name="menu_about">Acerca de</string>
     <string name="menu_exit">Salir</string>
     <string name="name_generation">Generar nombre</string>
-    <string name="network_disconnected_user">{[usuari[o,a]]; gender:⛌} sin conexión a Internet por Wi-Fi</string>
-    <string name="network_unspecific_user">{[usuari[o,a]]; gender:⛌} {[conectad[o,a]]; gender:⛌} a una red desconocida mediante Wi-Fi</string>
-    <string name="network_user">{[usuari[o,a]]; gender:⛌} de red llamada %1$s</string>
-    <string name="network_operator_disconnected_user">{[usuari[o,a]]; gender:⛌} de operador de red desconocido</string>
-    <string name="network_operator_user">{[usuari[o,a]]; gender:⛌} %1$s</string>
     <string name="nouns">existencia｢2｣¶ materia｢2｣¶ persona｢2｣¶ ser｢1｣¶ [human[o,a]]¶ [individu[o,a]]¶ entidad｢2｣¶ [[hombre,mujer]]¶ [client[e,a]]¶ sujeto｢1｣¶ ente｢1｣¶ esencia｢2｣¶ cosa｢2｣¶ sustancia｢2｣¶ criatura｢2｣¶ organismo｢1｣¶ forma｢2｣¶ espécimen｢1｣¶ forma de vida｢2｣¶ ser｢1｣ ¶ ser vivo｢1｣¶ [usuari[o,a]]¶ [amig[o,a]]¶ [conocid[o,a]]¶ [desconocid[o,a]]¶ colega｢0｣¶ camarada｢0｣¶ mejor [amig[o,a]]¶ [novi[o,a]]¶ [tip[o,a]]¶ personaje｢1｣¶ vástago｢1｣¶ figura｢2｣¶ habitante｢1｣¶ [muchach[o,a]]¶ joven｢0｣¶ [chic[o,a]]</string>
     <string name="ok">OK</string>
     <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Información para %1$s de:&lt;/i&gt;&lt;/font&gt; %2$s&lt;font color="#F6FBB2"&gt;, de género %3$s (%4$s)&lt;/font&gt;</string>
@@ -602,9 +591,9 @@
     <string-array name="conversation_addendum">
         <item></item>
         <item></item>
-        <item>&lt;font color="{method:getColorStr}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
         <item>&lt;i&gt;{string:interjections}&lt;/i&gt;</item>
-        <item>&lt;font color="{method:getColorStr}"&gt;&lt;b&gt;{method:getDeviceUser}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{method:getDeviceUser}&lt;/b&gt;&lt;/font&gt;</item>
     </string-array>
     <string-array name="date_options">
         <item>Consulta de hoy</item>
@@ -1770,9 +1759,9 @@
         <item>veraz</item>
     </string-array>
     <string-array name="subject">
-        <item name="subject">{string:nouns} ⸠string:adjectives⸡</item>
-        <item name="subject">{string:nouns}</item>
-        <item name="subject">{string:adjectives}</item>
+        <item>{string:nouns} ⸠string:adjectives⸡</item>
+        <item>{string:nouns}</item>
+        <item>{string:adjectives}</item>
     </string-array>
     <string-array name="uncertainty">
         <item>no sé qué</item>
@@ -1863,4 +1852,5 @@
         <item>Sagitario (22 de noviembre - 21 de diciembre)</item>
         <item>Capricornio (22 de diciembre - 19 de enero)</item>
     </string-array>
+    <string name="user">usuario de %1$s</string>
 </resources>

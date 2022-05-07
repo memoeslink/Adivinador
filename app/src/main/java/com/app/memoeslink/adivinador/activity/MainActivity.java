@@ -51,14 +51,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.app.memoeslink.adivinador.AdUnitId;
 import com.app.memoeslink.adivinador.Divination;
 import com.app.memoeslink.adivinador.FortuneTeller;
-import com.app.memoeslink.adivinador.Hardware;
 import com.app.memoeslink.adivinador.Prediction;
 import com.app.memoeslink.adivinador.PredictionHistory;
+import com.app.memoeslink.adivinador.Preference;
 import com.app.memoeslink.adivinador.R;
-import com.app.memoeslink.adivinador.ResourceFinder;
 import com.app.memoeslink.adivinador.Screen;
 import com.app.memoeslink.adivinador.Sound;
-import com.app.memoeslink.adivinador.TextFormatter;
+import com.app.memoeslink.adivinador.SpannerHelper;
 import com.easyandroidanimations.library.BounceAnimation;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -86,6 +85,7 @@ import com.google.gson.reflect.TypeToken;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.DateTimeGetter;
 import com.memoeslink.generator.common.DateTimeHelper;
+import com.memoeslink.generator.common.Device;
 import com.memoeslink.generator.common.GeneratorManager;
 import com.memoeslink.generator.common.LongHelper;
 import com.memoeslink.generator.common.NameType;
@@ -184,8 +184,7 @@ public class MainActivity extends MenuActivity {
     private Timer timer;
     private Divination divination;
     private FortuneTeller fortuneTeller;
-    private ResourceFinder resourceFinder;
-    private Hardware hardware;
+    private Device device;
     private Randomizer r;
     private PredictionHistory predictionHistory;
     private PredictionHistory backupPredictions;
@@ -212,17 +211,17 @@ public class MainActivity extends MenuActivity {
         ivFortuneTeller = findViewById(R.id.main_fortune_teller);
         spnDateType = findViewById(R.id.main_date_selector);
         tvPick = findViewById(R.id.main_pick);
-        tvPick.setText(TextFormatter.fromHtml(getString(R.string.link, getString(R.string.pick))));
+        tvPick.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.pick))));
         tvDataEntry = findViewById(R.id.main_data_entry);
-        tvDataEntry.setText(TextFormatter.fromHtml(getString(R.string.link, getString(R.string.data_entry))));
+        tvDataEntry.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.data_entry))));
         tvReload = findViewById(R.id.main_reload);
-        tvReload.setText(TextFormatter.fromHtml(getString(R.string.link, getString(R.string.reload))));
+        tvReload.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.reload))));
         tvInquiry = findViewById(R.id.main_inquiry);
-        tvInquiry.setText(TextFormatter.fromHtml(getString(R.string.link, getString(R.string.inquiry, "…"))));
+        tvInquiry.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.inquiry, "…"))));
         tvSelector = findViewById(R.id.main_selector);
-        tvSelector.setText(TextFormatter.fromHtml(getString(R.string.link, getString(R.string.selector))));
+        tvSelector.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.selector))));
         tvClear = findViewById(R.id.main_clear);
-        tvClear.setText(TextFormatter.fromHtml(getString(R.string.link, getString(R.string.clear))));
+        tvClear.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.clear))));
         tvPhrase = findViewById(R.id.main_fortune_teller_phrase);
         tvPersonInfo = findViewById(R.id.main_person);
         tvPersonInfo.setSelected(true);
@@ -235,14 +234,14 @@ public class MainActivity extends MenuActivity {
         atvInitialName = vCompatibility.findViewById(R.id.dialog_name_field);
         atvFinalName = vCompatibility.findViewById(R.id.dialog_other_name_field);
         tvBinder = vCompatibility.findViewById(R.id.dialog_binder_text);
-        tvBinder.setText(TextFormatter.fromHtml(getString(R.string.link, getString(R.string.binder))));
+        tvBinder.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.binder))));
         tvCompatibility = vCompatibility.findViewById(R.id.dialog_text);
         pbWait = vCompatibility.findViewById(R.id.dialog_progress);
         vNameGenerator = inflater.inflate(R.layout.dialog_name_generation, null);
         spnNameType = vNameGenerator.findViewById(R.id.dialog_spinner);
         tvNameBox = vNameGenerator.findViewById(R.id.dialog_generated_name);
         tvTextCopy = vNameGenerator.findViewById(R.id.dialog_copy_text);
-        tvTextCopy.setText(TextFormatter.fromHtml(getString(R.string.link, getString(R.string.action_copy))));
+        tvTextCopy.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.action_copy))));
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setItemIconTintList(null);
@@ -250,8 +249,7 @@ public class MainActivity extends MenuActivity {
         //Initialize resources
         divination = new Divination(MainActivity.this);
         fortuneTeller = new FortuneTeller(MainActivity.this);
-        resourceFinder = new ResourceFinder(MainActivity.this);
-        hardware = new Hardware(MainActivity.this);
+        device = new Device(MainActivity.this);
         r = new Randomizer();
         predictionHistory = new PredictionHistory();
         backupPredictions = new PredictionHistory();
@@ -259,7 +257,7 @@ public class MainActivity extends MenuActivity {
         //Request ads
         List<String> testDevices = new ArrayList<>();
         testDevices.add(AdRequest.DEVICE_ID_EMULATOR);
-        testDevices.add(hardware.getTestDeviceId());
+        testDevices.add(device.getTestDeviceId());
         RequestConfiguration requestConfiguration = new RequestConfiguration.Builder().build();
 
         if (BuildConfig.DEBUG)
@@ -277,11 +275,11 @@ public class MainActivity extends MenuActivity {
         predictionHistory.add(getPredictionData(isFormEntered()));
 
         //Set empty prediction
-        tvPrediction.setText(TextFormatter.fromHtml(divination.getEmptyPrediction().getFormattedContent()));
+        tvPrediction.setText(SpannerHelper.fromHtml(divination.getEmptyPrediction().getFormattedContent()));
 
         //Get a greeting, if enabled
-        if (defaultPreferences.getBoolean("preference_greetingsEnabled"))
-            tvPhrase.setText(TextFormatter.fromHtml(fortuneTeller.greet()));
+        if (defaultPreferences.getBoolean(Preference.SETTING_GREETINGS_ENABLED.getName()))
+            tvPhrase.setText(SpannerHelper.fromHtml(fortuneTeller.greet()));
         else
             tvPhrase.setText("…");
 
@@ -289,7 +287,7 @@ public class MainActivity extends MenuActivity {
         ivFortuneTeller.setImageResource(fortuneTeller.getRandomAppearance());
 
         //Delete temporary preferences
-        resourceFinder.deleteTemp();
+        deleteTemp();
 
         //Set adapters
         ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.date_options));
@@ -337,7 +335,7 @@ public class MainActivity extends MenuActivity {
         });
 
         navigationView.setNavigationItemSelectedListener(item -> {
-            if (defaultPreferences.getBoolean("preference_hideDrawer", true))
+            if (defaultPreferences.getBoolean(Preference.SETTING_HIDE_DRAWER.getName(), true))
                 closeDrawer();
 
             switch (item.getItemId()) {
@@ -373,7 +371,6 @@ public class MainActivity extends MenuActivity {
 
         DatePickerDialog.OnDateSetListener dateSetListener = (dialog, year, monthOfYear, dayOfMonth) -> {
             enquiryDate = DateTimeHelper.toIso8601Date(year, monthOfYear + 1, dayOfMonth);
-            preferences.putString("temp_enquiryDate", enquiryDate);
             reloadPrediction(false);
         };
 
@@ -411,7 +408,6 @@ public class MainActivity extends MenuActivity {
 
                         if (!enquiryDate.equals(DateTimeHelper.getStrCurrentDate())) {
                             enquiryDate = DateTimeHelper.getStrCurrentDate();
-                            preferences.putString("temp_enquiryDate", enquiryDate);
                             reloadPrediction(false);
                         }
                         break;
@@ -435,7 +431,7 @@ public class MainActivity extends MenuActivity {
         });
 
         ivFortuneTeller.setOnClickListener(view -> {
-            if (defaultPreferences.getStringAsInt("preference_fortuneTellerAspect", 1) != 0) {
+            if (defaultPreferences.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT.getName(), 1) != 0) {
                 Sound.play(MainActivity.this, "jump");
                 new BounceAnimation(ivFortuneTeller)
                         .setBounceDistance(7)
@@ -482,7 +478,7 @@ public class MainActivity extends MenuActivity {
         });
 
         llClearHolder.setOnClickListener(view -> {
-            resourceFinder.clearForm(); //Delete form data
+            clearForm(); //Delete form data
             reloadPrediction(false);
         });
 
@@ -557,7 +553,7 @@ public class MainActivity extends MenuActivity {
 
         //Set listener to SharedPreferences
         listener = (prefs, key) -> {
-            if (key.equals("peopleList")) {
+            if (key.equals(Preference.DATA_STORED_PEOPLE.getName())) {
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                     dialog = null;
@@ -566,7 +562,7 @@ public class MainActivity extends MenuActivity {
                 setDialog(); //Define Dialog
             }
 
-            if (key.equals("nameList"))
+            if (key.equals(Preference.DATA_STORED_NAMES.getName()))
                 setAdapter(); //Get stored names
         };
         preferences.registerOnSharedPreferenceChangeListener(listener);
@@ -602,28 +598,28 @@ public class MainActivity extends MenuActivity {
         super.onResume();
         active = true;
         pending = false;
-        textType = defaultPreferences.getStringAsInt("preference_textType");
-        Long seed = LongHelper.getSeed(preferences.getString("preference_seed"));
+        textType = defaultPreferences.getStringAsInt(Preference.SETTING_TEXT_TYPE.getName());
+        Long seed = LongHelper.getSeed(preferences.getString(Preference.SETTING_SEED.getName()));
 
         if (seed != null && fortuneTeller.getSeed() != null && seed.equals(fortuneTeller.getSeed()))
             fortuneTeller = new FortuneTeller(MainActivity.this);
 
         //Restart Activity if required
-        if (preferences.contains("temp_restartActivity")) {
+        if (preferences.contains(Preference.TEMP_RESTART_ACTIVITY.getName())) {
             forceEffects = true;
             Intent intent = getIntent();
             finish();
             startActivity(intent);
         }
-        preferences.remove("temp_restartActivity");
+        preferences.remove(Preference.TEMP_RESTART_ACTIVITY.getName());
 
-        if (defaultPreferences.getBoolean("preference_stickHeader"))
+        if (defaultPreferences.getBoolean(Preference.SETTING_STICK_HEADER.getName()))
             rlHeader.setTag("sticky-hasTransparency-nonConstant");
         else
             rlHeader.setTag(null);
 
         //Stop TTS if it is disabled and continues talking
-        if (speechAvailable && (defaultPreferences.getBoolean("preference_audioEnabled") || defaultPreferences.getBoolean("preference_voiceEnabled"))) {
+        if (speechAvailable && (defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getName()) || defaultPreferences.getBoolean(Preference.SETTING_VOICE_ENABLED.getName()))) {
             if (tts.isSpeaking())
                 tts.stop();
         }
@@ -632,15 +628,15 @@ public class MainActivity extends MenuActivity {
         prepareAd(false);
 
         //Get a prediction
-        if (recent || (!getPreferencesPerson().getSummary().equals(currentSummary) && isFormEntered()) || (StringHelper.isNotNullOrBlank(currentSummary) && !isFormEntered())) {
+        if (recent || (!getFormPerson().getSummary().equals(currentSummary) && isFormEntered()) || (StringHelper.isNotNullOrBlank(currentSummary) && !isFormEntered())) {
             getPrediction();
             recent = false;
         }
 
         //Change drawable if the 'fortune teller aspect' preference was changed
-        if (preferences.contains("temp_changeFortuneTeller")) {
+        if (preferences.contains(Preference.TEMP_CHANGE_FORTUNE_TELLER.getName())) {
             ivFortuneTeller.setImageResource(fortuneTeller.getRandomAppearance());
-            preferences.remove("temp_changeFortuneTeller");
+            preferences.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER.getName());
         }
 
         //Define Dialog
@@ -652,8 +648,8 @@ public class MainActivity extends MenuActivity {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    frequency = defaultPreferences.getStringAsInt("preference_refreshTime", 20);
-                    refreshFrequency = defaultPreferences.getStringAsInt("preference_updateTime", 60);
+                    frequency = defaultPreferences.getStringAsInt(Preference.SETTING_REFRESH_TIME.getName(), 20);
+                    refreshFrequency = defaultPreferences.getStringAsInt(Preference.SETTING_UPDATE_TIME.getName(), 60);
 
                     if (resourceSeconds >= 1800)
                         resourceSeconds = 0;
@@ -667,13 +663,13 @@ public class MainActivity extends MenuActivity {
 
                             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                                 if (active) //Play sound, if active and enabled
-                                    Sound.play(MainActivity.this, resourceFinder.getStrFromStrArrayRes(R.array.sound_names));
+                                    Sound.play(MainActivity.this, resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.sound_names));
 
                                 //Change drawable for the fortune teller
                                 ivFortuneTeller.setImageResource(fortuneTeller.getRandomAppearance());
 
                                 //Get random text from the fortune teller
-                                tvPhrase.setText(TextFormatter.fromHtml(fortuneTeller.talk()));
+                                tvPhrase.setText(SpannerHelper.fromHtml(fortuneTeller.talk()));
 
                                 //Talk; if active, enabled and possible
                                 if (active && (reading == -1 || reading == 0) && (textType == 0 || textType == 2)) {
@@ -800,8 +796,8 @@ public class MainActivity extends MenuActivity {
 
     private void prepareAd(boolean restarted) {
         if (adPaused == null || !adPaused) {
-            if (defaultPreferences.getBoolean("preference_adsEnabled", true)) {
-                if (restarted || !adAdded || defaultPreferences.getBoolean("temp_restartAds"))
+            if (defaultPreferences.getBoolean(Preference.SETTING_ADS_ENABLED.getName(), true)) {
+                if (restarted || !adAdded || defaultPreferences.getBoolean(Preference.TEMP_RESTART_ADS.getName()))
                     destroyAd();
 
                 if (!adAdded) {
@@ -885,14 +881,14 @@ public class MainActivity extends MenuActivity {
             rlAdContainer.setVisibility(View.GONE);
             rlAdContainer.removeAllViews();
             adView = null;
-            defaultPreferences.remove("temp_restartAds");
+            defaultPreferences.remove(Preference.TEMP_RESTART_ADS.getName());
             adAdded = false;
         }
     }
 
     private void showInterstitialAd() {
-        if (defaultPreferences.getBoolean("preference_adsEnabled", true)) {
-            r.bindSeed(LongHelper.getSeed(DateTimeGetter.getCurrentDateTime() + System.getProperty("line.separator") + hardware.getDeviceId()));
+        if (defaultPreferences.getBoolean(Preference.SETTING_ADS_ENABLED.getName(), true)) {
+            r.bindSeed(LongHelper.getSeed(DateTimeGetter.getCurrentDateTime() + System.getProperty("line.separator") + device.getDeviceId()));
 
             if (r.getInt(20) == 0) {
                 if (adPaused == null)
@@ -953,10 +949,10 @@ public class MainActivity extends MenuActivity {
                 new Handler(Looper.getMainLooper()).postDelayed(this::waitTasks, 500);
         } else {
             if (active || forceEffects) {
-                if (defaultPreferences.getBoolean("preference_particlesEnabled", true) && originInX != 0 && originInY != 0)
+                if (defaultPreferences.getBoolean(Preference.SETTING_PARTICLES_ENABLED.getName(), true) && originInX != 0 && originInY != 0)
                     throwConfetti(originInX, originInY); //Start confetti animation
 
-                if (defaultPreferences.getStringAsInt("preference_fortuneTellerAspect", 1) != 0) {
+                if (defaultPreferences.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT.getName(), 1) != 0) {
                     Sound.play(MainActivity.this, "jump");
                     new BounceAnimation(ivFortuneTeller)
                             .setBounceDistance(20)
@@ -980,7 +976,7 @@ public class MainActivity extends MenuActivity {
     }
 
     private void throwConfetti(int x, int y) {
-        final List<Bitmap> allPossibleConfetti = Utils.generateConfettiBitmaps(defaultPreferences.getStringAsInt("preference_fortuneTellerAspect") == 0 ? PARTICLE_COLORS[0] : PARTICLE_COLORS[1], 10 /* size */);
+        final List<Bitmap> allPossibleConfetti = Utils.generateConfettiBitmaps(defaultPreferences.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT.getName()) == 0 ? PARTICLE_COLORS[0] : PARTICLE_COLORS[1], 10 /* size */);
         final int numConfetti = allPossibleConfetti.size();
 
         ConfettoGenerator confettoGenerator = random -> {
@@ -1014,8 +1010,8 @@ public class MainActivity extends MenuActivity {
     private void setAdapter() {
         List<String> nameList = null;
 
-        if (preferences.contains("nameList") && preferences.getStringSet("nameList", null).size() > 0)
-            nameList = new ArrayList(preferences.getStringSet("nameList"));
+        if (preferences.contains(Preference.DATA_STORED_NAMES.getName()) && preferences.getStringSet(Preference.DATA_STORED_NAMES.getName(), null).size() > 0)
+            nameList = new ArrayList(preferences.getStringSet(Preference.DATA_STORED_NAMES.getName()));
 
         if (nameList != null && nameList.size() > 0) {
             String[] names = nameList.toArray(new String[0]);
@@ -1026,7 +1022,7 @@ public class MainActivity extends MenuActivity {
 
     private void setDialog() {
         llInquiryHolder.setVisibility(View.GONE);
-        tvInquiry.setText(TextFormatter.fromHtml(getString(R.string.link, getString(R.string.inquiry, "…"))));
+        tvInquiry.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.inquiry, "…"))));
         navigationView.getMenu().findItem(R.id.nav_inquiry).setTitle(getString(R.string.inquiry, "…")); //Changes to text won't be reflected until the Drawer item is updated
         navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(false);
         navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(125);
@@ -1035,9 +1031,9 @@ public class MainActivity extends MenuActivity {
         navigationView.getMenu().findItem(R.id.nav_selector).getIcon().setAlpha(125);
 
         //Get stored enquiries
-        if (StringHelper.isNotNullOrEmpty(preferences.getString("peopleList"))) {
+        if (StringHelper.isNotNullOrEmpty(preferences.getString(Preference.DATA_STORED_PEOPLE.getName()))) {
             Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>) (json, typeOfT, context) -> LocalDate.parse(json.getAsJsonPrimitive().getAsString())).create();
-            String json = preferences.getString("peopleList");
+            String json = preferences.getString(Preference.DATA_STORED_PEOPLE.getName());
             Type type = new TypeToken<ArrayList<Person>>() {
             }.getType();
 
@@ -1061,7 +1057,7 @@ public class MainActivity extends MenuActivity {
 
                 try {
                     JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V4);
-                    JsonSchema schema = factory.getSchema(resourceFinder.getRawRes(R.raw.schema));
+                    JsonSchema schema = factory.getSchema(resourceExplorer.getResourceFinder().getRawRes(R.raw.schema));
                     JsonNode node = new ObjectMapper().readTree(json);
                     Set<ValidationMessage> errors = schema.validate(node);
 
@@ -1080,7 +1076,7 @@ public class MainActivity extends MenuActivity {
             }
 
             if (!valid) {
-                preferences.remove("peopleList");
+                preferences.remove(Preference.DATA_STORED_PEOPLE.getName());
                 people.clear();
             }
         } else
@@ -1089,7 +1085,7 @@ public class MainActivity extends MenuActivity {
         //Set inquiry list
         if (people == null) {
         } else if (people.size() == 1) {
-            tvInquiry.setText(TextFormatter.fromHtml(getString(R.string.link, getString(R.string.inquiry, people.get(0).getDescriptor()))));
+            tvInquiry.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.inquiry, people.get(0).getDescriptor()))));
             navigationView.getMenu().findItem(R.id.nav_inquiry).setTitle(getString(R.string.inquiry, people.get(0).getDescriptor())); //Changes to text won't be reflected until the Drawer item is updated
 
             if (isNoPersonTempStored()) {
@@ -1101,7 +1097,7 @@ public class MainActivity extends MenuActivity {
             List<String> items = new ArrayList<>();
 
             for (Person person : people) {
-                items.add(person.getDescriptor() + " " + "(" + resourceFinder.getGenderName(person.getGender(), 3) + ")," + " " + person.getBirthdate());
+                items.add(person.getDescriptor() + " " + "(" + resourceExplorer.findGenderName(person.getGender(), 4) + ")," + " " + person.getBirthdate());
             }
 
             //Define Dialog
@@ -1126,12 +1122,12 @@ public class MainActivity extends MenuActivity {
 
     private boolean isPredictionReloaded(Person person, boolean mute) {
         if (people.size() > 0 && isPersonNotTempStored(person)) {
-            preferences.putString("temp_name", person.getDescriptor());
-            preferences.putInt("temp_gender", person.getGender().getValue());
-            preferences.putInt("temp_date_year", person.getBirthdate().getYear());
-            preferences.putInt("temp_date_month", person.getBirthdate().getMonthValue());
-            preferences.putInt("temp_date_day", person.getBirthdate().getDayOfMonth());
-            preferences.putBoolean("temp_anonymous", person.hasAttribute("anonymous"));
+            preferences.put(Preference.TEMP_NAME.getName(), person.getDescriptor());
+            preferences.put(Preference.TEMP_GENDER.getName(), person.getGender().getValue());
+            preferences.put(Preference.TEMP_YEAR_OF_BIRTH.getName(), person.getBirthdate().getYear());
+            preferences.put(Preference.TEMP_MONTH_OF_BIRTH.getName(), person.getBirthdate().getMonthValue());
+            preferences.put(Preference.TEMP_DAY_OF_BIRTH.getName(), person.getBirthdate().getDayOfMonth());
+            preferences.put(Preference.TEMP_ANONYMOUS.getName(), person.hasAttribute("anonymous"));
             reloadPrediction(mute);
             return true;
         }
@@ -1140,11 +1136,11 @@ public class MainActivity extends MenuActivity {
 
     private boolean isFormEntered() {
         Object[] fields = new Object[]{
-                preferences.getStringOrNull("temp_name"),
-                preferences.getIntOrNull("temp_gender"),
-                preferences.getIntOrNull("temp_date_year"),
-                preferences.getIntOrNull("temp_date_month"),
-                preferences.getIntOrNull("temp_date_day")
+                preferences.getStringOrNull(Preference.TEMP_NAME.getName()),
+                preferences.getIntOrNull(Preference.TEMP_GENDER.getName()),
+                preferences.getIntOrNull(Preference.TEMP_YEAR_OF_BIRTH.getName()),
+                preferences.getIntOrNull(Preference.TEMP_MONTH_OF_BIRTH.getName()),
+                preferences.getIntOrNull(Preference.TEMP_DAY_OF_BIRTH.getName())
         };
 
         for (Object field : fields) {
@@ -1168,7 +1164,7 @@ public class MainActivity extends MenuActivity {
                             vMain.setVisibility(View.INVISIBLE);
                         }
                     });
-            preferences.putBoolean("temp_busy", true);
+            preferences.put(Preference.TEMP_BUSY.getName(), true);
             spnDateType.setEnabled(false);
             spnDateType.setClickable(false);
             tvPick.setEnabled(false);
@@ -1234,10 +1230,10 @@ public class MainActivity extends MenuActivity {
                 }
 
                 //Show predictionView
-                tvPersonInfo.setText(TextFormatter.fromHtml(getString(R.string.person_data,
+                tvPersonInfo.setText(SpannerHelper.fromHtml(getString(R.string.person_data,
                         enquiryDate.equals(DateTimeHelper.getStrCurrentDate()) ? getString(R.string.today) : enquiryDate,
                         predictionHistory.getLatest().getPerson().getDescription(),
-                        resourceFinder.getGenderName(predictionHistory.getLatest().getPerson().getGender(), 2),
+                        resourceExplorer.findGenderName(predictionHistory.getLatest().getPerson().getGender(), 1),
                         DateTimeHelper.toIso8601Date(predictionHistory.getLatest().getPerson().getBirthdate())
                 )));
                 setLinksToText(tvPrediction, predictionHistory.getLatest().getFormattedContent());
@@ -1247,11 +1243,11 @@ public class MainActivity extends MenuActivity {
                     navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(true);
                     navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(255);
                 }
-                preferences.remove("temp_busy");
+                preferences.remove(Preference.TEMP_BUSY.getName());
 
                 //Show person's name, if active and possible
                 if (active && !isViewVisible(tvPersonInfo))
-                    showFormattedToast(MainActivity.this, TextFormatter.fromHtml(predictionHistory.getLatest().getPerson().getDescription()));
+                    showFormattedToast(MainActivity.this, SpannerHelper.fromHtml(predictionHistory.getLatest().getPerson().getDescription()));
 
                 //Talk; if active, enabled and possible
                 if (recent)
@@ -1278,7 +1274,7 @@ public class MainActivity extends MenuActivity {
         Prediction prediction;
 
         if (formEntered) {
-            Person person = getPreferencesPerson();
+            Person person = getFormPerson();
             person.addAttribute("entered");
             prediction = divination.getPrediction(person, enquiryDate);
             currentSummary = prediction.getPerson().getSummary();
@@ -1288,7 +1284,7 @@ public class MainActivity extends MenuActivity {
     }
 
     private void setLinksToText(TextView textView, String s) {
-        CharSequence sequence = TextFormatter.fromHtml(s);
+        CharSequence sequence = SpannerHelper.fromHtml(s);
         SpannableStringBuilder sb = new SpannableStringBuilder(sequence);
         URLSpan[] urls = sb.getSpans(0, sequence.length(), URLSpan.class);
 
@@ -1328,7 +1324,7 @@ public class MainActivity extends MenuActivity {
 
         if (initialName != null && finalName != null) {
             if (initialName.equalsIgnoreCase(finalName)) {
-                tvCompatibility.setText(TextFormatter.fromHtml(getString(R.string.compatibility_result, "<font color=#6666FF>" + 100 + "%</font>")));
+                tvCompatibility.setText(SpannerHelper.fromHtml(getString(R.string.compatibility_result, "<font color=#6666FF>" + 100 + "%</font>")));
                 pbWait.setProgress(100);
             } else {
                 String formattedText, tempName;
@@ -1355,11 +1351,11 @@ public class MainActivity extends MenuActivity {
                 else
                     formattedText = "<font color=#6666FF>" + compatibilityPoints + "%</font>";
                 r.unbindSeed();
-                tvCompatibility.setText(TextFormatter.fromHtml(getString(R.string.compatibility_result, formattedText)));
+                tvCompatibility.setText(SpannerHelper.fromHtml(getString(R.string.compatibility_result, formattedText)));
                 pbWait.setProgress(compatibilityPoints);
             }
         } else {
-            tvCompatibility.setText(TextFormatter.fromHtml(getString(R.string.compatibility_result, "<font color=#C0FF2B>?</font>")));
+            tvCompatibility.setText(SpannerHelper.fromHtml(getString(R.string.compatibility_result, "<font color=#C0FF2B>?</font>")));
             pbWait.setProgress(0);
         }
     }

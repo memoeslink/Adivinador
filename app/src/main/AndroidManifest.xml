@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
-        android:name="com.app.memoeslink.adivinador.ApplicationContext"
+        android:name="com.app.memoeslink.adivinador.BaseApplication"
         android:allowBackup="false"
         android:fullBackupOnly="false"
         android:icon="@drawable/ic_launcher"

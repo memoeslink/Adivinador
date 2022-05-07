@@ -7,21 +7,21 @@ import com.memoeslink.generator.common.StringHelper
 import com.memoeslink.helper.SharedPreferencesHelper
 import java.io.File
 
-class ApplicationContext : MultiDexApplication() {
+class BaseApplication : MultiDexApplication() {
     private var preferences: SharedPreferencesHelper? = null
     private var defaultPreferences: SharedPreferencesHelper? = null
 
     override fun onCreate() {
         super.onCreate()
-        preferences = SharedPreferencesHelper.getPreferencesHelper(this@ApplicationContext)
-        defaultPreferences = SharedPreferencesHelper(this@ApplicationContext)
+        preferences = SharedPreferencesHelper.getPreferencesHelper(this@BaseApplication)
+        defaultPreferences = SharedPreferencesHelper(this@BaseApplication)
 
         //Initialize Generator database
-        Session.getInstance().initDatabase(this@ApplicationContext)
+        Session.getInstance().initDatabase(this@BaseApplication)
 
         //Set preference default values
         PreferenceManager.setDefaultValues(
-            this@ApplicationContext,
+            this@BaseApplication,
             R.xml.default_preferences,
             false
         )
@@ -31,7 +31,7 @@ class ApplicationContext : MultiDexApplication() {
     }
 
     private fun getDatabaseTrace(version: Int): File? {
-        if (version >= preferences?.getInt("revisedDatabaseVersion", 1) ?: 1) {
+        if (version >= preferences?.getIntOrNull(Preference.SYSTEM_REVISED_DATABASE_VERSION.name) ?: 1) {
             val databaseName = if (version > 1) {
                 String.format(
                     Database.DATABASE_NAME_FORMAT,
@@ -43,7 +43,7 @@ class ApplicationContext : MultiDexApplication() {
             val database = getDatabasePath(databaseName)
 
             if (database.exists()) {
-                preferences?.putInt("revisedDatabaseVersion", version)
+                preferences?.put(Preference.SYSTEM_REVISED_DATABASE_VERSION.name, version)
                 return database
             }
             getDatabaseTrace(version - 1)

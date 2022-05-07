@@ -51,7 +51,7 @@
         ]]>
     </string>
     <string name="adjectives">boring¶ affectionate¶ agile¶ pleasant¶ cheerful¶ kind¶ resentful¶ ambitious¶ friendly¶ angelic¶ fervent¶ listless¶ ardent¶ attentive¶ groggy¶ saucy¶ adventurous¶ sharp¶ crass¶ quarrelsome¶ bright¶ sneering¶ cantankerous¶ cautious¶ jealous¶ cynical¶ cowardly¶ coherent¶ sympathetic¶ conscientious¶ conservative¶ considerate¶ distraught¶ conventional¶ talkative¶ flirtatious¶ hearty¶ blunt¶ polite¶ big-headed¶ cruel¶ careful¶ curious¶ open-minded¶ laid-back¶ easy-going¶ moody¶ bad-tempered¶ short-tempered¶ narrow-minded¶ weak¶ dependent¶ dreary¶ depressed¶ dowdy¶ distrustful¶ inconsiderate¶ careless¶ idle¶ carefree¶ trustworthy¶ diligent¶ tactful¶ direct¶ discreet¶ argumentative¶ distant¶ absent-minded¶ funny¶ hesitant¶ sweet¶ polite¶ efficient¶ selfish¶ elegant¶ two-faced¶ emotional¶ enterprising¶ charming¶ energetic¶ peevish¶ conceited¶ nosy¶ eager¶ balanced¶ boisterous¶ fastidious¶ stoic¶ strict¶ stupid¶ flaky¶ picky¶ experienced¶ weird¶ outgoing¶ zealous¶ reliable¶ loyal¶ flabby¶ staid¶ cold¶ generous¶ gentle¶ amusing¶ grouchy¶ deft¶ beautiful¶ hysterical¶ slothful¶ honest¶ awful¶ reclusive¶ imaginative¶ moronic¶ impatient¶ impetuous¶ impulsive¶ independent¶ childish¶ naive¶ immature¶ restless¶ tactless¶ intelligent¶ interesting¶ intolerant¶ plucky¶ playful¶ shrewd¶ querulous¶ crazy¶ mature¶ churlish¶ sulky¶ spiteful¶ nasty¶ maternal¶ gloomy¶ meticulous¶ modest¶ caustic¶ nervous¶ obnoxious¶ proud¶ patient¶ peaceful¶ passionate¶ pensive¶ lazy¶ persevering¶ disruptive¶ annoying¶ sassy¶ powerful¶ positive¶ practical¶ conceited¶ snobby¶ provocative¶ cautious¶ punctual¶ fussy¶ reluctant¶ realistic¶ leery¶ reserved¶ responsible¶ ridiculous¶ discerning¶ confident¶ self-confident¶ sensible¶ sensitive¶ serene¶ serious¶ obliging¶ stern¶ friendly¶ sincere¶ sophisticated¶ drowsy¶ dull¶ dirty¶ superficial¶ mean¶ sullen¶ talented¶ stubborn¶ shy¶ silly¶ clumsy¶ hard-working¶ reassuring¶ quiet¶ naughty¶ sad¶ helpful¶ brave¶ bitchy¶ lively</string>
-    <string name="app_name">Adivinador</string>
+    <string name="app_name">Fortune-Teller</string>
     <string name="about_title">About</string>
     <string name="action_back">Back</string>
     <string name="action_cancel">Cancel</string>
@@ -67,7 +67,6 @@
     <string name="alert_select_enquiry_title">Select enquiry</string>
     <string name="alert_successful_donation_message">Thanks a lot for contributing to the project!</string>
     <string name="alert_successful_donation_title">Successful donation</string>
-    <string name="android_device_user">%1$s of Android device with ID %2$s</string>
     <string name="astrological_sign">Aquarius¶ Pisces¶ Aries¶ Taurus¶ Gemini¶ Cancer¶ Leo¶ Virgo¶ Libra¶ Scorpio¶ Sagittarius¶ Capricorn</string>
     <string name="binder">Use current enquiry name</string>
     <string name="chain_effect">• Chain results: the effect will be %1$s in the day of %2$s.</string>
@@ -80,11 +79,6 @@
     <string name="default_person">one</string>
     <string name="default_user">user</string>
     <string name="denied_contact_permission">Some functions will be disabled due to a denied contact permission.</string>
-    <string name="device_brand_user">%1$s of %2$s brand device</string>
-    <string name="device_connected_user">user of device with IP address %1$s</string>
-    <string name="device_unspecific_user">user of device with unknown IP address</string>
-    <string name="device_user">%1$s of %2$s device</string>
-    <string name="device_version_user">%1$s of Android %2$s device</string>
     <string name="donations_description">Please, consider donating some money for the app development, that would allow me to make this app even better! Google Play Store applies a tax percentage depending on your country.</string>
     <string name="donations_donate">¡DONATE!</string>
     <string name="donations_title">Donate</string>
@@ -114,11 +108,6 @@
     <string name="menu_about">About</string>
     <string name="menu_exit">Exit</string>
     <string name="name_generation">Generate name</string>
-    <string name="network_disconnected_user">user without Internet connection through Wi-Fi</string>
-    <string name="network_unspecific_user">user connected to unknown network through Wi-Fi</string>
-    <string name="network_user">user connected to network named %1$s</string>
-    <string name="network_operator_disconnected_user">user of unknown network operator</string>
-    <string name="network_operator_user">%1$s user</string>
     <string name="nouns">human¶ entity¶ being¶ thing¶ creature¶ individual¶ organism¶ life form¶ existence¶ living entity¶ person¶ human being¶ [[,wo]man]¶ [[boy,girl]]¶ [[lady,gentleman]]¶ [[,fe]male]¶ user</string>
     <string name="ok">OK</string>
     <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Watching information (%1$s) for:&lt;/i&gt;&lt;/font&gt; %2$s&lt;font color="#F6FBB2"&gt;, %3$s (%4$s)&lt;/font&gt;</string>
@@ -260,6 +249,7 @@
     <string name="toast_enquiry_saved">The enquiry was saved successfully.</string>
     <string name="toast_voice_unavailability">There\'s not any available voice for TTS in your device.</string>
     <string name="today">today</string>
+    <string name="user">user of %1$s</string>
     <string name="value_as_negative">negative</string>
     <string name="value_as_null">null</string>
     <string name="value_as_positive">positive</string>
@@ -599,12 +589,15 @@
         <item>Leo, Gemini, Cancer, Virgo, Pisces.</item>
         <item>Leo, Scorpio, Gemini, Cancer, Virgo.</item>
     </string-array>
+    <string-array name="conversation_greeting_structure">
+        <item>{string:greetings_component}</item>
+    </string-array>
     <string-array name="conversation_addendum">
         <item></item>
         <item></item>
-        <item>&lt;font color="{method:getColorStr}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
         <item>&lt;i&gt;{string:interjections}&lt;/i&gt;</item>
-        <item>&lt;font color="{method:getColorStr}"&gt;&lt;b&gt;{method:getDeviceUser}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{method:getDeviceUser}&lt;/b&gt;&lt;/font&gt;</item>
     </string-array>
     <string-array name="date_options">
         <item>Today\'s enquiry</item>
@@ -1770,9 +1763,9 @@
         <item>truthful</item>
     </string-array>
     <string-array name="subject">
-        <item name="subject">⸠string:adjectives⸡ {string:nouns}</item>
-        <item name="subject">{string:nouns}</item>
-        <item name="subject">{string:adjectives} {string:default_person}</item>
+        <item>⸠string:adjectives⸡ {string:nouns}</item>
+        <item>{string:nouns}</item>
+        <item>{string:adjectives} {string:default_person}</item>
     </string-array>
     <string-array name="uncertainty">
         <item>I do not know what</item>

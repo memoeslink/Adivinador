@@ -1,4 +1,4 @@
-package com.app.memoeslink.adivinador.activity;
+package com.app.memoeslink.adivinador;
 
 public enum ActivityStatus {
     LAUNCHED,
