@@ -56,13 +56,13 @@
             android:title="@string/preference_enable_audio" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:dependency="preference_audioEnabled"
+            android:dependency="setting_audioEnabled"
             android:key="setting_soundsEnabled"
             android:summary="@string/preference_enable_sounds_summary"
             android:title="@string/preference_enable_sounds" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:dependency="preference_audioEnabled"
+            android:dependency="setting_audioEnabled"
             android:key="setting_voiceEnabled"
             android:summary="@string/preference_enable_voice_summary"
             android:title="@string/preference_enable_voice" />
