@@ -69,7 +69,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:dependency="preference_voiceEnabled"
+        android:dependency="setting_voiceEnabled"
         android:title="@string/preference_speech_synthesis">
         <ListPreference
             android:defaultValue="0"
