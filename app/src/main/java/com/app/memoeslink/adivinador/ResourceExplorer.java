@@ -9,6 +9,7 @@ import com.memoeslink.generator.common.Explorer;
 import com.memoeslink.generator.common.ExplorerReference;
 import com.memoeslink.generator.common.IntegerHelper;
 import com.memoeslink.generator.common.StringHelper;
+import com.memoeslink.generator.common.finder.ResourceFinder;
 
 public class ResourceExplorer extends Explorer {
     private final DatabaseFinder databaseFinder;
@@ -90,5 +91,18 @@ public class ResourceExplorer extends Explorer {
             sb.append(findByRef(ExplorerReference.EMOJI));
         }
         return sb.toString();
+    }
+
+    public String getPictogram() {
+        switch (r.getInt(3)) {
+            case 0:
+                return "<b><font color=" + reflectionFinder.getDefaultColor() + ">" + findByRef(ExplorerReference.EMOTICON) + "</font></b>";
+            case 1:
+                return "<b><font color=" + reflectionFinder.getDefaultColor() + ">" + findByRef(ExplorerReference.KAOMOJI) + "</font></b>";
+            case 2:
+                return getEmojis(r.getInt(1, 4));
+            default:
+                return ResourceFinder.RESOURCE_NOT_FOUND;
+        }
     }
 }

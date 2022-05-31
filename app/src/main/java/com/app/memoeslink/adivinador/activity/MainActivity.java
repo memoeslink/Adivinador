@@ -278,7 +278,7 @@ public class MainActivity extends MenuActivity {
         tvPrediction.setText(SpannerHelper.fromHtml(divination.getEmptyPrediction().getFormattedContent()));
 
         //Get a greeting, if enabled
-        if (defaultPreferences.getBoolean(Preference.SETTING_GREETINGS_ENABLED.getName()))
+        if (defaultPreferences.getBoolean(Preference.SETTING_GREETINGS_ENABLED.getTag()))
             tvPhrase.setText(SpannerHelper.fromHtml(fortuneTeller.greet()));
         else
             tvPhrase.setText("…");
@@ -335,7 +335,7 @@ public class MainActivity extends MenuActivity {
         });
 
         navigationView.setNavigationItemSelectedListener(item -> {
-            if (defaultPreferences.getBoolean(Preference.SETTING_HIDE_DRAWER.getName(), true))
+            if (defaultPreferences.getBoolean(Preference.SETTING_HIDE_DRAWER.getTag(), true))
                 closeDrawer();
 
             switch (item.getItemId()) {
@@ -431,7 +431,7 @@ public class MainActivity extends MenuActivity {
         });
 
         ivFortuneTeller.setOnClickListener(view -> {
-            if (defaultPreferences.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT.getName(), 1) != 0) {
+            if (defaultPreferences.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT.getTag(), 1) != 0) {
                 Sound.play(MainActivity.this, "jump");
                 new BounceAnimation(ivFortuneTeller)
                         .setBounceDistance(7)
@@ -553,7 +553,7 @@ public class MainActivity extends MenuActivity {
 
         //Set listener to SharedPreferences
         listener = (prefs, key) -> {
-            if (key.equals(Preference.DATA_STORED_PEOPLE.getName())) {
+            if (key.equals(Preference.DATA_STORED_PEOPLE.getTag())) {
                 if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                     dialog = null;
@@ -562,7 +562,7 @@ public class MainActivity extends MenuActivity {
                 setDialog(); //Define Dialog
             }
 
-            if (key.equals(Preference.DATA_STORED_NAMES.getName()))
+            if (key.equals(Preference.DATA_STORED_NAMES.getTag()))
                 setAdapter(); //Get stored names
         };
         preferences.registerOnSharedPreferenceChangeListener(listener);
@@ -598,28 +598,28 @@ public class MainActivity extends MenuActivity {
         super.onResume();
         active = true;
         pending = false;
-        textType = defaultPreferences.getStringAsInt(Preference.SETTING_TEXT_TYPE.getName());
-        Long seed = LongHelper.getSeed(preferences.getString(Preference.SETTING_SEED.getName()));
+        textType = defaultPreferences.getStringAsInt(Preference.SETTING_TEXT_TYPE.getTag());
+        Long seed = LongHelper.getSeed(preferences.getString(Preference.SETTING_SEED.getTag()));
 
         if (seed != null && fortuneTeller.getSeed() != null && seed.equals(fortuneTeller.getSeed()))
             fortuneTeller = new FortuneTeller(MainActivity.this);
 
         //Restart Activity if required
-        if (preferences.contains(Preference.TEMP_RESTART_ACTIVITY.getName())) {
+        if (preferences.contains(Preference.TEMP_RESTART_ACTIVITY.getTag())) {
             forceEffects = true;
             Intent intent = getIntent();
             finish();
             startActivity(intent);
         }
-        preferences.remove(Preference.TEMP_RESTART_ACTIVITY.getName());
+        preferences.remove(Preference.TEMP_RESTART_ACTIVITY.getTag());
 
-        if (defaultPreferences.getBoolean(Preference.SETTING_STICK_HEADER.getName()))
+        if (defaultPreferences.getBoolean(Preference.SETTING_STICK_HEADER.getTag()))
             rlHeader.setTag("sticky-hasTransparency-nonConstant");
         else
             rlHeader.setTag(null);
 
         //Stop TTS if it is disabled and continues talking
-        if (speechAvailable && (defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getName()) || defaultPreferences.getBoolean(Preference.SETTING_VOICE_ENABLED.getName()))) {
+        if (speechAvailable && (defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getTag()) || defaultPreferences.getBoolean(Preference.SETTING_VOICE_ENABLED.getTag()))) {
             if (tts.isSpeaking())
                 tts.stop();
         }
@@ -634,9 +634,9 @@ public class MainActivity extends MenuActivity {
         }
 
         //Change drawable if the 'fortune teller aspect' preference was changed
-        if (preferences.contains(Preference.TEMP_CHANGE_FORTUNE_TELLER.getName())) {
+        if (preferences.contains(Preference.TEMP_CHANGE_FORTUNE_TELLER.getTag())) {
             ivFortuneTeller.setImageResource(fortuneTeller.getRandomAppearance());
-            preferences.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER.getName());
+            preferences.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER.getTag());
         }
 
         //Define Dialog
@@ -648,8 +648,8 @@ public class MainActivity extends MenuActivity {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    frequency = defaultPreferences.getStringAsInt(Preference.SETTING_REFRESH_TIME.getName(), 20);
-                    refreshFrequency = defaultPreferences.getStringAsInt(Preference.SETTING_UPDATE_TIME.getName(), 60);
+                    frequency = defaultPreferences.getStringAsInt(Preference.SETTING_REFRESH_TIME.getTag(), 20);
+                    refreshFrequency = defaultPreferences.getStringAsInt(Preference.SETTING_UPDATE_TIME.getTag(), 60);
 
                     if (resourceSeconds >= 1800)
                         resourceSeconds = 0;
@@ -796,8 +796,8 @@ public class MainActivity extends MenuActivity {
 
     private void prepareAd(boolean restarted) {
         if (adPaused == null || !adPaused) {
-            if (defaultPreferences.getBoolean(Preference.SETTING_ADS_ENABLED.getName(), true)) {
-                if (restarted || !adAdded || defaultPreferences.getBoolean(Preference.TEMP_RESTART_ADS.getName()))
+            if (defaultPreferences.getBoolean(Preference.SETTING_ADS_ENABLED.getTag(), true)) {
+                if (restarted || !adAdded || defaultPreferences.getBoolean(Preference.TEMP_RESTART_ADS.getTag()))
                     destroyAd();
 
                 if (!adAdded) {
@@ -881,13 +881,13 @@ public class MainActivity extends MenuActivity {
             rlAdContainer.setVisibility(View.GONE);
             rlAdContainer.removeAllViews();
             adView = null;
-            defaultPreferences.remove(Preference.TEMP_RESTART_ADS.getName());
+            defaultPreferences.remove(Preference.TEMP_RESTART_ADS.getTag());
             adAdded = false;
         }
     }
 
     private void showInterstitialAd() {
-        if (defaultPreferences.getBoolean(Preference.SETTING_ADS_ENABLED.getName(), true)) {
+        if (defaultPreferences.getBoolean(Preference.SETTING_ADS_ENABLED.getTag(), true)) {
             r.bindSeed(LongHelper.getSeed(DateTimeGetter.getCurrentDateTime() + System.getProperty("line.separator") + device.getDeviceId()));
 
             if (r.getInt(20) == 0) {
@@ -949,10 +949,10 @@ public class MainActivity extends MenuActivity {
                 new Handler(Looper.getMainLooper()).postDelayed(this::waitTasks, 500);
         } else {
             if (active || forceEffects) {
-                if (defaultPreferences.getBoolean(Preference.SETTING_PARTICLES_ENABLED.getName(), true) && originInX != 0 && originInY != 0)
+                if (defaultPreferences.getBoolean(Preference.SETTING_PARTICLES_ENABLED.getTag(), true) && originInX != 0 && originInY != 0)
                     throwConfetti(originInX, originInY); //Start confetti animation
 
-                if (defaultPreferences.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT.getName(), 1) != 0) {
+                if (defaultPreferences.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT.getTag(), 1) != 0) {
                     Sound.play(MainActivity.this, "jump");
                     new BounceAnimation(ivFortuneTeller)
                             .setBounceDistance(20)
@@ -976,7 +976,7 @@ public class MainActivity extends MenuActivity {
     }
 
     private void throwConfetti(int x, int y) {
-        final List<Bitmap> allPossibleConfetti = Utils.generateConfettiBitmaps(defaultPreferences.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT.getName()) == 0 ? PARTICLE_COLORS[0] : PARTICLE_COLORS[1], 10 /* size */);
+        final List<Bitmap> allPossibleConfetti = Utils.generateConfettiBitmaps(defaultPreferences.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT.getTag()) == 0 ? PARTICLE_COLORS[0] : PARTICLE_COLORS[1], 10 /* size */);
         final int numConfetti = allPossibleConfetti.size();
 
         ConfettoGenerator confettoGenerator = random -> {
@@ -1010,8 +1010,8 @@ public class MainActivity extends MenuActivity {
     private void setAdapter() {
         List<String> nameList = null;
 
-        if (preferences.contains(Preference.DATA_STORED_NAMES.getName()) && preferences.getStringSet(Preference.DATA_STORED_NAMES.getName(), null).size() > 0)
-            nameList = new ArrayList(preferences.getStringSet(Preference.DATA_STORED_NAMES.getName()));
+        if (preferences.contains(Preference.DATA_STORED_NAMES.getTag()) && preferences.getStringSet(Preference.DATA_STORED_NAMES.getTag(), null).size() > 0)
+            nameList = new ArrayList(preferences.getStringSet(Preference.DATA_STORED_NAMES.getTag()));
 
         if (nameList != null && nameList.size() > 0) {
             String[] names = nameList.toArray(new String[0]);
@@ -1031,9 +1031,9 @@ public class MainActivity extends MenuActivity {
         navigationView.getMenu().findItem(R.id.nav_selector).getIcon().setAlpha(125);
 
         //Get stored enquiries
-        if (StringHelper.isNotNullOrEmpty(preferences.getString(Preference.DATA_STORED_PEOPLE.getName()))) {
+        if (StringHelper.isNotNullOrEmpty(preferences.getString(Preference.DATA_STORED_PEOPLE.getTag()))) {
             Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>) (json, typeOfT, context) -> LocalDate.parse(json.getAsJsonPrimitive().getAsString())).create();
-            String json = preferences.getString(Preference.DATA_STORED_PEOPLE.getName());
+            String json = preferences.getString(Preference.DATA_STORED_PEOPLE.getTag());
             Type type = new TypeToken<ArrayList<Person>>() {
             }.getType();
 
@@ -1076,7 +1076,7 @@ public class MainActivity extends MenuActivity {
             }
 
             if (!valid) {
-                preferences.remove(Preference.DATA_STORED_PEOPLE.getName());
+                preferences.remove(Preference.DATA_STORED_PEOPLE.getTag());
                 people.clear();
             }
         } else
@@ -1122,12 +1122,12 @@ public class MainActivity extends MenuActivity {
 
     private boolean isPredictionReloaded(Person person, boolean mute) {
         if (people.size() > 0 && isPersonNotTempStored(person)) {
-            preferences.put(Preference.TEMP_NAME.getName(), person.getDescriptor());
-            preferences.put(Preference.TEMP_GENDER.getName(), person.getGender().getValue());
-            preferences.put(Preference.TEMP_YEAR_OF_BIRTH.getName(), person.getBirthdate().getYear());
-            preferences.put(Preference.TEMP_MONTH_OF_BIRTH.getName(), person.getBirthdate().getMonthValue());
-            preferences.put(Preference.TEMP_DAY_OF_BIRTH.getName(), person.getBirthdate().getDayOfMonth());
-            preferences.put(Preference.TEMP_ANONYMOUS.getName(), person.hasAttribute("anonymous"));
+            preferences.put(Preference.TEMP_NAME.getTag(), person.getDescriptor());
+            preferences.put(Preference.TEMP_GENDER.getTag(), person.getGender().getValue());
+            preferences.put(Preference.TEMP_YEAR_OF_BIRTH.getTag(), person.getBirthdate().getYear());
+            preferences.put(Preference.TEMP_MONTH_OF_BIRTH.getTag(), person.getBirthdate().getMonthValue());
+            preferences.put(Preference.TEMP_DAY_OF_BIRTH.getTag(), person.getBirthdate().getDayOfMonth());
+            preferences.put(Preference.TEMP_ANONYMOUS.getTag(), person.hasAttribute("anonymous"));
             reloadPrediction(mute);
             return true;
         }
@@ -1136,11 +1136,11 @@ public class MainActivity extends MenuActivity {
 
     private boolean isFormEntered() {
         Object[] fields = new Object[]{
-                preferences.getStringOrNull(Preference.TEMP_NAME.getName()),
-                preferences.getIntOrNull(Preference.TEMP_GENDER.getName()),
-                preferences.getIntOrNull(Preference.TEMP_YEAR_OF_BIRTH.getName()),
-                preferences.getIntOrNull(Preference.TEMP_MONTH_OF_BIRTH.getName()),
-                preferences.getIntOrNull(Preference.TEMP_DAY_OF_BIRTH.getName())
+                preferences.getStringOrNull(Preference.TEMP_NAME.getTag()),
+                preferences.getIntOrNull(Preference.TEMP_GENDER.getTag()),
+                preferences.getIntOrNull(Preference.TEMP_YEAR_OF_BIRTH.getTag()),
+                preferences.getIntOrNull(Preference.TEMP_MONTH_OF_BIRTH.getTag()),
+                preferences.getIntOrNull(Preference.TEMP_DAY_OF_BIRTH.getTag())
         };
 
         for (Object field : fields) {
@@ -1164,7 +1164,7 @@ public class MainActivity extends MenuActivity {
                             vMain.setVisibility(View.INVISIBLE);
                         }
                     });
-            preferences.put(Preference.TEMP_BUSY.getName(), true);
+            preferences.put(Preference.TEMP_BUSY.getTag(), true);
             spnDateType.setEnabled(false);
             spnDateType.setClickable(false);
             tvPick.setEnabled(false);
@@ -1243,7 +1243,7 @@ public class MainActivity extends MenuActivity {
                     navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(true);
                     navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(255);
                 }
-                preferences.remove(Preference.TEMP_BUSY.getName());
+                preferences.remove(Preference.TEMP_BUSY.getTag());
 
                 //Show person's name, if active and possible
                 if (active && !isViewVisible(tvPersonInfo))

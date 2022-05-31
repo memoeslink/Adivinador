@@ -25,12 +25,12 @@ public class PreferenceFinder extends Binder {
     }
 
     public Gender getGender() {
-        int genderValue = preferences.getInt(Preference.TEMP_GENDER.getName(), r.getInt(3));
+        int genderValue = preferences.getInt(Preference.TEMP_GENDER.getTag(), r.getInt(3));
         return Gender.get(genderValue);
     }
 
     private List<String> getSuggestedNames() {
-        List<String> suggestedNames = new ArrayList(preferences.getStringSet(Preference.DATA_STORED_NAMES.getName()));
+        List<String> suggestedNames = new ArrayList(preferences.getStringSet(Preference.DATA_STORED_NAMES.getTag()));
         suggestedNames.add(Constant.DEVELOPER);
         return suggestedNames;
     }
@@ -41,7 +41,7 @@ public class PreferenceFinder extends Binder {
 
         do {
             suggestedName = r.getItem(suggestedNames);
-        } while (preferences.getString(Preference.TEMP_NAME.getName()).equals(suggestedName) && suggestedNames.size() > 1);
+        } while (preferences.getString(Preference.TEMP_NAME.getTag()).equals(suggestedName) && suggestedNames.size() > 1);
         return StringHelper.defaultWhenBlank(suggestedName);
     }
 }

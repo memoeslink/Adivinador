@@ -13,6 +13,8 @@ import com.memoeslink.generator.common.GeneratorManager;
 import com.memoeslink.generator.common.NameType;
 import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.ResourceGetter;
+import com.memoeslink.generator.common.TextFormatter;
+import com.memoeslink.generator.common.finder.ContactNameFinder;
 import com.memoeslink.generator.common.finder.ResourceFinder;
 
 import java.lang.reflect.Constructor;
@@ -20,10 +22,26 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 public class ReflectionFinder extends Binder {
-    GeneratorManager manager;
+    private static final List<String> PERSON_SOURCES;
+    private final GeneratorManager manager;
+    private final ContactNameFinder contactNameFinder;
+    private final PreferenceFinder preferenceFinder;
+    private final ResourceFinder resourceFinder;
+
+    static {
+        PERSON_SOURCES = new ArrayList<>();
+        PERSON_SOURCES.addAll(new ArrayList<>(Collections.nCopies(15, "anonymous")));
+        PERSON_SOURCES.addAll(new ArrayList<>(Collections.nCopies(45, "common")));
+        PERSON_SOURCES.add("contact");
+        PERSON_SOURCES.add("contact");
+        PERSON_SOURCES.add("suggestion");
+    }
 
     public ReflectionFinder(Context context) {
         this(context, null);
@@ -32,6 +50,9 @@ public class ReflectionFinder extends Binder {
     public ReflectionFinder(Context context, Long seed) {
         super(context, seed);
         manager = new GeneratorManager(Locale.getDefault(), seed);
+        contactNameFinder = new ContactNameFinder(context, seed);
+        preferenceFinder = new PreferenceFinder(context, seed);
+        resourceFinder = new ResourceFinder(context, seed);
     }
 
     public String callMethod(String methodName) {
@@ -95,6 +116,8 @@ public class ReflectionFinder extends Binder {
                 return getColorStr();
             case DEVICE_USER:
                 return getDeviceUser();
+            case FORMATTED_NAME:
+                return getFormattedName();
             case NONE:
             default:
                 return ResourceFinder.RESOURCE_NOT_FOUND;
@@ -149,5 +172,31 @@ public class ReflectionFinder extends Binder {
     public String getDeviceUser() {
         int infoType = r.getInt(1, 10);
         return getString(R.string.user, new Device(context).getInfo(infoType));
+    }
+
+    public String getFormattedName() {
+        switch (r.getItem(PERSON_SOURCES)) {
+            case "anonymous":
+                return TextFormatter.formatUsername(getUsername());
+            case "common":
+                Person person = getPerson();
+                String name = person.getFullName();
+
+                switch (person.getGender()) {
+                    case MASCULINE:
+                        name += "｢1｣";
+                        break;
+                    case FEMININE:
+                        name += "｢2｣";
+                        break;
+                }
+                return TextFormatter.formatName(name);
+            case "contact":
+                return TextFormatter.formatContactName(contactNameFinder.getContactName());
+            case "suggestion":
+                return TextFormatter.formatSuggestedName(preferenceFinder.getSuggestedName());
+            default:
+                return TextFormatter.formatText("?", "b,tt");
+        }
     }
 }

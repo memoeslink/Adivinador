@@ -39,21 +39,21 @@ public enum Preference {
     SETTING_SAVE_NAMES("setting_saveNames"),
     SETTING_SAVE_ENQUIRIES("setting_saveEnquiries");
 
-    private final String name;
+    private final String tag;
     private static final HashMap<String, Preference> LOOKUP = new HashMap<>();
 
     static {
         for (Preference preference : Preference.values()) {
-            LOOKUP.put(preference.getName(), preference);
+            LOOKUP.put(preference.getTag(), preference);
         }
     }
 
-    private Preference(String name) {
-        this.name = name;
+    private Preference(String tag) {
+        this.tag = tag;
     }
 
-    public String getName() {
-        return name;
+    public String getTag() {
+        return tag;
     }
 
     public static Preference get(String name) {

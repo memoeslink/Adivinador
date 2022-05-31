@@ -13,7 +13,7 @@ public class Sound {
     public static boolean play(Context context, String soundResource) {
         SharedPreferencesHelper preferences = new SharedPreferencesHelper(context);
 
-        if (preferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getName()) && preferences.getBoolean(Preference.SETTING_SOUNDS_ENABLED.getName())) {
+        if (preferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getTag()) && preferences.getBoolean(Preference.SETTING_SOUNDS_ENABLED.getTag())) {
             if (soundResource != null) {
                 try {
                     int soundID = context.getResources().getIdentifier(soundResource, "raw", context.getPackageName());

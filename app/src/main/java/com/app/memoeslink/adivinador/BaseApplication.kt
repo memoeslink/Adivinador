@@ -31,7 +31,7 @@ class BaseApplication : MultiDexApplication() {
     }
 
     private fun getDatabaseTrace(version: Int): File? {
-        if (version >= preferences?.getIntOrNull(Preference.SYSTEM_REVISED_DATABASE_VERSION.name) ?: 1) {
+        if (version >= preferences?.getIntOrNull(Preference.SYSTEM_REVISED_DATABASE_VERSION.tag) ?: 1) {
             val databaseName = if (version > 1) {
                 String.format(
                     Database.DATABASE_NAME_FORMAT,
@@ -43,7 +43,7 @@ class BaseApplication : MultiDexApplication() {
             val database = getDatabasePath(databaseName)
 
             if (database.exists()) {
-                preferences?.put(Preference.SYSTEM_REVISED_DATABASE_VERSION.name, version)
+                preferences?.put(Preference.SYSTEM_REVISED_DATABASE_VERSION.tag, version)
                 return database
             }
             getDatabaseTrace(version - 1)

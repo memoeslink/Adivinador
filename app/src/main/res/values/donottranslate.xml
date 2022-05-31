@@ -19,12 +19,6 @@
         <item>2</item>
         <item>3</item>
     </string-array>
-    <string-array name="genders">
-        <item>@string/input_gender_indefinite</item>
-        <item>@string/input_gender_male</item>
-        <item>@string/input_gender_female</item>
-        <item>@string/input_gender_indefinite</item>
-    </string-array>
     <string-array name="languages">
         <item>es</item>
         <item>en</item>

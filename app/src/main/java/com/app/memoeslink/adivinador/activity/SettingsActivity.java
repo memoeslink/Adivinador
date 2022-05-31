@@ -41,16 +41,16 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
 
         //Set listeners
         listener = (prefs, key) -> {
-            if (key.equals(Preference.SETTING_ACTIVE_SCREEN.getName()))
-                Screen.setContinuance(SettingsActivity.this, defaultPreferences.getBoolean(Preference.SETTING_ACTIVE_SCREEN.getName()));
+            if (key.equals(Preference.SETTING_ACTIVE_SCREEN.getTag()))
+                Screen.setContinuance(SettingsActivity.this, defaultPreferences.getBoolean(Preference.SETTING_ACTIVE_SCREEN.getTag()));
 
-            if (key.equals(Preference.SETTING_ADS_ENABLED.getName()) && defaultPreferences.getBoolean(Preference.SETTING_ADS_ENABLED.getName()))
-                preferences.put(Preference.TEMP_RESTART_ACTIVITY.getName(), true);
+            if (key.equals(Preference.SETTING_ADS_ENABLED.getTag()) && defaultPreferences.getBoolean(Preference.SETTING_ADS_ENABLED.getTag()))
+                preferences.put(Preference.TEMP_RESTART_ACTIVITY.getTag(), true);
 
-            if (key.equals(Preference.SETTING_FORTUNE_TELLER_ASPECT.getName()))
-                preferences.put(Preference.TEMP_CHANGE_FORTUNE_TELLER.getName(), true);
+            if (key.equals(Preference.SETTING_FORTUNE_TELLER_ASPECT.getTag()))
+                preferences.put(Preference.TEMP_CHANGE_FORTUNE_TELLER.getTag(), true);
 
-            if (key.equals(Preference.SETTING_LANGUAGE.getName()) || key.equals(Preference.SETTING_THEME.getName()) || key.equals(Preference.SETTING_SEED.getName())) {
+            if (key.equals(Preference.SETTING_LANGUAGE.getTag()) || key.equals(Preference.SETTING_THEME.getTag()) || key.equals(Preference.SETTING_SEED.getTag())) {
                 try {
                     SettingsActivity.this.runOnUiThread(() -> dialog.show());
                 } catch (Exception e) {
@@ -58,14 +58,14 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
                 }
             }
 
-            if (key.equals(Preference.SETTING_SAVE_NAMES.getName()) && !defaultPreferences.getBoolean(Preference.SETTING_SAVE_NAMES.getName(), true))
-                preferences.remove(Preference.DATA_STORED_NAMES.getName());
+            if (key.equals(Preference.SETTING_SAVE_NAMES.getTag()) && !defaultPreferences.getBoolean(Preference.SETTING_SAVE_NAMES.getTag(), true))
+                preferences.remove(Preference.DATA_STORED_NAMES.getTag());
 
-            if (key.equals(Preference.SETTING_SAVE_ENQUIRIES.getName()) && !defaultPreferences.getBoolean(Preference.SETTING_SAVE_ENQUIRIES.getName(), true))
-                preferences.remove(Preference.DATA_STORED_PEOPLE.getName());
+            if (key.equals(Preference.SETTING_SAVE_ENQUIRIES.getTag()) && !defaultPreferences.getBoolean(Preference.SETTING_SAVE_ENQUIRIES.getTag(), true))
+                preferences.remove(Preference.DATA_STORED_PEOPLE.getTag());
 
-            if (key.equals(Preference.SETTING_STICK_HEADER.getName()))
-                preferences.put(Preference.TEMP_RESTART_ACTIVITY.getName(), true);
+            if (key.equals(Preference.SETTING_STICK_HEADER.getTag()))
+                preferences.put(Preference.TEMP_RESTART_ACTIVITY.getTag(), true);
         };
         defaultPreferences.registerOnSharedPreferenceChangeListener(listener);
     }
@@ -73,7 +73,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
     @Override
     public void onResume() {
         super.onResume();
-        Screen.setContinuance(SettingsActivity.this, defaultPreferences.getBoolean(Preference.SETTING_ACTIVE_SCREEN.getName()));
+        Screen.setContinuance(SettingsActivity.this, defaultPreferences.getBoolean(Preference.SETTING_ACTIVE_SCREEN.getTag()));
     }
 
     @Override
@@ -90,7 +90,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if (defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getName()))
+                    if (defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getTag()))
                         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
                     else
                         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
@@ -98,7 +98,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if (defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getName()))
+                    if (defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getTag()))
                         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
                     else
                         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
@@ -112,7 +112,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
     @Override
     public void onInit(int i) {
         if (i == TextToSpeech.SUCCESS)
-            speechAvailable = isTTSAvailable(tts, defaultPreferences.getString(Preference.SETTING_LANGUAGE.getName(), "es"));
+            speechAvailable = isTTSAvailable(tts, defaultPreferences.getString(Preference.SETTING_LANGUAGE.getTag(), "es"));
         else {
             speechAvailable = false;
             showSimpleToast(SettingsActivity.this, getString(R.string.toast_voice_unavailability));

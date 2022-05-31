@@ -1188,325 +1188,325 @@
         <item>vain</item>
     </string-array>
     <string-array name="opinion">
-        <item>Have you heard about ##? They are my worst enemy.</item>
-        <item>You look like someone I know, their name is ##.</item>
-        <item>You don\'t happen to know ##?</item>
-        <item>I have to go with ##. They owe me money.</item>
-        <item>I\'m in love with ##.</item>
-        <item>Have you seen a person named ##?</item>
-        <item>Your {string:relative; gender:⸮}, ## and I are lovers. A real love triangle.</item>
-        <item>Are you {string:relative; gender:⛌} of ##? You look very much alike.</item>
-        <item>Are you, by chance, {string:relative; gender:⛌} of ##? You both share certain traits.</item>
-        <item>It\'s nice to see you here, unlike ##.</item>
-        <item>Oh, yes, I revealed a frightening future for ##.</item>
-        <item>The other day ## asked me to look into their future.</item>
-        <item>So many tragic stories have been written, like the ones from ##.</item>
-        <item>Revealing the future is exhausting, and even more so the future of ##.</item>
-        <item>Many people turn to me, especially ##, ## and ##.</item>
-        <item>Did you know that ## and ## are a couple?</item>
-        <item>There is a very cruel fate between ## and ##.</item>
-        <item>A strong rivalry is building between ## and ##.</item>
-        <item>Do you want to know what happened to ##?</item>
-        <item>## came to me for my secret knowledge.</item>
-        <item>Beware of ##, they are a very dangerous person.</item>
-        <item>There is a very nice person named ##.</item>
-        <item>I like food, especially that made by ##.</item>
-        <item>There are two people in this world whom you should know. They are ## and ##.</item>
-        <item>I have many brothers and sisters, and my favorite is ##.</item>
-        <item>Never go to talk to ##, they\'re very annoying.</item>
-        <item>I love telling fortunes for ##.</item>
-        <item>Yes, have you seen ##? I need to talk to this person.</item>
-        <item>Let\'s see, uh, ##, ##, ##, ##, ##, uh… and ##. That\'s it, I\'ve written down the ones I need to predict their future.</item>
-        <item>If you misbehave, ## will come and take you away.</item>
-        <item>Have you heard the sad story of ##?</item>
-        <item>Have you heard the adventures of ##?</item>
-        <item>Have you heard the good news about ##?</item>
-        <item>Would you mind letting me figure out something about ##?</item>
-        <item>Who\'s ##?</item>
-        <item>Have you come across ##?</item>
-        <item>I like a person named ##.</item>
-        <item>I like someone named ##.</item>
-        <item>Why do you hate ##?</item>
-        <item>Do you like a person named ##?</item>
-        <item>What do you know about ##?</item>
-        <item>## and ## are very similar people.</item>
-        <item>Tell me if you ever see ##.</item>
-        <item>Tell me if one day you meet ##.</item>
-        <item>I am a very busy person. Today I\'m going out with ##.</item>
-        <item>## and ## are very good friends.</item>
-        <item>## and ## are the worst enemies.</item>
-        <item>## and ## hate each other too much.</item>
-        <item>## and ## love each other.</item>
-        <item>## and ## always fight.</item>
-        <item>## and ## always have good ideas.</item>
-        <item>## and ## get along very well.</item>
-        <item>## and ## don\'t get along.</item>
-        <item>## and ## can\'t stand each other.</item>
-        <item>## and ## are really close.</item>
-        <item>## and ## understand each other very well.</item>
-        <item>I need to find ##. They owe me money.</item>
-        <item>I\'m looking for ##. Have you seen them?</item>
-        <item>It seems that ## has an awful destiny.</item>
-        <item>I think ## has a good future.</item>
-        <item>Do you think I\'m not real? ## thinks otherwise.</item>
-        <item>I don\'t like ## very much.</item>
-        <item>I like ## very much.</item>
-        <item>I feel indifference towards ##.</item>
-        <item>I like being with ##.</item>
-        <item>I hate being with ##.</item>
-        <item>Somewhere, ## is conspiring against us.</item>
-        <item>Somewhere, ## is making plans that will benefit us.</item>
-        <item>## speaks ill of ##.</item>
-        <item>## can\'t stop talking about ##.</item>
-        <item>## always has good things to say about ##.</item>
-        <item>I\'m tired of ##.</item>
-        <item>I like to interact with ##.</item>
-        <item>There are many people to whom I give predictions, but ## is the one I do most.</item>
-        <item>Do you know the legend of ##?</item>
-        <item>## has a good future.</item>
-        <item>## has a bad future.</item>
-        <item>## knows many things.</item>
-        <item>## claims having seen ##.</item>
-        <item>I don\'t think ## has found ##.</item>
-        <item>Fate once indicated that ## and ## would meet, and so they did.</item>
-        <item>## will do incredible things.</item>
-        <item>## will do terrible things.</item>
-        <item>I\'m worried about someone named ##.</item>
-        <item>Haven\'t you heard anything about ##?</item>
-        <item>## has no longer communicated with me, and it is worrisome.</item>
-        <item>## can beat ## in a fight.</item>
-        <item>## is going to do bad things today.</item>
-        <item>## will do something very good on this day.</item>
-        <item>Fate does not favor ##.</item>
-        <item>Fate is in favor of ##.</item>
-        <item>This life wants ## to succeed.</item>
-        <item>Life adjusts the odds against ##.</item>
-        <item>This existence has very curious things, one of them is a person named ##.</item>
-        <item>Don\'t interrupt me, I\'m watching the life of ##.</item>
-        <item>It\'s interesting to see what happens with ##.</item>
-        <item>Quiet! Let me see what happens with ##.</item>
-        <item>Stop! I need to know what\'s happening with ##.</item>
-        <item>Hey! I have to know what will happen to ##.</item>
-        <item>I like being with ##!</item>
-        <item>I hate being with ##!</item>
-        <item>No, no, no, everything is wrong with ##.</item>
-        <item>And such is the sad life of ##.</item>
-        <item>Wow! You should see how amazing the life of ## is.</item>
-        <item>Seeing the future is fun. I like, mainly, to see what happens in the life of ##.</item>
-        <item>I\'m tired of ##.</item>
-        <item>I\m happy for ##.</item>
-        <item>There is a strong tension between ## and ##.</item>
-        <item>## and ## apparently hate each other, although they really love each other.</item>
-        <item>The future is happiness for ##.</item>
-        <item>The future is sadness for ##.</item>
-        <item>If I had a coin every time ## said something stupid, I\'d be a millionaire.</item>
-        <item>If I had a coin for every clever thing ## says, I\'d be owing money.</item>
-        <item>There\'s nothing like bothering ##.</item>
-        <item>I like hanging out with ##.</item>
-        <item>It seems that things are going badly between ## and ##.</item>
-        <item>Things will go wrong between ## and ##.</item>
-        <item>## tries to cause trouble between ## and ##.</item>
-        <item>## always gives bad advice to ##.</item>
-        <item>## is a very nice person. You should treat them.</item>
-        <item>Yeah, I got it. Here is the fate of ##.</item>
-        <item>You should see what ## is doing.</item>
-        <item>It seems that ## is doing bad things.</item>
-        <item>## is behaving very well.</item>
-        <item>In order to face their destiny, ## does things that they think will avoid it.</item>
-        <item>Hardly anyone can escape their destiny, especially ##.</item>
-        <item>Do you believe in destiny? ## once managed to get away with it and avoid it.</item>
-        <item>The future is something unprecedented, especially for ##.</item>
-        <item>##, ## and ## are very good friends.</item>
-        <item>I need to see ##. It is urgent.</item>
-        <item>Have you seen ##? I have to tell them something.</item>
-        <item>If you see ## ask them to pay me.</item>
-        <item>Do you know who is ##?</item>
-        <item>Do you know ##?</item>
-        <item>Do you want to hear about ##?</item>
-        <item>Be careful with ##, they are harmful to those around them.</item>
-        <item>You should see ##, they\'re very nice.</item>
-        <item>Honestly, I\'m tired of predicting the future for ##.</item>
-        <item>Do you know anything about ##?</item>
-        <item>Do you want to know what happened to ##?</item>
-        <item>Calm down! You will find out soon what will happen to you. I must see what ## will live.</item>
-        <item>Let me see ##!</item>
-        <item>I have to find ##!</item>
-        <item>I need to say something to ##!</item>
-        <item>No, it\'s very sad what happens with ##, ##, ## and ##.</item>
-        <item>If I could gather a bunch of fools, I would choose ##, ##, ## and ##.</item>
-        <item>The best group to go out with is ##, ##, ## and ##.</item>
-        <item>It\'s always good to hear the advice given by ##.</item>
-        <item>I have an acquaintance named ##.</item>
-        <item>I have a friend named ##.</item>
-        <item>I have an enemy named ##.</item>
-        <item>I have a lover named ##.</item>
-        <item>I\'m better than a person named ##.</item>
-        <item>## is guaranteed a good future.</item>
-        <item>## does not have a good future ahead of them.</item>
-        <item>## will have a life full of happiness.</item>
-        <item>## will have a life with sorrows.</item>
-        <item>## awaits a life of solitude.</item>
-        <item>## will welcome fortune with open arms.</item>
-        <item>## will have a long life.</item>
-        <item>Misfortune will be part of the life of ##.</item>
-        <item>Examples of totally different destinies would be those of ## and ##.</item>
-        <item>Good possibilities await for ##.</item>
-        <item>Bad possibilities lie ahead for ##.</item>
-        <item>Do you know what will happen with ##?</item>
-        <item>It seems that ## and ## belong to each other.</item>
-        <item>Well, well, ## has a good omen.</item>
-        <item>Prophecy indicates that ## is the chosen one.</item>
-        <item>## has accepted their fate.</item>
-        <item>## fights vainly against their destiny.</item>
-        <item>I have a feeling you\'ve crossed paths with ##.</item>
-        <item>I have very good news for ##.</item>
-        <item>There is very bad news about ##.</item>
-        <item>I have bad news for ##.</item>
-        <item>The prophecy says that ## will be successful.</item>
-        <item>## is the person mentioned in the prophecy.</item>
-        <item>The omen signals prosperity for ##.</item>
-        <item>The omen shows that ## will have a long life.</item>
-        <item>The omen says that ## will have a good life.</item>
-        <item>## and ## are people who don\'t get along with each other.</item>
-        <item>## and ## share lives marked by conflict.</item>
-        <item>Fate has been complacent with ##.</item>
-        <item>Life makes sure that ## fails over and over again.</item>
-        <item>A winning streak has been predestined for ##.</item>
-        <item>## is going to have a normal life.</item>
-        <item>## is going to have a trouble-free life.</item>
-        <item>## will have a life fraught with difficulty, yet their reward will be great.</item>
-        <item>It says here that ## has committed many crimes.</item>
-        <item>The secret life of ## is very frightening.</item>
-        <item>Apparently ## is a good person, but everything indicates the opposite.</item>
-        <item>The life of ## will take a complete turn.</item>
-        <item>Things will be shifted for ##.</item>
-        <item>The situation will change for ##.</item>
-        <item>## will get what they deserve.</item>
-        <item>## will receive a punishment.</item>
-        <item>## will be rewarded.</item>
-        <item>## will have a life full of intrigue and suspense.</item>
-        <item>As the omen indicates, ## will be a successful person.</item>
-        <item>The future reveals good and bad things, but ## seems to have the simplest life.</item>
-        <item>The fate of ## is really complex.</item>
-        <item>They say that ## will do such incredible things that will change society.</item>
-        <item>Uh, ## will be a visionary.</item>
-        <item>There are very dark things in the future of ##.</item>
-        <item>Even I cannot fully figure out what will happen with ##.</item>
-        <item>## challenges all possibilities.</item>
-        <item>The fate of ## is not quite clear.</item>
-        <item>## and ## share a rivalry.</item>
-        <item>##, ## and ## will be part of a dispute.</item>
-        <item>Even I am afraid of ##, for they are truly a frightening person.</item>
-        <item>We must all be careful of ##.</item>
-        <item>Everyone should meet ##.</item>
-        <item>It seems that predictions have never been right for ##. This person really challenges the future.</item>
-        <item>## esteems ##.</item>
-        <item>## ignores the fact that ## can become a huge problem.</item>
-        <item>## does not give up in spite of misfortunes.</item>
-        <item>Courage is something that ## is not lacking.</item>
-        <item>## will do amazing things.</item>
-        <item>I find ## really interesting.</item>
-        <item>## has an intricate life.</item>
-        <item>## is one of the least known people out there.</item>
-        <item>If you give yourself the opportunity, ## will surprise you.</item>
-        <item>A wise man once said that being wrong is in the nature of being human. The most humane person there is, possibly, is ##.</item>
-        <item>If failures make us wise, ## must be one of the greatest minds in the world.</item>
-        <item>I will tell you the brief story of ##, who was born as one of the most talented individuals, and yet ended up denying themselves success because of their attitude.</item>
-        <item>## is really selfish.</item>
-        <item>## accepts their fate.</item>
-        <item>## is one of the few people who don\'t know how it is that they are still here in spite of everything that has happened to them.</item>
-        <item>If you ask me, I think ## has the most interesting life.</item>
-        <item>I don\'t know how ## can get away with it.</item>
-        <item>## owes me a lot of money for the divination services.</item>
-        <item>You can never trust ##.</item>
-        <item>If you see ##, walk away.</item>
-        <item>It stresses me out to deal with ##.</item>
-        <item>Many believe they can face their destiny, just like ##.</item>
-        <item>There are people who ignore what will happen, such as ##.</item>
-        <item>You should never deal with ##, because they are dangerous.</item>
-        <item>It is difficult to see the future of ##. Everything is blurry.</item>
-        <item>I have not been able to see the future of ##.</item>
-        <item>## is one of the few people whose future is uncertain.</item>
-        <item>## is one of the few people for whom fortune-telling cannot be performed.</item>
-        <item>If you see ##, tell them I said "hi".</item>
-        <item>If you see ##, tell them I\'m waiting for them for a session.</item>
-        <item>Connect with ##, ## and ##, because they are good people.</item>
-        <item>Get in touch with ##, because good things could come out of that relationship.</item>
-        <item>It is well known that ## is a vagabond.</item>
-        <item>It is well known that ## once managed to avoid death.</item>
-        <item>## has been saved many times from dying.</item>
-        <item>Some are meant to die until they achieve the unheard-of, such as ##.</item>
-        <item>## lived a very good life.</item>
-        <item>## was one of the few people who can be considered to have complete integrity.</item>
-        <item>## is a reliable person.</item>
-        <item>You can totally rely on ##.</item>
-        <item>## is one of the most discreet people. I, on the other hand, am one of the most gossipy.</item>
-        <item>## and ## have problems.</item>
-        <item>## and ## want to destroy each other.</item>
-        <item>## and ## face a series of curious events.</item>
-        <item>Do you know the story of ##? Uh? Well, this is one of the few things I can\'t reveal.</item>
-        <item>I revealed the whole life of ##.</item>
-        <item>I could guess everything that would happen to ##.</item>
-        <item>I am an entity that has lived a long time. ## had a life that, compared to mine, has been really short, virtually nil.</item>
-        <item>Once ## said that ## and ## were attracted to each other.</item>
-        <item>## has always been indifferent.</item>
-        <item>## is usually indifferent.</item>
-        <item>## is so selfish.</item>
-        <item>## is a very caring person.</item>
-        <item>I foresee good things for ##.</item>
-        <item>In short, ## is a mess.</item>
-        <item>## wants to harm ##.</item>
-        <item>## wants ## to be happy.</item>
-        <item>## acts in a totally different way than they say they do.</item>
-        <item>## is a coward.</item>
-        <item>## bravely confronts their destiny.</item>
-        <item>Who knew that ## and ## would get along so well?</item>
-        <item>Who would have thought that ## and ## would be so close?</item>
-        <item>If you give yourself the chance, you might like ## very much.</item>
-        <item>I recommend you deal with ##.</item>
-        <item>I must accept that ## has managed to evade destiny.</item>
-        <item>Beware of ##, they are a tricky person.</item>
-        <item>## and ## actually hate each other.</item>
-        <item>## and ## wish they had never met.</item>
-        <item>## is looking for ##.</item>
-        <item>Very few know how to have a good life, like ##.</item>
-        <item>Have you met ##?</item>
-        <item>Do you have any idea who ## is?</item>
-        <item>Lengthy conflicts lie ahead for ## and ##.</item>
-        <item>A life of peace will exist between ## and ##.</item>
-        <item>I can assure you that ##, ## and ## are going to do good things.</item>
-        <item>## has an amazing life.</item>
-        <item>Many of us only hope to see into the future, but many of us should look into the past, to avoid everything repeating itself, as it did with ##.</item>
-        <item>I enjoy ## very much.</item>
-        <item>I dislike ##.</item>
-        <item>I like ##.</item>
-        <item>I don\'t like ##.</item>
-        <item>Tragic and sad is the life of ##.</item>
-        <item>The life of ## is a real comedy.</item>
-        <item>I like the way ## is.</item>
-        <item>Do you know where ## is?</item>
-        <item>## and ## share a good destiny.</item>
-        <item>Few achieve success like ##.</item>
-        <item>You should learn something from ##.</item>
-        <item>## knows ##.</item>
-        <item>I have something to say to ##.</item>
-        <item>I must see the future of ##.</item>
-        <item>## is a/an {string:adjectives; gender:2} person.</item>
-        <item>## is a/an {string:adjectives; gender:2} character.</item>
-        <item>## is a/an {string:adjectives; gender:2} individual.</item>
-        <item>## and their {string:relative; gender:⸮} get along very well.</item>
-        <item>## and their {string:relative; gender:⸮} have a bad relationship.</item>
-        <item>## and their {string:relative; gender:⸮} treat each other badly.</item>
-        <item>## and their {string:relative; gender:⸮} have a harmonious relationship.</item>
-        <item>## and their {string:relative; gender:⸮} have done unspeakable things.</item>
-        <item>## and their {string:relative; gender:⸮} have done very bad things.</item>
-        <item>Your {string:relative; gender:⸮} looks a lot like ##.</item>
-        <item>Your {string:relative; gender:⸮} loves ##.</item>
-        <item>Your {string:relative; gender:⸮} hates ##.</item>
-        <item>Your {string:relative; gender:⸮} ignores ##.</item>
-        <item>Your {string:relative; gender:⸮} is good friends with ##.</item>
-        <item>Your {string:relative; gender:⸮} has a poor relationship with ##.</item>
-        <item>Your {string:relative; gender:⸮} and ## are enemies.</item>
+        <item>Have you heard about {method:getFormattedName}? They are my worst enemy.</item>
+        <item>You look like someone I know, their name is {method:getFormattedName}.</item>
+        <item>You don\'t happen to know {method:getFormattedName}?</item>
+        <item>I have to go with {method:getFormattedName}. They owe me money.</item>
+        <item>I\'m in love with {method:getFormattedName}.</item>
+        <item>Have you seen a person named {method:getFormattedName}?</item>
+        <item>Your {string:relative; gender:⸮}, {method:getFormattedName} and I are lovers. A real love triangle.</item>
+        <item>Are you {string:relative; gender:⛌} of {method:getFormattedName}? You look very much alike.</item>
+        <item>Are you, by chance, {string:relative; gender:⛌} of {method:getFormattedName}? You both share certain traits.</item>
+        <item>It\'s nice to see you here, unlike {method:getFormattedName}.</item>
+        <item>Oh, yes, I revealed a frightening future for {method:getFormattedName}.</item>
+        <item>The other day {method:getFormattedName} asked me to look into their future.</item>
+        <item>So many tragic stories have been written, like the ones from {method:getFormattedName}.</item>
+        <item>Revealing the future is exhausting, and even more so the future of {method:getFormattedName}.</item>
+        <item>Many people turn to me, especially {method:getFormattedName}, {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>Did you know that {method:getFormattedName} and {method:getFormattedName} are a couple?</item>
+        <item>There is a very cruel fate between {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>A strong rivalry is building between {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>Do you want to know what happened to {method:getFormattedName}?</item>
+        <item>{method:getFormattedName} came to me for my secret knowledge.</item>
+        <item>Beware of {method:getFormattedName}, they are a very dangerous person.</item>
+        <item>There is a very nice person named {method:getFormattedName}.</item>
+        <item>I like food, especially that made by {method:getFormattedName}.</item>
+        <item>There are two people in this world whom you should know. They are {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>I have many brothers and sisters, and my favorite is {method:getFormattedName}.</item>
+        <item>Never go to talk to {method:getFormattedName}, they\'re very annoying.</item>
+        <item>I love telling fortunes for {method:getFormattedName}.</item>
+        <item>Yes, have you seen {method:getFormattedName}? I need to talk to this person.</item>
+        <item>Let\'s see, uh, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, uh… and {method:getFormattedName}. That\'s it, I\'ve written down the ones I need to predict their future.</item>
+        <item>If you misbehave, {method:getFormattedName} will come and take you away.</item>
+        <item>Have you heard the sad story of {method:getFormattedName}?</item>
+        <item>Have you heard the adventures of {method:getFormattedName}?</item>
+        <item>Have you heard the good news about {method:getFormattedName}?</item>
+        <item>Would you mind letting me figure out something about {method:getFormattedName}?</item>
+        <item>Who\'s {method:getFormattedName}?</item>
+        <item>Have you come across {method:getFormattedName}?</item>
+        <item>I like a person named {method:getFormattedName}.</item>
+        <item>I like someone named {method:getFormattedName}.</item>
+        <item>Why do you hate {method:getFormattedName}?</item>
+        <item>Do you like a person named {method:getFormattedName}?</item>
+        <item>What do you know about {method:getFormattedName}?</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} are very similar people.</item>
+        <item>Tell me if you ever see {method:getFormattedName}.</item>
+        <item>Tell me if one day you meet {method:getFormattedName}.</item>
+        <item>I am a very busy person. Today I\'m going out with {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} are very good friends.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} are the worst enemies.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} hate each other too much.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} love each other.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} always fight.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} always have good ideas.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} get along very well.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} don\'t get along.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} can\'t stand each other.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} are really close.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} understand each other very well.</item>
+        <item>I need to find {method:getFormattedName}. They owe me money.</item>
+        <item>I\'m looking for {method:getFormattedName}. Have you seen them?</item>
+        <item>It seems that {method:getFormattedName} has an awful destiny.</item>
+        <item>I think {method:getFormattedName} has a good future.</item>
+        <item>Do you think I\'m not real? {method:getFormattedName} thinks otherwise.</item>
+        <item>I don\'t like {method:getFormattedName} very much.</item>
+        <item>I like {method:getFormattedName} very much.</item>
+        <item>I feel indifference towards {method:getFormattedName}.</item>
+        <item>I like being with {method:getFormattedName}.</item>
+        <item>I hate being with {method:getFormattedName}.</item>
+        <item>Somewhere, {method:getFormattedName} is conspiring against us.</item>
+        <item>Somewhere, {method:getFormattedName} is making plans that will benefit us.</item>
+        <item>{method:getFormattedName} speaks ill of {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} can\'t stop talking about {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} always has good things to say about {method:getFormattedName}.</item>
+        <item>I\'m tired of {method:getFormattedName}.</item>
+        <item>I like to interact with {method:getFormattedName}.</item>
+        <item>There are many people to whom I give predictions, but {method:getFormattedName} is the one I do most.</item>
+        <item>Do you know the legend of {method:getFormattedName}?</item>
+        <item>{method:getFormattedName} has a good future.</item>
+        <item>{method:getFormattedName} has a bad future.</item>
+        <item>{method:getFormattedName} knows many things.</item>
+        <item>{method:getFormattedName} claims having seen {method:getFormattedName}.</item>
+        <item>I don\'t think {method:getFormattedName} has found {method:getFormattedName}.</item>
+        <item>Fate once indicated that {method:getFormattedName} and {method:getFormattedName} would meet, and so they did.</item>
+        <item>{method:getFormattedName} will do incredible things.</item>
+        <item>{method:getFormattedName} will do terrible things.</item>
+        <item>I\'m worried about someone named {method:getFormattedName}.</item>
+        <item>Haven\'t you heard anything about {method:getFormattedName}?</item>
+        <item>{method:getFormattedName} has no longer communicated with me, and it is worrisome.</item>
+        <item>{method:getFormattedName} can beat {method:getFormattedName} in a fight.</item>
+        <item>{method:getFormattedName} is going to do bad things today.</item>
+        <item>{method:getFormattedName} will do something very good on this day.</item>
+        <item>Fate does not favor {method:getFormattedName}.</item>
+        <item>Fate is in favor of {method:getFormattedName}.</item>
+        <item>This life wants {method:getFormattedName} to succeed.</item>
+        <item>Life adjusts the odds against {method:getFormattedName}.</item>
+        <item>This existence has very curious things, one of them is a person named {method:getFormattedName}.</item>
+        <item>Don\'t interrupt me, I\'m watching the life of {method:getFormattedName}.</item>
+        <item>It\'s interesting to see what happens with {method:getFormattedName}.</item>
+        <item>Quiet! Let me see what happens with {method:getFormattedName}.</item>
+        <item>Stop! I need to know what\'s happening with {method:getFormattedName}.</item>
+        <item>Hey! I have to know what will happen to {method:getFormattedName}.</item>
+        <item>I like being with {method:getFormattedName}!</item>
+        <item>I hate being with {method:getFormattedName}!</item>
+        <item>No, no, no, everything is wrong with {method:getFormattedName}.</item>
+        <item>And such is the sad life of {method:getFormattedName}.</item>
+        <item>Wow! You should see how amazing the life of {method:getFormattedName} is.</item>
+        <item>Seeing the future is fun. I like, mainly, to see what happens in the life of {method:getFormattedName}.</item>
+        <item>I\'m tired of {method:getFormattedName}.</item>
+        <item>I\'m happy for {method:getFormattedName}.</item>
+        <item>There is a strong tension between {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} apparently hate each other, although they really love each other.</item>
+        <item>The future is happiness for {method:getFormattedName}.</item>
+        <item>The future is sadness for {method:getFormattedName}.</item>
+        <item>If I had a coin every time {method:getFormattedName} said something stupid, I\'d be a millionaire.</item>
+        <item>If I had a coin for every clever thing {method:getFormattedName} says, I\'d be owing money.</item>
+        <item>There\'s nothing like bothering {method:getFormattedName}.</item>
+        <item>I like hanging out with {method:getFormattedName}.</item>
+        <item>It seems that things are going badly between {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>Things will go wrong between {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} tries to cause trouble between {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} always gives bad advice to {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} is a very nice person. You should treat them.</item>
+        <item>Yeah, I got it. Here is the fate of {method:getFormattedName}.</item>
+        <item>You should see what {method:getFormattedName} is doing.</item>
+        <item>It seems that {method:getFormattedName} is doing bad things.</item>
+        <item>{method:getFormattedName} is behaving very well.</item>
+        <item>In order to face their destiny, {method:getFormattedName} does things that they think will avoid it.</item>
+        <item>Hardly anyone can escape their destiny, especially {method:getFormattedName}.</item>
+        <item>Do you believe in destiny? {method:getFormattedName} once managed to get away with it and avoid it.</item>
+        <item>The future is something unprecedented, especially for {method:getFormattedName}.</item>
+        <item>{method:getFormattedName}, {method:getFormattedName} and {method:getFormattedName} are very good friends.</item>
+        <item>I need to see {method:getFormattedName}. It is urgent.</item>
+        <item>Have you seen {method:getFormattedName}? I have to tell them something.</item>
+        <item>If you see {method:getFormattedName} ask them to pay me.</item>
+        <item>Do you know who is {method:getFormattedName}?</item>
+        <item>Do you know {method:getFormattedName}?</item>
+        <item>Do you want to hear about {method:getFormattedName}?</item>
+        <item>Be careful with {method:getFormattedName}, they are harmful to those around them.</item>
+        <item>You should see {method:getFormattedName}, they\'re very nice.</item>
+        <item>Honestly, I\'m tired of predicting the future for {method:getFormattedName}.</item>
+        <item>Do you know anything about {method:getFormattedName}?</item>
+        <item>Do you want to know what happened to {method:getFormattedName}?</item>
+        <item>Calm down! You will find out soon what will happen to you. I must see what {method:getFormattedName} will live.</item>
+        <item>Let me see {method:getFormattedName}!</item>
+        <item>I have to find {method:getFormattedName}!</item>
+        <item>I need to say something to {method:getFormattedName}!</item>
+        <item>No, it\'s very sad what happens with {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>If I could gather a bunch of fools, I would choose {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>The best group to go out with is {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>It\'s always good to hear the advice given by {method:getFormattedName}.</item>
+        <item>I have an acquaintance named {method:getFormattedName}.</item>
+        <item>I have a friend named {method:getFormattedName}.</item>
+        <item>I have an enemy named {method:getFormattedName}.</item>
+        <item>I have a lover named {method:getFormattedName}.</item>
+        <item>I\'m better than a person named {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} is guaranteed a good future.</item>
+        <item>{method:getFormattedName} does not have a good future ahead of them.</item>
+        <item>{method:getFormattedName} will have a life full of happiness.</item>
+        <item>{method:getFormattedName} will have a life with sorrows.</item>
+        <item>{method:getFormattedName} awaits a life of solitude.</item>
+        <item>{method:getFormattedName} will welcome fortune with open arms.</item>
+        <item>{method:getFormattedName} will have a long life.</item>
+        <item>Misfortune will be part of the life of {method:getFormattedName}.</item>
+        <item>Examples of totally different destinies would be those of {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>Good possibilities await for {method:getFormattedName}.</item>
+        <item>Bad possibilities lie ahead for {method:getFormattedName}.</item>
+        <item>Do you know what will happen with {method:getFormattedName}?</item>
+        <item>It seems that {method:getFormattedName} and {method:getFormattedName} belong to each other.</item>
+        <item>Well, well, {method:getFormattedName} has a good omen.</item>
+        <item>Prophecy indicates that {method:getFormattedName} is the chosen one.</item>
+        <item>{method:getFormattedName} has accepted their fate.</item>
+        <item>{method:getFormattedName} fights vainly against their destiny.</item>
+        <item>I have a feeling you\'ve crossed paths with {method:getFormattedName}.</item>
+        <item>I have very good news for {method:getFormattedName}.</item>
+        <item>There is very bad news about {method:getFormattedName}.</item>
+        <item>I have bad news for {method:getFormattedName}.</item>
+        <item>The prophecy says that {method:getFormattedName} will be successful.</item>
+        <item>{method:getFormattedName} is the person mentioned in the prophecy.</item>
+        <item>The omen signals prosperity for {method:getFormattedName}.</item>
+        <item>The omen shows that {method:getFormattedName} will have a long life.</item>
+        <item>The omen says that {method:getFormattedName} will have a good life.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} are people who don\'t get along with each other.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} share lives marked by conflict.</item>
+        <item>Fate has been complacent with {method:getFormattedName}.</item>
+        <item>Life makes sure that {method:getFormattedName} fails over and over again.</item>
+        <item>A winning streak has been predestined for {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} is going to have a normal life.</item>
+        <item>{method:getFormattedName} is going to have a trouble-free life.</item>
+        <item>{method:getFormattedName} will have a life fraught with difficulty, yet their reward will be great.</item>
+        <item>It says here that {method:getFormattedName} has committed many crimes.</item>
+        <item>The secret life of {method:getFormattedName} is very frightening.</item>
+        <item>Apparently {method:getFormattedName} is a good person, but everything indicates the opposite.</item>
+        <item>The life of {method:getFormattedName} will take a complete turn.</item>
+        <item>Things will be shifted for {method:getFormattedName}.</item>
+        <item>The situation will change for {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} will get what they deserve.</item>
+        <item>{method:getFormattedName} will receive a punishment.</item>
+        <item>{method:getFormattedName} will be rewarded.</item>
+        <item>{method:getFormattedName} will have a life full of intrigue and suspense.</item>
+        <item>As the omen indicates, {method:getFormattedName} will be a successful person.</item>
+        <item>The future reveals good and bad things, but {method:getFormattedName} seems to have the simplest life.</item>
+        <item>The fate of {method:getFormattedName} is really complex.</item>
+        <item>They say that {method:getFormattedName} will do such incredible things that will change society.</item>
+        <item>Uh, {method:getFormattedName} will be a visionary.</item>
+        <item>There are very dark things in the future of {method:getFormattedName}.</item>
+        <item>Even I cannot fully figure out what will happen with {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} challenges all possibilities.</item>
+        <item>The fate of {method:getFormattedName} is not quite clear.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} share a rivalry.</item>
+        <item>{method:getFormattedName}, {method:getFormattedName} and {method:getFormattedName} will be part of a dispute.</item>
+        <item>Even I am afraid of {method:getFormattedName}, for they are truly a frightening person.</item>
+        <item>We must all be careful of {method:getFormattedName}.</item>
+        <item>Everyone should meet {method:getFormattedName}.</item>
+        <item>It seems that predictions have never been right for {method:getFormattedName}. This person really challenges the future.</item>
+        <item>{method:getFormattedName} esteems {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} ignores the fact that {method:getFormattedName} can become a huge problem.</item>
+        <item>{method:getFormattedName} does not give up in spite of misfortunes.</item>
+        <item>Courage is something that {method:getFormattedName} is not lacking.</item>
+        <item>{method:getFormattedName} will do amazing things.</item>
+        <item>I find {method:getFormattedName} really interesting.</item>
+        <item>{method:getFormattedName} has an intricate life.</item>
+        <item>{method:getFormattedName} is one of the least known people out there.</item>
+        <item>If you give yourself the opportunity, {method:getFormattedName} will surprise you.</item>
+        <item>A wise man once said that being wrong is in the nature of being human. The most humane person there is, possibly, is {method:getFormattedName}.</item>
+        <item>If failures make us wise, {method:getFormattedName} must be one of the greatest minds in the world.</item>
+        <item>I will tell you the brief story of {method:getFormattedName}, who was born as one of the most talented individuals, and yet ended up denying themselves success because of their attitude.</item>
+        <item>{method:getFormattedName} is really selfish.</item>
+        <item>{method:getFormattedName} accepts their fate.</item>
+        <item>{method:getFormattedName} is one of the few people who don\'t know how it is that they are still here in spite of everything that has happened to them.</item>
+        <item>If you ask me, I think {method:getFormattedName} has the most interesting life.</item>
+        <item>I don\'t know how {method:getFormattedName} can get away with it.</item>
+        <item>{method:getFormattedName} owes me a lot of money for the divination services.</item>
+        <item>You can never trust {method:getFormattedName}.</item>
+        <item>If you see {method:getFormattedName}, walk away.</item>
+        <item>It stresses me out to deal with {method:getFormattedName}.</item>
+        <item>Many believe they can face their destiny, just like {method:getFormattedName}.</item>
+        <item>There are people who ignore what will happen, such as {method:getFormattedName}.</item>
+        <item>You should never deal with {method:getFormattedName}, because they are dangerous.</item>
+        <item>It is difficult to see the future of {method:getFormattedName}. Everything is blurry.</item>
+        <item>I have not been able to see the future of {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} is one of the few people whose future is uncertain.</item>
+        <item>{method:getFormattedName} is one of the few people for whom fortune-telling cannot be performed.</item>
+        <item>If you see {method:getFormattedName}, tell them I said "hi".</item>
+        <item>If you see {method:getFormattedName}, tell them I\'m waiting for them for a session.</item>
+        <item>Connect with {method:getFormattedName}, {method:getFormattedName} and {method:getFormattedName}, because they are good people.</item>
+        <item>Get in touch with {method:getFormattedName}, because good things could come out of that relationship.</item>
+        <item>It is well known that {method:getFormattedName} is a vagabond.</item>
+        <item>It is well known that {method:getFormattedName} once managed to avoid death.</item>
+        <item>{method:getFormattedName} has been saved many times from dying.</item>
+        <item>Some are meant to die until they achieve the unheard-of, such as {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} lived a very good life.</item>
+        <item>{method:getFormattedName} was one of the few people who can be considered to have complete integrity.</item>
+        <item>{method:getFormattedName} is a reliable person.</item>
+        <item>You can totally rely on {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} is one of the most discreet people. I, on the other hand, am one of the most gossipy.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} have problems.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} want to destroy each other.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} face a series of curious events.</item>
+        <item>Do you know the story of {method:getFormattedName}? Uh? Well, this is one of the few things I can\'t reveal.</item>
+        <item>I revealed the whole life of {method:getFormattedName}.</item>
+        <item>I could guess everything that would happen to {method:getFormattedName}.</item>
+        <item>I am an entity that has lived a long time. {method:getFormattedName} had a life that, compared to mine, has been really short, virtually nil.</item>
+        <item>Once {method:getFormattedName} said that {method:getFormattedName} and {method:getFormattedName} were attracted to each other.</item>
+        <item>{method:getFormattedName} has always been indifferent.</item>
+        <item>{method:getFormattedName} is usually indifferent.</item>
+        <item>{method:getFormattedName} is so selfish.</item>
+        <item>{method:getFormattedName} is a very caring person.</item>
+        <item>I foresee good things for {method:getFormattedName}.</item>
+        <item>In short, {method:getFormattedName} is a mess.</item>
+        <item>{method:getFormattedName} wants to harm {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} wants {method:getFormattedName} to be happy.</item>
+        <item>{method:getFormattedName} acts in a totally different way than they say they do.</item>
+        <item>{method:getFormattedName} is a coward.</item>
+        <item>{method:getFormattedName} bravely confronts their destiny.</item>
+        <item>Who knew that {method:getFormattedName} and {method:getFormattedName} would get along so well?</item>
+        <item>Who would have thought that {method:getFormattedName} and {method:getFormattedName} would be so close?</item>
+        <item>If you give yourself the chance, you might like {method:getFormattedName} very much.</item>
+        <item>I recommend you deal with {method:getFormattedName}.</item>
+        <item>I must accept that {method:getFormattedName} has managed to evade destiny.</item>
+        <item>Beware of {method:getFormattedName}, they are a tricky person.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} actually hate each other.</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} wish they had never met.</item>
+        <item>{method:getFormattedName} is looking for {method:getFormattedName}.</item>
+        <item>Very few know how to have a good life, like {method:getFormattedName}.</item>
+        <item>Have you met {method:getFormattedName}?</item>
+        <item>Do you have any idea who {method:getFormattedName} is?</item>
+        <item>Lengthy conflicts lie ahead for {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>A life of peace will exist between {method:getFormattedName} and {method:getFormattedName}.</item>
+        <item>I can assure you that {method:getFormattedName}, {method:getFormattedName} and {method:getFormattedName} are going to do good things.</item>
+        <item>{method:getFormattedName} has an amazing life.</item>
+        <item>Many of us only hope to see into the future, but many of us should look into the past, to avoid everything repeating itself, as it did with {method:getFormattedName}.</item>
+        <item>I enjoy {method:getFormattedName} very much.</item>
+        <item>I dislike {method:getFormattedName}.</item>
+        <item>I like {method:getFormattedName}.</item>
+        <item>I don\'t like {method:getFormattedName}.</item>
+        <item>Tragic and sad is the life of {method:getFormattedName}.</item>
+        <item>The life of {method:getFormattedName} is a real comedy.</item>
+        <item>I like the way {method:getFormattedName} is.</item>
+        <item>Do you know where {method:getFormattedName} is?</item>
+        <item>{method:getFormattedName} and {method:getFormattedName} share a good destiny.</item>
+        <item>Few achieve success like {method:getFormattedName}.</item>
+        <item>You should learn something from {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} knows {method:getFormattedName}.</item>
+        <item>I have something to say to {method:getFormattedName}.</item>
+        <item>I must see the future of {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} is a/an {string:adjectives; gender:2} person.</item>
+        <item>{method:getFormattedName} is a/an {string:adjectives; gender:2} character.</item>
+        <item>{method:getFormattedName} is a/an {string:adjectives; gender:2} individual.</item>
+        <item>{method:getFormattedName} and their {string:relative; gender:⸮} get along very well.</item>
+        <item>{method:getFormattedName} and their {string:relative; gender:⸮} have a bad relationship.</item>
+        <item>{method:getFormattedName} and their {string:relative; gender:⸮} treat each other badly.</item>
+        <item>{method:getFormattedName} and their {string:relative; gender:⸮} have a harmonious relationship.</item>
+        <item>{method:getFormattedName} and their {string:relative; gender:⸮} have done unspeakable things.</item>
+        <item>{method:getFormattedName} and their {string:relative; gender:⸮} have done very bad things.</item>
+        <item>Your {string:relative; gender:⸮} looks a lot like {method:getFormattedName}.</item>
+        <item>Your {string:relative; gender:⸮} loves {method:getFormattedName}.</item>
+        <item>Your {string:relative; gender:⸮} hates {method:getFormattedName}.</item>
+        <item>Your {string:relative; gender:⸮} ignores {method:getFormattedName}.</item>
+        <item>Your {string:relative; gender:⸮} is good friends with {method:getFormattedName}.</item>
+        <item>Your {string:relative; gender:⸮} has a poor relationship with {method:getFormattedName}.</item>
+        <item>Your {string:relative; gender:⸮} and {method:getFormattedName} are enemies.</item>
     </string-array>
     <string-array name="person">
         <item>a person</item>

@@ -15,7 +15,8 @@ public enum MethodReference {
     PERCENTAGE("getPercentage"),
     DEFAULT_COLOR("getDefaultColor"),
     COLOR("getColorStr"),
-    DEVICE_USER("getDeviceUser");
+    DEVICE_USER("getDeviceUser"),
+    FORMATTED_NAME("getFormattedName");
 
     private final String name;
     private static final HashMap<String, MethodReference> LOOKUP = new HashMap<>();

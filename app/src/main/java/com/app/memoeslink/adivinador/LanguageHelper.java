@@ -18,14 +18,14 @@ public class LanguageHelper {
         SharedPreferencesHelper preferences = new SharedPreferencesHelper(context);
         String language;
 
-        if (!preferences.contains(Preference.SETTING_LANGUAGE.getName())) {
+        if (!preferences.contains(Preference.SETTING_LANGUAGE.getTag())) {
             language = getDeviceLanguage();
 
             if (!StringHelper.equalsAny(language, PERMITTED_LANGUAGES))
                 language = "en";
-            preferences.put(Preference.SETTING_LANGUAGE.getName(), language);
+            preferences.put(Preference.SETTING_LANGUAGE.getTag(), language);
         } else
-            language = preferences.getString(Preference.SETTING_LANGUAGE.getName(), "en");
+            language = preferences.getString(Preference.SETTING_LANGUAGE.getTag(), "en");
         return language;
     }
 

@@ -1184,325 +1184,325 @@
         <item>[vanidos[o,a]]</item>
     </string-array>
     <string-array name="opinion">
-        <item>¿Has oído de ##? Es mi peor enemigo.</item>
-        <item>Tú te pareces a alguien que conozco, se llama ##.</item>
-        <item>¿De casualidad no conoces a ##?</item>
-        <item>Tengo que ir con ##. Me debe dinero.</item>
-        <item>Estoy enamorado de ##.</item>
-        <item>¿Acaso has visto a {[un[,a]]} tal ##?</item>
-        <item>Tu {string:relative; gender:⸮}, ## y yo somos amantes. Todo un triángulo amoroso.</item>
-        <item>¿Eres {string:relative; gender:⛌} de ##? Se parecen mucho.</item>
-        <item>¿Eres acaso {string:relative; gender:⛌} de ##? Comparten ciertas características ustedes dos.</item>
-        <item>Me agrada verte por aquí, no como a ##.</item>
-        <item>Oh, sí, revelé un futuro terrorífico para ##.</item>
-        <item>El otro día ## me pidió que le leyera el futuro.</item>
-        <item>Tantas trágicas historias se han escrito, como las de ##.</item>
-        <item>Revelar el futuro es algo agotador, y más el futuro de ##.</item>
-        <item>Muchas personas acuden a mí, en especial ##, ## y ##.</item>
-        <item>¿Sabías que ## y ## son pareja?</item>
-        <item>Hay un destino muy cruel entre ## y ##.</item>
-        <item>Una fuerte rivalidad crece entre ## y ##.</item>
-        <item>¿Quieres saber qué pasó con ##?</item>
-        <item>## acudió a mí para obtener mis conocimientos secretos.</item>
-        <item>Cuidado con ##, es una persona muy peligrosa.</item>
-        <item>Hay una persona muy agradable llamada ##.</item>
-        <item>Me gusta la comida, en especial aquella hecha por ##.</item>
-        <item>Hay dos personas en este mundo a quienes deberías conocer. Ellas son ## y ##.</item>
-        <item>Tengo muchos hermanos, y mi {[favorit[o,a]]} es ##.</item>
-        <item>Nunca vayas a hablar con ##, es muy {[molest[o,a]]}.</item>
-        <item>Me encanta hacer adivinaciones para ##.</item>
-        <item>Sí, ¿has visto a ##? Necesito hablar con esta persona.</item>
-        <item>A ver, a ver, uh, ##, ##, ##, ##, ##, uh… y ##. Listo, anotados los que me faltan para predecirles su futuro.</item>
-        <item>Si te portas mal, ## va a venir y te va a llevar.</item>
-        <item>¿Has escuchado la triste historia de ##?</item>
-        <item>¿Has escuchado las aventuras de ##?</item>
-        <item>¿Has escuchado las buenas noticias sobre ##?</item>
-        <item>¿Te importaría dejarme adivinar algo sobre ##?</item>
-        <item>¿Quién es ##?</item>
-        <item>¿Te has encontrado con ##?</item>
-        <item>Me gusta una persona llamada ##.</item>
-        <item>Me gusta alguien que se llama ##.</item>
-        <item>¿Por qué odias a ##?</item>
-        <item>¿Te gusta una persona llamada ##?</item>
-        <item>¿Qué sabes acerca de ##?</item>
-        <item>## y ## son personas muy similares.</item>
-        <item>Dime si algún día ves a ##.</item>
-        <item>Dime si un día conoces a ##.</item>
-        <item>Soy una persona muy ocupada. Hoy saldré con ##.</item>
-        <item>## y ## son muy buenos amigos.</item>
-        <item>## y ## son los peores enemigos.</item>
-        <item>## y ## se odian demasiado.</item>
-        <item>## y ## se aman.</item>
-        <item>## y ## siempre pelean.</item>
-        <item>## y ## siempre tienen buenas ideas.</item>
-        <item>## y ## se llevan muy bien.</item>
-        <item>## y ## no se llevan bien.</item>
-        <item>## y ## no se toleran.</item>
-        <item>## y ## son muy cercanos.</item>
-        <item>## y ## se entienden muy bien.</item>
-        <item>Necesito encontrar a ##. Me debe dinero.</item>
-        <item>Estoy buscando a ##. ¿Tú {[l[o,a]]} has visto?</item>
-        <item>Me parece que ## tiene un destino muy malo.</item>
-        <item>Creo que ## tiene un buen futuro.</item>
-        <item>¿Crees que no soy real? ## cree lo contrario.</item>
-        <item>## me cae muy mal.</item>
-        <item>## me cae muy bien.</item>
-        <item>Siento indiferencia hacia ##.</item>
-        <item>Me agrada estar con ##.</item>
-        <item>Odio estar con ##.</item>
-        <item>En alguna parte, ## conspira contra nosotros.</item>
-        <item>En algún lugar, ## hace planes que nos beneficiarán.</item>
-        <item>## habla mal de ##.</item>
-        <item>## no para de hablar de ##.</item>
-        <item>## siempre tiene buenas cosas qué decir sobre ##.</item>
-        <item>Estoy cansado de ##.</item>
-        <item>Me gusta tratar con ##.</item>
-        <item>Hay muchas personas a las cuales realizo predicciones, pero a ## es a la que más le hago.</item>
-        <item>¿Conoces la leyenda de ##?</item>
-        <item>## tiene un buen futuro.</item>
-        <item>## tiene un futuro malo.</item>
-        <item>## sabe muchas cosas.</item>
-        <item>## asegura haber visto a ##.</item>
-        <item>Yo no creo que ## haya encontrado a ##.</item>
-        <item>El destino alguna vez indicó que ## y ## se habrían de encontrar, y así pasó.</item>
-        <item>## hará cosas increíbles.</item>
-        <item>## hará cosas terribles.</item>
-        <item>Me preocupa alguien que se llama ##.</item>
-        <item>¿No has sabido algo sobre ##?</item>
-        <item>## ya no se ha comunicado conmigo, y es preocupante.</item>
-        <item>## puede ganarle a ## en una pelea.</item>
-        <item>## va a hacer cosas malas hoy.</item>
-        <item>## hará algo muy bueno en este día.</item>
-        <item>El destino no favorece a ##.</item>
-        <item>El destino está a favor de ##.</item>
-        <item>Esta vida quiere que triunfe ##.</item>
-        <item>La vida ajusta las posibilidades en contra de ##.</item>
-        <item>Esta existencia tiene cosas muy curiosas, una de ellas es una persona llamada ##.</item>
-        <item>No me interrumpas, estoy viendo la vida de ##.</item>
-        <item>Es interesante ver lo que pasa con ##.</item>
-        <item>¡Quieto! Déjame ver qué sucede con ##.</item>
-        <item>¡Alto! Necesito saber qué ocurre con ##.</item>
-        <item>¡Oye! Tengo que conocer lo que pasará con ##.</item>
-        <item>¡Me gusta estar con ##!</item>
-        <item>¡Odio estar con ##!</item>
-        <item>No, no, no, todo está mal con ##.</item>
-        <item>Y así es la triste vida de ##.</item>
-        <item>¡Vaya! Deberías ver lo increíble que es la vida de ##.</item>
-        <item>Ver el futuro es entretenido. Me gusta, sobre todo, ver lo que acontece en la vida de ##.</item>
-        <item>Estoy harto de ##.</item>
-        <item>Estoy feliz por ##.</item>
-        <item>Existe una tensión fuerte entre ## y ##.</item>
-        <item>## y ## aparentemente se odian, aunque realmente se aman.</item>
-        <item>El futuro es felicidad para ##.</item>
-        <item>El futuro es tristeza para ##.</item>
-        <item>Si tuviera una moneda cada vez que ## dice una tontería, sería millonario.</item>
-        <item>Si tuviera una moneda por cada cosa ingeniosa que ## dice, estaría debiendo dinero.</item>
-        <item>No hay nada como molestar a ##.</item>
-        <item>Me gusta pasar el rato con ##.</item>
-        <item>Tal parece que las cosas van mal entre ## y ##.</item>
-        <item>Las cosas irán mal entre ## y ##.</item>
-        <item>## trata de causar mal entre ## y ##.</item>
-        <item>## siempre da malos consejos a ##.</item>
-        <item>## es una persona muy agradable. Deberías tratarla.</item>
-        <item>Sí, lo tengo. Aquí está el destino de ##.</item>
-        <item>Deberías ver lo que ## está haciendo.</item>
-        <item>Tal parece que ## está haciendo cosas malas.</item>
-        <item>## se está portando muy bien.</item>
-        <item>Con el fin de enfrentar a su destino, ## hace cosas que cree que lo evitarán.</item>
-        <item>Casi nadie puede huir de su destino, en especial ##.</item>
-        <item>¿Crees en el destino? ## logró una vez salirse con la suya y evitarlo.</item>
-        <item>El futuro es algo inaudito, sobre todo el de ##.</item>
-        <item>##, ## y ## son muy buenos amigos.</item>
-        <item>Necesito ver a ##. Es urgente.</item>
-        <item>¿Has visto a ##? Tengo que decirle algo.</item>
-        <item>Si ves a ## dile que me pague.</item>
-        <item>¿Sabes quién es ##?</item>
-        <item>¿Conoces a ##?</item>
-        <item>¿Quieres oír acerca de ##?</item>
-        <item>Ten cuidado con ##, es {[mal[o,a]]} con las personas que lo rodean.</item>
-        <item>Deberías ver a ##, es muy agradable.</item>
-        <item>Honestamente, estoy cansado de predecirle el futuro a ##.</item>
-        <item>¿Sabes algo de ##?</item>
-        <item>¿Quieres saber lo que pasó con ##?</item>
-        <item>¡Calma! Ya te tocará saber qué pasará contigo. Debo ver lo que ## vivirá.</item>
-        <item>¡Déjame ver a ##!</item>
-        <item>¡Tengo que encontrar a ##!</item>
-        <item>¡Necesito decirle algo a ##!</item>
-        <item>No, es muy triste lo que ocurre con ##, ##, ## y ##.</item>
-        <item>Si pudiera armar un grupo de tontos, elegiría a ##, ##, ## y ##.</item>
-        <item>El mejor grupo con el cual salir es ##, ##, ## y ##.</item>
-        <item>Siempre es bueno escuchar los consejos de ##.</item>
-        <item>Tengo {[un[,a]]} {[conocid[o,a]]} {[llamad[o,a]]} ##.</item>
-        <item>Tengo {[un[,a]]} {[amig[o,a]]} {[llamad[o,a]]} ##.</item>
-        <item>Tengo {[un[,a]]} {[enemig[o,a]]} {[llamad[o,a]]} ##.</item>
-        <item>Tengo {[un[,a]]} amante {[llamad[o,a]]} ##.</item>
-        <item>Soy mejor que una persona llamada ##.</item>
-        <item>## tiene asegurado un buen futuro.</item>
-        <item>A ## no le espera un buen futuro.</item>
-        <item>## tendrá una vida llena de felicidad.</item>
-        <item>## tendrá una vida acompañada de tristezas.</item>
-        <item>## espera una vida de soledad.</item>
-        <item>## recibirá la fortuna con los brazos abiertos.</item>
-        <item>## tendrá una larga vida.</item>
-        <item>La desgracia será parte de la vida de ##.</item>
-        <item>Ejemplos de destinos totalmente distintos entre sí serían los de ## y ##.</item>
-        <item>Buenas posibilidades le esperan a ##.</item>
-        <item>Posibilidades malas le aguardan a ##.</item>
-        <item>¿Sabes lo que pasará con ##?</item>
-        <item>Parece que ## y ## se pertenecen.</item>
-        <item>Vaya, vaya, ## tiene buen presagio.</item>
-        <item>La profecía indica que ## es {[[el,la]]} {[elegid[o,a]]}.</item>
-        <item>## ha aceptado su destino.</item>
-        <item>## lucha vanamente contra su destino.</item>
-        <item>Tengo el presentimiento de que te has cruzado con ##.</item>
-        <item>Tengo muy buenas noticias para ##.</item>
-        <item>Hay muy malas noticias sobre ##.</item>
-        <item>Tengo malas noticias para ##.</item>
-        <item>La profecía dice que ## será {[exitos[o,a]]}.</item>
-        <item>## es la persona mencionada en la profecía.</item>
-        <item>El augurio señala prosperidad para ##.</item>
-        <item>El augurio muestra que ## tendrá una larga vida.</item>
-        <item>El augurio dice que ## tendrá una vida buena.</item>
-        <item>## y ## son personas que no se llevan entre sí.</item>
-        <item>## y ## comparten vidas llenas de conflictos.</item>
-        <item>El destino ha sido complaciente con ##.</item>
-        <item>La vida se encarga una y otra vez de que ## falle.</item>
-        <item>Una cadena de éxitos ha sido predestinada para ##.</item>
-        <item>## va a tener una vida normal.</item>
-        <item>## va a tener una vida libre de problemas.</item>
-        <item>## tendrá una vida llena de dificultades, sin embargo, su recompensa será grande.</item>
-        <item>Aquí dice que ## ha cometido muchos crímenes.</item>
-        <item>La vida secreta de ## es muy aterradora.</item>
-        <item>Aparentemente ## es una buena persona, pero todo indica lo contrario.</item>
-        <item>La vida de ## dará un giro completo.</item>
-        <item>Las cosas se invertirán para ##.</item>
-        <item>La situación cambiará para ##.</item>
-        <item>## recibirá lo que merece.</item>
-        <item>## recibirá un castigo.</item>
-        <item>## será {[recompensad[o,a]]}.</item>
-        <item>## tendrá una vida llena de intrigas y suspenso.</item>
-        <item>Así como lo indica el augurio, ## será una persona exitosa.</item>
-        <item>El futuro muestra cosas buenas y malas, pero ## parece tener la vida más sencilla.</item>
-        <item>El destino de ## es realmente complejo.</item>
-        <item>Dicen que ## hará cosas tan increíbles que cambiarán a la sociedad.</item>
-        <item>Uh, ## será {[un[,a]]} {[visionari[o,a]]}.</item>
-        <item>Hay cosas tan oscuras en el futuro de ##.</item>
-        <item>Incluso yo no puedo descifrar del todo lo que pasará con ##.</item>
-        <item>## desafía todas las posibilidades.</item>
-        <item>El destino de ## no es muy claro.</item>
-        <item>## y ## comparten una rivalidad.</item>
-        <item>##, ## y ## serán parte de una disputa.</item>
-        <item>Incluso yo le temo a ##, pues es una persona realmente aterradora.</item>
-        <item>Todos debemos cuidarnos de ##.</item>
-        <item>Todos deberían conocer a ##.</item>
-        <item>Tal parece que las predicciones nunca han sido correctas para ##. Esta persona realmente desafía al futuro.</item>
-        <item>## estima a ##.</item>
-        <item>## ignora el hecho de que ## puede llegar a ser un gran problema.</item>
-        <item>## no se rinde a pesar de las desgracias.</item>
-        <item>La valentía es algo que a ## no le falta.</item>
-        <item>## hará cosas inauditas.</item>
-        <item>Encuentro a ## realmente interesante.</item>
-        <item>## tiene una vida intrincada.</item>
-        <item>## es una de las personas menos conocidas que hay.</item>
-        <item>Si te das la oportunidad, ## te sorprenderá.</item>
-        <item>Un sabio alguna vez dijo que errar es humano. La persona más humana que hay, posiblemente, es ##.</item>
-        <item>Si los fracasos nos hacen sabios, ## debe ser uno de los más grandes eruditos que hay.</item>
-        <item>Te contaré la breve historia de ##, quien nació siendo {[un[,a]]} de los más talentosos individuos y que, sin embargo, terminó negándose el éxito debido a su actitud.</item>
-        <item>## es realmente egoísta.</item>
-        <item>## acepta su destino.</item>
-        <item>## es de las pocas personas que no sé cómo es que siguen aquí a pesar de todo lo que les ha pasado.</item>
-        <item>Si me preguntas, considero que ## tiene la vida más interesante.</item>
-        <item>No sé cómo es que ## puede salirse con la suya.</item>
-        <item>## me debe mucho dinero por todas las adivinaciones.</item>
-        <item>Nunca se puede confiar en ##.</item>
-        <item>Si ves a ##, aléjate.</item>
-        <item>Me estresa lidiar con ##.</item>
-        <item>Muchos creen que pueden enfrentarse a su destino, como {[es[e,a]]} tal ##.</item>
-        <item>Hay personas quienes no hacen caso de lo que sucederá, lo cual es el caso de ##.</item>
-        <item>Nunca debes tratar con ##, pues es {[peligros[o,a]]}.</item>
-        <item>Es difícil ver el futuro de ##. Todo es borroso.</item>
-        <item>No he podido ver el futuro de {[un[,a]]} tal ##.</item>
-        <item>## es una de las pocas personas cuyo futuro es incierto.</item>
-        <item>## es de las pocas personas a las cuales no se les puede realizar una adivinación.</item>
-        <item>Si ves a ##, dile que le mando saludos.</item>
-        <item>Si ves a ##, dile que {[l[o,a]]} espero para una consulta.</item>
-        <item>Relaciónate con ##, ## y ##, pues son personas buenas.</item>
-        <item>Trata con ##, pues buenas cosas podrían salir de esa relación.</item>
-        <item>Es bien sabido que ## es {[un[,a]]} {[vag[o,a]]}.</item>
-        <item>Se sabe muy bien que ## una vez logró evitar la muerte.</item>
-        <item>## se ha salvado muchas veces de morir.</item>
-        <item>Algunos están hechos para morir hasta que logren lo inaudito, tal como ##.</item>
-        <item>## llevó una muy buena vida.</item>
-        <item>## fue una de las pocas personas que se pueden considerar totalmente íntegras.</item>
-        <item>## es una persona de fiar.</item>
-        <item>Se puede confiar totalmente en ##.</item>
-        <item>## es una de las personas más discretas. Yo, por otro lado, soy de las más chismosas.</item>
-        <item>## y ## tienen problemas.</item>
-        <item>## y ## quieren destruirse entre ellos.</item>
-        <item>## y ## enfrentan una serie de hechos curiosos.</item>
-        <item>¿Conoces la historia de ##? ¿Uh? Pues esta es de las pocas cosas que no puedo revelar.</item>
-        <item>Revelé toda la vida de ##.</item>
-        <item>Pude adivinar todo lo que sucedería con ##.</item>
-        <item>Yo soy una entidad que ha vivido mucho tiempo. ## tuvo una vida que, a comparación de la mía, ha sido realmente mínima, casi nula.</item>
-        <item>Una vez ## dijo que ## y ## se atraían.</item>
-        <item>## siempre ha sido indiferente.</item>
-        <item>## por lo general es indiferente.</item>
-        <item>## es muy egoísta.</item>
-        <item>## es una persona muy compartida.</item>
-        <item>Auguro cosas buenas para ##.</item>
-        <item>En definitiva, ## es un desastre.</item>
-        <item>## quiere dañar a ##.</item>
-        <item>## quiere que ## sea feliz.</item>
-        <item>## actúa de manera totalmente distinta a como dice ser.</item>
-        <item>## es {[un[,a]]} cobarde.</item>
-        <item>## enfrenta valientemente su destino.</item>
-        <item>¿Quién diría que ## y ## se llevarían muy bien?</item>
-        <item>¿Quién pensaría que ## y ## serían muy cercanos?</item>
-        <item>Si te das la oportunidad, ## podría caerte muy bien.</item>
-        <item>Te recomiendo tratar a ##.</item>
-        <item>Debo aceptar que ## ha logrado evadir el destino.</item>
-        <item>Cuidado con ##, es una persona tramposa.</item>
-        <item>## y ## en realidad se odian.</item>
-        <item>## y ## desearían no haberse conocido.</item>
-        <item>## está buscando a ##.</item>
-        <item>Muy pocos saben llevar una buena vida, como ##.</item>
-        <item>¿Has conocido a ##?</item>
-        <item>¿Tienes idea de quién es ##?</item>
-        <item>Largos conflictos les aguardan a ## y a ##.</item>
-        <item>Una vida de paz existirá entre ## y ##.</item>
-        <item>Puedo asegurarte que ##, ## y ## van a hacer cosas buenas.</item>
-        <item>## tiene una vida sorprendente.</item>
-        <item>Muchos sólo esperamos ver hacia el futuro, pero muchos deberíamos ver hacia el pasado, para evitar que todo se repita, como con ##.</item>
-        <item>Me agrada mucho ##.</item>
-        <item>Me desagrada ##.</item>
-        <item>Me gusta ##.</item>
-        <item>No me gusta ##.</item>
-        <item>Trágica y triste es la vida de ##.</item>
-        <item>La vida de ## es una auténtica comedia.</item>
-        <item>Me agrada la forma de ser de ##.</item>
-        <item>¿Sabes dónde está ##?</item>
-        <item>## y ## comparten un buen destino.</item>
-        <item>Pocos logran el éxito como ##.</item>
-        <item>Deberías aprender algo de ##.</item>
-        <item>## conoce a ##.</item>
-        <item>Tengo que decirle algo a ##.</item>
-        <item>Debo ver el futuro de ##.</item>
-        <item>## es una persona {string:adjectives; gender:2}.</item>
-        <item>## es un sujeto {string:adjectives; gender:1}.</item>
-        <item>## es un individuo {string:adjectives; gender:1}.</item>
-        <item>## y su {string:relative; gender:⸮} se llevan muy bien.</item>
-        <item>## y su {string:relative; gender:⸮} tienen una mala relación.</item>
-        <item>## y su {string:relative; gender:⸮} se tratan muy mal.</item>
-        <item>## y su {string:relative; gender:⸮} tienen una relación armoniosa.</item>
-        <item>## y su {string:relative; gender:⸮} han hecho cosas indecibles.</item>
-        <item>## y su {string:relative; gender:⸮} han hecho cosas muy malas.</item>
-        <item>Tu {string:relative; gender:⸮} se parece mucho a ##.</item>
-        <item>Tu {string:relative; gender:⸮} ama a ##.</item>
-        <item>Tu {string:relative; gender:⸮} odia a ##.</item>
-        <item>Tu {string:relative; gender:⸮} ignora a ##.</item>
-        <item>Tu {string:relative; gender:⸮} es buen amigo de ##.</item>
-        <item>Tu {string:relative; gender:⸮} se lleva mal con ##.</item>
-        <item>Tu {string:relative; gender:⸮} y ## son enemigos.</item>
+        <item>¿Has oído de {method:getFormattedName}? Es mi peor enemigo.</item>
+        <item>Tú te pareces a alguien que conozco, se llama {method:getFormattedName}.</item>
+        <item>¿De casualidad no conoces a {method:getFormattedName}?</item>
+        <item>Tengo que ir con {method:getFormattedName}. Me debe dinero.</item>
+        <item>Estoy enamorado de {method:getFormattedName}.</item>
+        <item>¿Acaso has visto a ⸠[un[,a]]⸡ tal {method:getFormattedName}?</item>
+        <item>Tu {string:relative; gender:⸮}, {method:getFormattedName} y yo somos amantes. Todo un triángulo amoroso.</item>
+        <item>¿Eres {string:relative; gender:⛌} de {method:getFormattedName}? Se parecen mucho.</item>
+        <item>¿Eres acaso {string:relative; gender:⛌} de {method:getFormattedName}? Comparten ciertas características ustedes dos.</item>
+        <item>Me agrada verte por aquí, no como a {method:getFormattedName}.</item>
+        <item>Oh, sí, revelé un futuro terrorífico para {method:getFormattedName}.</item>
+        <item>El otro día {method:getFormattedName} me pidió que le leyera el futuro.</item>
+        <item>Tantas trágicas historias se han escrito, como las de {method:getFormattedName}.</item>
+        <item>Revelar el futuro es algo agotador, y más el futuro de {method:getFormattedName}.</item>
+        <item>Muchas personas acuden a mí, en especial {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>¿Sabías que {method:getFormattedName} y {method:getFormattedName} son pareja?</item>
+        <item>Hay un destino muy cruel entre {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>Una fuerte rivalidad crece entre {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>¿Quieres saber qué pasó con {method:getFormattedName}?</item>
+        <item>{method:getFormattedName} acudió a mí para obtener mis conocimientos secretos.</item>
+        <item>Cuidado con {method:getFormattedName}, es una persona muy peligrosa.</item>
+        <item>Hay una persona muy agradable llamada {method:getFormattedName}.</item>
+        <item>Me gusta la comida, en especial aquella hecha por {method:getFormattedName}.</item>
+        <item>Hay dos personas en este mundo a quienes deberías conocer. Ellas son {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>Tengo muchos hermanos, y mi ⸠[favorit[o,a]]⸡ es {method:getFormattedName}.</item>
+        <item>Nunca vayas a hablar con {method:getFormattedName}, es muy ⸠[molest[o,a]]⸡.</item>
+        <item>Me encanta hacer adivinaciones para {method:getFormattedName}.</item>
+        <item>Sí, ¿has visto a {method:getFormattedName}? Necesito hablar con esta persona.</item>
+        <item>A ver, a ver, uh, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, uh… y {method:getFormattedName}. Listo, anotados los que me faltan para predecirles su futuro.</item>
+        <item>Si te portas mal, {method:getFormattedName} va a venir y te va a llevar.</item>
+        <item>¿Has escuchado la triste historia de {method:getFormattedName}?</item>
+        <item>¿Has escuchado las aventuras de {method:getFormattedName}?</item>
+        <item>¿Has escuchado las buenas noticias sobre {method:getFormattedName}?</item>
+        <item>¿Te importaría dejarme adivinar algo sobre {method:getFormattedName}?</item>
+        <item>¿Quién es {method:getFormattedName}?</item>
+        <item>¿Te has encontrado con {method:getFormattedName}?</item>
+        <item>Me gusta una persona llamada {method:getFormattedName}.</item>
+        <item>Me gusta alguien que se llama {method:getFormattedName}.</item>
+        <item>¿Por qué odias a {method:getFormattedName}?</item>
+        <item>¿Te gusta una persona llamada {method:getFormattedName}?</item>
+        <item>¿Qué sabes acerca de {method:getFormattedName}?</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} son personas muy similares.</item>
+        <item>Dime si algún día ves a {method:getFormattedName}.</item>
+        <item>Dime si un día conoces a {method:getFormattedName}.</item>
+        <item>Soy una persona muy ocupada. Hoy saldré con {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} son muy buenos amigos.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} son los peores enemigos.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} se odian demasiado.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} se aman.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} siempre pelean.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} siempre tienen buenas ideas.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} se llevan muy bien.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} no se llevan bien.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} no se toleran.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} son muy cercanos.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} se entienden muy bien.</item>
+        <item>Necesito encontrar a {method:getFormattedName}. Me debe dinero.</item>
+        <item>Estoy buscando a {method:getFormattedName}. ¿Tú ⸠[l[o,a]]⸡ has visto?</item>
+        <item>Me parece que {method:getFormattedName} tiene un destino muy malo.</item>
+        <item>Creo que {method:getFormattedName} tiene un buen futuro.</item>
+        <item>¿Crees que no soy real? {method:getFormattedName} cree lo contrario.</item>
+        <item>{method:getFormattedName} me cae muy mal.</item>
+        <item>{method:getFormattedName} me cae muy bien.</item>
+        <item>Siento indiferencia hacia {method:getFormattedName}.</item>
+        <item>Me agrada estar con {method:getFormattedName}.</item>
+        <item>Odio estar con {method:getFormattedName}.</item>
+        <item>En alguna parte, {method:getFormattedName} conspira contra nosotros.</item>
+        <item>En algún lugar, {method:getFormattedName} hace planes que nos beneficiarán.</item>
+        <item>{method:getFormattedName} habla mal de {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} no para de hablar de {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} siempre tiene buenas cosas qué decir sobre {method:getFormattedName}.</item>
+        <item>Estoy cansado de {method:getFormattedName}.</item>
+        <item>Me gusta tratar con {method:getFormattedName}.</item>
+        <item>Hay muchas personas a las cuales realizo predicciones, pero a {method:getFormattedName} es a la que más le hago.</item>
+        <item>¿Conoces la leyenda de {method:getFormattedName}?</item>
+        <item>{method:getFormattedName} tiene un buen futuro.</item>
+        <item>{method:getFormattedName} tiene un futuro malo.</item>
+        <item>{method:getFormattedName} sabe muchas cosas.</item>
+        <item>{method:getFormattedName} asegura haber visto a {method:getFormattedName}.</item>
+        <item>Yo no creo que {method:getFormattedName} haya encontrado a {method:getFormattedName}.</item>
+        <item>El destino alguna vez indicó que {method:getFormattedName} y {method:getFormattedName} se habrían de encontrar, y así pasó.</item>
+        <item>{method:getFormattedName} hará cosas increíbles.</item>
+        <item>{method:getFormattedName} hará cosas terribles.</item>
+        <item>Me preocupa alguien que se llama {method:getFormattedName}.</item>
+        <item>¿No has sabido algo sobre {method:getFormattedName}?</item>
+        <item>{method:getFormattedName} ya no se ha comunicado conmigo, y es preocupante.</item>
+        <item>{method:getFormattedName} puede ganarle a {method:getFormattedName} en una pelea.</item>
+        <item>{method:getFormattedName} va a hacer cosas malas hoy.</item>
+        <item>{method:getFormattedName} hará algo muy bueno en este día.</item>
+        <item>El destino no favorece a {method:getFormattedName}.</item>
+        <item>El destino está a favor de {method:getFormattedName}.</item>
+        <item>Esta vida quiere que triunfe {method:getFormattedName}.</item>
+        <item>La vida ajusta las posibilidades en contra de {method:getFormattedName}.</item>
+        <item>Esta existencia tiene cosas muy curiosas, una de ellas es una persona llamada {method:getFormattedName}.</item>
+        <item>No me interrumpas, estoy viendo la vida de {method:getFormattedName}.</item>
+        <item>Es interesante ver lo que pasa con {method:getFormattedName}.</item>
+        <item>¡Quieto! Déjame ver qué sucede con {method:getFormattedName}.</item>
+        <item>¡Alto! Necesito saber qué ocurre con {method:getFormattedName}.</item>
+        <item>¡Oye! Tengo que conocer lo que pasará con {method:getFormattedName}.</item>
+        <item>¡Me gusta estar con {method:getFormattedName}!</item>
+        <item>¡Odio estar con {method:getFormattedName}!</item>
+        <item>No, no, no, todo está mal con {method:getFormattedName}.</item>
+        <item>Y así es la triste vida de {method:getFormattedName}.</item>
+        <item>¡Vaya! Deberías ver lo increíble que es la vida de {method:getFormattedName}.</item>
+        <item>Ver el futuro es entretenido. Me gusta, sobre todo, ver lo que acontece en la vida de {method:getFormattedName}.</item>
+        <item>Estoy harto de {method:getFormattedName}.</item>
+        <item>Estoy feliz por {method:getFormattedName}.</item>
+        <item>Existe una tensión fuerte entre {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} aparentemente se odian, aunque realmente se aman.</item>
+        <item>El futuro es felicidad para {method:getFormattedName}.</item>
+        <item>El futuro es tristeza para {method:getFormattedName}.</item>
+        <item>Si tuviera una moneda cada vez que {method:getFormattedName} dice una tontería, sería millonario.</item>
+        <item>Si tuviera una moneda por cada cosa ingeniosa que {method:getFormattedName} dice, estaría debiendo dinero.</item>
+        <item>No hay nada como molestar a {method:getFormattedName}.</item>
+        <item>Me gusta pasar el rato con {method:getFormattedName}.</item>
+        <item>Tal parece que las cosas van mal entre {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>Las cosas irán mal entre {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} trata de causar mal entre {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} siempre da malos consejos a {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} es una persona muy agradable. Deberías tratarla.</item>
+        <item>Sí, lo tengo. Aquí está el destino de {method:getFormattedName}.</item>
+        <item>Deberías ver lo que {method:getFormattedName} está haciendo.</item>
+        <item>Tal parece que {method:getFormattedName} está haciendo cosas malas.</item>
+        <item>{method:getFormattedName} se está portando muy bien.</item>
+        <item>Con el fin de enfrentar a su destino, {method:getFormattedName} hace cosas que cree que lo evitarán.</item>
+        <item>Casi nadie puede huir de su destino, en especial {method:getFormattedName}.</item>
+        <item>¿Crees en el destino? {method:getFormattedName} logró una vez salirse con la suya y evitarlo.</item>
+        <item>El futuro es algo inaudito, sobre todo el de {method:getFormattedName}.</item>
+        <item>{method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName} son muy buenos amigos.</item>
+        <item>Necesito ver a {method:getFormattedName}. Es urgente.</item>
+        <item>¿Has visto a {method:getFormattedName}? Tengo que decirle algo.</item>
+        <item>Si ves a {method:getFormattedName} dile que me pague.</item>
+        <item>¿Sabes quién es {method:getFormattedName}?</item>
+        <item>¿Conoces a {method:getFormattedName}?</item>
+        <item>¿Quieres oír acerca de {method:getFormattedName}?</item>
+        <item>Ten cuidado con {method:getFormattedName}, es ⸠[mal[o,a]]⸡ con las personas que lo rodean.</item>
+        <item>Deberías ver a {method:getFormattedName}, es muy agradable.</item>
+        <item>Honestamente, estoy cansado de predecirle el futuro a {method:getFormattedName}.</item>
+        <item>¿Sabes algo de {method:getFormattedName}?</item>
+        <item>¿Quieres saber lo que pasó con {method:getFormattedName}?</item>
+        <item>¡Calma! Ya te tocará saber qué pasará contigo. Debo ver lo que {method:getFormattedName} vivirá.</item>
+        <item>¡Déjame ver a {method:getFormattedName}!</item>
+        <item>¡Tengo que encontrar a {method:getFormattedName}!</item>
+        <item>¡Necesito decirle algo a {method:getFormattedName}!</item>
+        <item>No, es muy triste lo que ocurre con {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>Si pudiera armar un grupo de tontos, elegiría a {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>El mejor grupo con el cual salir es {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>Siempre es bueno escuchar los consejos de {method:getFormattedName}.</item>
+        <item>Tengo ⸠[un[,a]]⸡ ⸠[conocid[o,a]]⸡ ⸠[llamad[o,a]]⸡ {method:getFormattedName}.</item>
+        <item>Tengo ⸠[un[,a]]⸡ ⸠[amig[o,a]]⸡ ⸠[llamad[o,a]]⸡ {method:getFormattedName}.</item>
+        <item>Tengo ⸠[un[,a]]⸡ ⸠[enemig[o,a]]⸡ ⸠[llamad[o,a]]⸡ {method:getFormattedName}.</item>
+        <item>Tengo ⸠[un[,a]]⸡ amante ⸠[llamad[o,a]]⸡ {method:getFormattedName}.</item>
+        <item>Soy mejor que una persona llamada {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} tiene asegurado un buen futuro.</item>
+        <item>A {method:getFormattedName} no le espera un buen futuro.</item>
+        <item>{method:getFormattedName} tendrá una vida llena de felicidad.</item>
+        <item>{method:getFormattedName} tendrá una vida acompañada de tristezas.</item>
+        <item>{method:getFormattedName} espera una vida de soledad.</item>
+        <item>{method:getFormattedName} recibirá la fortuna con los brazos abiertos.</item>
+        <item>{method:getFormattedName} tendrá una larga vida.</item>
+        <item>La desgracia será parte de la vida de {method:getFormattedName}.</item>
+        <item>Ejemplos de destinos totalmente distintos entre sí serían los de {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>Buenas posibilidades le esperan a {method:getFormattedName}.</item>
+        <item>Posibilidades malas le aguardan a {method:getFormattedName}.</item>
+        <item>¿Sabes lo que pasará con {method:getFormattedName}?</item>
+        <item>Parece que {method:getFormattedName} y {method:getFormattedName} se pertenecen.</item>
+        <item>Vaya, vaya, {method:getFormattedName} tiene buen presagio.</item>
+        <item>La profecía indica que {method:getFormattedName} es ⸠[[el,la]]⸡ ⸠[elegid[o,a]]⸡.</item>
+        <item>{method:getFormattedName} ha aceptado su destino.</item>
+        <item>{method:getFormattedName} lucha vanamente contra su destino.</item>
+        <item>Tengo el presentimiento de que te has cruzado con {method:getFormattedName}.</item>
+        <item>Tengo muy buenas noticias para {method:getFormattedName}.</item>
+        <item>Hay muy malas noticias sobre {method:getFormattedName}.</item>
+        <item>Tengo malas noticias para {method:getFormattedName}.</item>
+        <item>La profecía dice que {method:getFormattedName} será ⸠[exitos[o,a]]⸡.</item>
+        <item>{method:getFormattedName} es la persona mencionada en la profecía.</item>
+        <item>El augurio señala prosperidad para {method:getFormattedName}.</item>
+        <item>El augurio muestra que {method:getFormattedName} tendrá una larga vida.</item>
+        <item>El augurio dice que {method:getFormattedName} tendrá una vida buena.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} son personas que no se llevan entre sí.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} comparten vidas llenas de conflictos.</item>
+        <item>El destino ha sido complaciente con {method:getFormattedName}.</item>
+        <item>La vida se encarga una y otra vez de que {method:getFormattedName} falle.</item>
+        <item>Una cadena de éxitos ha sido predestinada para {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} va a tener una vida normal.</item>
+        <item>{method:getFormattedName} va a tener una vida libre de problemas.</item>
+        <item>{method:getFormattedName} tendrá una vida llena de dificultades, sin embargo, su recompensa será grande.</item>
+        <item>Aquí dice que {method:getFormattedName} ha cometido muchos crímenes.</item>
+        <item>La vida secreta de {method:getFormattedName} es muy aterradora.</item>
+        <item>Aparentemente {method:getFormattedName} es una buena persona, pero todo indica lo contrario.</item>
+        <item>La vida de {method:getFormattedName} dará un giro completo.</item>
+        <item>Las cosas se invertirán para {method:getFormattedName}.</item>
+        <item>La situación cambiará para {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} recibirá lo que merece.</item>
+        <item>{method:getFormattedName} recibirá un castigo.</item>
+        <item>{method:getFormattedName} será ⸠[recompensad[o,a]]⸡.</item>
+        <item>{method:getFormattedName} tendrá una vida llena de intrigas y suspenso.</item>
+        <item>Así como lo indica el augurio, {method:getFormattedName} será una persona exitosa.</item>
+        <item>El futuro muestra cosas buenas y malas, pero {method:getFormattedName} parece tener la vida más sencilla.</item>
+        <item>El destino de {method:getFormattedName} es realmente complejo.</item>
+        <item>Dicen que {method:getFormattedName} hará cosas tan increíbles que cambiarán a la sociedad.</item>
+        <item>Uh, {method:getFormattedName} será ⸠[un[,a]]⸡ ⸠[visionari[o,a]]⸡.</item>
+        <item>Hay cosas tan oscuras en el futuro de {method:getFormattedName}.</item>
+        <item>Incluso yo no puedo descifrar del todo lo que pasará con {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} desafía todas las posibilidades.</item>
+        <item>El destino de {method:getFormattedName} no es muy claro.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} comparten una rivalidad.</item>
+        <item>{method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName} serán parte de una disputa.</item>
+        <item>Incluso yo le temo a {method:getFormattedName}, pues es una persona realmente aterradora.</item>
+        <item>Todos debemos cuidarnos de {method:getFormattedName}.</item>
+        <item>Todos deberían conocer a {method:getFormattedName}.</item>
+        <item>Tal parece que las predicciones nunca han sido correctas para {method:getFormattedName}. Esta persona realmente desafía al futuro.</item>
+        <item>{method:getFormattedName} estima a {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} ignora el hecho de que {method:getFormattedName} puede llegar a ser un gran problema.</item>
+        <item>{method:getFormattedName} no se rinde a pesar de las desgracias.</item>
+        <item>La valentía es algo que a {method:getFormattedName} no le falta.</item>
+        <item>{method:getFormattedName} hará cosas inauditas.</item>
+        <item>Encuentro a {method:getFormattedName} realmente interesante.</item>
+        <item>{method:getFormattedName} tiene una vida intrincada.</item>
+        <item>{method:getFormattedName} es una de las personas menos conocidas que hay.</item>
+        <item>Si te das la oportunidad, {method:getFormattedName} te sorprenderá.</item>
+        <item>Un sabio alguna vez dijo que errar es humano. La persona más humana que hay, posiblemente, es {method:getFormattedName}.</item>
+        <item>Si los fracasos nos hacen sabios, {method:getFormattedName} debe ser uno de los más grandes eruditos que hay.</item>
+        <item>Te contaré la breve historia de {method:getFormattedName}, quien nació siendo ⸠[un[,a]]⸡ de los más talentosos individuos y que, sin embargo, terminó negándose el éxito debido a su actitud.</item>
+        <item>{method:getFormattedName} es realmente egoísta.</item>
+        <item>{method:getFormattedName} acepta su destino.</item>
+        <item>{method:getFormattedName} es de las pocas personas que no sé cómo es que siguen aquí a pesar de todo lo que les ha pasado.</item>
+        <item>Si me preguntas, considero que {method:getFormattedName} tiene la vida más interesante.</item>
+        <item>No sé cómo es que {method:getFormattedName} puede salirse con la suya.</item>
+        <item>{method:getFormattedName} me debe mucho dinero por todas las adivinaciones.</item>
+        <item>Nunca se puede confiar en {method:getFormattedName}.</item>
+        <item>Si ves a {method:getFormattedName}, aléjate.</item>
+        <item>Me estresa lidiar con {method:getFormattedName}.</item>
+        <item>Muchos creen que pueden enfrentarse a su destino, como ⸠[es[e,a]]⸡ tal {method:getFormattedName}.</item>
+        <item>Hay personas quienes no hacen caso de lo que sucederá, lo cual es el caso de {method:getFormattedName}.</item>
+        <item>Nunca debes tratar con {method:getFormattedName}, pues es ⸠[peligros[o,a]]⸡.</item>
+        <item>Es difícil ver el futuro de {method:getFormattedName}. Todo es borroso.</item>
+        <item>No he podido ver el futuro de ⸠[un[,a]]⸡ tal {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} es una de las pocas personas cuyo futuro es incierto.</item>
+        <item>{method:getFormattedName} es de las pocas personas a las cuales no se les puede realizar una adivinación.</item>
+        <item>Si ves a {method:getFormattedName}, dile que le mando saludos.</item>
+        <item>Si ves a {method:getFormattedName}, dile que ⸠[l[o,a]]⸡ espero para una consulta.</item>
+        <item>Relaciónate con {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}, pues son personas buenas.</item>
+        <item>Trata con {method:getFormattedName}, pues buenas cosas podrían salir de esa relación.</item>
+        <item>Es bien sabido que {method:getFormattedName} es ⸠[un[,a]]⸡ ⸠[vag[o,a]]}.</item>
+        <item>Se sabe muy bien que {method:getFormattedName} una vez logró evitar la muerte.</item>
+        <item>{method:getFormattedName} se ha salvado muchas veces de morir.</item>
+        <item>Algunos están hechos para morir hasta que logren lo inaudito, tal como {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} llevó una muy buena vida.</item>
+        <item>{method:getFormattedName} fue una de las pocas personas que se pueden considerar totalmente íntegras.</item>
+        <item>{method:getFormattedName} es una persona de fiar.</item>
+        <item>Se puede confiar totalmente en {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} es una de las personas más discretas. Yo, por otro lado, soy de las más chismosas.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} tienen problemas.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} quieren destruirse entre ellos.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} enfrentan una serie de hechos curiosos.</item>
+        <item>¿Conoces la historia de {method:getFormattedName}? ¿Uh? Pues esta es de las pocas cosas que no puedo revelar.</item>
+        <item>Revelé toda la vida de {method:getFormattedName}.</item>
+        <item>Pude adivinar todo lo que sucedería con {method:getFormattedName}.</item>
+        <item>Yo soy una entidad que ha vivido mucho tiempo. {method:getFormattedName} tuvo una vida que, a comparación de la mía, ha sido realmente mínima, casi nula.</item>
+        <item>Una vez {method:getFormattedName} dijo que {method:getFormattedName} y {method:getFormattedName} se atraían.</item>
+        <item>{method:getFormattedName} siempre ha sido indiferente.</item>
+        <item>{method:getFormattedName} por lo general es indiferente.</item>
+        <item>{method:getFormattedName} es muy egoísta.</item>
+        <item>{method:getFormattedName} es una persona muy compartida.</item>
+        <item>Auguro cosas buenas para {method:getFormattedName}.</item>
+        <item>En definitiva, {method:getFormattedName} es un desastre.</item>
+        <item>{method:getFormattedName} quiere dañar a {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} quiere que {method:getFormattedName} sea feliz.</item>
+        <item>{method:getFormattedName} actúa de manera totalmente distinta a como dice ser.</item>
+        <item>{method:getFormattedName} es ⸠[un[,a]]⸡ cobarde.</item>
+        <item>{method:getFormattedName} enfrenta valientemente su destino.</item>
+        <item>¿Quién diría que {method:getFormattedName} y {method:getFormattedName} se llevarían muy bien?</item>
+        <item>¿Quién pensaría que {method:getFormattedName} y {method:getFormattedName} serían muy cercanos?</item>
+        <item>Si te das la oportunidad, {method:getFormattedName} podría caerte muy bien.</item>
+        <item>Te recomiendo tratar a {method:getFormattedName}.</item>
+        <item>Debo aceptar que {method:getFormattedName} ha logrado evadir el destino.</item>
+        <item>Cuidado con {method:getFormattedName}, es una persona tramposa.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} en realidad se odian.</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} desearían no haberse conocido.</item>
+        <item>{method:getFormattedName} está buscando a {method:getFormattedName}.</item>
+        <item>Muy pocos saben llevar una buena vida, como {method:getFormattedName}.</item>
+        <item>¿Has conocido a {method:getFormattedName}?</item>
+        <item>¿Tienes idea de quién es {method:getFormattedName}?</item>
+        <item>Largos conflictos les aguardan a {method:getFormattedName} y a {method:getFormattedName}.</item>
+        <item>Una vida de paz existirá entre {method:getFormattedName} y {method:getFormattedName}.</item>
+        <item>Puedo asegurarte que {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName} van a hacer cosas buenas.</item>
+        <item>{method:getFormattedName} tiene una vida sorprendente.</item>
+        <item>Muchos sólo esperamos ver hacia el futuro, pero muchos deberíamos ver hacia el pasado, para evitar que todo se repita, como con {method:getFormattedName}.</item>
+        <item>Me agrada mucho {method:getFormattedName}.</item>
+        <item>Me desagrada {method:getFormattedName}.</item>
+        <item>Me gusta {method:getFormattedName}.</item>
+        <item>No me gusta {method:getFormattedName}.</item>
+        <item>Trágica y triste es la vida de {method:getFormattedName}.</item>
+        <item>La vida de {method:getFormattedName} es una auténtica comedia.</item>
+        <item>Me agrada la forma de ser de {method:getFormattedName}.</item>
+        <item>¿Sabes dónde está {method:getFormattedName}?</item>
+        <item>{method:getFormattedName} y {method:getFormattedName} comparten un buen destino.</item>
+        <item>Pocos logran el éxito como {method:getFormattedName}.</item>
+        <item>Deberías aprender algo de {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} conoce a {method:getFormattedName}.</item>
+        <item>Tengo que decirle algo a {method:getFormattedName}.</item>
+        <item>Debo ver el futuro de {method:getFormattedName}.</item>
+        <item>{method:getFormattedName} es una persona {string:adjectives; gender:2}.</item>
+        <item>{method:getFormattedName} es un sujeto {string:adjectives; gender:1⸡.</item>
+        <item>{method:getFormattedName} es un individuo {string:adjectives; gender:1}.</item>
+        <item>{method:getFormattedName} y su {string:relative; gender:⸮} se llevan muy bien.</item>
+        <item>{method:getFormattedName} y su {string:relative; gender:⸮} tienen una mala relación.</item>
+        <item>{method:getFormattedName} y su {string:relative; gender:⸮} se tratan muy mal.</item>
+        <item>{method:getFormattedName} y su {string:relative; gender:⸮} tienen una relación armoniosa.</item>
+        <item>{method:getFormattedName} y su {string:relative; gender:⸮} han hecho cosas indecibles.</item>
+        <item>{method:getFormattedName} y su {string:relative; gender:⸮} han hecho cosas muy malas.</item>
+        <item>Tu {string:relative; gender:⸮} se parece mucho a {method:getFormattedName}.</item>
+        <item>Tu {string:relative; gender:⸮} ama a {method:getFormattedName}.</item>
+        <item>Tu {string:relative; gender:⸮} odia a {method:getFormattedName}.</item>
+        <item>Tu {string:relative; gender:⸮} ignora a {method:getFormattedName}.</item>
+        <item>Tu {string:relative; gender:⸮} es buen amigo de {method:getFormattedName}.</item>
+        <item>Tu {string:relative; gender:⸮} se lleva mal con {method:getFormattedName}.</item>
+        <item>Tu {string:relative; gender:⸮} y {method:getFormattedName} son enemigos.</item>
     </string-array>
     <string-array name="person">
         <item>una persona</item>
