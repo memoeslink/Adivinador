@@ -32,7 +32,6 @@ public class ReflectionFinder extends Binder {
     private final GeneratorManager manager;
     private final ContactNameFinder contactNameFinder;
     private final PreferenceFinder preferenceFinder;
-    private final ResourceFinder resourceFinder;
 
     static {
         PERSON_SOURCES = new ArrayList<>();
@@ -52,7 +51,6 @@ public class ReflectionFinder extends Binder {
         manager = new GeneratorManager(Locale.getDefault(), seed);
         contactNameFinder = new ContactNameFinder(context, seed);
         preferenceFinder = new PreferenceFinder(context, seed);
-        resourceFinder = new ResourceFinder(context, seed);
     }
 
     public String callMethod(String methodName) {
