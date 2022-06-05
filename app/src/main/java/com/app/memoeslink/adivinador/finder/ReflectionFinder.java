@@ -2,10 +2,13 @@ package com.app.memoeslink.adivinador.finder;
 
 import android.content.Context;
 
+import com.app.memoeslink.adivinador.LanguageHelper;
 import com.app.memoeslink.adivinador.MethodReference;
 import com.app.memoeslink.adivinador.R;
 import com.memoeslink.generator.common.Binder;
 import com.memoeslink.generator.common.Constant;
+import com.memoeslink.generator.common.DateTimeGetter;
+import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.Device;
 import com.memoeslink.generator.common.Form;
 import com.memoeslink.generator.common.Gender;
@@ -24,6 +27,7 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -57,8 +61,8 @@ public class ReflectionFinder extends Binder {
         String s = null;
 
         try {
-            Class<?> resourceFinderClass = Class.forName("com.app.memoeslink.adivinador.finder.ReflectionFinder");
-            Method m = resourceFinderClass.getDeclaredMethod(methodName);
+            Class<?> reflectionFinderClass = Class.forName("com.app.memoeslink.adivinador.finder.ReflectionFinder");
+            Method m = reflectionFinderClass.getDeclaredMethod(methodName);
             m.setAccessible(true);
             s = (String) m.invoke(new ReflectionFinder(context, r.getSeed()));
         } catch (ClassNotFoundException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
@@ -72,10 +76,10 @@ public class ReflectionFinder extends Binder {
             String r = null;
 
             try {
-                Class<ReflectionFinder> resourceFinderClass = ReflectionFinder.class;
-                Constructor<ReflectionFinder> constructor = resourceFinderClass.getConstructor(Context.class, Long.class);
+                Class<ReflectionFinder> reflectionFinderClass = ReflectionFinder.class;
+                Constructor<ReflectionFinder> constructor = reflectionFinderClass.getConstructor(Context.class, Long.class);
                 Object object = constructor.newInstance(context, this.r.getSeed());
-                Method method = resourceFinderClass.getDeclaredMethod(methodName);
+                Method method = reflectionFinderClass.getDeclaredMethod(methodName);
                 method.setAccessible(true);
                 r = (String) method.invoke(object);
             } catch (InstantiationException | InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
@@ -116,6 +120,10 @@ public class ReflectionFinder extends Binder {
                 return getDeviceUser();
             case FORMATTED_NAME:
                 return getFormattedName();
+            case SIMPLE_GREETING:
+                return getSimpleGreeting();
+            case CURRENT_DAY_OF_WEEK:
+                return getCurrentDayOfWeek();
             case NONE:
             default:
                 return ResourceFinder.RESOURCE_NOT_FOUND;
@@ -196,5 +204,22 @@ public class ReflectionFinder extends Binder {
             default:
                 return TextFormatter.formatText("?", "b,tt");
         }
+    }
+
+    public String getSimpleGreeting() {
+        int hour = DateTimeHelper.getCurrentTime().getHour();
+        return getResources().getStringArray(R.array.simple_greetings)[hour];
+    }
+
+    public String getCurrentDayOfWeek() {
+        return android.text.format.DateFormat.format("EEEE", new Date()).toString();
+    }
+
+    public String getCurrentDate() {
+        return DateTimeGetter.with(LanguageHelper.getLocale(this)).getCurrentDate(r.getInt(1, 14));
+    }
+
+    public String getCurrentTime() {
+        return DateTimeGetter.with(LanguageHelper.getLocale(this)).getCurrentTime(r.getInt(1, 11));
     }
 }

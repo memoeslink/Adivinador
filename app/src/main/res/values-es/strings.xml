@@ -85,12 +85,7 @@
     <string name="enquiry_information">Consulta para el día %1$s de %2$s, de género %3$s (%4$s)</string>
     <string name="extended_family_member">[suegr[o,a]]¶ [cuñad[o,a]]¶ [[yerno,nuera]]¶ [[padrastro,madrastra]]¶ [hijastr[o,a]]¶ [[padrino,madrina]]¶ [ahijad[o,a]]</string>
     <string name="family_member">{string:relative; gender:⸮}¶ {string:extended_family_member; gender:⸮}</string>
-    <string name="greetings">Hola§.¶ Bienvenido§.¶ Buen día§.¶ ¡Qué gusto de verte§!¶ Tanto tiempo sin verte§.¶ ¿Cómo estás§?¶ ¿Qué tal§?¶ ¿Cómo has estado§?¶ ¿Cómo te ha ido§?¶ ¿Cómo te va§?¶ ¿Cómo está todo§?¶ ¿Cómo va todo§?¶ ¿Qué has hecho§?¶ ¿Qué has hecho últimamente§?¶ ¿Qué pasa§?¶ ¿Qué hay§?¶ ¿Qué hay de nuevo§?¶ ¿Qué cuentas§?¶ ¿Qué me cuentas§?</string>
-    <string name="greetings_afternoon">Buena tarde§.¶ Buenas tardes§.¶ Bonita tarde§.</string>
-    <string name="greetings_component">Buen¶ Bonito¶ Hermoso¶ Genial¶ Ya es¶ Hoy es¶ Estamos a</string>
-    <string name="greetings_day">Buen día§.¶ Buenos días§.¶ Bonito día§.</string>
-    <string name="greetings_default">Hola§.¶ Bienvenido§.</string>
-    <string name="greetings_night">Buena noche§.¶ Buenas noches§.¶ Bonita noche§.</string>
+    <string name="greeting_variant">¡Qué gusto de verte!¶ Tanto tiempo sin verte.¶ ¿Cómo estás?¶ ¿Qué tal?¶ ¿Cómo has estado?¶ ¿Cómo te ha ido?¶ ¿Cómo te está yendo?¶ ¿Cómo te va?¶ ¿Cómo está todo?¶ ¿Cómo va todo?¶ ¿Qué has hecho?¶ ¿Qué has hecho últimamente?¶ ¿Qué pasa?¶ ¿Qué hay?¶ ¿Qué hay de nuevo?¶ ¿Qué cuentas?¶ ¿Qué me cuentas?¶ Espero que te encuentres bien.¶ Espero que estés bien.¶ Espero que todo esté en orden.¶ Espero que todo esté bien contigo.</string>
     <string name="input_birthdate">Fecha de nacimiento:</string>
     <string name="input_gender_description">Género:</string>
     <string name="input_gender_female">Femenino</string>
@@ -588,9 +583,13 @@
         <item>Leo, Géminis, Cáncer, Virgo, Piscis.</item>
         <item>Leo, Escorpio, Géminis, Cáncer, Virgo.</item>
     </string-array>
+    <string-array name="conversation_greeting">
+        <item>{string:greetings}.</item>
+        <item>{string:greetings}. {string:greeting_variant}</item>
+        <item>{string:greetings}, {string:conversation_addendum}.</item>
+        <item>{string:greetings}, {string:conversation_addendum}. {string:greeting_variant}</item>
+    </string-array>
     <string-array name="conversation_addendum">
-        <item></item>
-        <item></item>
         <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
         <item>&lt;i&gt;{string:interjections}&lt;/i&gt;</item>
         <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{method:getDeviceUser}&lt;/b&gt;&lt;/font&gt;</item>
@@ -981,6 +980,15 @@
         <item>Emoji</item>
         <item>Emoticono</item>
         <item>Smiley</item>
+    </string-array>
+    <string-array name="greetings">
+        <item>Buenas</item>
+        <item>Hola</item>
+        <item>Bienvenido</item>
+        <item>{method:getSimpleGreeting}</item>
+        <item>Buen {method:getCurrentDayOfWeek}</item>
+        <item>{string:date_component} {method:getCurrentDate}</item>
+        <item>{string:time_component} {method:getCurrentTime}</item>
     </string-array>
     <string-array name="incompatibility">
         <item>\?</item>
@@ -1757,6 +1765,32 @@
         <item>tolerante</item>
         <item>[trabajador[,a]]</item>
         <item>veraz</item>
+    </string-array>
+    <string-array name="simple_greetings">
+        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
+        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
+        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
+        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
+        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
+        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
+        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
+        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
+        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
+        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
+        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
+        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
+        <item>{[Buen]; plural:+as} {[tarde]; plural:+s}</item>
+        <item>{[Buen]; plural:+as} {[tarde]; plural:+s}</item>
+        <item>{[Buen]; plural:+as} {[tarde]; plural:+s}</item>
+        <item>{[Buen]; plural:+as} {[tarde]; plural:+s}</item>
+        <item>{[Buen]; plural:+as} {[tarde]; plural:+s}</item>
+        <item>{[Buen]; plural:+as} {[tarde]; plural:+s}</item>
+        <item>{[Buen]; plural:+as} {[tarde]; plural:+s}</item>
+        <item>{[Buen]; plural:+as} {[tarde]; plural:+s}</item>
+        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
+        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
+        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
+        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
     </string-array>
     <string-array name="subject">
         <item>{string:nouns} ⸠string:adjectives⸡</item>

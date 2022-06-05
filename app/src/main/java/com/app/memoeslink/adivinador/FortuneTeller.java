@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 
 import com.memoeslink.common.Randomizer;
-import com.memoeslink.generator.common.DateTimeGetter;
-import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.LongHelper;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextProcessor;
@@ -40,63 +38,13 @@ public class FortuneTeller extends BaseWrapper {
     }
 
     public String greet() {
-        return greet(-1);
-    }
-
-    public String greet(int index) {
         String s;
-        String res = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.conversation_addendum);
-        String addendum = tagProcessor.replaceTags(res).getText();
-
-        if (index >= 0) {
-            s = resourceExplorer.getResourceFinder().getStrFromSplitStrRes(R.string.greetings, index);
-            s = StringHelper.replace(s, "§", addendum);
-        } else {
-            String pictogram = resourceExplorer.getEmojis(r.getInt(1, 4));
-
-            switch (r.getInt(6)) {
-                case 0:
-                    s = greetShortly(addendum) + " " + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.phrase_augury);
-                    break;
-                case 1:
-                    s = resourceExplorer.getResourceFinder().getStrFromSplitStrRes(R.string.greetings_component) + " " + DateTimeGetter.with(LanguageHelper.getLocale(this)).getCurrentDayOfWeek() + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(pictogram) + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.phrase_augury);
-                    break;
-                case 2:
-                    s = resourceExplorer.getResourceFinder().getStrFromSplitStrRes(R.string.date_component) + " " + DateTimeGetter.with(LanguageHelper.getLocale(this)).getCurrentDate(r.getInt(1, 14)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(pictogram) + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.phrase_augury);
-                    break;
-                case 3:
-                    s = resourceExplorer.getResourceFinder().getStrFromSplitStrRes(R.string.time_component) + " " + DateTimeGetter.with(LanguageHelper.getLocale(this)).getCurrentTime(r.getInt(1, 11)) + StringHelper.prependIfNotEmpty(addendum, ", ") + ". " + StringHelper.appendSpaceIfNotEmpty(pictogram) + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.phrase_augury);
-                    break;
-                default:
-                    s = StringHelper.replaceOnce(resourceExplorer.getResourceFinder().getStrFromSplitStrRes(R.string.greetings), "§", StringHelper.prependIfNotEmpty(addendum, ", ")) + " " + StringHelper.appendSpaceIfNotEmpty(pictogram) + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.phrase_augury);
-                    break;
-            }
-        }
+        String greeting = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.conversation_greeting);
+        String auguryPhrase = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.phrase_augury);
+        String pictogram = r.getBoolean() ? resourceExplorer.getPictogram() : "";
+        s = tagProcessor.replaceTags(greeting, null, r.getBoolean()).getText() + StringHelper.prependSpaceIfNotEmpty(auguryPhrase) + StringHelper.prependSpaceIfNotEmpty(pictogram);
         s = StringHelper.replace(s, "..", ".");
         return getString(R.string.html_format, s);
-    }
-
-    public String greetInProcess() {
-        return "";
-    }
-
-    public String greetShortly() {
-        return greetShortly("");
-    }
-
-    public String greetShortly(String addendum) {
-        addendum = StringHelper.defaultIfBlank(addendum);
-        addendum = StringHelper.prependIfNotEmpty(addendum, ", ");
-        int hour = DateTimeHelper.getCurrentTime().getHour();
-
-        if (hour >= 0 && hour < 12)
-            return StringHelper.replace(resourceExplorer.getResourceFinder().getStrFromSplitStrRes(R.string.greetings_day), "§", addendum);
-        else if (hour >= 12 && hour < 19)
-            return StringHelper.replace(resourceExplorer.getResourceFinder().getStrFromSplitStrRes(R.string.greetings_afternoon), "§", addendum);
-        else if (hour >= 19 && hour < 24)
-            return StringHelper.replace(resourceExplorer.getResourceFinder().getStrFromSplitStrRes(R.string.greetings_night), "§", addendum);
-        else
-            return StringHelper.replace(resourceExplorer.getResourceFinder().getStrFromSplitStrRes(R.string.greetings_default), "§", addendum);
     }
 
     public String talk() {

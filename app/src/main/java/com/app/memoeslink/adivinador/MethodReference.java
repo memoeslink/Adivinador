@@ -16,7 +16,11 @@ public enum MethodReference {
     DEFAULT_COLOR("getDefaultColor"),
     COLOR("getColorStr"),
     DEVICE_USER("getDeviceUser"),
-    FORMATTED_NAME("getFormattedName");
+    FORMATTED_NAME("getFormattedName"),
+    SIMPLE_GREETING("getSimpleGreeting"),
+    CURRENT_DAY_OF_WEEK("getCurrentDayOfWeek"),
+    CURRENT_DATE("getCurrentDate"),
+    CURRENT_TIME("getCurrentTime");
 
     private final String name;
     private static final HashMap<String, MethodReference> LOOKUP = new HashMap<>();

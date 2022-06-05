@@ -85,12 +85,7 @@
     <string name="enquiry_information">Daily enquiry for 1$s for %2$s, %3$s (%4$s)</string>
     <string name="extended_family_member">[[father,mother]]-in-law¶ [[brother,sister]]-in-law¶ [[son,daughter]]-in-law¶ [step[father,mother]]¶ [step[son,daughter]]¶ [god[father,mother]]¶ [god[son,daughter]]</string>
     <string name="family_member">{string:relative; gender:⸮}¶ {string:extended_family_member; gender:⸮}</string>
-    <string name="greetings">Hi§!¶ Hello§.¶ Welcome§.¶ Good day§.¶ Good to see you§.¶ Long time no see§.¶ How are you§?¶ How have you been§?¶ How do you do§?¶ How is everything§?¶ What have you done§?¶ What have you done lately§?¶ What happens§?¶ What is there§?¶ What is new§?¶ What do you tell me§?</string>
-    <string name="greetings_afternoon">Good afternoon§.¶ Beautiful afternoon§.</string>
-    <string name="greetings_component">Good¶ Beautiful¶ Nice¶ Great¶ Today is¶ The day is</string>
-    <string name="greetings_day">Good day§.¶ Beautiful day§.</string>
-    <string name="greetings_default">Hello§.¶ Welcome§.</string>
-    <string name="greetings_night">Good night§.¶ Beautiful night§.</string>
+    <string name="greeting_variant">Good to see you.¶ Long time no see.¶ How are you?¶ How have you been?¶ How are you doing?¶ How do you do?¶ How is everything?¶ What have you done?¶ What have you done lately?¶ What happens?¶ What is there?¶ What is new?¶ What do you tell me?¶ I hope you are doing well.¶ I hope you are fine.¶ I hope everything\'s OK.¶ I hope all is well with you.</string>
     <string name="input_birthdate">Birthdate:</string>
     <string name="input_gender_description">Gender:</string>
     <string name="input_gender_female">Female</string>
@@ -589,12 +584,13 @@
         <item>Leo, Gemini, Cancer, Virgo, Pisces.</item>
         <item>Leo, Scorpio, Gemini, Cancer, Virgo.</item>
     </string-array>
-    <string-array name="conversation_greeting_structure">
-        <item>{string:greetings_component}</item>
+    <string-array name="conversation_greeting">
+        <item>{string:greetings}.</item>
+        <item>{string:greetings}. {string:greeting_variant}</item>
+        <item>{string:greetings}, {string:conversation_addendum}.</item>
+        <item>{string:greetings}, {string:conversation_addendum}. {string:greeting_variant}</item>
     </string-array>
     <string-array name="conversation_addendum">
-        <item></item>
-        <item></item>
         <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
         <item>&lt;i&gt;{string:interjections}&lt;/i&gt;</item>
         <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{method:getDeviceUser}&lt;/b&gt;&lt;/font&gt;</item>
@@ -985,6 +981,15 @@
         <item>Emoji</item>
         <item>Emoticon</item>
         <item>Smiley</item>
+    </string-array>
+    <string-array name="greetings">
+        <item>Hi</item>
+        <item>Hello</item>
+        <item>Welcome</item>
+        <item>{method:getSimpleGreeting}</item>
+        <item>Good {method:getCurrentDayOfWeek}</item>
+        <item>{string:date_component} {method:getCurrentDate}</item>
+        <item>{string:time_component} {method:getCurrentTime}</item>
     </string-array>
     <string-array name="incompatibility">
         <item>\?</item>
@@ -1761,6 +1766,32 @@
         <item>tolerant</item>
         <item>hard-working</item>
         <item>truthful</item>
+    </string-array>
+    <string-array name="simple_greetings">
+        <item>Good night</item>
+        <item>Good night</item>
+        <item>Good night</item>
+        <item>Good night</item>
+        <item>Good night</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good afternoon</item>
+        <item>Good afternoon</item>
+        <item>Good afternoon</item>
+        <item>Good afternoon</item>
+        <item>Good afternoon</item>
+        <item>Good afternoon</item>
+        <item>Good evening</item>
+        <item>Good evening</item>
+        <item>Good evening</item>
+        <item>Good night</item>
+        <item>Good night</item>
+        <item>Good night</item>
     </string-array>
     <string-array name="subject">
         <item>⸠string:adjectives⸡ {string:nouns}</item>
