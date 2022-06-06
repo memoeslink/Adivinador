@@ -5,6 +5,7 @@ import android.content.Context;
 import com.app.memoeslink.adivinador.LanguageHelper;
 import com.app.memoeslink.adivinador.MethodReference;
 import com.app.memoeslink.adivinador.R;
+import com.app.memoeslink.adivinador.TagProcessor;
 import com.memoeslink.generator.common.Binder;
 import com.memoeslink.generator.common.Constant;
 import com.memoeslink.generator.common.DateTimeGetter;
@@ -177,7 +178,8 @@ public class ReflectionFinder extends Binder {
 
     public String getDeviceUser() {
         int infoType = r.getInt(1, 10);
-        return getString(R.string.user, new Device(context).getInfo(infoType));
+        String deviceUser = getString(R.string.user, new Device(context).getInfo(infoType));
+        return new TagProcessor(context).replaceTags(deviceUser).getText();
     }
 
     public String getFormattedName() {

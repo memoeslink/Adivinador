@@ -590,7 +590,7 @@
         <item>{string:greetings}, {string:conversation_addendum}. {string:greeting_variant}</item>
     </string-array>
     <string-array name="conversation_addendum">
-        <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{string:subject; gender:⛌}&lt;/b&gt;&lt;/font&gt;</item>
         <item>&lt;i&gt;{string:interjections}&lt;/i&gt;</item>
         <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{method:getDeviceUser}&lt;/b&gt;&lt;/font&gt;</item>
     </string-array>
@@ -984,7 +984,7 @@
     <string-array name="greetings">
         <item>Buenas</item>
         <item>Hola</item>
-        <item>Bienvenido</item>
+        <item>{[Bienvenid[o,a]]; gender:⛌}</item>
         <item>{method:getSimpleGreeting}</item>
         <item>Buen {method:getCurrentDayOfWeek}</item>
         <item>{string:date_component} {method:getCurrentDate}</item>
@@ -1886,5 +1886,5 @@
         <item>Sagitario (22 de noviembre - 21 de diciembre)</item>
         <item>Capricornio (22 de diciembre - 19 de enero)</item>
     </string-array>
-    <string name="user">usuario de %1$s</string>
+    <string name="user">{[usuari[o,a]]} de %1$s</string>
 </resources>
