@@ -5,7 +5,6 @@ import android.content.Context;
 import com.app.memoeslink.adivinador.LanguageHelper;
 import com.app.memoeslink.adivinador.MethodReference;
 import com.app.memoeslink.adivinador.R;
-import com.app.memoeslink.adivinador.TagProcessor;
 import com.memoeslink.generator.common.Binder;
 import com.memoeslink.generator.common.Constant;
 import com.memoeslink.generator.common.DateTimeGetter;
@@ -117,8 +116,8 @@ public class ReflectionFinder extends Binder {
                 return getDefaultColor();
             case COLOR:
                 return getColorStr();
-            case DEVICE_USER:
-                return getDeviceUser();
+            case DEVICE_INFO:
+                return getDeviceInfo();
             case FORMATTED_NAME:
                 return getFormattedName();
             case SIMPLE_GREETING:
@@ -176,10 +175,9 @@ public class ReflectionFinder extends Binder {
         return manager.getStringGenerator().getStrColor();
     }
 
-    public String getDeviceUser() {
+    public String getDeviceInfo() {
         int infoType = r.getInt(1, 10);
-        String deviceUser = getString(R.string.user, new Device(context).getInfo(infoType));
-        return new TagProcessor(context).replaceTags(deviceUser).getText();
+        return new Device(context).getInfo(infoType);
     }
 
     public String getFormattedName() {

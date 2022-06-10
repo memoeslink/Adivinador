@@ -77,7 +77,6 @@
     <string name="data_entry">Introducir datos</string>
     <string name="date_component">Ya es¶ Hoy es¶ Estamos a¶ El día de hoy es¶ La fecha es¶ Hoy estamos a¶ El día es</string>
     <string name="default_person">tú</string>
-    <string name="default_user">[usuari[o,a]]</string>
     <string name="denied_contact_permission">Algunas funciones serán deshabilitadas debido a que no se pueden ver los contactos.</string>
     <string name="donations_description">¡Por favor, considera donar algo de dinero para el desarrollo de la aplicación, eso me permitirá hacer esta aplicación aun mejor! Google Play Store aplica un porcentaje de impuestos dependiendo de tu país.</string>
     <string name="donations_donate">¡DONAR!</string>
@@ -592,7 +591,7 @@
     <string-array name="conversation_addendum">
         <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{string:subject; gender:⛌}&lt;/b&gt;&lt;/font&gt;</item>
         <item>&lt;i&gt;{string:interjections}&lt;/i&gt;</item>
-        <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{method:getDeviceUser}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;⸠[usuari[o,a]]⸡ de {method:getDeviceInfo}&lt;/b&gt;&lt;/font&gt;</item>
     </string-array>
     <string-array name="date_options">
         <item>Consulta de hoy</item>
@@ -1886,5 +1885,4 @@
         <item>Sagitario (22 de noviembre - 21 de diciembre)</item>
         <item>Capricornio (22 de diciembre - 19 de enero)</item>
     </string-array>
-    <string name="user">{[usuari[o,a]]} de %1$s</string>
 </resources>

@@ -77,7 +77,6 @@
     <string name="data_entry">Enter data</string>
     <string name="date_component">It is¶ Today is¶ It\'s¶ The date is¶ The day is</string>
     <string name="default_person">one</string>
-    <string name="default_user">user</string>
     <string name="denied_contact_permission">Some functions will be disabled due to a denied contact permission.</string>
     <string name="donations_description">Please, consider donating some money for the app development, that would allow me to make this app even better! Google Play Store applies a tax percentage depending on your country.</string>
     <string name="donations_donate">¡DONATE!</string>
@@ -244,7 +243,6 @@
     <string name="toast_enquiry_saved">The enquiry was saved successfully.</string>
     <string name="toast_voice_unavailability">There\'s not any available voice for TTS in your device.</string>
     <string name="today">today</string>
-    <string name="user">user of %1$s</string>
     <string name="value_as_negative">negative</string>
     <string name="value_as_null">null</string>
     <string name="value_as_positive">positive</string>
@@ -593,7 +591,7 @@
     <string-array name="conversation_addendum">
         <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{string:subject}&lt;/b&gt;&lt;/font&gt;</item>
         <item>&lt;i&gt;{string:interjections}&lt;/i&gt;</item>
-        <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;{method:getDeviceUser}&lt;/b&gt;&lt;/font&gt;</item>
+        <item>&lt;font color="{method:getDefaultColor}"&gt;&lt;b&gt;user of {method:getDeviceInfo}&lt;/b&gt;&lt;/font&gt;</item>
     </string-array>
     <string-array name="date_options">
         <item>Today\'s enquiry</item>

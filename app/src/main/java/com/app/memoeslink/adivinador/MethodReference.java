@@ -15,7 +15,7 @@ public enum MethodReference {
     PERCENTAGE("getPercentage"),
     DEFAULT_COLOR("getDefaultColor"),
     COLOR("getColorStr"),
-    DEVICE_USER("getDeviceUser"),
+    DEVICE_INFO("getDeviceInfo"),
     FORMATTED_NAME("getFormattedName"),
     SIMPLE_GREETING("getSimpleGreeting"),
     CURRENT_DAY_OF_WEEK("getCurrentDayOfWeek"),
