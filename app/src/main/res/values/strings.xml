@@ -102,7 +102,7 @@
     <string name="menu_about">About</string>
     <string name="menu_exit">Exit</string>
     <string name="name_generation">Generate name</string>
-    <string name="nouns">human¶ entity¶ being¶ thing¶ creature¶ individual¶ organism¶ life form¶ existence¶ living entity¶ person¶ human being¶ [[,wo]man]¶ [[boy,girl]]¶ [[lady,gentleman]]¶ [[,fe]male]¶ user</string>
+    <string name="nouns">existence¶ matter¶ person¶ being¶ human¶ individual¶ entity¶ [[,wo]man]¶ customer¶ subject¶ body¶ essence¶ thing¶ substance¶ creature¶ organism¶ form¶ specimen｢1｣¶ life form¶ living being¶ user¶ friend¶ acquaintance¶ stranger¶ mate¶ colleague¶ best friend¶ [[boy,girl]friend]¶ [tip[o,a]]¶ character¶ offspring¶ figure¶ inhabitant¶ young [[girl,boy]]¶ young person¶ [[boy,girl]]¶ embodiment</string>
     <string name="ok">OK</string>
     <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Watching information (%1$s) for:&lt;/i&gt;&lt;/font&gt; %2$s&lt;font color="#F6FBB2"&gt;, %3$s (%4$s)&lt;/font&gt;</string>
     <string name="prediction">
@@ -232,7 +232,7 @@
     <string name="save">Save enquiry</string>
     <string name="selector">Select enquiry</string>
     <string name="situation_descriptor">{rand:∅; good; bad; strange; surprising; baffling; favorable; unfavorable}</string>
-    <string name="time_component">The time is ¶ The current time is ¶ At this moment the time is ¶ The time at this moment is</string>
+    <string name="time_component">The time is¶ The current time is¶ At this moment the time is¶ The time at this moment is</string>
     <string name="time_elapsed">%1$d year(s), %2$d month(s), %3$d day(s)</string>
     <string name="title">%1$s %2$s %3$s</string>
     <string name="title_descriptor">Lead¶ Senior¶ Direct¶ Corporate¶ Dynamic¶ Future¶ Product¶ National¶ Regional¶ Local¶ District¶ Central¶ Global¶ Customer¶ Investor¶ Dynamic¶ International¶ Legacy¶ Forward¶ Internal¶ Human¶ Chief¶ Principal</string>

@@ -102,7 +102,7 @@
     <string name="menu_about">Acerca de</string>
     <string name="menu_exit">Salir</string>
     <string name="name_generation">Generar nombre</string>
-    <string name="nouns">existencia｢2｣¶ materia｢2｣¶ persona｢2｣¶ ser｢1｣¶ [human[o,a]]¶ [individu[o,a]]¶ entidad｢2｣¶ [[hombre,mujer]]¶ [client[e,a]]¶ sujeto｢1｣¶ ente｢1｣¶ esencia｢2｣¶ cosa｢2｣¶ sustancia｢2｣¶ criatura｢2｣¶ organismo｢1｣¶ forma｢2｣¶ espécimen｢1｣¶ forma de vida｢2｣¶ ser｢1｣ ¶ ser vivo｢1｣¶ [usuari[o,a]]¶ [amig[o,a]]¶ [conocid[o,a]]¶ [desconocid[o,a]]¶ colega｢0｣¶ camarada｢0｣¶ mejor [amig[o,a]]¶ [novi[o,a]]¶ [tip[o,a]]¶ personaje｢1｣¶ vástago｢1｣¶ figura｢2｣¶ habitante｢1｣¶ [muchach[o,a]]¶ joven｢0｣¶ [chic[o,a]]</string>
+    <string name="nouns">existencia｢2｣¶ materia｢2｣¶ persona｢2｣¶ ser｢1｣¶ [human[o,a]]¶ [individu[o,a]]¶ entidad｢2｣¶ [[hombre,mujer]]¶ [client[e,a]]¶ sujeto｢1｣¶ ente｢1｣¶ esencia｢2｣¶ cosa｢2｣¶ sustancia｢2｣¶ criatura｢2｣¶ organismo｢1｣¶ forma｢2｣¶ espécimen｢1｣¶ forma de vida｢2｣¶ ser vivo｢1｣¶ [usuari[o,a]]¶ [amig[o,a]]¶ [conocid[o,a]]¶ [desconocid[o,a]]¶ colega｢0｣¶ camarada｢0｣¶ mejor [amig[o,a]]¶ [novi[o,a]]¶ [tip[o,a]]¶ personaje｢1｣¶ vástago｢1｣¶ figura｢2｣¶ habitante｢1｣¶ [muchach[o,a]]¶ joven｢0｣¶ [chic[o,a]]¶ personificación｢2｣</string>
     <string name="ok">OK</string>
     <string name="person_data">&lt;font color="#53E3B3"&gt;&lt;i&gt;Información para %1$s de:&lt;/i&gt;&lt;/font&gt; %2$s&lt;font color="#F6FBB2"&gt;, de género %3$s (%4$s)&lt;/font&gt;</string>
     <string name="prediction">
