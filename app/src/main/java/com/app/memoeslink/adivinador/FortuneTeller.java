@@ -42,7 +42,7 @@ public class FortuneTeller extends BaseWrapper {
         String greeting = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.conversation_greeting);
         String auguryPhrase = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.phrase_augury);
         String pictogram = r.getBoolean() ? resourceExplorer.getPictogram() : "";
-        s = tagProcessor.replaceTags(greeting, null, r.getBoolean()).getText() + StringHelper.prependSpaceIfNotEmpty(auguryPhrase) + StringHelper.prependSpaceIfNotEmpty(pictogram);
+        s = tagProcessor.replaceTags(greeting, null, r.getBoolean()).getText() + StringHelper.prependSpaceIfNotEmpty(auguryPhrase) + StringHelper.prependIfNotEmpty(pictogram, "<br>");
         s = StringHelper.replace(s, "..", ".");
         return getString(R.string.html_format, s);
     }
@@ -75,7 +75,7 @@ public class FortuneTeller extends BaseWrapper {
     public String talkAboutSomething() {
         String pictogram = r.getBoolean() ? resourceExplorer.getPictogram() : "";
         String phrase = resourceExplorer.getDatabaseFinder().getPhrase();
-        return StringHelper.trimToEmpty(phrase) + StringHelper.prependSpaceIfNotEmpty(pictogram);
+        return StringHelper.trimToEmpty(phrase) + StringHelper.prependIfNotEmpty(pictogram, "<br>");
     }
 
     public String talkAboutSomeone() {
@@ -85,7 +85,7 @@ public class FortuneTeller extends BaseWrapper {
         s = TextProcessor.removeDoubleFullStop(s);
 
         String pictogram = r.getBoolean() ? resourceExplorer.getPictogram() : "";
-        s = s + StringHelper.prependSpaceIfNotEmpty(pictogram);
+        s = s + StringHelper.prependIfNotEmpty(pictogram, "<br>");
         return getString(R.string.html_format, s);
     }
 
