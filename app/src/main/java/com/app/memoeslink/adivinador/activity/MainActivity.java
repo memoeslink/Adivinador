@@ -140,7 +140,7 @@ public class MainActivity extends MenuActivity {
     private EditText tvNameBox;
     private AppCompatSpinner spnDateType;
     private AppCompatSpinner spnNameType;
-    private DatePickerDialog dpdEnquiryDate;
+    private DatePickerDialog dpdInquiryDate;
     private MaterialProgressBar pbWait;
     private Button btDataEntry;
     private Button btTextCopy;
@@ -290,10 +290,11 @@ public class MainActivity extends MenuActivity {
         deleteTemp();
 
         //Set adapters
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.date_options));
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnDateType.setAdapter(adapter);
-        adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.name_type)) {
+        ArrayAdapter<String> dateAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.date_options));
+        dateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnDateType.setAdapter(dateAdapter);
+
+        ArrayAdapter<String> nameAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.name_type)) {
             private final int[] positions = {0, 1, 2};
 
             @Override
@@ -309,24 +310,24 @@ public class MainActivity extends MenuActivity {
                 return view;
             }
         };
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnNameType.setAdapter(adapter);
+        nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnNameType.setAdapter(nameAdapter);
         spnNameType.setSelection(3);
 
-        //Build dialogs
+        //Set alert dialogs
         ContextThemeWrapper wrapper = new ContextThemeWrapper(MainActivity.this, R.style.CustomDialog);
-        AlertDialog.Builder builder = new AlertDialog.Builder(wrapper);
-        builder.setTitle(R.string.compatibility);
-        builder.setNeutralButton(R.string.action_close, (dialog, which) -> compatibilityDialog.dismiss());
-        builder.setView(vCompatibility);
-        compatibilityDialog = builder.create();
+        AlertDialog.Builder compatibilityBuilder = new AlertDialog.Builder(wrapper);
+        compatibilityBuilder.setTitle(R.string.compatibility);
+        compatibilityBuilder.setNeutralButton(R.string.action_close, (dialog, which) -> this.compatibilityDialog.dismiss());
+        compatibilityBuilder.setView(vCompatibility);
+        this.compatibilityDialog = compatibilityBuilder.create();
 
-        builder = new AlertDialog.Builder(wrapper);
-        builder.setTitle(R.string.name_generation);
-        builder.setPositiveButton(R.string.action_generate, null);
-        builder.setNegativeButton(R.string.action_close, null);
-        builder.setView(vNameGenerator);
-        nameGeneratorDialog = builder.create();
+        AlertDialog.Builder nameGeneratorBuilder = new AlertDialog.Builder(wrapper);
+        nameGeneratorBuilder.setTitle(R.string.name_generation);
+        nameGeneratorBuilder.setPositiveButton(R.string.action_generate, null);
+        nameGeneratorBuilder.setNegativeButton(R.string.action_close, null);
+        nameGeneratorBuilder.setView(vNameGenerator);
+        nameGeneratorDialog = nameGeneratorBuilder.create();
 
         //Set listeners
         srlRefresher.setOnRefreshListener(() -> {
@@ -359,8 +360,8 @@ public class MainActivity extends MenuActivity {
                     llClearHolder.performClick();
                     break;
                 case R.id.nav_compatibility:
-                    compatibilityDialog.show();
-                    compatibilityDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    this.compatibilityDialog.show();
+                    this.compatibilityDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     break;
                 case R.id.nav_name_generation:
                     nameGeneratorDialog.show();
@@ -375,17 +376,17 @@ public class MainActivity extends MenuActivity {
         };
 
         tvPick.setOnClickListener(view -> {
-            dpdEnquiryDate = new DatePickerDialog();
+            dpdInquiryDate = new DatePickerDialog();
 
-            if (!dpdEnquiryDate.isVisible()) {
+            if (!dpdInquiryDate.isVisible()) {
                 LocalDate currentDate = LocalDate.now();
-                dpdEnquiryDate = DatePickerDialog.newInstance(dateSetListener, currentDate.getYear(), currentDate.getMonthValue() - 1, currentDate.getDayOfMonth());
-                dpdEnquiryDate.vibrate(true);
+                dpdInquiryDate = DatePickerDialog.newInstance(dateSetListener, currentDate.getYear(), currentDate.getMonthValue() - 1, currentDate.getDayOfMonth());
+                dpdInquiryDate.vibrate(true);
 
-                if (!dpdEnquiryDate.isAdded() && !dpdEnquiryDate.isVisible()) {
+                if (!dpdInquiryDate.isAdded() && !dpdInquiryDate.isVisible()) {
                     try {
-                        dpdEnquiryDate.show(getSupportFragmentManager(), "PICKER_TAG");
-                        dpdEnquiryDate = null;
+                        dpdInquiryDate.show(getSupportFragmentManager(), "PICKER_TAG");
+                        dpdInquiryDate = null;
                     } catch (Exception ignored) {
                     }
                 }
@@ -443,7 +444,7 @@ public class MainActivity extends MenuActivity {
 
         tvPersonInfo.setOnClickListener(v -> {
             if (people != null && savePerson(predictionHistory.getLatest().getPerson())) {
-                showSimpleToast(MainActivity.this, getString(R.string.toast_enquiry_saved));
+                showSimpleToast(MainActivity.this, getString(R.string.toast_inquiry_saved));
 
                 if (isPredictionReloaded(people.get(people.size() - 1), true)) {
                     llInquiryHolder.setVisibility(View.GONE);
@@ -451,7 +452,7 @@ public class MainActivity extends MenuActivity {
                     navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(125);
                 }
             } else
-                showSimpleToast(MainActivity.this, getString(R.string.toast_enquiry_not_saved));
+                showSimpleToast(MainActivity.this, getString(R.string.toast_inquiry_not_saved));
         });
 
         llDataEntryHolder.setOnClickListener(view -> {
@@ -492,7 +493,7 @@ public class MainActivity extends MenuActivity {
                 copyTextToClipboard(predictionHistory.getLatest().getContent());
         });
 
-        compatibilityDialog.setOnShowListener(dialog -> calculateCompatibility());
+        this.compatibilityDialog.setOnShowListener(dialog -> calculateCompatibility());
 
         nameGeneratorDialog.setOnShowListener(dialog -> {
             Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
@@ -551,7 +552,6 @@ public class MainActivity extends MenuActivity {
 
         tvTextCopy.setOnClickListener(v -> copyTextToClipboard(tvNameBox.getText().toString()));
 
-        //Set listener to SharedPreferences
         listener = (prefs, key) -> {
             if (key.equals(Preference.DATA_STORED_PEOPLE.getTag())) {
                 if (dialog != null && dialog.isShowing()) {
@@ -559,11 +559,13 @@ public class MainActivity extends MenuActivity {
                     dialog = null;
                 }
                 //recreate();
-                setDialog(); //Define Dialog
+
+                //Update enquiry list
+                updateInquirySelector();
             }
 
             if (key.equals(Preference.DATA_STORED_NAMES.getTag()))
-                setAdapter(); //Get stored names
+                updateNameSuggestions(); //Update name suggestions for compatibility
         };
         preferences.registerOnSharedPreferenceChangeListener(listener);
     }
@@ -571,7 +573,7 @@ public class MainActivity extends MenuActivity {
     @Override
     public void onStart() {
         super.onStart();
-        setAdapter(); //Get stored names
+        updateNameSuggestions(); //Update name suggestions for compatibility
 
         //Request permissions
         ActivityResultLauncher<String[]> launcher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), isGranted -> {
@@ -639,8 +641,8 @@ public class MainActivity extends MenuActivity {
             preferences.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER.getTag());
         }
 
-        //Define Dialog
-        setDialog();
+        //Update enquiry list
+        updateInquirySelector();
 
         if (!timerEnabled) {
             timer = new Timer();
@@ -1007,7 +1009,7 @@ public class MainActivity extends MenuActivity {
         }
     }
 
-    private void setAdapter() {
+    private void updateNameSuggestions() {
         List<String> nameList = null;
 
         if (preferences.contains(Preference.DATA_STORED_NAMES.getTag()) && preferences.getStringSet(Preference.DATA_STORED_NAMES.getTag(), null).size() > 0)
@@ -1020,7 +1022,7 @@ public class MainActivity extends MenuActivity {
         }
     }
 
-    private void setDialog() {
+    private void updateInquirySelector() {
         llInquiryHolder.setVisibility(View.GONE);
         tvInquiry.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.inquiry, "…"))));
         navigationView.getMenu().findItem(R.id.nav_inquiry).setTitle(getString(R.string.inquiry, "…")); //Changes to text won't be reflected until the Drawer item is updated
@@ -1083,40 +1085,44 @@ public class MainActivity extends MenuActivity {
             people.clear();
 
         //Set inquiry list
-        if (people == null) {
-        } else if (people.size() == 1) {
-            tvInquiry.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.inquiry, people.get(0).getDescriptor()))));
-            navigationView.getMenu().findItem(R.id.nav_inquiry).setTitle(getString(R.string.inquiry, people.get(0).getDescriptor())); //Changes to text won't be reflected until the Drawer item is updated
+        switch ((people != null) ? people.size() : 0) {
+            case 0:
+                break;
+            case 1:
+                tvInquiry.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.inquiry, people.get(0).getDescriptor()))));
+                navigationView.getMenu().findItem(R.id.nav_inquiry).setTitle(getString(R.string.inquiry, people.get(0).getDescriptor())); //Changes to text won't be reflected until the Drawer item is updated
 
-            if (isNoPersonTempStored()) {
-                llInquiryHolder.setVisibility(View.VISIBLE);
-                navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(true);
-                navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(255);
-            }
-        } else if (people.size() > 1) {
-            List<String> items = new ArrayList<>();
+                if (isNoPersonTempStored()) {
+                    llInquiryHolder.setVisibility(View.VISIBLE);
+                    navigationView.getMenu().findItem(R.id.nav_inquiry).setEnabled(true);
+                    navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(255);
+                }
+                break;
+            default:
+                List<String> items = new ArrayList<>();
 
-            for (Person person : people) {
-                items.add(person.getDescriptor() + " " + "(" + resourceExplorer.findGenderName(person.getGender(), 4) + ")," + " " + person.getBirthdate());
-            }
+                for (Person person : people) {
+                    items.add(person.getDescriptor() + " " + "(" + resourceExplorer.findGenderName(person.getGender(), 4) + ")," + " " + person.getBirthdate());
+                }
 
-            //Define Dialog
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle(R.string.alert_select_enquiry_title);
-            builder.setNegativeButton(R.string.action_cancel, (dialogInterface, i) -> dialog.dismiss());
-            final ListView listView = new ListView(MainActivity.this);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, items);
-            listView.setAdapter(adapter);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle(R.string.alert_select_inquiry_title);
+                builder.setNegativeButton(R.string.action_cancel, (dialogInterface, i) -> dialog.dismiss());
 
-            listView.setOnItemClickListener((parent, view, position, id) -> {
-                isPredictionReloaded(people.get(position), false);
-                dialog.dismiss();
-            });
-            builder.setView(listView);
-            dialog = builder.create();
-            llSelectorHolder.setVisibility(View.VISIBLE);
-            navigationView.getMenu().findItem(R.id.nav_selector).setEnabled(true);
-            navigationView.getMenu().findItem(R.id.nav_selector).getIcon().setAlpha(255);
+                ListView listView = new ListView(MainActivity.this);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, android.R.id.text1, items);
+                listView.setAdapter(adapter);
+
+                listView.setOnItemClickListener((parent, view, position, id) -> {
+                    isPredictionReloaded(people.get(position), false);
+                    dialog.dismiss();
+                });
+                builder.setView(listView);
+                dialog = builder.create();
+                llSelectorHolder.setVisibility(View.VISIBLE);
+                navigationView.getMenu().findItem(R.id.nav_selector).setEnabled(true);
+                navigationView.getMenu().findItem(R.id.nav_selector).getIcon().setAlpha(255);
+                break;
         }
     }
 

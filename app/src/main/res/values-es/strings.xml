@@ -64,7 +64,7 @@
     <string name="alert_app_restart_title">Reinicio de aplicación</string>
     <string name="alert_exit_message">¿Realmente deseas salir de la aplicación?</string>
     <string name="alert_exit_title">Abandonar aplicación</string>
-    <string name="alert_select_enquiry_title">Seleccionar consulta</string>
+    <string name="alert_select_inquiry_title">Seleccionar consulta</string>
     <string name="alert_successful_donation_message">¡Muchas gracias por contribuir con el proyecto!</string>
     <string name="alert_successful_donation_title">Donación exitosa</string>
     <string name="astrological_sign">Acuario¶ Piscis¶ Aries¶ Tauro¶ Géminis¶ Cáncer¶ Leo¶ Virgo¶ Libra¶ Escorpio¶ Sagitario¶ Capricornio</string>
@@ -81,7 +81,6 @@
     <string name="donations_description">¡Por favor, considera donar algo de dinero para el desarrollo de la aplicación, eso me permitirá hacer esta aplicación aun mejor! Google Play Store aplica un porcentaje de impuestos dependiendo de tu país.</string>
     <string name="donations_donate">¡DONAR!</string>
     <string name="donations_title">Donar</string>
-    <string name="enquiry_information">Consulta para el día %1$s de %2$s, de género %3$s (%4$s)</string>
     <string name="extended_family_member">[suegr[o,a]]¶ [cuñad[o,a]]¶ [[yerno,nuera]]¶ [[padrastro,madrastra]]¶ [hijastr[o,a]]¶ [[padrino,madrina]]¶ [ahijad[o,a]]</string>
     <string name="family_member">{string:relative; gender:⸮}¶ {string:extended_family_member; gender:⸮}</string>
     <string name="greeting_variant">¡Qué gusto de verte!¶ Tanto tiempo sin verte.¶ ¿Cómo estás?¶ ¿Qué tal?¶ ¿Cómo has estado?¶ ¿Cómo te ha ido?¶ ¿Cómo te está yendo?¶ ¿Cómo te va?¶ ¿Cómo está todo?¶ ¿Cómo va todo?¶ ¿Qué has hecho?¶ ¿Qué has hecho últimamente?¶ ¿Qué pasa?¶ ¿Qué hay?¶ ¿Qué hay de nuevo?¶ ¿Qué cuentas?¶ ¿Qué me cuentas?¶ Espero que te encuentres bien.¶ Espero que estés bien.¶ Espero que todo esté en orden.¶ Espero que todo esté bien contigo.</string>
@@ -94,6 +93,7 @@
     <string name="input_other_name_hint">Introduce otro nombre</string>
     <string name="input_title">Definir datos</string>
     <string name="inquiry">Obtener consulta (%1$s)</string>
+    <string name="inquiry_information">Consulta para el día %1$s de %2$s, de género %3$s (%4$s)</string>
     <string name="interjections">Dios¶ Dios santo¶ ah¶ ahí va¶ ajajá¶ ajá¶ ajó¶ anda¶ ar¶ arre¶ arrea¶ ay¶ ay Dios mío¶ ay de mí¶ ay, güey¶ aúpa¶ bah¶ bravo¶ bua¶ buah¶ bum¶ buu¶ buuu¶ ca¶ caracoles¶ carajo¶ caramba¶ caray¶ cataplof¶ cataplúm¶ chas¶ chist¶ cielo santo¶ cielos¶ cojonudo¶ cáspita¶ dale¶ diablos¶ ea¶ eh¶ ejem¶ em¶ epa¶ equilicuá¶ eso es¶ ey¶ gluglú¶ guau¶ guay¶ hala¶ hale¶ hey¶ hola¶ huh¶ hum¶ hurra¶ huy¶ ja¶ ja, ja¶ ja, ja, ja¶ je¶ jo¶ jolín¶ madre mía¶ maldición¶ miau¶ mm¶ mmm¶ muak¶ narices¶ oh¶ oiga¶ ojalá¶ ojú¶ okey¶ ole¶ olé¶ ostras¶ paf¶ pché¶ plas¶ ps¶ psh¶ pss¶ pu¶ puaf¶ puaj¶ puf¶ pum¶ quiá¶ recórcholis¶ rin rin¶ shhh¶ ssh¶ tatata¶ tictac¶ tururú¶ uf¶ uh¶ ups¶ urra¶ uy¶ vaya¶ válgame Dios¶ yey¶ yupi¶ zas¶ zaz¶ ñam¶ órale</string>
     <string name="locale">es</string>
     <string name="menu_donate">Donar</string>
@@ -239,8 +239,8 @@
     <string name="title_job">[^supervisor[,a]]¶ [^asociad[o,a]]¶ [^ejecutiv[o,a]]¶ [^intermediari[o,a]]¶ [^oficial]¶ [^gerente]¶ [^ingenier[o,a]]¶ [^especialista]¶ [^director[,a]]¶ [^coordinador[,a]]¶ [^administrador[,a]]¶ [^arquitect[o,a]]¶ [^analista]¶ [^diseñador[,a]]¶ [^planificador[,a]]¶ [^orquestador[,a]]¶ [^técnic[o,a]]¶ [^desarrollador[,a]]¶ [^productor[,a]]¶ [^consultor[,a]]¶ [^asistente]¶ [^facilitador[,a]]¶ [^agente]¶ [^representante]¶ [^estratega]</string>
     <string name="title_level">[^soluciones]¶ [^programa]¶ [^marca]¶ [^seguridad]¶ [^investigación]¶ [^soluciones]¶ [^directivas]¶ [^implementación]¶ [^integración]¶ [^funcionalidad]¶ [^respuesta]¶ [^integración]¶ [^tácticas]¶ [^identidad]¶ [^mercados]¶ [^grupo]¶ [^división]¶ [^aplicaciones]¶ [^optimización]¶ [^operaciones]¶ [^infraestructura]¶ [^intranet]¶ [^comunicaciones]¶ [^web]¶ [^marca]¶ [^calidad]¶ [^aseguramiento]¶ [^movilidad]¶ [^cuentas]¶ [^integración]¶ [^creativo]¶ [^configuración]¶ [^rendición] de [^cuentas]¶ [^interacciones]¶ [^factores]¶ [^usabilidad]¶ [^métricas]¶ [^atención]</string>
     <string name="toast_clipboard">Texto copiado a portapapeles.</string>
-    <string name="toast_enquiry_not_saved">No se pudo guardar la consulta.</string>
-    <string name="toast_enquiry_saved">Se ha guardado la consulta con éxito.</string>
+    <string name="toast_inquiry_not_saved">No se pudo guardar la consulta.</string>
+    <string name="toast_inquiry_saved">Se ha guardado la consulta con éxito.</string>
     <string name="toast_voice_unavailability">No hay ningún idioma disponible para voces en tu dispositivo.</string>
     <string name="today">hoy</string>
     <string name="value_as_negative">negativo</string>

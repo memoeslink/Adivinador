@@ -30,7 +30,6 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         tts = new TextToSpeech(this, this);
 
-        //Define dialog to notify about application restart
         AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
         builder.setTitle(getString(R.string.alert_app_restart_title));
         builder.setMessage(getString(R.string.alert_app_restart_message));

@@ -37,7 +37,6 @@ class DonationsActivity : CommonActivity() {
             .enableLogging()
             .connect()
 
-        //Define dialog to thank user for donating
         val builder = AlertDialog.Builder(this@DonationsActivity)
         builder.setTitle(getString(R.string.alert_successful_donation_title))
         builder.setMessage(getString(R.string.alert_successful_donation_message))

@@ -71,7 +71,7 @@ class InputActivity : CommonActivity() {
             currentDate.withDayOfMonth(day)
         } ?: preferences.put(Preference.TEMP_DAY_OF_BIRTH.tag, currentDate.dayOfMonth)
 
-        //Disable form if app is retrieving prediction
+        //Disable form when a prediction is being retrieved
         if (preferences.getBoolean(Preference.TEMP_BUSY.tag)) toggleViews(false)
 
         //Set listeners

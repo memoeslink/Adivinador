@@ -64,7 +64,7 @@
     <string name="alert_app_restart_title">Application restart</string>
     <string name="alert_exit_message">Do you really want to leave?</string>
     <string name="alert_exit_title">Exit application</string>
-    <string name="alert_select_enquiry_title">Select enquiry</string>
+    <string name="alert_select_inquiry_title">Select enquiry</string>
     <string name="alert_successful_donation_message">Thanks a lot for contributing to the project!</string>
     <string name="alert_successful_donation_title">Successful donation</string>
     <string name="astrological_sign">Aquarius¶ Pisces¶ Aries¶ Taurus¶ Gemini¶ Cancer¶ Leo¶ Virgo¶ Libra¶ Scorpio¶ Sagittarius¶ Capricorn</string>
@@ -81,7 +81,6 @@
     <string name="donations_description">Please, consider donating some money for the app development, that would allow me to make this app even better! Google Play Store applies a tax percentage depending on your country.</string>
     <string name="donations_donate">¡DONATE!</string>
     <string name="donations_title">Donate</string>
-    <string name="enquiry_information">Daily enquiry for 1$s for %2$s, %3$s (%4$s)</string>
     <string name="extended_family_member">[[father,mother]]-in-law¶ [[brother,sister]]-in-law¶ [[son,daughter]]-in-law¶ [step[father,mother]]¶ [step[son,daughter]]¶ [god[father,mother]]¶ [god[son,daughter]]</string>
     <string name="family_member">{string:relative; gender:⸮}¶ {string:extended_family_member; gender:⸮}</string>
     <string name="greeting_variant">Good to see you.¶ Long time no see.¶ How are you?¶ How have you been?¶ How are you doing?¶ How do you do?¶ How is everything?¶ What have you done?¶ What have you done lately?¶ What happens?¶ What is there?¶ What is new?¶ What do you tell me?¶ I hope you are doing well.¶ I hope you are fine.¶ I hope everything\'s OK.¶ I hope all is well with you.</string>
@@ -94,6 +93,7 @@
     <string name="input_other_name_hint">Enter another name</string>
     <string name="input_title">Enter data</string>
     <string name="inquiry">Get enquiry (%1$s)</string>
+    <string name="inquiry_information">Daily enquiry for 1$s for %2$s, %3$s (%4$s)</string>
     <string name="interjections">achoo¶ ack¶ ah¶ aha¶ ahem¶ ahh¶ arg¶ argh¶ aw¶ bah¶ bam¶ blah¶ blech¶ boo¶ boo-hoo¶ boo-yah¶ brrr¶ bwah-hah-hah¶ d\'oh¶ dang¶ darn¶ drats¶ duh¶ eek¶ eep¶ egads¶ eh¶ er¶ ew¶ feh¶ gak¶ gee¶ golly¶ gosh¶ gulp¶ ha¶ ha-ha¶ hamana-hamana¶ hardy-har-har¶ hehe¶ hey¶ hist¶ hmph¶ ho-ho¶ ho-hum¶ huh¶ humph¶ hup¶ hurrah¶ hurray¶ ick¶ lah-de-dah¶ mh-hmm¶ mmmm¶ mwah¶ nana na nana na¶ neener-neener¶ now¶ oh¶ olé¶ oof¶ ooh¶ ooh-la-la¶ oops¶ ouch¶ ow¶ oy¶ pff¶ phew¶ phoar¶ phooey¶ poof¶ pooh¶ pow¶ pshaw¶ psst¶ rah¶ sheesh¶ shh¶ shoo¶ shucks¶ sis boom dah¶ skrreeek¶ ta-da¶ tchah¶ tsk-tsk¶ tut-tut¶ ugh¶ uh¶ uh-huh¶ uh-oh¶ uh-uh¶ uhm¶ ummm¶ va-va-voom¶ wahoo¶ whee¶ whew¶ whiz¶ whoa¶ whoop-de-doo¶ whoopee¶ whoops¶ woo¶ woopsie¶ wow¶ wowie¶ yay¶ yee-haw¶ yep¶ yikes¶ yippee¶ yo¶ yo-ho-ho¶ yoow¶ yoowza¶ yuck¶ yum¶ zoinks¶ zowie¶ zzzz</string>
     <string name="locale">en</string>
     <string name="menu_donate">Donate</string>
@@ -239,8 +239,8 @@
     <string name="title_job">Supervisor¶ Associate¶ Executive¶ Liaison¶ Officer¶ Manager¶ Engineer¶ Specialist¶ Director¶ Coordinator¶ Administrator¶ Architect¶ Analyst¶ Designer¶ Planner¶ Orchestrator¶ Technician¶ Developer¶ Producer¶ Consultant¶ Assistant¶ Facilitator¶ Agent¶ Representative¶ Strategist</string>
     <string name="title_level">Solutions¶ Program¶ Brand¶ Security¶ Research¶ Marketing¶ Directives¶ Implementation¶ Integration¶ Functionality¶ Response¶ Paradigm¶ Tactics¶ Identity¶ Markets¶ Group¶ Division¶ Applications¶ Optimization¶ Operations¶ Infrastructure¶ Intranet¶ Communications¶ Web¶ Branding¶ Quality¶ Assurance¶ Mobility¶ Accounts¶ Data¶ Creative¶ Configuration¶ Accountability¶ Interactions¶ Factors¶ Usability¶ Metrics¶ Support</string>
     <string name="toast_clipboard">Text copied to clipboard.</string>
-    <string name="toast_enquiry_not_saved">The enquiry couldn\'t be saved.</string>
-    <string name="toast_enquiry_saved">The enquiry was saved successfully.</string>
+    <string name="toast_inquiry_not_saved">The enquiry couldn\'t be saved.</string>
+    <string name="toast_inquiry_saved">The enquiry was saved successfully.</string>
     <string name="toast_voice_unavailability">There\'s not any available voice for TTS in your device.</string>
     <string name="today">today</string>
     <string name="value_as_negative">negative</string>

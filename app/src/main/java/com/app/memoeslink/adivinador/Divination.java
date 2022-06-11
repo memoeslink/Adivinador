@@ -107,7 +107,7 @@ public class Divination extends Binder {
         prediction.setFormattedContent(formattedContent);
         String content = formattedContent;
         content = SpannerHelper.fromHtml(content).toString();
-        content = getString(R.string.enquiry_information, "…", "…", "…", "…") +
+        content = getString(R.string.inquiry_information, "…", "…", "…", "…") +
                 System.getProperty("line.separator") + System.getProperty("line.separator") +
                 content;
         prediction.setContent(content);
@@ -213,7 +213,7 @@ public class Divination extends Binder {
                 divination.get("timeBetweenDates")
         );
         content = SpannerHelper.fromHtml(content).toString();
-        content = getString(R.string.enquiry_information, enquiryDate, name, resourceExplorer.findGenderName(gender, 1), birthdate) +
+        content = getString(R.string.inquiry_information, enquiryDate, name, resourceExplorer.findGenderName(gender, 1), birthdate) +
                 System.getProperty("line.separator") + System.getProperty("line.separator") +
                 content;
         prediction.setContent(content);
