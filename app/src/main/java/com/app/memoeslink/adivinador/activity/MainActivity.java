@@ -293,6 +293,8 @@ public class MainActivity extends MenuActivity {
         ArrayAdapter<String> dateAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.date_options));
         dateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnDateType.setAdapter(dateAdapter);
+        spnDateType.setSelection(0, true);
+        ((TextView) spnDateType.getSelectedView()).setTextColor(Color.YELLOW);
 
         ArrayAdapter<String> nameAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.name_type)) {
             private final int[] positions = {0, 1, 2};
@@ -396,8 +398,7 @@ public class MainActivity extends MenuActivity {
         spnDateType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (parent != null && parent.getChildAt(0) != null)
-                    ((TextView) parent.getChildAt(0)).setTextColor(Color.YELLOW);
+                ((TextView) view).setTextColor(Color.YELLOW);
 
                 switch (position) {
                     case 1:
