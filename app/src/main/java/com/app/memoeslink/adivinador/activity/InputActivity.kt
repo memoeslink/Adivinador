@@ -97,7 +97,7 @@ class InputActivity : CommonActivity() {
 
         rgGender?.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int ->
             val gender = when (checkedId) {
-                R.id.input_gender_indefinite_option -> Gender.NEUTRAL
+                R.id.input_gender_undefined_option -> Gender.NEUTRAL
                 R.id.input_gender_male_option -> Gender.MASCULINE
                 R.id.input_gender_female_option -> Gender.FEMININE
                 else -> Gender.NEUTRAL

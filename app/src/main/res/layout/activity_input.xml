@@ -79,13 +79,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:checkedButton="@+id/input_gender_indefinite_option">
+            android:checkedButton="@+id/input_gender_undefined_option">
 
             <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/input_gender_indefinite_option"
+                android:id="@+id/input_gender_undefined_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/input_gender_indefinite" />
+                android:text="@string/input_gender_undefined" />
 
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/input_gender_male_option"

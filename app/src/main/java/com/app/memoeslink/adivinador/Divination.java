@@ -261,7 +261,7 @@ public class Divination extends Binder {
 
     public String generateDivination(String enquiryDate) {
         enquiryDate = StringHelper.defaultIfBlank(enquiryDate, DateTimeHelper.getStrCurrentDate());
-        String divination = "?";
+        String divination;
         float probability = r.getFloat();
         Gender gender = Gender.UNDEFINED;
 
@@ -386,7 +386,7 @@ public class Divination extends Binder {
         for (int n = -1, limit = r.getElement(PROBABILITY_DISTRIBUTION); ++n < limit; ) {
             Gender gender = r.getBoolean() ? Gender.MASCULINE : Gender.FEMININE;
             String description = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.person, 0) + " " + String.format("<font color=%s>%s</font>", COMMON_COLORS[n], TextFormatter.formatText(Character.toString(letter), "b,i,tt"));
-            description += ", " + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.probability) + " " + TextProcessor.genderifyStr(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.individual), gender).getText();
+            description += ", " + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.probability) + " " + tagProcessor.replaceTags(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.individual), gender, false).getText();
             people.add(new Person.PersonBuilder()
                     .setNickname(Character.toString(letter))
                     .setGender(gender)
@@ -509,62 +509,110 @@ public class Divination extends Binder {
     }
 
     public ZodiacSign getZodiacSign(int month, int day) {
-        if ((month == 1 && day >= 20) || (month == 2 && day <= 18))
-            return ZodiacSign.AQUARIUS;
-        else if ((month == 2 && day >= 19) || (month == 3 && day <= 20))
-            return ZodiacSign.PISCES;
-        else if ((month == 3 && day >= 21) || (month == 4 && day <= 20))
-            return ZodiacSign.ARIES;
-        else if ((month == 4 && day >= 21) || (month == 5 && day <= 21))
-            return ZodiacSign.TAURUS;
-        else if ((month == 5 && day >= 22) || (month == 6 && day <= 20))
-            return ZodiacSign.GEMINI;
-        else if ((month == 6 && day >= 21) || (month == 7 && day <= 22))
-            return ZodiacSign.CANCER;
-        else if ((month == 7 && day >= 23) || (month == 8 && day <= 22))
-            return ZodiacSign.LEO;
-        else if ((month == 8 && day >= 23) || (month == 9 && day <= 22))
-            return ZodiacSign.VIRGO;
-        else if ((month == 9 && day >= 23) || (month == 10 && day <= 22))
-            return ZodiacSign.LIBRA;
-        else if ((month == 10 && day >= 23) || (month == 11 && day <= 21))
-            return ZodiacSign.SCORPIO;
-        else if ((month == 11 && day >= 22) || (month == 12 && day <= 21))
-            return ZodiacSign.SAGITTARIUS;
-        else if ((month == 12 && day >= 22) || (month == 1 && day <= 19))
-            return ZodiacSign.CAPRICORN;
-        else
-            return ZodiacSign.UNKNOWN;
+        switch (month) {
+            case 1:
+                if (day >= 1 && day <= 31)
+                    return day >= 20 ? ZodiacSign.AQUARIUS : ZodiacSign.CAPRICORN;
+                break;
+            case 2:
+                if (day >= 1 && day <= 29)
+                    return day >= 19 ? ZodiacSign.PISCES : ZodiacSign.AQUARIUS;
+                break;
+            case 3:
+                if (day >= 1 && day <= 31)
+                    return day >= 21 ? ZodiacSign.ARIES : ZodiacSign.PISCES;
+                break;
+            case 4:
+                if (day >= 1 && day <= 30)
+                    return day >= 21 ? ZodiacSign.TAURUS : ZodiacSign.ARIES;
+                break;
+            case 5:
+                if (day >= 1 && day <= 31)
+                    return day >= 22 ? ZodiacSign.GEMINI : ZodiacSign.TAURUS;
+                break;
+            case 6:
+                if (day >= 1 && day <= 30)
+                    return day >= 21 ? ZodiacSign.CANCER : ZodiacSign.GEMINI;
+                break;
+            case 7:
+                if (day >= 1 && day <= 31)
+                    return day >= 23 ? ZodiacSign.LEO : ZodiacSign.CANCER;
+                break;
+            case 8:
+                if (day >= 1 && day <= 31)
+                    return day >= 23 ? ZodiacSign.VIRGO : ZodiacSign.LEO;
+                break;
+            case 9:
+                if (day >= 1 && day <= 30)
+                    return day >= 23 ? ZodiacSign.LIBRA : ZodiacSign.VIRGO;
+                break;
+            case 10:
+                if (day >= 1 && day <= 31)
+                    return day >= 23 ? ZodiacSign.SCORPIO : ZodiacSign.LIBRA;
+                break;
+            case 11:
+                if (day >= 1 && day <= 30)
+                    return day >= 22 ? ZodiacSign.SAGITTARIUS : ZodiacSign.SCORPIO;
+                break;
+            case 12:
+                if (day >= 1 && day <= 31)
+                    return day >= 22 ? ZodiacSign.CAPRICORN : ZodiacSign.SAGITTARIUS;
+                break;
+        }
+        return ZodiacSign.UNKNOWN;
     }
 
     public WalterBergZodiacSign getWalterBergZodiacSign(int month, int day) {
-        if ((month == 2 && day >= 16) || (month == 3 && day <= 11))
-            return WalterBergZodiacSign.AQUARIUS;
-        else if ((month == 3 && day >= 12) || (month == 4 && day <= 18))
-            return WalterBergZodiacSign.PISCES;
-        else if ((month == 4 && day >= 19) || (month == 5 && day <= 13))
-            return WalterBergZodiacSign.ARIES;
-        else if ((month == 5 && day >= 14) || (month == 6 && day <= 20))
-            return WalterBergZodiacSign.TAURUS;
-        else if ((month == 6 && day >= 21) || (month == 7 && day <= 19))
-            return WalterBergZodiacSign.GEMINI;
-        else if ((month == 7 && day >= 20) || (month == 8 && day <= 19))
-            return WalterBergZodiacSign.CANCER;
-        else if ((month == 8 && day >= 20) || (month == 9 && day <= 15))
-            return WalterBergZodiacSign.LEO;
-        else if ((month == 9 && day >= 16) || (month == 10 && day <= 30))
-            return WalterBergZodiacSign.VIRGO;
-        else if ((month == 10 && day >= 31) || (month == 11 && day <= 22))
-            return WalterBergZodiacSign.LIBRA;
-        else if ((month == 11 && day >= 23) || (month == 11 && day <= 29))
-            return WalterBergZodiacSign.SCORPIO;
-        else if ((month == 11 && day >= 30) || (month == 12 && day <= 17))
-            return WalterBergZodiacSign.OPHIUCHUS;
-        else if ((month == 12 && day >= 18) || (month == 1 && day <= 8))
-            return WalterBergZodiacSign.SAGITTARIUS;
-        else if ((month == 1 && day >= 9) || (month == 2 && day <= 15))
-            return WalterBergZodiacSign.CAPRICORN;
-        else
-            return WalterBergZodiacSign.UNKNOWN;
+        switch (month) {
+            case 1:
+                if (day >= 1 && day <= 31)
+                    return day >= 19 ? WalterBergZodiacSign.CAPRICORN : WalterBergZodiacSign.SAGITTARIUS;
+                break;
+            case 2:
+                if (day >= 1 && day <= 29)
+                    return day >= 16 ? WalterBergZodiacSign.AQUARIUS : WalterBergZodiacSign.CAPRICORN;
+                break;
+            case 3:
+                if (day >= 1 && day <= 31)
+                    return day >= 12 ? WalterBergZodiacSign.PISCES : WalterBergZodiacSign.AQUARIUS;
+                break;
+            case 4:
+                if (day >= 1 && day <= 30)
+                    return day >= 19 ? WalterBergZodiacSign.ARIES : WalterBergZodiacSign.PISCES;
+                break;
+            case 5:
+                if (day >= 1 && day <= 31)
+                    return day >= 14 ? WalterBergZodiacSign.TAURUS : WalterBergZodiacSign.ARIES;
+                break;
+            case 6:
+                if (day >= 1 && day <= 30)
+                    return day >= 20 ? WalterBergZodiacSign.GEMINI : WalterBergZodiacSign.TAURUS;
+                break;
+            case 7:
+                if (day >= 1 && day <= 31)
+                    return day >= 21 ? WalterBergZodiacSign.CANCER : WalterBergZodiacSign.GEMINI;
+                break;
+            case 8:
+                if (day >= 1 && day <= 31)
+                    return day >= 10 ? WalterBergZodiacSign.LEO : WalterBergZodiacSign.CANCER;
+                break;
+            case 9:
+                if (day >= 1 && day <= 30)
+                    return day >= 16 ? WalterBergZodiacSign.VIRGO : WalterBergZodiacSign.LEO;
+                break;
+            case 10:
+                if (day >= 1 && day <= 31)
+                    return day >= 31 ? WalterBergZodiacSign.LIBRA : WalterBergZodiacSign.VIRGO;
+                break;
+            case 11:
+                if (day >= 1 && day <= 30)
+                    return day >= 30 ? WalterBergZodiacSign.OPHIUCHUS : day >= 23 ? WalterBergZodiacSign.SCORPIO : WalterBergZodiacSign.LIBRA;
+                break;
+            case 12:
+                if (day >= 1 && day <= 31)
+                    return day >= 18 ? WalterBergZodiacSign.SAGITTARIUS : WalterBergZodiacSign.OPHIUCHUS;
+                break;
+        }
+        return WalterBergZodiacSign.UNKNOWN;
     }
 }

@@ -87,8 +87,8 @@
     <string name="input_birthdate">Fecha de nacimiento:</string>
     <string name="input_gender_description">Género:</string>
     <string name="input_gender_female">Femenino</string>
-    <string name="input_gender_indefinite">Indefinido</string>
     <string name="input_gender_male">Masculino</string>
+    <string name="input_gender_undefined">Indefinido</string>
     <string name="input_name_hint">Introduce un nombre</string>
     <string name="input_other_name_hint">Introduce otro nombre</string>
     <string name="input_title">Definir datos</string>
@@ -626,7 +626,7 @@
         <item>Esto también aparece en la adivinación:</item>
     </string-array>
     <string-array name="divination_cause">
-        <item></item>
+        <item />
         <item>Todo parece indicar que esto podría deberse a {string:divination_causative_factor}.</item>
         <item>Posiblemente se deba a {string:divination_causative_factor}.</item>
         <item>Se presume que esto podría ser causado por {string:divination_causative_factor}.</item>
@@ -1005,6 +1005,10 @@
         <item>Aries, Piscis, Acuario.</item>
     </string-array>
     <string-array name="individual">
+        <item>{string:individual_base}</item>
+        <item>{string:individual_base} {string:individual_trait}</item>
+    </string-array>
+    <string-array name="individual_base">
         <item>[un[,a]] [[hombre,mujer]]</item>
         <item>[un[,a]] [niñ[o,a]]</item>
         <item>[un[,a]] [chic[o,a]]</item>
@@ -1033,8 +1037,26 @@
         <item>[esbelt[o,a]]</item>
         <item>[delgad[o,a]]</item>
     </string-array>
+    <string-array name="individual_eyes">
+        <item>de ojos azules</item>
+        <item>de ojos verdes</item>
+        <item>de ojos castaños</item>
+        <item>de ojos negros</item>
+        <item>de ojos color avellana/miel</item>
+        <item>de ojos almendrados</item>
+        <item>de ojos juntos</item>
+        <item>de ojos hundidos</item>
+        <item>de ojos saltones</item>
+        <item>de ojos caídos</item>
+        <item>de ojos rasgados</item>
+        <item>de ojos con párpados caídos</item>
+        <item>de ojos separados</item>
+        <item>de ojos pequeños</item>
+        <item>de ojos grandes</item>
+    </string-array>
     <string-array name="individual_hair">
         <item>[calv[o,a]]</item>
+        <item>[rapad[o,a]]</item>
         <item>de cabello claro</item>
         <item>de cabello blanquecino</item>
         <item>de cabello rubio</item>
@@ -1048,10 +1070,12 @@
         <item>de cabello largo</item>
         <item>de cabello corto</item>
         <item>de cabello hasta los hombros</item>
+        <item>de cabello medio largo</item>
         <item>de cabello en punta</item>
         <item>de cabello rizado</item>
         <item>de cabello liso</item>
         <item>de cabello ondulado</item>
+        <item>de cabello esponjado</item>
     </string-array>
     <string-array name="individual_height">
         <item>muy [baj[o,a]]</item>
@@ -1065,6 +1089,7 @@
     </string-array>
     <string-array name="individual_trait">
         <item>{string:individual_build}</item>
+        <item>{string:individual_eyes}</item>
         <item>{string:individual_hair}</item>
         <item>{string:individual_height}</item>
     </string-array>
@@ -1630,6 +1655,15 @@
         <item>¿Quieres saber lo que sucederá? Aquí lo tengo:</item>
         <item>Esto es lo que mi bola de cristal me muestra:</item>
         <item>Mira con detenimiento esto que podría ocurrir:</item>
+        <item>Mira lo que tengo aquí:</item>
+        <item>Mis poderes mágicos me permiten enseñarte esto:</item>
+        <item>En estos momentos esto muestra el futuro:</item>
+        <item>El mundo muestra signos claros de lo que ocurrirá.</item>
+        <item>Los espíritus convergen aquí para mostrar el futuro.</item>
+        <item>El universo apunta a ciertos eventos.</item>
+        <item>La naturaleza tiene patrones y muestra que ciertos eventos ocurrirán.</item>
+        <item>La magia reunida tiene noticias sobre el futuro.</item>
+        <item>Existen fuerzas más allá de la comprensión que muestran las situaciones que ocurrirán.</item>
     </string-array>
     <string-array name="probability">
         <item>quizá</item>

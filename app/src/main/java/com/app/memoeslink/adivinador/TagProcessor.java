@@ -8,6 +8,7 @@ import com.memoeslink.generator.common.Pair;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextComponent;
 import com.memoeslink.generator.common.TextProcessor;
+import com.memoeslink.generator.english.IndefiniteArticle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +18,7 @@ import java.util.regex.Pattern;
 
 public class TagProcessor extends Binder {
     private static final String INTEGER_REGEX = "(-?[1-9]\\d*|0)";
-    private static final String TAG_GENDER_REGEX = "(;\\s?gender:((user|⛌)|(random|⸮)|(default|＃)|" + INTEGER_REGEX + "))?";
+    private static final String TAG_GENDER_REGEX = "(;\\s?gender:((user|⛌)|(random|⸮)|(default|＃)|" + INTEGER_REGEX + "|(undefined|masculine|feminine)))?";
     private static final String TAG_PLURAL_REGEX = "(;\\s?plural:(\\+?\\p{L}+))?";
     private static final Pattern GENDER_PATTERN = Pattern.compile("｢([0-2])｣");
     private static final String TAG_REGEX = "\\{((string|database):([\\w\\p{L}]+)(\\[!?[\\d]+\\])?" + TAG_GENDER_REGEX + "|method:[a-zA-Z0-9_$]+)\\}";
@@ -26,6 +27,11 @@ public class TagProcessor extends Binder {
     private static final Pattern WORD_TAG_PATTERN = Pattern.compile(WORD_TAG_REGEX);
     private static final String RANDOM_TAG_REGEX = "\\{rand:[^{}⸠⸡;]+(;[^{}⸠⸡;]+)*\\}";
     private static final Pattern RANDOM_TAG_PATTERN = Pattern.compile(RANDOM_TAG_REGEX);
+    private static final String GRAMMAR_TAG_REGEX = "(" + "((\\b\\{[Aa]/an\\}\\b)(\\s+)(\\b\\p{L}+\\b))" +
+            //"| (\\{\\})" +
+            //"| (\\{\\})" +
+            ")";
+    private static final Pattern GRAMMAR_TAG_PATTERN = Pattern.compile(GRAMMAR_TAG_REGEX);
     private final ResourceExplorer resourceExplorer;
 
     public TagProcessor(Context context) {
@@ -54,12 +60,12 @@ public class TagProcessor extends Binder {
         else
             defaultGender = r.getElement(Gender.values());
 
-        //Verifies if the text contains curly brackets
+        //Verify if the text contains curly brackets
         if (StringHelper.containsAny(s, "{", "}")) {
             int pairsOfBrackets = 0;
             int counter = 0;
 
-            //Counts the possible pairs of curly brackets within the text
+            //Count the possible pairs of curly brackets within the text
             for (int n = -1, length = s.length(); ++n < length; ) {
                 boolean concluded = false;
 
@@ -76,10 +82,12 @@ public class TagProcessor extends Binder {
                 } else if (concluded)
                     pairsOfBrackets++;
             }
-            Matcher matcher;
 
-            //Replaces simple tags within the text, if there are any
-            while (pairsOfBrackets > 0 && (matcher = TAG_PATTERN.matcher(s)).find()) {
+            //Replace simple tags within the text, if there are any
+            Matcher matcher = TAG_PATTERN.matcher(s);
+            StringBuffer sb;
+
+            while (matcher.find()) {
                 String replacement = "";
                 String resourceName = StringHelper.startsWith(matcher.group(), "{method:") ? StringHelper.substringBetween(matcher.group(), ":", "}") : matcher.group(3);
                 gender = getTrueGender(matcher.group(6), defaultGender);
@@ -123,8 +131,11 @@ public class TagProcessor extends Binder {
                 pairsOfBrackets--;
             }
 
-            //Replaces ‘word’ tags within the text, if there are any
-            while (pairsOfBrackets > 0 && (matcher = WORD_TAG_PATTERN.matcher(s)).find()) {
+            //Replace ‘word’ tags within the text, if there are any
+            matcher = WORD_TAG_PATTERN.matcher(s);
+            sb = new StringBuffer();
+
+            while (pairsOfBrackets > 0 && matcher.find()) {
                 String replacement = matcher.group(1);
                 gender = getTrueGender(matcher.group(5), defaultGender);
                 replacement = TextProcessor.genderifyStr(replacement, gender).getText();
@@ -135,30 +146,46 @@ public class TagProcessor extends Binder {
                     else
                         replacement = matcher.group(11);
                 }
-                s = StringHelper.replaceOnce(s, matcher.group(), replacement);
+                matcher.appendReplacement(sb, replacement);
                 pairsOfBrackets--;
             }
+            matcher.appendTail(sb);
+            s = sb.toString();
 
-            //Replaces ‘random’ tags within the text, if there are any
-            while (pairsOfBrackets > 0 && (matcher = RANDOM_TAG_PATTERN.matcher(s)).find()) {
+            //Replace ‘random’ tags within the text, if there are any
+            matcher = RANDOM_TAG_PATTERN.matcher(s);
+
+            while (pairsOfBrackets > 0 && matcher.find()) {
                 String substring = StringHelper.removeStart(matcher.group(), "{rand:");
                 substring = StringHelper.removeEnd(substring, "}");
                 List<String> items = Arrays.asList(substring.split("\\s*;\\s*"));
+                String replacement = r.getItem(items);
 
-                if (items.size() > 0) {
-                    String replacement;
-                    String regex;
-
-                    if ((replacement = r.getItem(items)).trim().equals("∅")) {
-                        replacement = "";
-                        regex = "\\s*" + Pattern.quote(matcher.group());
-                        nullified = true;
-                    } else
-                        regex = Pattern.quote(matcher.group());
+                if (StringHelper.isNullOrEmpty(replacement) || replacement.trim().equals("∅")) {
+                    String regex = "\\s*" + Pattern.quote(matcher.group());
+                    s = StringHelper.removeFirst(s, regex);
+                    nullified = true;
+                } else {
+                    String regex = Pattern.quote(matcher.group());
                     s = StringHelper.replaceFirst(s, regex, replacement);
-                    pairsOfBrackets--;
                 }
+                pairsOfBrackets--;
             }
+
+            //Replace grammar tags within the text, if there are any
+            matcher = GRAMMAR_TAG_PATTERN.matcher(s);
+            sb = new StringBuffer();
+
+            while (pairsOfBrackets > 0 && matcher.find()) {
+                if (matcher.group(2) != null) {
+                    String article = IndefiniteArticle.get(matcher.group(5));
+                    String replacement = StringHelper.replaceByIndex(matcher.group(), matcher.start(3), matcher.end(3), article);
+                    matcher.appendReplacement(sb, replacement);
+                }
+                pairsOfBrackets--;
+            }
+            matcher.appendTail(sb);
+            s = sb.toString();
         }
         Pair<String, List<Gender>> pair = replaceDigitTags(s);
 
@@ -166,7 +193,7 @@ public class TagProcessor extends Binder {
             gender = pair.getSubValue().get(pair.getSubValue().size() - 1);
         s = pair.getSubKey();
 
-        //Replaces subtags within the text, if there are any
+        //Replace subtags within the text, if there are any
         if (StringHelper.containsAny(s, "⸠", "⸡")) {
             s = StringHelper.replaceEach(s, new String[]{"⸠", "⸡"}, new String[]{"{", "}"});
             s = replaceTags(s, gender != null ? gender : defaultGender, plural).getText();
@@ -208,6 +235,15 @@ public class TagProcessor extends Binder {
 
         if (StringHelper.equalsAny(s, "default", "＃"))
             return defaultGender;
+
+        switch (s) {
+            case "undefined":
+                return Gender.UNDEFINED;
+            case "masculine":
+                return Gender.MASCULINE;
+            case "feminine":
+                return Gender.FEMININE;
+        }
 
         try {
             int genderValue = Integer.parseInt(s);

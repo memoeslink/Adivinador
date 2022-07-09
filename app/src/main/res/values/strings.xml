@@ -87,8 +87,8 @@
     <string name="input_birthdate">Birthdate:</string>
     <string name="input_gender_description">Gender:</string>
     <string name="input_gender_female">Female</string>
-    <string name="input_gender_indefinite">Undefined</string>
     <string name="input_gender_male">Male</string>
+    <string name="input_gender_undefined">Undefined</string>
     <string name="input_name_hint">Enter a name</string>
     <string name="input_other_name_hint">Enter another name</string>
     <string name="input_title">Enter data</string>
@@ -626,7 +626,7 @@
         <item>This also appears in the divination:</item>
     </string-array>
     <string-array name="divination_cause">
-        <item></item>
+        <item />
         <item>It seems that this could be due to {string:divination_causative_factor}.</item>
         <item>Possibly it may be due to {string:divination_causative_factor}.</item>
         <item>It is presumed that this could be caused by {string:divination_causative_factor}.</item>
@@ -1005,24 +1005,28 @@
         <item>Aries, Pisces, Aquarius.</item>
     </string-array>
     <string-array name="individual">
-        <item>a [[,wo]man]</item>
-        <item>a kid</item>
-        <item>a [[boy,girl]]</item>
-        <item>a young [[,wo]man]</item>
-        <item>an old [[,wo]man]</item>
-        <item>a [lad[,y]]</item>
-        <item>an infant</item>
-        <item>an adult</item>
-        <item>a teenager</item>
-        <item>a younger person</item>
-        <item>an older person</item>
-        <item>a person of the same age</item>
-        <item>a person of legal age</item>
-        <item>a minor</item>
-        <item>a baby</item>
-        <item>a newborn</item>
-        <item>a prepubescent</item>
-        <item>an elderly [[,wo]man]</item>
+        <item>{a/an} {string:individual_base}</item>
+        <item>{a/an} {string:individual_trait} {string:individual_base}</item>
+    </string-array>
+    <string-array name="individual_base">
+        <item>[[,wo]man]</item>
+        <item>kid</item>
+        <item>[[boy,girl]]</item>
+        <item>young [[,wo]man]</item>
+        <item>old [[,wo]man]</item>
+        <item>[lad[,y]]</item>
+        <item>infant</item>
+        <item>adult</item>
+        <item>teenager</item>
+        <item>younger person</item>
+        <item>older person</item>
+        <item>person of the same age</item>
+        <item>person of legal age</item>
+        <item>minor</item>
+        <item>baby</item>
+        <item>newborn</item>
+        <item>prepubescent</item>
+        <item>elderly [[,wo]man]</item>
     </string-array>
     <string-array name="individual_build">
         <item>chubby</item>
@@ -1033,8 +1037,26 @@
         <item>slim</item>
         <item>thin</item>
     </string-array>
+    <string-array name="individual_eyes">
+        <item>with blue eyes</item>
+        <item>with green eyes</item>
+        <item>with brown eyes</item>
+        <item>with black eyes</item>
+        <item>with hazel eyes</item>
+        <item>with almond eyes</item>
+        <item>with close set eyes</item>
+        <item>with deep-set eyes</item>
+        <item>with protruding eyes</item>
+        <item>with downturned eyes</item>
+        <item>with monolid eyes</item>
+        <item>with hooded eyes</item>
+        <item>with wide set eyes</item>
+        <item>with small eyes</item>
+        <item>with big eyes</item>
+    </string-array>
     <string-array name="individual_hair">
         <item>bald</item>
+        <item>shaven-headed</item>
         <item>pale-haired</item>
         <item>white-haired</item>
         <item>[blond[,e]]</item>
@@ -1047,11 +1069,13 @@
         <item>black-haired</item>
         <item>long-haired</item>
         <item>short-haired</item>
+        <item>with shoulder-length hair</item>
         <item>with medium-length hair</item>
-        <item>with spiky hair</item>
-        <item>with curly hair</item>
-        <item>with straight hair</item>
-        <item>with wavy hair</item>
+        <item>spiky-haired</item>
+        <item>curly-haired</item>
+        <item>straight-haired</item>
+        <item>wavy-haired</item>
+        <item>fluffy-haired</item>
     </string-array>
     <string-array name="individual_height">
         <item>pretty short</item>
@@ -1065,6 +1089,7 @@
     </string-array>
     <string-array name="individual_trait">
         <item>{string:individual_build}</item>
+        <item>{string:individual_eyes}</item>
         <item>{string:individual_hair}</item>
         <item>{string:individual_height}</item>
     </string-array>
@@ -1630,6 +1655,15 @@
         <item>Do you want to know what will happen? Here it is:</item>
         <item>This is what my crystal ball shows me:</item>
         <item>Look closely at what might happen:</item>
+        <item>See what I have here:</item>
+        <item>My magic powers allow me to show you this:</item>
+        <item>In this moment, future shows this:</item>
+        <item>The world is showing clear signs of what is to come.</item>
+        <item>The spirits converge here to show the future.</item>
+        <item>The universe points to certain events.</item>
+        <item>Nature has patterns and shows that certain events will occur.</item>
+        <item>Gathered magical forces have news about the future.</item>
+        <item>There are forces beyond comprehension that show situations that will occur.</item>
     </string-array>
     <string-array name="probability">
         <item>perhaps</item>
