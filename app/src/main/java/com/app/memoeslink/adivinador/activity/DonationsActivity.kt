@@ -10,9 +10,10 @@ import com.app.memoeslink.adivinador.R
 import games.moisoni.google_iab.BillingConnector
 import games.moisoni.google_iab.BillingEventListener
 import games.moisoni.google_iab.enums.ErrorType
+import games.moisoni.google_iab.enums.ProductType
 import games.moisoni.google_iab.models.BillingResponse
+import games.moisoni.google_iab.models.ProductInfo
 import games.moisoni.google_iab.models.PurchaseInfo
-import games.moisoni.google_iab.models.SkuInfo
 
 
 class DonationsActivity : CommonActivity() {
@@ -57,13 +58,16 @@ class DonationsActivity : CommonActivity() {
 
         //Set listeners
         bc?.setBillingEventListener(object : BillingEventListener {
-            override fun onProductsFetched(skuDetails: List<SkuInfo>) {
+            override fun onProductsFetched(productDetails: MutableList<ProductInfo>) {
             }
 
-            override fun onPurchasedProductsFetched(purchases: List<PurchaseInfo>) {
+            override fun onPurchasedProductsFetched(
+                productType: ProductType,
+                purchases: MutableList<PurchaseInfo>
+            ) {
             }
 
-            override fun onProductsPurchased(purchases: List<PurchaseInfo>) {
+            override fun onProductsPurchased(purchases: MutableList<PurchaseInfo>) {
                 dialog?.show()
             }
 
@@ -80,7 +84,6 @@ class DonationsActivity : CommonActivity() {
                 when (response.errorType) {
                     ErrorType.CLIENT_NOT_READY -> {}
                     ErrorType.CLIENT_DISCONNECTED -> {}
-                    ErrorType.SKU_NOT_EXIST -> {}
                     ErrorType.CONSUME_ERROR -> {}
                     ErrorType.ACKNOWLEDGE_ERROR -> {}
                     ErrorType.ACKNOWLEDGE_WARNING -> {}

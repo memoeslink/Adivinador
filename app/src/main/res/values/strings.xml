@@ -1,4 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?><!DOCTYPE
+    resources [<!ENTITY personType1 "a person"><!ENTITY personType2 "an unknown person"><!ENTITY personType3 "a related person"><!ENTITY personType4 "the couple"><!ENTITY personType5 "the spouse"><!ENTITY personType6 "the concubine"><!ENTITY personType7 "the best friend"><!ENTITY personType8 "the worst enemy"><!ENTITY personType9 "the closest person"><!ENTITY personType10 "someone who offers a service"><!ENTITY personType11 "someone who sells anything"><!ENTITY personType12 "someone close"><!ENTITY personType13 "a lover"><!ENTITY personType14 "a relative"><!ENTITY personType15 "a distant relative"><!ENTITY personType16 "a colleague"><!ENTITY personType17 "a friend"><!ENTITY personType18 "an enemy"><!ENTITY personType19 "a good friend"><!ENTITY personType20 "a comrade"><!ENTITY personType21 "a fellow"><!ENTITY personType22 "a companion"><!ENTITY personType23 "a teammate"><!ENTITY personType24 "a coworker"><!ENTITY personType25 "a classmate"><!ENTITY personType26 "a roommate"><!ENTITY personType27 "a business associate"><!ENTITY personType28 "a customer"><!ENTITY personType29 "a prospect"><!ENTITY personType30 "an acquaintance"><!ENTITY personType31 "a neighbor"><!ENTITY personType32 "a follower"><!ENTITY personType33 "an observer"><!ENTITY personType34 "an ally"><!ENTITY personType35 "a rival"><!ENTITY personType36 "an apprentice"><!ENTITY personType37 "a mentor">]
+    >
 <resources xmlns:tools="http://schemas.android.com/tools" tools:locale="en">
     <string name="about">
         <![CDATA[
@@ -149,7 +151,7 @@
         <br>%19$s
         <br><br><big><b><font color=#869DEE>Identity</font></b></big>
         <br><br><font color=#53E3B3>Color:</font>
-        <br><big><big><font color=%20$s>%21$s</font></big></big>
+        <br><big><big><font color=%20$s>1$s</font></big></big>
         <br><br><font color=#53E3B3>Animal:</font>
         <br>%22$s
         <br><br><font color=#53E3B3>Psychological type according to Jung:</font>
@@ -597,6 +599,45 @@
         <item>Today\'s enquiry</item>
         <item>Enquiry for a specific date</item>
     </string-array>
+    <string-array name="distant_relationship">
+        <item>&personType1;</item>
+        <item>&personType2;</item>
+        <item>&personType3; to {string:relationship}</item>
+        <item>&personType4; of {string:relationship}</item>
+        <item>&personType5; of {string:relationship}</item>
+        <item>&personType6; of {string:relationship}</item>
+        <item>&personType7; of {string:relationship}</item>
+        <item>&personType8; of {string:relationship}</item>
+        <item>&personType9; to {string:relationship}</item>
+        <item>&personType10; to {string:relationship}</item>
+        <item>&personType11; to {string:relationship}</item>
+        <item>&personType12; to {string:relationship}</item>
+        <item>&personType13; of {string:relationship}</item>
+        <item>&personType14; of {string:relationship}</item>
+        <item>&personType15; of {string:relationship}</item>
+        <item>&personType16; of {string:relationship}</item>
+        <item>&personType17; of {string:relationship}</item>
+        <item>&personType18; of {string:relationship}</item>
+        <item>&personType19; of {string:relationship}</item>
+        <item>&personType20; of {string:relationship}</item>
+        <item>&personType21; of {string:relationship}</item>
+        <item>&personType22; of {string:relationship}</item>
+        <item>&personType23; of {string:relationship}</item>
+        <item>&personType24; of {string:relationship}</item>
+        <item>&personType25; of {string:relationship}</item>
+        <item>&personType26; of {string:relationship}</item>
+        <item>&personType27; of {string:relationship}</item>
+        <item>&personType28; of {string:relationship}</item>
+        <item>&personType29; of {string:relationship}</item>
+        <item>&personType30; of {string:relationship}</item>
+        <item>&personType31; of {string:relationship}</item>
+        <item>&personType32; of {string:relationship}</item>
+        <item>&personType33; of {string:relationship}</item>
+        <item>&personType34; of {string:relationship}</item>
+        <item>&personType35; of {string:relationship}</item>
+        <item>&personType36; of {string:relationship}</item>
+        <item>&personType37; of {string:relationship}</item>
+    </string-array>
     <string-array name="divination">
         <item>Something {rand:∅; favorable; unfavorable}, related to a certain thing ({method:getNounWithArticle}), will happen.</item>
         <item>You will get {rand:∅; good; bad; rare} news about something ({method:getNounWithArticle}).</item>
@@ -610,7 +651,7 @@
         <item>A person, whose sign is {string:astrological_sign}, will {rand:harm; benefit; help; abandon; ignore; notice} you.</item>
         <item>A person, whose sign is {string:astrological_sign}, will affect you {rand:negatively; positively} in {string:divination_middle}.</item>
         <item>You are in a moment where you have to make {rand:∅; critical; hasty; important; well-thought; necessary; essential} decisions about {string:divination_middle}.</item>
-        <item>In this moment others see you as a/an {string:personality_trait} person.</item>
+        <item>In this moment others see you as {a/an} {string:personality_trait} person.</item>
         <item>{string:foreboding_start} {string:foreboding_end}</item>
         <item>I {rand:see; perceive; visualize; contemplate} an image of {string:augury_entity} ⸠string:augury_situation⸡.</item>
     </string-array>
@@ -642,12 +683,12 @@
         <item>I think this is due to {string:divination_causative_factor}.</item>
         <item>I guess the above is caused by {string:divination_causative_factor}.</item>
         <item>I can {rand:see; perceive; perceive; detect; feel; observe; note} that this is due to {string:divination_causative_factor}.</item>
-        <item>It can be said that the {rand:reason; cause; circumstance; reason} of this could be {string:explicit_cause; gender:⸮}.</item>
-        <item>I can see that the {rand:reason; cause; circumstance; reason} of this might be {string:explicit_cause; gender:⸮}.</item>
-        <item>The {rand:responsible; cause; motive} of this could be {string:unspecific_person; gender:⸮}.</item>
-        <item>The divination says that, possibly, the cause of this is {string:person; gender:⸮}.</item>
-        <item>I can {rand:see; perceive; detect; sense; feel; observe; note} in this {rand:fortune; divination; prediction; augury} that {string:individual; gender:⸮} could be the one who causes this.</item>
-        <item>It is possible that {string:individual; gender:⸮} has something to do with it.</item>
+        <item>It can be said that the {rand:reason; cause; circumstance; reason} of this could be {string:divination_causative_factor}.</item>
+        <item>I can see that the {rand:reason; cause; circumstance; reason} of this might be {string:divination_causative_factor}.</item>
+        <item>The {rand:responsible; cause; motive} of this could be {string:divination_causative_factor}.</item>
+        <item>The divination says that, possibly, the cause of this is {string:divination_causative_factor}.</item>
+        <item>I can {rand:see; perceive; detect; sense; feel; observe; note} in this {rand:fortune; divination; prediction; augury} that {string:divination_causative_factor} could be the cause.</item>
+        <item>It is possible that {string:divination_causative_factor} has something to do with it.</item>
     </string-array>
     <string-array name="divination_causative_factor">
         <item>{string:unspecific_person; gender:⸮}</item>
@@ -918,17 +959,17 @@
         <item>the behaviour of others</item>
         <item>your attitude</item>
         <item>a person\'s presence</item>
-        <item>the presence of %%</item>
+        <item>the presence of {string:unspecific_person; gender:⸮}</item>
         <item>the people around you</item>
         <item>the influence of others</item>
         <item>the actions of others</item>
         <item>the decisions of others</item>
         <item>the attitude of others</item>
-        <item>the influence of %%</item>
-        <item>the meddling of %%</item>
-        <item>the interference or opposition of %%</item>
-        <item>the actions of %%</item>
-        <item>the words of %%</item>
+        <item>the influence of {string:unspecific_person; gender:⸮}</item>
+        <item>the meddling of {string:unspecific_person; gender:⸮}</item>
+        <item>the interference or opposition of {string:unspecific_person; gender:⸮}</item>
+        <item>the actions of {string:unspecific_person; gender:⸮}</item>
+        <item>the words of {string:unspecific_person; gender:⸮}</item>
         <item>others\' words</item>
         <item>others\' wishes</item>
         <item>others\' prayers</item>
@@ -1519,9 +1560,9 @@
         <item>{method:getFormattedName} knows {method:getFormattedName}.</item>
         <item>I have something to say to {method:getFormattedName}.</item>
         <item>I must see the future of {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} is a/an {string:adjectives; gender:2} person.</item>
-        <item>{method:getFormattedName} is a/an {string:adjectives; gender:2} character.</item>
-        <item>{method:getFormattedName} is a/an {string:adjectives; gender:2} individual.</item>
+        <item>{method:getFormattedName} is {a/an} {string:adjectives} person.</item>
+        <item>{method:getFormattedName} is {a/an} {string:adjectives} character.</item>
+        <item>{method:getFormattedName} is {a/an} {string:adjectives} individual.</item>
         <item>{method:getFormattedName} and their {string:relative; gender:⸮} get along very well.</item>
         <item>{method:getFormattedName} and their {string:relative; gender:⸮} have a bad relationship.</item>
         <item>{method:getFormattedName} and their {string:relative; gender:⸮} treat each other badly.</item>
@@ -1537,41 +1578,43 @@
         <item>Your {string:relative; gender:⸮} and {method:getFormattedName} are enemies.</item>
     </string-array>
     <string-array name="person">
-        <item>a person</item>
-        <item>the couple of %%</item>
-        <item>the spouse of %%</item>
-        <item>the concubine of %%</item>
-        <item>the best friend of %%</item>
-        <item>the worst enemy of %%</item>
-        <item>the closest person to %%</item>
-        <item>someone who offers a service to %%</item>
-        <item>someone who sells anything to %%</item>
-        <item>someone close to %%</item>
-        <item>an unknown person</item>
-        <item>a lover of %%</item>
-        <item>a relative of %%</item>
-        <item>a distant relative of %%</item>
-        <item>a colleague of %%</item>
-        <item>a friend of %%</item>
-        <item>an enemy of %%</item>
-        <item>a good friend of %%</item>
-        <item>a comrade of %%</item>
-        <item>a fellow of %%</item>
-        <item>a companion of %%</item>
-        <item>a teammate of %%</item>
-        <item>a coworker of %%</item>
-        <item>a classmate of %%</item>
-        <item>a roommate of %%</item>
-        <item>a business associate of %%</item>
-        <item>a customer of %%</item>
-        <item>an acquaintance of %%</item>
-        <item>a neighbor of %%</item>
-        <item>a follower of %%</item>
-        <item>an observer of %%</item>
-        <item>an ally of %%</item>
-        <item>a rival of %%</item>
-        <item>an apprentice of %%</item>
-        <item>a mentor of %%</item>
+        <item>&personType1;</item>
+        <item>&personType2;</item>
+        <item>&personType3;</item>
+        <item>&personType4;</item>
+        <item>&personType5;</item>
+        <item>&personType6;</item>
+        <item>&personType7;</item>
+        <item>&personType8;</item>
+        <item>&personType9;</item>
+        <item>&personType10;</item>
+        <item>&personType11;</item>
+        <item>&personType12;</item>
+        <item>&personType13;</item>
+        <item>&personType14;</item>
+        <item>&personType15;</item>
+        <item>&personType16;</item>
+        <item>&personType17;</item>
+        <item>&personType18;</item>
+        <item>&personType19;</item>
+        <item>&personType20;</item>
+        <item>&personType21;</item>
+        <item>&personType22;</item>
+        <item>&personType23;</item>
+        <item>&personType24;</item>
+        <item>&personType25;</item>
+        <item>&personType26;</item>
+        <item>&personType27;</item>
+        <item>&personType28;</item>
+        <item>&personType29;</item>
+        <item>&personType30;</item>
+        <item>&personType31;</item>
+        <item>&personType32;</item>
+        <item>&personType33;</item>
+        <item>&personType34;</item>
+        <item>&personType35;</item>
+        <item>&personType36;</item>
+        <item>&personType37;</item>
     </string-array>
     <string-array name="phrase_augury">
         <item>Let\'s see what the future holds for you.</item>
@@ -1696,6 +1739,45 @@
         <item>30 seconds</item>
         <item>60 seconds</item>
         <item>120 seconds</item>
+    </string-array>
+    <string-array name="relationship">
+        <item>&personType1;</item>
+        <item>&personType2;</item>
+        <item>&personType3; to %1$s</item>
+        <item>&personType4; of %1$s</item>
+        <item>&personType5; of %1$s</item>
+        <item>&personType6; of %1$s</item>
+        <item>&personType7; of %1$s</item>
+        <item>&personType8; of %1$s</item>
+        <item>&personType9; to %1$s</item>
+        <item>&personType10; to %1$s</item>
+        <item>&personType11; to %1$s</item>
+        <item>&personType12; to %1$s</item>
+        <item>&personType13; of %1$s</item>
+        <item>&personType14; of %1$s</item>
+        <item>&personType15; of %1$s</item>
+        <item>&personType16; of %1$s</item>
+        <item>&personType17; of %1$s</item>
+        <item>&personType18; of %1$s</item>
+        <item>&personType19; of %1$s</item>
+        <item>&personType20; of %1$s</item>
+        <item>&personType21; of %1$s</item>
+        <item>&personType22; of %1$s</item>
+        <item>&personType23; of %1$s</item>
+        <item>&personType24; of %1$s</item>
+        <item>&personType25; of %1$s</item>
+        <item>&personType26; of %1$s</item>
+        <item>&personType27; of %1$s</item>
+        <item>&personType28; of %1$s</item>
+        <item>&personType29; of %1$s</item>
+        <item>&personType30; of %1$s</item>
+        <item>&personType31; of %1$s</item>
+        <item>&personType32; of %1$s</item>
+        <item>&personType33; of %1$s</item>
+        <item>&personType34; of %1$s</item>
+        <item>&personType35; of %1$s</item>
+        <item>&personType36; of %1$s</item>
+        <item>&personType37; of %1$s</item>
     </string-array>
     <string-array name="ruler">
         <item>\?</item>

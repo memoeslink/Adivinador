@@ -1103,7 +1103,7 @@ public class MainActivity extends MenuActivity {
                 List<String> items = new ArrayList<>();
 
                 for (Person person : people) {
-                    items.add(person.getDescriptor() + " " + "(" + resourceExplorer.findGenderName(person.getGender(), 4) + ")," + " " + person.getBirthdate());
+                    items.add(person.getDescriptor() + " " + "(" + person.getGender().getName(MainActivity.this, 4) + ")," + " " + person.getBirthdate());
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -1160,6 +1160,7 @@ public class MainActivity extends MenuActivity {
     private void reloadPrediction(final boolean mute) {
         if (!busy) {
             busy = true;
+            updateSeconds = 0;
             llConfetti.animate() //Fade particles layout out
                     .alpha(0.0F)
                     .setDuration(200)
@@ -1240,7 +1241,7 @@ public class MainActivity extends MenuActivity {
                 tvPersonInfo.setText(SpannerHelper.fromHtml(getString(R.string.person_data,
                         enquiryDate.equals(DateTimeHelper.getStrCurrentDate()) ? getString(R.string.today) : enquiryDate,
                         predictionHistory.getLatest().getPerson().getDescription(),
-                        resourceExplorer.findGenderName(predictionHistory.getLatest().getPerson().getGender(), 1),
+                        predictionHistory.getLatest().getPerson().getGender().getName(MainActivity.this, 1),
                         DateTimeHelper.toIso8601Date(predictionHistory.getLatest().getPerson().getBirthdate())
                 )));
                 setLinksToText(tvPrediction, predictionHistory.getLatest().getFormattedContent());
@@ -1254,7 +1255,7 @@ public class MainActivity extends MenuActivity {
 
                 //Show person's name, if active and possible
                 if (active && !isViewVisible(tvPersonInfo))
-                    showFormattedToast(MainActivity.this, SpannerHelper.fromHtml(predictionHistory.getLatest().getPerson().getDescription()));
+                    showFormattedToast(MainActivity.this, predictionHistory.getLatest().getPerson().getDescription());
 
                 //Talk; if active, enabled and possible
                 if (recent)
@@ -1283,6 +1284,7 @@ public class MainActivity extends MenuActivity {
         if (formEntered) {
             Person person = getFormPerson();
             person.addAttribute("entered");
+            //TODO: set seed to Divination object
             prediction = divination.getPrediction(person, enquiryDate);
             currentSummary = prediction.getPerson().getSummary();
         } else

@@ -1,4 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?><!DOCTYPE
+    resources [<!ENTITY personType1 "una persona"><!ENTITY personType2 "[un[,a]] [desconocid[o,a]]"><!ENTITY personType3 "una persona relacionada"><!ENTITY personType4 "la pareja"><!ENTITY personType5 "[[el,la]] cónyuge"><!ENTITY personType6 "[[el,la]] [concubin[o,a]]"><!ENTITY personType7 "[[el,la]] mejor [amig[o,a]]"><!ENTITY personType8 "[[el,la]] peor [enemig[o,a]]"><!ENTITY personType9 "la persona más cercana"><!ENTITY personType10 "alguien que ofrece servicios"><!ENTITY personType11 "alguien que vende algo"><!ENTITY personType12 "alguien cercano"><!ENTITY personType13 "[un[,a]] amante"><!ENTITY personType14 "[un[,a]] familiar"><!ENTITY personType15 "[un[,a]] familiar [lejan[o,a]]"><!ENTITY personType16 "[un[,a]] colega"><!ENTITY personType17 "[un[,a]] [amig[o,a]]"><!ENTITY personType18 "[un[,a]] [enemig[o,a]]"><!ENTITY personType19 "[un[,a]] [buen[,a]] [amig[o,a]]"><!ENTITY personType20 "[un[,a]] camarada"><!ENTITY personType21 "[un[,a]] [compañer[o,a]]"><!ENTITY personType22 "[un[,a]] acompañante"><!ENTITY personType23 "[un[,a]] [compañer[o,a]] de equipo"><!ENTITY personType24 "[un[,a]] [compañer[o,a]] de trabajo"><!ENTITY personType25 "[un[,a]] [compañer[o,a]] de clases"><!ENTITY personType26 "[un[,a]] [compañer[o,a]] de cuarto"><!ENTITY personType27 "[un[,a]] [soci[o,a]]"><!ENTITY personType28 "[un[,a]] [client[e,a]]"><!ENTITY personType29 "[un[,a]] prospecto"><!ENTITY personType30 "[un[,a]] [conocid[o,a]]"><!ENTITY personType31 "[un[,a]] [vecin[o,a]]"><!ENTITY personType32 "[un[,a]] [seguidor[,a]]"><!ENTITY personType33 "[un[,a]] [observador[,a]]"><!ENTITY personType34 "[un[,a]] [aliad[o,a]]"><!ENTITY personType35 "[un[,a]] rival"><!ENTITY personType36 "[un[,a]] aprendiz"><!ENTITY personType37 "[un[,a]] [mentor[,a]]">]
+    >
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="about">
         <![CDATA[
@@ -70,7 +72,7 @@
     <string name="astrological_sign">Acuario¶ Piscis¶ Aries¶ Tauro¶ Géminis¶ Cáncer¶ Leo¶ Virgo¶ Libra¶ Escorpio¶ Sagitario¶ Capricornio</string>
     <string name="binder">Usar nombre de consulta actual</string>
     <string name="chain_effect">• Resultado de la cadena: el efecto será %1$s en el día de %2$s.</string>
-    <string name="chain_link">• Eslabón %1$d: %2$s%3$s realiza una acción%4$s %5$s, y esta afecta a %6$s (%7$s karma; %8$s karma acumulado).</string>
+    <string name="chain_link">• Eslabón %1$d: %2$s%3$s realiza una acción%4$s %5$s, y esta afecta %6$s (%7$s karma; %8$s karma acumulado).</string>
     <string name="clear">Limpiar formulario</string>
     <string name="compatibility">Ver compatibilidad</string>
     <string name="compatibility_result">Compatibilidad: &lt;b&gt;%1$s&lt;/b&gt;</string>
@@ -597,9 +599,48 @@
         <item>Consulta de hoy</item>
         <item>Consulta de fecha específica</item>
     </string-array>
+    <string-array name="distant_relationship">
+        <item>&personType1;</item>
+        <item>&personType2;</item>
+        <item>&personType3; con {string:relationship}</item>
+        <item>&personType4; {de/del} {string:relationship}</item>
+        <item>&personType5; {de/del} {string:relationship}</item>
+        <item>&personType6; {de/del} {string:relationship}</item>
+        <item>&personType7; {de/del} {string:relationship}</item>
+        <item>&personType8; {de/del} {string:relationship}</item>
+        <item>&personType9; {a/al} {string:relationship}</item>
+        <item>&personType10; {a/al} {string:relationship}</item>
+        <item>&personType11; {a/al} {string:relationship}</item>
+        <item>&personType12; {a/al} {string:relationship}</item>
+        <item>&personType13; {a/al} {string:relationship}</item>
+        <item>&personType14; {de/del} {string:relationship}</item>
+        <item>&personType15; {de/del} {string:relationship}</item>
+        <item>&personType16; {de/del} {string:relationship}</item>
+        <item>&personType17; {de/del} {string:relationship}</item>
+        <item>&personType18; {de/del} {string:relationship}</item>
+        <item>&personType19; {de/del} {string:relationship}</item>
+        <item>&personType20; {de/del} {string:relationship}</item>
+        <item>&personType21; {de/del} {string:relationship}</item>
+        <item>&personType22; {de/del} {string:relationship}</item>
+        <item>&personType23; {de/del} {string:relationship}</item>
+        <item>&personType24; {de/del} {string:relationship}</item>
+        <item>&personType25; {de/del} {string:relationship}</item>
+        <item>&personType26; {de/del} {string:relationship}</item>
+        <item>&personType27; {de/del} {string:relationship}</item>
+        <item>&personType28; {de/del} {string:relationship}</item>
+        <item>&personType29; {de/del} {string:relationship}</item>
+        <item>&personType30; {de/del} {string:relationship}</item>
+        <item>&personType31; {de/del} {string:relationship}</item>
+        <item>&personType32; {de/del} {string:relationship}</item>
+        <item>&personType33; {de/del} {string:relationship}</item>
+        <item>&personType34; {de/del} {string:relationship}</item>
+        <item>&personType35; {de/del} {string:relationship}</item>
+        <item>&personType36; {de/del} {string:relationship}</item>
+        <item>&personType37; {de/del} {string:relationship}</item>
+    </string-array>
     <string-array name="divination">
-        <item>Pasará algo {rand:∅; favorable; desfavorable} acerca de {method:getNounWithArticle}.</item>
-        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {method:getNounWithArticle}.</item>
+        <item>Pasará algo {rand:∅; favorable; desfavorable} acerca {de/del} {method:getNounWithArticle}.</item>
+        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca {de/del} {method:getNounWithArticle}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas}, relacionadas con {string:divination_middle}, provenientes de {string:unspecific_person; gender:⸮}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {string:divination_middle}.</item>
         <item>Pasará algo {string:situation_descriptor} relacionado con {string:divination_middle}.</item>
@@ -642,12 +683,12 @@
         <item>Creo que esto se debe a {string:divination_causative_factor}.</item>
         <item>Supongo que lo anterior es causado por {string:divination_causative_factor}.</item>
         <item>Puedo {rand:ver; percibir; detectar; sentir; observar; notar} que eso es debido a {string:divination_causative_factor}.</item>
-        <item>Se puede decir que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:explicit_cause; gender:⸮}.</item>
-        <item>Veo que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:explicit_cause; gender:⸮}.</item>
-        <item>El {rand:responsable; causante; motivo} de ello podría ser {string:unspecific_person; gender:⸮}.</item>
-        <item>La adivinación dice que, posiblemente, quien causa esto sea {string:person; gender:⸮}.</item>
-        <item>Aparentemente {string:individual; gender:⸮} podría ser quien causa esto, de acuerdo a lo que puedo {rand:ver; percibir; detectar; sentir; observar; notar} en ⸠[est[e,a]]⸡ {rand:fortuna｢2｣; adivinación｢2｣; predicción｢2｣; augurio｢1｣}.</item>
-        <item>Es posible que {string:individual; gender:⸮} tenga algo que ver.</item>
+        <item>Se puede decir que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:divination_causative_factor}.</item>
+        <item>Veo que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:divination_causative_factor}.</item>
+        <item>El {rand:responsable; causante; motivo} de ello podría ser {string:divination_causative_factor}.</item>
+        <item>La adivinación dice que, posiblemente, lo que causa esto sea {string:divination_causative_factor}.</item>
+        <item>Aparentemente {string:divination_causative_factor} podría ser la causa de esto, de acuerdo a lo que puedo {rand:ver; percibir; detectar; sentir; observar; notar} en ⸠[est[e,a]]⸡ {rand:fortuna｢2｣; adivinación｢2｣; predicción｢2｣; augurio｢1｣}.</item>
+        <item>Es posible que {string:divination_causative_factor} tenga algo que ver.</item>
     </string-array>
     <string-array name="divination_causative_factor">
         <item>{string:unspecific_person; gender:⸮}</item>
@@ -918,17 +959,17 @@
         <item>el comportamiento de otros</item>
         <item>tu actitud</item>
         <item>la presencia de una persona</item>
-        <item>la presencia de %%</item>
+        <item>la presencia de {string:unspecific_person; gender:⸮}</item>
         <item>las personas que te rodean</item>
         <item>la influencia de otros</item>
         <item>las acciones de otros</item>
         <item>las decisiones de otros</item>
         <item>la actitud de los demás</item>
-        <item>la influencia de %%</item>
-        <item>la intromisión de %%</item>
-        <item>la interferencia u oposición de %%</item>
-        <item>los actos de %%</item>
-        <item>las palabras de %%</item>
+        <item>la influencia de {string:unspecific_person; gender:⸮}</item>
+        <item>la intromisión de {string:unspecific_person; gender:⸮}</item>
+        <item>la interferencia u oposición de {string:unspecific_person; gender:⸮}</item>
+        <item>los actos de {string:unspecific_person; gender:⸮}</item>
+        <item>las palabras de {string:unspecific_person; gender:⸮}</item>
         <item>las palabras de otros</item>
         <item>los deseos de otros</item>
         <item>las plegarias de los demás</item>
@@ -1537,41 +1578,43 @@
         <item>Tu {string:relative; gender:⸮} y {method:getFormattedName} son enemigos.</item>
     </string-array>
     <string-array name="person">
-        <item>una persona</item>
-        <item>la pareja de %%</item>
-        <item>[[el,la]] cónyuge de %%</item>
-        <item>[[el,la]] [concubin[o,a]] de %%</item>
-        <item>[[el,la]] mejor [amig[o,a]] de %%</item>
-        <item>[[el,la]] peor [enemig[o,a]] de %%</item>
-        <item>la persona más cercana a %%</item>
-        <item>alguien que ofrece servicios a %%</item>
-        <item>alguien que vende algo a %%</item>
-        <item>alguien cercano a %%</item>
-        <item>[un[,a]] [desconocid[o,a]]</item>
-        <item>[un[,a]] amante de %%</item>
-        <item>[un[,a]] familiar de %%</item>
-        <item>[un[,a]] familiar [lejan[o,a]] de %%</item>
-        <item>[un[,a]] colega de %%</item>
-        <item>[un[,a]] [amig[o,a]] de %%</item>
-        <item>[un[,a]] [enemig[o,a]] de %%</item>
-        <item>[un[,a]] [buen[,a]] [amig[o,a]] de %%</item>
-        <item>[un[,a]] camarada de %%</item>
-        <item>[un[,a]] [compañer[o,a]] de %%</item>
-        <item>[un[,a]] acompañante de %%</item>
-        <item>[un[,a]] [compañer[o,a]] de equipo de %%</item>
-        <item>[un[,a]] [compañer[o,a]] de trabajo de %%</item>
-        <item>[un[,a]] [compañer[o,a]] de clases de %%</item>
-        <item>[un[,a]] [compañer[o,a]] de cuarto de %%</item>
-        <item>[un[,a]] [soci[o,a]] de %%</item>
-        <item>[un[,a]] [client[e,a]] de %%</item>
-        <item>[un[,a]] [conocid[o,a]] de %%</item>
-        <item>[un[,a]] [vecin[o,a]] de %%</item>
-        <item>[un[,a]] [seguidor[,a]] de %%</item>
-        <item>[un[,a]] [observador[,a]] de %%</item>
-        <item>[un[,a]] [aliad[o,a]] de %%</item>
-        <item>[un[,a]] rival de %%</item>
-        <item>[un[,a]] aprendiz de %%</item>
-        <item>[un[,a]] [mentor[,a]] de %%</item>
+        <item>&personType1;</item>
+        <item>&personType2;</item>
+        <item>&personType3;</item>
+        <item>&personType4;</item>
+        <item>&personType5;</item>
+        <item>&personType6;</item>
+        <item>&personType7;</item>
+        <item>&personType8;</item>
+        <item>&personType9;</item>
+        <item>&personType10;</item>
+        <item>&personType11;</item>
+        <item>&personType12;</item>
+        <item>&personType13;</item>
+        <item>&personType14;</item>
+        <item>&personType15;</item>
+        <item>&personType16;</item>
+        <item>&personType17;</item>
+        <item>&personType18;</item>
+        <item>&personType19;</item>
+        <item>&personType20;</item>
+        <item>&personType21;</item>
+        <item>&personType22;</item>
+        <item>&personType23;</item>
+        <item>&personType24;</item>
+        <item>&personType25;</item>
+        <item>&personType26;</item>
+        <item>&personType27;</item>
+        <item>&personType28;</item>
+        <item>&personType29;</item>
+        <item>&personType30;</item>
+        <item>&personType31;</item>
+        <item>&personType32;</item>
+        <item>&personType33;</item>
+        <item>&personType34;</item>
+        <item>&personType35;</item>
+        <item>&personType36;</item>
+        <item>&personType37;</item>
     </string-array>
     <string-array name="phrase_augury">
         <item>Veamos qué te depara el futuro.</item>
@@ -1696,6 +1739,45 @@
         <item>30 segundos</item>
         <item>60 segundos</item>
         <item>120 segundos</item>
+    </string-array>
+    <string-array name="relationship">
+        <item>&personType1;</item>
+        <item>&personType2;</item>
+        <item>&personType3; con %1$s</item>
+        <item>&personType4; {de/del} %1$s</item>
+        <item>&personType5; {de/del} %1$s</item>
+        <item>&personType6; {de/del} %1$s</item>
+        <item>&personType7; {de/del} %1$s</item>
+        <item>&personType8; {de/del} %1$s</item>
+        <item>&personType9; {a/al} %1$s</item>
+        <item>&personType10; {a/al} %1$s</item>
+        <item>&personType11; {a/al} %1$s</item>
+        <item>&personType12; {a/al} %1$s</item>
+        <item>&personType13; {a/al} %1$s</item>
+        <item>&personType14; {de/del} %1$s</item>
+        <item>&personType15; {de/del} %1$s</item>
+        <item>&personType16; {de/del} %1$s</item>
+        <item>&personType17; {de/del} %1$s</item>
+        <item>&personType18; {de/del} %1$s</item>
+        <item>&personType19; {de/del} %1$s</item>
+        <item>&personType20; {de/del} %1$s</item>
+        <item>&personType21; {de/del} %1$s</item>
+        <item>&personType22; {de/del} %1$s</item>
+        <item>&personType23; {de/del} %1$s</item>
+        <item>&personType24; {de/del} %1$s</item>
+        <item>&personType25; {de/del} %1$s</item>
+        <item>&personType26; {de/del} %1$s</item>
+        <item>&personType27; {de/del} %1$s</item>
+        <item>&personType28; {de/del} %1$s</item>
+        <item>&personType29; {de/del} %1$s</item>
+        <item>&personType30; {de/del} %1$s</item>
+        <item>&personType31; {de/del} %1$s</item>
+        <item>&personType32; {de/del} %1$s</item>
+        <item>&personType33; {de/del} %1$s</item>
+        <item>&personType34; {de/del} %1$s</item>
+        <item>&personType35; {de/del} %1$s</item>
+        <item>&personType36; {de/del} %1$s</item>
+        <item>&personType37; {de/del} %1$s</item>
     </string-array>
     <string-array name="ruler">
         <item>\?</item>

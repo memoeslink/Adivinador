@@ -7,12 +7,13 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.LocaleList;
 import android.speech.tts.TextToSpeech;
-import android.text.Spanned;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.ResourceExplorer;
 import com.app.memoeslink.adivinador.Screen;
 import com.app.memoeslink.adivinador.Sound;
+import com.app.memoeslink.adivinador.SpannerHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonPrimitive;
@@ -224,9 +226,11 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
         toast.show();
     }
 
-    protected final void showFormattedToast(Context context, Spanned spanned) {
+    protected final void showFormattedToast(Context context, String text) {
         cancelToast();
-        toast = Toast.makeText(context, spanned, Toast.LENGTH_SHORT);
+        toast = Toast.makeText(context, SpannerHelper.fromHtml(text), Toast.LENGTH_SHORT);
+        View vToast = toast.getView();
+        vToast.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         Sound.play(context, "computer_chimes");
         toast.show();
     }

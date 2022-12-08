@@ -3,8 +3,10 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 import android.content.res.TypedArray;
 
+import com.app.memoeslink.adivinador.tagprocessor.TagProcessor;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.LongHelper;
+import com.memoeslink.generator.common.ResourceReference;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextProcessor;
 
@@ -41,7 +43,7 @@ public class FortuneTeller extends BaseWrapper {
         String s;
         String greeting = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.conversation_greeting);
         String auguryPhrase = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.phrase_augury);
-        String pictogram = r.getBoolean() ? resourceExplorer.getPictogram() : "";
+        String pictogram = r.getBoolean() ? resourceExplorer.findByRef(ResourceReference.FORMATTED_PICTOGRAM) : "";
         s = tagProcessor.replaceTags(greeting, null, r.getBoolean()).getText() + StringHelper.prependSpaceIfNotEmpty(auguryPhrase) + StringHelper.prependIfNotEmpty(pictogram, "<br>");
         s = StringHelper.replace(s, "..", ".");
         return getString(R.string.html_format, s);
@@ -73,7 +75,7 @@ public class FortuneTeller extends BaseWrapper {
     }
 
     public String talkAboutSomething() {
-        String pictogram = r.getBoolean() ? resourceExplorer.getPictogram() : "";
+        String pictogram = r.getBoolean() ? resourceExplorer.findByRef(ResourceReference.FORMATTED_PICTOGRAM) : "";
         String phrase = resourceExplorer.getDatabaseFinder().getPhrase();
         return StringHelper.trimToEmpty(phrase) + StringHelper.prependIfNotEmpty(pictogram, "<br>");
     }
@@ -81,10 +83,9 @@ public class FortuneTeller extends BaseWrapper {
     public String talkAboutSomeone() {
         String s = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.opinion);
         s = tagProcessor.replaceTags(s).getText();
-        s = StringHelper.replace(s, " a el ", " al ");
         s = TextProcessor.removeDoubleFullStop(s);
 
-        String pictogram = r.getBoolean() ? resourceExplorer.getPictogram() : "";
+        String pictogram = r.getBoolean() ? resourceExplorer.findByRef(ResourceReference.FORMATTED_PICTOGRAM) : "";
         s = s + StringHelper.prependIfNotEmpty(pictogram, "<br>");
         return getString(R.string.html_format, s);
     }
