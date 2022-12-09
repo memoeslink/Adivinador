@@ -104,7 +104,7 @@ public class ResourceExplorer extends Explorer {
         return "?";
     }
 
-    private class ReflectionFinder {
+    class ReflectionFinder {
         private final Locale locale;
         private final GeneratorManager generatorManager;
 
