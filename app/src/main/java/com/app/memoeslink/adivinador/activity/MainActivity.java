@@ -1284,7 +1284,6 @@ public class MainActivity extends MenuActivity {
         if (formEntered) {
             Person person = getFormPerson();
             person.addAttribute("entered");
-            //TODO: set seed to Divination object
             prediction = divination.getPrediction(person, enquiryDate);
             currentSummary = prediction.getPerson().getSummary();
         } else

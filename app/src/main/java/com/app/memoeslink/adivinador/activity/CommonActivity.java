@@ -229,8 +229,6 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     protected final void showFormattedToast(Context context, String text) {
         cancelToast();
         toast = Toast.makeText(context, SpannerHelper.fromHtml(text), Toast.LENGTH_SHORT);
-        View vToast = toast.getView();
-        vToast.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_IN);
         Sound.play(context, "computer_chimes");
         toast.show();
     }

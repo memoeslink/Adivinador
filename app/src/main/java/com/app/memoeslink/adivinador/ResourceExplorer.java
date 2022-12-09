@@ -104,7 +104,7 @@ public class ResourceExplorer extends Explorer {
         return "?";
     }
 
-    class ReflectionFinder {
+    private class ReflectionFinder {
         private final Locale locale;
         private final GeneratorManager generatorManager;
 
@@ -284,7 +284,7 @@ public class ResourceExplorer extends Explorer {
                             preferenceFinder.getString(Preference.TEMP_NAME.getTag()),
                             Constant.DEVELOPER
                     );
-                    return TextFormatter.formatSuggestedName(suggestedName); //TODO
+                    return TextFormatter.formatSuggestedName(suggestedName);
                 default:
                     return TextFormatter.formatText("?", "b,tt");
             }
