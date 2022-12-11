@@ -99,7 +99,7 @@ public class TagProcessor extends Binder {
                 else if (StringHelper.startsWith(matcher.group(), "{database:"))
                     replacement = resourceExplorer.findTableRowByName(resourceName, index);
                 else if (StringHelper.startsWith(matcher.group(), "{method:"))
-                    replacement = resourceExplorer.findByReflection(resourceName);
+                    replacement = resourceExplorer.findMethodByName(resourceName);
                 int openingIndex = StringHelper.indexOf(replacement, '{');
                 int closingIndex;
                 boolean empty = false;

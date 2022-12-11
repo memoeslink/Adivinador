@@ -63,9 +63,9 @@ public class Divination extends Binder {
         Person person;
 
         if (r.getInt(3) == 0)
-            person = resourceExplorer.getReflectionFinder().getAnonymousPerson();
+            person = resourceExplorer.getGeneratorManager().getPersonGenerator().getAnonymousPerson();
         else
-            person = resourceExplorer.getReflectionFinder().getPerson();
+            person = resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson();
         return getPrediction(person, enquiryDate);
     }
 
@@ -147,11 +147,11 @@ public class Divination extends Binder {
         divination.put("divination", generateDivination(enquiryDate));
         divination.put("fortuneNumbers", android.text.TextUtils.join(", ", r.getIntegers(5, 100, true)));
         divination.put("emotions", getEmotions());
-        divination.put("bestTime", resourceExplorer.getReflectionFinder().getTime());
-        divination.put("worstTime", resourceExplorer.getReflectionFinder().getTime());
+        divination.put("bestTime", resourceExplorer.findMethodByRef(MethodReference.TIME));
+        divination.put("worstTime", resourceExplorer.findMethodByRef(MethodReference.TIME));
         divination.put("characteristic", StringHelper.capitalizeFirst(resourceExplorer.getDatabaseFinder().getAbstractNoun()));
         divination.put("chainOfEvents", getChainOfEvents(person));
-        divination.put("influence", TextFormatter.formatName(resourceExplorer.getReflectionFinder().getPerson()));
+        divination.put("influence", TextFormatter.formatName(resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson()));
 
         //Get zodiac information
         divination.put("zodiacSign", zodiacSign.getName(context) + " " + zodiacSign.getEmoji());
@@ -169,11 +169,11 @@ public class Divination extends Binder {
         divination.put("color", Maker.getColor(uniqueSeed));
         divination.put("animal", StringHelper.capitalizeFirst(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.animal)));
         divination.put("psychologicalType", resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.psychological_type));
-        divination.put("secretName", TextFormatter.formatName(resourceExplorer.getReflectionFinder().getSecretName()));
-        divination.put("demonicName", TextFormatter.formatName(TextProcessor.demonize(name, resourceExplorer.getReflectionFinder().getSecretName())));
-        divination.put("previousName", TextFormatter.formatName(resourceExplorer.getReflectionFinder().getPerson()));
-        divination.put("futureName", TextFormatter.formatName(resourceExplorer.getReflectionFinder().getPerson()));
-        divination.put("recommendedUsername", TextFormatter.formatUsername(resourceExplorer.getReflectionFinder().getUsername()));
+        divination.put("secretName", TextFormatter.formatName(resourceExplorer.findMethodByRef(MethodReference.SECRET_NAME)));
+        divination.put("demonicName", TextFormatter.formatName(TextProcessor.demonize(name, resourceExplorer.findMethodByRef(MethodReference.SECRET_NAME))));
+        divination.put("previousName", TextFormatter.formatName(resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson()));
+        divination.put("futureName", TextFormatter.formatName(resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson()));
+        divination.put("recommendedUsername", TextFormatter.formatUsername(resourceExplorer.findMethodByRef(MethodReference.USERNAME)));
         divination.put("digit", String.valueOf(r.getInt(10)));
         divination.put("uniqueNumbers", android.text.TextUtils.join(", ", r.getIntegers(3, 1000, true)));
         divination.put("daysBetweenDates", String.valueOf(DateTimeHelper.getDifferenceInDays(birthdate, enquiryDate)));
@@ -391,10 +391,10 @@ public class Divination extends Binder {
             Person identifiedPerson;
 
             if (r.getInt(4) > 0) {
-                identifiedPerson = resourceExplorer.getReflectionFinder().getPerson();
+                identifiedPerson = resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson();
                 identifiedPerson.setDescription(TextFormatter.formatName(identifiedPerson.getFullName()));
             } else {
-                identifiedPerson = resourceExplorer.getReflectionFinder().getAnonymousPerson();
+                identifiedPerson = resourceExplorer.getGeneratorManager().getPersonGenerator().getAnonymousPerson();
                 identifiedPerson.setDescription(TextFormatter.formatUsername(identifiedPerson.getUsername()));
             }
             people.add(identifiedPerson);

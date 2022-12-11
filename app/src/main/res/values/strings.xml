@@ -639,12 +639,12 @@
         <item>&personType37; of {string:relationship}</item>
     </string-array>
     <string-array name="divination">
-        <item>Something {rand:∅; favorable; unfavorable}, related to a certain thing ({method:getNounWithArticle}), will happen.</item>
-        <item>You will get {rand:∅; good; bad; rare} news about something ({method:getNounWithArticle}).</item>
+        <item>Something {rand:∅; favorable; unfavorable}, related to a certain thing ({method:getNounWithAnyArticle}), will happen.</item>
+        <item>You will get {rand:∅; good; bad; rare} news about something ({method:getNounWithAnyArticle}).</item>
         <item>You will get {rand:∅; good; bad; rare} news, related to {string:divination_middle}, from {string:unspecific_person}.</item>
         <item>You will get {rand:∅; good; bad; rare} news about {string:divination_middle}.</item>
         <item>Something {string:situation_descriptor}, related to {string:divination_middle}, will happen.</item>
-        <item>A {string:situation_descriptor} event, related to something ({method:getNounWithArticle}), will happen.</item>
+        <item>A {string:situation_descriptor} event, related to something ({method:getNounWithAnyArticle}), will happen.</item>
         <item>Something related to {string:unspecific_person} will happen.</item>
         <item>You\'re gonna have problems with a person whose sign is {string:astrological_sign}.</item>
         <item>A person, whose sign is {string:astrological_sign}, will help you with your problems.</item>

@@ -639,12 +639,12 @@
         <item>&personType37; {de/del} {string:relationship}</item>
     </string-array>
     <string-array name="divination">
-        <item>Pasará algo {rand:∅; favorable; desfavorable} acerca {de/del} {method:getNounWithArticle}.</item>
-        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca {de/del} {method:getNounWithArticle}.</item>
+        <item>Pasará algo {rand:∅; favorable; desfavorable} acerca {de/del} {method:getNounWithAnyArticle}.</item>
+        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca {de/del} {method:getNounWithAnyArticle}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas}, relacionadas con {string:divination_middle}, provenientes de {string:unspecific_person; gender:⸮}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {string:divination_middle}.</item>
         <item>Pasará algo {string:situation_descriptor} relacionado con {string:divination_middle}.</item>
-        <item>Un evento {string:situation_descriptor}, relacionado con {method:getNounWithArticle}, ocurrirá.</item>
+        <item>Un evento {string:situation_descriptor}, relacionado con {method:getNounWithAnyArticle}, ocurrirá.</item>
         <item>Ocurrirá algo relacionado con {string:unspecific_person; gender:⸮}.</item>
         <item>Tendrás problemas con una persona de signo {string:astrological_sign}.</item>
         <item>Una persona de signo {string:astrological_sign} te ayudará a resolver tus problemas.</item>
