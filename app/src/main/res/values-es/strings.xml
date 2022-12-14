@@ -1881,32 +1881,6 @@
         <item>[trabajador[,a]]</item>
         <item>veraz</item>
     </string-array>
-    <string-array name="simple_greetings">
-        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
-        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
-        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
-        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
-        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
-        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
-        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
-        <item>{[Buen]; plural:+os} {[día]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[tarde]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[tarde]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[tarde]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[tarde]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[tarde]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[tarde]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[tarde]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[tarde]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
-        <item>{[Buena]; plural:+s} {[noche]; plural:+s}</item>
-    </string-array>
     <string-array name="subject">
         <item>{string:nouns} ⸠string:adjectives⸡</item>
         <item>{string:nouns}</item>

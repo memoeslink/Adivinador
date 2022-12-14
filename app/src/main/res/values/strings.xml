@@ -1881,32 +1881,6 @@
         <item>hard-working</item>
         <item>truthful</item>
     </string-array>
-    <string-array name="simple_greetings">
-        <item>Good night</item>
-        <item>Good night</item>
-        <item>Good night</item>
-        <item>Good night</item>
-        <item>Good night</item>
-        <item>Good morning</item>
-        <item>Good morning</item>
-        <item>Good morning</item>
-        <item>Good morning</item>
-        <item>Good morning</item>
-        <item>Good morning</item>
-        <item>Good morning</item>
-        <item>Good afternoon</item>
-        <item>Good afternoon</item>
-        <item>Good afternoon</item>
-        <item>Good afternoon</item>
-        <item>Good afternoon</item>
-        <item>Good afternoon</item>
-        <item>Good evening</item>
-        <item>Good evening</item>
-        <item>Good evening</item>
-        <item>Good night</item>
-        <item>Good night</item>
-        <item>Good night</item>
-    </string-array>
     <string-array name="subject">
         <item>⸠string:adjectives⸡ {string:nouns}</item>
         <item>{string:nouns}</item>

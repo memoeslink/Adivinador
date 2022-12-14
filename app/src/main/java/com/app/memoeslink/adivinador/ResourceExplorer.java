@@ -3,36 +3,36 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 
 import com.app.memoeslink.adivinador.finder.DatabaseFinder;
+import com.app.memoeslink.adivinador.finder.PreferenceFinder;
 import com.memoeslink.generator.common.Constant;
 import com.memoeslink.generator.common.DateTimeGetter;
-import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.Device;
 import com.memoeslink.generator.common.Explorer;
 import com.memoeslink.generator.common.Form;
 import com.memoeslink.generator.common.GeneratorManager;
 import com.memoeslink.generator.common.IntegerHelper;
 import com.memoeslink.generator.common.NameType;
-import com.memoeslink.generator.common.Person;
+import com.memoeslink.generator.common.PhraseType;
 import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextFormatter;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 public class ResourceExplorer extends Explorer {
-    private static final List<String> PERSON_SOURCES;
+    private static final List<String> NAME_SOURCES;
     private static final HashMap<MethodReference, String> METHOD_MAPPING = new HashMap<>();
     private final DatabaseFinder databaseFinder;
+    private final PreferenceFinder preferenceFinder;
     private final MethodFinder methodFinder;
     private final GeneratorManager generatorManager;
 
     static {
-        PERSON_SOURCES = Collections.unmodifiableList(new ArrayList<>() {{
+        NAME_SOURCES = Collections.unmodifiableList(new ArrayList<>() {{
             addAll(new ArrayList<>(Collections.nCopies(15, "anonymous")));
             addAll(new ArrayList<>(Collections.nCopies(45, "common")));
             add("contact");
@@ -48,12 +48,17 @@ public class ResourceExplorer extends Explorer {
     public ResourceExplorer(Context context, Long seed) {
         super(context, seed);
         databaseFinder = new DatabaseFinder(context, seed);
+        preferenceFinder = new PreferenceFinder(context, seed);
         methodFinder = new MethodFinder();
         generatorManager = new GeneratorManager(Locale.getDefault(), seed);
     }
 
     public DatabaseFinder getDatabaseFinder() {
         return databaseFinder;
+    }
+
+    public PreferenceFinder getPreferenceFinder() {
+        return preferenceFinder;
     }
 
     public MethodFinder getMethodFinder() {
@@ -68,6 +73,7 @@ public class ResourceExplorer extends Explorer {
     public void bindSeed(Long seed) {
         super.bindSeed(seed);
         databaseFinder.bindSeed(seed);
+        preferenceFinder.bindSeed(seed);
         generatorManager.setSeed(seed);
     }
 
@@ -75,6 +81,7 @@ public class ResourceExplorer extends Explorer {
     public void unbindSeed() {
         super.unbindSeed();
         databaseFinder.unbindSeed();
+        preferenceFinder.unbindSeed();
         generatorManager.setSeed(null);
     }
 
@@ -122,39 +129,24 @@ public class ResourceExplorer extends Explorer {
                 METHOD_MAPPING.put(MethodReference.DECIMAL_PERCENTAGE, generatorManager.getStringGenerator().getDecimalPercentage());
                 METHOD_MAPPING.put(MethodReference.HEX_COLOR, generatorManager.getStringGenerator().getStrColor());
                 METHOD_MAPPING.put(MethodReference.DEFAULT_COLOR, ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS));
-                METHOD_MAPPING.put(MethodReference.DEVICE_INFO, new Device(context).getInfo(r.getInt(1, 10)));
+                METHOD_MAPPING.put(MethodReference.DEVICE_INFO, new Device(context).getInfo(r.getInt(1, 9)));
                 METHOD_MAPPING.put(MethodReference.CONTACT_NAME, contactNameFinder.getContactName());
-                METHOD_MAPPING.put(MethodReference.SUGGESTED_NAME, preferenceFinder.getStringSetValueOrDefault(
-                        Preference.DATA_STORED_NAMES.getTag(),
-                        preferenceFinder.getString(Preference.TEMP_NAME.getTag()),
-                        Constant.DEVELOPER
-                ));
+                METHOD_MAPPING.put(MethodReference.SUGGESTED_NAME, preferenceFinder.getSuggestedName());
                 METHOD_MAPPING.put(MethodReference.FORMATTED_NAME, getFormattedName());
-                METHOD_MAPPING.put(MethodReference.SIMPLE_GREETING, findRes(R.array.simple_greetings, DateTimeHelper.getCurrentTime().getHour()));
-                METHOD_MAPPING.put(MethodReference.CURRENT_DAY_OF_WEEK, android.text.format.DateFormat.format("EEEE", new Date()).toString());
-                METHOD_MAPPING.put(MethodReference.CURRENT_DATE, DateTimeGetter.with(LanguageHelper.getLocale(context)).getCurrentDate(0));
-                METHOD_MAPPING.put(MethodReference.CURRENT_TIME, DateTimeGetter.with(LanguageHelper.getLocale(context)).getCurrentTime(0));
+                METHOD_MAPPING.put(MethodReference.SIMPLE_GREETING, generatorManager.getPhraseGenerator().getPhrase(PhraseType.SIMPLE_GREETING));
+                METHOD_MAPPING.put(MethodReference.CURRENT_DAY_OF_WEEK, DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentDayOfWeek());
+                METHOD_MAPPING.put(MethodReference.CURRENT_DATE, DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentDate());
+                METHOD_MAPPING.put(MethodReference.CURRENT_TIME, DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentTime());
             }
             return METHOD_MAPPING.get(reference);
         }
 
         private String getFormattedName() {
-            switch (r.getItem(PERSON_SOURCES)) {
+            switch (r.getItem(NAME_SOURCES)) {
                 case "anonymous":
-                    return TextFormatter.formatUsername(METHOD_MAPPING.get(MethodReference.ANONYMOUS_PERSON));
+                    return TextFormatter.formatUsername(METHOD_MAPPING.get(MethodReference.USERNAME));
                 case "common":
-                    Person person = generatorManager.getPersonGenerator().getPerson();
-                    String name = person.getFullName();
-
-                    switch (person.getGender()) {
-                        case MASCULINE:
-                            name += "｢1｣";
-                            break;
-                        case FEMININE:
-                            name += "｢2｣";
-                            break;
-                    }
-                    return TextFormatter.formatName(name);
+                    return TextFormatter.formatName(generatorManager.getPersonGenerator().getPerson().getAltSummary());
                 case "contact":
                     return TextFormatter.formatContactName(METHOD_MAPPING.get(MethodReference.CONTACT_NAME));
                 case "suggestion":
