@@ -4,17 +4,15 @@ import androidx.multidex.MultiDexApplication
 import androidx.preference.PreferenceManager
 import com.memoeslink.generator.common.Session
 import com.memoeslink.generator.common.StringHelper
-import com.memoeslink.helper.SharedPreferencesHelper
 import java.io.File
 
 class BaseApplication : MultiDexApplication() {
-    private var preferences: SharedPreferencesHelper? = null
-    private var defaultPreferences: SharedPreferencesHelper? = null
 
     override fun onCreate() {
         super.onCreate()
-        preferences = SharedPreferencesHelper.getPreferencesHelper(this@BaseApplication)
-        defaultPreferences = SharedPreferencesHelper(this@BaseApplication)
+
+        //Initialize SharedPreferences
+        PreferenceHandler.init(applicationContext);
 
         //Initialize Generator database
         Session.getInstance().initDatabase(this@BaseApplication)
@@ -31,7 +29,7 @@ class BaseApplication : MultiDexApplication() {
     }
 
     private fun getDatabaseTrace(version: Int): File? {
-        if (version >= (preferences?.getInt(Preference.SYSTEM_REVISED_DATABASE_VERSION.tag) ?: 1)) {
+        if (version >= PreferenceHandler.getInt(Preference.SYSTEM_REVISED_DATABASE_VERSION)) {
             val databaseName = if (version > 1) {
                 String.format(
                     Database.DATABASE_NAME_FORMAT,
@@ -43,7 +41,7 @@ class BaseApplication : MultiDexApplication() {
             val database = getDatabasePath(databaseName)
 
             if (database.exists()) {
-                preferences?.put(Preference.SYSTEM_REVISED_DATABASE_VERSION.tag, version)
+                PreferenceHandler.put(Preference.SYSTEM_REVISED_DATABASE_VERSION, version)
                 return database
             }
             getDatabaseTrace(version - 1)

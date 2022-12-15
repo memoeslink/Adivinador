@@ -3,7 +3,6 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 
 import com.memoeslink.generator.common.StringHelper;
-import com.memoeslink.helper.SharedPreferencesHelper;
 
 import java.util.Locale;
 
@@ -14,18 +13,17 @@ public class LanguageHelper {
         return Locale.getDefault().getLanguage();
     }
 
-    public static String getLanguage(Context context) {
-        SharedPreferencesHelper preferences = new SharedPreferencesHelper(context);
+    public static String getLanguage() {
         String language;
 
-        if (!preferences.contains(Preference.SETTING_LANGUAGE.getTag())) {
+        if (!PreferenceHandler.has(Preference.SETTING_LANGUAGE)) {
             language = getDeviceLanguage();
 
             if (!StringHelper.equalsAny(language, PERMITTED_LANGUAGES))
                 language = "en";
-            preferences.put(Preference.SETTING_LANGUAGE.getTag(), language);
+            PreferenceHandler.put(Preference.SETTING_LANGUAGE, language);
         } else
-            language = preferences.getString(Preference.SETTING_LANGUAGE.getTag(), "en");
+            language = PreferenceHandler.getString(Preference.SETTING_LANGUAGE, "en");
         return language;
     }
 

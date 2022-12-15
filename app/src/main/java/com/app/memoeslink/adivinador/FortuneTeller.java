@@ -1,6 +1,7 @@
 package com.app.memoeslink.adivinador;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.res.TypedArray;
 
 import com.app.memoeslink.adivinador.tagprocessor.TagProcessor;
@@ -13,7 +14,7 @@ import com.memoeslink.generator.common.TextProcessor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FortuneTeller extends BaseWrapper {
+public class FortuneTeller extends ContextWrapper {
     private final Randomizer r;
     private final ResourceExplorer resourceExplorer;
     private final TagProcessor tagProcessor;
@@ -27,8 +28,8 @@ public class FortuneTeller extends BaseWrapper {
     }
 
     public Long getSeed() {
-        if (StringHelper.isNotNullOrBlank(defaultPreferences.getString(Preference.SETTING_SEED.getTag())))
-            return LongHelper.getSeed(defaultPreferences.getString(Preference.SETTING_SEED.getTag()));
+        if (StringHelper.isNotNullOrBlank(PreferenceHandler.getString(Preference.SETTING_SEED)))
+            return LongHelper.getSeed(PreferenceHandler.getString(Preference.SETTING_SEED));
         return null;
     }
 
@@ -52,13 +53,13 @@ public class FortuneTeller extends BaseWrapper {
     public String talk() {
         List<String> phraseTypes = new ArrayList<>();
 
-        if (defaultPreferences.getBoolean(Preference.SETTING_GREETINGS_ENABLED.getTag()))
+        if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED))
             phraseTypes.add("greetings");
 
-        if (defaultPreferences.getBoolean(Preference.SETTING_OPINIONS_ENABLED.getTag()))
+        if (PreferenceHandler.getBoolean(Preference.SETTING_OPINIONS_ENABLED))
             phraseTypes.add("opinions");
 
-        if (defaultPreferences.getBoolean(Preference.SETTING_PHRASES_ENABLED.getTag()))
+        if (PreferenceHandler.getBoolean(Preference.SETTING_PHRASES_ENABLED))
             phraseTypes.add("phrases");
 
         if (phraseTypes.size() > 0) {
@@ -95,7 +96,7 @@ public class FortuneTeller extends BaseWrapper {
         int arrayId;
         int initialRes;
 
-        switch (defaultPreferences.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT.getTag(), 1)) {
+        switch (PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT, 1)) {
             case 1:
                 arrayId = R.array.emoji_collection;
                 initialRes = R.drawable.ic_emoji_angel;

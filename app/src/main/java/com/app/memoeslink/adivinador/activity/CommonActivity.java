@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.app.memoeslink.adivinador.ActivityStatus;
 import com.app.memoeslink.adivinador.LanguageHelper;
 import com.app.memoeslink.adivinador.Preference;
+import com.app.memoeslink.adivinador.PreferenceHandler;
 import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.ResourceExplorer;
 import com.app.memoeslink.adivinador.Screen;
@@ -39,7 +40,6 @@ import com.google.gson.JsonSerializer;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.StringHelper;
-import com.memoeslink.helper.SharedPreferencesHelper;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -54,8 +54,6 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     protected boolean speechAvailable;
     protected Bundle bundle;
     protected TextToSpeech tts;
-    protected SharedPreferencesHelper preferences;
-    protected SharedPreferencesHelper defaultPreferences;
     protected ResourceExplorer resourceExplorer;
     protected AudioManager audioManager;
     protected List<Person> people = new ArrayList<>();
@@ -72,7 +70,6 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
         setTheme(getThemeId());
         super.onCreate(savedInstanceState);
         activityStatus = ActivityStatus.CREATED;
-        preferences = SharedPreferencesHelper.Companion.getPreferencesHelper(CommonActivity.this);
         resourceExplorer = new ResourceExplorer(CommonActivity.this);
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         bundle = new Bundle();
@@ -91,7 +88,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     protected void onResume() {
         super.onResume();
         activityStatus = ActivityStatus.RESUMED;
-        Screen.setContinuance(CommonActivity.this, defaultPreferences.getBoolean(Preference.SETTING_ACTIVE_SCREEN.getTag()));
+        Screen.setContinuance(CommonActivity.this, PreferenceHandler.getBoolean(Preference.SETTING_ACTIVE_SCREEN));
     }
 
     @Override
@@ -120,7 +117,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if (defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getTag()))
+                    if (PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED))
                         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
                     else
                         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
@@ -128,7 +125,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
                 if (action == KeyEvent.ACTION_DOWN) {
-                    if (defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getTag()))
+                    if (PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED))
                         audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
                     else
                         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
@@ -142,7 +139,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     @Override
     public void onInit(int i) {
         if (i == TextToSpeech.SUCCESS)
-            speechAvailable = isTTSAvailable(tts, defaultPreferences.getString(Preference.SETTING_LANGUAGE.getTag(), "en"));
+            speechAvailable = isTTSAvailable(tts, PreferenceHandler.getString(Preference.SETTING_LANGUAGE, "en"));
         else {
             speechAvailable = false;
             showSimpleToast(CommonActivity.this, getString(R.string.toast_voice_unavailability));
@@ -177,8 +174,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     }
 
     protected final ContextWrapper wrap(Context context) {
-        SharedPreferencesHelper preferences = new SharedPreferencesHelper(context);
-        String language = LanguageHelper.getLanguage(preferences);
+        String language = LanguageHelper.getLanguage();
 
         if (StringHelper.isNotNullOrEmpty(language)) {
             Locale locale = new Locale(language);
@@ -265,7 +261,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     }
 
     protected final void talk(String text) {
-        if (speechAvailable && defaultPreferences.getBoolean(Preference.SETTING_AUDIO_ENABLED.getTag()) && defaultPreferences.getBoolean(Preference.SETTING_VOICE_ENABLED.getTag())) {
+        if (speechAvailable && PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) && PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED)) {
             if (tts.isSpeaking())
                 tts.stop();
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, "UniqueID");
@@ -273,48 +269,48 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     }
 
     protected final void deleteTemp() {
-        preferences.remove(Preference.TEMP_BUSY.getTag());
-        preferences.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER.getTag());
-        preferences.remove(Preference.TEMP_RESTART_ACTIVITY.getTag());
-        preferences.remove(Preference.TEMP_RESTART_ADS.getTag());
+        PreferenceHandler.remove(Preference.TEMP_BUSY);
+        PreferenceHandler.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER);
+        PreferenceHandler.remove(Preference.TEMP_RESTART_ACTIVITY);
+        PreferenceHandler.remove(Preference.TEMP_RESTART_ADS);
 
-        if (!defaultPreferences.getBoolean(Preference.SETTING_KEEP_FORM.getTag())) clearForm();
+        if (!PreferenceHandler.getBoolean(Preference.SETTING_KEEP_FORM)) clearForm();
     }
 
     protected final void clearForm() {
-        preferences.remove(Preference.TEMP_NAME.getTag());
-        preferences.remove(Preference.TEMP_GENDER.getTag());
-        preferences.remove(Preference.TEMP_YEAR_OF_BIRTH.getTag());
-        preferences.remove(Preference.TEMP_MONTH_OF_BIRTH.getTag());
-        preferences.remove(Preference.TEMP_DAY_OF_BIRTH.getTag());
-        preferences.remove(Preference.TEMP_ANONYMOUS.getTag());
+        PreferenceHandler.remove(Preference.TEMP_NAME);
+        PreferenceHandler.remove(Preference.TEMP_GENDER);
+        PreferenceHandler.remove(Preference.TEMP_YEAR_OF_BIRTH);
+        PreferenceHandler.remove(Preference.TEMP_MONTH_OF_BIRTH);
+        PreferenceHandler.remove(Preference.TEMP_DAY_OF_BIRTH);
+        PreferenceHandler.remove(Preference.TEMP_ANONYMOUS);
     }
 
     protected final Person getFormPerson() {
         Person person = new Person.PersonBuilder()
-                .setGender(Gender.get(preferences.getInt(Preference.TEMP_GENDER.getTag())))
+                .setGender(Gender.get(PreferenceHandler.getInt(Preference.TEMP_GENDER)))
                 .setBirthdate(LocalDate.of(
-                        preferences.getInt(Preference.TEMP_YEAR_OF_BIRTH.getTag(), 1900),
-                        preferences.getInt(Preference.TEMP_MONTH_OF_BIRTH.getTag(), 1),
-                        preferences.getInt(Preference.TEMP_DAY_OF_BIRTH.getTag(), 1)
+                        PreferenceHandler.getInt(Preference.TEMP_YEAR_OF_BIRTH, 1900),
+                        PreferenceHandler.getInt(Preference.TEMP_MONTH_OF_BIRTH, 1),
+                        PreferenceHandler.getInt(Preference.TEMP_DAY_OF_BIRTH, 1)
                 ))
                 .setAttribute("requested")
                 .build();
 
-        if (preferences.getBoolean(Preference.TEMP_ANONYMOUS.getTag())) {
-            person.setUsername(preferences.getString(Preference.TEMP_NAME.getTag()));
+        if (PreferenceHandler.getBoolean(Preference.TEMP_ANONYMOUS)) {
+            person.setUsername(PreferenceHandler.getString(Preference.TEMP_NAME));
             person.addAttribute("anonymous");
         } else
-            person.setFullName(preferences.getString(Preference.TEMP_NAME.getTag()));
+            person.setFullName(PreferenceHandler.getString(Preference.TEMP_NAME));
         return person;
     }
 
     protected final boolean isNoPersonTempStored() {
-        return (!preferences.contains(Preference.TEMP_NAME.getTag())
-                && !preferences.contains(Preference.TEMP_GENDER.getTag())
-                && !preferences.contains(Preference.TEMP_YEAR_OF_BIRTH.getTag())
-                && !preferences.contains(Preference.TEMP_MONTH_OF_BIRTH.getTag())
-                && !preferences.contains(Preference.TEMP_DAY_OF_BIRTH.getTag())
+        return (!PreferenceHandler.has(Preference.TEMP_NAME)
+                && !PreferenceHandler.has(Preference.TEMP_GENDER)
+                && !PreferenceHandler.has(Preference.TEMP_YEAR_OF_BIRTH)
+                && !PreferenceHandler.has(Preference.TEMP_MONTH_OF_BIRTH)
+                && !PreferenceHandler.has(Preference.TEMP_DAY_OF_BIRTH)
         ) || isPersonNotTempStored(getFormPerson());
     }
 
@@ -342,7 +338,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     }
 
     protected final boolean savePerson(Person person) {
-        if (defaultPreferences.getBoolean(Preference.SETTING_SAVE_ENQUIRIES.getTag(), true) && isPersonDistinct(person)) {
+        if (PreferenceHandler.getBoolean(Preference.SETTING_SAVE_ENQUIRIES, true) && isPersonDistinct(person)) {
             if (people.size() >= 100)
                 people.remove(0);
             people.add(person);
@@ -350,16 +346,14 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
                 return new JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE)); // "yyyy-mm-dd"
             }).create();
             String json = gson.toJson(people);
-            preferences.save(Preference.DATA_STORED_PEOPLE.getTag(), json);
+            PreferenceHandler.save(Preference.DATA_STORED_PEOPLE, json);
             return true;
         }
         return false;
     }
 
     protected final int getThemeId() {
-        defaultPreferences = new SharedPreferencesHelper(CommonActivity.this);
-
-        switch (defaultPreferences.getStringAsInt(Preference.SETTING_THEME.getTag())) {
+        switch (PreferenceHandler.getStringAsInt(Preference.SETTING_THEME)) {
             case 1:
                 return R.style.BlackTheme;
             case 2:

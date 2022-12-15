@@ -3,6 +3,7 @@ package com.app.memoeslink.adivinador.tagprocessor;
 import android.content.Context;
 
 import com.app.memoeslink.adivinador.Preference;
+import com.app.memoeslink.adivinador.PreferenceHandler;
 import com.app.memoeslink.adivinador.ResourceExplorer;
 import com.memoeslink.generator.common.Binder;
 import com.memoeslink.generator.common.Gender;
@@ -209,7 +210,7 @@ public class TagProcessor extends Binder {
             return defaultGender;
 
         if (StringHelper.equalsAny(s, "user", "⛌")) {
-            int genderValue = resourceExplorer.getPreferenceFinder().getInt(Preference.TEMP_GENDER.getTag(), r.getInt(3));
+            int genderValue = PreferenceHandler.getInt(Preference.TEMP_GENDER, r.getInt(3));
             return Gender.get(genderValue);
         }
 
