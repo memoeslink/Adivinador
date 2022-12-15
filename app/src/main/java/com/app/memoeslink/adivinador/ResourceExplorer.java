@@ -124,7 +124,7 @@ public class ResourceExplorer extends Explorer {
                 METHOD_MAPPING.put(MethodReference.SUGGESTED_NAME, getSuggestedName());
                 METHOD_MAPPING.put(MethodReference.FORMATTED_NAME, getFormattedName());
                 METHOD_MAPPING.put(MethodReference.SIMPLE_GREETING, generatorManager.getPhraseGenerator().getPhrase(PhraseType.SIMPLE_GREETING));
-                METHOD_MAPPING.put(MethodReference.CURRENT_DAY_OF_WEEK, DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentDayOfWeek());
+                METHOD_MAPPING.put(MethodReference.CURRENT_DAY_OF_WEEK, DateTimeGetter.with(LanguageHelper.getLocale(context), r).getNameOfDayOfWeek());
                 METHOD_MAPPING.put(MethodReference.CURRENT_DATE, DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentDate());
                 METHOD_MAPPING.put(MethodReference.CURRENT_TIME, DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentTime());
             }
