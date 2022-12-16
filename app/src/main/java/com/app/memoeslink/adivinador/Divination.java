@@ -33,7 +33,7 @@ public class Divination extends Binder {
     private final TagProcessor tagProcessor;
 
     static {
-        separator = CharHelper.getFirstDisplayableGlyph('↓', '⬇', '⇣', '•');
+        separator = CharHelper.getFirstDisplayableGlyph('↓', '⬇', '⇣', '¦', '•');
     }
 
     public Divination(Context context) {
@@ -436,7 +436,7 @@ public class Divination extends Binder {
                 chain.append(getString(R.string.chain_link, n + 1, people.get(n).getDescription(), "", "", "(" + resourceExplorer.getDatabaseFinder().getAction() + ")", people.get(n + 1).getDescription(), TextFormatter.formatNumber(karma), TextFormatter.formatNumber(totalKarma)));
 
             //Define link delimiter
-            if (separator != '\0')
+            if (separator != '\u0000') //\u0000 is \0
                 chain.append("<br><font color=#A0A8C7>").append(separator).append("</font><br>");
             else
                 chain.append("<br>");

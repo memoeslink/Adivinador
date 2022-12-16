@@ -28,8 +28,8 @@ public class SpanishGrammarTagProcessor implements GrammarTagProcessor {
         while (remainingMatches > 0 && matcher.find()) {
             if (matcher.group("rule1") != null) {
                 String contraction = matcher.group("rule1Contraction");
-                contraction = StringHelper.substringAfter(contraction, "/");
                 String preposition = StringHelper.substringBefore(contraction, "/");
+                contraction = StringHelper.substringAfter(contraction, "/");
                 String replacement;
 
                 if (matcher.group("rule1Remainder") != null) {
