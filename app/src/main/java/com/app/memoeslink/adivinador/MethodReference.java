@@ -7,7 +7,6 @@ public enum MethodReference {
     PERSON("getPerson"),
     ANONYMOUS_PERSON("getAnonymousPerson"),
     NAME("getName"),
-    ALT_SUMMARY("getAltSummary"),
     USERNAME("getUsername"),
     SECRET_NAME("getSecretName"),
     NOUN("getNoun"),

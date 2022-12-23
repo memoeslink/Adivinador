@@ -107,8 +107,7 @@ public class ResourceExplorer extends Explorer {
 
             if (METHOD_MAPPING.isEmpty()) {
                 METHOD_MAPPING.put(MethodReference.NONE, () -> Database.DEFAULT_VALUE);
-                METHOD_MAPPING.put(MethodReference.NAME, () -> generatorManager.getPersonGenerator().getPerson().getFullName());
-                METHOD_MAPPING.put(MethodReference.ALT_SUMMARY, () -> generatorManager.getPersonGenerator().getPerson().getAltSummary());
+                METHOD_MAPPING.put(MethodReference.NAME, () -> generatorManager.getPersonGenerator().getPerson().getAltSummary());
                 METHOD_MAPPING.put(MethodReference.USERNAME, () -> generatorManager.getNameGenerator().getUsername());
                 METHOD_MAPPING.put(MethodReference.SECRET_NAME, () -> generatorManager.getNameGenerator().getName(NameType.SECRET_NAME));
                 METHOD_MAPPING.put(MethodReference.NOUN, () -> generatorManager.getNounGenerator().getNoun(Form.UNDEFINED));
@@ -149,7 +148,7 @@ public class ResourceExplorer extends Explorer {
                 case "anonymous":
                     return TextFormatter.formatUsername(getMethodByRef(MethodReference.USERNAME));
                 case "common":
-                    return TextFormatter.formatName(getMethodByRef(MethodReference.ALT_SUMMARY));
+                    return TextFormatter.formatName(getMethodByRef(MethodReference.NAME));
                 case "contact":
                     return TextFormatter.formatContactName(getMethodByRef(MethodReference.CONTACT_NAME));
                 case "suggestion":
