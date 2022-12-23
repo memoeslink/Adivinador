@@ -1,5 +1,7 @@
 package com.app.memoeslink.adivinador.tagprocessor;
 
+import com.memoeslink.generator.common.Gender;
+
 import java.util.regex.Pattern;
 
 public class DefaultGrammarTagProcessor implements GrammarTagProcessor {
@@ -13,6 +15,11 @@ public class DefaultGrammarTagProcessor implements GrammarTagProcessor {
 
     @Override
     public ProcessedText replaceTags(String s, int remainingMatches) {
+        return replaceTags(s, Gender.UNDEFINED, remainingMatches);
+    }
+
+    @Override
+    public ProcessedText replaceTags(String s, Gender gender, int remainingMatches) {
         return new ProcessedText(s, 0, remainingMatches);
     }
 }

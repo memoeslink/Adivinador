@@ -1,5 +1,6 @@
 package com.app.memoeslink.adivinador.tagprocessor;
 
+import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.StringHelper;
 
 import java.util.regex.Matcher;
@@ -19,29 +20,36 @@ public class SpanishGrammarTagProcessor implements GrammarTagProcessor {
 
     @Override
     public ProcessedText replaceTags(String s, int remainingMatches) {
+        return replaceTags(s, Gender.UNDEFINED, remainingMatches);
+    }
+
+    @Override
+    public ProcessedText replaceTags(String s, Gender gender, int remainingMatches) {
         if (StringHelper.isNullOrEmpty(s))
             return new ProcessedText(s, 0, remainingMatches);
+        gender = gender != null ? gender : Gender.UNDEFINED;
         Matcher matcher = GRAMMAR_TAG_PATTERN.matcher(s);
         StringBuffer sb = new StringBuffer();
         int replacementCount = 0;
 
         while (remainingMatches > 0 && matcher.find()) {
+            String replacement = matcher.group();
+
             if (matcher.group("rule1") != null) {
                 String contraction = matcher.group("rule1Contraction");
                 String preposition = StringHelper.substringBefore(contraction, "/");
                 contraction = StringHelper.substringAfter(contraction, "/");
-                String replacement;
 
                 if (matcher.group("rule1Remainder") != null) {
                     contraction = Character.isUpperCase(preposition.charAt(0)) ? StringHelper.capitalizeFirst(contraction) : contraction;
                     replacement = matcher.group("rule1Start") + contraction + matcher.group("rule1End");
                 } else
                     replacement = matcher.group("rule1Start") + preposition + matcher.group("rule1End");
-                matcher.appendReplacement(sb, replacement);
-
-                if (replacementCount < Integer.MAX_VALUE)
-                    replacementCount++;
             }
+            matcher.appendReplacement(sb, replacement);
+
+            if (replacementCount < Integer.MAX_VALUE)
+                replacementCount++;
             remainingMatches--;
         }
         matcher.appendTail(sb);

@@ -71,7 +71,7 @@
     <string name="alert_successful_donation_title">Successful donation</string>
     <string name="astrological_sign">Aquarius¶ Pisces¶ Aries¶ Taurus¶ Gemini¶ Cancer¶ Leo¶ Virgo¶ Libra¶ Scorpio¶ Sagittarius¶ Capricorn</string>
     <string name="binder">Use current enquiry name</string>
-    <string name="chain_effect">• Chain results: the effect will be %1$s in the day of %2$s.</string>
+    <string name="chain_effect">─ Chain results: The day of %1$s will be %2$s (%3$s).</string>
     <string name="chain_link">• Link %1$d: %2$s%3$s executes an action%4$s %5$s, and that causes a reaction in %6$s (%7$s karma; %8$s total karma).</string>
     <string name="clear">Clear form</string>
     <string name="compatibility">See compatibility</string>
@@ -151,7 +151,7 @@
         <br>%19$s
         <br><br><big><b><font color=#869DEE>Identity</font></b></big>
         <br><br><font color=#53E3B3>Color:</font>
-        <br><big><big><font color=%20$s>1$s</font></big></big>
+        <br><big><big><font color=%20$s>%21$s</font></big></big>
         <br><br><font color=#53E3B3>Animal:</font>
         <br>%22$s
         <br><br><font color=#53E3B3>Psychological type according to Jung:</font>
@@ -246,6 +246,7 @@
     <string name="toast_voice_unavailability">There\'s not any available voice for TTS in your device.</string>
     <string name="today">today</string>
     <string name="value_as_negative">negative</string>
+    <string name="value_as_neutral">neutral</string>
     <string name="value_as_null">null</string>
     <string name="value_as_positive">positive</string>
     <string name="value_as_zero">zero</string>
@@ -639,12 +640,12 @@
         <item>&personType37; of {string:relationship}</item>
     </string-array>
     <string-array name="divination">
-        <item>Something {rand:∅; favorable; unfavorable}, related to a certain thing ({method:getNounWithAnyArticle}), will happen.</item>
-        <item>You will get {rand:∅; good; bad; rare} news about something ({method:getNounWithAnyArticle}).</item>
+        <item>Something {rand:∅; favorable; unfavorable}, related to {method:getNounWithAnyArticle}, will happen.</item>
+        <item>You will get {rand:∅; good; bad; rare} news about {method:getNounWithAnyArticle}.</item>
+        <item>A {string:situation_descriptor} event, related to {method:getNounWithAnyArticle}, will happen.</item>
         <item>You will get {rand:∅; good; bad; rare} news, related to {string:divination_middle}, from {string:unspecific_person}.</item>
         <item>You will get {rand:∅; good; bad; rare} news about {string:divination_middle}.</item>
         <item>Something {string:situation_descriptor}, related to {string:divination_middle}, will happen.</item>
-        <item>A {string:situation_descriptor} event, related to something ({method:getNounWithAnyArticle}), will happen.</item>
         <item>Something related to {string:unspecific_person} will happen.</item>
         <item>You\'re gonna have problems with a person whose sign is {string:astrological_sign}.</item>
         <item>A person, whose sign is {string:astrological_sign}, will help you with your problems.</item>
@@ -1110,8 +1111,8 @@
         <item>black-haired</item>
         <item>long-haired</item>
         <item>short-haired</item>
-        <item>with shoulder-length hair</item>
-        <item>with medium-length hair</item>
+        <item>shoulder-length-haired</item>
+        <item>medium-length-haired</item>
         <item>spiky-haired</item>
         <item>curly-haired</item>
         <item>straight-haired</item>

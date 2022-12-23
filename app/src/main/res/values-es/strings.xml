@@ -71,7 +71,7 @@
     <string name="alert_successful_donation_title">Donación exitosa</string>
     <string name="astrological_sign">Acuario¶ Piscis¶ Aries¶ Tauro¶ Géminis¶ Cáncer¶ Leo¶ Virgo¶ Libra¶ Escorpio¶ Sagitario¶ Capricornio</string>
     <string name="binder">Usar nombre de consulta actual</string>
-    <string name="chain_effect">• Resultado de la cadena: el efecto será %1$s en el día de %2$s.</string>
+    <string name="chain_effect">─ Resultado de la cadena: El día de %1$s será %2$s (%3$s).</string>
     <string name="chain_link">• Eslabón %1$d: %2$s%3$s realiza una acción%4$s %5$s, y esta afecta %6$s (%7$s karma; %8$s karma acumulado).</string>
     <string name="clear">Limpiar formulario</string>
     <string name="compatibility">Ver compatibilidad</string>
@@ -246,6 +246,7 @@
     <string name="toast_voice_unavailability">No hay ningún idioma disponible para voces en tu dispositivo.</string>
     <string name="today">hoy</string>
     <string name="value_as_negative">negativo</string>
+    <string name="value_as_neutral">neutral</string>
     <string name="value_as_null">nulo</string>
     <string name="value_as_positive">positivo</string>
     <string name="value_as_zero">cero</string>
@@ -641,10 +642,10 @@
     <string-array name="divination">
         <item>Pasará algo {rand:∅; favorable; desfavorable} acerca {de/del} {method:getNounWithAnyArticle}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca {de/del} {method:getNounWithAnyArticle}.</item>
+        <item>Un evento {string:situation_descriptor}, relacionado con {method:getNounWithAnyArticle}, ocurrirá.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas}, relacionadas con {string:divination_middle}, provenientes de {string:unspecific_person; gender:⸮}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {string:divination_middle}.</item>
         <item>Pasará algo {string:situation_descriptor} relacionado con {string:divination_middle}.</item>
-        <item>Un evento {string:situation_descriptor}, relacionado con {method:getNounWithAnyArticle}, ocurrirá.</item>
         <item>Ocurrirá algo relacionado con {string:unspecific_person; gender:⸮}.</item>
         <item>Tendrás problemas con una persona de signo {string:astrological_sign}.</item>
         <item>Una persona de signo {string:astrological_sign} te ayudará a resolver tus problemas.</item>
@@ -1059,10 +1060,10 @@
         <item>[un[,a]] infante</item>
         <item>[un[,a]] [adult[o,a]]</item>
         <item>[un[,a]] adolescente</item>
-        <item>una persona de menor edad</item>
-        <item>una persona de mayor edad</item>
-        <item>una persona de la misma edad</item>
-        <item>una persona mayor de edad</item>
+        <item>una persona de menor edad｢2｣</item>
+        <item>una persona de mayor edad｢2｣</item>
+        <item>una persona de la misma edad｢2｣</item>
+        <item>una persona mayor de edad｢2｣</item>
         <item>[un[,a]] menor de edad</item>
         <item>[un[,a]] bebé</item>
         <item>[un[,a]] recién [nacid[o,a]]</item>

@@ -10,8 +10,8 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.util.HashMap;
 
 public class Database extends SQLiteAssetHelper {
-    public static final int DATABASE_VERSION = 48;
-    public static final String DATABASE_NAME = "words_upgrade_47-48.sqlite";
+    public static final int DATABASE_VERSION = 49;
+    public static final String DATABASE_NAME = "words_upgrade_48-49.sqlite";
     public static final String DATABASE_NAME_FORMAT = "words%s.sqlite";
     public static final String DEFAULT_VALUE = "?";
     private static final String ID_PREFIX = "ID";

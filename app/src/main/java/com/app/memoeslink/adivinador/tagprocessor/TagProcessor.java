@@ -165,7 +165,7 @@ public class TagProcessor extends Binder {
 
             //Replace grammar tags within the text, if there are any
             GrammarTagProcessor grammarTagProcessor = new GrammarTagProcessorFactory(context).createGrammarTagProcessor();
-            ProcessedText t = grammarTagProcessor.replaceTags(s, pairsOfBrackets);
+            ProcessedText t = grammarTagProcessor.replaceTags(s, gender, pairsOfBrackets);
             s = t.getText();
             pairsOfBrackets = t.getRemainingMatches();
         }
@@ -174,14 +174,15 @@ public class TagProcessor extends Binder {
         if (pair.getSubValue() != null && pair.getSubValue().size() > 0 && !s.equals(pair.getSubKey()))
             gender = pair.getSubValue().get(pair.getSubValue().size() - 1);
         s = pair.getSubKey();
+        gender = gender != null ? gender : defaultGender;
 
         //Replace subtags within the text, if there are any
         if (StringHelper.containsAny(s, "⸠", "⸡")) {
             s = StringHelper.replaceEach(s, new String[]{"⸠", "⸡"}, new String[]{"{", "}"});
-            s = replaceTags(s, gender != null ? gender : defaultGender, plural).getText();
+            s = replaceTags(s, gender, plural).getText();
         }
         component.setText(s);
-        component.setHegemonicGender(gender != null ? gender : defaultGender);
+        component.setHegemonicGender(gender);
         component.setNullified(nullified);
         return component;
     }
@@ -194,7 +195,7 @@ public class TagProcessor extends Binder {
             while (matcher.find()) {
                 matches.add(getTrueGender(matcher.group(1)));
             }
-            return new Pair<>(StringHelper.removeAll(s, "｢[0-2]｣"), matches);
+            return new Pair<>(StringHelper.removeAll(s, "\\s*｢[0-2]｣"), matches);
         }
         return new Pair<>(s, new ArrayList<>());
     }

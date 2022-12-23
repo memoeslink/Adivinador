@@ -441,9 +441,16 @@ public class Divination extends Binder {
             else
                 chain.append("<br>");
         }
-        float percentage = (float) totalKarma / (people.size() - 1) * 10;
-        String effect = TextFormatter.formatPercentageWithText(percentage);
-        chain.append(getString(R.string.chain_effect, effect, person.getDescription()));
+        float percentage = (float) totalKarma / 100 * ((people.size() - 1) * 10);
+        String effect;
+
+        if (percentage == 0)
+            effect = getString(R.string.value_as_null);
+        else if (percentage > 0)
+            effect = getString(R.string.value_as_positive);
+        else
+            effect = getString(R.string.value_as_negative);
+        chain.append(getString(R.string.chain_effect, person.getDescription(), effect, TextFormatter.formatPercentage(percentage)));
         return getString(R.string.html_format, chain.toString());
     }
 
