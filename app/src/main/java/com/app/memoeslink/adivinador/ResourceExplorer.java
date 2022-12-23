@@ -20,10 +20,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Supplier;
 
 public class ResourceExplorer extends Explorer {
     private static final List<String> NAME_SOURCES;
-    private static final HashMap<MethodReference, String> METHOD_MAPPING = new HashMap<>();
+    private static final HashMap<MethodReference, Supplier<String>> METHOD_MAPPING = new HashMap<>();
     private final DatabaseFinder databaseFinder;
     private final MethodFinder methodFinder;
     private final GeneratorManager generatorManager;
@@ -105,30 +106,31 @@ public class ResourceExplorer extends Explorer {
             reference = reference != null ? reference : MethodReference.NONE;
 
             if (METHOD_MAPPING.isEmpty()) {
-                METHOD_MAPPING.put(MethodReference.NONE, Database.DEFAULT_VALUE);
-                METHOD_MAPPING.put(MethodReference.NAME, generatorManager.getNameGenerator().getName(NameType.FULL_NAME));
-                METHOD_MAPPING.put(MethodReference.USERNAME, generatorManager.getNameGenerator().getUsername());
-                METHOD_MAPPING.put(MethodReference.SECRET_NAME, generatorManager.getNameGenerator().getName(NameType.SECRET_NAME));
-                METHOD_MAPPING.put(MethodReference.NOUN, generatorManager.getNounGenerator().getNoun(Form.UNDEFINED));
-                METHOD_MAPPING.put(MethodReference.NOUN_WITH_ARTICLE, generatorManager.getNounGenerator().getNounWithArticle(Form.UNDEFINED));
-                METHOD_MAPPING.put(MethodReference.NOUN_WITH_INDEFINITE_ARTICLE, generatorManager.getNounGenerator().getNounWithArticle(Form.UNDEFINED));
-                METHOD_MAPPING.put(MethodReference.NOUN_WITH_ANY_ARTICLE, generatorManager.getNounGenerator().getNounWithArticle());
-                METHOD_MAPPING.put(MethodReference.DATE, generatorManager.getDateTimeGenerator().getStrDate());
-                METHOD_MAPPING.put(MethodReference.TIME, generatorManager.getDateTimeGenerator().getStrTime());
-                METHOD_MAPPING.put(MethodReference.PERCENTAGE, generatorManager.getStringGenerator().getPercentage());
-                METHOD_MAPPING.put(MethodReference.DECIMAL_PERCENTAGE, generatorManager.getStringGenerator().getDecimalPercentage());
-                METHOD_MAPPING.put(MethodReference.HEX_COLOR, generatorManager.getStringGenerator().getStrColor());
-                METHOD_MAPPING.put(MethodReference.DEFAULT_COLOR, resourceFinder.getStrFromArray(Constant.DEFAULT_COLORS));
-                METHOD_MAPPING.put(MethodReference.DEVICE_INFO, new Device(context).getInfo(r.getInt(1, 9)));
-                METHOD_MAPPING.put(MethodReference.CONTACT_NAME, contactNameFinder.getContactName());
-                METHOD_MAPPING.put(MethodReference.SUGGESTED_NAME, getSuggestedName());
-                METHOD_MAPPING.put(MethodReference.FORMATTED_NAME, getFormattedName());
-                METHOD_MAPPING.put(MethodReference.SIMPLE_GREETING, generatorManager.getPhraseGenerator().getPhrase(PhraseType.SIMPLE_GREETING));
-                METHOD_MAPPING.put(MethodReference.CURRENT_DAY_OF_WEEK, DateTimeGetter.with(LanguageHelper.getLocale(context), r).getNameOfDayOfWeek());
-                METHOD_MAPPING.put(MethodReference.CURRENT_DATE, DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentDate());
-                METHOD_MAPPING.put(MethodReference.CURRENT_TIME, DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentTime());
+                METHOD_MAPPING.put(MethodReference.NONE, () -> Database.DEFAULT_VALUE);
+                METHOD_MAPPING.put(MethodReference.NAME, () -> generatorManager.getPersonGenerator().getPerson().getFullName());
+                METHOD_MAPPING.put(MethodReference.ALT_SUMMARY, () -> generatorManager.getPersonGenerator().getPerson().getAltSummary());
+                METHOD_MAPPING.put(MethodReference.USERNAME, () -> generatorManager.getNameGenerator().getUsername());
+                METHOD_MAPPING.put(MethodReference.SECRET_NAME, () -> generatorManager.getNameGenerator().getName(NameType.SECRET_NAME));
+                METHOD_MAPPING.put(MethodReference.NOUN, () -> generatorManager.getNounGenerator().getNoun(Form.UNDEFINED));
+                METHOD_MAPPING.put(MethodReference.NOUN_WITH_ARTICLE, () -> generatorManager.getNounGenerator().getNounWithArticle(Form.UNDEFINED));
+                METHOD_MAPPING.put(MethodReference.NOUN_WITH_INDEFINITE_ARTICLE, () -> generatorManager.getNounGenerator().getNounWithArticle(Form.UNDEFINED));
+                METHOD_MAPPING.put(MethodReference.NOUN_WITH_ANY_ARTICLE, () -> generatorManager.getNounGenerator().getNounWithArticle());
+                METHOD_MAPPING.put(MethodReference.DATE, () -> generatorManager.getDateTimeGenerator().getStrDate());
+                METHOD_MAPPING.put(MethodReference.TIME, () -> generatorManager.getDateTimeGenerator().getStrTime());
+                METHOD_MAPPING.put(MethodReference.PERCENTAGE, () -> generatorManager.getStringGenerator().getPercentage());
+                METHOD_MAPPING.put(MethodReference.DECIMAL_PERCENTAGE, () -> generatorManager.getStringGenerator().getDecimalPercentage());
+                METHOD_MAPPING.put(MethodReference.HEX_COLOR, () -> generatorManager.getStringGenerator().getStrColor());
+                METHOD_MAPPING.put(MethodReference.DEFAULT_COLOR, () -> resourceFinder.getStrFromArray(Constant.DEFAULT_COLORS));
+                METHOD_MAPPING.put(MethodReference.DEVICE_INFO, () -> new Device(context).getInfo(r.getInt(1, 9)));
+                METHOD_MAPPING.put(MethodReference.CONTACT_NAME, contactNameFinder::getContactName);
+                METHOD_MAPPING.put(MethodReference.SUGGESTED_NAME, this::getSuggestedName);
+                METHOD_MAPPING.put(MethodReference.FORMATTED_NAME, this::getFormattedName);
+                METHOD_MAPPING.put(MethodReference.SIMPLE_GREETING, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.SIMPLE_GREETING));
+                METHOD_MAPPING.put(MethodReference.CURRENT_DAY_OF_WEEK, () -> DateTimeGetter.with(LanguageHelper.getLocale(context), r).getNameOfDayOfWeek());
+                METHOD_MAPPING.put(MethodReference.CURRENT_DATE, () -> DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentDate());
+                METHOD_MAPPING.put(MethodReference.CURRENT_TIME, () -> DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentTime());
             }
-            return METHOD_MAPPING.get(reference);
+            return METHOD_MAPPING.get(reference).get();
         }
 
         private String getSuggestedName() {
@@ -145,13 +147,13 @@ public class ResourceExplorer extends Explorer {
         private String getFormattedName() {
             switch (r.getItem(NAME_SOURCES)) {
                 case "anonymous":
-                    return TextFormatter.formatUsername(METHOD_MAPPING.get(MethodReference.USERNAME));
+                    return TextFormatter.formatUsername(getMethodByRef(MethodReference.USERNAME));
                 case "common":
-                    return TextFormatter.formatName(generatorManager.getPersonGenerator().getPerson().getAltSummary());
+                    return TextFormatter.formatName(getMethodByRef(MethodReference.ALT_SUMMARY));
                 case "contact":
-                    return TextFormatter.formatContactName(METHOD_MAPPING.get(MethodReference.CONTACT_NAME));
+                    return TextFormatter.formatContactName(getMethodByRef(MethodReference.CONTACT_NAME));
                 case "suggestion":
-                    return TextFormatter.formatSuggestedName(METHOD_MAPPING.get(MethodReference.SUGGESTED_NAME));
+                    return TextFormatter.formatSuggestedName(getMethodByRef(MethodReference.SUGGESTED_NAME));
                 default:
                     return TextFormatter.formatText("?", "b,tt");
             }
