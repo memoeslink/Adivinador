@@ -28,17 +28,6 @@ public class DatabaseFinder extends Binder {
         }
     }
 
-    public String getAction() {
-        switch (getString(R.string.locale)) {
-            case "en":
-                return Database.getInstance(this).selectEnglishAction(r.getInt(1, Database.getInstance(this).countEnglishActions()));
-            case "es":
-                return Database.getInstance(this).selectSpanishAction(r.getInt(1, Database.getInstance(this).countSpanishActions()));
-            default:
-                return ResourceFinder.RESOURCE_NOT_FOUND;
-        }
-    }
-
     public String getDivination() {
         switch (getString(R.string.locale)) {
             case "en":

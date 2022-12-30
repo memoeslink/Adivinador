@@ -72,7 +72,7 @@
     <string name="astrological_sign">Acuario¶ Piscis¶ Aries¶ Tauro¶ Géminis¶ Cáncer¶ Leo¶ Virgo¶ Libra¶ Escorpio¶ Sagitario¶ Capricornio</string>
     <string name="binder">Usar nombre de consulta actual</string>
     <string name="chain_effect">─ Resultado de la cadena: El día de %1$s será %2$s (%3$s).</string>
-    <string name="chain_link">• Eslabón %1$d: %2$s%3$s realiza una acción%4$s %5$s, y esta afecta %6$s (%7$s karma; %8$s karma acumulado).</string>
+    <string name="chain_link">• Eslabón %1$d: %2$s%3$s realiza una acción, y esta afecta %4$s (%5$s karma; %6$s karma acumulado).</string>
     <string name="clear">Limpiar formulario</string>
     <string name="compatibility">Ver compatibilidad</string>
     <string name="compatibility_result">Compatibilidad: &lt;b&gt;%1$s&lt;/b&gt;</string>
@@ -1887,37 +1887,6 @@
         <item>{string:nouns} ⸠string:adjectives⸡</item>
         <item>{string:nouns}</item>
         <item>{string:adjectives}</item>
-    </string-array>
-    <string-array name="uncertainty">
-        <item>no sé qué</item>
-        <item>no sé cuál</item>
-        <item>no estoy seguro qué</item>
-        <item>no sé del todo qué</item>
-        <item>aunque no sé qué</item>
-        <item>no tengo idea qué es</item>
-        <item>no sé qué exactamente</item>
-        <item>aunque no tengo idea qué hace</item>
-        <item>pero no sé qué del todo</item>
-        <item>sin embargo, no puedo ver qué hace realmente</item>
-        <item>no estoy muy seguro qué es</item>
-        <item>aunque no puedo ver claramente qué</item>
-        <item>pero no puedo ver bien qué hace</item>
-        <item>la cual me es difícil de saber</item>
-        <item>la cual no puedo ver</item>
-        <item>la cual tengo dificultad para conocer</item>
-        <item>que me parece difícil de averiguar</item>
-        <item>no sé del todo qué hace</item>
-        <item>que no puedo ver con claridad</item>
-        <item>que no puedo descubrir</item>
-        <item>pero no estoy muy seguro qué hace</item>
-        <item>aunque no tengo ni la menor idea de qué es</item>
-        <item>desconozco qué es</item>
-        <item>ignoro qué</item>
-        <item>ni idea sobre lo que es</item>
-        <item>la cual, si supiera, te la contaría</item>
-        <item>la cual, si pudiera saber, te la describiría</item>
-        <item>aunque es confuso saber qué</item>
-        <item>aunque me es difícil saber qué es</item>
     </string-array>
     <string-array name="unspecific_person">
         <item>[un[,a]] [amig[o,a]]</item>

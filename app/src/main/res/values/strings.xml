@@ -72,7 +72,7 @@
     <string name="astrological_sign">Aquarius¶ Pisces¶ Aries¶ Taurus¶ Gemini¶ Cancer¶ Leo¶ Virgo¶ Libra¶ Scorpio¶ Sagittarius¶ Capricorn</string>
     <string name="binder">Use current enquiry name</string>
     <string name="chain_effect">─ Chain results: The day of %1$s will be %2$s (%3$s).</string>
-    <string name="chain_link">• Link %1$d: %2$s%3$s executes an action%4$s %5$s, and that causes a reaction in %6$s (%7$s karma; %8$s total karma).</string>
+    <string name="chain_link">• Link %1$d: %2$s%3$s executes an action, and that causes a reaction in %4$s (%5$s karma; %6$s total karma).</string>
     <string name="clear">Clear form</string>
     <string name="compatibility">See compatibility</string>
     <string name="compatibility_result">Compatibility: &lt;b&gt;%1$s&lt;/b&gt;</string>
@@ -1887,37 +1887,6 @@
         <item>⸠string:adjectives⸡ {string:nouns}</item>
         <item>{string:nouns}</item>
         <item>{string:adjectives} {string:default_person}</item>
-    </string-array>
-    <string-array name="uncertainty">
-        <item>I do not know what</item>
-        <item>but I don\'t know what it is</item>
-        <item>I\'m not sure what</item>
-        <item>I do not know what at all</item>
-        <item>although I do not know what</item>
-        <item>I have no idea what it is</item>
-        <item>I don\'t know what exactly it is</item>
-        <item>although I have no idea what this person does</item>
-        <item>but I don\'t know what at all</item>
-        <item>however, I cannot see what they really do</item>
-        <item>I\'m not sure what it is</item>
-        <item>although I can\'t see clearly what</item>
-        <item>but I cannot see what this person does</item>
-        <item>which is difficult for me to know</item>
-        <item>which I cannot see</item>
-        <item>which I have difficulty knowing</item>
-        <item>that I find hard to find out</item>
-        <item>I do not know exactly what this person does</item>
-        <item>I cannot see clearly</item>
-        <item>I cannot discover</item>
-        <item>but I\'m not sure what this person does</item>
-        <item>although I have no idea what it is</item>
-        <item>I do not know what it is</item>
-        <item>I do not know what</item>
-        <item>no idea about what it is</item>
-        <item>which, if I knew, I would tell you</item>
-        <item>which, if I could know, I would describe it to you</item>
-        <item>although it\'s confusing to know what</item>
-        <item>although it\'s difficult for me to know what it is</item>
     </string-array>
     <string-array name="unspecific_person">
         <item>a friend</item>

@@ -446,7 +446,7 @@ public class MainActivity extends MenuActivity {
 
         tvPersonInfo.setOnClickListener(v -> {
             if (people != null && savePerson(predictionHistory.getLatest().getPerson())) {
-                showSimpleToast(MainActivity.this, getString(R.string.toast_inquiry_saved));
+                showToast(getString(R.string.toast_inquiry_saved));
 
                 if (isPredictionReloaded(people.get(people.size() - 1), true)) {
                     llInquiryHolder.setVisibility(View.GONE);
@@ -454,7 +454,7 @@ public class MainActivity extends MenuActivity {
                     navigationView.getMenu().findItem(R.id.nav_inquiry).getIcon().setAlpha(125);
                 }
             } else
-                showSimpleToast(MainActivity.this, getString(R.string.toast_inquiry_not_saved));
+                showToast(getString(R.string.toast_inquiry_not_saved));
         });
 
         llDataEntryHolder.setOnClickListener(view -> {
@@ -580,7 +580,7 @@ public class MainActivity extends MenuActivity {
         //Request permissions
         ActivityResultLauncher<String[]> launcher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), isGranted -> {
             if (isGranted.containsValue(false))
-                showSimpleToast(MainActivity.this, getString(R.string.denied_contact_permission));
+                showToast(getString(R.string.denied_contact_permission));
         });
         boolean permissionsGranted = true;
         String[] permissions = {Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -623,10 +623,8 @@ public class MainActivity extends MenuActivity {
             rlHeader.setTag(null);
 
         //Stop TTS if it is disabled and continues talking
-        if (speechAvailable && (PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) || PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED))) {
-            if (tts.isSpeaking())
-                tts.stop();
-        }
+        if (speechAvailable && (!PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) || !PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED)) && tts.isSpeaking())
+            tts.stop();
 
         //Show, avoid, or hide ads
         prepareAd(false);
@@ -663,7 +661,7 @@ public class MainActivity extends MenuActivity {
                     if (seconds >= frequency && frequency != 0) {
                         MainActivity.this.runOnUiThread(() -> {
                             if (active)
-                                vanishAndMaterializeView(tvPhrase); //Fade out and fade in the fortune teller's text.
+                                fadeAndShowView(tvPhrase); //Fade out and fade in the fortune teller's text.
 
                             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                                 if (active) //Play sound, if active and enabled
@@ -678,7 +676,7 @@ public class MainActivity extends MenuActivity {
                                 //Talk; if active, enabled and possible
                                 if (active && (reading == -1 || reading == 0) && (textType == 0 || textType == 2)) {
                                     startingReading = 0;
-                                    talk(tvPhrase.getText().toString());
+                                    read(tvPhrase.getText().toString());
                                 }
                             }, 350);
                         });
@@ -779,7 +777,7 @@ public class MainActivity extends MenuActivity {
                     //Talk; if active, enabled and possible
                     if (active && pending && !tvPersonInfo.getText().toString().isEmpty() && !predictionHistory.isEmpty() && (textType == 1 || textType == 2)) {
                         startingReading = 1;
-                        talk(tvPersonInfo.getText().toString() + ". " + predictionHistory.getLatest().getContent());
+                        read(tvPersonInfo.getText().toString() + ". " + predictionHistory.getLatest().getContent());
                         pending = false;
                     }
                 }
@@ -787,7 +785,7 @@ public class MainActivity extends MenuActivity {
                 @Override
                 public void onError(String utteranceId) {
                     if (active) //Try to talk again, if active
-                        talk(tvPersonInfo.getText().toString() + ". " + predictionHistory.getLatest().getContent());
+                        read(tvPersonInfo.getText().toString() + ". " + predictionHistory.getLatest().getContent());
                 }
 
                 @Override
@@ -1256,7 +1254,7 @@ public class MainActivity extends MenuActivity {
 
                 //Show person's name, if active and possible
                 if (active && !isViewVisible(tvPersonInfo))
-                    showFormattedToast(MainActivity.this, predictionHistory.getLatest().getPerson().getDescription());
+                    showQuickToast(predictionHistory.getLatest().getPerson().getDescriptor());
 
                 //Talk; if active, enabled and possible
                 if (recent)
@@ -1264,7 +1262,7 @@ public class MainActivity extends MenuActivity {
                 else if (active && !tvPersonInfo.getText().toString().isEmpty() && predictionHistory.isEmpty() && (textType == 1 || textType == 2)) {
                     if (reading == -1 || reading == 1) {
                         startingReading = 1;
-                        talk(tvPersonInfo.getText().toString() + ". " + predictionHistory.getLatest().getContent());
+                        read(tvPersonInfo.getText().toString() + ". " + predictionHistory.getLatest().getContent());
                     } else
                         pending = true;
                 }

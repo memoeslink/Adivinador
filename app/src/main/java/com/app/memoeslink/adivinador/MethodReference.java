@@ -4,11 +4,10 @@ import java.util.HashMap;
 
 public enum MethodReference {
     NONE(""),
-    PERSON("getPerson"),
-    ANONYMOUS_PERSON("getAnonymousPerson"),
     NAME("getName"),
     USERNAME("getUsername"),
     SECRET_NAME("getSecretName"),
+    ALT_SUMMARY("getAltSummary"),
     NOUN("getNoun"),
     NOUN_WITH_ARTICLE("getNounWithArticle"),
     NOUN_WITH_INDEFINITE_ARTICLE("getNounWithIndefiniteArticle"),

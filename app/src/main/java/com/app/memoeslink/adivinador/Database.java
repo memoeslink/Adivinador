@@ -10,18 +10,16 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.util.HashMap;
 
 public class Database extends SQLiteAssetHelper {
-    public static final int DATABASE_VERSION = 49;
-    public static final String DATABASE_NAME = "words_upgrade_48-49.sqlite";
+    public static final int DATABASE_VERSION = 50;
+    public static final String DATABASE_NAME = "words_upgrade_49-50.sqlite";
     public static final String DATABASE_NAME_FORMAT = "words%s.sqlite";
     public static final String DEFAULT_VALUE = "?";
     private static final String ID_PREFIX = "ID";
     private static final String TABLE_ENGLISH_ABSTRACT_NOUNS = "EnglishAbstractNouns";
-    private static final String TABLE_ENGLISH_ACTIONS = "EnglishActions";
     private static final String TABLE_ENGLISH_PREDICTIONS = "EnglishPredictions";
     private static final String TABLE_ENGLISH_FORTUNE_COOKIES = "EnglishFortuneCookies";
     private static final String TABLE_ENGLISH_PHRASES = "EnglishPhrases";
     private static final String TABLE_SPANISH_ABSTRACT_NOUNS = "SpanishAbstractNouns";
-    private static final String TABLE_SPANISH_ACTIONS = "SpanishActions";
     private static final String TABLE_SPANISH_PREDICTIONS = "SpanishPredictions";
     private static final String TABLE_SPANISH_FORTUNE_COOKIES = "SpanishFortuneCookies";
     private static final String TABLE_SPANISH_PHRASES = "SpanishPhrases";
@@ -98,14 +96,6 @@ public class Database extends SQLiteAssetHelper {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_ABSTRACT_NOUNS + " WHERE " + TABLE_ENGLISH_ABSTRACT_NOUNS + ID_PREFIX + "=" + id);
     }
 
-    public int countEnglishActions() {
-        return countRows(TABLE_ENGLISH_ACTIONS);
-    }
-
-    public String selectEnglishAction(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_ACTIONS + " WHERE " + TABLE_ENGLISH_ACTIONS + ID_PREFIX + "=" + id);
-    }
-
     public int countEnglishPredictions() {
         return countRows(TABLE_ENGLISH_PREDICTIONS);
     }
@@ -136,14 +126,6 @@ public class Database extends SQLiteAssetHelper {
 
     public String selectSpanishAbstractNoun(int id) {
         return selectRow("SELECT * FROM " + TABLE_SPANISH_ABSTRACT_NOUNS + " WHERE " + TABLE_SPANISH_ABSTRACT_NOUNS + ID_PREFIX + "=" + id);
-    }
-
-    public int countSpanishActions() {
-        return countRows(TABLE_SPANISH_ACTIONS);
-    }
-
-    public String selectSpanishAction(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_ACTIONS + " WHERE " + TABLE_SPANISH_ACTIONS + ID_PREFIX + "=" + id);
     }
 
     public int countSpanishPredictions() {

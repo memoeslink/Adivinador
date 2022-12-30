@@ -54,7 +54,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
                 try {
                     SettingsActivity.this.runOnUiThread(() -> dialog.show());
                 } catch (Exception e) {
-                    new Handler(Looper.getMainLooper()).postDelayed(() -> restartApplication(), 500);
+                    new Handler(Looper.getMainLooper()).postDelayed(this::restartApplication, 500);
                 }
             }
 
@@ -115,7 +115,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
             speechAvailable = isTTSAvailable(tts, PreferenceHandler.getString(Preference.SETTING_LANGUAGE, "es"));
         else {
             speechAvailable = false;
-            showSimpleToast(SettingsActivity.this, getString(R.string.toast_voice_unavailability));
+            showToast(getString(R.string.toast_voice_unavailability));
         }
     }
 

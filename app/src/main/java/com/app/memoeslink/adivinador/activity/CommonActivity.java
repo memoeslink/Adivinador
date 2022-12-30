@@ -32,7 +32,6 @@ import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.ResourceExplorer;
 import com.app.memoeslink.adivinador.Screen;
 import com.app.memoeslink.adivinador.Sound;
-import com.app.memoeslink.adivinador.SpannerHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonPrimitive;
@@ -142,7 +141,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
             speechAvailable = isTTSAvailable(tts, PreferenceHandler.getString(Preference.SETTING_LANGUAGE, "en"));
         else {
             speechAvailable = false;
-            showSimpleToast(CommonActivity.this, getString(R.string.toast_voice_unavailability));
+            showToast(getString(R.string.toast_voice_unavailability));
         }
     }
 
@@ -162,9 +161,9 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
         params.gravity = Gravity.CENTER_VERTICAL;
 
         //Customize ActionBar
-        ActionBar actionBar;
+        ActionBar actionBar = getSupportActionBar();
 
-        if ((actionBar = getSupportActionBar()) != null) {
+        if (actionBar != null) {
             actionBar.setDisplayShowCustomEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setDisplayUseLogoEnabled(false);
@@ -197,7 +196,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
         return view.getGlobalVisibleRect(rect) && view.getHeight() == rect.height() && view.getWidth() == rect.width();
     }
 
-    protected final void vanishAndMaterializeView(View v) {
+    protected final void fadeAndShowView(View v) {
         v.clearAnimation();
         AlphaAnimation alphaAnimation = new AlphaAnimation(1.0F, 0.0F);
         alphaAnimation.setDuration(350);
@@ -207,31 +206,35 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     }
 
     protected final void cancelToast() {
-        if (toast != null && toast.getView() != null && toast.getView().isShown()) {
+        if (toast != null && toast.getView() != null && (toast.getView().isShown() || toast.getView().getWindowVisibility() == View.VISIBLE)) {
             toast.cancel();
             toast = null;
         }
     }
 
-    protected final void showSimpleToast(Context context, String text) {
+    private void showToast(String text, boolean quick) {
         cancelToast();
-        toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
-        Sound.play(context, "computer_chimes");
-        toast.show();
+
+        if (activityStatus != ActivityStatus.PAUSED && activityStatus != ActivityStatus.STOPPED) {
+            toast = Toast.makeText(CommonActivity.this, text, quick ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG);
+            Sound.play(CommonActivity.this, "computer_chimes");
+            toast.show();
+        }
     }
 
-    protected final void showFormattedToast(Context context, String text) {
-        cancelToast();
-        toast = Toast.makeText(context, SpannerHelper.fromHtml(text), Toast.LENGTH_SHORT);
-        Sound.play(context, "computer_chimes");
-        toast.show();
+    protected final void showToast(String text) {
+        showToast(text, false);
+    }
+
+    protected final void showQuickToast(String text) {
+        showToast(text, true);
     }
 
     protected final void copyTextToClipboard(String text) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText(null, text);
         clipboard.setPrimaryClip(clipData);
-        showSimpleToast(this, getString(R.string.toast_clipboard));
+        showToast(getString(R.string.toast_clipboard));
     }
 
     protected final boolean isTTSAvailable(TextToSpeech tts, String language) {
@@ -260,11 +263,12 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
         return false;
     }
 
-    protected final void talk(String text) {
-        if (speechAvailable && PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) && PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED)) {
-            if (tts.isSpeaking())
-                tts.stop();
-            tts.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, "UniqueID");
+    protected final void read(String text) {
+        if (speechAvailable) {
+            if (tts.isSpeaking()) tts.stop();
+
+            if (PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) && PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED))
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, "UniqueID");
         }
     }
 
@@ -319,11 +323,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
         return isPersonDistinct(person, people);
     }
 
-    protected final boolean isPersonDistinct(Person person) {
-        return isPersonDistinct(person, people);
-    }
-
-    private boolean isPersonDistinct(Person person, List<Person> people) {
+    protected final boolean isPersonDistinct(Person person, List<Person> people) {
         if (person == null || people == null)
             return false;
 
@@ -338,7 +338,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     }
 
     protected final boolean savePerson(Person person) {
-        if (PreferenceHandler.getBoolean(Preference.SETTING_SAVE_ENQUIRIES, true) && isPersonDistinct(person)) {
+        if (PreferenceHandler.getBoolean(Preference.SETTING_SAVE_ENQUIRIES, true) && isPersonDistinct(person, people)) {
             if (people.size() >= 100)
                 people.remove(0);
             people.add(person);

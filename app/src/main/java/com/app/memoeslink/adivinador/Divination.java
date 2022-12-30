@@ -431,9 +431,9 @@ public class Divination extends Binder {
             totalKarma = totalKarma + karma;
 
             if (people.get(n).hasAttribute("unknown"))
-                chain.append(getString(R.string.chain_link, n + 1, people.get(n).getDescription(), ",", ",", resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.uncertainty), people.get(n + 1).getDescription(), TextFormatter.formatNumber(karma), TextFormatter.formatNumber(totalKarma)));
+                chain.append(getString(R.string.chain_link, n + 1, people.get(n).getDescription(), ",", people.get(n + 1).getDescription(), TextFormatter.formatNumber(karma), TextFormatter.formatNumber(totalKarma)));
             else
-                chain.append(getString(R.string.chain_link, n + 1, people.get(n).getDescription(), "", "", "(" + resourceExplorer.getDatabaseFinder().getAction() + ")", people.get(n + 1).getDescription(), TextFormatter.formatNumber(karma), TextFormatter.formatNumber(totalKarma)));
+                chain.append(getString(R.string.chain_link, n + 1, people.get(n).getDescription(), "", people.get(n + 1).getDescription(), TextFormatter.formatNumber(karma), TextFormatter.formatNumber(totalKarma)));
 
             //Define link delimiter
             if (separator != '\u0000') //\u0000 is \0
