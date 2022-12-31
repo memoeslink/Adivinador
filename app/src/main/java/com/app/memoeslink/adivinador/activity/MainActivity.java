@@ -1013,7 +1013,7 @@ public class MainActivity extends MenuActivity {
         List<String> nameList = null;
 
         if (PreferenceHandler.has(Preference.DATA_STORED_NAMES) && PreferenceHandler.getStringSet(Preference.DATA_STORED_NAMES).size() > 0)
-            nameList = new ArrayList<String>(PreferenceHandler.getStringSet(Preference.DATA_STORED_NAMES));
+            nameList = new ArrayList<>(PreferenceHandler.getStringSet(Preference.DATA_STORED_NAMES));
 
         if (nameList != null && nameList.size() > 0) {
             String[] names = nameList.toArray(new String[0]);

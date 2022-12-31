@@ -145,7 +145,7 @@ public class Divination extends Binder {
         divination.put("link", String.format("<a href='links/prediction'>%s</a>", getString(R.string.prediction_action)));
         divination.put("fortuneCookie", resourceExplorer.getDatabaseFinder().getFortuneCookie());
         divination.put("gibberish", "<font color=#ECFE5B>" + TextFormatter.formatText(TextProcessor.turnIntoGibberish(divination.get("fortuneCookie")), "i,tt") + "</font>");
-        divination.put("divination", generateDivination(enquiryDate));
+        divination.put("divination", getDivination(enquiryDate));
         divination.put("fortuneNumbers", android.text.TextUtils.join(", ", r.getIntegers(5, 100, true)));
         divination.put("emotions", getEmotions());
         divination.put("bestTime", resourceExplorer.getGeneratorManager().getDateTimeGenerator().getStrTime());
@@ -261,7 +261,7 @@ public class Divination extends Binder {
         return prediction;
     }
 
-    public String generateDivination(String enquiryDate) {
+    public String getDivination(String enquiryDate) {
         enquiryDate = StringHelper.defaultIfBlank(enquiryDate, DateTimeHelper.getStrCurrentDate());
         String divination;
         float probability = r.getFloat();
