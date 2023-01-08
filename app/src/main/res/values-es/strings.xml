@@ -613,7 +613,7 @@
         <item>&personType10; {a/al} {string:relationship}</item>
         <item>&personType11; {a/al} {string:relationship}</item>
         <item>&personType12; {a/al} {string:relationship}</item>
-        <item>&personType13; {a/al} {string:relationship}</item>
+        <item>&personType13; {de/del} {string:relationship}</item>
         <item>&personType14; {de/del} {string:relationship}</item>
         <item>&personType15; {de/del} {string:relationship}</item>
         <item>&personType16; {de/del} {string:relationship}</item>
@@ -1756,7 +1756,7 @@
         <item>&personType10; {a/al} %1$s</item>
         <item>&personType11; {a/al} %1$s</item>
         <item>&personType12; {a/al} %1$s</item>
-        <item>&personType13; {a/al} %1$s</item>
+        <item>&personType13; {de/del} %1$s</item>
         <item>&personType14; {de/del} %1$s</item>
         <item>&personType15; {de/del} %1$s</item>
         <item>&personType16; {de/del} %1$s</item>
