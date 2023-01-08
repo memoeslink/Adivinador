@@ -155,7 +155,7 @@ public class ResourceExplorer extends Explorer {
                 case "suggestion":
                     return TextFormatter.formatSuggestedName(getMethodByRef(MethodReference.SUGGESTED_NAME));
                 default:
-                    return TextFormatter.formatText("?", "b,tt");
+                    return TextFormatter.formatText("?", "b");
             }
         }
     }

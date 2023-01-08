@@ -144,7 +144,7 @@ public class Divination extends Binder {
         bindSeed(seed);
         divination.put("link", String.format("<a href='links/prediction'>%s</a>", getString(R.string.prediction_action)));
         divination.put("fortuneCookie", resourceExplorer.getDatabaseFinder().getFortuneCookie());
-        divination.put("gibberish", "<font color=#ECFE5B>" + TextFormatter.formatText(TextProcessor.turnIntoGibberish(divination.get("fortuneCookie")), "i,tt") + "</font>");
+        divination.put("gibberish", "<font color=\"#ECFE5B\">" + TextFormatter.formatText(TextProcessor.turnIntoGibberish(divination.get("fortuneCookie")), "i") + "</font>");
         divination.put("divination", getDivination(enquiryDate));
         divination.put("fortuneNumbers", android.text.TextUtils.join(", ", r.getIntegers(5, 100, true)));
         divination.put("emotions", getEmotions());
@@ -375,7 +375,7 @@ public class Divination extends Binder {
 
         for (int n = -1, limit = r.getElement(PROBABILITY_DISTRIBUTION); ++n < limit; ) {
             Gender gender = r.getBoolean() ? Gender.MASCULINE : Gender.FEMININE;
-            String description = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.person, 0) + " " + String.format("<font color=%s>%s</font>", COMMON_COLORS[n], TextFormatter.formatText(Character.toString(letter), "b,i,tt"));
+            String description = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.person, 0) + " " + String.format("<font color=\"%s\">%s</font>", COMMON_COLORS[n], TextFormatter.formatText(Character.toString(letter), "b", "i"));
             description += ", " + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.probability) + " " + tagProcessor.replaceTags(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.individual), gender, false).getText();
             people.add(new Person.PersonBuilder()
                     .setNickname(Character.toString(letter))
@@ -418,7 +418,7 @@ public class Divination extends Binder {
             String description = currentPerson.getDescription();
 
             if ((currentPerson.hasAttribute("generated") || currentPerson.hasAttribute("nonspecific")) && StringHelper.isNotNullOrBlank(description)) {
-                description += " (<font color=#B599FC>" + TextFormatter.formatText(currentPerson.getGender().getGlyph(), "b") + "</font>)";
+                description += " (<font color=\"#B599FC\">" + TextFormatter.formatText(currentPerson.getGender().getGlyph(), "b") + "</font>)";
                 currentPerson.setDescription(description);
             }
         }
@@ -429,19 +429,23 @@ public class Divination extends Binder {
         for (int n = 0; n < people.size() - 1; n++) {
             int karma = r.getInt(-10, 21);
             totalKarma = totalKarma + karma;
-
-            if (people.get(n).hasAttribute("unknown"))
-                chain.append(getString(R.string.chain_link, n + 1, people.get(n).getDescription(), ",", people.get(n + 1).getDescription(), TextFormatter.formatNumber(karma), TextFormatter.formatNumber(totalKarma)));
-            else
-                chain.append(getString(R.string.chain_link, n + 1, people.get(n).getDescription(), "", people.get(n + 1).getDescription(), TextFormatter.formatNumber(karma), TextFormatter.formatNumber(totalKarma)));
+            String chainLink = getString(R.string.chain_link,
+                    n + 1,
+                    people.get(n).getDescription(),
+                    people.get(n).hasAttribute("unknown") ? "," : "",
+                    people.get(n + 1).getDescription(),
+                    TextFormatter.formatNumber(karma),
+                    TextFormatter.formatNumber(totalKarma));
+            chainLink = tagProcessor.replaceTags(chainLink).getText();
+            chain.append(chainLink);
 
             //Define link delimiter
             if (separator != '\u0000') //\u0000 is \0
-                chain.append("<br><font color=#A0A8C7>").append(separator).append("</font><br>");
+                chain.append("<br><font color=\"#A0A8C7\">").append(separator).append("</font><br>");
             else
                 chain.append("<br>");
         }
-        float percentage = (float) totalKarma / 100 * ((people.size() - 1) * 10);
+        float percentage = (float) totalKarma / ((people.size() - 1) * 10) * 100;
         String effect;
 
         if (percentage == 0)

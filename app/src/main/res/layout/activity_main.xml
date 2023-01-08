@@ -259,7 +259,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="10dp"
                         android:clickable="false"
-                        android:drawablePadding="5px"
+                        android:drawablePadding="5dp"
                         android:ellipsize="marquee"
                         android:enabled="false"
                         android:gravity="center"

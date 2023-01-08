@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="accent" format="reference|color" />
-    <attr name="disabledItem" format="reference|color"></attr>
+    <attr name="disabledItem" format="reference|color" />
 
     <declare-styleable name="StickyScrollView">
         <attr name="stuckShadowHeight" format="dimension" />

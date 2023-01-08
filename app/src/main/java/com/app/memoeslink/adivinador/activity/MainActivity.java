@@ -1330,8 +1330,7 @@ public class MainActivity extends MenuActivity {
         String finalName = StringHelper.trimToNull(atvFinalName.getText().toString());
 
         if (initialName != null && finalName != null) {
-            if (initialName.equalsIgnoreCase(finalName)) {
-                tvCompatibility.setText(SpannerHelper.fromHtml(getString(R.string.compatibility_result, "<font color=#6666FF>" + 100 + "%</font>")));
+            if (initialName.equalsIgnoreCase(finalName)) {tvCompatibility.setText(SpannerHelper.fromHtml(getString(R.string.compatibility_result, "<font color=\"#6666FF\">" + 100 + "%</font>")));
                 pbWait.setProgress(100);
             } else {
                 String formattedText, tempName;
@@ -1346,23 +1345,23 @@ public class MainActivity extends MenuActivity {
                 r.bindSeed(seed);
 
                 if ((compatibilityPoints = r.getInt(101)) == 0)
-                    formattedText = "<font color=#7F79D1>" + compatibilityPoints + "%</font>";
+                    formattedText = "<font color=\"#7F79D1\">" + compatibilityPoints + "%</font>";
                 else if (compatibilityPoints < 25)
-                    formattedText = "<font color=#F94C4C>" + compatibilityPoints + "%</font>";
+                    formattedText = "<font color=\"#F94C4C\">" + compatibilityPoints + "%</font>";
                 else if (compatibilityPoints < 50)
-                    formattedText = "<font color=#FFA500>" + compatibilityPoints + "%</font>";
+                    formattedText = "<font color=\"#FFA500\">" + compatibilityPoints + "%</font>";
                 else if (compatibilityPoints < 75)
-                    formattedText = "<font color=#F0EF2E>" + compatibilityPoints + "%</font>";
+                    formattedText = "<font color=\"#F0EF2E\">" + compatibilityPoints + "%</font>";
                 else if (compatibilityPoints < 100)
-                    formattedText = "<font color=#2FCC2F>" + compatibilityPoints + "%</font>";
+                    formattedText = "<font color=\"#2FCC2F\">" + compatibilityPoints + "%</font>";
                 else
-                    formattedText = "<font color=#6666FF>" + compatibilityPoints + "%</font>";
+                    formattedText = "<font color=\"#6666FF\">" + compatibilityPoints + "%</font>";
                 r.unbindSeed();
                 tvCompatibility.setText(SpannerHelper.fromHtml(getString(R.string.compatibility_result, formattedText)));
                 pbWait.setProgress(compatibilityPoints);
             }
         } else {
-            tvCompatibility.setText(SpannerHelper.fromHtml(getString(R.string.compatibility_result, "<font color=#C0FF2B>?</font>")));
+            tvCompatibility.setText(SpannerHelper.fromHtml(getString(R.string.compatibility_result, "<font color=\"#C0FF2B\">?</font>")));
             pbWait.setProgress(0);
         }
     }
