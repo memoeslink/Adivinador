@@ -8,6 +8,7 @@ import com.app.memoeslink.adivinador.ResourceExplorer;
 import com.memoeslink.generator.common.Binder;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.Pair;
+import com.memoeslink.generator.common.ResourceReference;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextComponent;
 import com.memoeslink.generator.common.TextProcessor;
@@ -23,7 +24,7 @@ public class TagProcessor extends Binder {
     private static final String TAG_GENDER_REGEX = "(?<gender>;\\s?gender:(?<genderType>(user|⛌)|(random|⸮)|(default|＃)|" + INTEGER_REGEX + "|(undefined|masculine|feminine)))?";
     private static final String TAG_PLURAL_REGEX = "(?<plural>;\\s?plural:(?<pluralForm>\\+?\\p{L}+))?";
     private static final Pattern GENDER_PATTERN = Pattern.compile("｢([0-2])｣");
-    private static final String TAG_REGEX = "\\{((string|database):([\\w\\p{L}]+)(\\[!?[\\d]+\\])?" + TAG_GENDER_REGEX + "|method:[a-zA-Z0-9_$]+)\\}";
+    private static final String TAG_REGEX = "\\{((?<resourceType>string|database):(?<resourceName>[\\w\\p{L}]+)(\\[!?[\\d]+\\])?" + TAG_GENDER_REGEX + "|(?<referenceType>method|reference):(?<referenceName>[a-zA-Z0-9_$]+))\\}";
     private static final Pattern TAG_PATTERN = Pattern.compile(TAG_REGEX);
     private static final String WORD_TAG_REGEX = "\\{(?<word>" + TextProcessor.EXTENDED_WORD_REGEX + ")" + TAG_GENDER_REGEX + TAG_PLURAL_REGEX + "\\}";
     private static final Pattern WORD_TAG_PATTERN = Pattern.compile(WORD_TAG_REGEX);
@@ -80,7 +81,7 @@ public class TagProcessor extends Binder {
 
             while (matcher.find()) {
                 String replacement = "";
-                String resourceName = StringHelper.startsWith(matcher.group(), "{method:") ? StringHelper.substringBetween(matcher.group(), ":", "}") : matcher.group(3);
+                String resourceName = matcher.group("referenceName") != null ? matcher.group("referenceName") : matcher.group("resourceName");
                 gender = getTrueGender(matcher.group("genderType"), defaultGender);
                 int index = -1;
 
@@ -101,6 +102,8 @@ public class TagProcessor extends Binder {
                     replacement = resourceExplorer.findTableRowByName(resourceName, index);
                 else if (StringHelper.startsWith(matcher.group(), "{method:"))
                     replacement = resourceExplorer.findMethodByName(resourceName);
+                else if (StringHelper.startsWith(matcher.group(), "{reference:"))
+                    replacement = resourceExplorer.findByRef(ResourceReference.get(resourceName));
                 int openingIndex = StringHelper.indexOf(replacement, '{');
                 int closingIndex;
                 boolean empty = false;
