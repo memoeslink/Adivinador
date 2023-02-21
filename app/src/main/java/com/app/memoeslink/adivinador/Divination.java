@@ -474,7 +474,7 @@ public class Divination extends Binder {
         int listSize = IntegerHelper.defaultInt(resourceExplorer.getContactNameFinder().getContactNamesSize(), 0, 1000);
         double probability = 0.1F + (0.5F / 1000 * listSize);
 
-        if (r.getFloat() <= probability && listSize > 0 && person.hasAttribute("entered")) {
+        if (r.getFloat() <= probability && listSize > 0 && !person.hasAttribute("generated") && person.hasAttribute("entered")) {
             closePerson.setText(TextFormatter.formatContactName(resourceExplorer.getContactNameFinder().getContactName()));
             closePerson.setHegemonicGender(Gender.UNDEFINED);
 

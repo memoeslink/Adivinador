@@ -111,6 +111,11 @@ class DonationsActivity : CommonActivity() {
         btBack?.setOnClickListener { finish() }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        bc?.release();
+    }
+
     companion object {
         private const val GOOGLE_PUBLIC_KEY =
             "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqg/e0wWLPo4Dd2+QGQhsasrOHBa8B6eTZuyiIVuzGjbOLzl8DHl5cqFrlN5FwoXlMBEBDIoIHkYt0f+GNxXqRw7K1BPWGZ0owPgKjAKJgQXq0iaImcdP7drmhxgDq8dwjQuRUd7UFu81gCXel3nQa9n6x2SQUZm+Of7/yYUtsDGp6AtM0BXEEdLegyDJ9RSCKWrUC+V6ZX103X+1iy73p/Sha2ntDaIBE8UV5doXDQYvppgyTuRr08Y4d+HKv5fvJKz3s13FEYeFV5euKyUZYV9INaYdIHPX/1S9CU1N9O/n/lTryJHGOa3rdAbShd93hAAyBIFfUrJOljiZhoFt1wIDAQAB"

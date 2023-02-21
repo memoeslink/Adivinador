@@ -1048,7 +1048,7 @@
     </string-array>
     <string-array name="individual">
         <item>{a/an} {string:individual_base}</item>
-        <item>{a/an} {string:individual_trait} {string:individual_base}</item>
+        <item>{a/an} {string:individual_representation}</item>
     </string-array>
     <string-array name="individual_base">
         <item>[[,wo]man]</item>
@@ -1086,7 +1086,7 @@
         <item>with black eyes</item>
         <item>with hazel eyes</item>
         <item>with almond eyes</item>
-        <item>with close set eyes</item>
+        <item>with close-set eyes</item>
         <item>with deep-set eyes</item>
         <item>with protruding eyes</item>
         <item>with downturned eyes</item>
@@ -1134,6 +1134,12 @@
         <item>{string:individual_eyes}</item>
         <item>{string:individual_hair}</item>
         <item>{string:individual_height}</item>
+    </string-array>
+    <string-array name="individual_representation">
+        <item>{string:individual_build} {string:individual_base}</item>
+        <item>{string:individual_base} {string:individual_eyes}</item>
+        <item>{string:individual_hair} {string:individual_base}</item>
+        <item>{string:individual_height} {string:individual_base}</item>
     </string-array>
     <string-array name="language">
         <item>Spanish</item>

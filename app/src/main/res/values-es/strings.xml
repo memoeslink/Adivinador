@@ -1135,6 +1135,12 @@
         <item>{string:individual_hair}</item>
         <item>{string:individual_height}</item>
     </string-array>
+    <string-array name="individual_representation">
+        <item>{string:individual_base} {string:individual_build}</item>
+        <item>{string:individual_base} {string:individual_eyes}</item>
+        <item>{string:individual_base} {string:individual_hair}</item>
+        <item>{string:individual_base} {string:individual_height}</item>
+    </string-array>
     <string-array name="language">
         <item>Español</item>
         <item>Inglés</item>
