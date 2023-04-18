@@ -85,6 +85,6 @@
             android:singleLine="true"
             android:textAppearance="@android:style/TextAppearance.Small"
             app:drawableLeftCompat="@drawable/emptiness"
-            app:drawableRightCompat="@drawable/page" />
+            app:drawableRightCompat="@drawable/copy" />
     </LinearLayout>
 </ScrollView>

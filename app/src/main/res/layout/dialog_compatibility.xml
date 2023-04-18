@@ -59,7 +59,7 @@
             android:singleLine="true"
             android:textAppearance="@android:style/TextAppearance.Small"
             app:drawableLeftCompat="@drawable/emptiness"
-            app:drawableRightCompat="@drawable/group_link" />
+            app:drawableRightCompat="@drawable/couple" />
 
         <LinearLayout
             android:layout_width="match_parent"

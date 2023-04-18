@@ -62,10 +62,6 @@ public class MenuActivity extends CommonActivity {
             case android.R.id.home:
                 toggleDrawer();
                 break;
-            case R.id.menu_set_data: //Set data for consultation
-                i = new Intent(MenuActivity.this, InputActivity.class);
-                startActivity(i);
-                break;
             case R.id.menu_settings: //Open settings
                 i = new Intent(MenuActivity.this, SettingsActivity.class);
                 startActivity(i);

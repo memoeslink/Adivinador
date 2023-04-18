@@ -35,7 +35,7 @@
         <br><i><font color="#BABBFF">• Frequency lists by Neri</font></i> [<font color=#A268FF>Dominio público</font>] (<a href="http://frequencylists.blogspot.mx/2016/08/5000-spanish-sentences-sorted-from.html/">https://blogger.com/</a>)
         <br><br><font color="#53E3B3">Código:</font>
         <br><i><font color="#FDFCDA">• Alexandros Schillings, Cyril Mottier, Jeff Gilfelt, Jon Adams, Kevin (kevinchai): </font><font color=#FFFDC4>Android SQLiteAssetHelper</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/jgilfelt/android-sqlite-asset-helper/">https://github.com/</a>)
-        <br><i><font color="#FDFCDA">• Emil Sjölander: </font><font color=#FFFDC4>StickyScrollViewItems</font></i> (<a href="https://github.com/emilsjolander/StickyScrollViewItems/">https://github.com/</a>)
+        <br><i><font color="#FDFCDA">• Amar Jain: </font><font color=#FFFDC4>StickyScrollView</font></i> [<font color=#FF9BB4>Licencia MIT</font>] (<a href="https://github.com/amarjain07/StickyScrollView/">https://github.com/</a>)
         <br><i><font color="#FDFCDA">• Encryptor Code: </font><font color=#FFFDC4>Pluralize</font></i> [<font color=#FF9BB4>Licencia MIT</font>] (<a href="https://github.com/encryptorcode/pluralize/">https://github.com/</a>)
         <br><i><font color="#FDFCDA">• Google Inc.: </font><font color=#FFFDC4>Gson</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/google/gson/">https://github.com/</a>)
         <br><i><font color="#FDFCDA">• Jin Cao (jinatonic): </font><font color=#FFFDC4>Confetti</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/jinatonic/confetti/">https://github.com/</a>)
@@ -93,87 +93,32 @@
     <string name="input_gender_undefined">Indefinido</string>
     <string name="input_name_hint">Introduce un nombre</string>
     <string name="input_other_name_hint">Introduce otro nombre</string>
-    <string name="input_title">Definir datos</string>
+    <string name="input_title">Introducir datos</string>
     <string name="inquiry">Obtener consulta (%1$s)</string>
     <string name="inquiry_information">Consulta para el día %1$s de %2$s, de género %3$s (%4$s)</string>
     <string name="interjections">Dios¶ Dios santo¶ ah¶ ahí va¶ ajajá¶ ajá¶ ajó¶ anda¶ ar¶ arre¶ arrea¶ ay¶ ay Dios mío¶ ay de mí¶ ay, güey¶ aúpa¶ bah¶ bravo¶ bua¶ buah¶ bum¶ buu¶ buuu¶ ca¶ caracoles¶ carajo¶ caramba¶ caray¶ cataplof¶ cataplúm¶ chas¶ chist¶ cielo santo¶ cielos¶ cojonudo¶ cáspita¶ dale¶ diablos¶ ea¶ eh¶ ejem¶ em¶ epa¶ equilicuá¶ eso es¶ ey¶ gluglú¶ guau¶ guay¶ hala¶ hale¶ hey¶ hola¶ huh¶ hum¶ hurra¶ huy¶ ja¶ ja, ja¶ ja, ja, ja¶ je¶ jo¶ jolín¶ madre mía¶ maldición¶ miau¶ mm¶ mmm¶ muak¶ narices¶ oh¶ oiga¶ ojalá¶ ojú¶ okey¶ ole¶ olé¶ ostras¶ paf¶ pché¶ plas¶ ps¶ psh¶ pss¶ pu¶ puaf¶ puaj¶ puf¶ pum¶ quiá¶ recórcholis¶ rin rin¶ shhh¶ ssh¶ tatata¶ tictac¶ tururú¶ uf¶ uh¶ ups¶ urra¶ uy¶ vaya¶ válgame Dios¶ yey¶ yupi¶ zas¶ zaz¶ ñam¶ órale</string>
     <string name="locale">es</string>
     <string name="menu_donate">Donar</string>
-    <string name="menu_set_data">Definir datos</string>
     <string name="menu_settings">Configuración</string>
     <string name="menu_about">Acerca de</string>
     <string name="menu_exit">Salir</string>
     <string name="name_generation">Generar nombre</string>
     <string name="nouns">existencia｢2｣¶ materia｢2｣¶ persona｢2｣¶ ser｢1｣¶ [human[o,a]]¶ [individu[o,a]]¶ entidad｢2｣¶ [[hombre,mujer]]¶ [client[e,a]]¶ sujeto｢1｣¶ ente｢1｣¶ esencia｢2｣¶ cosa｢2｣¶ sustancia｢2｣¶ criatura｢2｣¶ organismo｢1｣¶ forma｢2｣¶ espécimen｢1｣¶ forma de vida｢2｣¶ ser vivo｢1｣¶ [usuari[o,a]]¶ [amig[o,a]]¶ [conocid[o,a]]¶ [desconocid[o,a]]¶ colega｢0｣¶ camarada｢0｣¶ mejor [amig[o,a]]¶ [novi[o,a]]¶ [tip[o,a]]¶ personaje｢1｣¶ vástago｢1｣¶ figura｢2｣¶ habitante｢1｣¶ [muchach[o,a]]¶ joven｢0｣¶ [chic[o,a]]¶ personificación｢2｣</string>
     <string name="ok">OK</string>
-    <string name="person_data"><![CDATA[<font color="#53E3B3"><i>Información para %1$s de:</i></font> %2$s<font color="#F6FBB2">, de género %3$s (%4$s)</font>]]></string>
+    <string name="person_data"><![CDATA[%1$s<font color="#F6FBB2">, de género %2$s (%3$s)</font>]]></string>
     <string name="prediction">
         <![CDATA[
-        <big><b><font color="#869DEE">Fortuna</font></b></big>
+        <big><b><font color="#869DEE">Consulta de %1$s</font></b></big>
         <br><br><font color="#53E3B3">Galleta de la suerte:</font>
-        <br>%1$s
-        <br><br><font color="#53E3B3">Adivinación:</font>
         <br>%2$s
-        <br><br><font color="#53E3B3">Números de la suerte para hoy:</font>
+        <br><br><font color="#53E3B3">Adivinación:</font>
         <br>%3$s
-        <br><br><font color="#53E3B3">Emociones de hoy:</font>
+        <br><br><font color="#53E3B3">Emociones:</font>
         <br>%4$s
-        <br><br><font color="#53E3B3">Mejor momento del día:</font>
+        <br><br><font color="#53E3B3">Característica:</font>
         <br>%5$s
-        <br><br><font color="#53E3B3">Peor momento del día:</font>
+        <br><br><font color="#53E3B3">Cadena de eventos:</font>
         <br>%6$s
-        <br><br><font color="#53E3B3">Lo que te caracterizará hoy:</font>
-        <br>%7$s
-        <br><br><font color="#53E3B3">Cadena de eventos para hoy:</font>
-        <br>%8$s
-        <br><br><font color="#53E3B3">Persona que te afectará más, indirectamente, hoy:</font>
-        <br>%9$s
-        <br><br><big><b><font color="#869DEE">Zodiaco</font></b></big>
-        <br><br><font color="#53E3B3">Signo zodiacal:</font>
-        <br>%10$s
-        <br><br><font color="#53E3B3">Casa astrológica:</font>
-        <br>%11$s
-        <br><br><font color="#53E3B3">Regente:</font>
-        <br>%12$s
-        <br><br><font color="#53E3B3">Elemento:</font>
-        <br>%13$s
-        <br><br><font color="#53E3B3">Color:</font>
-        <br>%14$s
-        <br><br><font color="#53E3B3">Números de la suerte:</font>
-        <br>%15$s
-        <br><br><font color="#53E3B3">Es compatible con:</font>
-        <br>%16$s
-        <br><br><font color="#53E3B3">No se lleva con:</font>
-        <br>%17$s
-        <br><br><font color="#53E3B3">Signo zodiacal de Walter Berg:</font>
-        <br>%18$s
-        <br><br><font color="#53E3B3">Signo zodiacal chino:</font>
-        <br>%19$s
-        <br><br><big><b><font color="#869DEE">Identidad</font></b></big>
-        <br><br><font color="#53E3B3">Color:</font>
-        <br><big><big><font color="%20$s">%21$s</font></big></big>
-        <br><br><font color="#53E3B3">Animal:</font>
-        <br>%22$s
-        <br><br><font color="#53E3B3">Tipo psicológico según Jung:</font>
-        <br>%23$s
-        <br><br><font color="#53E3B3">Nombre secreto:</font>
-        <br>%24$s
-        <br><br><font color="#53E3B3">Nombre demoniaco:</font>
-        <br>%25$s
-        <br><br><font color="#53E3B3">Nombre en la vida pasada:</font>
-        <br>%26$s
-        <br><br><font color="#53E3B3">Nombre en la vida futura:</font>
-        <br>%27$s
-        <br><br><font color="#53E3B3">Nombre de usuario recomendado:</font>
-        <br>%28$s
-        <br><br><font color="#53E3B3">Dígito personal:</font>
-        <br>%29$d
-        <br><br><font color="#53E3B3">Números de la suerte únicos:</font>
-        <br>%30$s
-        <br><br><font color="#53E3B3">Días entre fecha actual y fecha de nacimiento:</font>
-        <br><font color="#E3E1A1"><b>%31$s</b></font>
-        <br><br><font color="#53E3B3">Tiempo entre fecha actual y fecha de nacimiento:</font>
-        <br><font color="#E3E1A1"><b>%32$s</b></font>
         ]]>
     </string>
     <string name="pick">Seleccionar una fecha de consulta</string>
@@ -220,8 +165,6 @@
     <string name="preference_seed_summary">Usa una semilla para generar pseudoaleatoriedad con el aspecto y mensajes del adivino</string>
     <string name="preference_seed_title">Introducir semilla</string>
     <string name="preference_speech_synthesis">Síntesis de habla</string>
-    <string name="preference_stick_header">Fijar panel de consulta</string>
-    <string name="preference_stick_header_summary">Fija el panel de consulta en la parte superior de la pantalla para que siempre esté visible</string>
     <string name="preference_text_reading">Lectura de texto</string>
     <string name="preference_text_reading_summary">Cambia el tipo de texto que puede ser leído en la aplicación</string>
     <string name="preference_theme">Tema</string>
@@ -230,9 +173,9 @@
     <string name="preference_update_frequency_summary">Cambia el tiempo que tarda en actualizarse la predicción</string>
     <string name="qualitative_adjectives">{[agradable]; plural:+s}¶ {[brillante]; plural:+s}¶ {[desagradable]; plural:+s}¶ {[diferente]; plural:+s}¶ {[frágil]; plural:+es}¶ {[electrizante]; plural:+s}¶ {[grandios[o,a]]; plural:+s}¶ {[mejor]; plural:+es}¶ {[normal]; plural:+es}¶ {[negativ[o,a]]; plural:+s}¶ {[oscur[o,a]]; plural:+s}¶ {[peor]; plural:+es}¶ {[positiv[o,a]]; plural:+s}¶ {[rar[o,a]]; plural:+s}¶ {[sólid[o,a]]; plural:+s}¶ {[terrible]; plural:+s}</string>
     <string name="relative">[[padre,madre]]¶ [[papá,mamá]]¶ [hij[o,a]]¶ [prim[o,a]]¶ [tí[o,a]]¶ [sobrin[o,a]]¶ [herman[o,a]]¶ [abuel[o,a]]¶ [niet[o,a]]¶ [bisabuel[o,a]]</string>
-    <string name="reload">Cargar otra consulta</string>
+    <string name="reload">Generar consulta</string>
     <string name="save">Guardar consulta</string>
-    <string name="selector">Seleccionar consulta</string>
+    <string name="selector">Elegir consulta</string>
     <string name="situation_descriptor">{rand:∅; bueno; malo; extraño; sorprendente; desconcertante; favorable; desfavorable}</string>
     <string name="time_component">La hora es¶ La hora actual es¶ En este momento la hora es¶ El reloj marca la(s)¶ La hora en este momento es¶ Tengo la hora</string>
     <string name="time_elapsed">%1$d año(s), %2$d mes(es), %3$d día(s)</string>
@@ -542,6 +485,7 @@
         <item>devorando a algo como {string:augury_entity}</item>
     </string-array>
     <string-array name="chinese_zodiac_sign">
+        <item>\?</item>
         <item>Mono</item>
         <item>Gallo</item>
         <item>Perro</item>
@@ -595,10 +539,6 @@
         <item><![CDATA[<font color="{method:getDefaultColor}"><b>{string:subject; gender:⛌}</b></font>]]></item>
         <item><![CDATA[<i>{string:interjections}</i>]]></item>
         <item><![CDATA[<font color="{method:getDefaultColor}"><b>{[usuari[o,a]]; gender:⛌} de {method:getDeviceInfo}</b></font>]]></item>
-    </string-array>
-    <string-array name="date_options">
-        <item>Consulta de hoy</item>
-        <item>Consulta de fecha específica</item>
     </string-array>
     <string-array name="distant_relationship">
         <item>&personType1;</item>
@@ -1048,7 +988,7 @@
     </string-array>
     <string-array name="individual">
         <item>{string:individual_base}</item>
-        <item>{string:individual_base} {string:individual_trait}</item>
+        <item>{string:individual_base} ⸠string:individual_trait⸡</item>
     </string-array>
     <string-array name="individual_base">
         <item>[un[,a]] [[hombre,mujer]]</item>
@@ -1136,10 +1076,10 @@
         <item>{string:individual_height}</item>
     </string-array>
     <string-array name="individual_representation">
-        <item>{string:individual_base} {string:individual_build}</item>
-        <item>{string:individual_base} {string:individual_eyes}</item>
-        <item>{string:individual_base} {string:individual_hair}</item>
-        <item>{string:individual_base} {string:individual_height}</item>
+        <item>{string:individual_base} ⸠string:individual_build⸡</item>
+        <item>{string:individual_base} ⸠string:individual_eyes⸡</item>
+        <item>{string:individual_base} ⸠string:individual_hair⸡</item>
+        <item>{string:individual_base} ⸠string:individual_height⸡</item>
     </string-array>
     <string-array name="language">
         <item>Español</item>

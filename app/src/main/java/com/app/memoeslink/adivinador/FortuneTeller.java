@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.TypedArray;
 
+import com.app.memoeslink.adivinador.preference.Preference;
+import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.app.memoeslink.adivinador.tagprocessor.TagProcessor;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.LongHelper;

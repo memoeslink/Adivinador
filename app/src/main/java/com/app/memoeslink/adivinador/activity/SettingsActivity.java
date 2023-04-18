@@ -11,10 +11,10 @@ import android.view.KeyEvent;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.app.memoeslink.adivinador.Preference;
-import com.app.memoeslink.adivinador.PreferenceHandler;
 import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.Screen;
+import com.app.memoeslink.adivinador.preference.Preference;
+import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 
 public class SettingsActivity extends CommonActivity implements TextToSpeech.OnInitListener {
@@ -34,7 +34,7 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
         AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
         builder.setTitle(getString(R.string.alert_app_restart_title));
         builder.setMessage(getString(R.string.alert_app_restart_message));
-        builder.setIcon(R.drawable.door);
+        builder.setIcon(R.drawable.exit);
         builder.setNeutralButton(getString(R.string.ok), (dialog, which) -> dialog.dismiss());
         builder.setOnDismissListener(arg0 -> restartApplication());
         dialog = builder.create();
@@ -63,9 +63,6 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
 
             if (key.equals(Preference.SETTING_SAVE_ENQUIRIES.getTag()) && !PreferenceHandler.getBoolean(Preference.SETTING_SAVE_ENQUIRIES, true))
                 PreferenceHandler.remove(Preference.DATA_STORED_PEOPLE);
-
-            if (key.equals(Preference.SETTING_STICK_HEADER.getTag()))
-                PreferenceHandler.put(Preference.TEMP_RESTART_ACTIVITY, true);
         };
         PreferenceHandler.changeDefaultPreferencesListener(listener);
     }

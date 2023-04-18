@@ -20,9 +20,9 @@ public class DatabaseFinder extends Binder {
     public String getAbstractNoun() {
         switch (getString(R.string.locale)) {
             case "en":
-                return Database.getInstance(this).selectEnglishAbstractNoun(r.getInt(1, Database.getInstance(this).countEnglishAbstractNouns()));
+                return Database.getInstance(context).selectEnglishAbstractNoun(r.getInt(1, Database.getInstance(context).countEnglishAbstractNouns()));
             case "es":
-                return Database.getInstance(this).selectSpanishAbstractNoun(r.getInt(1, Database.getInstance(this).countSpanishAbstractNouns()));
+                return Database.getInstance(context).selectSpanishAbstractNoun(r.getInt(1, Database.getInstance(context).countSpanishAbstractNouns()));
             default:
                 return ResourceFinder.RESOURCE_NOT_FOUND;
         }
@@ -31,9 +31,9 @@ public class DatabaseFinder extends Binder {
     public String getDivination() {
         switch (getString(R.string.locale)) {
             case "en":
-                return Database.getInstance(this).selectEnglishPrediction(r.getInt(1, Database.getInstance(this).countEnglishPredictions()));
+                return Database.getInstance(context).selectEnglishPrediction(r.getInt(1, Database.getInstance(context).countEnglishPredictions()));
             case "es":
-                return Database.getInstance(this).selectSpanishPrediction(r.getInt(1, Database.getInstance(this).countSpanishPredictions()));
+                return Database.getInstance(context).selectSpanishPrediction(r.getInt(1, Database.getInstance(context).countSpanishPredictions()));
             default:
                 return ResourceFinder.RESOURCE_NOT_FOUND;
         }
@@ -42,9 +42,9 @@ public class DatabaseFinder extends Binder {
     public String getFortuneCookie() {
         switch (getString(R.string.locale)) {
             case "en":
-                return Database.getInstance(this).selectEnglishFortuneCookie(r.getInt(1, Database.getInstance(this).countEnglishFortuneCookies()));
+                return Database.getInstance(context).selectEnglishFortuneCookie(r.getInt(1, Database.getInstance(context).countEnglishFortuneCookies()));
             case "es":
-                return Database.getInstance(this).selectSpanishFortuneCookie(r.getInt(1, Database.getInstance(this).countSpanishFortuneCookies()));
+                return Database.getInstance(context).selectSpanishFortuneCookie(r.getInt(1, Database.getInstance(context).countSpanishFortuneCookies()));
             default:
                 return ResourceFinder.RESOURCE_NOT_FOUND;
         }
@@ -53,9 +53,9 @@ public class DatabaseFinder extends Binder {
     public String getPhrase() {
         switch (getString(R.string.locale)) {
             case "en":
-                return Database.getInstance(this).selectEnglishPhrase(r.getInt(1, Database.getInstance(this).countEnglishPhrases()));
+                return Database.getInstance(context).selectEnglishPhrase(r.getInt(1, Database.getInstance(context).countEnglishPhrases()));
             case "es":
-                return Database.getInstance(this).selectSpanishPhrase(r.getInt(1, Database.getInstance(this).countSpanishPhrases()));
+                return Database.getInstance(context).selectSpanishPhrase(r.getInt(1, Database.getInstance(context).countSpanishPhrases()));
             default:
                 return ResourceFinder.RESOURCE_NOT_FOUND;
         }

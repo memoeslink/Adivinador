@@ -2,6 +2,8 @@ package com.app.memoeslink.adivinador;
 
 import android.content.Context;
 
+import com.app.memoeslink.adivinador.preference.Preference;
+import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.memoeslink.generator.common.StringHelper;
 
 import java.util.Locale;

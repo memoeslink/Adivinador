@@ -2,9 +2,4 @@
 <resources>
     <attr name="accent" format="reference|color" />
     <attr name="disabledItem" format="reference|color" />
-
-    <declare-styleable name="StickyScrollView">
-        <attr name="stuckShadowHeight" format="dimension" />
-        <attr name="stuckShadowDrawable" format="reference" />
-    </declare-styleable>
 </resources>

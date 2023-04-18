@@ -7,18 +7,15 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
-import com.app.memoeslink.adivinador.*
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonDeserializationContext
-import com.google.gson.JsonDeserializer
-import com.google.gson.JsonElement
-import com.google.gson.reflect.TypeToken
+import com.app.memoeslink.adivinador.CustomDatePicker
+import com.app.memoeslink.adivinador.R
+import com.app.memoeslink.adivinador.SpannerHelper
+import com.app.memoeslink.adivinador.preference.Preference
+import com.app.memoeslink.adivinador.preference.PreferenceHandler
+import com.app.memoeslink.adivinador.preference.PreferenceUtils
 import com.memoeslink.generator.common.DateTimeHelper
 import com.memoeslink.generator.common.Gender
-import com.memoeslink.generator.common.Person
 import com.memoeslink.generator.common.StringHelper
-import java.lang.reflect.Type
-import java.time.LocalDate
 import kotlin.math.abs
 
 class InputActivity : CommonActivity() {
@@ -41,34 +38,49 @@ class InputActivity : CommonActivity() {
         val currentDate = DateTimeHelper.getCurrentDate()
 
         //Initialize values
-        PreferenceHandler.getStringOrNull(Preference.TEMP_NAME)?.takeUnless { name ->
+        PreferenceHandler.getStringOrNull(
+            Preference.TEMP_NAME
+        )?.takeUnless { name ->
             name.isBlank()
         }?.let { name ->
             tvName?.setText(name)
         }
 
-        PreferenceHandler.getIntOrNull(Preference.TEMP_GENDER)?.let { gender ->
-            (rgGender?.getChildAt(gender) as RadioButton).isChecked = true
-        } ?: PreferenceHandler.put(Preference.TEMP_GENDER, Gender.NEUTRAL.value)
+        PreferenceHandler.getIntOrNull(
+            Preference.TEMP_GENDER
+        )?.let { gender ->
+            (rgGender?.getChildAt(gender.coerceAtLeast(0)) as RadioButton).isChecked = true
+        } ?: PreferenceHandler.put(
+            Preference.TEMP_GENDER, Gender.NEUTRAL.value
+        )
 
-        PreferenceHandler.getIntOrNull(Preference.TEMP_YEAR_OF_BIRTH)?.takeIf { year ->
+        PreferenceHandler.getIntOrNull(
+            Preference.TEMP_YEAR_OF_BIRTH
+        )?.takeIf { year ->
             abs(currentDate.year - year) < 200
         }?.let { year ->
             currentDate.withYear(year)
-        } ?: PreferenceHandler.put(Preference.TEMP_YEAR_OF_BIRTH, currentDate.year)
-
-        PreferenceHandler.getIntOrNull(Preference.TEMP_MONTH_OF_BIRTH)?.let { month ->
-            currentDate.withMonth(month)
         } ?: PreferenceHandler.put(
-            Preference.TEMP_MONTH_OF_BIRTH,
-            currentDate.monthValue
+            Preference.TEMP_YEAR_OF_BIRTH, currentDate.year
         )
 
-        PreferenceHandler.getIntOrNull(Preference.TEMP_DAY_OF_BIRTH)?.let { day ->
-            currentDate.withDayOfMonth(day)
-        } ?: PreferenceHandler.put(Preference.TEMP_DAY_OF_BIRTH, currentDate.dayOfMonth)
+        PreferenceHandler.getIntOrNull(
+            Preference.TEMP_MONTH_OF_BIRTH
+        )?.let { month ->
+            currentDate.withMonth(month)
+        } ?: PreferenceHandler.put(
+            Preference.TEMP_MONTH_OF_BIRTH, currentDate.monthValue
+        )
 
-        //Disable form when a prediction is being retrieved
+        PreferenceHandler.getIntOrNull(
+            Preference.TEMP_DAY_OF_BIRTH
+        )?.let { day ->
+            currentDate.withDayOfMonth(day)
+        } ?: PreferenceHandler.put(
+            Preference.TEMP_DAY_OF_BIRTH, currentDate.dayOfMonth
+        )
+
+        //Disable form while a prediction is being retrieved
         if (PreferenceHandler.getBoolean(Preference.TEMP_BUSY)) toggleViews(false)
 
         //Set listeners
@@ -82,10 +94,11 @@ class InputActivity : CommonActivity() {
                 name = SpannerHelper.fromHtml(name).toString()
 
                 if (StringHelper.isNotNullOrBlank(name)) PreferenceHandler.put(
-                    Preference.TEMP_NAME,
-                    name
+                    Preference.TEMP_NAME, name
                 )
-                else PreferenceHandler.remove(Preference.TEMP_NAME)
+                else PreferenceHandler.remove(
+                    Preference.TEMP_NAME
+                )
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -99,17 +112,23 @@ class InputActivity : CommonActivity() {
                 R.id.input_gender_female_option -> Gender.FEMININE
                 else -> Gender.NEUTRAL
             }
-            PreferenceHandler.put(Preference.TEMP_GENDER, gender.value)
+            PreferenceHandler.put(
+                Preference.TEMP_GENDER, gender.value
+            )
         }
 
         dpBirthdate?.init(
-            currentDate.year,
-            currentDate.monthValue - 1,
-            currentDate.dayOfMonth
+            currentDate.year, currentDate.monthValue - 1, currentDate.dayOfMonth
         ) { _: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
-            PreferenceHandler.put(Preference.TEMP_YEAR_OF_BIRTH, year)
-            PreferenceHandler.put(Preference.TEMP_MONTH_OF_BIRTH, month + 1)
-            PreferenceHandler.put(Preference.TEMP_DAY_OF_BIRTH, dayOfMonth)
+            PreferenceHandler.put(
+                Preference.TEMP_YEAR_OF_BIRTH, year
+            )
+            PreferenceHandler.put(
+                Preference.TEMP_MONTH_OF_BIRTH, month + 1
+            )
+            PreferenceHandler.put(
+                Preference.TEMP_DAY_OF_BIRTH, dayOfMonth
+            )
         }
 
         btBack?.setOnClickListener { finish() }
@@ -125,50 +144,42 @@ class InputActivity : CommonActivity() {
         super.onStart()
 
         //Get stored names
-        PreferenceHandler.getStringSet(Preference.DATA_STORED_NAMES).toMutableList()
-            .let { storedNames ->
-                if (storedNames.isNotEmpty()) {
-                    names = storedNames
-                    tvName?.setAdapter(
-                        ArrayAdapter(
-                            this@InputActivity,
-                            android.R.layout.simple_dropdown_item_1line,
-                            names.toTypedArray()
-                        )
+        PreferenceHandler.getStringSet(
+            Preference.DATA_STORED_NAMES
+        ).toMutableList().let { storedNames ->
+            if (storedNames.isNotEmpty()) {
+                names = storedNames
+                tvName?.setAdapter(
+                    ArrayAdapter(
+                        this@InputActivity,
+                        android.R.layout.simple_dropdown_item_1line,
+                        names.toTypedArray()
                     )
-                }
+                )
             }
-
-        //Get stored enquiries
-        if (StringHelper.isNotNullOrBlank(PreferenceHandler.getString(Preference.DATA_STORED_PEOPLE))) {
-            val gson = GsonBuilder().registerTypeAdapter(
-                LocalDate::class.java,
-                JsonDeserializer { json: JsonElement, _: Type?, _: JsonDeserializationContext? ->
-                    LocalDate.parse(
-                        json.asJsonPrimitive.asString
-                    )
-                } as JsonDeserializer<LocalDate>).create()
-            val json = PreferenceHandler.getString(Preference.DATA_STORED_PEOPLE)
-            val type = object : TypeToken<ArrayList<Person?>?>() {}.type
-            people = gson.fromJson(json, type)
         }
     }
 
     public override fun onDestroy() {
-        PreferenceHandler.getStringOrNull(Preference.TEMP_NAME)?.takeUnless { name ->
+        PreferenceHandler.getStringOrNull(
+            Preference.TEMP_NAME
+        )?.takeUnless { name ->
             name.isBlank()
         }?.let { name ->
-            if (PreferenceHandler.getBoolean(Preference.SETTING_SAVE_NAMES, true)
-                && !names.contains(name)
+            if (PreferenceHandler.getBoolean(
+                    Preference.SETTING_SAVE_NAMES, true
+                ) && !names.contains(name)
             ) {
                 if (names.size >= 200) names.removeAt(0)
                 names.add(name)
                 val set: MutableSet<String> = HashSet()
                 set.addAll(names)
-                PreferenceHandler.put(Preference.DATA_STORED_NAMES, set)
+                PreferenceHandler.put(
+                    Preference.DATA_STORED_NAMES, set
+                )
             }
-            val person = formPerson
-            savePerson(person)
+            val person = PreferenceUtils.getFormPerson()
+            PreferenceUtils.savePerson(person)
         }
         super.onDestroy()
     }

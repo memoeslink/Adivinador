@@ -17,13 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.app.memoeslink.adivinador.StickyScrollView
-                stuckShadowDrawable="@drawable/below_shadow"
-                stuckShadowHeight="10dp"
+            <com.amar.library.ui.StickyScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fillViewport="true"
-                android:scrollbars="vertical">
+                android:scrollbars="vertical"
+                app:stickyHeader="@+id/main_header">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -80,216 +79,271 @@
                         android:minLines="3"
                         android:textAppearance="@android:style/TextAppearance.Medium" />
 
-                    <RelativeLayout
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:alpha="225"
+                        android:background="?accent" />
+
+                    <LinearLayout
                         android:id="@+id/main_header"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="?android:windowBackground">
+                        android:background="?android:windowBackground"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="10dp"
                             android:animateLayoutChanges="true"
                             android:baselineAligned="false"
-                            android:divider="@drawable/divider"
-                            android:orientation="horizontal"
-                            android:showDividers="middle">
+                            android:orientation="horizontal">
 
                             <LinearLayout
                                 android:id="@+id/main_data_entry_holder"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="horizontal"
+                                android:background="@drawable/custom_layout"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
                                 android:visibility="gone">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/enquiry" />
 
                                 <TextView
                                     android:id="@+id/main_data_entry"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginRight="2.5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
                                     android:ellipsize="end"
                                     android:gravity="center"
                                     android:maxLines="2"
                                     android:textAppearance="@android:style/TextAppearance.Small" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="2.5dp"
-                                    android:adjustViewBounds="true"
-                                    android:src="@drawable/application_link" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/main_reload_holder"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="horizontal"
+                                android:background="@drawable/custom_layout"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
                                 android:visibility="gone">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/reload" />
 
                                 <TextView
                                     android:id="@+id/main_reload"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginRight="2.5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
                                     android:ellipsize="end"
                                     android:gravity="center"
                                     android:maxLines="2"
                                     android:textAppearance="@android:style/TextAppearance.Small" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="2.5dp"
-                                    android:adjustViewBounds="true"
-                                    android:src="@drawable/reload" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/main_inquiry_holder"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="horizontal"
+                                android:background="@drawable/custom_layout"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
                                 android:visibility="gone">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/form" />
 
                                 <TextView
                                     android:id="@+id/main_inquiry"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginRight="2.5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
                                     android:ellipsize="end"
                                     android:gravity="center"
                                     android:maxLines="2"
                                     android:textAppearance="@android:style/TextAppearance.Small" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="2.5dp"
-                                    android:adjustViewBounds="true"
-                                    android:src="@drawable/enquiry" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/main_selector_holder"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="horizontal"
+                                android:background="@drawable/custom_layout"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
                                 android:visibility="gone">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/form" />
 
                                 <TextView
                                     android:id="@+id/main_selector"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginRight="2.5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
                                     android:ellipsize="end"
                                     android:gravity="center"
                                     android:maxLines="2"
                                     android:textAppearance="@android:style/TextAppearance.Small" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="2.5dp"
-                                    android:adjustViewBounds="true"
-                                    android:src="@drawable/form" />
                             </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/main_clear_holder"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="horizontal"
+                                android:background="@drawable/custom_layout"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"
                                 android:visibility="gone">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="5dp"
+                                    android:adjustViewBounds="true"
+                                    android:src="@drawable/clear" />
 
                                 <TextView
                                     android:id="@+id/main_clear"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginRight="2.5dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
                                     android:ellipsize="end"
                                     android:gravity="center"
                                     android:maxLines="2"
                                     android:singleLine="true"
                                     android:textAppearance="@android:style/TextAppearance.Small" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="2.5dp"
-                                    android:adjustViewBounds="true"
-                                    android:src="@drawable/clear" />
                             </LinearLayout>
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_alignParentBottom="true"
                             android:alpha="225"
                             android:background="?accent" />
-                    </RelativeLayout>
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/main_person"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="10dp"
-                        android:clickable="false"
-                        android:drawablePadding="5dp"
-                        android:ellipsize="marquee"
-                        android:enabled="false"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:textAppearance="@android:style/TextAppearance.Small" />
+                        android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:id="@+id/main_date_selector"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="125dp"
+                            android:layout_marginTop="20dp">
 
-                    <TextView
-                        android:id="@+id/main_pick"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:drawablePadding="5dp"
-                        android:ellipsize="middle"
-                        android:singleLine="true"
-                        android:textAppearance="@android:style/TextAppearance.Small"
-                        android:visibility="gone"
-                        app:drawableLeftCompat="@drawable/emptiness"
-                        app:drawableRightCompat="@drawable/calendar" />
+                            <com.lelloman.identicon.view.GithubIdenticonView
+                                android:id="@+id/main_person_image"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:hash="0"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/main_details"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:adjustViewBounds="true"
+                                app:layout_constraintBottom_toBottomOf="@+id/main_person_image"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintHeight_percent="0.20"
+                                app:layout_constraintStart_toStartOf="@+id/main_person_image"
+                                app:srcCompat="@drawable/expand" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/main_save"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:adjustViewBounds="true"
+                                app:layout_constraintBottom_toBottomOf="@+id/main_person_image"
+                                app:layout_constraintDimensionRatio="1:1"
+                                app:layout_constraintEnd_toEndOf="@+id/main_person_image"
+                                app:layout_constraintHeight_percent="0.20"
+                                app:srcCompat="@drawable/save" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/main_person"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:clickable="false"
+                            android:drawablePadding="5dp"
+                            android:enabled="false"
+                            android:gravity="center"
+                            android:singleLine="false"
+                            android:textAppearance="@android:style/TextAppearance.Small" />
+
+                        <TextView
+                            android:id="@+id/main_pick"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:drawablePadding="5dp"
+                            android:ellipsize="middle"
+                            android:singleLine="true"
+                            android:textAppearance="@android:style/TextAppearance.Small"
+                            app:drawableLeftCompat="@drawable/emptiness"
+                            app:drawableRightCompat="@drawable/calendar" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="20dp"
+                            android:alpha="225"
+                            android:background="?accent" />
+                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -346,7 +400,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1px" />
                 </LinearLayout>
-            </com.app.memoeslink.adivinador.StickyScrollView>
+            </com.amar.library.ui.StickyScrollView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <RelativeLayout

@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.app.memoeslink.adivinador",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 118,
+      "versionName": "1.8.0",
+      "outputFile": "Adivinador-1.8.0-release.apk"
+    }
+  ],
+  "elementType": "File"
+}

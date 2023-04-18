@@ -2,9 +2,9 @@ package com.app.memoeslink.adivinador.tagprocessor;
 
 import android.content.Context;
 
-import com.app.memoeslink.adivinador.Preference;
-import com.app.memoeslink.adivinador.PreferenceHandler;
 import com.app.memoeslink.adivinador.ResourceExplorer;
+import com.app.memoeslink.adivinador.preference.Preference;
+import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.memoeslink.generator.common.Binder;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.Pair;

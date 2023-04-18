@@ -1,7 +1,12 @@
 package com.app.memoeslink.adivinador
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.multidex.MultiDexApplication
 import androidx.preference.PreferenceManager
+import com.app.memoeslink.adivinador.preference.Preference
+import com.app.memoeslink.adivinador.preference.PreferenceHandler
 import com.memoeslink.generator.common.Session
 import com.memoeslink.generator.common.StringHelper
 import java.io.File
@@ -11,15 +16,30 @@ class BaseApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
+        //Initialize LifecycleEventObserver
+        ProcessLifecycleOwner.get().lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_STOP -> {
+                    foreground = false
+                    println("App is running in the background.")
+                }
+                Lifecycle.Event.ON_START -> {
+                    foreground = true
+                    println("App is running in the background.")
+                }
+                else -> {}
+            }
+        })
+
         //Initialize SharedPreferences
         PreferenceHandler.init(applicationContext);
 
         //Initialize Generator database
-        Session.getInstance().initDatabase(this@BaseApplication)
+        Session.getInstance().initDatabase(applicationContext)
 
         //Set preference default values
         PreferenceManager.setDefaultValues(
-            this@BaseApplication,
+            applicationContext,
             R.xml.default_preferences,
             false
         )
@@ -29,7 +49,10 @@ class BaseApplication : MultiDexApplication() {
     }
 
     private fun getDatabaseTrace(version: Int): File? {
-        if (version >= PreferenceHandler.getInt(Preference.SYSTEM_REVISED_DATABASE_VERSION)) {
+        if (version >= PreferenceHandler.getInt(
+                Preference.SYSTEM_REVISED_DATABASE_VERSION
+            )
+        ) {
             val databaseName = if (version > 1) {
                 String.format(
                     Database.DATABASE_NAME_FORMAT,
@@ -41,7 +64,9 @@ class BaseApplication : MultiDexApplication() {
             val database = getDatabasePath(databaseName)
 
             if (database.exists()) {
-                PreferenceHandler.put(Preference.SYSTEM_REVISED_DATABASE_VERSION, version)
+                PreferenceHandler.put(
+                    Preference.SYSTEM_REVISED_DATABASE_VERSION, version
+                )
                 return database
             }
             getDatabaseTrace(version - 1)
@@ -85,5 +110,9 @@ class BaseApplication : MultiDexApplication() {
                 }
             }
         } ?: println("There wasn't any old database to delete.")
+    }
+
+    companion object {
+        var foreground: Boolean = true
     }
 }

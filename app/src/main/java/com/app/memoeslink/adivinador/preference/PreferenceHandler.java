@@ -1,4 +1,4 @@
-package com.app.memoeslink.adivinador;
+package com.app.memoeslink.adivinador.preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,16 +6,9 @@ import android.content.SharedPreferences;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.helper.SharedPreferencesHelper;
 
-import java.util.Collections;
 import java.util.Set;
 
 public class PreferenceHandler {
-    private static final boolean DEFAULT_BOOLEAN = false;
-    private static final float DEFAULT_FLOAT = 0.0F;
-    private static final int DEFAULT_INTEGER = 0;
-    private static final long DEFAULT_LONG = 0L;
-    private static final String DEFAULT_STRING = "";
-    private static final Set<String> DEFAULT_STRING_SET = Collections.emptySet();
     private static SharedPreferencesHelper preferences;
     private static SharedPreferencesHelper defaultPreferences;
 
@@ -36,112 +29,22 @@ public class PreferenceHandler {
 
     public static boolean put(Preference preference, Object value) {
         if (isNullOrNone(preference)) return false;
+        Class<?> preferenceClass = preference.getClassType();
 
-        if (!preference.getClassType().isInstance(value)) return false;
-
-        switch (preference) {
-            case TEMP_NAME:
-            case DATA_STORED_PEOPLE:
-                return preferences.putString(preference.getTag(), (String) value);
-            case TEMP_GENDER:
-            case TEMP_YEAR_OF_BIRTH:
-            case TEMP_MONTH_OF_BIRTH:
-            case TEMP_DAY_OF_BIRTH:
-            case SYSTEM_REVISED_DATABASE_VERSION:
-                return preferences.putInt(preference.getTag(), (Integer) value);
-            case TEMP_ANONYMOUS:
-            case TEMP_BUSY:
-            case TEMP_CHANGE_FORTUNE_TELLER:
-            case TEMP_RESTART_ACTIVITY:
-            case TEMP_RESTART_ADS:
-                return preferences.putBoolean(preference.getTag(), (Boolean) value);
-            case DATA_STORED_NAMES:
-                return preferences.putStringSet(preference.getTag(), (Set<String>) value);
-            case SETTING_GREETINGS_ENABLED:
-            case SETTING_OPINIONS_ENABLED:
-            case SETTING_PHRASES_ENABLED:
-            case SETTING_AUDIO_ENABLED:
-            case SETTING_SOUNDS_ENABLED:
-            case SETTING_VOICE_ENABLED:
-            case SETTING_HIDE_DRAWER:
-            case SETTING_STICK_HEADER:
-            case SETTING_PARTICLES_ENABLED:
-            case SETTING_ADS_ENABLED:
-            case SETTING_ACTIVE_SCREEN:
-            case SETTING_KEEP_FORM:
-            case SETTING_SAVE_NAMES:
-            case SETTING_SAVE_ENQUIRIES:
-                return defaultPreferences.putBoolean(preference.getTag(), (Boolean) value);
-            case SETTING_SEED:
-            case SETTING_UPDATE_TIME:
-            case SETTING_FORTUNE_TELLER_ASPECT:
-            case SETTING_REFRESH_TIME:
-            case SETTING_TEXT_TYPE:
-            case SETTING_LANGUAGE:
-            case SETTING_THEME:
-                return defaultPreferences.putString(preference.getTag(), (String) value);
-            default:
-                return false;
-        }
+        if (!preferenceClass.isInstance(value)) return false;
+        return getPreferences(preference).put(preference.getTag(), value);
     }
 
     public static void save(Preference preference, Object value) {
         if (isNullOrNone(preference)) return;
+        Class<?> preferenceClass = preference.getClassType();
 
         if (!preference.getClassType().isInstance(value)) return;
-
-        switch (preference) {
-            case TEMP_NAME:
-            case DATA_STORED_PEOPLE:
-                preferences.saveString(preference.getTag(), (String) value);
-                break;
-            case TEMP_GENDER:
-            case TEMP_YEAR_OF_BIRTH:
-            case TEMP_MONTH_OF_BIRTH:
-            case TEMP_DAY_OF_BIRTH:
-            case SYSTEM_REVISED_DATABASE_VERSION:
-                preferences.saveInt(preference.getTag(), (Integer) value);
-                break;
-            case TEMP_ANONYMOUS:
-            case TEMP_BUSY:
-            case TEMP_CHANGE_FORTUNE_TELLER:
-            case TEMP_RESTART_ACTIVITY:
-            case TEMP_RESTART_ADS:
-                preferences.saveBoolean(preference.getTag(), (Boolean) value);
-                break;
-            case DATA_STORED_NAMES:
-                preferences.saveStringSet(preference.getTag(), (Set<String>) value);
-                break;
-            case SETTING_GREETINGS_ENABLED:
-            case SETTING_OPINIONS_ENABLED:
-            case SETTING_PHRASES_ENABLED:
-            case SETTING_AUDIO_ENABLED:
-            case SETTING_SOUNDS_ENABLED:
-            case SETTING_VOICE_ENABLED:
-            case SETTING_HIDE_DRAWER:
-            case SETTING_STICK_HEADER:
-            case SETTING_PARTICLES_ENABLED:
-            case SETTING_ADS_ENABLED:
-            case SETTING_ACTIVE_SCREEN:
-            case SETTING_KEEP_FORM:
-            case SETTING_SAVE_NAMES:
-            case SETTING_SAVE_ENQUIRIES:
-                defaultPreferences.saveBoolean(preference.getTag(), (Boolean) value);
-                break;
-            case SETTING_SEED:
-            case SETTING_UPDATE_TIME:
-            case SETTING_FORTUNE_TELLER_ASPECT:
-            case SETTING_REFRESH_TIME:
-            case SETTING_TEXT_TYPE:
-            case SETTING_LANGUAGE:
-            case SETTING_THEME:
-                defaultPreferences.saveString(preference.getTag(), (String) value);
-                break;
-        }
+        getPreferences(preference).save(preference.getTag(), value);
     }
 
     public static boolean getBoolean(Preference preference) {
-        return getBoolean(preference, DEFAULT_BOOLEAN);
+        return getBoolean(preference, SharedPreferencesHelper.getDEFAULT_BOOLEAN());
     }
 
     public static boolean getBoolean(Preference preference, boolean defaultValue) {
@@ -155,7 +58,7 @@ public class PreferenceHandler {
     }
 
     public static float getFloat(Preference preference) {
-        return getFloat(preference, DEFAULT_FLOAT);
+        return getFloat(preference, SharedPreferencesHelper.getDEFAULT_FLOAT());
     }
 
     public static float getFloat(Preference preference, float defaultValue) {
@@ -169,7 +72,7 @@ public class PreferenceHandler {
     }
 
     public static int getInt(Preference preference) {
-        return getInt(preference, DEFAULT_INTEGER);
+        return getInt(preference, SharedPreferencesHelper.getDEFAULT_INTEGER());
     }
 
     public static int getInt(Preference preference, int defaultValue) {
@@ -183,7 +86,7 @@ public class PreferenceHandler {
     }
 
     public static long getLong(Preference preference) {
-        return getLong(preference, DEFAULT_LONG);
+        return getLong(preference, SharedPreferencesHelper.getDEFAULT_LONG());
     }
 
     public static long getLong(Preference preference, long defaultValue) {
@@ -197,7 +100,7 @@ public class PreferenceHandler {
     }
 
     public static String getString(Preference preference) {
-        return getString(preference, DEFAULT_STRING);
+        return getString(preference, SharedPreferencesHelper.getDEFAULT_STRING());
     }
 
     public static String getString(Preference preference, String defaultValue) {
@@ -211,7 +114,7 @@ public class PreferenceHandler {
     }
 
     public static int getStringAsInt(Preference preference) {
-        return getStringAsInt(preference, DEFAULT_INTEGER);
+        return getStringAsInt(preference, SharedPreferencesHelper.getDEFAULT_INTEGER());
     }
 
     public static int getStringAsInt(Preference preference, int defaultValue) {
@@ -225,7 +128,7 @@ public class PreferenceHandler {
     }
 
     public static Set<String> getStringSet(Preference preference) {
-        return getStringSet(preference, DEFAULT_STRING_SET);
+        return getStringSet(preference, SharedPreferencesHelper.getDEFAULT_STRING_SET());
     }
 
     public static Set<String> getStringSet(Preference preference, Set<String> defaultValue) {
@@ -266,5 +169,9 @@ public class PreferenceHandler {
         if (preference != null && StringHelper.startsWith(preference.toString(), "SETTING_"))
             return defaultPreferences;
         return preferences;
+    }
+
+    public static Context getContext() {
+        return preferences.getBaseContext();
     }
 }

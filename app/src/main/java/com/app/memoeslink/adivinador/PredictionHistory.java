@@ -1,7 +1,5 @@
 package com.app.memoeslink.adivinador;
 
-import com.memoeslink.generator.common.DateTimeHelper;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +14,6 @@ public class PredictionHistory {
         if (prediction != null) {
             if (isFull())
                 predictions.remove(0);
-            prediction.setRetrievalDate(DateTimeHelper.getStrCurrentDate());
             predictions.add(prediction);
         }
     }
@@ -24,13 +21,13 @@ public class PredictionHistory {
     public Prediction getOldest() {
         if (!isEmpty())
             return predictions.get(0);
-        return new Prediction();
+        return new Prediction.PredictionBuilder().build();
     }
 
     public Prediction getLatest() {
         if (!isEmpty())
             return predictions.get(predictions.size() - 1);
-        return new Prediction();
+        return new Prediction.PredictionBuilder().build();
     }
 
     public Prediction dispenseOldest() {
@@ -39,7 +36,7 @@ public class PredictionHistory {
             predictions.remove(0);
             return prediction;
         }
-        return new Prediction();
+        return new Prediction.PredictionBuilder().build();
     }
 
     public Prediction dispenseLatest() {
@@ -48,7 +45,7 @@ public class PredictionHistory {
             predictions.remove(predictions.get(predictions.size() - 1));
             return prediction;
         }
-        return new Prediction();
+        return new Prediction.PredictionBuilder().build();
     }
 
     public void removeOldest() {

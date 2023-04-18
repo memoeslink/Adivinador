@@ -26,22 +26,14 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.app.memoeslink.adivinador.ActivityStatus;
 import com.app.memoeslink.adivinador.LanguageHelper;
-import com.app.memoeslink.adivinador.Preference;
-import com.app.memoeslink.adivinador.PreferenceHandler;
 import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.ResourceExplorer;
 import com.app.memoeslink.adivinador.Screen;
 import com.app.memoeslink.adivinador.Sound;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializer;
-import com.memoeslink.generator.common.Gender;
-import com.memoeslink.generator.common.Person;
+import com.app.memoeslink.adivinador.preference.Preference;
+import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.memoeslink.generator.common.StringHelper;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -55,7 +47,6 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     protected TextToSpeech tts;
     protected ResourceExplorer resourceExplorer;
     protected AudioManager audioManager;
-    protected List<Person> people = new ArrayList<>();
     protected List<String> names = new ArrayList<>();
     protected ActivityStatus activityStatus = ActivityStatus.LAUNCHED;
 
@@ -267,89 +258,11 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
         if (speechAvailable) {
             if (tts.isSpeaking()) tts.stop();
 
-            if (PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) && PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED))
+            if (activityStatus == ActivityStatus.RESUMED &&
+                    PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) &&
+                    PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED))
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, "UniqueID");
         }
-    }
-
-    protected final void deleteTemp() {
-        PreferenceHandler.remove(Preference.TEMP_BUSY);
-        PreferenceHandler.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER);
-        PreferenceHandler.remove(Preference.TEMP_RESTART_ACTIVITY);
-        PreferenceHandler.remove(Preference.TEMP_RESTART_ADS);
-
-        if (!PreferenceHandler.getBoolean(Preference.SETTING_KEEP_FORM)) clearForm();
-    }
-
-    protected final void clearForm() {
-        PreferenceHandler.remove(Preference.TEMP_NAME);
-        PreferenceHandler.remove(Preference.TEMP_GENDER);
-        PreferenceHandler.remove(Preference.TEMP_YEAR_OF_BIRTH);
-        PreferenceHandler.remove(Preference.TEMP_MONTH_OF_BIRTH);
-        PreferenceHandler.remove(Preference.TEMP_DAY_OF_BIRTH);
-        PreferenceHandler.remove(Preference.TEMP_ANONYMOUS);
-    }
-
-    protected final Person getFormPerson() {
-        Person person = new Person.PersonBuilder()
-                .setGender(Gender.get(PreferenceHandler.getInt(Preference.TEMP_GENDER)))
-                .setBirthdate(LocalDate.of(
-                        PreferenceHandler.getInt(Preference.TEMP_YEAR_OF_BIRTH, 1900),
-                        PreferenceHandler.getInt(Preference.TEMP_MONTH_OF_BIRTH, 1),
-                        PreferenceHandler.getInt(Preference.TEMP_DAY_OF_BIRTH, 1)
-                ))
-                .setAttribute("requested")
-                .build();
-
-        if (PreferenceHandler.getBoolean(Preference.TEMP_ANONYMOUS)) {
-            person.setUsername(PreferenceHandler.getString(Preference.TEMP_NAME));
-            person.addAttribute("anonymous");
-        } else
-            person.setFullName(PreferenceHandler.getString(Preference.TEMP_NAME));
-        return person;
-    }
-
-    protected final boolean isNoPersonTempStored() {
-        return (!PreferenceHandler.has(Preference.TEMP_NAME)
-                && !PreferenceHandler.has(Preference.TEMP_GENDER)
-                && !PreferenceHandler.has(Preference.TEMP_YEAR_OF_BIRTH)
-                && !PreferenceHandler.has(Preference.TEMP_MONTH_OF_BIRTH)
-                && !PreferenceHandler.has(Preference.TEMP_DAY_OF_BIRTH)
-        ) || isPersonNotTempStored(getFormPerson());
-    }
-
-    protected final boolean isPersonNotTempStored(Person person) {
-        List<Person> people = Collections.singletonList(getFormPerson());
-        return isPersonDistinct(person, people);
-    }
-
-    protected final boolean isPersonDistinct(Person person, List<Person> people) {
-        if (person == null || people == null)
-            return false;
-
-        for (Person existingPerson : people) {
-            if (existingPerson != null
-                    && person.getDescriptor().equals(existingPerson.getDescriptor())
-                    && person.getBirthdate().equals(existingPerson.getBirthdate())
-                    && person.getGender().equals(existingPerson.getGender()))
-                return false;
-        }
-        return true;
-    }
-
-    protected final boolean savePerson(Person person) {
-        if (PreferenceHandler.getBoolean(Preference.SETTING_SAVE_ENQUIRIES, true) && isPersonDistinct(person, people)) {
-            if (people.size() >= 100)
-                people.remove(0);
-            people.add(person);
-            Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, (JsonSerializer<LocalDate>) (src, typeOfSrc, context) -> {
-                return new JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE)); // "yyyy-mm-dd"
-            }).create();
-            String json = gson.toJson(people);
-            PreferenceHandler.save(Preference.DATA_STORED_PEOPLE, json);
-            return true;
-        }
-        return false;
     }
 
     protected final int getThemeId() {

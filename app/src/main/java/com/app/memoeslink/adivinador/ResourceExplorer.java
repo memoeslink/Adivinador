@@ -3,9 +3,10 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 
 import com.app.memoeslink.adivinador.finder.DatabaseFinder;
+import com.app.memoeslink.adivinador.preference.Preference;
+import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.memoeslink.generator.common.Constant;
 import com.memoeslink.generator.common.DateTimeGetter;
-import com.memoeslink.generator.common.Device;
 import com.memoeslink.generator.common.Explorer;
 import com.memoeslink.generator.common.Form;
 import com.memoeslink.generator.common.GeneratorManager;
@@ -14,6 +15,8 @@ import com.memoeslink.generator.common.NameType;
 import com.memoeslink.generator.common.PhraseType;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextFormatter;
+import com.memoeslink.manager.Device;
+import com.memoeslink.manager.InformationType;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -121,7 +124,7 @@ public class ResourceExplorer extends Explorer {
                 METHOD_MAPPING.put(MethodReference.DECIMAL_PERCENTAGE, () -> generatorManager.getStringGenerator().getDecimalPercentage());
                 METHOD_MAPPING.put(MethodReference.HEX_COLOR, () -> generatorManager.getStringGenerator().getStrColor());
                 METHOD_MAPPING.put(MethodReference.DEFAULT_COLOR, () -> resourceFinder.getStrFromArray(Constant.DEFAULT_COLORS));
-                METHOD_MAPPING.put(MethodReference.DEVICE_INFO, () -> new Device(context).getInfo(r.getInt(1, 9)));
+                METHOD_MAPPING.put(MethodReference.DEVICE_INFO, () -> new Device(context).getInfo(InformationType.values()[r.getInt(InformationType.values().length)]));
                 METHOD_MAPPING.put(MethodReference.CONTACT_NAME, contactNameFinder::getContactName);
                 METHOD_MAPPING.put(MethodReference.SUGGESTED_NAME, this::getSuggestedName);
                 METHOD_MAPPING.put(MethodReference.FORMATTED_NAME, this::getFormattedName);

@@ -1,4 +1,4 @@
-package com.app.memoeslink.adivinador;
+package com.app.memoeslink.adivinador.preference;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -10,6 +10,9 @@ public enum Preference {
     TEMP_YEAR_OF_BIRTH("temp_yearOfBirth", Integer.class),
     TEMP_MONTH_OF_BIRTH("temp_monthOfBirth", Integer.class),
     TEMP_DAY_OF_BIRTH("temp_dayOfBirth", Integer.class),
+    TEMP_YEAR_OF_ENQUIRY("temp_yearOfEnquiry", Integer.class),
+    TEMP_MONTH_OF_ENQUIRY("temp_monthOfEnquiry", Integer.class),
+    TEMP_DAY_OF_ENQUIRY("temp_dayOfEnquiry", Integer.class),
     TEMP_ANONYMOUS("temp_anonymous", Boolean.class),
     TEMP_BUSY("temp_busy", Boolean.class),
     TEMP_CHANGE_FORTUNE_TELLER("temp_changeFortuneTeller", Boolean.class),
@@ -30,7 +33,6 @@ public enum Preference {
     SETTING_VOICE_ENABLED("setting_voiceEnabled", Boolean.class),
     SETTING_TEXT_TYPE("setting_textType", String.class),
     SETTING_HIDE_DRAWER("setting_hideDrawer", Boolean.class),
-    SETTING_STICK_HEADER("setting_stickHeader", Boolean.class),
     SETTING_PARTICLES_ENABLED("setting_particlesEnabled", Boolean.class),
     SETTING_ADS_ENABLED("setting_adsEnabled", Boolean.class),
     SETTING_LANGUAGE("setting_language", String.class),

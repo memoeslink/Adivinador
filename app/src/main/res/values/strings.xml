@@ -35,7 +35,7 @@
         <br><i><font color="#BABBFF">• Frequency lists by Neri</font></i> [<font color=#A268FF>Public domain</font>] (<a href="http://frequencylists.blogspot.mx/2016/08/5000-spanish-sentences-sorted-from.html/">https://blogger.com/</a>)
         <br><br><font color="#53E3B3">Code:</font>
         <br><i><font color="#FDFCDA">• Alexandros Schillings, Cyril Mottier, Jeff Gilfelt, Jon Adams, Kevin (kevinchai): </font><font color=#FFFDC4>Android SQLiteAssetHelper</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/jgilfelt/android-sqlite-asset-helper/">https://github.com/</a>)
-        <br><i><font color="#FDFCDA">• Emil Sjölander: </font><font color=#FFFDC4>StickyScrollViewItems</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/emilsjolander/StickyScrollViewItems/">https://github.com/</a>)
+        <br><i><font color="#FDFCDA">• Amar Jain: </font><font color=#FFFDC4>StickyScrollView</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://github.com/amarjain07/StickyScrollView/">https://github.com/</a>)
         <br><i><font color="#FDFCDA">• Encryptor Code: </font><font color=#FFFDC4>Pluralize</font></i> [<font color=#FF9BB4>MIT License</font>] (<a href="https://github.com/encryptorcode/pluralize/">https://github.com/</a>)
         <br><i><font color="#FDFCDA">• Google Inc.: </font><font color=#FFFDC4>Gson</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/google/gson/">https://github.com/</a>)
         <br><i><font color="#FDFCDA">• Jin Cao (jinatonic): </font><font color=#FFFDC4>Confetti</font></i> [<font color=#D0F0B7>Apache License v2.0</font>] (<a href="https://github.com/jinatonic/confetti/">https://github.com/</a>)
@@ -99,81 +99,26 @@
     <string name="interjections">achoo¶ ack¶ ah¶ aha¶ ahem¶ ahh¶ arg¶ argh¶ aw¶ bah¶ bam¶ blah¶ blech¶ boo¶ boo-hoo¶ boo-yah¶ brrr¶ bwah-hah-hah¶ d\'oh¶ dang¶ darn¶ drats¶ duh¶ eek¶ eep¶ egads¶ eh¶ er¶ ew¶ feh¶ gak¶ gee¶ golly¶ gosh¶ gulp¶ ha¶ ha-ha¶ hamana-hamana¶ hardy-har-har¶ hehe¶ hey¶ hist¶ hmph¶ ho-ho¶ ho-hum¶ huh¶ humph¶ hup¶ hurrah¶ hurray¶ ick¶ lah-de-dah¶ mh-hmm¶ mmmm¶ mwah¶ nana na nana na¶ neener-neener¶ now¶ oh¶ olé¶ oof¶ ooh¶ ooh-la-la¶ oops¶ ouch¶ ow¶ oy¶ pff¶ phew¶ phoar¶ phooey¶ poof¶ pooh¶ pow¶ pshaw¶ psst¶ rah¶ sheesh¶ shh¶ shoo¶ shucks¶ sis boom dah¶ skrreeek¶ ta-da¶ tchah¶ tsk-tsk¶ tut-tut¶ ugh¶ uh¶ uh-huh¶ uh-oh¶ uh-uh¶ uhm¶ ummm¶ va-va-voom¶ wahoo¶ whee¶ whew¶ whiz¶ whoa¶ whoop-de-doo¶ whoopee¶ whoops¶ woo¶ woopsie¶ wow¶ wowie¶ yay¶ yee-haw¶ yep¶ yikes¶ yippee¶ yo¶ yo-ho-ho¶ yoow¶ yoowza¶ yuck¶ yum¶ zoinks¶ zowie¶ zzzz</string>
     <string name="locale">en</string>
     <string name="menu_donate">Donate</string>
-    <string name="menu_set_data">Set data</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_about">About</string>
     <string name="menu_exit">Exit</string>
     <string name="name_generation">Generate name</string>
     <string name="nouns">existence¶ matter¶ person¶ being¶ human¶ individual¶ entity¶ [[,wo]man]¶ customer¶ subject¶ body¶ essence¶ thing¶ substance¶ creature¶ organism¶ form¶ specimen｢1｣¶ life form¶ living being¶ user¶ friend¶ acquaintance¶ stranger¶ mate¶ colleague¶ best friend¶ [[boy,girl]friend]¶ [tip[o,a]]¶ character¶ offspring¶ figure¶ inhabitant¶ young [[girl,boy]]¶ young person¶ [[boy,girl]]¶ embodiment</string>
     <string name="ok">OK</string>
-    <string name="person_data"><![CDATA[<font color="#53E3B3"><i>Watching information (%1$s) for:</i></font> %2$s<font color="#F6FBB2">, %3$s (%4$s)</font>]]></string>
+    <string name="person_data"><![CDATA[%1$s<font color="#F6FBB2">, %2$s (%3$s)</font>]]></string>
     <string name="prediction">
         <![CDATA[
-        <big><b><font color="#869DEE">Fortune</font></b></big>
+        <big><b><font color="#869DEE">Enquiry for %1$s</font></b></big>
         <br><br><font color="#53E3B3">Fortune cookie:</font>
-        <br>%1$s
-        <br><br><font color="#53E3B3">Divination:</font>
         <br>%2$s
-        <br><br><font color="#53E3B3">Fortune numbers for today:</font>
+        <br><br><font color="#53E3B3">Divination:</font>
         <br>%3$s
-        <br><br><font color="#53E3B3">Today\'s emotions:</font>
+        <br><br><font color="#53E3B3">Emotions:</font>
         <br>%4$s
-        <br><br><font color="#53E3B3">Today\'s best moment:</font>
+        <br><br><font color="#53E3B3">Trait:</font>
         <br>%5$s
-        <br><br><font color="#53E3B3">Today\'s worst moment:</font>
+        <br><br><font color="#53E3B3">Chain of events:</font>
         <br>%6$s
-        <br><br><font color="#53E3B3">What defines you in this day:</font>
-        <br>%7$s
-        <br><br><font color="#53E3B3">Chain of events for today:</font>
-        <br>%8$s
-        <br><br><font color="#53E3B3">Person who will affect you more, indirectly, today:</font>
-        <br>%9$s
-        <br><br><big><b><font color="#869DEE">Zodiac</font></b></big>
-        <br><br><font color="#53E3B3">Zodiac sign:</font>
-        <br>%10$s
-        <br><br><font color="#53E3B3">Astrological house:</font>
-        <br>%11$s
-        <br><br><font color="#53E3B3">Ruler:</font>
-        <br>%12$s
-        <br><br><font color="#53E3B3">Element:</font>
-        <br>%13$s
-        <br><br><font color="#53E3B3">Color:</font>
-        <br>%14$s
-        <br><br><font color="#53E3B3">Fortune numbers:</font>
-        <br>%15$s
-        <br><br><font color="#53E3B3">They are compatible with:</font>
-        <br>%16$s
-        <br><br><font color="#53E3B3">They don\'t get along with:</font>
-        <br>%17$s
-        <br><br><font color="#53E3B3">Walter Berg\'s zodiac sign:</font>
-        <br>%18$s
-        <br><br><font color="#53E3B3">Chinese zodiac sign:</font>
-        <br>%19$s
-        <br><br><big><b><font color="#869DEE">Identity</font></b></big>
-        <br><br><font color="#53E3B3">Color:</font>
-        <br><big><big><font color="%20$s">%21$s</font></big></big>
-        <br><br><font color="#53E3B3">Animal:</font>
-        <br>%22$s
-        <br><br><font color="#53E3B3">Psychological type according to Jung:</font>
-        <br>%23$s
-        <br><br><font color="#53E3B3">Secret name:</font>
-        <br>%24$s
-        <br><br><font color="#53E3B3">Demonic name:</font>
-        <br>%25$s
-        <br><br><font color="#53E3B3">Name in the previous life:</font>
-        <br>%26$s
-        <br><br><font color="#53E3B3">Name in the next life:</font>
-        <br>%27$s
-        <br><br><font color="#53E3B3">Recommended username:</font>
-        <br>%28$s
-        <br><br><font color="#53E3B3">Personal digit:</font>
-        <br>%29$d
-        <br><br><font color="#53E3B3">Unique fortune numbers:</font>
-        <br>%30$s
-        <br><br><font color="#53E3B3">Days between current date and birthdate:</font>
-        <br><font color="#E3E1A1"><b>%31$s</b></font>
-        <br><br><font color="#53E3B3">Time between current date and birthdate:</font>
-        <br><font color="#E3E1A1"><b>%32$s</b></font>
         ]]>
     </string>
     <string name="pick">Pick an enquiry date</string>
@@ -220,8 +165,6 @@
     <string name="preference_seed_summary">Use a seed to generate the aspect and messages from the fortune-teller</string>
     <string name="preference_seed_title">Enter a seed</string>
     <string name="preference_speech_synthesis">Speech synthesis</string>
-    <string name="preference_stick_header">Stick enquiry panel</string>
-    <string name="preference_stick_header_summary">Sticks the enquiry panel to the top of the screen so it is always visible</string>
     <string name="preference_text_reading">Text reading</string>
     <string name="preference_text_reading_summary">Change the text type that can be read in the app</string>
     <string name="preference_theme">Theme</string>
@@ -230,7 +173,7 @@
     <string name="preference_update_frequency_summary">Change the time between each prediction update</string>
     <string name="qualitative_adjectives">nice¶ brilliant¶ unpleasant¶ different¶ fragile¶ electrifying¶ great¶ better¶ normal¶ negative¶ dark¶ worse¶ positive¶ rare¶ solid¶ terrible</string>
     <string name="relative">[[father,mother]]¶ [[dad,mom]]¶ [[son,daughter]]¶ cousin¶ [[uncle,aunt]]¶ [[nephew,niece]]¶ [[brother,sister]]¶ [grand[father,mother]]¶ [grand[son,daughter]]¶ great [grand[father,mother]]</string>
-    <string name="reload">Reload enquiry</string>
+    <string name="reload">Generate enquiry</string>
     <string name="save">Save enquiry</string>
     <string name="selector">Select enquiry</string>
     <string name="situation_descriptor">{rand:∅; good; bad; strange; surprising; baffling; favorable; unfavorable}</string>
@@ -542,6 +485,7 @@
         <item>devouring {string:augury_entity}</item>
     </string-array>
     <string-array name="chinese_zodiac_sign">
+        <item>\?</item>
         <item>Monkey</item>
         <item>Rooster</item>
         <item>Dog</item>
@@ -596,10 +540,6 @@
         <item><![CDATA[<i>{string:interjections}</i>]]></item>
         <item><![CDATA[<font color="{method:getDefaultColor}"><b>user of {method:getDeviceInfo}</b></font>]]></item>
     </string-array>
-    <string-array name="date_options">
-        <item>Today\'s enquiry</item>
-        <item>Enquiry for a specific date</item>
-    </string-array>
     <string-array name="distant_relationship">
         <item>&personType1;</item>
         <item>&personType2;</item>
@@ -642,7 +582,7 @@
     <string-array name="divination">
         <item>Something {rand:∅; favorable; unfavorable}, related to {method:getNounWithAnyArticle}, will happen.</item>
         <item>You will get {rand:∅; good; bad; rare} news about {method:getNounWithAnyArticle}.</item>
-        <item>A {string:situation_descriptor} event, related to {method:getNounWithAnyArticle}, will happen.</item>
+        <item>{A/an} {string:situation_descriptor} event, related to {method:getNounWithAnyArticle}, will happen.</item>
         <item>You will get {rand:∅; good; bad; rare} news, related to {string:divination_middle}, from {string:unspecific_person}.</item>
         <item>You will get {rand:∅; good; bad; rare} news about {string:divination_middle}.</item>
         <item>Something {string:situation_descriptor}, related to {string:divination_middle}, will happen.</item>
@@ -1136,10 +1076,10 @@
         <item>{string:individual_height}</item>
     </string-array>
     <string-array name="individual_representation">
-        <item>{string:individual_build} {string:individual_base}</item>
-        <item>{string:individual_base} {string:individual_eyes}</item>
-        <item>{string:individual_hair} {string:individual_base}</item>
-        <item>{string:individual_height} {string:individual_base}</item>
+        <item>⸠string:individual_build⸡ {string:individual_base}</item>
+        <item>{string:individual_base} ⸠string:individual_eyes⸡</item>
+        <item>⸠string:individual_hair⸡ {string:individual_base}</item>
+        <item>⸠string:individual_height⸡ {string:individual_base}</item>
     </string-array>
     <string-array name="language">
         <item>Spanish</item>
@@ -1629,7 +1569,7 @@
         <item>Let\'s see what the future holds for you.</item>
         <item>Let\'s see what we have for you.</item>
         <item>Let\'s see what divination says.</item>
-        <item>Ready for divination?</item>
+        <item>Are you ready for divination?</item>
         <item>It\'s time to perform divination.</item>
         <item>Let\'s see what the prediction says.</item>
         <item>Do you want me to show you my crystal ball?</item>
