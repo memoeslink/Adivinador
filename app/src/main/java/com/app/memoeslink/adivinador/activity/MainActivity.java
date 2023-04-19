@@ -162,7 +162,6 @@ public class MainActivity extends MenuActivity {
     private long measuredTimes = 0L;
     private long confettiThrown = 0L;
     private Timer timer;
-    private Divination divination;
     private FortuneTeller fortuneTeller;
     private Device device;
     private Randomizer r;
@@ -226,7 +225,6 @@ public class MainActivity extends MenuActivity {
         navigationView.setItemIconTintList(null);
 
         //Initialize resources
-        divination = new Divination(MainActivity.this);
         fortuneTeller = new FortuneTeller(MainActivity.this);
         device = new Device(MainActivity.this);
         r = new Randomizer();
@@ -253,7 +251,12 @@ public class MainActivity extends MenuActivity {
         predictionHistory.add(getPredictionData(PreferenceUtils.isEnquiryFormEntered()));
 
         //Set empty prediction
-        tvPrediction.setText(SpannerHelper.fromHtml(divination.getEmptyPrediction().getFormattedContent(MainActivity.this)));
+        Prediction emptyPrediction = new Prediction.PredictionBuilder()
+                .setPerson(new Person.PersonBuilder().setAttribute("empty").build())
+                .setDate(DateTimeHelper.getStrCurrentDate())
+                .setRetrievalDate(DateTimeHelper.getStrCurrentDate())
+                .build();
+        tvPrediction.setText(SpannerHelper.fromHtml(emptyPrediction.getFormattedContent(MainActivity.this)));
 
         //Get a greeting
         if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED))
@@ -1116,16 +1119,20 @@ public class MainActivity extends MenuActivity {
     }
 
     public Prediction getPredictionData(boolean formEntered) {
-        Prediction prediction;
         String enquiryDate = PreferenceUtils.getEnquiryDate();
+        Person person;
 
         if (formEntered) {
-            Person person = PreferenceUtils.getFormPerson();
+            person = PreferenceUtils.getFormPerson();
             person.addAttribute("entered");
-            prediction = divination.getPrediction(person, enquiryDate);
-        } else
-            prediction = divination.getPrediction(enquiryDate);
-        return prediction;
+        } else {
+            if (r.getInt(3) == 0)
+                person = resourceExplorer.getGeneratorManager().getPersonGenerator().getAnonymousPerson();
+            else
+                person = resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson();
+        }
+        Divination divination = new Divination(MainActivity.this, person, enquiryDate);
+        return divination.getPrediction(person);
     }
 
     private void setLinksToText(TextView textView, String s) {

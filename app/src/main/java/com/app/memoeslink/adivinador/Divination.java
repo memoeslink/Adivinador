@@ -1,9 +1,10 @@
 package com.app.memoeslink.adivinador;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 
 import com.app.memoeslink.adivinador.tagprocessor.TagProcessor;
-import com.memoeslink.generator.common.Binder;
+import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.CharHelper;
 import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.Gender;
@@ -21,94 +22,61 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Divination extends Binder {
+public class Divination extends ContextWrapper {
     public static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
     public static final Integer[] PROBABILITY_DISTRIBUTION = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
     private static final char separator;
-    private final ResourceExplorer resourceExplorer;
-    private final TagProcessor tagProcessor;
+    private final Person person;
+    private final String date;
+    private Randomizer r;
+    private ResourceExplorer resourceExplorer;
+    private TagProcessor tagProcessor;
 
     static {
         separator = CharHelper.getFirstDisplayableGlyph('↓', '⬇', '⇣', '¦', '•');
     }
 
     public Divination(Context context) {
-        this(context, null);
+        this(context, new Person.PersonBuilder().setAttribute("empty").build(), "");
     }
 
-    public Divination(Context context, Long seed) {
-        super(context, seed);
-        resourceExplorer = new ResourceExplorer(context, seed);
-        tagProcessor = new TagProcessor(context, seed);
+    public Divination(Context context, Person person, String date) {
+        super(context);
+        this.person = person;
+        this.date = StringHelper.defaultIfBlank(date, DateTimeHelper.getStrCurrentDate());
     }
 
-    @Override
-    public void bindSeed(Long seed) {
-        super.bindSeed(seed);
-        resourceExplorer.bindSeed(seed);
-        tagProcessor.bindSeed(seed);
-    }
-
-    @Override
-    public void unbindSeed() {
-        super.unbindSeed();
-        resourceExplorer.unbindSeed();
-        tagProcessor.unbindSeed();
-    }
-
-    public Prediction getPrediction(String enquiryDate) {
-        Person person;
-
-        if (r.getInt(3) == 0)
-            person = resourceExplorer.getGeneratorManager().getPersonGenerator().getAnonymousPerson();
-        else
-            person = resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson();
-        return getPrediction(person, enquiryDate);
-    }
-
-    public Prediction getPrediction(Person person, String enquiryDate) {
+    public Prediction getPrediction(Person person) {
         person.addAttribute("queried");
         person.setDescription(TextFormatter.formatDescriptor(person));
 
-        //Set seed
-        String dailySeed = person.getSummary() + System.getProperty("line.separator") + enquiryDate;
-        long seed = LongHelper.getSeed(StringHelper.sha256(dailySeed));
+        //Reset objects that rely on randomization
+        resetRandomization();
 
         //Get prediction information
-        bindSeed(seed);
         String fortuneCookie = resourceExplorer.getDatabaseFinder().getFortuneCookie();
 
-        Prediction prediction = new Prediction.PredictionBuilder().setPerson(person)
-                .setDate(enquiryDate)
+        return new Prediction.PredictionBuilder().setPerson(person)
+                .setDate(date)
                 .setRetrievalDate(DateTimeHelper.getStrCurrentDate())
                 .setComponent("fortuneCookie", fortuneCookie)
                 .setComponent("gibberish", TextProcessor.turnIntoGibberish(fortuneCookie))
-                .setComponent("divination", getDivination(enquiryDate))
+                .setComponent("divination", getDivination())
                 .setComponent("emotions", getEmotions())
                 .setComponent("characteristic", StringHelper.capitalizeFirst(resourceExplorer.getDatabaseFinder().getAbstractNoun()))
                 .setComponent("chainOfEvents", getChainOfEvents(person))
                 .build();
-        unbindSeed();
-        return prediction;
     }
 
-    public Prediction getEmptyPrediction() {
-        return new Prediction.PredictionBuilder().setPerson(null)
-                .setDate(DateTimeHelper.getStrCurrentDate())
-                .setRetrievalDate(DateTimeHelper.getStrCurrentDate())
-                .build();
-    }
-
-    public String getDivination(String enquiryDate) {
-        enquiryDate = StringHelper.defaultIfBlank(enquiryDate, DateTimeHelper.getStrCurrentDate());
+    private String getDivination() {
         String divination;
         float probability = r.getFloat();
-        Gender gender = Gender.UNDEFINED;
 
         if (probability <= 0.4F) {
             divination = resourceExplorer.getDatabaseFinder().getDivination();
             divination = tagProcessor.replaceTags(divination).getText();
         } else if (probability <= 0.8F) {
+            Gender gender = Gender.UNDEFINED;
             boolean plural = false;
             boolean done = false;
             TextComponent component;
@@ -125,7 +93,7 @@ public class Divination extends Binder {
             segment = segments.get(0);
             int days = r.getGaussianInt(5, 7, 1);
             segment = StringHelper.replaceOnce(segment, "‽1", String.valueOf(days));
-            segment = StringHelper.replaceOnce(segment, "‽2", DateTimeHelper.getStrDatePlusDays(enquiryDate, days));
+            segment = StringHelper.replaceOnce(segment, "‽2", DateTimeHelper.getStrDatePlusDays(date, days));
             segments.set(0, segment);
 
             //Format middle of divination
@@ -172,7 +140,7 @@ public class Divination extends Binder {
         return divination;
     }
 
-    public String getEmotions() {
+    private String getEmotions() {
         String emotionDetails = "";
         HashMap<Emotion, Integer> emotionCount = new HashMap<>();
 
@@ -193,14 +161,14 @@ public class Divination extends Binder {
             if (entry.getValue() > 0)
                 emotionDetails = StringHelper.appendIfNotEmpty(emotionDetails, "<br>") +
                         String.format("%s %s (%d%%)",
-                                entry.getKey().getName(context),
+                                entry.getKey().getName(getBaseContext()),
                                 entry.getKey().getEmoji(),
                                 entry.getValue());
         }
         return emotionDetails;
     }
 
-    public String getChainOfEvents(Person person) {
+    private String getChainOfEvents(Person person) {
         StringBuilder chain = new StringBuilder();
         List<Person> people = new ArrayList<>();
 
@@ -322,5 +290,13 @@ public class Divination extends Binder {
                 .setDescription(closePerson.getText())
                 .setAttribute("nonspecific")
                 .build();
+    }
+
+    private void resetRandomization() {
+        String dailySeed = person.getSummary() + System.getProperty("line.separator") + date;
+        long seed = LongHelper.getSeed(StringHelper.sha256(dailySeed));
+        r = new Randomizer(seed);
+        resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
+        tagProcessor = new TagProcessor(getBaseContext(), seed);
     }
 }
