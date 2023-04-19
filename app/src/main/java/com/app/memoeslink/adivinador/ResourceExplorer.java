@@ -87,7 +87,7 @@ public class ResourceExplorer extends Explorer {
         if (index < 1)
             index = r.getInt(1, Database.getInstance(this).countTableRows(tableName));
         else
-            index = IntegerHelper.defaultInt(index, 1, Database.getInstance(this).countTableRows(tableName));
+            index = IntegerHelper.defaultByRange(index, 1, Database.getInstance(this).countTableRows(tableName));
         return Database.getInstance(this).selectFromTable(tableName, index);
     }
 

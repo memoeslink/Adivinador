@@ -304,7 +304,7 @@ public class Divination extends Binder {
 
     private Person getClosePerson(Person person, int index) {
         TextComponent closePerson = new TextComponent();
-        int listSize = IntegerHelper.defaultInt(resourceExplorer.getContactNameFinder().getContactNamesSize(), 0, 1000);
+        int listSize = IntegerHelper.defaultByRange(resourceExplorer.getContactNameFinder().getContactNamesSize(), 0, 1000);
         double probability = 0.1F + (0.5F / 1000 * listSize);
 
         if (r.getFloat() <= probability && listSize > 0 && !person.hasAttribute("generated") && person.hasAttribute("entered")) {
