@@ -272,11 +272,11 @@ public class MainActivity extends MenuActivity {
 
         //Set adapters
         ArrayAdapter<String> nameAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.name_type)) {
-            private final int[] positions = {0, 1, 2};
+            private final int[] disabledPositions = {0, 1, 2};
 
             @Override
             public boolean isEnabled(int position) {
-                return !ArrayUtils.contains(positions, position);
+                return !ArrayUtils.contains(disabledPositions, position);
             }
 
             @Override
@@ -401,9 +401,7 @@ public class MainActivity extends MenuActivity {
 
         llReloadHolder.setOnClickListener(view -> refreshPrediction());
 
-        llInquiryHolder.setOnClickListener(view -> {
-            setFormPerson(people.get(0));
-        });
+        llInquiryHolder.setOnClickListener(view -> setFormPerson(people.get(0)));
 
         llSelectorHolder.setOnClickListener(view -> {
             if (dialog != null && !PreferenceHandler.getBoolean(Preference.TEMP_BUSY))
