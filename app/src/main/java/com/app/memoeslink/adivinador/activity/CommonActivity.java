@@ -196,15 +196,9 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
         v.startAnimation(alphaAnimation);
     }
 
-    protected final void cancelToast() {
-        if (toast != null) {
-            toast.cancel();
-            toast = null;
-        }
-    }
-
     private void showToast(String text, boolean quick) {
-        cancelToast();
+        if (toast != null)
+            toast.cancel();
 
         if (activityStatus != ActivityStatus.PAUSED && activityStatus != ActivityStatus.STOPPED) {
             toast = Toast.makeText(CommonActivity.this, text, quick ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG);
