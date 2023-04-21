@@ -197,7 +197,7 @@ public abstract class CommonActivity extends AppCompatActivity implements TextTo
     }
 
     protected final void cancelToast() {
-        if (toast != null && toast.getView() != null && (toast.getView().isShown() || toast.getView().getWindowVisibility() == View.VISIBLE)) {
+        if (toast != null) {
             toast.cancel();
             toast = null;
         }

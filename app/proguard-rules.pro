@@ -16,5 +16,4 @@
 #   public *;
 #}
 -keep public class * extends androidx.preference.Preference
--keep class !com.app.memoeslink.* {*;}
--keep class com.app.memoeslink.adivinador.Divination
+-keep class !com.app.memoeslink.** { *; }
