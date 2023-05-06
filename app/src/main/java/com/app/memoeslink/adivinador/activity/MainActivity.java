@@ -57,7 +57,7 @@ import com.app.memoeslink.adivinador.PredictionHistory;
 import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.Screen;
 import com.app.memoeslink.adivinador.Sound;
-import com.app.memoeslink.adivinador.SpannerHelper;
+import com.app.memoeslink.adivinador.extensions.StringExtensions;
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.app.memoeslink.adivinador.preference.PreferenceUtils;
@@ -190,17 +190,17 @@ public class MainActivity extends MenuActivity {
         ivFortuneTeller = findViewById(R.id.main_fortune_teller);
         ivSaveLogo = findViewById(R.id.main_save);
         tvPick = findViewById(R.id.main_pick);
-        tvPick.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.pick))));
+        tvPick.setText(StringExtensions.toLinkedHtmlText(getString(R.string.pick)));
         tvDataEntry = findViewById(R.id.main_data_entry);
-        tvDataEntry.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.data_entry))));
+        tvDataEntry.setText(StringExtensions.toLinkedHtmlText(getString(R.string.data_entry)));
         tvReload = findViewById(R.id.main_reload);
-        tvReload.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.reload))));
+        tvReload.setText(StringExtensions.toLinkedHtmlText(getString(R.string.reload)));
         tvInquiry = findViewById(R.id.main_inquiry);
-        tvInquiry.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.inquiry, "…"))));
+        tvInquiry.setText(StringExtensions.toLinkedHtmlText(getString(R.string.inquiry, "…")));
         tvSelector = findViewById(R.id.main_selector);
-        tvSelector.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.selector))));
+        tvSelector.setText(StringExtensions.toLinkedHtmlText(getString(R.string.selector)));
         tvClear = findViewById(R.id.main_clear);
-        tvClear.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.clear))));
+        tvClear.setText(StringExtensions.toLinkedHtmlText(getString(R.string.clear)));
         tvPhrase = findViewById(R.id.main_fortune_teller_phrase);
         tvPersonInfo = findViewById(R.id.main_person);
         tvPrediction = findViewById(R.id.main_prediction);
@@ -212,14 +212,14 @@ public class MainActivity extends MenuActivity {
         atvInitialName = vCompatibility.findViewById(R.id.dialog_name_field);
         atvFinalName = vCompatibility.findViewById(R.id.dialog_other_name_field);
         tvBinder = vCompatibility.findViewById(R.id.dialog_binder_text);
-        tvBinder.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.binder))));
+        tvBinder.setText(StringExtensions.toLinkedHtmlText(getString(R.string.binder)));
         tvCompatibility = vCompatibility.findViewById(R.id.dialog_text);
         pbWait = vCompatibility.findViewById(R.id.dialog_progress);
         vNameGenerator = inflater.inflate(R.layout.dialog_name_generation, null);
         spnNameType = vNameGenerator.findViewById(R.id.dialog_spinner);
         tvNameBox = vNameGenerator.findViewById(R.id.dialog_generated_name);
         tvTextCopy = vNameGenerator.findViewById(R.id.dialog_copy_text);
-        tvTextCopy.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.action_copy))));
+        tvTextCopy.setText(StringExtensions.toLinkedHtmlText(getString(R.string.action_copy)));
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
         navigationView.setItemIconTintList(null);
@@ -256,11 +256,11 @@ public class MainActivity extends MenuActivity {
                 .setDate(DateTimeHelper.getStrCurrentDate())
                 .setRetrievalDate(DateTimeHelper.getStrCurrentDate())
                 .build();
-        tvPrediction.setText(SpannerHelper.fromHtml(emptyPrediction.getFormattedContent(MainActivity.this)));
+        tvPrediction.setText(StringExtensions.toHtmlText(emptyPrediction.getFormattedContent(MainActivity.this)));
 
         //Get a greeting
         if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED))
-            tvPhrase.setText(SpannerHelper.fromHtml(fortuneTeller.greet()));
+            tvPhrase.setText(StringExtensions.toHtmlText(fortuneTeller.greet()));
         else
             tvPhrase.setText("…");
 
@@ -409,7 +409,7 @@ public class MainActivity extends MenuActivity {
         });
 
         llClearHolder.setOnClickListener(view -> {
-            PreferenceUtils.clearForm(); //Delete form data
+            PreferenceUtils.clearForm();
             refreshPrediction();
         });
 
@@ -423,7 +423,7 @@ public class MainActivity extends MenuActivity {
                 copyTextToClipboard(predictionHistory.getLatest().getContent(MainActivity.this));
         });
 
-        this.compatibilityDialog.setOnShowListener(dialog -> calculateCompatibility());
+        compatibilityDialog.setOnShowListener(dialog -> calculateCompatibility());
 
         nameGeneratorDialog.setOnShowListener(dialog -> {
             Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
@@ -493,7 +493,7 @@ public class MainActivity extends MenuActivity {
             }
 
             if (key.equals(Preference.DATA_STORED_NAMES.getTag()))
-                updateNameSuggestions(); //Update name suggestions for compatibility
+                updateNameSuggestions();
         };
         PreferenceHandler.changePreferencesListener(listener);
     }
@@ -501,7 +501,7 @@ public class MainActivity extends MenuActivity {
     @Override
     public void onStart() {
         super.onStart();
-        updateNameSuggestions(); //Update name suggestions for compatibility
+        updateNameSuggestions();
 
         //Request permissions
         ActivityResultLauncher<String[]> launcher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), isGranted -> {
@@ -586,7 +586,7 @@ public class MainActivity extends MenuActivity {
                                 ivFortuneTeller.setImageResource(fortuneTeller.getRandomAppearance());
 
                                 //Get random text from the fortune teller
-                                tvPhrase.setText(SpannerHelper.fromHtml(fortuneTeller.talk()));
+                                tvPhrase.setText(StringExtensions.toHtmlText(fortuneTeller.talk()));
 
                                 //Read the text
                                 read(tvPhrase.getText().toString());
@@ -996,7 +996,7 @@ public class MainActivity extends MenuActivity {
                     refreshSaveButton();
                     vPersonImage.setHash(predictionHistory.getLatest().getPerson().getSummary().hashCode());
 
-                    tvPersonInfo.setText(SpannerHelper.fromHtml(getString(R.string.person_data,
+                    tvPersonInfo.setText(StringExtensions.toHtmlText(getString(R.string.person_data,
                             predictionHistory.getLatest().getPerson().getDescription(),
                             predictionHistory.getLatest().getPerson().getGender().getName(MainActivity.this, 1),
                             DateTimeHelper.toIso8601Date(predictionHistory.getLatest().getPerson().getBirthdate())
@@ -1021,7 +1021,7 @@ public class MainActivity extends MenuActivity {
             llInquiryHolder.setVisibility(View.GONE);
             llSelectorHolder.setVisibility(View.GONE);
         } else if (people.size() == 1) {
-            tvInquiry.setText(SpannerHelper.fromHtml(getString(R.string.link, getString(R.string.inquiry, people.get(0).getDescriptor()))));
+            tvInquiry.setText(StringExtensions.toLinkedHtmlText(getString(R.string.inquiry, people.get(0).getDescriptor())));
 
             if (PreferenceUtils.hasPersonTempStored())
                 llInquiryHolder.setVisibility(View.GONE);
@@ -1134,7 +1134,7 @@ public class MainActivity extends MenuActivity {
     }
 
     private void setLinksToText(TextView textView, String s) {
-        CharSequence sequence = SpannerHelper.fromHtml(s);
+        CharSequence sequence = StringExtensions.toHtmlText(s);
         SpannableStringBuilder sb = new SpannableStringBuilder(sequence);
         URLSpan[] urls = sb.getSpans(0, sequence.length(), URLSpan.class);
 
@@ -1172,7 +1172,7 @@ public class MainActivity extends MenuActivity {
 
         if (initialName != null && finalName != null) {
             if (initialName.equalsIgnoreCase(finalName)) {
-                tvCompatibility.setText(SpannerHelper.fromHtml(getString(R.string.compatibility_result, "<font color=\"#6666FF\">" + 100 + "%</font>")));
+                tvCompatibility.setText(StringExtensions.toHtmlText(getString(R.string.compatibility_result, "<font color=\"#6666FF\">" + 100 + "%</font>")));
                 pbWait.setProgress(100);
             } else {
                 String formattedText, tempName;
@@ -1199,11 +1199,11 @@ public class MainActivity extends MenuActivity {
                 else
                     formattedText = "<font color=\"#6666FF\">" + compatibilityPoints + "%</font>";
                 r.unbindSeed();
-                tvCompatibility.setText(SpannerHelper.fromHtml(getString(R.string.compatibility_result, formattedText)));
+                tvCompatibility.setText(StringExtensions.toHtmlText(getString(R.string.compatibility_result, formattedText)));
                 pbWait.setProgress(compatibilityPoints);
             }
         } else {
-            tvCompatibility.setText(SpannerHelper.fromHtml(getString(R.string.compatibility_result, "<font color=\"#C0FF2B\">?</font>")));
+            tvCompatibility.setText(StringExtensions.toHtmlText(getString(R.string.compatibility_result, "<font color=\"#C0FF2B\">?</font>")));
             pbWait.setProgress(0);
         }
     }

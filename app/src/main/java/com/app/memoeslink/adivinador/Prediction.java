@@ -2,6 +2,7 @@ package com.app.memoeslink.adivinador;
 
 import android.content.Context;
 
+import com.app.memoeslink.adivinador.extensions.StringExtensions;
 import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.ZeroWidthChar;
 
@@ -67,14 +68,14 @@ public class Prediction {
         content = context.getString(R.string.inquiry_information, date, person.getDescriptor(), person.getGender().getName(context, 1), person.getBirthdate()) +
                 System.getProperty("line.separator") + System.getProperty("line.separator") +
                 content;
-        return SpannerHelper.fromHtml(content).toString();
+        return StringExtensions.toHtmlText(content).toString();
     }
 
     public String getFormattedContent(Context context) {
         return context.getString(R.string.prediction,
                 date,
                 ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter() +
-                        String.format("<a href='links/prediction'>%s</a>", context.getString(R.string.prediction_action)) + "<br>" +
+                        String.format("<a href='" + StringExtensions.DEFAULT_URL + "/action'>%s</a>", context.getString(R.string.prediction_action)) + "<br>" +
                         "<font color=\"#ECFE5B\">" + components.get("gibberish") + "</font>" +
                         ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter(),
                 components.get("divination"),

@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.app.memoeslink.adivinador.BuildConfig
 import com.app.memoeslink.adivinador.R
-import com.app.memoeslink.adivinador.SpannerHelper
+import com.app.memoeslink.adivinador.extensions.toHtmlText
 import com.memoeslink.generator.common.DateTimeHelper
 
 class AboutActivity : CommonActivity() {
@@ -18,15 +18,13 @@ class AboutActivity : CommonActivity() {
         setContentView(R.layout.activity_about)
         tvContent = findViewById(R.id.about_content)
         tvContent?.isClickable = true
-        tvContent?.text = SpannerHelper.fromHtml(
-            getString(
-                R.string.about,
-                getString(R.string.app_name),
-                BuildConfig.VERSION_NAME,
-                BuildConfig.VERSION_CODE,
-                DateTimeHelper.getCurrentDate().year
-            )
-        )
+        tvContent?.text = getString(
+            R.string.about,
+            getString(R.string.app_name),
+            BuildConfig.VERSION_NAME,
+            BuildConfig.VERSION_CODE,
+            DateTimeHelper.getCurrentDate().year
+        ).toHtmlText()
         tvContent?.movementMethod = LinkMovementMethod.getInstance()
         btBack = findViewById(R.id.about_back_button)
 

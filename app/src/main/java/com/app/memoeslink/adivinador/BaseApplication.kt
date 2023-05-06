@@ -25,7 +25,7 @@ class BaseApplication : MultiDexApplication() {
                 }
                 Lifecycle.Event.ON_START -> {
                     foreground = true
-                    println("App is running in the background.")
+                    println("App is running in the foreground.")
                 }
                 else -> {}
             }

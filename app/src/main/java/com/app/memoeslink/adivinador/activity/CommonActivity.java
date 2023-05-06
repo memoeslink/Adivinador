@@ -39,7 +39,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-public abstract class CommonActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
+public class CommonActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
     protected static Toast toast;
     protected static Locale[] locales;
     protected boolean speechAvailable;

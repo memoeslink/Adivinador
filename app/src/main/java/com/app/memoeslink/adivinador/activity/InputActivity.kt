@@ -5,14 +5,18 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.DatePicker
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import com.app.memoeslink.adivinador.CustomDatePicker
 import com.app.memoeslink.adivinador.R
-import com.app.memoeslink.adivinador.SpannerHelper
 import com.app.memoeslink.adivinador.preference.Preference
 import com.app.memoeslink.adivinador.preference.PreferenceHandler
 import com.app.memoeslink.adivinador.preference.PreferenceUtils
+import com.app.memoeslink.adivinador.extensions.toHtmlText
 import com.memoeslink.generator.common.DateTimeHelper
 import com.memoeslink.generator.common.Gender
 import com.memoeslink.generator.common.StringHelper
@@ -91,14 +95,13 @@ class InputActivity : CommonActivity() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 var name: String? = s.toString()
                 name = StringHelper.removeZeroWidthSpaces(name)
-                name = SpannerHelper.fromHtml(name).toString()
+                name = name.toHtmlText().toString()
 
                 if (StringHelper.isNotNullOrBlank(name)) PreferenceHandler.put(
-                    Preference.TEMP_NAME, name
+                    Preference.TEMP_NAME,
+                    name
                 )
-                else PreferenceHandler.remove(
-                    Preference.TEMP_NAME
-                )
+                else PreferenceHandler.remove(Preference.TEMP_NAME)
             }
 
             override fun afterTextChanged(s: Editable) {
