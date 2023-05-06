@@ -32,11 +32,11 @@ class DonationsActivity : CommonActivity() {
 
         //Initialize billing library
         bc = BillingConnector(this@DonationsActivity, GOOGLE_PUBLIC_KEY)
-            .setConsumableIds(GOOGLE_CATALOG.toMutableList())
-            .autoAcknowledge()
-            .autoConsume()
-            .enableLogging()
-            .connect()
+                .setConsumableIds(GOOGLE_CATALOG.toMutableList())
+                .autoAcknowledge()
+                .autoConsume()
+                .enableLogging()
+                .connect()
 
         val builder = AlertDialog.Builder(this@DonationsActivity)
         builder.setTitle(getString(R.string.alert_successful_donation_title))
@@ -49,9 +49,9 @@ class DonationsActivity : CommonActivity() {
 
         //Set adapters
         val adapter = ArrayAdapter(
-            this@DonationsActivity,
-            android.R.layout.simple_spinner_item,
-            resources.getStringArray(R.array.donation_amounts)
+                this@DonationsActivity,
+                android.R.layout.simple_spinner_item,
+                resources.getStringArray(R.array.donation_amounts)
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnDonation?.adapter = adapter
@@ -62,8 +62,8 @@ class DonationsActivity : CommonActivity() {
             }
 
             override fun onPurchasedProductsFetched(
-                productType: ProductType,
-                purchases: MutableList<PurchaseInfo>
+                    productType: ProductType,
+                    purchases: MutableList<PurchaseInfo>
             ) {
             }
 
@@ -78,8 +78,8 @@ class DonationsActivity : CommonActivity() {
             }
 
             override fun onBillingError(
-                billingConnector: BillingConnector,
-                response: BillingResponse
+                    billingConnector: BillingConnector,
+                    response: BillingResponse
             ) {
                 when (response.errorType) {
                     ErrorType.CLIENT_NOT_READY -> {}
@@ -118,15 +118,15 @@ class DonationsActivity : CommonActivity() {
 
     companion object {
         private const val GOOGLE_PUBLIC_KEY =
-            "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqg/e0wWLPo4Dd2+QGQhsasrOHBa8B6eTZuyiIVuzGjbOLzl8DHl5cqFrlN5FwoXlMBEBDIoIHkYt0f+GNxXqRw7K1BPWGZ0owPgKjAKJgQXq0iaImcdP7drmhxgDq8dwjQuRUd7UFu81gCXel3nQa9n6x2SQUZm+Of7/yYUtsDGp6AtM0BXEEdLegyDJ9RSCKWrUC+V6ZX103X+1iy73p/Sha2ntDaIBE8UV5doXDQYvppgyTuRr08Y4d+HKv5fvJKz3s13FEYeFV5euKyUZYV9INaYdIHPX/1S9CU1N9O/n/lTryJHGOa3rdAbShd93hAAyBIFfUrJOljiZhoFt1wIDAQAB"
+                "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqg/e0wWLPo4Dd2+QGQhsasrOHBa8B6eTZuyiIVuzGjbOLzl8DHl5cqFrlN5FwoXlMBEBDIoIHkYt0f+GNxXqRw7K1BPWGZ0owPgKjAKJgQXq0iaImcdP7drmhxgDq8dwjQuRUd7UFu81gCXel3nQa9n6x2SQUZm+Of7/yYUtsDGp6AtM0BXEEdLegyDJ9RSCKWrUC+V6ZX103X+1iy73p/Sha2ntDaIBE8UV5doXDQYvppgyTuRr08Y4d+HKv5fvJKz3s13FEYeFV5euKyUZYV9INaYdIHPX/1S9CU1N9O/n/lTryJHGOa3rdAbShd93hAAyBIFfUrJOljiZhoFt1wIDAQAB"
         private val GOOGLE_CATALOG = mutableListOf(
-            "donation.10",
-            "donation.20",
-            "donation.50",
-            "donation.100",
-            "donation.200",
-            "donation.500",
-            "donation.1000"
+                "donation.10",
+                "donation.20",
+                "donation.50",
+                "donation.100",
+                "donation.200",
+                "donation.500",
+                "donation.1000"
         )
     }
 }

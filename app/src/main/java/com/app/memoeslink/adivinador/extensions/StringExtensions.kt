@@ -22,12 +22,12 @@ fun String?.toHtmlText(): Spanned {
 fun String?.toLinkedHtmlText(): Spanned {
     return if (this.isNullOrBlank()) SpannableString("")
     else Html.fromHtml(
-        "<a href=\\\"$DEFAULT_URL\\\">$this</a>", Html.FROM_HTML_MODE_LEGACY
+            "<a href=\\\"$DEFAULT_URL\\\">$this</a>", Html.FROM_HTML_MODE_LEGACY
     )
 }
 
 fun String?.toClickableText(
-      pair: Pair<String, () -> Unit>? = Pair("$DEFAULT_URL/action") {}
+        pair: Pair<String, () -> Unit>? = Pair("$DEFAULT_URL/action") {}
 ): SpannableStringBuilder {
     return if (this.isNullOrBlank()) SpannableStringBuilder("")
     else {
@@ -52,7 +52,7 @@ fun String?.toClickableText(
                 }
             }
             sb.setSpan(
-                clickableSpan, m.start(), m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    clickableSpan, m.start(), m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
         sb

@@ -93,15 +93,15 @@ import kotlin.system.exitProcess
 
 class TempMainActivity : MenuActivity() {
     private val particleColors = arrayOf(
-        intArrayOf(
-            Color.BLUE,
-            Color.argb(255, 0, 128, 255),
-            Color.argb(255, 51, 153, 255),
-            Color.argb(255, 0, 192, 199),
-            Color.argb(125, 0, 128, 255),
-            Color.argb(125, 51, 153, 255),
-            Color.argb(125, 0, 192, 199)
-        ), intArrayOf(
+            intArrayOf(
+                    Color.BLUE,
+                    Color.argb(255, 0, 128, 255),
+                    Color.argb(255, 51, 153, 255),
+                    Color.argb(255, 0, 192, 199),
+                    Color.argb(125, 0, 128, 255),
+                    Color.argb(125, 51, 153, 255),
+                    Color.argb(125, 0, 192, 199)
+            ), intArrayOf(
             Color.YELLOW,
             Color.argb(255, 251, 255, 147),
             Color.argb(255, 224, 228, 124),
@@ -111,7 +111,7 @@ class TempMainActivity : MenuActivity() {
             Color.argb(125, 224, 228, 124),
             Color.argb(125, 155, 215, 93),
             Color.argb(125, 120, 168, 71)
-        )
+    )
     )
     private var srlRefresher: SwipeRefreshLayout? = null
     private var rlAdContainer: RelativeLayout? = null
@@ -163,7 +163,7 @@ class TempMainActivity : MenuActivity() {
     private var backupPredictions: PredictionHistory? = PredictionHistory()
     private var people: List<Person> = ArrayList()
     private var listener: OnSharedPreferenceChangeListener? =
-        null //Declared as global to avoid destruction by JVM Garbage Collector
+            null //Declared as global to avoid destruction by JVM Garbage Collector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -222,7 +222,7 @@ class TempMainActivity : MenuActivity() {
         var requestConfiguration = RequestConfiguration.Builder().build()
 
         if (BuildConfig.DEBUG) requestConfiguration =
-            RequestConfiguration.Builder().setTestDeviceIds(testDevices).build()
+                RequestConfiguration.Builder().setTestDeviceIds(testDevices).build()
         MobileAds.setRequestConfiguration(requestConfiguration)
         adRequest = AdRequest.Builder().build()
 
@@ -237,14 +237,14 @@ class TempMainActivity : MenuActivity() {
 
         //Set empty prediction
         val emptyPrediction =
-            PredictionBuilder().setPerson(PersonBuilder().setAttribute("empty").build())
-                .setDate(DateTimeHelper.getStrCurrentDate())
-                .setRetrievalDate(DateTimeHelper.getStrCurrentDate()).build()
+                PredictionBuilder().setPerson(PersonBuilder().setAttribute("empty").build())
+                        .setDate(DateTimeHelper.getStrCurrentDate())
+                        .setRetrievalDate(DateTimeHelper.getStrCurrentDate()).build()
         tvPrediction?.text = emptyPrediction.getFormattedContent(this@TempMainActivity).toHtmlText()
 
         //Get a greeting
         if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED)) tvPhrase?.text =
-            fortuneTeller?.greet().toHtmlText()
+                fortuneTeller?.greet().toHtmlText()
         else tvPhrase?.text = "…"
 
         //Change drawable for fortune teller
@@ -255,9 +255,9 @@ class TempMainActivity : MenuActivity() {
 
         //Initialize components
         val nameAdapter: ArrayAdapter<String> = object : ArrayAdapter<String>(
-            this@TempMainActivity,
-            android.R.layout.simple_spinner_item,
-            resources.getStringArray(R.array.name_type)
+                this@TempMainActivity,
+                android.R.layout.simple_spinner_item,
+                resources.getStringArray(R.array.name_type)
         ) {
             val disabledPositions = intArrayOf(0, 1, 2)
 
@@ -266,7 +266,7 @@ class TempMainActivity : MenuActivity() {
             }
 
             override fun getDropDownView(
-                position: Int, convertView: View?, parent: ViewGroup
+                    position: Int, convertView: View?, parent: ViewGroup
             ): View? {
                 val view = super.getDropDownView(position, convertView, parent)
                 view.tag = position
@@ -314,7 +314,7 @@ class TempMainActivity : MenuActivity() {
                 R.id.nav_compatibility -> {
                     compatibilityDialog?.show()
                     compatibilityDialog?.window?.setLayout(
-                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+                            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
                     )
                 }
 
@@ -325,12 +325,12 @@ class TempMainActivity : MenuActivity() {
 
         DateTimeHelper.getCurrentDate().let {
             dpdInquiryDate = DatePickerDialog(
-                this@TempMainActivity, { datePicker: DatePicker, _: Int, _: Int, _: Int ->
-                    PreferenceHandler.put(Preference.TEMP_YEAR_OF_ENQUIRY, datePicker.year)
-                    PreferenceHandler.put(Preference.TEMP_MONTH_OF_ENQUIRY, datePicker.month + 1)
-                    PreferenceHandler.put(Preference.TEMP_DAY_OF_ENQUIRY, datePicker.dayOfMonth)
-                    refreshPrediction()
-                }, it.year, it.monthValue - 1, it.dayOfMonth
+                    this@TempMainActivity, { datePicker: DatePicker, _: Int, _: Int, _: Int ->
+                PreferenceHandler.put(Preference.TEMP_YEAR_OF_ENQUIRY, datePicker.year)
+                PreferenceHandler.put(Preference.TEMP_MONTH_OF_ENQUIRY, datePicker.month + 1)
+                PreferenceHandler.put(Preference.TEMP_DAY_OF_ENQUIRY, datePicker.dayOfMonth)
+                refreshPrediction()
+            }, it.year, it.monthValue - 1, it.dayOfMonth
             )
         }
 
@@ -338,7 +338,7 @@ class TempMainActivity : MenuActivity() {
             dpdInquiryDate?.isShowing?.takeUnless { it }?.let {
                 val pickedDate = LocalDate.parse(PreferenceUtils.getEnquiryDate())
                 dpdInquiryDate?.updateDate(
-                    pickedDate.year, pickedDate.monthValue - 1, pickedDate.dayOfMonth
+                        pickedDate.year, pickedDate.monthValue - 1, pickedDate.dayOfMonth
                 )
                 dpdInquiryDate?.show()
             }
@@ -346,7 +346,7 @@ class TempMainActivity : MenuActivity() {
 
         spnNameType?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                parent: AdapterView<*>?, view: View, position: Int, id: Long
+                    parent: AdapterView<*>?, view: View, position: Int, id: Long
             ) {
                 getName()
             }
@@ -357,11 +357,11 @@ class TempMainActivity : MenuActivity() {
 
         ivFortuneTeller?.setOnClickListener {
             PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT, 1)
-                .takeUnless { it != 0 }.let {
-                    Sound.play(this@TempMainActivity, "jump")
-                    BounceAnimation(ivFortuneTeller).setBounceDistance(7f).setNumOfBounces(1)
-                        .setDuration(150).animate()
-                }
+                    .takeUnless { it != 0 }.let {
+                        Sound.play(this@TempMainActivity, "jump")
+                        BounceAnimation(ivFortuneTeller).setBounceDistance(7f).setNumOfBounces(1)
+                                .setDuration(150).animate()
+                    }
         }
 
         ivSaveLogo?.setOnClickListener {
@@ -439,7 +439,7 @@ class TempMainActivity : MenuActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (s.toString().isNotEmpty()) tvTextCopy?.visibility =
-                    View.GONE else tvTextCopy?.visibility = View.VISIBLE
+                        View.GONE else tvTextCopy?.visibility = View.VISIBLE
             }
 
             override fun afterTextChanged(s: Editable) {}
@@ -467,17 +467,17 @@ class TempMainActivity : MenuActivity() {
 
         //Request permissions
         val launcher =
-            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { isGranted: Map<String, Boolean> ->
-                if (isGranted.containsValue(false)) showToast(getString(R.string.denied_contact_permission))
-            }
+                registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { isGranted: Map<String, Boolean> ->
+                    if (isGranted.containsValue(false)) showToast(getString(R.string.denied_contact_permission))
+                }
         var permissionsGranted = true
         val permissions =
-            arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_COARSE_LOCATION)
+                arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_COARSE_LOCATION)
 
         for (permission in permissions) {
             if (ContextCompat.checkSelfPermission(
-                    this@TempMainActivity, permission
-                ) != PackageManager.PERMISSION_GRANTED
+                            this@TempMainActivity, permission
+                    ) != PackageManager.PERMISSION_GRANTED
             ) permissionsGranted = false
         }
         if (!permissionsGranted) launcher.launch(permissions)
@@ -489,9 +489,9 @@ class TempMainActivity : MenuActivity() {
     override fun onResume() {
         super.onResume()
         LongHelper.getSeed(PreferenceHandler.getString(Preference.SETTING_SEED))
-            ?.takeIf { it == fortuneTeller?.seed }?.let {
-                fortuneTeller = FortuneTeller(this@TempMainActivity)
-            }
+                ?.takeIf { it == fortuneTeller?.seed }?.let {
+                    fortuneTeller = FortuneTeller(this@TempMainActivity)
+                }
 
         //Restart Activity if required
         if (PreferenceHandler.has(Preference.TEMP_RESTART_ACTIVITY)) {
@@ -504,8 +504,8 @@ class TempMainActivity : MenuActivity() {
 
         //Stop TTS if it is disabled and continues talking
         if (speechAvailable && (!PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) || !PreferenceHandler.getBoolean(
-                Preference.SETTING_VOICE_ENABLED
-            )) && tts.isSpeaking
+                        Preference.SETTING_VOICE_ENABLED
+                )) && tts.isSpeaking
         ) tts.stop()
 
         //Show, avoid, or hide ads
@@ -526,7 +526,7 @@ class TempMainActivity : MenuActivity() {
         timer = fixedRateTimer("timer", false, 0L, 1000) {
             val frequency = PreferenceHandler.getStringAsInt(Preference.SETTING_REFRESH_TIME, 20)
             val refreshFrequency =
-                PreferenceHandler.getStringAsInt(Preference.SETTING_UPDATE_TIME, 60)
+                    PreferenceHandler.getStringAsInt(Preference.SETTING_UPDATE_TIME, 60)
 
             status?.seconds?.let { seconds ->
                 if (seconds >= frequency && frequency != 0) {
@@ -569,7 +569,7 @@ class TempMainActivity : MenuActivity() {
 
             status?.resourceSeconds?.let { seconds ->
                 if (seconds >= 1800) status?.resourceSeconds = 0 else status?.resourceSeconds =
-                    seconds + 1
+                        seconds + 1
             }
 
             status?.adSeconds?.let { seconds ->
@@ -606,12 +606,12 @@ class TempMainActivity : MenuActivity() {
     override fun onBackPressed() {
         if (!closeDrawer()) {
             AlertDialog.Builder(this@TempMainActivity).setTitle(R.string.alert_exit_title)
-                .setMessage(R.string.alert_exit_message)
-                .setNegativeButton(R.string.action_cancel) { _, _ ->
-                    onBackPressedDispatcher.onBackPressed()
-                }.setPositiveButton(R.string.action_exit) { _, _ ->
-                    exitProcess(0) //Try to stop current threads
-                }.create().show()
+                    .setMessage(R.string.alert_exit_message)
+                    .setNegativeButton(R.string.action_cancel) { _, _ ->
+                        onBackPressedDispatcher.onBackPressed()
+                    }.setPositiveButton(R.string.action_exit) { _, _ ->
+                        exitProcess(0) //Try to stop current threads
+                    }.create().show()
         }
     }
 
@@ -678,19 +678,19 @@ class TempMainActivity : MenuActivity() {
                 if (it) Handler(Looper.getMainLooper()).postDelayed({ waitTasks() }, 500)
                 else {
                     if (PreferenceHandler.getBoolean(
-                            Preference.SETTING_PARTICLES_ENABLED, true
-                        ) && status?.originInX != 0 && status?.originInY != 0
+                                    Preference.SETTING_PARTICLES_ENABLED, true
+                            ) && status?.originInX != 0 && status?.originInY != 0
                     ) throwConfetti(
-                        status?.originInX ?: 0, status?.originInY ?: 0
+                            status?.originInX ?: 0, status?.originInY ?: 0
                     ) //Start confetti animation
 
                     if (PreferenceHandler.getStringAsInt(
-                            Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
-                        ) != 0
+                                    Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
+                            ) != 0
                     ) {
                         Sound.play(this@TempMainActivity, "jump")
                         BounceAnimation(ivFortuneTeller).setBounceDistance(20f).setNumOfBounces(1)
-                            .setDuration(500).animate()
+                                .setDuration(500).animate()
                     }
                     Screen.unlockScreenOrientation(this@TempMainActivity) //Unlock orientation
                     status?.forceEffects = false
@@ -710,8 +710,8 @@ class TempMainActivity : MenuActivity() {
 
     private fun throwConfetti(originInX: Int, originInY: Int) {
         val allPossibleConfetti = Utils.generateConfettiBitmaps(
-            particleColors[PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT)],
-            10
+                particleColors[PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT)],
+                10
         )
         val generator = ConfettoGenerator { random: Random ->
             val bitmap = allPossibleConfetti[random.nextInt(allPossibleConfetti.size)]
@@ -719,12 +719,12 @@ class TempMainActivity : MenuActivity() {
         }
 
         confettiManager = ConfettiManager(
-            this@TempMainActivity, generator, ConfettiSource(originInX, originInY), llConfetti
+                this@TempMainActivity, generator, ConfettiSource(originInX, originInY), llConfetti
         ).setEmissionDuration(ConfettiManager.INFINITE_DURATION).setEmissionRate(30f)
-            .setVelocityX(0f, 360f).setVelocityY(0f, 360f).setRotationalVelocity(180f, 180f)
-            .setRotationalAcceleration(360f, 180f).setInitialRotation(180, 180)
-            .setTargetRotationalVelocity(360f).enableFadeOut(Utils.getDefaultAlphaInterpolator())
-            .animate()
+                .setVelocityX(0f, 360f).setVelocityY(0f, 360f).setRotationalVelocity(180f, 180f)
+                .setRotationalAcceleration(360f, 180f).setInitialRotation(180, 180)
+                .setTargetRotationalVelocity(360f).enableFadeOut(Utils.getDefaultAlphaInterpolator())
+                .animate()
 
         status?.confettiThrown?.takeIf { it < Long.MAX_VALUE }?.let {
             status?.confettiThrown = it + 1
@@ -742,22 +742,22 @@ class TempMainActivity : MenuActivity() {
         var names = listOf<String>()
 
         if (PreferenceHandler.has(Preference.DATA_STORED_NAMES) && PreferenceHandler.getStringSet(
-                Preference.DATA_STORED_NAMES
-            ).size > 0
+                        Preference.DATA_STORED_NAMES
+                ).size > 0
         ) names = PreferenceHandler.getStringSet(
-            Preference.DATA_STORED_NAMES
+                Preference.DATA_STORED_NAMES
         ).toList()
 
         names.takeIf { it.isNotEmpty() }?.let {
             atvInitialName?.setAdapter(
-                ArrayAdapter(
-                    this@TempMainActivity, android.R.layout.simple_spinner_dropdown_item, names
-                )
+                    ArrayAdapter(
+                            this@TempMainActivity, android.R.layout.simple_spinner_dropdown_item, names
+                    )
             )
             atvFinalName?.setAdapter(
-                ArrayAdapter(
-                    this@TempMainActivity, android.R.layout.simple_spinner_dropdown_item, names
-                )
+                    ArrayAdapter(
+                            this@TempMainActivity, android.R.layout.simple_spinner_dropdown_item, names
+                    )
             )
         }
     }
@@ -768,25 +768,25 @@ class TempMainActivity : MenuActivity() {
 
         for (person in people) {
             items.add(
-                "${person.descriptor} + (${
-                    person.gender.getName(
-                        this@TempMainActivity, 4
-                    )
-                }) ${person.birthdate}"
+                    "${person.descriptor} + (${
+                        person.gender.getName(
+                                this@TempMainActivity, 4
+                        )
+                    }) ${person.birthdate}"
             )
         }
         val builder = AlertDialog.Builder(this@TempMainActivity)
         builder.setNegativeButton(R.string.action_cancel) { _, _ -> dialog?.dismiss() }
         val listView = ListView(this@TempMainActivity)
         val adapter = ArrayAdapter<String>(
-            this@TempMainActivity, android.R.layout.simple_list_item_1, android.R.id.text1, items
+                this@TempMainActivity, android.R.layout.simple_list_item_1, android.R.id.text1, items
         )
         listView.adapter = adapter
         listView.onItemClickListener =
-            OnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
-                setFormPerson(people[position])
-                dialog?.dismiss()
-            }
+                OnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
+                    setFormPerson(people[position])
+                    dialog?.dismiss()
+                }
         builder.setView(listView)
         dialog = builder.create()
     }
@@ -802,22 +802,22 @@ class TempMainActivity : MenuActivity() {
         tvPick?.isEnabled = false
         status?.updateSeconds = 0
         llConfetti?.animate()?.alpha(0.0f)?.setDuration(200)
-            ?.setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationCancel(animation: Animator) {
-                    super.onAnimationEnd(animation)
-                    vMain?.clearAnimation()
-                    vMain?.visibility = View.INVISIBLE
-                }
-            }) //Fade particles layout out
+                ?.setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationCancel(animation: Animator) {
+                        super.onAnimationEnd(animation)
+                        vMain?.clearAnimation()
+                        vMain?.visibility = View.INVISIBLE
+                    }
+                }) //Fade particles layout out
         Sound.play(this@TempMainActivity, "wind")
 
         if (!PreferenceHandler.getBoolean(Preference.TEMP_BUSY)) {
             GlobalScope.launch {
                 PreferenceHandler.put(Preference.TEMP_BUSY, true)
                 val pickedDate = DateTimeHelper.toIso8601Date(
-                    dpdInquiryDate?.datePicker?.year ?: 2000,
-                    dpdInquiryDate?.datePicker?.month?.plus(1) ?: 1,
-                    dpdInquiryDate?.datePicker?.dayOfMonth ?: 1
+                        dpdInquiryDate?.datePicker?.year ?: 2000,
+                        dpdInquiryDate?.datePicker?.month?.plus(1) ?: 1,
+                        dpdInquiryDate?.datePicker?.dayOfMonth ?: 1
                 )
 
                 if (!PreferenceUtils.isEnquiryFormEntered()) {
@@ -845,10 +845,10 @@ class TempMainActivity : MenuActivity() {
                     vPersonImage?.hash = predictionHistory?.latest?.person?.summary.hashCode()
 
                     tvPersonInfo?.text = getString(
-                        R.string.person_data,
-                        predictionHistory?.latest?.person?.description,
-                        predictionHistory?.latest?.person?.gender?.getName(this@TempMainActivity, 1),
-                        DateTimeHelper.toIso8601Date(predictionHistory?.latest?.person?.birthdate)
+                            R.string.person_data,
+                            predictionHistory?.latest?.person?.description,
+                            predictionHistory?.latest?.person?.gender?.getName(this@TempMainActivity, 1),
+                            DateTimeHelper.toIso8601Date(predictionHistory?.latest?.person?.birthdate)
                     ).toHtmlText()
 
                     predictionHistory?.latest?.getFormattedContent(this@TempMainActivity)?.let {
@@ -856,9 +856,9 @@ class TempMainActivity : MenuActivity() {
                             Sound.play(this@TempMainActivity, "crack")
                             tvPrediction?.let {
                                 val replacement = StringHelper.replaceBetweenZeroWidthSpaces(
-                                    predictionHistory?.latest?.getFormattedContent(this@TempMainActivity),
-                                    predictionHistory?.latest?.components?.get("fortuneCookie")
-                                        .orEmpty()
+                                        predictionHistory?.latest?.getFormattedContent(this@TempMainActivity),
+                                        predictionHistory?.latest?.components?.get("fortuneCookie")
+                                                .orEmpty()
                                 )
                                 tvPrediction?.setText(replacement)
                             }
@@ -868,14 +868,14 @@ class TempMainActivity : MenuActivity() {
                     }
 
                     if (activityStatus == ActivityStatus.RESUMED && !isViewVisible(tvPersonInfo)) showQuickToast(
-                        predictionHistory?.latest?.person?.descriptor
+                            predictionHistory?.latest?.person?.descriptor
                     )
 
                     //Read the text
                     read(
-                        tvPersonInfo?.text.toString() + ". " + predictionHistory?.latest?.getContent(
-                            this@TempMainActivity
-                        )
+                            tvPersonInfo?.text.toString() + ". " + predictionHistory?.latest?.getContent(
+                                    this@TempMainActivity
+                            )
                     )
                     tvPick?.isEnabled = true
                     llConfetti?.animate()?.alpha(1.0f)?.duration = 200 //Fade particles layout in
@@ -893,9 +893,9 @@ class TempMainActivity : MenuActivity() {
 
             people.size == 1 -> {
                 tvInquiry?.text =
-                    getString(R.string.inquiry, people[0].descriptor).toLinkedHtmlText()
+                        getString(R.string.inquiry, people[0].descriptor).toLinkedHtmlText()
                 if (PreferenceUtils.hasPersonTempStored()) llInquiryHolder?.visibility =
-                    View.GONE else llInquiryHolder?.visibility = View.VISIBLE
+                        View.GONE else llInquiryHolder?.visibility = View.VISIBLE
                 llSelectorHolder?.visibility = View.GONE
             }
 
@@ -936,7 +936,7 @@ class TempMainActivity : MenuActivity() {
 
             people.size == 1 -> {
                 navigationView.menu.findItem(R.id.nav_inquiry).title =
-                    getString(R.string.inquiry, people[0].descriptor)
+                        getString(R.string.inquiry, people[0].descriptor)
                 if (PreferenceUtils.hasPersonTempStored()) {
                     navigationView.menu.findItem(R.id.nav_inquiry).isVisible = true
                     navigationView.menu.findItem(R.id.nav_inquiry).isEnabled = false
@@ -986,8 +986,8 @@ class TempMainActivity : MenuActivity() {
             person.addAttribute("entered")
         } else {
             person =
-                if (r?.getInt(3) == 0) resourceExplorer.generatorManager.personGenerator.anonymousPerson
-                else resourceExplorer.generatorManager.personGenerator.person
+                    if (r?.getInt(3) == 0) resourceExplorer.generatorManager.personGenerator.anonymousPerson
+                    else resourceExplorer.generatorManager.personGenerator.person
         }
         val divination = Divination(this@TempMainActivity, person, enquiryDate)
         return divination.getPrediction(person)
@@ -1002,7 +1002,7 @@ class TempMainActivity : MenuActivity() {
         if (!initialName.isNullOrBlank() && !finalName.isNullOrBlank()) {
             if (initialName.equals(finalName, ignoreCase = true)) {
                 tvCompatibility?.text = getString(
-                    R.string.compatibility_result, "<font color=\"#6666FF\">" + 100 + "%</font>"
+                        R.string.compatibility_result, "<font color=\"#6666FF\">" + 100 + "%</font>"
                 ).toHtmlText()
                 pbWait?.progress = 100
             } else {
@@ -1012,16 +1012,16 @@ class TempMainActivity : MenuActivity() {
                     finalName = tempName
                 }
                 val seed =
-                    LongHelper.getSeed(initialName + System.getProperty("line.separator") + finalName)
+                        LongHelper.getSeed(initialName + System.getProperty("line.separator") + finalName)
                 val compatibilityPoints = Randomizer(seed).getInt(101)
                 tvCompatibility?.text = getString(
-                    R.string.compatibility_result, TextFormatter.formatCapacity(compatibilityPoints)
+                        R.string.compatibility_result, TextFormatter.formatCapacity(compatibilityPoints)
                 ).toHtmlText()
                 pbWait?.progress = compatibilityPoints
             }
         } else {
             tvCompatibility?.text = getString(
-                R.string.compatibility_result, "<font color=\"#C0FF2B\">?</font>"
+                    R.string.compatibility_result, "<font color=\"#C0FF2B\">?</font>"
             ).toHtmlText()
             pbWait?.progress = 0
         }

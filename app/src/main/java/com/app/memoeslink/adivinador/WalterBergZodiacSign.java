@@ -34,54 +34,54 @@ public enum WalterBergZodiacSign {
 
     public static WalterBergZodiacSign get(int month, int day) {
         switch (month) {
-            case 1:
+            case 1 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 19 ? WalterBergZodiacSign.CAPRICORN : WalterBergZodiacSign.SAGITTARIUS;
-                break;
-            case 2:
+            }
+            case 2 -> {
                 if (day >= 1 && day <= 29)
                     return day >= 16 ? WalterBergZodiacSign.AQUARIUS : WalterBergZodiacSign.CAPRICORN;
-                break;
-            case 3:
+            }
+            case 3 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 12 ? WalterBergZodiacSign.PISCES : WalterBergZodiacSign.AQUARIUS;
-                break;
-            case 4:
+            }
+            case 4 -> {
                 if (day >= 1 && day <= 30)
                     return day >= 19 ? WalterBergZodiacSign.ARIES : WalterBergZodiacSign.PISCES;
-                break;
-            case 5:
+            }
+            case 5 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 14 ? WalterBergZodiacSign.TAURUS : WalterBergZodiacSign.ARIES;
-                break;
-            case 6:
+            }
+            case 6 -> {
                 if (day >= 1 && day <= 30)
                     return day >= 20 ? WalterBergZodiacSign.GEMINI : WalterBergZodiacSign.TAURUS;
-                break;
-            case 7:
+            }
+            case 7 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 21 ? WalterBergZodiacSign.CANCER : WalterBergZodiacSign.GEMINI;
-                break;
-            case 8:
+            }
+            case 8 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 10 ? WalterBergZodiacSign.LEO : WalterBergZodiacSign.CANCER;
-                break;
-            case 9:
+            }
+            case 9 -> {
                 if (day >= 1 && day <= 30)
                     return day >= 16 ? WalterBergZodiacSign.VIRGO : WalterBergZodiacSign.LEO;
-                break;
-            case 10:
+            }
+            case 10 -> {
                 if (day >= 1 && day <= 31)
-                    return day >= 31 ? WalterBergZodiacSign.LIBRA : WalterBergZodiacSign.VIRGO;
-                break;
-            case 11:
+                    return day == 31 ? WalterBergZodiacSign.LIBRA : WalterBergZodiacSign.VIRGO;
+            }
+            case 11 -> {
                 if (day >= 1 && day <= 30)
-                    return day >= 30 ? WalterBergZodiacSign.OPHIUCHUS : day >= 23 ? WalterBergZodiacSign.SCORPIO : WalterBergZodiacSign.LIBRA;
-                break;
-            case 12:
+                    return day == 30 ? WalterBergZodiacSign.OPHIUCHUS : day >= 23 ? WalterBergZodiacSign.SCORPIO : WalterBergZodiacSign.LIBRA;
+            }
+            case 12 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 18 ? WalterBergZodiacSign.SAGITTARIUS : WalterBergZodiacSign.OPHIUCHUS;
-                break;
+            }
         }
         return WalterBergZodiacSign.UNKNOWN;
     }

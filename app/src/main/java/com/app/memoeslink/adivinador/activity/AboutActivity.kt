@@ -19,11 +19,11 @@ class AboutActivity : CommonActivity() {
         tvContent = findViewById(R.id.about_content)
         tvContent?.isClickable = true
         tvContent?.text = getString(
-            R.string.about,
-            getString(R.string.app_name),
-            BuildConfig.VERSION_NAME,
-            BuildConfig.VERSION_CODE,
-            DateTimeHelper.getCurrentDate().year
+                R.string.about,
+                getString(R.string.app_name),
+                BuildConfig.VERSION_NAME,
+                BuildConfig.VERSION_CODE,
+                DateTimeHelper.getCurrentDate().year
         ).toHtmlText()
         tvContent?.movementMethod = LinkMovementMethod.getInstance()
         btBack = findViewById(R.id.about_back_button)

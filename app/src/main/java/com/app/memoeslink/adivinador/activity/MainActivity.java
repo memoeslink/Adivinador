@@ -317,32 +317,20 @@ public class MainActivity extends MenuActivity {
                 closeDrawer();
 
             switch (item.getItemId()) {
-                case R.id.nav_data_entry:
+                case R.id.nav_data_entry -> {
                     Intent i = new Intent(MainActivity.this, InputActivity.class);
                     startActivity(i);
-                    break;
-                case R.id.nav_reload:
-                    refreshPrediction();
-                    break;
-                case R.id.nav_save:
-                    ivSaveLogo.performClick();
-                    break;
-                case R.id.nav_inquiry:
-                    llInquiryHolder.performClick();
-                    break;
-                case R.id.nav_selector:
-                    llSelectorHolder.performClick();
-                    break;
-                case R.id.nav_clear:
-                    llClearHolder.performClick();
-                    break;
-                case R.id.nav_compatibility:
+                }
+                case R.id.nav_reload -> refreshPrediction();
+                case R.id.nav_save -> ivSaveLogo.performClick();
+                case R.id.nav_inquiry -> llInquiryHolder.performClick();
+                case R.id.nav_selector -> llSelectorHolder.performClick();
+                case R.id.nav_clear -> llClearHolder.performClick();
+                case R.id.nav_compatibility -> {
                     this.compatibilityDialog.show();
                     this.compatibilityDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    break;
-                case R.id.nav_name_generation:
-                    nameGeneratorDialog.show();
-                    break;
+                }
+                case R.id.nav_name_generation -> nameGeneratorDialog.show();
             }
             return false;
         });

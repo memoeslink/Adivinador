@@ -23,10 +23,12 @@ class BaseApplication : MultiDexApplication() {
                     foreground = false
                     println("App is running in the background.")
                 }
+
                 Lifecycle.Event.ON_START -> {
                     foreground = true
                     println("App is running in the foreground.")
                 }
+
                 else -> {}
             }
         })
@@ -39,9 +41,9 @@ class BaseApplication : MultiDexApplication() {
 
         //Set preference default values
         PreferenceManager.setDefaultValues(
-            applicationContext,
-            R.xml.default_preferences,
-            false
+                applicationContext,
+                R.xml.default_preferences,
+                false
         )
 
         //Delete old databases
@@ -50,13 +52,13 @@ class BaseApplication : MultiDexApplication() {
 
     private fun getDatabaseTrace(version: Int): File? {
         if (version >= PreferenceHandler.getInt(
-                Preference.SYSTEM_REVISED_DATABASE_VERSION
-            )
+                        Preference.SYSTEM_REVISED_DATABASE_VERSION
+                )
         ) {
             val databaseName = if (version > 1) {
                 String.format(
-                    Database.DATABASE_NAME_FORMAT,
-                    "_upgrade_" + (version - 1) + "-" + version
+                        Database.DATABASE_NAME_FORMAT,
+                        "_upgrade_" + (version - 1) + "-" + version
                 )
             } else {
                 String.format(Database.DATABASE_NAME_FORMAT, "")
@@ -65,7 +67,7 @@ class BaseApplication : MultiDexApplication() {
 
             if (database.exists()) {
                 PreferenceHandler.put(
-                    Preference.SYSTEM_REVISED_DATABASE_VERSION, version
+                        Preference.SYSTEM_REVISED_DATABASE_VERSION, version
                 )
                 return database
             }
@@ -99,9 +101,9 @@ class BaseApplication : MultiDexApplication() {
             files.isEmpty()
         }?.forEach { file ->
             if (!StringHelper.startsWith(
-                    file.name,
-                    "google_"
-                ) && file.name != Database.DATABASE_NAME
+                            file.name,
+                            "google_"
+                    ) && file.name != Database.DATABASE_NAME
             ) {
                 when {
                     !file.exists() -> println("Database couldn't be found to be deleted: " + file.toURI())

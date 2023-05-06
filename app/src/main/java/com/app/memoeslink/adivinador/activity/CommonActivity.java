@@ -260,17 +260,12 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     }
 
     protected final int getThemeId() {
-        switch (PreferenceHandler.getStringAsInt(Preference.SETTING_THEME)) {
-            case 1:
-                return R.style.BlackTheme;
-            case 2:
-                return R.style.GrayTheme;
-            case 3:
-                return R.style.SlateGrayTheme;
-            case 0:
-            default:
-                return R.style.DefaultTheme;
-        }
+        return switch (PreferenceHandler.getStringAsInt(Preference.SETTING_THEME)) {
+            case 1 -> R.style.BlackTheme;
+            case 2 -> R.style.GrayTheme;
+            case 3 -> R.style.SlateGrayTheme;
+            default -> R.style.DefaultTheme;
+        };
     }
 
     protected final void restartApplication() {

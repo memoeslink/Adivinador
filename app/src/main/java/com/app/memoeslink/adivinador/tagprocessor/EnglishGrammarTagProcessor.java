@@ -48,14 +48,13 @@ public class EnglishGrammarTagProcessor implements GrammarTagProcessor {
                 String possessiveAdjective = matcher.group("rule2PossessiveAdjective");
 
                 switch (gender) {
-                    case MASCULINE:
-                        possessiveAdjective = StringHelper.substringBefore(possessiveAdjective, "/");
-                        break;
-                    case FEMININE:
+                    case MASCULINE ->
+                            possessiveAdjective = StringHelper.substringBefore(possessiveAdjective, "/");
+                    case FEMININE -> {
                         boolean uppercase = Character.isUpperCase(possessiveAdjective.charAt(0));
                         possessiveAdjective = StringHelper.substringAfter(possessiveAdjective, "/");
                         possessiveAdjective = uppercase ? StringHelper.capitalizeFirst(possessiveAdjective) : possessiveAdjective;
-                        break;
+                    }
                 }
                 replacement = matcher.group("rule2Start") + possessiveAdjective + matcher.group("rule2End");
             }

@@ -65,14 +65,12 @@ public class FortuneTeller extends ContextWrapper {
             phraseTypes.add("phrases");
 
         if (phraseTypes.size() > 0) {
-            switch (r.getItem(phraseTypes)) {
-                case "greetings":
-                    return greet();
-                case "opinions":
-                    return talkAboutSomeone();
-                case "phrases":
-                    return talkAboutSomething();
-            }
+            return switch (r.getItem(phraseTypes)) {
+                case "greetings" -> greet();
+                case "opinions" -> talkAboutSomeone();
+                case "phrases" -> talkAboutSomething();
+                default -> "…";
+            };
         }
         return "…";
     }
@@ -98,24 +96,23 @@ public class FortuneTeller extends ContextWrapper {
         int arrayId;
         int initialRes;
 
-        switch (PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT, 1)) {
-            case 1:
+        switch (PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT)) {
+            case 1 -> {
                 arrayId = R.array.emoji_collection;
                 initialRes = R.drawable.ic_emoji_angel;
-                break;
-            case 2:
+            }
+            case 2 -> {
                 arrayId = R.array.emoticon_collection;
                 initialRes = R.drawable.ic_emoticon_alien;
-                break;
-            case 3:
+            }
+            case 3 -> {
                 arrayId = R.array.smiley_collection;
                 initialRes = R.drawable.ic_smiley_3d_glasses;
-                break;
-            case 0:
-            default:
+            }
+            default -> {
                 arrayId = R.array.crystal_ball;
                 initialRes = R.drawable.ic_crystal_ball;
-                break;
+            }
         }
         TypedArray images = getResources().obtainTypedArray(arrayId);
         int randomRes = (int) (r.getDouble() * images.length());

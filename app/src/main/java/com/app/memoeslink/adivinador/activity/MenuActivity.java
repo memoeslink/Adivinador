@@ -46,9 +46,9 @@ public class MenuActivity extends CommonActivity {
     @Override
     public boolean onKeyDown(int keycode, KeyEvent e) {
         switch (keycode) {
-            case KeyEvent.KEYCODE_MENU:
-                closeDrawer();
-                break;
+            case KeyEvent.KEYCODE_MENU -> closeDrawer();
+            default -> {
+            }
         }
         return super.onKeyDown(keycode, e);
     }
@@ -59,26 +59,24 @@ public class MenuActivity extends CommonActivity {
         Intent i;
 
         switch (item.getItemId()) {
-            case android.R.id.home:
-                toggleDrawer();
-                break;
-            case R.id.menu_settings: //Open settings
+            case android.R.id.home -> toggleDrawer();
+            case R.id.menu_settings -> { //Open settings
                 i = new Intent(MenuActivity.this, SettingsActivity.class);
                 startActivity(i);
-                break;
-            case R.id.menu_about: //Show information about application
+            }
+            case R.id.menu_about -> { //Show information about application
                 i = new Intent(MenuActivity.this, AboutActivity.class);
                 startActivity(i);
-                break;
-            case R.id.menu_donate: //Show Activity for donations
+            }
+            case R.id.menu_donate -> { //Show Activity for donations
                 i = new Intent(MenuActivity.this, DonationsActivity.class);
                 startActivity(i);
-                break;
-            case R.id.menu_exit: //Exit application
+            }
+            case R.id.menu_exit -> { //Exit application
                 finishAffinity();
                 //android.os.Process.killProcess(android.os.Process.myPid());
                 System.exit(0); //Try to stop current threads
-                break;
+            }
         }
         return true;
     }

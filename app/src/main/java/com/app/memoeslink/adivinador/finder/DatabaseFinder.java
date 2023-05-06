@@ -18,46 +18,42 @@ public class DatabaseFinder extends Binder {
     }
 
     public String getAbstractNoun() {
-        switch (getString(R.string.locale)) {
-            case "en":
-                return Database.getInstance(context).selectEnglishAbstractNoun(r.getInt(1, Database.getInstance(context).countEnglishAbstractNouns()));
-            case "es":
-                return Database.getInstance(context).selectSpanishAbstractNoun(r.getInt(1, Database.getInstance(context).countSpanishAbstractNouns()));
-            default:
-                return ResourceFinder.RESOURCE_NOT_FOUND;
-        }
+        return switch (getString(R.string.locale)) {
+            case "en" ->
+                    Database.getInstance(context).selectEnglishAbstractNoun(r.getInt(1, Database.getInstance(context).countEnglishAbstractNouns()));
+            case "es" ->
+                    Database.getInstance(context).selectSpanishAbstractNoun(r.getInt(1, Database.getInstance(context).countSpanishAbstractNouns()));
+            default -> ResourceFinder.RESOURCE_NOT_FOUND;
+        };
     }
 
     public String getDivination() {
-        switch (getString(R.string.locale)) {
-            case "en":
-                return Database.getInstance(context).selectEnglishPrediction(r.getInt(1, Database.getInstance(context).countEnglishPredictions()));
-            case "es":
-                return Database.getInstance(context).selectSpanishPrediction(r.getInt(1, Database.getInstance(context).countSpanishPredictions()));
-            default:
-                return ResourceFinder.RESOURCE_NOT_FOUND;
-        }
+        return switch (getString(R.string.locale)) {
+            case "en" ->
+                    Database.getInstance(context).selectEnglishPrediction(r.getInt(1, Database.getInstance(context).countEnglishPredictions()));
+            case "es" ->
+                    Database.getInstance(context).selectSpanishPrediction(r.getInt(1, Database.getInstance(context).countSpanishPredictions()));
+            default -> ResourceFinder.RESOURCE_NOT_FOUND;
+        };
     }
 
     public String getFortuneCookie() {
-        switch (getString(R.string.locale)) {
-            case "en":
-                return Database.getInstance(context).selectEnglishFortuneCookie(r.getInt(1, Database.getInstance(context).countEnglishFortuneCookies()));
-            case "es":
-                return Database.getInstance(context).selectSpanishFortuneCookie(r.getInt(1, Database.getInstance(context).countSpanishFortuneCookies()));
-            default:
-                return ResourceFinder.RESOURCE_NOT_FOUND;
-        }
+        return switch (getString(R.string.locale)) {
+            case "en" ->
+                    Database.getInstance(context).selectEnglishFortuneCookie(r.getInt(1, Database.getInstance(context).countEnglishFortuneCookies()));
+            case "es" ->
+                    Database.getInstance(context).selectSpanishFortuneCookie(r.getInt(1, Database.getInstance(context).countSpanishFortuneCookies()));
+            default -> ResourceFinder.RESOURCE_NOT_FOUND;
+        };
     }
 
     public String getPhrase() {
-        switch (getString(R.string.locale)) {
-            case "en":
-                return Database.getInstance(context).selectEnglishPhrase(r.getInt(1, Database.getInstance(context).countEnglishPhrases()));
-            case "es":
-                return Database.getInstance(context).selectSpanishPhrase(r.getInt(1, Database.getInstance(context).countSpanishPhrases()));
-            default:
-                return ResourceFinder.RESOURCE_NOT_FOUND;
-        }
+        return switch (getString(R.string.locale)) {
+            case "en" ->
+                    Database.getInstance(context).selectEnglishPhrase(r.getInt(1, Database.getInstance(context).countEnglishPhrases()));
+            case "es" ->
+                    Database.getInstance(context).selectSpanishPhrase(r.getInt(1, Database.getInstance(context).countSpanishPhrases()));
+            default -> ResourceFinder.RESOURCE_NOT_FOUND;
+        };
     }
 }

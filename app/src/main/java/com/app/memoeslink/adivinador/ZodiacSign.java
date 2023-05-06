@@ -67,54 +67,54 @@ public enum ZodiacSign {
 
     public static ZodiacSign get(int month, int day) {
         switch (month) {
-            case 1:
+            case 1 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 20 ? ZodiacSign.AQUARIUS : ZodiacSign.CAPRICORN;
-                break;
-            case 2:
+            }
+            case 2 -> {
                 if (day >= 1 && day <= 29)
                     return day >= 19 ? ZodiacSign.PISCES : ZodiacSign.AQUARIUS;
-                break;
-            case 3:
+            }
+            case 3 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 21 ? ZodiacSign.ARIES : ZodiacSign.PISCES;
-                break;
-            case 4:
+            }
+            case 4 -> {
                 if (day >= 1 && day <= 30)
                     return day >= 21 ? ZodiacSign.TAURUS : ZodiacSign.ARIES;
-                break;
-            case 5:
+            }
+            case 5 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 22 ? ZodiacSign.GEMINI : ZodiacSign.TAURUS;
-                break;
-            case 6:
+            }
+            case 6 -> {
                 if (day >= 1 && day <= 30)
                     return day >= 21 ? ZodiacSign.CANCER : ZodiacSign.GEMINI;
-                break;
-            case 7:
+            }
+            case 7 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 23 ? ZodiacSign.LEO : ZodiacSign.CANCER;
-                break;
-            case 8:
+            }
+            case 8 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 23 ? ZodiacSign.VIRGO : ZodiacSign.LEO;
-                break;
-            case 9:
+            }
+            case 9 -> {
                 if (day >= 1 && day <= 30)
                     return day >= 23 ? ZodiacSign.LIBRA : ZodiacSign.VIRGO;
-                break;
-            case 10:
+            }
+            case 10 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 23 ? ZodiacSign.SCORPIO : ZodiacSign.LIBRA;
-                break;
-            case 11:
+            }
+            case 11 -> {
                 if (day >= 1 && day <= 30)
                     return day >= 22 ? ZodiacSign.SAGITTARIUS : ZodiacSign.SCORPIO;
-                break;
-            case 12:
+            }
+            case 12 -> {
                 if (day >= 1 && day <= 31)
                     return day >= 22 ? ZodiacSign.CAPRICORN : ZodiacSign.SAGITTARIUS;
-                break;
+            }
         }
         return ZodiacSign.UNKNOWN;
     }

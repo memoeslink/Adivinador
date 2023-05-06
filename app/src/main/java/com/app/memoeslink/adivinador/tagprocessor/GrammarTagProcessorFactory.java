@@ -12,13 +12,10 @@ public class GrammarTagProcessorFactory extends ContextWrapper {
     }
 
     public GrammarTagProcessor createGrammarTagProcessor() {
-        switch (getString(R.string.locale)) {
-            case "en":
-                return new EnglishGrammarTagProcessor();
-            case "es":
-                return new SpanishGrammarTagProcessor();
-            default:
-                return new DefaultGrammarTagProcessor();
-        }
+        return switch (getString(R.string.locale)) {
+            case "en" -> new EnglishGrammarTagProcessor();
+            case "es" -> new SpanishGrammarTagProcessor();
+            default -> new DefaultGrammarTagProcessor();
+        };
     }
 }

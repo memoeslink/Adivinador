@@ -148,18 +148,17 @@ public class ResourceExplorer extends Explorer {
         }
 
         private String getFormattedName() {
-            switch (r.getItem(NAME_SOURCES)) {
-                case "anonymous":
-                    return TextFormatter.formatUsername(getMethodByRef(MethodReference.USERNAME));
-                case "common":
-                    return TextFormatter.formatName(getMethodByRef(MethodReference.ALT_SUMMARY));
-                case "contact":
-                    return TextFormatter.formatContactName(getMethodByRef(MethodReference.CONTACT_NAME));
-                case "suggestion":
-                    return TextFormatter.formatSuggestedName(getMethodByRef(MethodReference.SUGGESTED_NAME));
-                default:
-                    return TextFormatter.formatText("?", "b");
-            }
+            return switch (r.getItem(NAME_SOURCES)) {
+                case "anonymous" ->
+                        TextFormatter.formatUsername(getMethodByRef(MethodReference.USERNAME));
+                case "common" ->
+                        TextFormatter.formatName(getMethodByRef(MethodReference.ALT_SUMMARY));
+                case "contact" ->
+                        TextFormatter.formatContactName(getMethodByRef(MethodReference.CONTACT_NAME));
+                case "suggestion" ->
+                        TextFormatter.formatSuggestedName(getMethodByRef(MethodReference.SUGGESTED_NAME));
+                default -> TextFormatter.formatText("?", "b");
+            };
         }
     }
 }
