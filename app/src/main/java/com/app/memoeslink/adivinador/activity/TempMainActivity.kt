@@ -559,7 +559,10 @@ class TempMainActivity : MenuActivity() {
                                 tvPhrase?.text = fortuneTeller?.talk().toHtmlText()
 
                                 //Read the text
-                                read(tvPhrase?.text.toString())
+                                if (PreferenceHandler.getStringAsInt(Preference.SETTING_TEXT_TYPE) == 0 || PreferenceHandler.getStringAsInt(
+                                        Preference.SETTING_TEXT_TYPE
+                                    ) == 2
+                                ) read(tvPhrase?.text.toString())
                             }, 350)
                         }
                         status?.seconds = 0
@@ -890,7 +893,10 @@ class TempMainActivity : MenuActivity() {
                 )
 
                 //Read the text
-                read(
+                if (PreferenceHandler.getStringAsInt(Preference.SETTING_TEXT_TYPE) == 1 || PreferenceHandler.getStringAsInt(
+                        Preference.SETTING_TEXT_TYPE
+                    ) == 2
+                ) read(
                     tvPersonInfo?.text.toString() + ". " + predictionHistory?.latest?.getContent(
                         this@TempMainActivity
                     )
