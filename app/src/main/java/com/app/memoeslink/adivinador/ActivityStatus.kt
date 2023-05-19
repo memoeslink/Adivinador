@@ -14,8 +14,6 @@ data class ActivityStatus(
     var updateSeconds: Int = 0,
     var resourceSeconds: Int = 0,
     var adSeconds: Int = 0,
-    var refreshFrequency: Int = 20,
-    var updateFrequency: Int = 60,
     var measuredTimes: Long = 0,
     var confettiThrown: Long = 0
 )

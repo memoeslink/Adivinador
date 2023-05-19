@@ -1014,7 +1014,7 @@ class TempMainActivity : MenuActivity() {
         pbWait?.progress = 0
 
         if (initialName.isNotBlank() && finalName.isNotBlank()) {
-            val compatibilityPoints = CoupleCompatibility.calculate(initialName, finalName);
+            val compatibilityPoints = CoupleCompatibility.calculate(initialName, finalName)
             tvCompatibility?.text = getString(
                 R.string.compatibility_result, TextFormatter.formatCapacity(compatibilityPoints)
             ).toHtmlText()
