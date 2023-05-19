@@ -69,4 +69,8 @@ public class PredictionHistory {
     public boolean isFull() {
         return predictions.size() >= 1000;
     }
+
+    public int getSize() {
+        return predictions.size();
+    }
 }

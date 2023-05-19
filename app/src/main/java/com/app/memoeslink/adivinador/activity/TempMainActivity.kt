@@ -526,7 +526,7 @@ class TempMainActivity : MenuActivity() {
         updateInquirySelector()
 
         //Get a prediction
-        refreshPrediction()
+        if (predictionHistory?.size == 1 || (PreferenceUtils.hasPersonTempStored() && (PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()))) refreshPrediction()
 
         //Change drawable if the 'fortune teller aspect' preference was changed
         if (PreferenceHandler.has(Preference.TEMP_CHANGE_FORTUNE_TELLER)) {
@@ -777,7 +777,7 @@ class TempMainActivity : MenuActivity() {
 
         for (person in people) {
             items.add(
-                "${person.descriptor} + (${
+                "${person.descriptor} (${
                     person.gender.getName(
                         this@TempMainActivity, 4
                     )
