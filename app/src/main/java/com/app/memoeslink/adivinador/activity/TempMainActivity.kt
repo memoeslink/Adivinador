@@ -32,7 +32,7 @@ import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.view.ContextThemeWrapper
@@ -452,6 +452,17 @@ class TempMainActivity : MenuActivity() {
             if (key == Preference.DATA_STORED_NAMES.tag) updateNameSuggestions()
         }
         PreferenceHandler.changePreferencesListener(listener)
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (!closeDrawer()) AlertDialog.Builder(this@TempMainActivity)
+                    .setTitle(R.string.alert_exit_title).setMessage(R.string.alert_exit_message)
+                    .setNegativeButton(R.string.action_cancel, null)
+                    .setPositiveButton(R.string.action_exit) { _, _ ->
+                        exitProcess(0) //Try to stop current threads
+                    }.create().show()
+            }
+        })
     }
 
     override fun onStart() {
@@ -595,15 +606,6 @@ class TempMainActivity : MenuActivity() {
             tts = null
         }
         super.onDestroy()
-    }
-
-    override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {
-        if (!closeDrawer()) AlertDialog.Builder(this@TempMainActivity)
-            .setTitle(R.string.alert_exit_title).setMessage(R.string.alert_exit_message)
-            .setPositiveButton(R.string.action_exit) { _, _ ->
-                exitProcess(0) //Try to stop current threads
-            }.create().show()
-        return super.getOnBackInvokedDispatcher()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
