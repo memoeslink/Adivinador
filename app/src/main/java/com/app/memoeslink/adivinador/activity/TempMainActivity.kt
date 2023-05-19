@@ -4,6 +4,7 @@ import android.Manifest
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
@@ -285,10 +286,15 @@ class TempMainActivity : MenuActivity() {
 
         val nameGeneratorBuilder = AlertDialog.Builder(wrapper)
         nameGeneratorBuilder.setTitle(R.string.name_generation)
-        nameGeneratorBuilder.setPositiveButton(R.string.action_generate) { _, _ -> displayGeneratedName() }
+        nameGeneratorBuilder.setPositiveButton(R.string.action_generate, null)
         nameGeneratorBuilder.setNegativeButton(R.string.action_close, null)
         nameGeneratorBuilder.setView(vNameGenerator)
         nameGeneratorDialog = nameGeneratorBuilder.create()
+
+        nameGeneratorDialog?.setOnShowListener { dialog: DialogInterface ->
+            val button = (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
+            button.setOnClickListener { displayGeneratedName() }
+        }
 
         srlRefresher?.setOnRefreshListener {
             refreshPrediction()
