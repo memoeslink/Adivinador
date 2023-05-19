@@ -32,6 +32,7 @@ import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.window.OnBackInvokedDispatcher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.view.ContextThemeWrapper
@@ -39,14 +40,15 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.multidex.BuildConfig
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.app.memoeslink.adivinador.ActivityState
 import com.app.memoeslink.adivinador.ActivityStatus
+import com.app.memoeslink.adivinador.CoupleCompatibility
 import com.app.memoeslink.adivinador.Divination
 import com.app.memoeslink.adivinador.FortuneTeller
-import com.app.memoeslink.adivinador.MainActivityStatus
 import com.app.memoeslink.adivinador.Prediction
-import com.app.memoeslink.adivinador.Prediction.PredictionBuilder
 import com.app.memoeslink.adivinador.PredictionHistory
 import com.app.memoeslink.adivinador.R
 import com.app.memoeslink.adivinador.Screen
@@ -76,11 +78,10 @@ import com.memoeslink.generator.common.GeneratorManager
 import com.memoeslink.generator.common.LongHelper
 import com.memoeslink.generator.common.NameType
 import com.memoeslink.generator.common.Person
-import com.memoeslink.generator.common.Person.PersonBuilder
 import com.memoeslink.generator.common.StringHelper
 import com.memoeslink.generator.common.TextFormatter
 import com.memoeslink.manager.Device
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar
 import java.time.LocalDate
@@ -93,15 +94,15 @@ import kotlin.system.exitProcess
 
 class TempMainActivity : MenuActivity() {
     private val particleColors = arrayOf(
-            intArrayOf(
-                    Color.BLUE,
-                    Color.argb(255, 0, 128, 255),
-                    Color.argb(255, 51, 153, 255),
-                    Color.argb(255, 0, 192, 199),
-                    Color.argb(125, 0, 128, 255),
-                    Color.argb(125, 51, 153, 255),
-                    Color.argb(125, 0, 192, 199)
-            ), intArrayOf(
+        intArrayOf(
+            Color.BLUE,
+            Color.argb(255, 0, 128, 255),
+            Color.argb(255, 51, 153, 255),
+            Color.argb(255, 0, 192, 199),
+            Color.argb(125, 0, 128, 255),
+            Color.argb(125, 51, 153, 255),
+            Color.argb(125, 0, 192, 199)
+        ), intArrayOf(
             Color.YELLOW,
             Color.argb(255, 251, 255, 147),
             Color.argb(255, 224, 228, 124),
@@ -111,7 +112,7 @@ class TempMainActivity : MenuActivity() {
             Color.argb(125, 224, 228, 124),
             Color.argb(125, 155, 215, 93),
             Color.argb(125, 120, 168, 71)
-    )
+        )
     )
     private var srlRefresher: SwipeRefreshLayout? = null
     private var rlAdContainer: RelativeLayout? = null
@@ -155,7 +156,7 @@ class TempMainActivity : MenuActivity() {
     private var nameGeneratorDialog: AlertDialog? = null
     private var dialog: AlertDialog? = null
     private var timer: Timer? = null
-    private var status: MainActivityStatus? = MainActivityStatus()
+    private var status: ActivityStatus? = ActivityStatus()
     private var fortuneTeller: FortuneTeller? = FortuneTeller(this@TempMainActivity)
     private var device: Device? = Device(this@TempMainActivity)
     private var r: Randomizer? = Randomizer()
@@ -163,12 +164,12 @@ class TempMainActivity : MenuActivity() {
     private var backupPredictions: PredictionHistory? = PredictionHistory()
     private var people: List<Person> = ArrayList()
     private var listener: OnSharedPreferenceChangeListener? =
-            null //Declared as global to avoid destruction by JVM Garbage Collector
+        null //Declared as global to avoid destruction by JVM Garbage Collector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        MobileAds.initialize(this)
+        MobileAds.initialize(this@TempMainActivity)
         srlRefresher = findViewById(R.id.main_refresh_layout)
         rlAdContainer = findViewById(R.id.ad_container)
         llConfetti = findViewById(R.id.main_confetti_layout)
@@ -222,7 +223,7 @@ class TempMainActivity : MenuActivity() {
         var requestConfiguration = RequestConfiguration.Builder().build()
 
         if (BuildConfig.DEBUG) requestConfiguration =
-                RequestConfiguration.Builder().setTestDeviceIds(testDevices).build()
+            RequestConfiguration.Builder().setTestDeviceIds(testDevices).build()
         MobileAds.setRequestConfiguration(requestConfiguration)
         adRequest = AdRequest.Builder().build()
 
@@ -233,18 +234,15 @@ class TempMainActivity : MenuActivity() {
         }
 
         //Preload prediction
-        predictionHistory?.add(getPredictionData(PreferenceUtils.isEnquiryFormEntered()))
+        predictionHistory?.add(generatePrediction(PreferenceUtils.isEnquiryFormEntered()))
 
         //Set empty prediction
-        val emptyPrediction =
-                PredictionBuilder().setPerson(PersonBuilder().setAttribute("empty").build())
-                        .setDate(DateTimeHelper.getStrCurrentDate())
-                        .setRetrievalDate(DateTimeHelper.getStrCurrentDate()).build()
+        val emptyPrediction = Prediction.PredictionBuilder().build()
         tvPrediction?.text = emptyPrediction.getFormattedContent(this@TempMainActivity).toHtmlText()
 
         //Get a greeting
         if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED)) tvPhrase?.text =
-                fortuneTeller?.greet().toHtmlText()
+            fortuneTeller?.greet().toHtmlText()
         else tvPhrase?.text = "…"
 
         //Change drawable for fortune teller
@@ -255,18 +253,18 @@ class TempMainActivity : MenuActivity() {
 
         //Initialize components
         val nameAdapter: ArrayAdapter<String> = object : ArrayAdapter<String>(
-                this@TempMainActivity,
-                android.R.layout.simple_spinner_item,
-                resources.getStringArray(R.array.name_type)
+            this@TempMainActivity,
+            android.R.layout.simple_spinner_item,
+            resources.getStringArray(R.array.name_type)
         ) {
             val disabledPositions = intArrayOf(0, 1, 2)
 
             override fun isEnabled(position: Int): Boolean {
-                return disabledPositions.contains(position)
+                return !disabledPositions.contains(position)
             }
 
             override fun getDropDownView(
-                    position: Int, convertView: View?, parent: ViewGroup
+                position: Int, convertView: View?, parent: ViewGroup
             ): View? {
                 val view = super.getDropDownView(position, convertView, parent)
                 view.tag = position
@@ -287,7 +285,7 @@ class TempMainActivity : MenuActivity() {
 
         val nameGeneratorBuilder = AlertDialog.Builder(wrapper)
         nameGeneratorBuilder.setTitle(R.string.name_generation)
-        nameGeneratorBuilder.setPositiveButton(R.string.action_generate, null)
+        nameGeneratorBuilder.setPositiveButton(R.string.action_generate) { _, _ -> displayGeneratedName() }
         nameGeneratorBuilder.setNegativeButton(R.string.action_close, null)
         nameGeneratorBuilder.setView(vNameGenerator)
         nameGeneratorDialog = nameGeneratorBuilder.create()
@@ -314,7 +312,7 @@ class TempMainActivity : MenuActivity() {
                 R.id.nav_compatibility -> {
                     compatibilityDialog?.show()
                     compatibilityDialog?.window?.setLayout(
-                            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
                     )
                 }
 
@@ -325,12 +323,12 @@ class TempMainActivity : MenuActivity() {
 
         DateTimeHelper.getCurrentDate().let {
             dpdInquiryDate = DatePickerDialog(
-                    this@TempMainActivity, { datePicker: DatePicker, _: Int, _: Int, _: Int ->
-                PreferenceHandler.put(Preference.TEMP_YEAR_OF_ENQUIRY, datePicker.year)
-                PreferenceHandler.put(Preference.TEMP_MONTH_OF_ENQUIRY, datePicker.month + 1)
-                PreferenceHandler.put(Preference.TEMP_DAY_OF_ENQUIRY, datePicker.dayOfMonth)
-                refreshPrediction()
-            }, it.year, it.monthValue - 1, it.dayOfMonth
+                this@TempMainActivity, { datePicker: DatePicker, _: Int, _: Int, _: Int ->
+                    PreferenceHandler.put(Preference.TEMP_YEAR_OF_ENQUIRY, datePicker.year)
+                    PreferenceHandler.put(Preference.TEMP_MONTH_OF_ENQUIRY, datePicker.month + 1)
+                    PreferenceHandler.put(Preference.TEMP_DAY_OF_ENQUIRY, datePicker.dayOfMonth)
+                    refreshPrediction()
+                }, it.year, it.monthValue - 1, it.dayOfMonth
             )
         }
 
@@ -338,7 +336,7 @@ class TempMainActivity : MenuActivity() {
             dpdInquiryDate?.isShowing?.takeUnless { it }?.let {
                 val pickedDate = LocalDate.parse(PreferenceUtils.getEnquiryDate())
                 dpdInquiryDate?.updateDate(
-                        pickedDate.year, pickedDate.monthValue - 1, pickedDate.dayOfMonth
+                    pickedDate.year, pickedDate.monthValue - 1, pickedDate.dayOfMonth
                 )
                 dpdInquiryDate?.show()
             }
@@ -346,9 +344,9 @@ class TempMainActivity : MenuActivity() {
 
         spnNameType?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                    parent: AdapterView<*>?, view: View, position: Int, id: Long
+                parent: AdapterView<*>?, view: View, position: Int, id: Long
             ) {
-                getName()
+                displayGeneratedName()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -357,11 +355,11 @@ class TempMainActivity : MenuActivity() {
 
         ivFortuneTeller?.setOnClickListener {
             PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT, 1)
-                    .takeUnless { it != 0 }.let {
-                        Sound.play(this@TempMainActivity, "jump")
-                        BounceAnimation(ivFortuneTeller).setBounceDistance(7f).setNumOfBounces(1)
-                                .setDuration(150).animate()
-                    }
+                .takeUnless { it != 0 }.let {
+                    Sound.play(this@TempMainActivity, "jump")
+                    BounceAnimation(ivFortuneTeller).setBounceDistance(7f).setNumOfBounces(1)
+                        .setDuration(150).animate()
+                }
         }
 
         ivSaveLogo?.setOnClickListener {
@@ -402,19 +400,13 @@ class TempMainActivity : MenuActivity() {
             }
         }
 
-        compatibilityDialog?.setOnShowListener { calculateCompatibility() }
-
-        nameGeneratorDialog?.setOnShowListener {
-            dialog?.getButton(AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
-                getName()
-            }
-        }
+        compatibilityDialog?.setOnShowListener { displayCoupleCompatibility() }
 
         atvInitialName?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                calculateCompatibility()
+                displayCoupleCompatibility()
             }
 
             override fun afterTextChanged(s: Editable) {}
@@ -424,7 +416,7 @@ class TempMainActivity : MenuActivity() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                calculateCompatibility()
+                displayCoupleCompatibility()
             }
 
             override fun afterTextChanged(s: Editable) {}
@@ -438,8 +430,8 @@ class TempMainActivity : MenuActivity() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.toString().isNotEmpty()) tvTextCopy?.visibility =
-                        View.GONE else tvTextCopy?.visibility = View.VISIBLE
+                if (s.toString().isNotEmpty()) tvTextCopy?.visibility = View.GONE
+                else tvTextCopy?.visibility = View.VISIBLE
             }
 
             override fun afterTextChanged(s: Editable) {}
@@ -456,6 +448,7 @@ class TempMainActivity : MenuActivity() {
                 //recreate();
                 updateInquirySelector()
             }
+
             if (key == Preference.DATA_STORED_NAMES.tag) updateNameSuggestions()
         }
         PreferenceHandler.changePreferencesListener(listener)
@@ -467,19 +460,20 @@ class TempMainActivity : MenuActivity() {
 
         //Request permissions
         val launcher =
-                registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { isGranted: Map<String, Boolean> ->
-                    if (isGranted.containsValue(false)) showToast(getString(R.string.denied_contact_permission))
-                }
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { isGranted: Map<String, Boolean> ->
+                if (isGranted.containsValue(false)) showToast(getString(R.string.denied_permission))
+            }
         var permissionsGranted = true
         val permissions =
-                arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_COARSE_LOCATION)
+            arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_COARSE_LOCATION)
 
         for (permission in permissions) {
             if (ContextCompat.checkSelfPermission(
-                            this@TempMainActivity, permission
-                    ) != PackageManager.PERMISSION_GRANTED
+                    this@TempMainActivity, permission
+                ) != PackageManager.PERMISSION_GRANTED
             ) permissionsGranted = false
         }
+
         if (!permissionsGranted) launcher.launch(permissions)
 
         //Show full-screen ads
@@ -489,9 +483,9 @@ class TempMainActivity : MenuActivity() {
     override fun onResume() {
         super.onResume()
         LongHelper.getSeed(PreferenceHandler.getString(Preference.SETTING_SEED))
-                ?.takeIf { it == fortuneTeller?.seed }?.let {
-                    fortuneTeller = FortuneTeller(this@TempMainActivity)
-                }
+            ?.takeIf { it == fortuneTeller?.seed }?.let {
+                fortuneTeller = FortuneTeller(this@TempMainActivity)
+            }
 
         //Restart Activity if required
         if (PreferenceHandler.has(Preference.TEMP_RESTART_ACTIVITY)) {
@@ -504,8 +498,8 @@ class TempMainActivity : MenuActivity() {
 
         //Stop TTS if it is disabled and continues talking
         if (speechAvailable && (!PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) || !PreferenceHandler.getBoolean(
-                        Preference.SETTING_VOICE_ENABLED
-                )) && tts.isSpeaking
+                Preference.SETTING_VOICE_ENABLED
+            )) && tts.isSpeaking
         ) tts.stop()
 
         //Show, avoid, or hide ads
@@ -523,62 +517,62 @@ class TempMainActivity : MenuActivity() {
             PreferenceHandler.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER)
         }
 
-        timer = fixedRateTimer("timer", false, 0L, 1000) {
-            val frequency = PreferenceHandler.getStringAsInt(Preference.SETTING_REFRESH_TIME, 20)
-            val refreshFrequency =
+        if (timer != null) {
+            timer = fixedRateTimer("timer", false, 0L, 1000) {
+                val frequency =
+                    PreferenceHandler.getStringAsInt(Preference.SETTING_REFRESH_TIME, 20)
+                val refreshFrequency =
                     PreferenceHandler.getStringAsInt(Preference.SETTING_UPDATE_TIME, 60)
 
-            status?.seconds?.let { seconds ->
-                if (seconds >= frequency && frequency != 0) {
-                    runOnUiThread {
-                        //Fade out and fade in the fortune teller's text
-                        if (activityStatus == ActivityStatus.RESUMED) fadeAndShowView(tvPhrase)
+                status?.seconds?.let { seconds ->
+                    if (seconds >= frequency && frequency != 0) {
+                        runOnUiThread {
+                            //Fade out and fade in the fortune teller's text
+                            if (activityState == ActivityState.RESUMED) fadeAndShowView(tvPhrase)
 
-                        //Change drawable for the fortune teller
-                        fortuneTeller?.randomAppearance?.let { ivFortuneTeller?.setImageResource(it) }
+                            //Change drawable for the fortune teller
+                            fortuneTeller?.randomAppearance?.let {
+                                ivFortuneTeller?.setImageResource(
+                                    it
+                                )
+                            }
 
-                        //Get random text from the fortune teller
-                        tvPhrase?.text = fortuneTeller?.talk().toHtmlText()
+                            //Get random text from the fortune teller
+                            tvPhrase?.text = fortuneTeller?.talk().toHtmlText()
 
-                        //Read the text
-                        read(tvPhrase?.text.toString())
-                    }
-                    status?.seconds = 0
-                } else status?.seconds = seconds + 1
-            }
+                            //Read the text
+                            read(tvPhrase?.text.toString())
+                        }
+                        status?.seconds = 0
+                    } else status?.seconds = seconds + 1
+                }
 
-            status?.updateSeconds?.let { seconds ->
-                if (seconds >= refreshFrequency) {
-                    refreshPrediction()
-                    status?.updateSeconds = 0
-                } else {
-                    if (seconds != 0 && seconds % 10 == 0) {
-                        backupPredictions?.takeIf { !it.isFull }.let {
-                            status?.coroutineStarted?.takeIf { !it }.let {
-                                GlobalScope.launch {
-                                    status?.coroutineStarted = true
-                                    backupPredictions?.add(getPredictionData(false))
-                                    status?.coroutineStarted = false
+                status?.updateSeconds?.let { seconds ->
+                    if (seconds >= refreshFrequency) refreshPrediction()
+                    else {
+                        if (seconds != 0 && seconds % 10 == 0) {
+                            backupPredictions?.takeIf { !it.isFull }.let {
+                                lifecycleScope.launch {
+                                    backupPredictions?.add(generatePrediction(false))
                                 }
                             }
                         }
+                        status?.updateSeconds = seconds + 1
                     }
-                    status?.updateSeconds = seconds + 1
+                }
+
+                status?.resourceSeconds?.let { seconds ->
+                    if (seconds >= 1800) status?.resourceSeconds = 0
+                    else status?.resourceSeconds = seconds + 1
+                }
+
+                status?.adSeconds?.let { seconds ->
+                    if (seconds >= 3600) {
+                        showInterstitialAd()
+                        status?.adSeconds = 0
+                    } else status?.adSeconds = seconds + 1
                 }
             }
-
-            status?.resourceSeconds?.let { seconds ->
-                if (seconds >= 1800) status?.resourceSeconds = 0 else status?.resourceSeconds =
-                        seconds + 1
-            }
-
-            status?.adSeconds?.let { seconds ->
-                if (seconds >= 3600) {
-                    showInterstitialAd()
-                    status?.adSeconds = 0
-                } else status?.adSeconds = seconds + 1
-            }
-            status?.timerEnabled = true
         }
         prepareAnimation()
     }
@@ -603,16 +597,13 @@ class TempMainActivity : MenuActivity() {
         super.onDestroy()
     }
 
-    override fun onBackPressed() {
-        if (!closeDrawer()) {
-            AlertDialog.Builder(this@TempMainActivity).setTitle(R.string.alert_exit_title)
-                    .setMessage(R.string.alert_exit_message)
-                    .setNegativeButton(R.string.action_cancel) { _, _ ->
-                        onBackPressedDispatcher.onBackPressed()
-                    }.setPositiveButton(R.string.action_exit) { _, _ ->
-                        exitProcess(0) //Try to stop current threads
-                    }.create().show()
-        }
+    override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {
+        if (!closeDrawer()) AlertDialog.Builder(this@TempMainActivity)
+            .setTitle(R.string.alert_exit_title).setMessage(R.string.alert_exit_message)
+            .setPositiveButton(R.string.action_exit) { _, _ ->
+                exitProcess(0) //Try to stop current threads
+            }.create().show()
+        return super.getOnBackInvokedDispatcher()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -658,14 +649,10 @@ class TempMainActivity : MenuActivity() {
         llConfetti?.invalidate()
 
         //Wait for measurements to be done
-        val point: Point = windowManager.getCurrentWindowPoint()
-        status?.originInX = point.x / 2
-        status?.originInY = point.y / 2
-        status?.screenMeasured = false
         waitTasks()
 
-        if (status?.measuredTimes == 0L) llConfetti?.post { measureLayout() }
-        else Handler(Looper.getMainLooper()).postDelayed({ measureLayout() }, 1000)
+        if (status?.measuredTimes == 0L) llConfetti?.post { performMeasurements() }
+        else Handler(Looper.getMainLooper()).postDelayed({ performMeasurements() }, 1000)
 
         status?.measuredTimes?.takeIf { it < Long.MAX_VALUE }?.let {
             status?.measuredTimes = it + 1
@@ -673,45 +660,61 @@ class TempMainActivity : MenuActivity() {
     }
 
     private fun waitTasks() {
-        status?.forceEffects?.takeIf { it && activityStatus == ActivityStatus.RESUMED }?.let {
-            status?.screenMeasured?.let {
-                if (it) Handler(Looper.getMainLooper()).postDelayed({ waitTasks() }, 500)
-                else {
-                    if (PreferenceHandler.getBoolean(
-                                    Preference.SETTING_PARTICLES_ENABLED, true
-                            ) && status?.originInX != 0 && status?.originInY != 0
-                    ) throwConfetti(
-                            status?.originInX ?: 0, status?.originInY ?: 0
-                    ) //Start confetti animation
+        val forceEffects = status?.forceEffects ?: return
+        val screenMeasured = status?.screenMeasured ?: return
 
-                    if (PreferenceHandler.getStringAsInt(
-                                    Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
-                            ) != 0
-                    ) {
-                        Sound.play(this@TempMainActivity, "jump")
-                        BounceAnimation(ivFortuneTeller).setBounceDistance(20f).setNumOfBounces(1)
-                                .setDuration(500).animate()
-                    }
-                    Screen.unlockScreenOrientation(this@TempMainActivity) //Unlock orientation
-                    status?.forceEffects = false
+        if (activityState == ActivityState.RESUMED || forceEffects) {
+            if (screenMeasured) {
+                status?.measurements?.let { measurements ->
+                    val originInX: Int = measurements.getOrDefault("confettiOriginInX", 0)
+                    val originInY: Int = measurements.getOrDefault("confettiOriginInY", 0)
+
+                    if (PreferenceHandler.getBoolean(Preference.SETTING_PARTICLES_ENABLED) && originInX > 0 && originInY > 0) throwConfetti(
+                        originInX, originInY
+                    )
                 }
-            }
+
+                if (PreferenceHandler.getStringAsInt(
+                        Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
+                    ) != 0
+                ) {
+                    Sound.play(this@TempMainActivity, "jump")
+                    BounceAnimation(ivFortuneTeller).setBounceDistance(20f).setNumOfBounces(1)
+                        .setDuration(500).animate()
+                }
+                Screen.unlockScreenOrientation(this@TempMainActivity) //Unlock orientation
+                status?.forceEffects = false
+            } else Handler(Looper.getMainLooper()).postDelayed({ waitTasks() }, 500)
         }
     }
 
-    private fun measureLayout() {
-        status?.screenWidth = llConfetti?.width ?: 0
-        status?.screenHeight = llConfetti?.height ?: 0
-        status?.originInX = (status?.screenWidth ?: 0) / 2
-        status?.originInY = (status?.screenHeight ?: 0) / 2
+    private fun performMeasurements() {
+        status?.screenMeasured = false
+        val point: Point = windowManager.getCurrentWindowPoint()
+        status?.screenWidth = point.x
+        status?.screenHeight = point.y
+        status?.measurements?.put("confettiLayoutWidth", llConfetti?.width ?: 0)
+        status?.measurements?.put("confettiLayoutHeight", llConfetti?.height ?: 0)
+        status?.measurements?.put("confettiOriginInX", (llConfetti?.width ?: 0) / 2)
+        status?.measurements?.put("confettiOriginInY", (llConfetti?.height ?: 0) / 2)
         status?.screenMeasured = true
-        println("Confetti layout measures: ${status?.screenWidth}×${status?.screenHeight} [Confetti origin in: ${status?.originInX} axis X; ${status?.originInY} axis Y]")
+        println(
+            "Confetti layout measures: ${status?.measurements?.get("confettiLayoutWidth")}×${
+                status?.measurements?.get(
+                    "confettiLayoutHeight"
+                )
+            } [Confetti origin in: ${status?.measurements?.get("confettiOriginInX")} axis X; ${
+                status?.measurements?.get(
+                    "confettiOriginInY"
+                )
+            } axis Y]"
+        )
     }
 
     private fun throwConfetti(originInX: Int, originInY: Int) {
         val allPossibleConfetti = Utils.generateConfettiBitmaps(
-                particleColors[PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT)],
-                10
+            particleColors[PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT)],
+            10
         )
         val generator = ConfettoGenerator { random: Random ->
             val bitmap = allPossibleConfetti[random.nextInt(allPossibleConfetti.size)]
@@ -719,12 +722,12 @@ class TempMainActivity : MenuActivity() {
         }
 
         confettiManager = ConfettiManager(
-                this@TempMainActivity, generator, ConfettiSource(originInX, originInY), llConfetti
+            this@TempMainActivity, generator, ConfettiSource(originInX, originInY), llConfetti
         ).setEmissionDuration(ConfettiManager.INFINITE_DURATION).setEmissionRate(30f)
-                .setVelocityX(0f, 360f).setVelocityY(0f, 360f).setRotationalVelocity(180f, 180f)
-                .setRotationalAcceleration(360f, 180f).setInitialRotation(180, 180)
-                .setTargetRotationalVelocity(360f).enableFadeOut(Utils.getDefaultAlphaInterpolator())
-                .animate()
+            .setVelocityX(0f, 360f).setVelocityY(0f, 360f).setRotationalVelocity(180f, 180f)
+            .setRotationalAcceleration(360f, 180f).setInitialRotation(180, 180)
+            .setTargetRotationalVelocity(360f).enableFadeOut(Utils.getDefaultAlphaInterpolator())
+            .animate()
 
         status?.confettiThrown?.takeIf { it < Long.MAX_VALUE }?.let {
             status?.confettiThrown = it + 1
@@ -742,22 +745,20 @@ class TempMainActivity : MenuActivity() {
         var names = listOf<String>()
 
         if (PreferenceHandler.has(Preference.DATA_STORED_NAMES) && PreferenceHandler.getStringSet(
-                        Preference.DATA_STORED_NAMES
-                ).size > 0
-        ) names = PreferenceHandler.getStringSet(
                 Preference.DATA_STORED_NAMES
-        ).toList()
+            ).size > 0
+        ) names = PreferenceHandler.getStringSet(Preference.DATA_STORED_NAMES).toList()
 
         names.takeIf { it.isNotEmpty() }?.let {
             atvInitialName?.setAdapter(
-                    ArrayAdapter(
-                            this@TempMainActivity, android.R.layout.simple_spinner_dropdown_item, names
-                    )
+                ArrayAdapter(
+                    this@TempMainActivity, android.R.layout.simple_spinner_dropdown_item, names
+                )
             )
             atvFinalName?.setAdapter(
-                    ArrayAdapter(
-                            this@TempMainActivity, android.R.layout.simple_spinner_dropdown_item, names
-                    )
+                ArrayAdapter(
+                    this@TempMainActivity, android.R.layout.simple_spinner_dropdown_item, names
+                )
             )
         }
     }
@@ -768,25 +769,25 @@ class TempMainActivity : MenuActivity() {
 
         for (person in people) {
             items.add(
-                    "${person.descriptor} + (${
-                        person.gender.getName(
-                                this@TempMainActivity, 4
-                        )
-                    }) ${person.birthdate}"
+                "${person.descriptor} + (${
+                    person.gender.getName(
+                        this@TempMainActivity, 4
+                    )
+                }) ${person.birthdate}"
             )
         }
         val builder = AlertDialog.Builder(this@TempMainActivity)
         builder.setNegativeButton(R.string.action_cancel) { _, _ -> dialog?.dismiss() }
         val listView = ListView(this@TempMainActivity)
         val adapter = ArrayAdapter<String>(
-                this@TempMainActivity, android.R.layout.simple_list_item_1, android.R.id.text1, items
+            this@TempMainActivity, android.R.layout.simple_list_item_1, android.R.id.text1, items
         )
         listView.adapter = adapter
         listView.onItemClickListener =
-                OnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
-                    setFormPerson(people[position])
-                    dialog?.dismiss()
-                }
+            OnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
+                setFormPerson(people[position])
+                dialog?.dismiss()
+            }
         builder.setView(listView)
         dialog = builder.create()
     }
@@ -799,9 +800,14 @@ class TempMainActivity : MenuActivity() {
     }
 
     private fun refreshPrediction() {
-        tvPick?.isEnabled = false
-        status?.updateSeconds = 0
-        llConfetti?.animate()?.alpha(0.0f)?.setDuration(200)
+        if (PreferenceHandler.getBoolean(Preference.TEMP_BUSY)) return
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            PreferenceHandler.put(Preference.TEMP_BUSY, true)
+            tvPick?.isEnabled = false
+            status?.updateSeconds = 0
+
+            llConfetti?.animate()?.alpha(0.0f)?.setDuration(200)
                 ?.setListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationCancel(animation: Animator) {
                         super.onAnimationEnd(animation)
@@ -809,77 +815,76 @@ class TempMainActivity : MenuActivity() {
                         vMain?.visibility = View.INVISIBLE
                     }
                 }) //Fade particles layout out
-        Sound.play(this@TempMainActivity, "wind")
+            Sound.play(this@TempMainActivity, "wind")
 
-        if (!PreferenceHandler.getBoolean(Preference.TEMP_BUSY)) {
-            GlobalScope.launch {
-                PreferenceHandler.put(Preference.TEMP_BUSY, true)
-                val pickedDate = DateTimeHelper.toIso8601Date(
-                        dpdInquiryDate?.datePicker?.year ?: 2000,
-                        dpdInquiryDate?.datePicker?.month?.plus(1) ?: 1,
-                        dpdInquiryDate?.datePicker?.dayOfMonth ?: 1
-                )
+            val pickedDate = DateTimeHelper.toIso8601Date(
+                dpdInquiryDate?.datePicker?.year ?: 2000,
+                dpdInquiryDate?.datePicker?.month?.plus(1) ?: 1,
+                dpdInquiryDate?.datePicker?.dayOfMonth ?: 1
+            )
+            val formEntered = PreferenceUtils.isEnquiryFormEntered()
+            var preStored = false
 
-                if (!PreferenceUtils.isEnquiryFormEntered()) {
-                    var retrieved = false
+            if (!formEntered) {
+                backupPredictions?.takeIf { !it.isEmpty }?.let {
+                    while (!it.isEmpty) {
+                        val prediction = backupPredictions?.dispenseOldest()
 
-                    backupPredictions?.takeIf { !it.isEmpty }?.let {
-                        while (!it.isEmpty) {
-                            val prediction = backupPredictions?.dispenseOldest()
-
-                            if (prediction?.date == pickedDate) {
-                                predictionHistory?.add(prediction)
-                                retrieved = true
-                                break
-                            }
+                        if (prediction?.date == pickedDate) {
+                            predictionHistory?.add(prediction)
+                            preStored = true
+                            break
                         }
                     }
-
-                    if (!retrieved) predictionHistory?.add(getPredictionData(false))
-                } else predictionHistory?.add(getPredictionData(true))
-
-                runOnUiThread {
-                    refreshHolders()
-                    refreshNavigationView()
-                    refreshSaveButton()
-                    vPersonImage?.hash = predictionHistory?.latest?.person?.summary.hashCode()
-
-                    tvPersonInfo?.text = getString(
-                            R.string.person_data,
-                            predictionHistory?.latest?.person?.description,
-                            predictionHistory?.latest?.person?.gender?.getName(this@TempMainActivity, 1),
-                            DateTimeHelper.toIso8601Date(predictionHistory?.latest?.person?.birthdate)
-                    ).toHtmlText()
-
-                    predictionHistory?.latest?.getFormattedContent(this@TempMainActivity)?.let {
-                        tvPrediction?.setText(it.toClickableText(Pair("action") {
-                            Sound.play(this@TempMainActivity, "crack")
-                            tvPrediction?.let {
-                                val replacement = StringHelper.replaceBetweenZeroWidthSpaces(
-                                        predictionHistory?.latest?.getFormattedContent(this@TempMainActivity),
-                                        predictionHistory?.latest?.components?.get("fortuneCookie")
-                                                .orEmpty()
-                                )
-                                tvPrediction?.setText(replacement)
-                            }
-                        }), TextView.BufferType.SPANNABLE)
-                        tvPrediction?.isClickable = true
-                        tvPrediction?.movementMethod = LinkMovementMethod.getInstance()
-                    }
-
-                    if (activityStatus == ActivityStatus.RESUMED && !isViewVisible(tvPersonInfo)) showQuickToast(
-                            predictionHistory?.latest?.person?.descriptor
-                    )
-
-                    //Read the text
-                    read(
-                            tvPersonInfo?.text.toString() + ". " + predictionHistory?.latest?.getContent(
-                                    this@TempMainActivity
-                            )
-                    )
-                    tvPick?.isEnabled = true
-                    llConfetti?.animate()?.alpha(1.0f)?.duration = 200 //Fade particles layout in
                 }
+            }
+
+            if (!preStored) predictionHistory?.add(generatePrediction(formEntered))
+
+            this@TempMainActivity.runOnUiThread {
+                refreshHolders()
+                refreshNavigationView()
+                refreshSaveButton()
+                vPersonImage?.hash = predictionHistory?.latest?.person?.summary.hashCode()
+
+                tvPersonInfo?.text = getString(
+                    R.string.person_data,
+                    predictionHistory?.latest?.person?.description,
+                    predictionHistory?.latest?.person?.gender?.getName(
+                        this@TempMainActivity, 1
+                    ),
+                    DateTimeHelper.toIso8601Date(predictionHistory?.latest?.person?.birthdate)
+                ).toHtmlText()
+
+                predictionHistory?.latest?.getFormattedContent(this@TempMainActivity)?.let {
+                    tvPrediction?.setText(it.toClickableText(Pair("action") {
+                        Sound.play(this@TempMainActivity, "crack")
+                        tvPrediction?.let {
+                            val replacement = StringHelper.replaceBetweenZeroWidthSpaces(
+                                predictionHistory?.latest?.getFormattedContent(this@TempMainActivity),
+                                predictionHistory?.latest?.components?.get("fortuneCookie")
+                                    .orEmpty()
+                            )
+                            tvPrediction?.text = replacement
+                        }
+                    }), TextView.BufferType.SPANNABLE)
+                    tvPrediction?.isClickable = true
+                    tvPrediction?.movementMethod = LinkMovementMethod.getInstance()
+                }
+
+                if (activityState == ActivityState.RESUMED && !isViewVisible(tvPersonInfo)) showQuickToast(
+                    predictionHistory?.latest?.person?.descriptor
+                )
+
+                //Read the text
+                read(
+                    tvPersonInfo?.text.toString() + ". " + predictionHistory?.latest?.getContent(
+                        this@TempMainActivity
+                    )
+                )
+                tvPick?.isEnabled = true
+                llConfetti?.animate()?.alpha(1.0f)?.duration = 200 //Fade particles layout in
+                PreferenceHandler.remove(Preference.TEMP_BUSY)
             }
         }
     }
@@ -893,9 +898,10 @@ class TempMainActivity : MenuActivity() {
 
             people.size == 1 -> {
                 tvInquiry?.text =
-                        getString(R.string.inquiry, people[0].descriptor).toLinkedHtmlText()
-                if (PreferenceUtils.hasPersonTempStored()) llInquiryHolder?.visibility =
-                        View.GONE else llInquiryHolder?.visibility = View.VISIBLE
+                    getString(R.string.inquiry, people[0].descriptor).toLinkedHtmlText()
+
+                if (PreferenceUtils.hasPersonTempStored()) llInquiryHolder?.visibility = View.GONE
+                else llInquiryHolder?.visibility = View.VISIBLE
                 llSelectorHolder?.visibility = View.GONE
             }
 
@@ -936,7 +942,8 @@ class TempMainActivity : MenuActivity() {
 
             people.size == 1 -> {
                 navigationView.menu.findItem(R.id.nav_inquiry).title =
-                        getString(R.string.inquiry, people[0].descriptor)
+                    getString(R.string.inquiry, people[0].descriptor)
+
                 if (PreferenceUtils.hasPersonTempStored()) {
                     navigationView.menu.findItem(R.id.nav_inquiry).isVisible = true
                     navigationView.menu.findItem(R.id.nav_inquiry).isEnabled = false
@@ -977,57 +984,50 @@ class TempMainActivity : MenuActivity() {
         tvPick?.isEnabled = true
     }
 
-    private fun getPredictionData(formEntered: Boolean): Prediction? {
-        val enquiryDate = PreferenceUtils.getEnquiryDate()
-        val person: Person
+    private fun generatePrediction(formEntered: Boolean): Prediction {
+        var prediction: Prediction
 
-        if (formEntered) {
-            person = PreferenceUtils.getFormPerson()
-            person.addAttribute("entered")
-        } else {
-            person =
+        status?.coroutineStarted?.takeIf { !it }.let {
+            status?.coroutineStarted = true
+            val enquiryDate = PreferenceUtils.getEnquiryDate()
+            val person: Person
+
+            if (formEntered) {
+                person = PreferenceUtils.getFormPerson()
+                person.addAttribute("entered")
+            } else {
+                person =
                     if (r?.getInt(3) == 0) resourceExplorer.generatorManager.personGenerator.anonymousPerson
                     else resourceExplorer.generatorManager.personGenerator.person
+            }
+            val divination = Divination(this@TempMainActivity, person, enquiryDate)
+            prediction = divination.getPrediction(person)
+            status?.coroutineStarted = false
         }
-        val divination = Divination(this@TempMainActivity, person, enquiryDate)
-        return divination.getPrediction(person)
+        return prediction
     }
 
-    private fun calculateCompatibility() {
-        var initialName = StringHelper.trimToEmpty(atvInitialName?.text.toString())
-        var finalName = StringHelper.trimToEmpty(atvFinalName?.text.toString())
+    private fun displayCoupleCompatibility() {
+        val initialName = atvInitialName?.text.toString().trim()
+        val finalName = atvFinalName?.text.toString().trim()
         pbWait?.max = 100
         pbWait?.progress = 0
 
-        if (!initialName.isNullOrBlank() && !finalName.isNullOrBlank()) {
-            if (initialName.equals(finalName, ignoreCase = true)) {
-                tvCompatibility?.text = getString(
-                        R.string.compatibility_result, "<font color=\"#6666FF\">" + 100 + "%</font>"
-                ).toHtmlText()
-                pbWait?.progress = 100
-            } else {
-                if (initialName < finalName) {
-                    val tempName = initialName
-                    initialName = finalName
-                    finalName = tempName
-                }
-                val seed =
-                        LongHelper.getSeed(initialName + System.getProperty("line.separator") + finalName)
-                val compatibilityPoints = Randomizer(seed).getInt(101)
-                tvCompatibility?.text = getString(
-                        R.string.compatibility_result, TextFormatter.formatCapacity(compatibilityPoints)
-                ).toHtmlText()
-                pbWait?.progress = compatibilityPoints
-            }
+        if (initialName.isNotBlank() && finalName.isNotBlank()) {
+            val compatibilityPoints = CoupleCompatibility.calculate(initialName, finalName);
+            tvCompatibility?.text = getString(
+                R.string.compatibility_result, TextFormatter.formatCapacity(compatibilityPoints)
+            ).toHtmlText()
+            pbWait?.progress = compatibilityPoints
         } else {
             tvCompatibility?.text = getString(
-                    R.string.compatibility_result, "<font color=\"#C0FF2B\">?</font>"
+                R.string.compatibility_result, "<font color=\"#C0FF2B\">?</font>"
             ).toHtmlText()
             pbWait?.progress = 0
         }
     }
 
-    private fun getName() {
+    private fun displayGeneratedName() {
         status?.nameInGeneration?.takeIf { !it }.let {
             status?.nameInGeneration = true
             spnNameType?.isEnabled = false

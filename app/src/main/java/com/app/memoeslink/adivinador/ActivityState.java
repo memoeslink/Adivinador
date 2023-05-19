@@ -1,6 +1,6 @@
 package com.app.memoeslink.adivinador;
 
-public enum ActivityStatus {
+public enum ActivityState {
     LAUNCHED,
     CREATED,
     STARTED,

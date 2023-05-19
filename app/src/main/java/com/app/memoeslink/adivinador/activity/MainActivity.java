@@ -48,7 +48,7 @@ import androidx.core.content.ContextCompat;
 import androidx.multidex.BuildConfig;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.app.memoeslink.adivinador.ActivityStatus;
+import com.app.memoeslink.adivinador.ActivityState;
 import com.app.memoeslink.adivinador.AdUnitId;
 import com.app.memoeslink.adivinador.Divination;
 import com.app.memoeslink.adivinador.FortuneTeller;
@@ -238,9 +238,7 @@ public class MainActivity extends MenuActivity {
         RequestConfiguration requestConfiguration = new RequestConfiguration.Builder().build();
 
         if (BuildConfig.DEBUG)
-            requestConfiguration = new RequestConfiguration.Builder()
-                    .setTestDeviceIds(testDevices)
-                    .build();
+            requestConfiguration = new RequestConfiguration.Builder().setTestDeviceIds(testDevices).build();
         MobileAds.setRequestConfiguration(requestConfiguration);
         adRequest = new AdRequest.Builder().build();
 
@@ -251,18 +249,13 @@ public class MainActivity extends MenuActivity {
         predictionHistory.add(getPredictionData(PreferenceUtils.isEnquiryFormEntered()));
 
         //Set empty prediction
-        Prediction emptyPrediction = new Prediction.PredictionBuilder()
-                .setPerson(new Person.PersonBuilder().setAttribute("empty").build())
-                .setDate(DateTimeHelper.getStrCurrentDate())
-                .setRetrievalDate(DateTimeHelper.getStrCurrentDate())
-                .build();
+        Prediction emptyPrediction = new Prediction.PredictionBuilder().setPerson(new Person.PersonBuilder().setAttribute("empty").build()).setDate(DateTimeHelper.getStrCurrentDate()).setRetrievalDate(DateTimeHelper.getStrCurrentDate()).build();
         tvPrediction.setText(StringExtensions.toHtmlText(emptyPrediction.getFormattedContent(MainActivity.this)));
 
         //Get a greeting
         if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED))
             tvPhrase.setText(StringExtensions.toHtmlText(fortuneTeller.greet()));
-        else
-            tvPhrase.setText("…");
+        else tvPhrase.setText("…");
 
         //Change drawable for fortune teller
         ivFortuneTeller.setImageResource(fortuneTeller.getRandomAppearance());
@@ -313,8 +306,7 @@ public class MainActivity extends MenuActivity {
         });
 
         navigationView.setNavigationItemSelectedListener(item -> {
-            if (PreferenceHandler.getBoolean(Preference.SETTING_HIDE_DRAWER, true))
-                closeDrawer();
+            if (PreferenceHandler.getBoolean(Preference.SETTING_HIDE_DRAWER, true)) closeDrawer();
 
             switch (item.getItemId()) {
                 case R.id.nav_data_entry -> {
@@ -366,11 +358,7 @@ public class MainActivity extends MenuActivity {
         ivFortuneTeller.setOnClickListener(view -> {
             if (PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT, 1) != 0) {
                 Sound.play(MainActivity.this, "jump");
-                new BounceAnimation(ivFortuneTeller)
-                        .setBounceDistance(7)
-                        .setNumOfBounces(1)
-                        .setDuration(150)
-                        .animate();
+                new BounceAnimation(ivFortuneTeller).setBounceDistance(7).setNumOfBounces(1).setDuration(150).animate();
             }
         });
 
@@ -378,8 +366,7 @@ public class MainActivity extends MenuActivity {
             if (PreferenceUtils.savePerson(predictionHistory.getLatest().getPerson())) {
                 showToast(getString(R.string.toast_inquiry_saved));
                 refreshUiUponEnquirySaved();
-            } else
-                showToast(getString(R.string.toast_inquiry_not_saved));
+            } else showToast(getString(R.string.toast_inquiry_not_saved));
         });
 
         llDataEntryHolder.setOnClickListener(view -> {
@@ -457,10 +444,8 @@ public class MainActivity extends MenuActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (StringHelper.isNullOrEmpty(s.toString()))
-                    tvTextCopy.setVisibility(View.GONE);
-                else
-                    tvTextCopy.setVisibility(View.VISIBLE);
+                if (StringHelper.isNullOrEmpty(s.toString())) tvTextCopy.setVisibility(View.GONE);
+                else tvTextCopy.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -480,8 +465,7 @@ public class MainActivity extends MenuActivity {
                 updateInquirySelector();
             }
 
-            if (key.equals(Preference.DATA_STORED_NAMES.getTag()))
-                updateNameSuggestions();
+            if (key.equals(Preference.DATA_STORED_NAMES.getTag())) updateNameSuggestions();
         };
         PreferenceHandler.changePreferencesListener(listener);
     }
@@ -493,8 +477,7 @@ public class MainActivity extends MenuActivity {
 
         //Request permissions
         ActivityResultLauncher<String[]> launcher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), isGranted -> {
-            if (isGranted.containsValue(false))
-                showToast(getString(R.string.denied_contact_permission));
+            if (isGranted.containsValue(false)) showToast(getString(R.string.denied_permission));
         });
         boolean permissionsGranted = true;
         String[] permissions = {Manifest.permission.READ_CONTACTS, Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -504,8 +487,7 @@ public class MainActivity extends MenuActivity {
                 permissionsGranted = false;
         }
 
-        if (!permissionsGranted)
-            launcher.launch(permissions);
+        if (!permissionsGranted) launcher.launch(permissions);
 
         //Show full-screen ads
         showInterstitialAd();
@@ -556,18 +538,16 @@ public class MainActivity extends MenuActivity {
                     frequency = PreferenceHandler.getStringAsInt(Preference.SETTING_REFRESH_TIME, 20);
                     refreshFrequency = PreferenceHandler.getStringAsInt(Preference.SETTING_UPDATE_TIME, 60);
 
-                    if (resourceSeconds >= 1800)
-                        resourceSeconds = 0;
-                    else
-                        resourceSeconds++;
+                    if (resourceSeconds >= 1800) resourceSeconds = 0;
+                    else resourceSeconds++;
 
                     if (seconds >= frequency && frequency != 0) {
                         MainActivity.this.runOnUiThread(() -> {
-                            if (activityStatus == ActivityStatus.RESUMED)
+                            if (activityState == ActivityState.RESUMED)
                                 fadeAndShowView(tvPhrase); //Fade out and fade in the fortune teller's text.
 
                             new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                                if (activityStatus == ActivityStatus.RESUMED) //Play random sound
+                                if (activityState == ActivityState.RESUMED) //Play random sound
                                     Sound.play(MainActivity.this, resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.sound_names));
 
                                 //Change drawable for the fortune teller
@@ -582,8 +562,7 @@ public class MainActivity extends MenuActivity {
                         });
                         seconds = 0;
                     } else {
-                        if (seconds < 120)
-                            seconds++;
+                        if (seconds < 120) seconds++;
                     }
 
                     if (updateSeconds >= refreshFrequency) { //Get another prediction if current is auto-generated, or refresh user-entered enquiry at day start
@@ -605,8 +584,7 @@ public class MainActivity extends MenuActivity {
                     if (adSeconds >= 3600) {
                         showInterstitialAd();
                         adSeconds = 0;
-                    } else
-                        adSeconds++;
+                    } else adSeconds++;
                 }
             }, 0, 1000);
             timerEnabled = true;
@@ -644,14 +622,10 @@ public class MainActivity extends MenuActivity {
     @Override
     public void onBackPressed() {
         if (!closeDrawer()) {
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle(R.string.alert_exit_title)
-                    .setMessage(R.string.alert_exit_message)
-                    .setNegativeButton(R.string.action_cancel, null)
-                    .setPositiveButton(R.string.action_exit, (arg0, arg1) -> {
-                        MainActivity.super.onBackPressed();
-                        System.exit(0); //Try to stop current threads
-                    }).create().show();
+            new AlertDialog.Builder(MainActivity.this).setTitle(R.string.alert_exit_title).setMessage(R.string.alert_exit_message).setNegativeButton(R.string.action_cancel, null).setPositiveButton(R.string.action_exit, (arg0, arg1) -> {
+                MainActivity.super.onBackPressed();
+                System.exit(0); //Try to stop current threads
+            }).create().show();
         }
     }
 
@@ -753,10 +727,8 @@ public class MainActivity extends MenuActivity {
                         destroyAd();
                     }
                 }
-            } else
-                destroyAd();
-        } else
-            adPaused = false;
+            } else destroyAd();
+        } else adPaused = false;
     }
 
     private void destroyAd() {
@@ -780,12 +752,10 @@ public class MainActivity extends MenuActivity {
             r.bindSeed(LongHelper.getSeed(DateTimeGetter.getCurrentDateTime() + System.getProperty("line.separator") + device.getAndroidId()));
 
             if (r.getInt(20) == 0) {
-                if (adPaused == null)
-                    adPaused = true;
+                if (adPaused == null) adPaused = true;
 
                 MainActivity.this.runOnUiThread(() -> {
-                    if (adView != null && adView.getVisibility() == View.VISIBLE)
-                        destroyAd();
+                    if (adView != null && adView.getVisibility() == View.VISIBLE) destroyAd();
 
                     InterstitialAd.load(this, AdUnitId.getInterstitialId(), adRequest, new InterstitialAdLoadCallback() {
                         @Override
@@ -828,26 +798,21 @@ public class MainActivity extends MenuActivity {
         else
             new Handler(Looper.getMainLooper()).postDelayed(this::measureLayout, 1000); //Measure view after a while
 
-        if (measuredTimes < Long.MAX_VALUE)
-            measuredTimes++;
+        if (measuredTimes < Long.MAX_VALUE) measuredTimes++;
     }
 
     private void waitTasks() {
         if (!measured) {
-            if (activityStatus == ActivityStatus.RESUMED || forceEffects)
+            if (activityState == ActivityState.RESUMED || forceEffects)
                 new Handler(Looper.getMainLooper()).postDelayed(this::waitTasks, 500);
         } else {
-            if (activityStatus == ActivityStatus.RESUMED || forceEffects) {
+            if (activityState == ActivityState.RESUMED || forceEffects) {
                 if (PreferenceHandler.getBoolean(Preference.SETTING_PARTICLES_ENABLED, true) && originInX != 0 && originInY != 0)
                     throwConfetti(originInX, originInY); //Start confetti animation
 
                 if (PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT, 1) != 0) {
                     Sound.play(MainActivity.this, "jump");
-                    new BounceAnimation(ivFortuneTeller)
-                            .setBounceDistance(20)
-                            .setNumOfBounces(1)
-                            .setDuration(500)
-                            .animate();
+                    new BounceAnimation(ivFortuneTeller).setBounceDistance(20).setNumOfBounces(1).setDuration(500).animate();
                 }
                 Screen.unlockScreenOrientation(MainActivity.this); //Unlock orientation
                 forceEffects = false;
@@ -873,20 +838,9 @@ public class MainActivity extends MenuActivity {
             return new BitmapConfetto(bitmap);
         };
 
-        confettiManager = new ConfettiManager(this, confettoGenerator, new ConfettiSource(x, y), llConfetti)
-                .setEmissionDuration(ConfettiManager.INFINITE_DURATION)
-                .setEmissionRate(30)
-                .setVelocityX(0, 360)
-                .setVelocityY(0, 360)
-                .setRotationalVelocity(180, 180)
-                .setRotationalAcceleration(360, 180)
-                .setInitialRotation(180, 180)
-                .setTargetRotationalVelocity(360)
-                .enableFadeOut(Utils.getDefaultAlphaInterpolator())
-                .animate();
+        confettiManager = new ConfettiManager(this, confettoGenerator, new ConfettiSource(x, y), llConfetti).setEmissionDuration(ConfettiManager.INFINITE_DURATION).setEmissionRate(30).setVelocityX(0, 360).setVelocityY(0, 360).setRotationalVelocity(180, 180).setRotationalAcceleration(360, 180).setInitialRotation(180, 180).setTargetRotationalVelocity(360).enableFadeOut(Utils.getDefaultAlphaInterpolator()).animate();
 
-        if (confettiThrown < Long.MAX_VALUE)
-            confettiThrown++;
+        if (confettiThrown < Long.MAX_VALUE) confettiThrown++;
     }
 
     private void stopConfetti() {
@@ -942,9 +896,7 @@ public class MainActivity extends MenuActivity {
         tvPick.setEnabled(false);
         updateSeconds = 0;
         llConfetti.animate() //Fade particles layout out
-                .alpha(0.0F)
-                .setDuration(200)
-                .setListener(new AnimatorListenerAdapter() {
+                .alpha(0.0F).setDuration(200).setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationCancel(Animator animation) {
                         super.onAnimationEnd(animation);
@@ -957,10 +909,7 @@ public class MainActivity extends MenuActivity {
         if (!PreferenceHandler.getBoolean(Preference.TEMP_BUSY)) {
             new Thread(() -> {
                 PreferenceHandler.put(Preference.TEMP_BUSY, true);
-                String pickedDate = DateTimeHelper.toIso8601Date(dpdInquiryDate.getDatePicker().getYear(),
-                        dpdInquiryDate.getDatePicker().getMonth() + 1,
-                        dpdInquiryDate.getDatePicker().getDayOfMonth()
-                );
+                String pickedDate = DateTimeHelper.toIso8601Date(dpdInquiryDate.getDatePicker().getYear(), dpdInquiryDate.getDatePicker().getMonth() + 1, dpdInquiryDate.getDatePicker().getDayOfMonth());
                 boolean retrieved = false;
 
                 if (!PreferenceUtils.isEnquiryFormEntered()) {
@@ -974,8 +923,7 @@ public class MainActivity extends MenuActivity {
                         }
                     }
 
-                    if (!retrieved)
-                        predictionHistory.add(getPredictionData(false));
+                    if (!retrieved) predictionHistory.add(getPredictionData(false));
                 } else predictionHistory.add(getPredictionData(true));
 
                 MainActivity.this.runOnUiThread(() -> {
@@ -984,14 +932,10 @@ public class MainActivity extends MenuActivity {
                     refreshSaveButton();
                     vPersonImage.setHash(predictionHistory.getLatest().getPerson().getSummary().hashCode());
 
-                    tvPersonInfo.setText(StringExtensions.toHtmlText(getString(R.string.person_data,
-                            predictionHistory.getLatest().getPerson().getDescription(),
-                            predictionHistory.getLatest().getPerson().getGender().getName(MainActivity.this, 1),
-                            DateTimeHelper.toIso8601Date(predictionHistory.getLatest().getPerson().getBirthdate())
-                    )));
+                    tvPersonInfo.setText(StringExtensions.toHtmlText(getString(R.string.person_data, predictionHistory.getLatest().getPerson().getDescription(), predictionHistory.getLatest().getPerson().getGender().getName(MainActivity.this, 1), DateTimeHelper.toIso8601Date(predictionHistory.getLatest().getPerson().getBirthdate()))));
                     setLinksToText(tvPrediction, predictionHistory.getLatest().getFormattedContent(MainActivity.this));
 
-                    if (activityStatus == ActivityStatus.RESUMED && !isViewVisible(tvPersonInfo))
+                    if (activityState == ActivityState.RESUMED && !isViewVisible(tvPersonInfo))
                         showQuickToast(predictionHistory.getLatest().getPerson().getDescriptor());
 
                     //Read the text
@@ -1011,10 +955,8 @@ public class MainActivity extends MenuActivity {
         } else if (people.size() == 1) {
             tvInquiry.setText(StringExtensions.toLinkedHtmlText(getString(R.string.inquiry, people.get(0).getDescriptor())));
 
-            if (PreferenceUtils.hasPersonTempStored())
-                llInquiryHolder.setVisibility(View.GONE);
-            else
-                llInquiryHolder.setVisibility(View.VISIBLE);
+            if (PreferenceUtils.hasPersonTempStored()) llInquiryHolder.setVisibility(View.GONE);
+            else llInquiryHolder.setVisibility(View.VISIBLE);
             llSelectorHolder.setVisibility(View.GONE);
         } else {
             llInquiryHolder.setVisibility(View.GONE);
@@ -1114,8 +1056,7 @@ public class MainActivity extends MenuActivity {
         } else {
             if (r.getInt(3) == 0)
                 person = resourceExplorer.getGeneratorManager().getPersonGenerator().getAnonymousPerson();
-            else
-                person = resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson();
+            else person = resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson();
         }
         Divination divination = new Divination(MainActivity.this, person, enquiryDate);
         return divination.getPrediction(person);
@@ -1184,8 +1125,7 @@ public class MainActivity extends MenuActivity {
                     formattedText = "<font color=\"#F0EF2E\">" + compatibilityPoints + "%</font>";
                 else if (compatibilityPoints < 100)
                     formattedText = "<font color=\"#2FCC2F\">" + compatibilityPoints + "%</font>";
-                else
-                    formattedText = "<font color=\"#6666FF\">" + compatibilityPoints + "%</font>";
+                else formattedText = "<font color=\"#6666FF\">" + compatibilityPoints + "%</font>";
                 r.unbindSeed();
                 tvCompatibility.setText(StringExtensions.toHtmlText(getString(R.string.compatibility_result, formattedText)));
                 pbWait.setProgress(compatibilityPoints);

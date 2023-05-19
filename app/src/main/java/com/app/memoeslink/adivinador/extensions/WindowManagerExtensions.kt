@@ -14,14 +14,14 @@ fun WindowManager.getCurrentWindowPoint(): Point {
         var insets: Insets = windowInsets.getInsets(WindowInsets.Type.navigationBars())
         windowInsets.displayCutout?.run {
             insets = Insets.max(
-                    insets, Insets.of(safeInsetLeft, safeInsetTop, safeInsetRight, safeInsetBottom)
+                insets, Insets.of(safeInsetLeft, safeInsetTop, safeInsetRight, safeInsetBottom)
             )
         }
         val insetsWidth = insets.right + insets.left
         val insetsHeight = insets.top + insets.bottom
         Point(
-                currentWindowMetrics.bounds.width() - insetsWidth,
-                currentWindowMetrics.bounds.height() - insetsHeight
+            currentWindowMetrics.bounds.width() - insetsWidth,
+            currentWindowMetrics.bounds.height() - insetsHeight
         )
     } else Point().apply { defaultDisplay.getSize(this) }
     println("Screen size: " + point.x + "x" + point.y)

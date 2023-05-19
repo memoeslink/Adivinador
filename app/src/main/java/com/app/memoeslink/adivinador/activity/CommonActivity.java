@@ -24,7 +24,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import com.app.memoeslink.adivinador.ActivityStatus;
+import com.app.memoeslink.adivinador.ActivityState;
 import com.app.memoeslink.adivinador.LanguageHelper;
 import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.ResourceExplorer;
@@ -48,7 +48,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     protected ResourceExplorer resourceExplorer;
     protected AudioManager audioManager;
     protected List<String> names = new ArrayList<>();
-    protected ActivityStatus activityStatus = ActivityStatus.LAUNCHED;
+    protected ActivityState activityState = ActivityState.LAUNCHED;
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -59,7 +59,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(getThemeId());
         super.onCreate(savedInstanceState);
-        activityStatus = ActivityStatus.CREATED;
+        activityState = ActivityState.CREATED;
         resourceExplorer = new ResourceExplorer(CommonActivity.this);
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         bundle = new Bundle();
@@ -71,32 +71,32 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     @Override
     protected void onStart() {
         super.onStart();
-        activityStatus = ActivityStatus.STARTED;
+        activityState = ActivityState.STARTED;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        activityStatus = ActivityStatus.RESUMED;
+        activityState = ActivityState.RESUMED;
         Screen.setContinuance(CommonActivity.this, PreferenceHandler.getBoolean(Preference.SETTING_ACTIVE_SCREEN));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        activityStatus = ActivityStatus.PAUSED;
+        activityState = ActivityState.PAUSED;
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        activityStatus = ActivityStatus.STOPPED;
+        activityState = ActivityState.STOPPED;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        activityStatus = ActivityStatus.DESTROYED;
+        activityState = ActivityState.DESTROYED;
     }
 
     @Override
@@ -181,8 +181,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     }
 
     protected final boolean isViewVisible(View view) {
-        if (view == null || !view.isShown())
-            return false;
+        if (view == null || !view.isShown()) return false;
         Rect rect = new Rect();
         return view.getGlobalVisibleRect(rect) && view.getHeight() == rect.height() && view.getWidth() == rect.width();
     }
@@ -197,10 +196,9 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     }
 
     private void showToast(String text, boolean quick) {
-        if (toast != null)
-            toast.cancel();
+        if (toast != null) toast.cancel();
 
-        if (activityStatus != ActivityStatus.PAUSED && activityStatus != ActivityStatus.STOPPED) {
+        if (activityState != ActivityState.PAUSED && activityState != ActivityState.STOPPED) {
             toast = Toast.makeText(CommonActivity.this, text, quick ? Toast.LENGTH_SHORT : Toast.LENGTH_LONG);
             Sound.play(CommonActivity.this, "computer_chimes");
             toast.show();
@@ -252,7 +250,7 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         if (speechAvailable) {
             if (tts.isSpeaking()) tts.stop();
 
-            if (activityStatus == ActivityStatus.RESUMED &&
+            if (activityState == ActivityState.RESUMED &&
                     PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) &&
                     PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED))
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, "UniqueID");

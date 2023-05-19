@@ -28,7 +28,7 @@ class InputActivity : CommonActivity() {
     private var dpBirthdate: CustomDatePicker? = null
     private var btBack: Button? = null
     private var listener: OnSharedPreferenceChangeListener? =
-            null //Declared as global to avoid destruction by JVM Garbage Collector
+        null //Declared as global to avoid destruction by JVM Garbage Collector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class InputActivity : CommonActivity() {
 
         //Initialize values
         PreferenceHandler.getStringOrNull(
-                Preference.TEMP_NAME
+            Preference.TEMP_NAME
         )?.takeUnless { name ->
             name.isBlank()
         }?.let { name ->
@@ -51,37 +51,37 @@ class InputActivity : CommonActivity() {
         }
 
         PreferenceHandler.getIntOrNull(
-                Preference.TEMP_GENDER
+            Preference.TEMP_GENDER
         )?.let { gender ->
             (rgGender?.getChildAt(gender.coerceAtLeast(0)) as RadioButton).isChecked = true
         } ?: PreferenceHandler.put(
-                Preference.TEMP_GENDER, Gender.NEUTRAL.value
+            Preference.TEMP_GENDER, Gender.NEUTRAL.value
         )
 
         PreferenceHandler.getIntOrNull(
-                Preference.TEMP_YEAR_OF_BIRTH
+            Preference.TEMP_YEAR_OF_BIRTH
         )?.takeIf { year ->
             abs(currentDate.year - year) < 200
         }?.let { year ->
             currentDate.withYear(year)
         } ?: PreferenceHandler.put(
-                Preference.TEMP_YEAR_OF_BIRTH, currentDate.year
+            Preference.TEMP_YEAR_OF_BIRTH, currentDate.year
         )
 
         PreferenceHandler.getIntOrNull(
-                Preference.TEMP_MONTH_OF_BIRTH
+            Preference.TEMP_MONTH_OF_BIRTH
         )?.let { month ->
             currentDate.withMonth(month)
         } ?: PreferenceHandler.put(
-                Preference.TEMP_MONTH_OF_BIRTH, currentDate.monthValue
+            Preference.TEMP_MONTH_OF_BIRTH, currentDate.monthValue
         )
 
         PreferenceHandler.getIntOrNull(
-                Preference.TEMP_DAY_OF_BIRTH
+            Preference.TEMP_DAY_OF_BIRTH
         )?.let { day ->
             currentDate.withDayOfMonth(day)
         } ?: PreferenceHandler.put(
-                Preference.TEMP_DAY_OF_BIRTH, currentDate.dayOfMonth
+            Preference.TEMP_DAY_OF_BIRTH, currentDate.dayOfMonth
         )
 
         //Disable form while a prediction is being retrieved
@@ -97,10 +97,7 @@ class InputActivity : CommonActivity() {
                 name = StringHelper.removeZeroWidthSpaces(name)
                 name = name.toHtmlText().toString()
 
-                if (StringHelper.isNotNullOrBlank(name)) PreferenceHandler.put(
-                        Preference.TEMP_NAME,
-                        name
-                )
+                if (name.isNotBlank()) PreferenceHandler.put(Preference.TEMP_NAME, name)
                 else PreferenceHandler.remove(Preference.TEMP_NAME)
             }
 
@@ -116,21 +113,21 @@ class InputActivity : CommonActivity() {
                 else -> Gender.NEUTRAL
             }
             PreferenceHandler.put(
-                    Preference.TEMP_GENDER, gender.value
+                Preference.TEMP_GENDER, gender.value
             )
         }
 
         dpBirthdate?.init(
-                currentDate.year, currentDate.monthValue - 1, currentDate.dayOfMonth
+            currentDate.year, currentDate.monthValue - 1, currentDate.dayOfMonth
         ) { _: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
             PreferenceHandler.put(
-                    Preference.TEMP_YEAR_OF_BIRTH, year
+                Preference.TEMP_YEAR_OF_BIRTH, year
             )
             PreferenceHandler.put(
-                    Preference.TEMP_MONTH_OF_BIRTH, month + 1
+                Preference.TEMP_MONTH_OF_BIRTH, month + 1
             )
             PreferenceHandler.put(
-                    Preference.TEMP_DAY_OF_BIRTH, dayOfMonth
+                Preference.TEMP_DAY_OF_BIRTH, dayOfMonth
             )
         }
 
@@ -148,16 +145,16 @@ class InputActivity : CommonActivity() {
 
         //Get stored names
         PreferenceHandler.getStringSet(
-                Preference.DATA_STORED_NAMES
+            Preference.DATA_STORED_NAMES
         ).toMutableList().let { storedNames ->
             if (storedNames.isNotEmpty()) {
                 names = storedNames
                 tvName?.setAdapter(
-                        ArrayAdapter(
-                                this@InputActivity,
-                                android.R.layout.simple_dropdown_item_1line,
-                                names.toTypedArray()
-                        )
+                    ArrayAdapter(
+                        this@InputActivity,
+                        android.R.layout.simple_dropdown_item_1line,
+                        names.toTypedArray()
+                    )
                 )
             }
         }
@@ -165,20 +162,20 @@ class InputActivity : CommonActivity() {
 
     public override fun onDestroy() {
         PreferenceHandler.getStringOrNull(
-                Preference.TEMP_NAME
+            Preference.TEMP_NAME
         )?.takeUnless { name ->
             name.isBlank()
         }?.let { name ->
             if (PreferenceHandler.getBoolean(
-                            Preference.SETTING_SAVE_NAMES, true
-                    ) && !names.contains(name)
+                    Preference.SETTING_SAVE_NAMES, true
+                ) && !names.contains(name)
             ) {
                 if (names.size >= 200) names.removeAt(0)
                 names.add(name)
                 val set: MutableSet<String> = HashSet()
                 set.addAll(names)
                 PreferenceHandler.put(
-                        Preference.DATA_STORED_NAMES, set
+                    Preference.DATA_STORED_NAMES, set
                 )
             }
             val person = PreferenceUtils.getFormPerson()

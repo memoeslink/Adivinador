@@ -79,7 +79,7 @@
     <string name="data_entry">Enter data</string>
     <string name="date_component">It is¶ Today is¶ It\'s¶ The date is¶ The day is</string>
     <string name="default_person">one</string>
-    <string name="denied_contact_permission">Some functions will be disabled due to a denied contact permission.</string>
+    <string name="denied_permission">Some functions will be disabled due to a denied permission.</string>
     <string name="donations_description">Please, consider donating some money for the app development, that would allow me to make this app even better! Google Play Store applies a tax percentage depending on your country.</string>
     <string name="donations_donate">¡DONATE!</string>
     <string name="donations_title">Donate</string>

@@ -83,7 +83,10 @@ public class Identity extends ContextWrapper {
     }
 
     public String getSignColor() {
-        return getString(R.string.zodiac_color, getZodiacSign().getColor(getBaseContext()), getZodiacSign().getHexColor());
+        return String.format("<font color=\"%s\">%s%%</font>",
+                TextFormatter.formatText(getZodiacSign().getHexColor(), "b"),
+                getZodiacSign().getColor(getBaseContext())
+        );
     }
 
     public String getSignNumbers() {

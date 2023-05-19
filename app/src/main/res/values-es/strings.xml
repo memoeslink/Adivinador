@@ -79,7 +79,7 @@
     <string name="data_entry">Introducir datos</string>
     <string name="date_component">Ya es¶ Hoy es¶ Estamos a¶ El día de hoy es¶ La fecha es¶ Hoy estamos a¶ El día es</string>
     <string name="default_person">tú</string>
-    <string name="denied_contact_permission">Algunas funciones serán deshabilitadas debido a que no se pueden ver los contactos.</string>
+    <string name="denied_permission">Algunas funciones serán deshabilitadas debido a que no se tienen todos los permisos.</string>
     <string name="donations_description">¡Por favor, considera donar algo de dinero para el desarrollo de la aplicación, eso me permitirá hacer esta aplicación aun mejor! Google Play Store aplica un porcentaje de impuestos dependiendo de tu país.</string>
     <string name="donations_donate">¡DONAR!</string>
     <string name="donations_title">Donar</string>

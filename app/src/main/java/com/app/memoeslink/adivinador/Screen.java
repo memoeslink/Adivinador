@@ -9,6 +9,7 @@ import android.view.Surface;
 import android.view.WindowManager;
 
 public class Screen {
+
     @SuppressLint("SourceLockedOrientationActivity")
     public static void lockScreenOrientation(Activity activity) {
         WindowManager windowManager = (WindowManager) activity.getSystemService(Context.WINDOW_SERVICE);

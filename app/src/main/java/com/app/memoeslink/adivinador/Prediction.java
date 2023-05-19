@@ -3,6 +3,7 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 
 import com.app.memoeslink.adivinador.extensions.StringExtensions;
+import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.ZeroWidthChar;
 
@@ -115,6 +116,14 @@ public class Prediction {
         }
 
         public Prediction build() {
+            if (this.person == null)
+                this.person = new Person.PersonBuilder().setAttribute("empty").build();
+
+            if (this.date == null)
+                this.date = DateTimeHelper.getStrCurrentDate();
+
+            if (this.retrievalDate == null)
+                this.retrievalDate = DateTimeHelper.getStrCurrentDate();
             return new Prediction(this.person, this.date, this.retrievalDate, this.components);
         }
     }
