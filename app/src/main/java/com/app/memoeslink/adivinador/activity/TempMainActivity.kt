@@ -381,7 +381,7 @@ class TempMainActivity : MenuActivity() {
         llInquiryHolder?.setOnClickListener { setFormPerson(people[0]) }
 
         llSelectorHolder?.setOnClickListener {
-            if (dialog != null && !PreferenceHandler.getBoolean(Preference.TEMP_BUSY)) dialog?.show()
+            if (dialog != null && !PreferenceHandler.has(Preference.TEMP_BUSY)) dialog?.show()
         }
 
         llClearHolder?.setOnClickListener {
@@ -802,22 +802,25 @@ class TempMainActivity : MenuActivity() {
     }
 
     private fun refreshPrediction() {
-        if (PreferenceHandler.getBoolean(Preference.TEMP_BUSY)) return
+        if (PreferenceHandler.has(Preference.TEMP_BUSY)) return
 
-        lifecycleScope.launch(Dispatchers.Main) {
+        lifecycleScope.launch(Dispatchers.IO) {
             PreferenceHandler.put(Preference.TEMP_BUSY, true)
-            tvPick?.isEnabled = false
-            status?.updateSeconds = 0
-
-            llConfetti?.animate()?.alpha(0.0f)?.setDuration(200)
-                ?.setListener(object : AnimatorListenerAdapter() {
-                    override fun onAnimationCancel(animation: Animator) {
-                        super.onAnimationEnd(animation)
-                        vMain?.clearAnimation()
-                        vMain?.visibility = View.INVISIBLE
-                    }
-                }) //Fade particles layout out
             Sound.play(this@TempMainActivity, "wind")
+
+            this@TempMainActivity.runOnUiThread {
+                tvPick?.isEnabled = false
+                status?.updateSeconds = 0
+
+                llConfetti?.animate()?.alpha(0.0f)?.setDuration(200)
+                    ?.setListener(object : AnimatorListenerAdapter() {
+                        override fun onAnimationCancel(animation: Animator) {
+                            super.onAnimationEnd(animation)
+                            vMain?.clearAnimation()
+                            vMain?.visibility = View.INVISIBLE
+                        }
+                    }) //Fade particles layout out
+            }
 
             val pickedDate = DateTimeHelper.toIso8601Date(
                 dpdInquiryDate?.datePicker?.year ?: 2000,
