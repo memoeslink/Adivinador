@@ -220,6 +220,7 @@ public class PreferenceUtils {
 
         if (PreferenceHandler.getBoolean(Preference.SETTING_SAVE_ENQUIRIES) && !isPersonStored(person)) {
             person.setDescription("");
+            person.setInterpretation("");
 
             if (people.size() >= 100)
                 people.remove(0);
