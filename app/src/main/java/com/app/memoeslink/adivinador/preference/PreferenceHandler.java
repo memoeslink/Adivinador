@@ -6,7 +6,11 @@ import android.content.SharedPreferences;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.helper.SharedPreferencesHelper;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PreferenceHandler {
     private static SharedPreferencesHelper preferences;
@@ -20,6 +24,7 @@ public class PreferenceHandler {
             preferences = SharedPreferencesHelper.Companion.getPreferencesHelper(context);
 
         if (defaultPreferences == null) defaultPreferences = new SharedPreferencesHelper(context);
+        deleteOldPreferences();
     }
 
     public static boolean has(Preference preference) {
@@ -169,6 +174,24 @@ public class PreferenceHandler {
         if (preference != null && StringHelper.startsWith(preference.toString(), "SETTING_"))
             return defaultPreferences;
         return preferences;
+    }
+
+    public static void deleteOldPreferences() {
+        List<String> preferenceNames = Stream.of(Preference.values()).map(Preference::getTag).collect(Collectors.toList());
+
+        for (Map.Entry<String, ?> entry : defaultPreferences.getAll().entrySet()) {
+            if (!preferenceNames.contains(entry.getKey())) {
+                if (remove(Preference.get(entry.getKey())))
+                    System.out.println("Old system preference '" + entry.getKey() + "' was removed.");
+            }
+        }
+
+        for (Map.Entry<String, ?> entry : preferences.getAll().entrySet()) {
+            if (!preferenceNames.contains(entry.getKey()))
+                if (remove(Preference.get(entry.getKey())))
+                    System.out.println("Old preference '" + entry.getKey() + "' was removed.");
+        }
+        System.out.println("Preferences validation has finished.");
     }
 
     public static Context getContext() {
