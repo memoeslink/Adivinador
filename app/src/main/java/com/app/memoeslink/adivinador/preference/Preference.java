@@ -32,6 +32,7 @@ public enum Preference {
     SETTING_SOUNDS_ENABLED("setting_soundsEnabled", Boolean.class),
     SETTING_VOICE_ENABLED("setting_voiceEnabled", Boolean.class),
     SETTING_TEXT_TYPE("setting_textType", String.class),
+    SETTING_BACKGROUND_READING_ENABLED("setting_backgroundReadingEnabled", Boolean.class),
     SETTING_HIDE_DRAWER("setting_hideDrawer", Boolean.class),
     SETTING_PARTICLES_ENABLED("setting_particlesEnabled", Boolean.class),
     SETTING_ADS_ENABLED("setting_adsEnabled", Boolean.class),

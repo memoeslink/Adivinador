@@ -24,6 +24,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -231,6 +232,23 @@ public class PreferenceUtils {
             String json = gson.toJson(people);
             PreferenceHandler.put(Preference.DATA_STORED_PEOPLE, json);
             return true;
+        }
+        return false;
+    }
+
+    public static List<String> getStoredNames() {
+        return new ArrayList<>(PreferenceHandler.getStringSet(Preference.DATA_STORED_NAMES));
+    }
+
+    public static boolean saveName(String name) {
+        if (StringHelper.isNullOrBlank(name)) return false;
+        List<String> storedNames = getStoredNames();
+
+        if (PreferenceHandler.getBoolean(Preference.SETTING_SAVE_NAMES, true) && !storedNames.contains(name)) {
+            if (storedNames.size() >= 200) storedNames.remove(0);
+            storedNames.add(name);
+            Set<String> set = new HashSet<>(storedNames);
+            return PreferenceHandler.put(Preference.DATA_STORED_NAMES, set);
         }
         return false;
     }

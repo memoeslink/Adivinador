@@ -78,6 +78,11 @@
             android:key="setting_textType"
             android:summary="@string/preference_text_reading_summary"
             android:title="@string/preference_text_reading" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="setting_backgroundReadingEnabled"
+            android:summary="@string/preference_enable_background_reading_summary"
+            android:title="@string/preference_enable_background_reading" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/preference_interface">

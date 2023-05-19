@@ -47,7 +47,6 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     protected TextToSpeech tts;
     protected ResourceExplorer resourceExplorer;
     protected AudioManager audioManager;
-    protected List<String> names = new ArrayList<>();
     protected ActivityState activityState = ActivityState.LAUNCHED;
 
     static {
@@ -91,6 +90,9 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     protected void onStop() {
         super.onStop();
         activityState = ActivityState.STOPPED;
+
+        if (speechAvailable && tts.isSpeaking() && !PreferenceHandler.getBoolean(Preference.SETTING_BACKGROUND_READING_ENABLED))
+            tts.stop();
     }
 
     @Override

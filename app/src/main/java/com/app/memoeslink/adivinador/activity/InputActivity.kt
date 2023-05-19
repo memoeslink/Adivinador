@@ -144,19 +144,14 @@ class InputActivity : CommonActivity() {
         super.onStart()
 
         //Get stored names
-        PreferenceHandler.getStringSet(
-            Preference.DATA_STORED_NAMES
-        ).toMutableList().let { storedNames ->
-            if (storedNames.isNotEmpty()) {
-                names = storedNames
-                tvName?.setAdapter(
-                    ArrayAdapter(
-                        this@InputActivity,
-                        android.R.layout.simple_dropdown_item_1line,
-                        names.toTypedArray()
-                    )
+        PreferenceUtils.getStoredNames().takeIf { it.isNotEmpty() }?.let { storedNames ->
+            tvName?.setAdapter(
+                ArrayAdapter(
+                    this@InputActivity,
+                    android.R.layout.simple_dropdown_item_1line,
+                    storedNames.toTypedArray()
                 )
-            }
+            )
         }
     }
 
@@ -166,18 +161,7 @@ class InputActivity : CommonActivity() {
         )?.takeUnless { name ->
             name.isBlank()
         }?.let { name ->
-            if (PreferenceHandler.getBoolean(
-                    Preference.SETTING_SAVE_NAMES, true
-                ) && !names.contains(name)
-            ) {
-                if (names.size >= 200) names.removeAt(0)
-                names.add(name)
-                val set: MutableSet<String> = HashSet()
-                set.addAll(names)
-                PreferenceHandler.put(
-                    Preference.DATA_STORED_NAMES, set
-                )
-            }
+            PreferenceUtils.saveName(name)
             val person = PreferenceUtils.getFormPerson()
             PreferenceUtils.savePerson(person)
         }
