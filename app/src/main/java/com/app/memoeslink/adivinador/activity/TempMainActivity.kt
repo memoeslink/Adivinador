@@ -534,7 +534,7 @@ class TempMainActivity : MenuActivity() {
             PreferenceHandler.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER)
         }
 
-        if (timer != null) {
+        if (timer == null) {
             timer = fixedRateTimer("timer", false, 0L, 1000) {
                 val frequency =
                     PreferenceHandler.getStringAsInt(Preference.SETTING_REFRESH_TIME, 20)
@@ -543,22 +543,24 @@ class TempMainActivity : MenuActivity() {
 
                 status?.seconds?.let { seconds ->
                     if (seconds >= frequency && frequency != 0) {
-                        runOnUiThread {
+                        this@TempMainActivity.runOnUiThread {
                             //Fade out and fade in the fortune teller's text
                             if (activityState == ActivityState.RESUMED) fadeAndShowView(tvPhrase)
 
-                            //Change drawable for the fortune teller
-                            fortuneTeller?.randomAppearance?.let {
-                                ivFortuneTeller?.setImageResource(
-                                    it
-                                )
-                            }
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                //Change drawable for the fortune teller
+                                fortuneTeller?.randomAppearance?.let {
+                                    ivFortuneTeller?.setImageResource(
+                                        it
+                                    )
+                                }
 
-                            //Get random text from the fortune teller
-                            tvPhrase?.text = fortuneTeller?.talk().toHtmlText()
+                                //Get random text from the fortune teller
+                                tvPhrase?.text = fortuneTeller?.talk().toHtmlText()
 
-                            //Read the text
-                            read(tvPhrase?.text.toString())
+                                //Read the text
+                                read(tvPhrase?.text.toString())
+                            }, 350)
                         }
                         status?.seconds = 0
                     } else status?.seconds = seconds + 1
@@ -812,7 +814,7 @@ class TempMainActivity : MenuActivity() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             PreferenceHandler.put(Preference.TEMP_BUSY, true)
-            Sound.play(this@TempMainActivity, "wind")
+            Sound.play(this@TempMainActivity, "ding")
 
             this@TempMainActivity.runOnUiThread {
                 tvPick?.isEnabled = false
