@@ -924,7 +924,7 @@ class MainActivity : MenuActivity() {
         val builder = AlertDialog.Builder(this@MainActivity)
         builder.setNegativeButton(R.string.action_cancel) { _, _ -> dialog?.dismiss() }
         val listView = ListView(this@MainActivity)
-        val adapter = ArrayAdapter<String>(
+        val adapter = ArrayAdapter(
             this@MainActivity, android.R.layout.simple_list_item_1, android.R.id.text1, items
         )
         listView.adapter = adapter
@@ -935,6 +935,7 @@ class MainActivity : MenuActivity() {
             }
         builder.setView(listView)
         dialog = builder.create()
+        refreshHolders()
     }
 
     private fun displayFormPerson(person: Person) {
