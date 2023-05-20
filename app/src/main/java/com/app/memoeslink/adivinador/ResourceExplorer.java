@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.function.Supplier;
 
 public class ResourceExplorer extends Explorer {
@@ -50,7 +49,7 @@ public class ResourceExplorer extends Explorer {
         super(context, seed);
         databaseFinder = new DatabaseFinder(context, seed);
         methodFinder = new MethodFinder();
-        generatorManager = new GeneratorManager(Locale.getDefault(), seed);
+        generatorManager = new GeneratorManager(LanguageHelper.getLocale(context), seed);
     }
 
     public DatabaseFinder getDatabaseFinder() {

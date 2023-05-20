@@ -23,6 +23,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
@@ -31,6 +32,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -46,6 +48,7 @@ import androidx.multidex.BuildConfig
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.app.memoeslink.adivinador.ActivityState
 import com.app.memoeslink.adivinador.ActivityStatus
+import com.app.memoeslink.adivinador.AdUnitId
 import com.app.memoeslink.adivinador.CoupleCompatibility
 import com.app.memoeslink.adivinador.Divination
 import com.app.memoeslink.adivinador.FortuneTeller
@@ -67,13 +70,18 @@ import com.github.jinatonic.confetti.ConfettiSource
 import com.github.jinatonic.confetti.ConfettoGenerator
 import com.github.jinatonic.confetti.Utils
 import com.github.jinatonic.confetti.confetto.BitmapConfetto
+import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.lelloman.identicon.view.GithubIdenticonView
 import com.memoeslink.common.Randomizer
+import com.memoeslink.generator.common.DateTimeGetter
 import com.memoeslink.generator.common.DateTimeHelper
 import com.memoeslink.generator.common.GeneratorManager
 import com.memoeslink.generator.common.LongHelper
@@ -84,6 +92,7 @@ import com.memoeslink.generator.common.TextFormatter
 import com.memoeslink.manager.Device
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import me.zhanghai.android.materialprogressbar.CircularProgressDrawable
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar
 import java.time.LocalDate
 import java.util.Locale
@@ -93,7 +102,7 @@ import kotlin.concurrent.fixedRateTimer
 import kotlin.system.exitProcess
 
 
-class TempMainActivity : MenuActivity() {
+class MainActivity : MenuActivity() {
     private val particleColors = arrayOf(
         intArrayOf(
             Color.BLUE,
@@ -158,8 +167,8 @@ class TempMainActivity : MenuActivity() {
     private var dialog: AlertDialog? = null
     private var timer: Timer? = null
     private var status: ActivityStatus? = ActivityStatus()
-    private var fortuneTeller: FortuneTeller? = FortuneTeller(this@TempMainActivity)
-    private var device: Device? = Device(this@TempMainActivity)
+    private var fortuneTeller: FortuneTeller? = FortuneTeller(this@MainActivity)
+    private var device: Device? = Device(this@MainActivity)
     private var r: Randomizer? = Randomizer()
     private var predictionHistory: PredictionHistory? = PredictionHistory()
     private var backupPredictions: PredictionHistory? = PredictionHistory()
@@ -170,7 +179,7 @@ class TempMainActivity : MenuActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        MobileAds.initialize(this@TempMainActivity)
+        MobileAds.initialize(this@MainActivity)
         srlRefresher = findViewById(R.id.main_refresh_layout)
         rlAdContainer = findViewById(R.id.ad_container)
         llConfetti = findViewById(R.id.main_confetti_layout)
@@ -200,7 +209,7 @@ class TempMainActivity : MenuActivity() {
         btDataEntry = findViewById(R.id.main_edit_button)
         btTextCopy = findViewById(R.id.main_copy_button)
         vMain = findViewById(R.id.main_view)
-        val inflater: LayoutInflater = this@TempMainActivity.layoutInflater
+        val inflater: LayoutInflater = this@MainActivity.layoutInflater
         vCompatibility = inflater.inflate(R.layout.dialog_compatibility, null)
         atvInitialName = vCompatibility?.findViewById(R.id.dialog_name_field)
         atvFinalName = vCompatibility?.findViewById(R.id.dialog_other_name_field)
@@ -228,7 +237,7 @@ class TempMainActivity : MenuActivity() {
         MobileAds.setRequestConfiguration(requestConfiguration)
         adRequest = AdRequest.Builder().build()
 
-        adRequest?.isTestDevice(this@TempMainActivity)?.takeIf {
+        adRequest?.isTestDevice(this@MainActivity)?.takeIf {
             !it && BuildConfig.DEBUG
         }?.let {
             println("This device will not show test ads.")
@@ -239,7 +248,7 @@ class TempMainActivity : MenuActivity() {
 
         //Set empty prediction
         val emptyPrediction = Prediction.PredictionBuilder().build()
-        tvPrediction?.text = emptyPrediction.getFormattedContent(this@TempMainActivity).toHtmlText()
+        tvPrediction?.text = emptyPrediction.getFormattedContent(this@MainActivity).toHtmlText()
 
         //Get a greeting
         if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED)) tvPhrase?.text =
@@ -254,7 +263,7 @@ class TempMainActivity : MenuActivity() {
 
         //Initialize components
         val nameAdapter: ArrayAdapter<String> = object : ArrayAdapter<String>(
-            this@TempMainActivity,
+            this@MainActivity,
             android.R.layout.simple_spinner_item,
             resources.getStringArray(R.array.name_type)
         ) {
@@ -277,7 +286,7 @@ class TempMainActivity : MenuActivity() {
         spnNameType?.adapter = nameAdapter
         spnNameType?.setSelection(3)
 
-        val wrapper = ContextThemeWrapper(this@TempMainActivity, R.style.CustomDialog)
+        val wrapper = ContextThemeWrapper(this@MainActivity, R.style.CustomDialog)
         val compatibilityBuilder = AlertDialog.Builder(wrapper)
         compatibilityBuilder.setTitle(R.string.compatibility)
         compatibilityBuilder.setNeutralButton(R.string.action_close) { _, _ -> compatibilityDialog?.dismiss() }
@@ -306,7 +315,7 @@ class TempMainActivity : MenuActivity() {
 
             when (item.itemId) {
                 R.id.nav_data_entry -> {
-                    val i = Intent(this@TempMainActivity, InputActivity::class.java)
+                    val i = Intent(this@MainActivity, InputActivity::class.java)
                     startActivity(i)
                 }
 
@@ -329,7 +338,7 @@ class TempMainActivity : MenuActivity() {
 
         DateTimeHelper.getCurrentDate().let {
             dpdInquiryDate = DatePickerDialog(
-                this@TempMainActivity, { datePicker: DatePicker, _: Int, _: Int, _: Int ->
+                this@MainActivity, { datePicker: DatePicker, _: Int, _: Int, _: Int ->
                     PreferenceHandler.put(Preference.TEMP_YEAR_OF_ENQUIRY, datePicker.year)
                     PreferenceHandler.put(Preference.TEMP_MONTH_OF_ENQUIRY, datePicker.month + 1)
                     PreferenceHandler.put(Preference.TEMP_DAY_OF_ENQUIRY, datePicker.dayOfMonth)
@@ -362,7 +371,7 @@ class TempMainActivity : MenuActivity() {
         ivFortuneTeller?.setOnClickListener {
             PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT, 1)
                 .takeUnless { it != 0 }.let {
-                    Sound.play(this@TempMainActivity, "jump")
+                    Sound.play(this@MainActivity, "jump")
                     BounceAnimation(ivFortuneTeller).setBounceDistance(7f).setNumOfBounces(1)
                         .setDuration(150).animate()
                 }
@@ -378,13 +387,13 @@ class TempMainActivity : MenuActivity() {
         }
 
         llDataEntryHolder?.setOnClickListener {
-            val i = Intent(this@TempMainActivity, InputActivity::class.java)
+            val i = Intent(this@MainActivity, InputActivity::class.java)
             startActivity(i)
         }
 
         llReloadHolder?.setOnClickListener { refreshPrediction() }
 
-        llInquiryHolder?.setOnClickListener { setFormPerson(people[0]) }
+        llInquiryHolder?.setOnClickListener { displayFormPerson(people[0]) }
 
         llSelectorHolder?.setOnClickListener {
             if (dialog != null && !PreferenceHandler.has(Preference.TEMP_BUSY)) dialog?.show()
@@ -396,13 +405,13 @@ class TempMainActivity : MenuActivity() {
         }
 
         btDataEntry?.setOnClickListener {
-            val i = Intent(this@TempMainActivity, InputActivity::class.java)
+            val i = Intent(this@MainActivity, InputActivity::class.java)
             startActivity(i)
         }
 
         btTextCopy?.setOnClickListener {
             predictionHistory?.takeUnless { !it.isEmpty }?.let { history ->
-                copyTextToClipboard(history.latest?.getContent(this@TempMainActivity))
+                copyTextToClipboard(history.latest?.getContent(this@MainActivity))
             }
         }
 
@@ -461,7 +470,7 @@ class TempMainActivity : MenuActivity() {
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (!closeDrawer()) AlertDialog.Builder(this@TempMainActivity)
+                if (!closeDrawer()) AlertDialog.Builder(this@MainActivity)
                     .setTitle(R.string.alert_exit_title).setMessage(R.string.alert_exit_message)
                     .setNegativeButton(R.string.action_cancel, null)
                     .setPositiveButton(R.string.action_exit) { _, _ ->
@@ -486,7 +495,7 @@ class TempMainActivity : MenuActivity() {
 
         for (permission in permissions) {
             if (ContextCompat.checkSelfPermission(
-                    this@TempMainActivity, permission
+                    this@MainActivity, permission
                 ) != PackageManager.PERMISSION_GRANTED
             ) permissionsGranted = false
         }
@@ -501,7 +510,7 @@ class TempMainActivity : MenuActivity() {
         super.onResume()
         LongHelper.getSeed(PreferenceHandler.getString(Preference.SETTING_SEED))
             ?.takeIf { it == fortuneTeller?.seed }?.let {
-                fortuneTeller = FortuneTeller(this@TempMainActivity)
+                fortuneTeller = FortuneTeller(this@MainActivity)
             }
 
         //Restart Activity if required
@@ -543,7 +552,7 @@ class TempMainActivity : MenuActivity() {
 
                 status?.seconds?.let { seconds ->
                     if (seconds >= frequency && frequency != 0) {
-                        this@TempMainActivity.runOnUiThread {
+                        this@MainActivity.runOnUiThread {
                             //Fade out and fade in the fortune teller's text
                             if (activityState == ActivityState.RESUMED) fadeAndShowView(tvPhrase)
 
@@ -640,21 +649,141 @@ class TempMainActivity : MenuActivity() {
     }
 
     private fun prepareAd(restarted: Boolean) {
-        status?.adPaused?.takeIf {
-            !it && PreferenceHandler.getBoolean(Preference.SETTING_ADS_ENABLED, true)
-        }?.let {
+        if (PreferenceHandler.getBoolean(Preference.SETTING_ADS_ENABLED, true)) {
+            status?.adPaused?.takeIf { it }?.let { return }
 
+            status?.adAdded?.takeIf { !it || restarted || PreferenceHandler.getBoolean(Preference.TEMP_RESTART_ADS) }
+                ?: destroyAd()
+
+            status?.adAdded?.takeIf { !it }?.let {
+                adView = AdView(this@MainActivity)
+                adView?.setAdSize(AdSize.BANNER)
+                adView?.adUnitId = AdUnitId.getBannerId()
+
+                //Set observer to get ad view height
+                val viewTreeObserver = adView?.viewTreeObserver
+                viewTreeObserver?.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
+                    override fun onGlobalLayout() {
+                        try {
+                            val params = vMain?.layoutParams
+                            params?.height = adView?.measuredHeight
+                            vMain?.requestLayout()
+                            adView?.viewTreeObserver?.removeOnGlobalLayoutListener(this)
+                        } catch (ignored: Exception) {
+                        }
+                    }
+                })
+
+                adView?.adListener = object : AdListener() {
+                    override fun onAdLoaded() {
+                        println("AD LOADED!")
+
+                        //Define ProgressBar
+                        var adLayoutParams: RelativeLayout.LayoutParams =
+                            RelativeLayout.LayoutParams(
+                                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                RelativeLayout.LayoutParams.WRAP_CONTENT
+                            )
+                        adLayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT)
+                        val progressBar = ProgressBar(
+                            this@MainActivity, null, android.R.attr.progressBarStyleSmall
+                        )
+                        progressBar.isIndeterminate = true
+                        progressBar.indeterminateDrawable =
+                            CircularProgressDrawable(1, this@MainActivity)
+                        rlAdContainer?.addView(progressBar, adLayoutParams)
+
+                        //Define AdView
+                        adLayoutParams = RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.MATCH_PARENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT
+                        )
+                        adLayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT)
+                        rlAdContainer?.addView(adView, adLayoutParams)
+                        rlAdContainer?.visibility = View.VISIBLE
+
+                        //Define button to close ad
+                        adLayoutParams = RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT
+                        )
+                        adLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP)
+                        adLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT)
+                        val imageView = AppCompatImageView(this@MainActivity)
+                        imageView.alpha = 0.8f
+                        imageView.setImageResource(R.drawable.close)
+                        rlAdContainer?.addView(imageView, adLayoutParams)
+
+                        //Set listener
+                        imageView.setOnClickListener { destroyAd() }
+                        status?.adAdded = true
+                    }
+
+                    override fun onAdFailedToLoad(error: LoadAdError) {
+                        println("The ad couldn't be loaded: " + error.message)
+                        destroyAd()
+                    }
+                }
+
+                try {
+                    adRequest?.let { adView?.loadAd(it) }
+                } catch (e: java.lang.Exception) {
+                    destroyAd()
+                }
+            }
         }
     }
 
     private fun destroyAd() {
+        if (adView != null) {
+            val params = vMain?.layoutParams
+            params?.height = 0
+            adView?.destroy()
+            rlAdContainer?.visibility = View.GONE
+            rlAdContainer?.removeAllViews()
+            adView = null
+            PreferenceHandler.remove(Preference.TEMP_RESTART_ADS)
+            status?.adAdded = false
+        }
     }
 
     private fun showInterstitialAd() {
+        if (PreferenceHandler.getBoolean(Preference.SETTING_ADS_ENABLED, true)) {
+            val r = device?.getAndroidId()?.let {
+                val seed =
+                    LongHelper.getSeed(DateTimeGetter.getCurrentDateTime() + System.getProperty("line.separator") + device?.getAndroidId())
+                Randomizer(seed)
+            }
+
+            if (r?.getInt(30) != 0) return
+
+            this@MainActivity.runOnUiThread {
+                if (adView != null && adView?.visibility == View.VISIBLE) destroyAd()
+
+                adRequest?.let { adRequest ->
+                    InterstitialAd.load(this,
+                        AdUnitId.getInterstitialId(),
+                        adRequest,
+                        object : InterstitialAdLoadCallback() {
+                            override fun onAdLoaded(ad: InterstitialAd) {
+                                super.onAdLoaded(ad)
+                                interstitialAd = ad
+                                interstitialAd?.show(this@MainActivity)
+                            }
+
+                            override fun onAdFailedToLoad(error: LoadAdError) {
+                                println("The interstitial ad couldn't be loaded: " + error.message)
+                                prepareAd(false) //Show, avoid, or hide ads@Override
+                                tvSelector?.invalidate() //Force view to be redrawn
+                            }
+                        })
+                }
+            }
+        }
     }
 
     private fun prepareAnimation() {
-        Screen.lockScreenOrientation(this@TempMainActivity) //Lock orientation
+        Screen.lockScreenOrientation(this@MainActivity) //Lock orientation
         stopConfetti() //Finish previous confetti animation;
 
         //Redraw view
@@ -691,11 +820,11 @@ class TempMainActivity : MenuActivity() {
                         Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
                     ) != 0
                 ) {
-                    Sound.play(this@TempMainActivity, "jump")
+                    Sound.play(this@MainActivity, "jump")
                     BounceAnimation(ivFortuneTeller).setBounceDistance(20f).setNumOfBounces(1)
                         .setDuration(500).animate()
                 }
-                Screen.unlockScreenOrientation(this@TempMainActivity) //Unlock orientation
+                Screen.unlockScreenOrientation(this@MainActivity) //Unlock orientation
                 status?.forceEffects = false
             } else Handler(Looper.getMainLooper()).postDelayed({ waitTasks() }, 500)
         }
@@ -735,7 +864,7 @@ class TempMainActivity : MenuActivity() {
         }
 
         confettiManager = ConfettiManager(
-            this@TempMainActivity, generator, ConfettiSource(originInX, originInY), llConfetti
+            this@MainActivity, generator, ConfettiSource(originInX, originInY), llConfetti
         ).setEmissionDuration(ConfettiManager.INFINITE_DURATION).setEmissionRate(30f)
             .setVelocityX(0f, 360f).setVelocityY(0f, 360f).setRotationalVelocity(180f, 180f)
             .setRotationalAcceleration(360f, 180f).setInitialRotation(180, 180)
@@ -765,12 +894,12 @@ class TempMainActivity : MenuActivity() {
         names.takeIf { it.isNotEmpty() }?.let {
             atvInitialName?.setAdapter(
                 ArrayAdapter(
-                    this@TempMainActivity, android.R.layout.simple_spinner_dropdown_item, names
+                    this@MainActivity, android.R.layout.simple_spinner_dropdown_item, names
                 )
             )
             atvFinalName?.setAdapter(
                 ArrayAdapter(
-                    this@TempMainActivity, android.R.layout.simple_spinner_dropdown_item, names
+                    this@MainActivity, android.R.layout.simple_spinner_dropdown_item, names
                 )
             )
         }
@@ -784,28 +913,28 @@ class TempMainActivity : MenuActivity() {
             items.add(
                 "${person.descriptor} (${
                     person.gender.getName(
-                        this@TempMainActivity, 4
+                        this@MainActivity, 4
                     )
                 }) ${person.birthdate}"
             )
         }
-        val builder = AlertDialog.Builder(this@TempMainActivity)
+        val builder = AlertDialog.Builder(this@MainActivity)
         builder.setNegativeButton(R.string.action_cancel) { _, _ -> dialog?.dismiss() }
-        val listView = ListView(this@TempMainActivity)
+        val listView = ListView(this@MainActivity)
         val adapter = ArrayAdapter<String>(
-            this@TempMainActivity, android.R.layout.simple_list_item_1, android.R.id.text1, items
+            this@MainActivity, android.R.layout.simple_list_item_1, android.R.id.text1, items
         )
         listView.adapter = adapter
         listView.onItemClickListener =
             OnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
-                setFormPerson(people[position])
+                displayFormPerson(people[position])
                 dialog?.dismiss()
             }
         builder.setView(listView)
         dialog = builder.create()
     }
 
-    private fun setFormPerson(person: Person) {
+    private fun displayFormPerson(person: Person) {
         if (!PreferenceUtils.isPersonTempStored(person)) {
             PreferenceUtils.saveFormPerson(person)
             refreshPrediction()
@@ -817,9 +946,9 @@ class TempMainActivity : MenuActivity() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             PreferenceHandler.put(Preference.TEMP_BUSY, true)
-            Sound.play(this@TempMainActivity, "ding")
+            Sound.play(this@MainActivity, "ding")
 
-            this@TempMainActivity.runOnUiThread {
+            this@MainActivity.runOnUiThread {
                 tvPick?.isEnabled = false
                 status?.updateSeconds = 0
 
@@ -857,7 +986,7 @@ class TempMainActivity : MenuActivity() {
 
             if (!preStored) predictionHistory?.add(generatePrediction(formEntered))
 
-            this@TempMainActivity.runOnUiThread {
+            this@MainActivity.runOnUiThread {
                 refreshHolders()
                 refreshNavigationView()
                 refreshSaveButton()
@@ -867,17 +996,17 @@ class TempMainActivity : MenuActivity() {
                     R.string.person_data,
                     predictionHistory?.latest?.person?.description,
                     predictionHistory?.latest?.person?.gender?.getName(
-                        this@TempMainActivity, 1
+                        this@MainActivity, 1
                     ),
                     DateTimeHelper.toIso8601Date(predictionHistory?.latest?.person?.birthdate)
                 ).toHtmlText()
 
-                predictionHistory?.latest?.getFormattedContent(this@TempMainActivity)?.let {
+                predictionHistory?.latest?.getFormattedContent(this@MainActivity)?.let {
                     tvPrediction?.setText(it.toClickableText(Pair("action") {
-                        Sound.play(this@TempMainActivity, "crack")
+                        Sound.play(this@MainActivity, "crack")
                         tvPrediction?.let {
                             val replacement = StringHelper.replaceBetweenZeroWidthSpaces(
-                                predictionHistory?.latest?.getFormattedContent(this@TempMainActivity),
+                                predictionHistory?.latest?.getFormattedContent(this@MainActivity),
                                 predictionHistory?.latest?.components?.get("fortuneCookie")
                                     .orEmpty()
                             )
@@ -898,7 +1027,7 @@ class TempMainActivity : MenuActivity() {
                     ) == 2
                 ) read(
                     tvPersonInfo?.text.toString() + ". " + predictionHistory?.latest?.getContent(
-                        this@TempMainActivity
+                        this@MainActivity
                     )
                 )
                 tvPick?.isEnabled = true
@@ -999,7 +1128,7 @@ class TempMainActivity : MenuActivity() {
     private fun refreshUiUponEnquirySaved() {
         tvPick?.isEnabled = false
         updateInquirySelector()
-        setFormPerson(people.last())
+        displayFormPerson(people.last())
         tvPick?.isEnabled = true
     }
 
@@ -1019,7 +1148,7 @@ class TempMainActivity : MenuActivity() {
                     if (r?.getInt(3) == 0) resourceExplorer.generatorManager.personGenerator.anonymousPerson
                     else resourceExplorer.generatorManager.personGenerator.person
             }
-            val divination = Divination(this@TempMainActivity, person, enquiryDate)
+            val divination = Divination(this@MainActivity, person, enquiryDate)
             prediction = divination.getPrediction(person)
             status?.coroutineStarted = false
         }
