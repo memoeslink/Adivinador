@@ -167,8 +167,8 @@ class MainActivity : MenuActivity() {
     private var dialog: AlertDialog? = null
     private var timer: Timer? = null
     private var status: ActivityStatus? = ActivityStatus()
-    private var fortuneTeller: FortuneTeller? = FortuneTeller(this@MainActivity)
-    private var device: Device? = Device(this@MainActivity)
+    private var fortuneTeller: FortuneTeller? = null
+    private var device: Device? = null
     private var r: Randomizer? = Randomizer()
     private var predictionHistory: PredictionHistory? = PredictionHistory()
     private var backupPredictions: PredictionHistory? = PredictionHistory()
@@ -225,6 +225,9 @@ class MainActivity : MenuActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
         navigationView.itemIconTintList = null
+
+        fortuneTeller = FortuneTeller(this@MainActivity)
+        device = Device(this@MainActivity)
 
         //Request ads
         val testDevices: MutableList<String> = java.util.ArrayList()
@@ -509,7 +512,7 @@ class MainActivity : MenuActivity() {
     override fun onResume() {
         super.onResume()
         LongHelper.getSeed(PreferenceHandler.getString(Preference.SETTING_SEED))
-            ?.takeIf { it == fortuneTeller?.seed }?.let {
+            ?.takeIf { it != fortuneTeller?.seed }?.let {
                 fortuneTeller = FortuneTeller(this@MainActivity)
             }
 

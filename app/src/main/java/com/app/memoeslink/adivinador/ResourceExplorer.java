@@ -1,9 +1,8 @@
 package com.app.memoeslink.adivinador;
 
 import android.content.Context;
-import android.content.res.Resources;
 
-import androidx.core.os.ConfigurationCompat;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.app.memoeslink.adivinador.finder.DatabaseFinder;
 import com.app.memoeslink.adivinador.preference.Preference;
@@ -25,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Supplier;
 
 public class ResourceExplorer extends Explorer {
@@ -52,7 +52,11 @@ public class ResourceExplorer extends Explorer {
         super(context, seed);
         databaseFinder = new DatabaseFinder(context, seed);
         methodFinder = new MethodFinder();
-        generatorManager = new GeneratorManager(ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0), seed);
+
+        if (context instanceof AppCompatActivity)
+            generatorManager = new GeneratorManager(LanguageHelper.getLocale(context), seed);
+        else
+            generatorManager = new GeneratorManager(Locale.getDefault(), seed);
     }
 
     public DatabaseFinder getDatabaseFinder() {
