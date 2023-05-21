@@ -110,7 +110,7 @@
     <string name="person_details">Detalles personales</string>
     <string name="person_information">
         <![CDATA[
-        <big><b><font color="#869DEE">%1$s</font></b></big>
+        <big><b>%1$s</b></big>
         <br><br><font color="#53E3B3">Signo zodiacal:</font>
         <br>%2$s
         <br><br><font color="#53E3B3">Casa astrológica:</font>
