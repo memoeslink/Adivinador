@@ -216,10 +216,14 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     }
 
     protected final void copyTextToClipboard(String text) {
+        if (StringHelper.isNullOrEmpty(text)) {
+            showToast(getString(R.string.toast_clipboard_error));
+            return;
+        }
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText(null, text);
         clipboard.setPrimaryClip(clipData);
-        showToast(getString(R.string.toast_clipboard));
+        showToast(getString(R.string.toast_clipboard_success));
     }
 
     protected final boolean isTTSAvailable(TextToSpeech tts, String language) {

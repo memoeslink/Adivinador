@@ -413,7 +413,7 @@ class MainActivity : MenuActivity() {
         }
 
         btTextCopy?.setOnClickListener {
-            predictionHistory?.takeUnless { !it.isEmpty }?.let { history ->
+            predictionHistory?.takeUnless { it.isEmpty }?.let { history ->
                 copyTextToClipboard(history.latest?.getContent(this@MainActivity))
             }
         }
@@ -448,7 +448,7 @@ class MainActivity : MenuActivity() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.toString().isNotEmpty()) tvTextCopy?.visibility = View.GONE
+                if (s.toString().trim().isEmpty()) tvTextCopy?.visibility = View.GONE
                 else tvTextCopy?.visibility = View.VISIBLE
             }
 

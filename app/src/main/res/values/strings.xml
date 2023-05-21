@@ -186,7 +186,8 @@
     <string name="title_descriptor">Lead¶ Senior¶ Direct¶ Corporate¶ Dynamic¶ Future¶ Product¶ National¶ Regional¶ Local¶ District¶ Central¶ Global¶ Customer¶ Investor¶ Dynamic¶ International¶ Legacy¶ Forward¶ Internal¶ Human¶ Chief¶ Principal</string>
     <string name="title_job">Supervisor¶ Associate¶ Executive¶ Liaison¶ Officer¶ Manager¶ Engineer¶ Specialist¶ Director¶ Coordinator¶ Administrator¶ Architect¶ Analyst¶ Designer¶ Planner¶ Orchestrator¶ Technician¶ Developer¶ Producer¶ Consultant¶ Assistant¶ Facilitator¶ Agent¶ Representative¶ Strategist</string>
     <string name="title_level">Solutions¶ Program¶ Brand¶ Security¶ Research¶ Marketing¶ Directives¶ Implementation¶ Integration¶ Functionality¶ Response¶ Paradigm¶ Tactics¶ Identity¶ Markets¶ Group¶ Division¶ Applications¶ Optimization¶ Operations¶ Infrastructure¶ Intranet¶ Communications¶ Web¶ Branding¶ Quality¶ Assurance¶ Mobility¶ Accounts¶ Data¶ Creative¶ Configuration¶ Accountability¶ Interactions¶ Factors¶ Usability¶ Metrics¶ Support</string>
-    <string name="toast_clipboard">Text copied to clipboard.</string>
+    <string name="toast_clipboard_error">Text couldn\'t be copied to clipboard.</string>
+    <string name="toast_clipboard_success">Text copied to clipboard.</string>
     <string name="toast_inquiry_not_saved">The enquiry couldn\'t be saved.</string>
     <string name="toast_inquiry_saved">The enquiry was saved successfully.</string>
     <string name="toast_voice_unavailability">There\'s not any available voice for TTS in your device.</string>
