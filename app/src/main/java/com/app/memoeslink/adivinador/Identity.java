@@ -27,7 +27,7 @@ public class Identity extends ContextWrapper {
         this.person = person;
     }
 
-    public HashMap<String, String> getInformation(String enquiryDate) {
+    public HashMap<String, String> getInformation() {
         HashMap<String, String> information = new HashMap<>();
         String uniqueSeed = person.getSha256();
 
@@ -49,8 +49,8 @@ public class Identity extends ContextWrapper {
         information.put("futureName", getFutureName());
         information.put("recommendedUsername", getRecommendedUsername());
         information.put("uniqueColor", Maker.getColor(uniqueSeed));
-        information.put("daysBetweenDates", getDaysBetweenDates(enquiryDate));
-        information.put("timeBetweenDates", getTimeBetweenDates(enquiryDate));
+        information.put("daysBetweenDates", getDaysBetweenDates(DateTimeHelper.getStrCurrentDate()));
+        information.put("timeBetweenDates", getTimeBetweenDates(DateTimeHelper.getStrCurrentDate()));
         return information;
     }
 
@@ -83,10 +83,7 @@ public class Identity extends ContextWrapper {
     }
 
     public String getSignColor() {
-        return String.format("<font color=\"%s\">%s%%</font>",
-                TextFormatter.formatText(getZodiacSign().getHexColor(), "b"),
-                getZodiacSign().getColor(getBaseContext())
-        );
+        return String.format("<font color=\"%s\">%s</font>", getZodiacSign().getHexColor(), TextFormatter.formatText(getZodiacSign().getColor(getBaseContext()), "u"));
     }
 
     public String getSignNumbers() {

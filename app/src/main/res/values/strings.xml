@@ -107,6 +107,52 @@
     <string name="nouns">existence¶ matter¶ person¶ being¶ human¶ individual¶ entity¶ [[,wo]man]¶ customer¶ subject¶ body¶ essence¶ thing¶ substance¶ creature¶ organism¶ form¶ specimen｢1｣¶ life form¶ living being¶ user¶ friend¶ acquaintance¶ stranger¶ mate¶ colleague¶ best friend¶ [[boy,girl]friend]¶ [tip[o,a]]¶ character¶ offspring¶ figure¶ inhabitant¶ young [[girl,boy]]¶ young person¶ [[boy,girl]]¶ embodiment</string>
     <string name="ok">OK</string>
     <string name="person_data"><![CDATA[%1$s<font color="#F6FBB2">, %2$s (%3$s)</font>]]></string>
+    <string name="person_details">Person details</string>
+    <string name="person_information">
+        <![CDATA[
+        <big><b><font color="#869DEE">%1$s</font></b></big>
+        <br><br><font color="#53E3B3">Zodiac sign:</font>
+        <br>%2$s
+        <br><br><font color="#53E3B3">Astrological house:</font>
+        <br>%3$s
+        <br><br><font color="#53E3B3">Ruler:</font>
+        <br>%4$s
+        <br><br><font color="#53E3B3">Element:</font>
+        <br>%5$s
+        <br><br><font color="#53E3B3">Sign color:</font>
+        <br>%6$s
+        <br><br><font color="#53E3B3">Sign numbers:</font>
+        <br>%7$s
+        <br><br><font color="#53E3B3">Compatibility:</font>
+        <br>%8$s
+        <br><br><font color="#53E3B3">Incompatibility:</font>
+        <br>%9$s
+        <br><br><font color="#53E3B3">Walter Berg Zodiac Sign:</font>
+        <br>%10$s
+        <br><br><font color="#53E3B3">Chinese Zodiac Sign:</font>
+        <br>%11$s
+        <br><br><font color="#53E3B3">Animal:</font>
+        <br>%12$s
+        <br><br><font color="#53E3B3">Psychological type:</font>
+        <br>%13$s
+        <br><br><font color="#53E3B3">Secret name:</font>
+        <br>%14$s
+        <br><br><font color="#53E3B3">Demonic name:</font>
+        <br>%15$s
+        <br><br><font color="#53E3B3">Name in previous life:</font>
+        <br>%16$s
+        <br><br><font color="#53E3B3">Name in upcoming life:</font>
+        <br>%17$s
+        <br><br><font color="#53E3B3">Recommended username:</font>
+        <br>%18$s
+        <br><br><font color="#53E3B3">Unique color:</font>
+        <br><font color="%19$s">■</font>
+        <br><br><font color="#53E3B3">Days since birth:</font>
+        <br>%20$s
+        <br><br><font color="#53E3B3">Time since birth:</font>
+        <br>%21$s
+        ]]>
+    </string>
     <string name="prediction">
         <![CDATA[
         <big><b><font color="#869DEE">Enquiry for %1$s</font></b></big>

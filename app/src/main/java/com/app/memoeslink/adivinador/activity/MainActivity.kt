@@ -50,8 +50,10 @@ import com.app.memoeslink.adivinador.ActivityState
 import com.app.memoeslink.adivinador.ActivityStatus
 import com.app.memoeslink.adivinador.AdUnitId
 import com.app.memoeslink.adivinador.CoupleCompatibility
+import com.app.memoeslink.adivinador.Database
 import com.app.memoeslink.adivinador.Divination
 import com.app.memoeslink.adivinador.FortuneTeller
+import com.app.memoeslink.adivinador.Identity
 import com.app.memoeslink.adivinador.Prediction
 import com.app.memoeslink.adivinador.PredictionHistory
 import com.app.memoeslink.adivinador.R
@@ -132,8 +134,10 @@ class MainActivity : MenuActivity() {
     private var llInquiryHolder: LinearLayout? = null
     private var llSelectorHolder: LinearLayout? = null
     private var llClearHolder: LinearLayout? = null
-    private var vPersonImage: GithubIdenticonView? = null
+    private var givPersonImage: GithubIdenticonView? = null
+    private var givDetailsPersonImage: GithubIdenticonView? = null
     private var ivFortuneTeller: AppCompatImageView? = null
+    private var ivDetailsLogo: AppCompatImageView? = null
     private var ivSaveLogo: AppCompatImageView? = null
     private var atvInitialName: AppCompatAutoCompleteTextView? = null
     private var atvFinalName: AppCompatAutoCompleteTextView? = null
@@ -150,6 +154,7 @@ class MainActivity : MenuActivity() {
     private var tvCompatibility: TextView? = null
     private var tvTextCopy: TextView? = null
     private var tvNameBox: EditText? = null
+    private var tvDetails: TextView? = null
     private var spnNameType: AppCompatSpinner? = null
     private var dpdInquiryDate: DatePickerDialog? = null
     private var pbWait: MaterialProgressBar? = null
@@ -158,12 +163,14 @@ class MainActivity : MenuActivity() {
     private var vMain: View? = null
     private var vCompatibility: View? = null
     private var vNameGenerator: View? = null
+    private var vDetails: View? = null
     private var adView: AdView? = null
     private var interstitialAd: InterstitialAd? = null
     private var adRequest: AdRequest? = null
     private var confettiManager: ConfettiManager? = null
     private var compatibilityDialog: AlertDialog? = null
     private var nameGeneratorDialog: AlertDialog? = null
+    private var detailsDialog: AlertDialog? = null
     private var dialog: AlertDialog? = null
     private var timer: Timer? = null
     private var status: ActivityStatus? = ActivityStatus()
@@ -188,8 +195,9 @@ class MainActivity : MenuActivity() {
         llInquiryHolder = findViewById(R.id.main_inquiry_holder)
         llSelectorHolder = findViewById(R.id.main_selector_holder)
         llClearHolder = findViewById(R.id.main_clear_holder)
-        vPersonImage = findViewById(R.id.main_person_image)
+        givPersonImage = findViewById(R.id.main_person_image)
         ivFortuneTeller = findViewById(R.id.main_fortune_teller)
+        ivDetailsLogo = findViewById(R.id.main_details)
         ivSaveLogo = findViewById(R.id.main_save)
         tvPick = findViewById(R.id.main_pick)
         tvPick?.text = getString(R.string.pick).toLinkedHtmlText()
@@ -222,6 +230,9 @@ class MainActivity : MenuActivity() {
         tvNameBox = vNameGenerator?.findViewById(R.id.dialog_generated_name)
         tvTextCopy = vNameGenerator?.findViewById(R.id.dialog_copy_text)
         tvTextCopy?.text = getString(R.string.action_copy).toLinkedHtmlText()
+        vDetails = inflater.inflate(R.layout.dialog_person_details, null)
+        tvDetails = vDetails?.findViewById(R.id.dialog_details)
+        givDetailsPersonImage = vDetails?.findViewById(R.id.dialog_person_image)
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
         navigationView.itemIconTintList = null
@@ -292,14 +303,14 @@ class MainActivity : MenuActivity() {
         val wrapper = ContextThemeWrapper(this@MainActivity, R.style.CustomDialog)
         val compatibilityBuilder = AlertDialog.Builder(wrapper)
         compatibilityBuilder.setTitle(R.string.compatibility)
-        compatibilityBuilder.setNeutralButton(R.string.action_close) { _, _ -> compatibilityDialog?.dismiss() }
+        compatibilityBuilder.setNegativeButton(R.string.action_close) { _, _ -> compatibilityDialog?.dismiss() }
         compatibilityBuilder.setView(vCompatibility)
         compatibilityDialog = compatibilityBuilder.create()
 
         val nameGeneratorBuilder = AlertDialog.Builder(wrapper)
         nameGeneratorBuilder.setTitle(R.string.name_generation)
         nameGeneratorBuilder.setPositiveButton(R.string.action_generate, null)
-        nameGeneratorBuilder.setNegativeButton(R.string.action_close, null)
+        nameGeneratorBuilder.setNegativeButton(R.string.action_close) { _, _ -> nameGeneratorDialog?.dismiss() }
         nameGeneratorBuilder.setView(vNameGenerator)
         nameGeneratorDialog = nameGeneratorBuilder.create()
 
@@ -307,6 +318,12 @@ class MainActivity : MenuActivity() {
             val button = (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
             button.setOnClickListener { displayGeneratedName() }
         }
+
+        val detailsBuilder = AlertDialog.Builder(wrapper)
+        detailsBuilder.setTitle(getString(R.string.person_details))
+        detailsBuilder.setNegativeButton(R.string.action_close) { _, _ -> detailsDialog?.dismiss() }
+        detailsBuilder.setView(vDetails)
+        detailsDialog = detailsBuilder.create()
 
         srlRefresher?.setOnRefreshListener {
             refreshPrediction()
@@ -378,6 +395,13 @@ class MainActivity : MenuActivity() {
                     BounceAnimation(ivFortuneTeller).setBounceDistance(7f).setNumOfBounces(1)
                         .setDuration(150).animate()
                 }
+        }
+
+        ivDetailsLogo?.setOnClickListener {
+            it.isEnabled = false
+            refreshDetailsDisplay()
+            detailsDialog?.show()
+            it.isEnabled = true
         }
 
         ivSaveLogo?.setOnClickListener {
@@ -994,7 +1018,7 @@ class MainActivity : MenuActivity() {
                 refreshHolders()
                 refreshNavigationView()
                 refreshSaveButton()
-                vPersonImage?.hash = predictionHistory?.latest?.person?.summary.hashCode()
+                givPersonImage?.hash = predictionHistory?.latest?.person?.summary.hashCode()
 
                 tvPersonInfo?.text = getString(
                     R.string.person_data,
@@ -1034,6 +1058,12 @@ class MainActivity : MenuActivity() {
                         this@MainActivity
                     )
                 )
+
+                detailsDialog?.isShowing?.takeIf { it }?.let {
+                    detailsDialog?.hide()
+                    refreshDetailsDisplay()
+                    detailsDialog?.show()
+                }
                 tvPick?.isEnabled = true
                 llConfetti?.animate()?.alpha(1.0f)?.duration = 200 //Fade particles layout in
                 PreferenceHandler.remove(Preference.TEMP_BUSY)
@@ -1187,6 +1217,40 @@ class MainActivity : MenuActivity() {
             tvNameBox?.setText(GeneratorManager(Locale("xx")).nameGenerator.getNameOrRetry(nameType))
             spnNameType?.isEnabled = true
             status?.nameInGeneration = false
+        }
+    }
+
+    private fun refreshDetailsDisplay() {
+        val person = predictionHistory?.latest?.person ?: Person.PersonBuilder().build()
+        val identity = person?.let {
+            givDetailsPersonImage?.hash = it.summary.hashCode()
+            Identity(this@MainActivity, it)
+        }
+        tvDetails?.text = identity?.information?.withDefault { Database.DEFAULT_VALUE }?.let {
+            getString(
+                R.string.person_information,
+                TextFormatter.formatDescriptor(person),
+                it.getValue("zodiacSign"),
+                it.getValue("astrologicalHouse"),
+                it.getValue("ruler"),
+                it.getValue("element"),
+                it.getValue("signColor"),
+                it.getValue("signNumbers"),
+                it.getValue("compatibility"),
+                it.getValue("incompatibility"),
+                it.getValue("walterBergZodiacSign"),
+                it.getValue("chineseZodiacSign"),
+                it.getValue("animal"),
+                it.getValue("psychologicalType"),
+                it.getValue("secretName"),
+                it.getValue("demonicName"),
+                it.getValue("previousName"),
+                it.getValue("futureName"),
+                it.getValue("recommendedUsername"),
+                it.getValue("uniqueColor"),
+                it.getValue("daysBetweenDates"),
+                it.getValue("timeBetweenDates")
+            ).toHtmlText()
         }
     }
 }

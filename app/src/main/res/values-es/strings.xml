@@ -107,6 +107,52 @@
     <string name="nouns">existencia｢2｣¶ materia｢2｣¶ persona｢2｣¶ ser｢1｣¶ [human[o,a]]¶ [individu[o,a]]¶ entidad｢2｣¶ [[hombre,mujer]]¶ [client[e,a]]¶ sujeto｢1｣¶ ente｢1｣¶ esencia｢2｣¶ cosa｢2｣¶ sustancia｢2｣¶ criatura｢2｣¶ organismo｢1｣¶ forma｢2｣¶ espécimen｢1｣¶ forma de vida｢2｣¶ ser vivo｢1｣¶ [usuari[o,a]]¶ [amig[o,a]]¶ [conocid[o,a]]¶ [desconocid[o,a]]¶ colega｢0｣¶ camarada｢0｣¶ mejor [amig[o,a]]¶ [novi[o,a]]¶ [tip[o,a]]¶ personaje｢1｣¶ vástago｢1｣¶ figura｢2｣¶ habitante｢1｣¶ [muchach[o,a]]¶ joven｢0｣¶ [chic[o,a]]¶ personificación｢2｣</string>
     <string name="ok">OK</string>
     <string name="person_data"><![CDATA[%1$s<font color="#F6FBB2">, de género %2$s (%3$s)</font>]]></string>
+    <string name="person_details">Detalles personales</string>
+    <string name="person_information">
+        <![CDATA[
+        <big><b><font color="#869DEE">%1$s</font></b></big>
+        <br><br><font color="#53E3B3">Signo zodiacal:</font>
+        <br>%2$s
+        <br><br><font color="#53E3B3">Casa astrológica:</font>
+        <br>%3$s
+        <br><br><font color="#53E3B3">Regente:</font>
+        <br>%4$s
+        <br><br><font color="#53E3B3">Elemento:</font>
+        <br>%5$s
+        <br><br><font color="#53E3B3">Color del signo:</font>
+        <br>%6$s
+        <br><br><font color="#53E3B3">Números del signo:</font>
+        <br>%7$s
+        <br><br><font color="#53E3B3">Compatibilidad:</font>
+        <br>%8$s
+        <br><br><font color="#53E3B3">Incompatibilidad:</font>
+        <br>%9$s
+        <br><br><font color="#53E3B3">Signo zodiacal según Walter Berg:</font>
+        <br>%10$s
+        <br><br><font color="#53E3B3">Signo zodiacal chino:</font>
+        <br>%11$s
+        <br><br><font color="#53E3B3">Animal:</font>
+        <br>%12$s
+        <br><br><font color="#53E3B3">Tipo psicológico:</font>
+        <br>%13$s
+        <br><br><font color="#53E3B3">Nombre secreto:</font>
+        <br>%14$s
+        <br><br><font color="#53E3B3">Nombre demoniaco:</font>
+        <br>%15$s
+        <br><br><font color="#53E3B3">Nombre en vida pasada:</font>
+        <br>%16$s
+        <br><br><font color="#53E3B3">Nombre en la siguiente vida:</font>
+        <br>%17$s
+        <br><br><font color="#53E3B3">Nombre de usuario recomendado:</font>
+        <br>%18$s
+        <br><br><font color="#53E3B3">Color único:</font>
+        <br><font color="%19$s">■</font>
+        <br><br><font color="#53E3B3">Días desde el nacimiento:</font>
+        <br>%20$s
+        <br><br><font color="#53E3B3">Tiempo desde el nacimiento:</font>
+        <br>%21$s
+        ]]>
+    </string>
     <string name="prediction">
         <![CDATA[
         <big><b><font color="#869DEE">Consulta de %1$s</font></b></big>

@@ -163,7 +163,7 @@ public class ResourceExplorer extends Explorer {
                         TextFormatter.formatContactName(getMethodByRef(MethodReference.CONTACT_NAME));
                 case "suggestion" ->
                         TextFormatter.formatSuggestedName(getMethodByRef(MethodReference.SUGGESTED_NAME));
-                default -> TextFormatter.formatText("?", "b");
+                default -> TextFormatter.formatText(Database.DEFAULT_VALUE, "b");
             };
         }
     }
