@@ -262,7 +262,7 @@ class MainActivity : MenuActivity() {
         }
 
         //Preload prediction
-        predictionHistory?.add(generatePrediction(PreferenceUtils.isEnquiryFormEntered()))
+        backupPredictions?.add(generatePrediction(PreferenceUtils.isEnquiryFormEntered()))
 
         //Set empty prediction
         val emptyPrediction = Prediction.PredictionBuilder().build()
@@ -560,7 +560,7 @@ class MainActivity : MenuActivity() {
         updateInquirySelector()
 
         //Get a prediction
-        if (predictionHistory?.size == 1 || (PreferenceUtils.hasPersonTempStored() && (PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()))) refreshPrediction()
+        refreshPredictionByTrigger()
 
         //Change drawable if the 'fortune teller aspect' preference was changed
         if (PreferenceHandler.has(Preference.TEMP_CHANGE_FORTUNE_TELLER)) {
@@ -605,7 +605,7 @@ class MainActivity : MenuActivity() {
                 }
 
                 status?.updateSeconds?.let { seconds ->
-                    if (seconds >= refreshFrequency) refreshPrediction()
+                    if (seconds >= refreshFrequency) refreshPredictionByTrigger()
                     else {
                         if (seconds != 0 && seconds % 10 == 0) {
                             backupPredictions?.takeIf { !it.isFull }.let {
@@ -1062,6 +1062,10 @@ class MainActivity : MenuActivity() {
                 PreferenceHandler.remove(Preference.TEMP_BUSY)
             }
         }
+    }
+
+    private fun refreshPredictionByTrigger() {
+        if (!PreferenceUtils.hasPersonTempStored() || PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()) refreshPrediction()
     }
 
     private fun refreshHolders() {

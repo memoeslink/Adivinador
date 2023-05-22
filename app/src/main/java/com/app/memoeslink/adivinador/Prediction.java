@@ -75,14 +75,17 @@ public class Prediction {
     public String getFormattedContent(Context context) {
         return context.getString(R.string.prediction,
                 date,
-                ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter() +
-                        context.getString(R.string.prediction_action) + "<br>" +
-                        "<font color=\"#ECFE5B\">" + components.get("gibberish") + "</font>" +
-                        ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter(),
-                components.get("divination"),
-                components.get("emotions"),
-                components.get("characteristic"),
-                components.get("chainOfEvents")
+                (components.containsKey("gibberish") ?
+                        (ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter() +
+                                context.getString(R.string.prediction_action) + "<br>" +
+                                "<font color=\"#ECFE5B\">" + components.getOrDefault("gibberish", "…") + "</font>" +
+                                ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter()
+                        ) : "…"
+                ),
+                components.getOrDefault("divination", "…"),
+                components.getOrDefault("emotions", "…"),
+                components.getOrDefault("characteristic", "…"),
+                components.getOrDefault("chainOfEvents", "…")
         );
     }
 
