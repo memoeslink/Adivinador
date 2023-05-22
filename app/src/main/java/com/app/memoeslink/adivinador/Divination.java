@@ -177,12 +177,12 @@ public class Divination extends ContextWrapper {
 
         for (int n = -1, limit = r.getElement(PROBABILITY_DISTRIBUTION); ++n < limit; ) {
             Gender gender = r.getBoolean() ? Gender.MASCULINE : Gender.FEMININE;
-            String interpretation = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.person, 0) + " " + String.format("<font color=\"%s\">%s</font>", COMMON_COLORS[n], TextFormatter.formatText(Character.toString(letter), "b", "i"));
-            interpretation += ", " + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.probability) + " " + tagProcessor.replaceTags(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.individual), gender, false).getText();
+            String description = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.person, 0) + " " + String.format("<font color=\"%s\">%s</font>", COMMON_COLORS[n], TextFormatter.formatText(Character.toString(letter), "b", "i"));
+            description += ", " + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.probability) + " " + tagProcessor.replaceTags(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.individual), gender, false).getText();
             people.add(new Person.PersonBuilder()
                     .setNickname(Character.toString(letter))
                     .setGender(gender)
-                    .setDescription(interpretation)
+                    .setDescription(description)
                     .setAttribute("nonspecific")
                     .setAttribute("unknown")
                     .build());
@@ -217,11 +217,11 @@ public class Divination extends ContextWrapper {
 
         //Append gender glyph in people's descriptions
         for (Person currentPerson : people) {
-            String interpretation = currentPerson.getDescription();
+            String description = currentPerson.getDescription();
 
-            if (!currentPerson.hasAttribute("queried") && (currentPerson.hasAttribute("generated") || currentPerson.hasAttribute("nonspecific")) && StringHelper.isNotNullOrBlank(interpretation)) {
-                interpretation += " (<font color=\"#B599FC\">" + TextFormatter.formatText(currentPerson.getGender().getGlyph(), "b") + "</font>)";
-                currentPerson.setDescription(interpretation);
+            if (!currentPerson.hasAttribute("queried") && (currentPerson.hasAttribute("generated") || currentPerson.hasAttribute("nonspecific")) && StringHelper.isNotNullOrBlank(description)) {
+                description += " (<font color=\"#B599FC\">" + TextFormatter.formatText(currentPerson.getGender().getGlyph(), "b") + "</font>)";
+                currentPerson.setDescription(description);
             }
         }
 
