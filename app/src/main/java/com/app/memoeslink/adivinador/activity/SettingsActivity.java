@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.Screen;
+import com.app.memoeslink.adivinador.Speech;
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
@@ -38,6 +39,10 @@ public class SettingsActivity extends CommonActivity {
 
         //Set listeners
         listener = (prefs, key) -> {
+            if ((key.equals(Preference.SETTING_AUDIO_ENABLED.getTag()) && !PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED)) ||
+                    key.equals(Preference.SETTING_VOICE_ENABLED.getTag()) && !PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED))
+                Speech.getInstance(SettingsActivity.this).suppress();
+
             if (key.equals(Preference.SETTING_ACTIVE_SCREEN.getTag()))
                 Screen.setContinuance(SettingsActivity.this, PreferenceHandler.getBoolean(Preference.SETTING_ACTIVE_SCREEN));
 

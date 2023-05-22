@@ -552,7 +552,6 @@ class MainActivity : MenuActivity() {
             startActivity(intent)
         }
         PreferenceHandler.remove(Preference.TEMP_RESTART_ACTIVITY)
-        PreferenceHandler.remove(Preference.TEMP_RESTART_ACTIVITY)
 
         //Show, avoid, or hide ads
         prepareAd(false)
