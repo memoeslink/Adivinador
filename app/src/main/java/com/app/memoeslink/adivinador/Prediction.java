@@ -76,7 +76,7 @@ public class Prediction {
         return context.getString(R.string.prediction,
                 date,
                 ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter() +
-                        String.format("<a href='" + StringExtensions.DEFAULT_URL + "/action'>%s</a>", context.getString(R.string.prediction_action)) + "<br>" +
+                        context.getString(R.string.prediction_action) + "<br>" +
                         "<font color=\"#ECFE5B\">" + components.get("gibberish") + "</font>" +
                         ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter(),
                 components.get("divination"),

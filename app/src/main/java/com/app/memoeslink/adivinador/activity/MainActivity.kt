@@ -17,8 +17,11 @@ import android.os.Handler
 import android.os.Looper
 import android.speech.tts.UtteranceProgressListener
 import android.text.Editable
+import android.text.Spanned
+import android.text.TextPaint
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -43,6 +46,7 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.core.content.ContextCompat
+import androidx.core.text.toSpannable
 import androidx.lifecycle.lifecycleScope
 import androidx.multidex.BuildConfig
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -60,7 +64,6 @@ import com.app.memoeslink.adivinador.R
 import com.app.memoeslink.adivinador.Screen
 import com.app.memoeslink.adivinador.Sound
 import com.app.memoeslink.adivinador.extensions.getCurrentWindowPoint
-import com.app.memoeslink.adivinador.extensions.toClickableText
 import com.app.memoeslink.adivinador.extensions.toHtmlText
 import com.app.memoeslink.adivinador.extensions.toLinkedHtmlText
 import com.app.memoeslink.adivinador.preference.Preference
@@ -91,6 +94,7 @@ import com.memoeslink.generator.common.NameType
 import com.memoeslink.generator.common.Person
 import com.memoeslink.generator.common.StringHelper
 import com.memoeslink.generator.common.TextFormatter
+import com.memoeslink.generator.common.ZeroWidthChar
 import com.memoeslink.manager.Device
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -703,8 +707,6 @@ class MainActivity : MenuActivity() {
 
                 adView?.adListener = object : AdListener() {
                     override fun onAdLoaded() {
-                        println("AD LOADED!")
-
                         //Define ProgressBar
                         var adLayoutParams: RelativeLayout.LayoutParams =
                             RelativeLayout.LayoutParams(
@@ -744,6 +746,7 @@ class MainActivity : MenuActivity() {
                         //Set listener
                         imageView.setOnClickListener { destroyAd() }
                         status?.adAdded = true
+                        println("The ad was loaded successfully.")
                     }
 
                     override fun onAdFailedToLoad(error: LoadAdError) {
@@ -1029,18 +1032,33 @@ class MainActivity : MenuActivity() {
                     DateTimeHelper.toIso8601Date(predictionHistory?.latest?.person?.birthdate)
                 ).toHtmlText()
 
-                predictionHistory?.latest?.getFormattedContent(this@MainActivity)?.let {
-                    tvPrediction?.setText(it.toClickableText(Pair("action") {
-                        Sound.play(this@MainActivity, "crack")
-                        tvPrediction?.let {
-                            val replacement = StringHelper.replaceBetweenZeroWidthSpaces(
-                                predictionHistory?.latest?.getFormattedContent(this@MainActivity),
-                                predictionHistory?.latest?.components?.get("fortuneCookie")
-                                    .orEmpty()
-                            )
-                            tvPrediction?.text = replacement
+                predictionHistory?.latest?.getFormattedContent(this@MainActivity)?.let { content ->
+                    tvPrediction?.text = content.toHtmlText().toSpannable().also { spannable ->
+                        val clickableSpan: ClickableSpan = object : ClickableSpan() {
+                            override fun onClick(textView: View) {
+                                Sound.play(this@MainActivity, "crack")
+                                tvPrediction?.let {
+                                    val replacement = StringHelper.replaceBetweenZeroWidthSpaces(
+                                        predictionHistory?.latest?.getFormattedContent(this@MainActivity),
+                                        predictionHistory?.latest?.components?.get("fortuneCookie")
+                                            .orEmpty()
+                                    )
+                                    tvPrediction?.text = replacement.toHtmlText()
+                                }
+                            }
+
+                            override fun updateDrawState(ds: TextPaint) {
+                                super.updateDrawState(ds)
+                                ds.isUnderlineText = false
+                            }
                         }
-                    }), TextView.BufferType.SPANNABLE)
+                        val start =
+                            spannable.indexOfFirst { c -> c == ZeroWidthChar.ZERO_WIDTH_SPACE.character } + 1
+                        val end = start.plus(getString(R.string.prediction_action).length)
+                        spannable.setSpan(
+                            clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                    }
                     tvPrediction?.isClickable = true
                     tvPrediction?.movementMethod = LinkMovementMethod.getInstance()
                 }
