@@ -15,7 +15,6 @@ import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.speech.tts.UtteranceProgressListener
 import android.text.Editable
 import android.text.Spanned
 import android.text.TextPaint
@@ -63,6 +62,7 @@ import com.app.memoeslink.adivinador.PredictionHistory
 import com.app.memoeslink.adivinador.R
 import com.app.memoeslink.adivinador.Screen
 import com.app.memoeslink.adivinador.Sound
+import com.app.memoeslink.adivinador.Speech
 import com.app.memoeslink.adivinador.extensions.getCurrentWindowPoint
 import com.app.memoeslink.adivinador.extensions.toHtmlText
 import com.app.memoeslink.adivinador.extensions.toLinkedHtmlText
@@ -491,7 +491,7 @@ class MainActivity : MenuActivity() {
             if (key == Preference.DATA_STORED_PEOPLE.tag) {
                 dialog?.takeIf { it.isShowing }?.dismiss()
                 dialog = null
-                //recreate();
+                //recreate()
                 updateInquirySelector()
             }
 
@@ -552,12 +552,7 @@ class MainActivity : MenuActivity() {
             startActivity(intent)
         }
         PreferenceHandler.remove(Preference.TEMP_RESTART_ACTIVITY)
-
-        //Stop TTS if it is disabled and continues talking
-        if (speechAvailable && (!PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) || !PreferenceHandler.getBoolean(
-                Preference.SETTING_VOICE_ENABLED
-            )) && tts.isSpeaking
-        ) tts.stop()
+        PreferenceHandler.remove(Preference.TEMP_RESTART_ACTIVITY)
 
         //Show, avoid, or hide ads
         prepareAd(false)
@@ -602,7 +597,8 @@ class MainActivity : MenuActivity() {
                                 if (PreferenceHandler.getStringAsInt(Preference.SETTING_TEXT_TYPE) == 0 || PreferenceHandler.getStringAsInt(
                                         Preference.SETTING_TEXT_TYPE
                                     ) == 2
-                                ) read(tvPhrase?.text.toString())
+                                ) Speech.getInstance(this@MainActivity)
+                                    .speak(tvPhrase?.text.toString())
                             }, 350)
                         }
                         status?.seconds = 0
@@ -650,12 +646,6 @@ class MainActivity : MenuActivity() {
             it.purge()
             timer = null
         }
-
-        tts?.let {
-            it.stop()
-            it.shutdown()
-            tts = null
-        }
         super.onDestroy()
     }
 
@@ -663,20 +653,6 @@ class MainActivity : MenuActivity() {
         super.onConfigurationChanged(newConfig)
         prepareAnimation()
         prepareAd(true)
-    }
-
-    override fun onInit(i: Int) {
-        super.onInit(i)
-
-        if (speechAvailable) {
-            tts.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
-                override fun onStart(utteranceId: String?) {}
-
-                override fun onDone(utteranceId: String?) {}
-
-                override fun onError(utteranceId: String?) {}
-            })
-        }
     }
 
     private fun prepareAd(restarted: Boolean) {
@@ -814,7 +790,7 @@ class MainActivity : MenuActivity() {
 
     private fun prepareAnimation() {
         Screen.lockScreenOrientation(this@MainActivity) //Lock orientation
-        stopConfetti() //Finish previous confetti animation;
+        stopConfetti() //Finish previous confetti animation
 
         //Redraw view
         llConfetti?.requestLayout()
@@ -1071,7 +1047,7 @@ class MainActivity : MenuActivity() {
                 if (PreferenceHandler.getStringAsInt(Preference.SETTING_TEXT_TYPE) == 1 || PreferenceHandler.getStringAsInt(
                         Preference.SETTING_TEXT_TYPE
                     ) == 2
-                ) read(
+                ) Speech.getInstance(this@MainActivity).speak(
                     tvPersonInfo?.text.toString() + ". " + predictionHistory?.latest?.getContent(
                         this@MainActivity
                     )

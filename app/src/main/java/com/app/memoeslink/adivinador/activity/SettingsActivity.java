@@ -5,7 +5,6 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.speech.tts.TextToSpeech;
 import android.view.KeyEvent;
 
 import androidx.annotation.Nullable;
@@ -17,10 +16,9 @@ import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.takisoft.preferencex.PreferenceFragmentCompat;
 
-public class SettingsActivity extends CommonActivity implements TextToSpeech.OnInitListener {
+public class SettingsActivity extends CommonActivity {
     private AlertDialog dialog;
     private AudioManager audioManager;
-    private TextToSpeech tts;
     private SharedPreferences.OnSharedPreferenceChangeListener listener; //Declared as global to avoid destruction by JVM Garbage Collector
 
     @Override
@@ -29,7 +27,6 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new CustomPreferenceFragment()).commit();
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-        tts = new TextToSpeech(this, this);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
         builder.setTitle(getString(R.string.alert_app_restart_title));
@@ -103,16 +100,6 @@ public class SettingsActivity extends CommonActivity implements TextToSpeech.OnI
                 return true;
             default:
                 return super.dispatchKeyEvent(event);
-        }
-    }
-
-    @Override
-    public void onInit(int i) {
-        if (i == TextToSpeech.SUCCESS)
-            speechAvailable = isTTSAvailable(tts, PreferenceHandler.getString(Preference.SETTING_LANGUAGE, "es"));
-        else {
-            speechAvailable = false;
-            showToast(getString(R.string.toast_voice_unavailability));
         }
     }
 

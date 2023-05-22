@@ -15,23 +15,6 @@ class BaseApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        //Initialize LifecycleEventObserver
-        ProcessLifecycleOwner.get().lifecycle.addObserver(LifecycleEventObserver { _, event ->
-            when (event) {
-                Lifecycle.Event.ON_STOP -> {
-                    foreground = false
-                    println("App is running in the background.")
-                }
-
-                Lifecycle.Event.ON_START -> {
-                    foreground = true
-                    println("App is running in the foreground.")
-                }
-
-                else -> {}
-            }
-        })
-
         //Initialize SharedPreferences
         PreferenceHandler.init(applicationContext);
 
@@ -45,6 +28,27 @@ class BaseApplication : MultiDexApplication() {
 
         //Delete old databases
         deleteOldDatabases()
+
+        //Initialize LifecycleEventObserver
+        ProcessLifecycleOwner.get().lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_STOP -> {
+                    foreground = false
+                    println("App is running in the background.")
+
+                    if (!PreferenceHandler.getBoolean(Preference.SETTING_BACKGROUND_READING_ENABLED)) Speech.getInstance(
+                        this@BaseApplication
+                    ).suppress()
+                }
+
+                Lifecycle.Event.ON_START -> {
+                    foreground = true
+                    println("App is running in the foreground.")
+                }
+
+                else -> {}
+            }
+        })
     }
 
     private fun getDatabaseTrace(version: Int): File? {

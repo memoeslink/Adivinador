@@ -11,7 +11,6 @@ import android.graphics.Rect;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.LocaleList;
-import android.speech.tts.TextToSpeech;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -25,33 +24,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.app.memoeslink.adivinador.ActivityState;
+import com.app.memoeslink.adivinador.BaseApplication;
 import com.app.memoeslink.adivinador.LanguageHelper;
 import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.ResourceExplorer;
 import com.app.memoeslink.adivinador.Screen;
 import com.app.memoeslink.adivinador.Sound;
+import com.app.memoeslink.adivinador.Speech;
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.memoeslink.generator.common.StringHelper;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 
-public class CommonActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
+public class CommonActivity extends AppCompatActivity {
     protected static Toast toast;
-    protected static Locale[] locales;
-    protected boolean speechAvailable;
-    protected Bundle bundle;
-    protected TextToSpeech tts;
     protected ResourceExplorer resourceExplorer;
     protected AudioManager audioManager;
     protected ActivityState activityState = ActivityState.LAUNCHED;
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-        locales = Locale.getAvailableLocales();
     }
 
     @Override
@@ -61,9 +54,6 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         activityState = ActivityState.CREATED;
         resourceExplorer = new ResourceExplorer(CommonActivity.this);
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-        bundle = new Bundle();
-        bundle.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "");
-        tts = new TextToSpeech(this, this);
         setCustomActionBar(); //Set ActionBar aspect
     }
 
@@ -78,6 +68,10 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         super.onResume();
         activityState = ActivityState.RESUMED;
         Screen.setContinuance(CommonActivity.this, PreferenceHandler.getBoolean(Preference.SETTING_ACTIVE_SCREEN));
+
+        //Stop TTS if it is disabled and continues talking
+        if (!PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) || !PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED))
+            Speech.getInstance(CommonActivity.this).suppress();
     }
 
     @Override
@@ -90,9 +84,6 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     protected void onStop() {
         super.onStop();
         activityState = ActivityState.STOPPED;
-
-        if (speechAvailable && tts.isSpeaking() && !PreferenceHandler.getBoolean(Preference.SETTING_BACKGROUND_READING_ENABLED))
-            tts.stop();
     }
 
     @Override
@@ -125,16 +116,6 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
                 return true;
             default:
                 return super.dispatchKeyEvent(event);
-        }
-    }
-
-    @Override
-    public void onInit(int i) {
-        if (i == TextToSpeech.SUCCESS)
-            speechAvailable = isTTSAvailable(tts, PreferenceHandler.getString(Preference.SETTING_LANGUAGE, "en"));
-        else {
-            speechAvailable = false;
-            showToast(getString(R.string.toast_voice_unavailability));
         }
     }
 
@@ -198,6 +179,8 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
     }
 
     private void showToast(String text, boolean quick) {
+        if (!BaseApplication.Companion.getForeground()) return;
+
         if (toast != null) toast.cancel();
 
         if (activityState != ActivityState.PAUSED && activityState != ActivityState.STOPPED) {
@@ -224,43 +207,6 @@ public class CommonActivity extends AppCompatActivity implements TextToSpeech.On
         ClipData clipData = ClipData.newPlainText(null, text);
         clipboard.setPrimaryClip(clipData);
         showToast(getString(R.string.toast_clipboard_success));
-    }
-
-    protected final boolean isTTSAvailable(TextToSpeech tts, String language) {
-        if (tts != null) {
-            List<String> regionNames = new ArrayList<>();
-
-            for (Locale l : locales) {
-                regionNames.add(l.toString());
-            }
-            Collections.shuffle(regionNames);
-
-            int position = 0;
-            boolean anyAvailable = false;
-
-            for (int tries = regionNames.size(); tries > 0; tries--) {
-                int result = tts.setLanguage(new Locale(language, regionNames.get(position)));
-
-                if (result != TextToSpeech.LANG_MISSING_DATA && result != TextToSpeech.LANG_NOT_SUPPORTED) {
-                    anyAvailable = true;
-                    tries = 0;
-                }
-                position++;
-            }
-            return anyAvailable;
-        }
-        return false;
-    }
-
-    protected final void read(String text) {
-        if (speechAvailable) {
-            if (tts.isSpeaking()) tts.stop();
-
-            if (activityState == ActivityState.RESUMED &&
-                    PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) &&
-                    PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED))
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, bundle, "UniqueID");
-        }
     }
 
     protected final int getThemeId() {

@@ -113,7 +113,7 @@ class DonationsActivity : CommonActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        bc?.release();
+        bc?.release()
     }
 
     companion object {

@@ -177,7 +177,7 @@
     <string name="preference_enable_ads_summary_off">Muestra anuncios dentro de la aplicación</string>
     <string name="preference_enable_ads_summary_on">¡Gracias por contribuir a través de los anuncios!</string>
     <string name="preference_enable_background_reading">Habilitar lectura en segundo plano</string>
-    <string name="preference_enable_background_reading_summary">Permite leer textos aun cuando no se esté enfocando la pantalla principal</string>
+    <string name="preference_enable_background_reading_summary">Permite leer textos aun cuando no se esté usando la aplicación</string>
     <string name="preference_enable_audio">Habilitar audio</string>
     <string name="preference_enable_audio_summary">Permite habilitar y configurar el audio (sonidos, voz) de la aplicación</string>
     <string name="preference_enable_particles">Habilitar partículas</string>
