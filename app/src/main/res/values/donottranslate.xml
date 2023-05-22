@@ -2,7 +2,6 @@
 <resources>
     <string name="default_language">en</string>
     <string name="html_format"><![CDATA[%1$s]]></string>
-    <string name="link"><![CDATA[<a href=\"http:192.168.0.1\">%1$s</a>]]></string>
     <string-array name="donation_amounts">
         <item>10 MXN</item>
         <item>20 MXN</item>
