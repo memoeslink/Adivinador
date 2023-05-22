@@ -179,7 +179,7 @@
     <string name="preference_enable_audio">Enable audio</string>
     <string name="preference_enable_audio_summary">Enables and allows to configure audio (sounds, voice) from the app</string>
     <string name="preference_enable_background_reading">Enable background reading</string>
-    <string name="preference_enable_background_reading_summary">Enable text reading even if app is not being used</string>
+    <string name="preference_enable_background_reading_summary">Enable text reading even if app is not being focused</string>
     <string name="preference_enable_particles">Enable particles</string>
     <string name="preference_enable_particles_summary">Enables particle generation within the app</string>
     <string name="preference_enable_sounds">Enable sounds</string>
