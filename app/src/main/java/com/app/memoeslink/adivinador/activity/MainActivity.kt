@@ -979,13 +979,14 @@ class MainActivity : MenuActivity() {
             if (!formEntered) {
                 backupPredictions?.let { history ->
                     while (!history.isEmpty) {
-                        backupPredictions?.dispenseOldest()?.let { prediction ->
-                            if (prediction.person.hasAttribute("empty") || prediction.date == pickedDate) {
+                        history.dispenseOldest()
+                            ?.takeIf { prediction -> !prediction.person.hasAttribute("empty") && prediction.date == pickedDate }
+                            ?.let { prediction ->
                                 predictionHistory?.add(prediction)
                                 preStored = true
                             }
-                        }
-                        break
+
+                        if (preStored) break
                     }
                 }
             }
