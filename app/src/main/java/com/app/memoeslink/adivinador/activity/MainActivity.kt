@@ -544,7 +544,6 @@ class MainActivity : MenuActivity() {
 
         //Restart Activity if required
         if (PreferenceHandler.has(Preference.TEMP_RESTART_ACTIVITY)) {
-            status?.tasks?.add("forceEffects")
             val intent = intent
             finish()
             startActivity(intent)
@@ -577,7 +576,7 @@ class MainActivity : MenuActivity() {
                 status?.seconds?.let { seconds ->
                     if (seconds >= frequency && frequency != 0) {
                         this@MainActivity.runOnUiThread {
-                            //Fade out and fade in the fortune teller's text
+                            //Fade out and fade in fortune-telling text
                             if (activityState == ActivityState.RESUMED) fadeAndShowView(tvPhrase)
 
                             Handler(Looper.getMainLooper()).postDelayed({
@@ -795,31 +794,30 @@ class MainActivity : MenuActivity() {
         llConfetti?.requestLayout()
         llConfetti?.invalidate()
 
-        //Wait for measurements to be done
-        waitTasks()
-
+        //Measure screen and views
         if (status?.measuredTimes == 0L) llConfetti?.post { performMeasurements() }
         else Handler(Looper.getMainLooper()).postDelayed({ performMeasurements() }, 1000)
 
-        status?.measuredTimes?.takeIf { it < Long.MAX_VALUE }?.let {
-            status?.measuredTimes = it + 1
-        }
+        //Wait for measurements to be done
+        waitTasks()
     }
 
     private fun waitTasks() {
-        val forced = status?.tasks?.contains("forceEffects") ?: return
-        val screenMeasured = status?.screenMeasured ?: return
+        status?.let { status ->
+            if (!status.screenMeasured || status.measurements.isEmpty()) {
+                Handler(Looper.getMainLooper()).postDelayed(
+                    { waitTasks() }, 500
+                )
+                return
+            }
 
-        if (activityState == ActivityState.RESUMED || forced) {
-            if (screenMeasured) {
-                status?.measurements?.let { measurements ->
-                    val originInX: Int = measurements.getOrDefault("confettiOriginInX", 0)
-                    val originInY: Int = measurements.getOrDefault("confettiOriginInY", 0)
+            if (activityState == ActivityState.RESUMED || activityState == ActivityState.POST_RESUMED) {
+                val originInX: Int = status.measurements.getOrDefault("confettiOriginInX", 0)
+                val originInY: Int = status.measurements.getOrDefault("confettiOriginInY", 0)
 
-                    if (PreferenceHandler.getBoolean(Preference.SETTING_PARTICLES_ENABLED) && originInX > 0 && originInY > 0) throwConfetti(
-                        originInX, originInY
-                    )
-                }
+                if (PreferenceHandler.getBoolean(Preference.SETTING_PARTICLES_ENABLED) && originInX > 0 && originInY > 0) throwConfetti(
+                    originInX, originInY
+                )
 
                 if (PreferenceHandler.getStringAsInt(
                         Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
@@ -830,8 +828,7 @@ class MainActivity : MenuActivity() {
                         .setDuration(500).animate()
                 }
                 Screen.unlockScreenOrientation(this@MainActivity) //Unlock orientation
-                status?.tasks?.remove("forceEffects")
-            } else Handler(Looper.getMainLooper()).postDelayed({ waitTasks() }, 500)
+            }
         }
     }
 
@@ -845,6 +842,9 @@ class MainActivity : MenuActivity() {
         status?.measurements?.put("confettiOriginInX", (llConfetti?.width ?: 0) / 2)
         status?.measurements?.put("confettiOriginInY", (llConfetti?.height ?: 0) / 2)
         status?.screenMeasured = true
+        status?.measuredTimes?.takeIf { it < Long.MAX_VALUE }?.let {
+            status?.measuredTimes = it + 1
+        }
         println(
             "Confetti layout measures: ${status?.measurements?.get("confettiLayoutWidth")}×${
                 status?.measurements?.get(
@@ -965,7 +965,7 @@ class MainActivity : MenuActivity() {
                             vMain?.clearAnimation()
                             vMain?.visibility = View.INVISIBLE
                         }
-                    }) //Fade particles layout out
+                    }) //Fade out particles layout
             }
 
             val pickedDate = DateTimeHelper.toIso8601Date(
@@ -976,7 +976,7 @@ class MainActivity : MenuActivity() {
             val formEntered = PreferenceUtils.isEnquiryFormEntered()
             var preStoredPrediction: Prediction = Prediction.PredictionBuilder().build()
 
-            if (!formEntered) {
+            if (!formEntered || predictionHistory!!.isEmpty) {
                 backupPredictions?.let { history ->
                     while (!history.isEmpty) {
                         var done = false
@@ -1064,7 +1064,7 @@ class MainActivity : MenuActivity() {
                     detailsDialog?.show()
                 }
                 tvPick?.isEnabled = true
-                llConfetti?.animate()?.alpha(1.0f)?.duration = 200 //Fade particles layout in
+                llConfetti?.animate()?.alpha(1.0f)?.duration = 200 //Fade in particles layout
                 PreferenceHandler.remove(Preference.TEMP_BUSY)
             }
         }
