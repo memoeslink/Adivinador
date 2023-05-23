@@ -55,47 +55,37 @@
         <item>@drawable/ic_emoji_wink_1</item>
         <item>@drawable/ic_emoji_wink</item>
     </array>
-    <array name="emoticon_collection">
-        <item>@drawable/ic_emoticon_alien</item>
-        <item>@drawable/ic_emoticon_amazed</item>
-        <item>@drawable/ic_emoticon_angel</item>
-        <item>@drawable/ic_emoticon_angry</item>
-        <item>@drawable/ic_emoticon_baffled</item>
-        <item>@drawable/ic_emoticon_cheeky</item>
-        <item>@drawable/ic_emoticon_child</item>
-        <item>@drawable/ic_emoticon_clown</item>
-        <item>@drawable/ic_emoticon_confused</item>
-        <item>@drawable/ic_emoticon_cool</item>
-        <item>@drawable/ic_emoticon_crying_1</item>
-        <item>@drawable/ic_emoticon_crying</item>
-        <item>@drawable/ic_emoticon_dead</item>
-        <item>@drawable/ic_emoticon_devil</item>
-        <item>@drawable/ic_emoticon_drunk</item>
-        <item>@drawable/ic_emoticon_dull</item>
-        <item>@drawable/ic_emoticon_famous</item>
-        <item>@drawable/ic_emoticon_greed</item>
-        <item>@drawable/ic_emoticon_grinning</item>
-        <item>@drawable/ic_emoticon_happy_1</item>
-        <item>@drawable/ic_emoticon_happy</item>
-        <item>@drawable/ic_emoticon_hockey_mask</item>
-        <item>@drawable/ic_emoticon_in_love</item>
-        <item>@drawable/ic_emoticon_kiss</item>
-        <item>@drawable/ic_emoticon_laughing</item>
-        <item>@drawable/ic_emoticon_muted</item>
-        <item>@drawable/ic_emoticon_nerd_1</item>
-        <item>@drawable/ic_emoticon_nerd</item>
-        <item>@drawable/ic_emoticon_ninja</item>
-        <item>@drawable/ic_emoticon_puking</item>
-        <item>@drawable/ic_emoticon_puzzle</item>
-        <item>@drawable/ic_emoticon_romantic</item>
-        <item>@drawable/ic_emoticon_sad</item>
-        <item>@drawable/ic_emoticon_shy</item>
-        <item>@drawable/ic_emoticon_sleepy</item>
-        <item>@drawable/ic_emoticon_surprise</item>
-        <item>@drawable/ic_emoticon_sweating</item>
-        <item>@drawable/ic_emoticon_thief</item>
-        <item>@drawable/ic_emoticon_wink</item>
-        <item>@drawable/ic_emoticon_wondering</item>
+    <array name="pixel_collection">
+        <item>@drawable/ic_pixel_afraid</item>
+        <item>@drawable/ic_pixel_amazed_1</item>
+        <item>@drawable/ic_pixel_amazed_2</item>
+        <item>@drawable/ic_pixel_amazed_3</item>
+        <item>@drawable/ic_pixel_annoyed</item>
+        <item>@drawable/ic_pixel_awkward</item>
+        <item>@drawable/ic_pixel_cry</item>
+        <item>@drawable/ic_pixel_crying</item>
+        <item>@drawable/ic_pixel_die</item>
+        <item>@drawable/ic_pixel_embarrassed</item>
+        <item>@drawable/ic_pixel_evil</item>
+        <item>@drawable/ic_pixel_exhausted</item>
+        <item>@drawable/ic_pixel_ignore</item>
+        <item>@drawable/ic_pixel_innocent</item>
+        <item>@drawable/ic_pixel_joking</item>
+        <item>@drawable/ic_pixel_laugh</item>
+        <item>@drawable/ic_pixel_love_1</item>
+        <item>@drawable/ic_pixel_love_2</item>
+        <item>@drawable/ic_pixel_naughty</item>
+        <item>@drawable/ic_pixel_questioning</item>
+        <item>@drawable/ic_pixel_sad_face</item>
+        <item>@drawable/ic_pixel_shocked</item>
+        <item>@drawable/ic_pixel_shy</item>
+        <item>@drawable/ic_pixel_sick</item>
+        <item>@drawable/ic_pixel_sleeping</item>
+        <item>@drawable/ic_pixel_smile_1</item>
+        <item>@drawable/ic_pixel_smile_2</item>
+        <item>@drawable/ic_pixel_smug</item>
+        <item>@drawable/ic_pixel_sunglasses</item>
+        <item>@drawable/ic_pixel_winking_face</item>
     </array>
     <array name="smiley_collection">
         <item>@drawable/ic_smiley_3d_glasses</item>

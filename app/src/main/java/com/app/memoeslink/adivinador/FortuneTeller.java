@@ -102,8 +102,8 @@ public class FortuneTeller extends ContextWrapper {
                 initialRes = R.drawable.ic_emoji_angel;
             }
             case 2 -> {
-                arrayId = R.array.emoticon_collection;
-                initialRes = R.drawable.ic_emoticon_alien;
+                arrayId = R.array.pixel_collection;
+                initialRes = R.drawable.ic_pixel_afraid;
             }
             case 3 -> {
                 arrayId = R.array.smiley_collection;

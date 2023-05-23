@@ -1009,7 +1009,7 @@
     <string-array name="fortune_teller_aspect">
         <item>Crystal ball</item>
         <item>Emoji</item>
-        <item>Emoticon</item>
+        <item>Pixel</item>
         <item>Smiley</item>
     </string-array>
     <string-array name="greetings">
