@@ -974,7 +974,7 @@ class MainActivity : MenuActivity() {
                 dpdInquiryDate?.datePicker?.dayOfMonth ?: 1
             )
             val formEntered = PreferenceUtils.isEnquiryFormEntered()
-            var preStored = false
+            var preStoredPrediction: Prediction = Prediction.PredictionBuilder().build()
 
             if (!formEntered) {
                 backupPredictions?.let { history ->
@@ -982,16 +982,17 @@ class MainActivity : MenuActivity() {
                         history.dispenseOldest()
                             ?.takeIf { prediction -> !prediction.person.hasAttribute("empty") && prediction.date == pickedDate }
                             ?.let { prediction ->
-                                predictionHistory?.add(prediction)
-                                preStored = true
+                                preStoredPrediction = prediction
                             }
 
-                        if (preStored) break
+                        if (!preStoredPrediction.person.hasAttribute("empty")) break
                     }
                 }
             }
 
-            if (!preStored) predictionHistory?.add(generatePrediction(formEntered))
+            if (preStoredPrediction.person.hasAttribute("empty")) predictionHistory?.add(
+                generatePrediction(formEntered)
+            )
 
             this@MainActivity.runOnUiThread {
                 refreshHolders()
