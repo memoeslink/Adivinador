@@ -558,7 +558,8 @@ class MainActivity : MenuActivity() {
         updateInquirySelector()
 
         //Get a prediction
-        refreshPredictionByTrigger()
+        status?.takeIf { !it.initialized || (PreferenceUtils.hasPersonTempStored() && (PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate())) }
+            ?.let { refreshPrediction() }
 
         //Change drawable if the 'fortune teller aspect' preference was changed
         if (PreferenceHandler.has(Preference.TEMP_CHANGE_FORTUNE_TELLER)) {
@@ -604,8 +605,7 @@ class MainActivity : MenuActivity() {
 
                 status?.updateSeconds?.let { seconds ->
                     if (seconds >= refreshFrequency) {
-                        status?.tasks?.add("triggerPredictionRefresh")
-                        refreshPredictionByTrigger()
+                        if (!PreferenceUtils.hasPersonTempStored() || PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()) refreshPrediction()
                     } else {
                         if (seconds != 0 && seconds % 10 == 0) {
                             backupPredictions?.takeIf { !it.isFull }?.let {
@@ -1062,14 +1062,6 @@ class MainActivity : MenuActivity() {
                 PreferenceHandler.remove(Preference.TEMP_BUSY)
             }
         }
-    }
-
-    private fun refreshPredictionByTrigger() {
-        status?.takeIf { !it.initialized || it.tasks.contains("triggerPredictionRefresh") || (PreferenceUtils.hasPersonTempStored() && (PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate())) }
-            ?.let {
-                refreshPrediction()
-                it.tasks.remove("triggerPredictionRefresh")
-            }
     }
 
     private fun refreshHolders() {
