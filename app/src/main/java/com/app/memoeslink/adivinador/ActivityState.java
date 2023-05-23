@@ -5,6 +5,7 @@ public enum ActivityState {
     CREATED,
     STARTED,
     RESUMED,
+    POST_RESUMED,
     PAUSED,
     STOPPED,
     DESTROYED

@@ -50,7 +50,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.multidex.BuildConfig
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.app.memoeslink.adivinador.ActivityState
-import com.app.memoeslink.adivinador.ActivityStatus
 import com.app.memoeslink.adivinador.AdUnitId
 import com.app.memoeslink.adivinador.CoupleCompatibility
 import com.app.memoeslink.adivinador.Database
@@ -177,7 +176,6 @@ class MainActivity : MenuActivity() {
     private var detailsDialog: AlertDialog? = null
     private var dialog: AlertDialog? = null
     private var timer: Timer? = null
-    private var status: ActivityStatus? = ActivityStatus()
     private var fortuneTeller: FortuneTeller? = null
     private var device: Device? = null
     private var r: Randomizer? = Randomizer()
@@ -360,7 +358,7 @@ class MainActivity : MenuActivity() {
             return@setNavigationItemSelectedListener false
         }
 
-        DateTimeHelper.getCurrentDate().let {
+        DateTimeHelper.getCurrentDate()?.let {
             dpdInquiryDate = DatePickerDialog(
                 this@MainActivity, { datePicker: DatePicker, _: Int, _: Int, _: Int ->
                     PreferenceHandler.put(Preference.TEMP_YEAR_OF_ENQUIRY, datePicker.year)
@@ -394,7 +392,7 @@ class MainActivity : MenuActivity() {
 
         ivFortuneTeller?.setOnClickListener {
             PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT, 1)
-                .takeUnless { it != 0 }.let {
+                .takeUnless { it != 0 }?.let {
                     Sound.play(this@MainActivity, "jump")
                     BounceAnimation(ivFortuneTeller).setBounceDistance(7f).setNumOfBounces(1)
                         .setDuration(150).animate()
@@ -546,7 +544,7 @@ class MainActivity : MenuActivity() {
 
         //Restart Activity if required
         if (PreferenceHandler.has(Preference.TEMP_RESTART_ACTIVITY)) {
-            status?.forceEffects = true
+            status?.tasks?.add("forceEffects")
             val intent = intent
             finish()
             startActivity(intent)
@@ -605,10 +603,12 @@ class MainActivity : MenuActivity() {
                 }
 
                 status?.updateSeconds?.let { seconds ->
-                    if (seconds >= refreshFrequency) refreshPredictionByTrigger()
-                    else {
+                    if (seconds >= refreshFrequency) {
+                        status?.tasks?.add("triggerPredictionRefresh")
+                        refreshPredictionByTrigger()
+                    } else {
                         if (seconds != 0 && seconds % 10 == 0) {
-                            backupPredictions?.takeIf { !it.isFull }.let {
+                            backupPredictions?.takeIf { !it.isFull }?.let {
                                 lifecycleScope.launch {
                                     backupPredictions?.add(generatePrediction(false))
                                 }
@@ -807,10 +807,10 @@ class MainActivity : MenuActivity() {
     }
 
     private fun waitTasks() {
-        val forceEffects = status?.forceEffects ?: return
+        val forced = status?.tasks?.contains("forceEffects") ?: return
         val screenMeasured = status?.screenMeasured ?: return
 
-        if (activityState == ActivityState.RESUMED || forceEffects) {
+        if (activityState == ActivityState.RESUMED || forced) {
             if (screenMeasured) {
                 status?.measurements?.let { measurements ->
                     val originInX: Int = measurements.getOrDefault("confettiOriginInX", 0)
@@ -830,7 +830,7 @@ class MainActivity : MenuActivity() {
                         .setDuration(500).animate()
                 }
                 Screen.unlockScreenOrientation(this@MainActivity) //Unlock orientation
-                status?.forceEffects = false
+                status?.tasks?.remove("forceEffects")
             } else Handler(Looper.getMainLooper()).postDelayed({ waitTasks() }, 500)
         }
     }
@@ -977,15 +977,15 @@ class MainActivity : MenuActivity() {
             var preStored = false
 
             if (!formEntered) {
-                backupPredictions?.takeIf { !it.isEmpty }?.let {
-                    while (!it.isEmpty) {
-                        val prediction = backupPredictions?.dispenseOldest()
-
-                        if (prediction?.date == pickedDate) {
-                            predictionHistory?.add(prediction)
-                            preStored = true
-                            break
+                backupPredictions?.let { history ->
+                    while (!history.isEmpty) {
+                        backupPredictions?.dispenseOldest()?.let { prediction ->
+                            if (prediction.person.hasAttribute("empty") || prediction.date == pickedDate) {
+                                predictionHistory?.add(prediction)
+                                preStored = true
+                            }
                         }
+                        break
                     }
                 }
             }
@@ -1065,7 +1065,11 @@ class MainActivity : MenuActivity() {
     }
 
     private fun refreshPredictionByTrigger() {
-        if (!PreferenceUtils.hasPersonTempStored() || PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()) refreshPrediction()
+        status?.takeIf { !it.initialized || it.tasks.contains("triggerPredictionRefresh") || (PreferenceUtils.hasPersonTempStored() && (PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate())) }
+            ?.let {
+                refreshPrediction()
+                it.tasks.remove("triggerPredictionRefresh")
+            }
     }
 
     private fun refreshHolders() {
@@ -1164,10 +1168,10 @@ class MainActivity : MenuActivity() {
     }
 
     private fun generatePrediction(formEntered: Boolean): Prediction {
-        var prediction: Prediction
+        var prediction: Prediction = Prediction.PredictionBuilder().build()
 
-        status?.coroutineStarted?.takeIf { !it }.let {
-            status?.coroutineStarted = true
+        status?.tasks?.takeIf { !it.contains("generatePrediction") }?.let {
+            status?.tasks?.add("generatePrediction")
             val enquiryDate = PreferenceUtils.getEnquiryDate()
             val person: Person
 
@@ -1181,7 +1185,7 @@ class MainActivity : MenuActivity() {
             }
             val divination = Divination(this@MainActivity, person, enquiryDate)
             prediction = divination.getPrediction(person)
-            status?.coroutineStarted = false
+            status?.tasks?.remove("generatePrediction")
         }
         return prediction
     }
@@ -1207,13 +1211,13 @@ class MainActivity : MenuActivity() {
     }
 
     private fun displayGeneratedName() {
-        status?.nameInGeneration?.takeIf { !it }.let {
-            status?.nameInGeneration = true
+        status?.tasks?.takeIf { !it.contains("generateName") }?.let {
+            status?.tasks?.add("generateName")
             spnNameType?.isEnabled = false
             val nameType = NameType.values()[spnNameType?.selectedItemPosition ?: 0]
             tvNameBox?.setText(GeneratorManager(Locale("xx")).nameGenerator.getNameOrRetry(nameType))
             spnNameType?.isEnabled = true
-            status?.nameInGeneration = false
+            status?.tasks?.remove("generateName")
         }
     }
 

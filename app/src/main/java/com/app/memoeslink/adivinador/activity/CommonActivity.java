@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.app.memoeslink.adivinador.ActivityState;
+import com.app.memoeslink.adivinador.ActivityStatus;
 import com.app.memoeslink.adivinador.BaseApplication;
 import com.app.memoeslink.adivinador.LanguageHelper;
 import com.app.memoeslink.adivinador.R;
@@ -42,6 +43,7 @@ public class CommonActivity extends AppCompatActivity {
     protected ResourceExplorer resourceExplorer;
     protected AudioManager audioManager;
     protected ActivityState activityState = ActivityState.LAUNCHED;
+    protected ActivityStatus status = new ActivityStatus();
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
@@ -72,6 +74,13 @@ public class CommonActivity extends AppCompatActivity {
         //Stop TTS if it is disabled and continues talking
         if (!PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) || !PreferenceHandler.getBoolean(Preference.SETTING_VOICE_ENABLED))
             Speech.getInstance(CommonActivity.this).suppress();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        activityState = ActivityState.POST_RESUMED;
+        status.setInitialized(true);
     }
 
     @Override
