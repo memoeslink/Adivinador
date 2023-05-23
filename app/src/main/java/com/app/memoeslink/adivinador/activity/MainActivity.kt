@@ -577,7 +577,9 @@ class MainActivity : MenuActivity() {
                     if (seconds >= frequency && frequency != 0) {
                         this@MainActivity.runOnUiThread {
                             //Fade out and fade in fortune-telling text
-                            if (activityState == ActivityState.RESUMED) fadeAndShowView(tvPhrase)
+                            if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) fadeAndShowView(
+                                tvPhrase
+                            )
 
                             Handler(Looper.getMainLooper()).postDelayed({
                                 //Change drawable for the fortune teller
@@ -811,7 +813,7 @@ class MainActivity : MenuActivity() {
                 return
             }
 
-            if (activityState == ActivityState.RESUMED || activityState == ActivityState.POST_RESUMED) {
+            if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) {
                 val originInX: Int = status.measurements.getOrDefault("confettiOriginInX", 0)
                 val originInY: Int = status.measurements.getOrDefault("confettiOriginInY", 0)
 
@@ -1044,7 +1046,10 @@ class MainActivity : MenuActivity() {
                     tvPrediction?.movementMethod = LinkMovementMethod.getInstance()
                 }
 
-                if (activityState == ActivityState.RESUMED && !isViewVisible(tvPersonInfo)) showQuickToast(
+                if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED && !isViewVisible(
+                        tvPersonInfo
+                    )
+                ) showQuickToast(
                     predictionHistory?.latest?.person?.descriptor
                 )
 
