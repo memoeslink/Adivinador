@@ -979,20 +979,24 @@ class MainActivity : MenuActivity() {
             if (!formEntered) {
                 backupPredictions?.let { history ->
                     while (!history.isEmpty) {
+                        var done = false
+
                         history.dispenseOldest()
                             ?.takeIf { prediction -> !prediction.person.hasAttribute("empty") && prediction.date == pickedDate }
                             ?.let { prediction ->
                                 preStoredPrediction = prediction
+                                done = true
                             }
 
-                        if (!preStoredPrediction.person.hasAttribute("empty")) break
+                        if (done) break
                     }
                 }
             }
 
-            if (preStoredPrediction.person.hasAttribute("empty")) predictionHistory?.add(
-                generatePrediction(formEntered)
+            if (!preStoredPrediction.person.hasAttribute("empty")) predictionHistory?.add(
+                preStoredPrediction
             )
+            else predictionHistory?.add(generatePrediction(formEntered))
 
             this@MainActivity.runOnUiThread {
                 refreshHolders()
