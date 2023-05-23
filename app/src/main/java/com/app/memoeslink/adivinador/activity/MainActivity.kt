@@ -108,8 +108,8 @@ import kotlin.system.exitProcess
 
 
 class MainActivity : MenuActivity() {
-    private val particleColors = arrayOf(
-        intArrayOf(
+    private val particleColors = mapOf(
+        "legacy" to intArrayOf(
             Color.BLUE,
             Color.argb(255, 0, 128, 255),
             Color.argb(255, 51, 153, 255),
@@ -117,7 +117,7 @@ class MainActivity : MenuActivity() {
             Color.argb(125, 0, 128, 255),
             Color.argb(125, 51, 153, 255),
             Color.argb(125, 0, 192, 199)
-        ), intArrayOf(
+        ), "default" to intArrayOf(
             Color.YELLOW,
             Color.argb(255, 251, 255, 147),
             Color.argb(255, 224, 228, 124),
@@ -391,12 +391,14 @@ class MainActivity : MenuActivity() {
         }
 
         ivFortuneTeller?.setOnClickListener {
-            PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT, 1)
-                .takeUnless { it != 0 }?.let {
-                    Sound.play(this@MainActivity, "jump")
-                    BounceAnimation(ivFortuneTeller).setBounceDistance(7f).setNumOfBounces(1)
-                        .setDuration(150).animate()
-                }
+            if (PreferenceHandler.getStringAsInt(
+                    Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
+                ) != 0
+            ) {
+                Sound.play(this@MainActivity, "jump")
+                BounceAnimation(ivFortuneTeller).setBounceDistance(7f).setNumOfBounces(1)
+                    .setDuration(150).animate()
+            }
         }
 
         ivDetailsLogo?.setOnClickListener {
@@ -861,10 +863,12 @@ class MainActivity : MenuActivity() {
     }
 
     private fun throwConfetti(originInX: Int, originInY: Int) {
-        val allPossibleConfetti = Utils.generateConfettiBitmaps(
-            particleColors[PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT)],
-            10
-        )
+        val colors = if (PreferenceHandler.getStringAsInt(
+                Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
+            ) == 0
+        ) particleColors["legacy"]
+        else particleColors["default"]
+        val allPossibleConfetti = Utils.generateConfettiBitmaps(colors, 10)
         val generator = ConfettoGenerator { random: Random ->
             val bitmap = allPossibleConfetti[random.nextInt(allPossibleConfetti.size)]
             BitmapConfetto(bitmap)

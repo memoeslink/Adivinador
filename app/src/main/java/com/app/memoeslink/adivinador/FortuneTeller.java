@@ -96,7 +96,7 @@ public class FortuneTeller extends ContextWrapper {
         int arrayId;
         int initialRes;
 
-        switch (PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT)) {
+        switch (PreferenceHandler.getStringAsInt(Preference.SETTING_FORTUNE_TELLER_ASPECT, 1)) {
             case 1 -> {
                 arrayId = R.array.emoji_collection;
                 initialRes = R.drawable.ic_emoji_angel;
