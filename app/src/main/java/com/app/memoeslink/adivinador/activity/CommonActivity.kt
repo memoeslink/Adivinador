@@ -116,26 +116,25 @@ open class CommonActivity : AppCompatActivity() {
     }
 
     override fun attachBaseContext(context: Context) {
-        var context = context
+        var currentContext = context
         val language = LanguageHelper.getLanguage()
 
         if (StringHelper.isNotNullOrEmpty(language)) {
             val locale = Locale(language)
             Locale.setDefault(locale)
-            val res = context.resources
+            val res = currentContext.resources
             val config = res.configuration
             config.setLocale(locale)
             val localeList = LocaleList(locale)
             LocaleList.setDefault(localeList)
             config.setLocales(localeList)
-            context = context.createConfigurationContext(config)
+            currentContext = currentContext.createConfigurationContext(config)
         }
-        super.attachBaseContext(context)
+        super.attachBaseContext(currentContext)
     }
 
     protected fun setCustomActionBar() {
-        val inflater =
-            this.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater //Set ActionBar params
+        val inflater: LayoutInflater = this@CommonActivity.layoutInflater
         val v = inflater.inflate(R.layout.actionbar, null)
         val params = ActionBar.LayoutParams(
             ActionBar.LayoutParams.MATCH_PARENT,
@@ -143,8 +142,6 @@ open class CommonActivity : AppCompatActivity() {
             Gravity.CENTER_VERTICAL
         )
         params.gravity = Gravity.CENTER_VERTICAL
-
-        //Customize ActionBar
         val actionBar = supportActionBar
 
         if (actionBar != null) {
