@@ -9,7 +9,6 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.app.memoeslink.adivinador.R
-import com.app.memoeslink.adivinador.activity.DonationsActivity
 import com.google.android.material.navigation.NavigationView
 
 open class MenuActivity : CommonActivity() {

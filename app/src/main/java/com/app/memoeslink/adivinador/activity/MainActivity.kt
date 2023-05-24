@@ -237,7 +237,7 @@ class MainActivity : MenuActivity() {
         givDetailsPersonImage = vDetails?.findViewById(R.id.dialog_person_image)
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
-        navigationView.itemIconTintList = null
+        navigationView?.itemIconTintList = null
 
         fortuneTeller = FortuneTeller(this@MainActivity)
         device = Device(this@MainActivity)
@@ -332,7 +332,7 @@ class MainActivity : MenuActivity() {
             srlRefresher?.isRefreshing = false
         }
 
-        navigationView.setNavigationItemSelectedListener { item: MenuItem ->
+        navigationView?.setNavigationItemSelectedListener { item: MenuItem ->
             if (PreferenceHandler.getBoolean(Preference.SETTING_HIDE_DRAWER, true)) closeDrawer()
 
             when (item.itemId) {
@@ -559,8 +559,7 @@ class MainActivity : MenuActivity() {
         updateInquirySelector()
 
         //Get a prediction
-        status?.takeIf { !it.initialized || (PreferenceUtils.hasPersonTempStored() && (PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate())) }
-            ?.let { refreshPrediction() }
+        if (!status.initialized || (PreferenceUtils.hasPersonTempStored() && (PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()))) refreshPrediction()
 
         //Change drawable if the 'fortune teller aspect' preference was changed
         if (PreferenceHandler.has(Preference.TEMP_CHANGE_FORTUNE_TELLER)) {
@@ -575,63 +574,56 @@ class MainActivity : MenuActivity() {
                 val refreshFrequency =
                     PreferenceHandler.getStringAsInt(Preference.SETTING_UPDATE_TIME, 60)
 
-                status?.seconds?.let { seconds ->
-                    if (seconds >= frequency && frequency != 0) {
-                        this@MainActivity.runOnUiThread {
-                            //Fade out and fade in fortune-telling text
-                            if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) fadeAndShowView(
-                                tvPhrase
+                if (status.seconds >= frequency && frequency != 0) {
+                    this@MainActivity.runOnUiThread {
+                        //Fade out and fade in fortune-telling text
+                        if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) tvPhrase?.let {
+                            fadeAndShowView(
+                                it
                             )
-
-                            Handler(Looper.getMainLooper()).postDelayed({
-                                //Change drawable for the fortune teller
-                                fortuneTeller?.randomAppearance?.let {
-                                    ivFortuneTeller?.setImageResource(
-                                        it
-                                    )
-                                }
-
-                                //Get random text from the fortune teller
-                                tvPhrase?.text = fortuneTeller?.talk().toHtmlText()
-
-                                //Read the text
-                                if (PreferenceHandler.getStringAsInt(Preference.SETTING_TEXT_TYPE) == 0 || PreferenceHandler.getStringAsInt(
-                                        Preference.SETTING_TEXT_TYPE
-                                    ) == 2
-                                ) Speech.getInstance(this@MainActivity)
-                                    .speak(tvPhrase?.text.toString())
-                            }, 350)
                         }
-                        status?.seconds = 0
-                    } else status?.seconds = seconds + 1
-                }
 
-                status?.updateSeconds?.let { seconds ->
-                    if (seconds >= refreshFrequency) {
-                        if (!PreferenceUtils.hasPersonTempStored() || PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()) refreshPrediction()
-                    } else {
-                        if (seconds != 0 && seconds % 10 == 0) {
-                            backupPredictions?.takeIf { !it.isFull }?.let {
-                                lifecycleScope.launch {
-                                    backupPredictions?.add(generatePrediction(false))
-                                }
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            //Change drawable for the fortune teller
+                            fortuneTeller?.randomAppearance?.let {
+                                ivFortuneTeller?.setImageResource(
+                                    it
+                                )
+                            }
+
+                            //Get random text from the fortune teller
+                            tvPhrase?.text = fortuneTeller?.talk().toHtmlText()
+
+                            //Read the text
+                            if (PreferenceHandler.getStringAsInt(Preference.SETTING_TEXT_TYPE) == 0 || PreferenceHandler.getStringAsInt(
+                                    Preference.SETTING_TEXT_TYPE
+                                ) == 2
+                            ) Speech.getInstance(this@MainActivity).speak(tvPhrase?.text.toString())
+                        }, 350)
+                    }
+                    status.seconds = 0
+                } else status.seconds++
+
+                if (status.updateSeconds >= refreshFrequency) {
+                    if (!PreferenceUtils.hasPersonTempStored() || PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()) refreshPrediction()
+                } else {
+                    if (status.updateSeconds != 0 && status.updateSeconds % 10 == 0) {
+                        backupPredictions?.takeIf { !it.isFull }?.let {
+                            lifecycleScope.launch {
+                                backupPredictions?.add(generatePrediction(false))
                             }
                         }
-                        status?.updateSeconds = seconds + 1
                     }
+                    status.updateSeconds++
                 }
 
-                status?.resourceSeconds?.let { seconds ->
-                    if (seconds >= 1800) status?.resourceSeconds = 0
-                    else status?.resourceSeconds = seconds + 1
-                }
+                if (status.resourceSeconds >= 1800) status.resourceSeconds = 0
+                else status.resourceSeconds++
 
-                status?.adSeconds?.let { seconds ->
-                    if (seconds >= 3600) {
-                        showInterstitialAd()
-                        status?.adSeconds = 0
-                    } else status?.adSeconds = seconds + 1
-                }
+                if (status.adSeconds >= 3600) {
+                    showInterstitialAd()
+                    status.adSeconds = 0
+                } else status.adSeconds++
             }
         }
         prepareAnimation()
@@ -659,12 +651,11 @@ class MainActivity : MenuActivity() {
 
     private fun prepareAd(restarted: Boolean) {
         if (PreferenceHandler.getBoolean(Preference.SETTING_ADS_ENABLED, true)) {
-            status?.adPaused?.takeIf { it }?.let { return }
+            if (status.adPaused) return
 
-            status?.adAdded?.takeIf { !it || restarted || PreferenceHandler.getBoolean(Preference.TEMP_RESTART_ADS) }
-                ?: destroyAd()
+            if (status.adAdded || !restarted) destroyAd()
 
-            status?.adAdded?.takeIf { !it }?.let {
+            if (!status.adAdded) {
                 adView = AdView(this@MainActivity)
                 adView?.setAdSize(AdSize.BANNER)
                 adView?.adUnitId = AdUnitId.getBannerId()
@@ -723,7 +714,7 @@ class MainActivity : MenuActivity() {
 
                         //Set listener
                         imageView.setOnClickListener { destroyAd() }
-                        status?.adAdded = true
+                        status.adAdded = true
                         println("The ad was loaded successfully.")
                     }
 
@@ -743,15 +734,16 @@ class MainActivity : MenuActivity() {
     }
 
     private fun destroyAd() {
-        if (adView != null) {
+        if (adView != null && !PreferenceHandler.getBoolean(Preference.TEMP_RESTART_ADS)) {
+            PreferenceHandler.put(Preference.TEMP_RESTART_ADS, true)
             val params = vMain?.layoutParams
             params?.height = 0
             adView?.destroy()
             rlAdContainer?.visibility = View.GONE
             rlAdContainer?.removeAllViews()
             adView = null
+            status.adAdded = false
             PreferenceHandler.remove(Preference.TEMP_RESTART_ADS)
-            status?.adAdded = false
         }
     }
 
@@ -799,7 +791,7 @@ class MainActivity : MenuActivity() {
         llConfetti?.invalidate()
 
         //Measure screen and views
-        if (status?.measuredTimes == 0L) llConfetti?.post { performMeasurements() }
+        if (status.measuredTimes == 0L) llConfetti?.post { performMeasurements() }
         else Handler(Looper.getMainLooper()).postDelayed({ performMeasurements() }, 1000)
 
         //Wait for measurements to be done
@@ -807,57 +799,50 @@ class MainActivity : MenuActivity() {
     }
 
     private fun waitTasks() {
-        status?.let { status ->
-            if (!status.screenMeasured || status.measurements.isEmpty()) {
-                Handler(Looper.getMainLooper()).postDelayed(
-                    { waitTasks() }, 500
-                )
-                return
+        if (!status.screenMeasured || status.measurements.isEmpty()) {
+            Handler(Looper.getMainLooper()).postDelayed(
+                { waitTasks() }, 500
+            )
+            return
+        }
+
+        if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) {
+            val originInX: Int = status.measurements.getOrDefault("confettiOriginInX", 0)
+            val originInY: Int = status.measurements.getOrDefault("confettiOriginInY", 0)
+
+            if (PreferenceHandler.getBoolean(Preference.SETTING_PARTICLES_ENABLED) && originInX > 0 && originInY > 0) throwConfetti(
+                originInX, originInY
+            )
+
+            if (PreferenceHandler.getStringAsInt(
+                    Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
+                ) != 0
+            ) {
+                Sound.play(this@MainActivity, "jump")
+                BounceAnimation(ivFortuneTeller).setBounceDistance(20f).setNumOfBounces(1)
+                    .setDuration(500).animate()
             }
-
-            if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) {
-                val originInX: Int = status.measurements.getOrDefault("confettiOriginInX", 0)
-                val originInY: Int = status.measurements.getOrDefault("confettiOriginInY", 0)
-
-                if (PreferenceHandler.getBoolean(Preference.SETTING_PARTICLES_ENABLED) && originInX > 0 && originInY > 0) throwConfetti(
-                    originInX, originInY
-                )
-
-                if (PreferenceHandler.getStringAsInt(
-                        Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
-                    ) != 0
-                ) {
-                    Sound.play(this@MainActivity, "jump")
-                    BounceAnimation(ivFortuneTeller).setBounceDistance(20f).setNumOfBounces(1)
-                        .setDuration(500).animate()
-                }
-                Screen.unlockScreenOrientation(this@MainActivity) //Unlock orientation
-            }
+            Screen.unlockScreenOrientation(this@MainActivity) //Unlock orientation
         }
     }
 
     private fun performMeasurements() {
-        status?.screenMeasured = false
+        status.screenMeasured = false
         val point: Point = windowManager.getCurrentWindowPoint()
-        status?.screenWidth = point.x
-        status?.screenHeight = point.y
-        status?.measurements?.put("confettiLayoutWidth", llConfetti?.width ?: 0)
-        status?.measurements?.put("confettiLayoutHeight", llConfetti?.height ?: 0)
-        status?.measurements?.put("confettiOriginInX", (llConfetti?.width ?: 0) / 2)
-        status?.measurements?.put("confettiOriginInY", (llConfetti?.height ?: 0) / 2)
-        status?.screenMeasured = true
-        status?.measuredTimes?.takeIf { it < Long.MAX_VALUE }?.let {
-            status?.measuredTimes = it + 1
-        }
+        status.screenWidth = point.x
+        status.screenHeight = point.y
+        status.measurements["confettiLayoutWidth"] = llConfetti?.width ?: 0
+        status.measurements["confettiLayoutHeight"] = llConfetti?.height ?: 0
+        status.measurements["confettiOriginInX"] = (llConfetti?.width ?: 0) / 2
+        status.measurements["confettiOriginInY"] = (llConfetti?.height ?: 0) / 2
+        status.screenMeasured = true
+
+        if (status.measuredTimes < Long.MAX_VALUE) status.measuredTimes++
         println(
-            "Confetti layout measures: ${status?.measurements?.get("confettiLayoutWidth")}×${
-                status?.measurements?.get(
-                    "confettiLayoutHeight"
-                )
-            } [Confetti origin in: ${status?.measurements?.get("confettiOriginInX")} axis X; ${
-                status?.measurements?.get(
-                    "confettiOriginInY"
-                )
+            "Confetti layout measures: ${status.measurements["confettiLayoutWidth"]}×${
+                status.measurements["confettiLayoutHeight"]
+            } [Confetti origin in: ${status.measurements["confettiOriginInX"]} axis X; ${
+                status.measurements["confettiOriginInY"]
             } axis Y]"
         )
     }
@@ -882,9 +867,7 @@ class MainActivity : MenuActivity() {
             .setTargetRotationalVelocity(360f).enableFadeOut(Utils.getDefaultAlphaInterpolator())
             .animate()
 
-        status?.confettiThrown?.takeIf { it < Long.MAX_VALUE }?.let {
-            status?.confettiThrown = it + 1
-        }
+        if (status.confettiThrown < Long.MAX_VALUE) status.confettiThrown++
     }
 
     private fun stopConfetti() {
@@ -962,7 +945,7 @@ class MainActivity : MenuActivity() {
 
             this@MainActivity.runOnUiThread {
                 tvPick?.isEnabled = false
-                status?.updateSeconds = 0
+                status.updateSeconds = 0
 
                 llConfetti?.animate()?.alpha(0.0f)?.setDuration(200)
                     ?.setListener(object : AnimatorListenerAdapter() {
@@ -1053,9 +1036,7 @@ class MainActivity : MenuActivity() {
                 if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED && !isViewVisible(
                         tvPersonInfo
                     )
-                ) showQuickToast(
-                    predictionHistory?.latest?.person?.descriptor
-                )
+                ) showToast(predictionHistory?.latest?.person?.descriptor, true)
 
                 //Read the text
                 if (PreferenceHandler.getStringAsInt(Preference.SETTING_TEXT_TYPE) == 1 || PreferenceHandler.getStringAsInt(
@@ -1110,51 +1091,51 @@ class MainActivity : MenuActivity() {
 
     private fun refreshNavigationView() {
         PreferenceUtils.hasPersonTempStored().let {
-            navigationView.menu.findItem(R.id.nav_data_entry).isEnabled = !it
-            navigationView.menu.findItem(R.id.nav_data_entry).icon?.alpha = if (it) 125 else 255
-            navigationView.menu.findItem(R.id.nav_reload).isEnabled = !it
-            navigationView.menu.findItem(R.id.nav_reload).icon?.alpha = if (it) 125 else 255
-            navigationView.menu.findItem(R.id.nav_save).isEnabled = !it
-            navigationView.menu.findItem(R.id.nav_save).icon?.alpha = if (it) 125 else 255
-            navigationView.menu.findItem(R.id.nav_clear).isEnabled = it
-            navigationView.menu.findItem(R.id.nav_clear).icon?.alpha = if (it) 255 else 125
+            navigationView?.menu?.findItem(R.id.nav_data_entry)?.isEnabled = !it
+            navigationView?.menu?.findItem(R.id.nav_data_entry)?.icon?.alpha = if (it) 125 else 255
+            navigationView?.menu?.findItem(R.id.nav_reload)?.isEnabled = !it
+            navigationView?.menu?.findItem(R.id.nav_reload)?.icon?.alpha = if (it) 125 else 255
+            navigationView?.menu?.findItem(R.id.nav_save)?.isEnabled = !it
+            navigationView?.menu?.findItem(R.id.nav_save)?.icon?.alpha = if (it) 125 else 255
+            navigationView?.menu?.findItem(R.id.nav_clear)?.isEnabled = it
+            navigationView?.menu?.findItem(R.id.nav_clear)?.icon?.alpha = if (it) 255 else 125
         }
 
         when {
             people.isEmpty() -> {
-                navigationView.menu.findItem(R.id.nav_inquiry).isVisible = false
-                navigationView.menu.findItem(R.id.nav_inquiry).isEnabled = false
-                navigationView.menu.findItem(R.id.nav_inquiry).icon?.alpha = 125
-                navigationView.menu.findItem(R.id.nav_selector).isVisible = false
-                navigationView.menu.findItem(R.id.nav_selector).isEnabled = false
-                navigationView.menu.findItem(R.id.nav_selector).icon?.alpha = 125
+                navigationView?.menu?.findItem(R.id.nav_inquiry)?.isVisible = false
+                navigationView?.menu?.findItem(R.id.nav_inquiry)?.isEnabled = false
+                navigationView?.menu?.findItem(R.id.nav_inquiry)?.icon?.alpha = 125
+                navigationView?.menu?.findItem(R.id.nav_selector)?.isVisible = false
+                navigationView?.menu?.findItem(R.id.nav_selector)?.isEnabled = false
+                navigationView?.menu?.findItem(R.id.nav_selector)?.icon?.alpha = 125
             }
 
             people.size == 1 -> {
-                navigationView.menu.findItem(R.id.nav_inquiry).title =
+                navigationView?.menu?.findItem(R.id.nav_inquiry)?.title =
                     getString(R.string.inquiry, people[0].descriptor)
 
                 if (PreferenceUtils.hasPersonTempStored()) {
-                    navigationView.menu.findItem(R.id.nav_inquiry).isVisible = true
-                    navigationView.menu.findItem(R.id.nav_inquiry).isEnabled = false
-                    navigationView.menu.findItem(R.id.nav_inquiry).icon?.alpha = 125
+                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.isVisible = true
+                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.isEnabled = false
+                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.icon?.alpha = 125
                 } else {
-                    navigationView.menu.findItem(R.id.nav_inquiry).isVisible = true
-                    navigationView.menu.findItem(R.id.nav_inquiry).isEnabled = true
-                    navigationView.menu.findItem(R.id.nav_inquiry).icon?.alpha = 255
+                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.isVisible = true
+                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.isEnabled = true
+                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.icon?.alpha = 255
                 }
-                navigationView.menu.findItem(R.id.nav_selector).isVisible = false
-                navigationView.menu.findItem(R.id.nav_selector).isEnabled = false
-                navigationView.menu.findItem(R.id.nav_selector).icon?.alpha = 125
+                navigationView?.menu?.findItem(R.id.nav_selector)?.isVisible = false
+                navigationView?.menu?.findItem(R.id.nav_selector)?.isEnabled = false
+                navigationView?.menu?.findItem(R.id.nav_selector)?.icon?.alpha = 125
             }
 
             else -> {
-                navigationView.menu.findItem(R.id.nav_inquiry).isVisible = false
-                navigationView.menu.findItem(R.id.nav_inquiry).isEnabled = false
-                navigationView.menu.findItem(R.id.nav_inquiry).icon?.alpha = 125
-                navigationView.menu.findItem(R.id.nav_selector).isVisible = true
-                navigationView.menu.findItem(R.id.nav_selector).isEnabled = true
-                navigationView.menu.findItem(R.id.nav_selector).icon?.alpha = 255
+                navigationView?.menu?.findItem(R.id.nav_inquiry)?.isVisible = false
+                navigationView?.menu?.findItem(R.id.nav_inquiry)?.isEnabled = false
+                navigationView?.menu?.findItem(R.id.nav_inquiry)?.icon?.alpha = 125
+                navigationView?.menu?.findItem(R.id.nav_selector)?.isVisible = true
+                navigationView?.menu?.findItem(R.id.nav_selector)?.isEnabled = true
+                navigationView?.menu?.findItem(R.id.nav_selector)?.icon?.alpha = 255
             }
         }
     }
@@ -1177,8 +1158,8 @@ class MainActivity : MenuActivity() {
     private fun generatePrediction(formEntered: Boolean): Prediction {
         var prediction: Prediction = Prediction.PredictionBuilder().build()
 
-        status?.tasks?.takeIf { !it.contains("generatePrediction") }?.let {
-            status?.tasks?.add("generatePrediction")
+        if (!status.tasks.contains("generatePrediction")) {
+            status.tasks.add("generatePrediction")
             val enquiryDate = PreferenceUtils.getEnquiryDate()
             val person: Person
 
@@ -1192,7 +1173,7 @@ class MainActivity : MenuActivity() {
             }
             val divination = Divination(this@MainActivity, person, enquiryDate)
             prediction = divination.getPrediction(person)
-            status?.tasks?.remove("generatePrediction")
+            status.tasks.remove("generatePrediction")
         }
         return prediction
     }
@@ -1218,13 +1199,13 @@ class MainActivity : MenuActivity() {
     }
 
     private fun displayGeneratedName() {
-        status?.tasks?.takeIf { !it.contains("generateName") }?.let {
-            status?.tasks?.add("generateName")
+        if (!status.tasks.contains("generateName")) {
+            status.tasks.add("generateName")
             spnNameType?.isEnabled = false
             val nameType = NameType.values()[spnNameType?.selectedItemPosition ?: 0]
             tvNameBox?.setText(GeneratorManager(Locale("xx")).nameGenerator.getNameOrRetry(nameType))
             spnNameType?.isEnabled = true
-            status?.tasks?.remove("generateName")
+            status.tasks.remove("generateName")
         }
     }
 
