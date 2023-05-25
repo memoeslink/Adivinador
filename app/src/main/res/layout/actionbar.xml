@@ -22,7 +22,7 @@
             android:layout_marginBottom="7.5dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher_foreground" />
 
         <TextView
             android:layout_width="wrap_content"
