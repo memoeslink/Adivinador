@@ -5,24 +5,17 @@ import android.media.MediaPlayer;
 
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
-
-import java.io.IOException;
+import com.memoeslink.generator.common.StringHelper;
 
 public class Sound {
     private static MediaPlayer mediaPlayer;
 
     public static boolean play(Context context, String soundResource) {
         if (BaseApplication.Companion.getForeground() && PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) && PreferenceHandler.getBoolean(Preference.SETTING_SOUNDS_ENABLED)) {
-            if (soundResource != null) {
+            if (StringHelper.isNotNullOrEmpty(soundResource)) {
                 try {
                     int soundId = context.getResources().getIdentifier(soundResource, "raw", context.getPackageName());
                     mediaPlayer = MediaPlayer.create(context, soundId);
-
-                    try {
-                        mediaPlayer.prepare();
-                    } catch (IllegalStateException | IOException e) {
-                        e.printStackTrace();
-                    }
 
                     mediaPlayer.setOnCompletionListener(mp -> {
                         mp.reset();

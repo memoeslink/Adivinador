@@ -58,13 +58,9 @@ public class Divination extends ContextWrapper {
         //Get prediction information
         String fortuneCookie;
 
-        if (r.getBoolean()) {
+        if (r.getBoolean())
             fortuneCookie = resourceExplorer.getDatabaseFinder().getLegacyFortuneCookie();
-
-            //Filter profanities
-            TextFilter textFilter = new TextFilterFactory(getBaseContext()).createTextFilter();
-            fortuneCookie = textFilter.censor(fortuneCookie);
-        } else {
+        else {
             fortuneCookie = StringHelper.quote(resourceExplorer.getDatabaseFinder().getFortuneCookie());
             fortuneCookie = TextFormatter.colorText(fortuneCookie, "aqua");
         }
@@ -88,6 +84,10 @@ public class Divination extends ContextWrapper {
         if (probability <= 0.2F) {
             divination = resourceExplorer.getDatabaseFinder().getDivination();
             divination = TextFormatter.colorText(divination, "aqua");
+
+            //Filter profanities
+            TextFilter textFilter = new TextFilterFactory(getBaseContext()).createTextFilter();
+            divination = textFilter.censor(divination);
         } else if (probability <= 0.4F) {
             divination = resourceExplorer.getDatabaseFinder().getLegacyDivination();
             divination = tagProcessor.replaceTags(divination).getText();
