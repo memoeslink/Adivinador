@@ -10,19 +10,23 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.util.HashMap;
 
 public class Database extends SQLiteAssetHelper {
-    public static final int DATABASE_VERSION = 50;
-    public static final String DATABASE_NAME = "words_upgrade_49-50.sqlite";
+    public static final int DATABASE_VERSION = 51;
+    public static final String DATABASE_NAME = "words_upgrade_50-51.sqlite";
     public static final String DATABASE_NAME_FORMAT = "words%s.sqlite";
     public static final String DEFAULT_VALUE = "?";
     private static final String ID_PREFIX = "ID";
     private static final String TABLE_ENGLISH_ABSTRACT_NOUNS = "EnglishAbstractNouns";
-    private static final String TABLE_ENGLISH_PREDICTIONS = "EnglishPredictions";
     private static final String TABLE_ENGLISH_FORTUNE_COOKIES = "EnglishFortuneCookies";
+    private static final String TABLE_ENGLISH_LEGACY_FORTUNE_COOKIES = "EnglishLegacyFortuneCookies";
+    private static final String TABLE_ENGLISH_LEGACY_PREDICTIONS = "EnglishLegacyPredictions";
     private static final String TABLE_ENGLISH_PHRASES = "EnglishPhrases";
+    private static final String TABLE_ENGLISH_PREDICTIONS = "EnglishPredictions";
     private static final String TABLE_SPANISH_ABSTRACT_NOUNS = "SpanishAbstractNouns";
-    private static final String TABLE_SPANISH_PREDICTIONS = "SpanishPredictions";
     private static final String TABLE_SPANISH_FORTUNE_COOKIES = "SpanishFortuneCookies";
+    private static final String TABLE_SPANISH_LEGACY_FORTUNE_COOKIES = "SpanishLegacyFortuneCookies";
+    private static final String TABLE_SPANISH_LEGACY_PREDICTIONS = "SpanishLegacyPredictions";
     private static final String TABLE_SPANISH_PHRASES = "SpanishPhrases";
+    private static final String TABLE_SPANISH_PREDICTIONS = "SpanishPredictions";
     private static final HashMap<String, Integer> TABLE_COUNT_REGISTRY = new HashMap<>();
     private static Database instance;
 
@@ -96,20 +100,28 @@ public class Database extends SQLiteAssetHelper {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_ABSTRACT_NOUNS + " WHERE " + TABLE_ENGLISH_ABSTRACT_NOUNS + ID_PREFIX + "=" + id);
     }
 
-    public int countEnglishPredictions() {
-        return countRows(TABLE_ENGLISH_PREDICTIONS);
-    }
-
-    public String selectEnglishPrediction(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_PREDICTIONS + " WHERE " + TABLE_ENGLISH_PREDICTIONS + ID_PREFIX + "=" + id);
-    }
-
     public int countEnglishFortuneCookies() {
         return countRows(TABLE_ENGLISH_FORTUNE_COOKIES);
     }
 
     public String selectEnglishFortuneCookie(int id) {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_FORTUNE_COOKIES + " WHERE " + TABLE_ENGLISH_FORTUNE_COOKIES + ID_PREFIX + "=" + id);
+    }
+
+    public int countEnglishLegacyFortuneCookies() {
+        return countRows(TABLE_ENGLISH_LEGACY_FORTUNE_COOKIES);
+    }
+
+    public String selectEnglishLegacyFortuneCookie(int id) {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_LEGACY_FORTUNE_COOKIES + " WHERE " + TABLE_ENGLISH_LEGACY_FORTUNE_COOKIES + ID_PREFIX + "=" + id);
+    }
+
+    public int countEnglishLegacyPredictions() {
+        return countRows(TABLE_ENGLISH_LEGACY_PREDICTIONS);
+    }
+
+    public String selectEnglishLegacyPredictions(int id) {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_LEGACY_PREDICTIONS + " WHERE " + TABLE_ENGLISH_LEGACY_PREDICTIONS + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishPhrases() {
@@ -120,20 +132,20 @@ public class Database extends SQLiteAssetHelper {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_PHRASES + " WHERE " + TABLE_ENGLISH_PHRASES + ID_PREFIX + "=" + id);
     }
 
+    public int countEnglishPredictions() {
+        return countRows(TABLE_ENGLISH_PREDICTIONS);
+    }
+
+    public String selectEnglishPrediction(int id) {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_PREDICTIONS + " WHERE " + TABLE_ENGLISH_PREDICTIONS + ID_PREFIX + "=" + id);
+    }
+
     public int countSpanishAbstractNouns() {
         return countRows(TABLE_SPANISH_ABSTRACT_NOUNS);
     }
 
     public String selectSpanishAbstractNoun(int id) {
         return selectRow("SELECT * FROM " + TABLE_SPANISH_ABSTRACT_NOUNS + " WHERE " + TABLE_SPANISH_ABSTRACT_NOUNS + ID_PREFIX + "=" + id);
-    }
-
-    public int countSpanishPredictions() {
-        return countRows(TABLE_SPANISH_PREDICTIONS);
-    }
-
-    public String selectSpanishPrediction(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_PREDICTIONS + " WHERE " + TABLE_SPANISH_PREDICTIONS + ID_PREFIX + "=" + id);
     }
 
     public int countSpanishFortuneCookies() {
@@ -144,11 +156,35 @@ public class Database extends SQLiteAssetHelper {
         return selectRow("SELECT * FROM " + TABLE_SPANISH_FORTUNE_COOKIES + " WHERE " + TABLE_SPANISH_FORTUNE_COOKIES + ID_PREFIX + "=" + id);
     }
 
+    public int countSpanishLegacyFortuneCookies() {
+        return countRows(TABLE_SPANISH_LEGACY_FORTUNE_COOKIES);
+    }
+
+    public String selectSpanishLegacyFortuneCookie(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_LEGACY_FORTUNE_COOKIES + " WHERE " + TABLE_SPANISH_LEGACY_FORTUNE_COOKIES + ID_PREFIX + "=" + id);
+    }
+
+    public int countSpanishLegacyPredictions() {
+        return countRows(TABLE_SPANISH_LEGACY_PREDICTIONS);
+    }
+
+    public String selectSpanishLegacyPredictions(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_LEGACY_PREDICTIONS + " WHERE " + TABLE_SPANISH_LEGACY_PREDICTIONS + ID_PREFIX + "=" + id);
+    }
+
     public int countSpanishPhrases() {
         return countRows(TABLE_SPANISH_PHRASES);
     }
 
     public String selectSpanishPhrase(int id) {
         return selectRow("SELECT * FROM " + TABLE_SPANISH_PHRASES + " WHERE " + TABLE_SPANISH_PHRASES + ID_PREFIX + "=" + id);
+    }
+
+    public int countSpanishPredictions() {
+        return countRows(TABLE_SPANISH_PREDICTIONS);
+    }
+
+    public String selectSpanishPrediction(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_PREDICTIONS + " WHERE " + TABLE_SPANISH_PREDICTIONS + ID_PREFIX + "=" + id);
     }
 }

@@ -54,7 +54,8 @@ public class Divination extends ContextWrapper {
         resetRandomization();
 
         //Get prediction information
-        String fortuneCookie = resourceExplorer.getDatabaseFinder().getFortuneCookie();
+        String fortuneCookie = r.getBoolean() ? resourceExplorer.getDatabaseFinder().getLegacyFortuneCookie() :
+                StringHelper.quote(resourceExplorer.getDatabaseFinder().getFortuneCookie());
 
         return new Prediction.PredictionBuilder().setPerson(person)
                 .setDate(date)
@@ -72,8 +73,10 @@ public class Divination extends ContextWrapper {
         String divination;
         float probability = r.getFloat();
 
-        if (probability <= 0.4F) {
+        if (probability <= 0.2F)
             divination = resourceExplorer.getDatabaseFinder().getDivination();
+        else if (probability <= 0.4F) {
+            divination = resourceExplorer.getDatabaseFinder().getLegacyDivination();
             divination = tagProcessor.replaceTags(divination).getText();
         } else if (probability <= 0.8F) {
             Gender gender = Gender.UNDEFINED;

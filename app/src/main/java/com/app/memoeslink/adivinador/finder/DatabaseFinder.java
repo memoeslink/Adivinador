@@ -47,6 +47,26 @@ public class DatabaseFinder extends Binder {
         };
     }
 
+    public String getLegacyDivination() {
+        return switch (getString(R.string.locale)) {
+            case "en" ->
+                    Database.getInstance(context).selectEnglishLegacyPredictions(r.getInt(1, Database.getInstance(context).countEnglishLegacyPredictions()));
+            case "es" ->
+                    Database.getInstance(context).selectSpanishLegacyPredictions(r.getInt(1, Database.getInstance(context).countSpanishLegacyPredictions()));
+            default -> ResourceFinder.RESOURCE_NOT_FOUND;
+        };
+    }
+
+    public String getLegacyFortuneCookie() {
+        return switch (getString(R.string.locale)) {
+            case "en" ->
+                    Database.getInstance(context).selectEnglishLegacyFortuneCookie(r.getInt(1, Database.getInstance(context).countEnglishLegacyFortuneCookies()));
+            case "es" ->
+                    Database.getInstance(context).selectSpanishLegacyFortuneCookie(r.getInt(1, Database.getInstance(context).countSpanishLegacyFortuneCookies()));
+            default -> ResourceFinder.RESOURCE_NOT_FOUND;
+        };
+    }
+
     public String getPhrase() {
         return switch (getString(R.string.locale)) {
             case "en" ->
