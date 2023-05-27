@@ -15,8 +15,8 @@ public class Sound {
         if (BaseApplication.Companion.getForeground() && PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) && PreferenceHandler.getBoolean(Preference.SETTING_SOUNDS_ENABLED)) {
             if (soundResource != null) {
                 try {
-                    int soundID = context.getResources().getIdentifier(soundResource, "raw", context.getPackageName());
-                    mediaPlayer = MediaPlayer.create(context, soundID);
+                    int soundId = context.getResources().getIdentifier(soundResource, "raw", context.getPackageName());
+                    mediaPlayer = MediaPlayer.create(context, soundId);
 
                     try {
                         mediaPlayer.prepare();
@@ -36,5 +36,17 @@ public class Sound {
             }
         }
         return false;
+    }
+
+    public static void stop() {
+        try {
+            mediaPlayer.reset();
+            mediaPlayer.prepare();
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
