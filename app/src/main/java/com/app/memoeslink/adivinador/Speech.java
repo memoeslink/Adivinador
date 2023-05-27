@@ -8,6 +8,7 @@ import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -17,10 +18,10 @@ public class Speech implements TextToSpeech.OnInitListener {
     private Bundle bundle;
     private boolean available = false;
     private static Speech instance;
-    private static final Locale[] LOCALES;
+    private static final String[] ISO_COUNTRIES;
 
     static {
-        LOCALES = Locale.getAvailableLocales();
+        ISO_COUNTRIES = Locale.getISOCountries();
     }
 
     private Speech(Context context) {
@@ -44,18 +45,14 @@ public class Speech implements TextToSpeech.OnInitListener {
 
     public final boolean isTTSAvailable(TextToSpeech tts, String language) {
         if (tts != null) {
-            List<String> regionNames = new ArrayList<>();
-
-            for (Locale l : LOCALES) {
-                regionNames.add(l.toString());
-            }
-            Collections.shuffle(regionNames);
+            List<String> countries = new ArrayList<>(Arrays.asList(ISO_COUNTRIES));
+            Collections.shuffle(countries);
 
             int position = 0;
             boolean anyAvailable = false;
 
-            for (int tries = regionNames.size(); tries > 0; tries--) {
-                int result = tts.setLanguage(new Locale(language, regionNames.get(position)));
+            for (int tries = countries.size(); tries > 0; tries--) {
+                int result = tts.setLanguage(new Locale(language, countries.get(position)));
 
                 if (result != TextToSpeech.LANG_MISSING_DATA && result != TextToSpeech.LANG_NOT_SUPPORTED) {
                     anyAvailable = true;
