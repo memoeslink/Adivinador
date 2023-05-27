@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.ContextWrapper;
 
 import com.app.memoeslink.adivinador.tagprocessor.TagProcessor;
+import com.app.memoeslink.adivinador.textfilter.TextFilter;
+import com.app.memoeslink.adivinador.textfilter.TextFilterFactory;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.CharHelper;
 import com.memoeslink.generator.common.DateTimeHelper;
@@ -56,9 +58,13 @@ public class Divination extends ContextWrapper {
         //Get prediction information
         String fortuneCookie;
 
-        if (r.getBoolean())
+        if (r.getBoolean()) {
             fortuneCookie = resourceExplorer.getDatabaseFinder().getLegacyFortuneCookie();
-        else {
+
+            //Filter profanities
+            TextFilter textFilter = new TextFilterFactory(getBaseContext()).createTextFilter();
+            fortuneCookie = textFilter.censor(fortuneCookie);
+        } else {
             fortuneCookie = StringHelper.quote(resourceExplorer.getDatabaseFinder().getFortuneCookie());
             fortuneCookie = TextFormatter.colorText(fortuneCookie, "aqua");
         }
