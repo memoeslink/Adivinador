@@ -70,7 +70,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
-    implementation 'com.networknt:json-schema-validator:1.0.82'
+    implementation 'com.networknt:json-schema-validator:1.0.83'
     implementation 'com.takisoft.preferencex:preferencex:1.1.0'
     implementation 'com.github.amarjain07:StickyScrollView:1.0.3'
     implementation 'com.github.jinatonic.confetti:confetti:1.1.2'

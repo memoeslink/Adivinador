@@ -34,6 +34,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ListView
+import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -95,7 +96,6 @@ import com.memoeslink.generator.common.ZeroWidthChar
 import com.memoeslink.manager.Device
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import me.zhanghai.android.materialprogressbar.MaterialProgressBar
 import java.time.Instant
 import java.time.LocalDate
 import java.util.Locale
@@ -160,7 +160,7 @@ class MainActivity : MenuActivity() {
     private var tvDetails: TextView? = null
     private var spnNameType: AppCompatSpinner? = null
     private var dpdInquiryDate: DatePickerDialog? = null
-    private var pbWait: MaterialProgressBar? = null
+    private var pbWait: ProgressBar? = null
     private var btDataEntry: Button? = null
     private var btTextCopy: Button? = null
     private var vMain: View? = null
