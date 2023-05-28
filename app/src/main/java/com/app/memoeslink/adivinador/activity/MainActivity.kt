@@ -34,7 +34,6 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ListView
-import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -97,7 +96,6 @@ import com.memoeslink.generator.common.ZeroWidthChar
 import com.memoeslink.manager.Device
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import me.zhanghai.android.materialprogressbar.CircularProgressDrawable
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar
 import java.time.LocalDate
 import java.util.Locale
@@ -137,11 +135,13 @@ class MainActivity : MenuActivity() {
     private var llInquiryHolder: LinearLayout? = null
     private var llSelectorHolder: LinearLayout? = null
     private var llClearHolder: LinearLayout? = null
+    private var llAdContent: LinearLayout? = null
     private var givPersonImage: GithubIdenticonView? = null
     private var givDetailsPersonImage: GithubIdenticonView? = null
     private var ivFortuneTeller: AppCompatImageView? = null
     private var ivDetailsLogo: AppCompatImageView? = null
     private var ivSaveLogo: AppCompatImageView? = null
+    private var ivAdDismiss: AppCompatImageView? = null
     private var atvInitialName: AppCompatAutoCompleteTextView? = null
     private var atvFinalName: AppCompatAutoCompleteTextView? = null
     private var tvPick: TextView? = null
@@ -197,10 +197,12 @@ class MainActivity : MenuActivity() {
         llInquiryHolder = findViewById(R.id.main_inquiry_holder)
         llSelectorHolder = findViewById(R.id.main_selector_holder)
         llClearHolder = findViewById(R.id.main_clear_holder)
+        llAdContent = findViewById(R.id.ad_content)
         givPersonImage = findViewById(R.id.main_person_image)
         ivFortuneTeller = findViewById(R.id.main_fortune_teller)
         ivDetailsLogo = findViewById(R.id.main_details)
         ivSaveLogo = findViewById(R.id.main_save)
+        ivAdDismiss = findViewById(R.id.ad_dismiss)
         tvPick = findViewById(R.id.main_pick)
         tvPick?.text = getString(R.string.pick).toLinkedHtmlText()
         tvDataEntry = findViewById(R.id.main_data_entry)
@@ -416,6 +418,8 @@ class MainActivity : MenuActivity() {
                 } else showToast(getString(R.string.toast_inquiry_not_saved))
             }
         }
+
+        ivAdDismiss?.setOnClickListener { destroyAd() }
 
         llDataEntryHolder?.setOnClickListener {
             val i = Intent(this@MainActivity, InputActivity::class.java)
@@ -641,6 +645,7 @@ class MainActivity : MenuActivity() {
     override fun onPause() {
         super.onPause()
         stopConfetti() //Finish any confetti animation
+        adView?.pause()
     }
 
     override fun onDestroy() {
@@ -649,6 +654,7 @@ class MainActivity : MenuActivity() {
             it.purge()
             timer = null
         }
+        adView?.destroy()
         super.onDestroy()
     }
 
@@ -670,8 +676,8 @@ class MainActivity : MenuActivity() {
                 adView?.adUnitId = AdUnitId.getBannerId()
 
                 //Set observer to get ad view height
-                val viewTreeObserver = adView?.viewTreeObserver
-                viewTreeObserver?.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
+                adView?.viewTreeObserver?.addOnGlobalLayoutListener(object :
+                    OnGlobalLayoutListener {
                     override fun onGlobalLayout() {
                         try {
                             val params = vMain?.layoutParams
@@ -685,44 +691,8 @@ class MainActivity : MenuActivity() {
 
                 adView?.adListener = object : AdListener() {
                     override fun onAdLoaded() {
-                        //Define ProgressBar
-                        var adLayoutParams: RelativeLayout.LayoutParams =
-                            RelativeLayout.LayoutParams(
-                                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                                RelativeLayout.LayoutParams.WRAP_CONTENT
-                            )
-                        adLayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT)
-                        val progressBar = ProgressBar(
-                            this@MainActivity, null, android.R.attr.progressBarStyleSmall
-                        )
-                        progressBar.isIndeterminate = true
-                        progressBar.indeterminateDrawable =
-                            CircularProgressDrawable(1, this@MainActivity)
-                        rlAdContainer?.addView(progressBar, adLayoutParams)
-
-                        //Define AdView
-                        adLayoutParams = RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.MATCH_PARENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT
-                        )
-                        adLayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT)
-                        rlAdContainer?.addView(adView, adLayoutParams)
+                        llAdContent?.addView(adView)
                         rlAdContainer?.visibility = View.VISIBLE
-
-                        //Define button to close ad
-                        adLayoutParams = RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.WRAP_CONTENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT
-                        )
-                        adLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP)
-                        adLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT)
-                        val imageView = AppCompatImageView(this@MainActivity)
-                        imageView.alpha = 0.8f
-                        imageView.setImageResource(R.drawable.close)
-                        rlAdContainer?.addView(imageView, adLayoutParams)
-
-                        //Set listener
-                        imageView.setOnClickListener { destroyAd() }
                         status.adAdded = true
                         println("The ad was loaded successfully.")
                     }
@@ -743,13 +713,13 @@ class MainActivity : MenuActivity() {
     }
 
     private fun destroyAd() {
-        if (adView != null && !PreferenceHandler.getBoolean(Preference.TEMP_RESTART_ADS)) {
+        adView?.takeIf { !PreferenceHandler.getBoolean(Preference.TEMP_RESTART_ADS) }?.let {
             PreferenceHandler.put(Preference.TEMP_RESTART_ADS, true)
             val params = vMain?.layoutParams
             params?.height = 0
             adView?.destroy()
             rlAdContainer?.visibility = View.GONE
-            rlAdContainer?.removeAllViews()
+            llAdContent?.removeAllViews()
             adView = null
             status.adAdded = false
             PreferenceHandler.remove(Preference.TEMP_RESTART_ADS)

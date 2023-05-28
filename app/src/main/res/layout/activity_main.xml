@@ -112,7 +112,7 @@
                                 android:paddingBottom="10dp"
                                 android:visibility="gone">
 
-                                <ImageView
+                                <androidx.appcompat.widget.AppCompatImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="5dp"
@@ -143,7 +143,7 @@
                                 android:paddingBottom="10dp"
                                 android:visibility="gone">
 
-                                <ImageView
+                                <androidx.appcompat.widget.AppCompatImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="5dp"
@@ -174,7 +174,7 @@
                                 android:paddingBottom="10dp"
                                 android:visibility="gone">
 
-                                <ImageView
+                                <androidx.appcompat.widget.AppCompatImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="5dp"
@@ -205,7 +205,7 @@
                                 android:paddingBottom="10dp"
                                 android:visibility="gone">
 
-                                <ImageView
+                                <androidx.appcompat.widget.AppCompatImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="5dp"
@@ -236,7 +236,7 @@
                                 android:paddingBottom="10dp"
                                 android:visibility="gone">
 
-                                <ImageView
+                                <androidx.appcompat.widget.AppCompatImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="5dp"
@@ -360,6 +360,7 @@
                         android:focusable="true"
                         android:gravity="center"
                         android:longClickable="true"
+                        android:text="@string/emptiness"
                         android:textAppearance="@android:style/TextAppearance.Medium"
                         android:textIsSelectable="true" />
 
@@ -410,7 +411,34 @@
             android:layout_alignParentBottom="true"
             android:background="#80000000"
             android:orientation="vertical"
-            android:visibility="gone" />
+            android:visibility="gone">
+
+            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                android:id="@+id/ad_progress"
+                style="@style/Widget.MaterialProgressBar.ProgressBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                app:mpb_progressStyle="circular" />
+
+            <LinearLayout
+                android:id="@+id/ad_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ad_dismiss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:adjustViewBounds="true"
+                android:alpha="200"
+                android:src="@drawable/close" />
+        </RelativeLayout>
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
