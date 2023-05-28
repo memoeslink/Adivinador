@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class Speech implements TextToSpeech.OnInitListener {
+    private final Bundle bundle;
     private TextToSpeech tts;
-    private Bundle bundle;
     private boolean available = false;
     private static Speech instance;
     private static final String[] ISO_COUNTRIES;
@@ -94,8 +94,12 @@ public class Speech implements TextToSpeech.OnInitListener {
 
     @Override
     public void onInit(int status) {
-        if (status == TextToSpeech.SUCCESS)
+        if (status == TextToSpeech.SUCCESS) {
             available = isTTSAvailable(tts, PreferenceHandler.getString(Preference.SETTING_LANGUAGE, "en"));
-        else available = false;
+            System.out.println("A voice for the TTS was found: " + tts.getVoice().getLocale());
+        } else {
+            available = false;
+            System.out.println("There's not any available voice for the TTS.");
+        }
     }
 }

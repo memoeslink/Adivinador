@@ -1132,8 +1132,8 @@
         <item>⸠string:individual_height⸡ {string:individual_base}</item>
     </string-array>
     <string-array name="language">
-        <item>Spanish</item>
         <item>English</item>
+        <item>Spanish</item>
     </string-array>
     <string-array name="name_type">
         <item>Empty</item>
