@@ -19,7 +19,8 @@ public class CoupleCompatibility {
         if (initialName.equalsIgnoreCase(finalName))
             return 100;
         else {
-            long seed = LongHelper.getSeed(initialName + System.getProperty("line.separator") + finalName);
+            String summarization = initialName + System.getProperty("line.separator") + finalName;
+            long seed = LongHelper.getSeed(summarization);
             return new Randomizer(seed).getInt(101);
         }
     }

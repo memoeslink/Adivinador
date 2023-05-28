@@ -84,7 +84,6 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.lelloman.identicon.view.GithubIdenticonView
 import com.memoeslink.common.Randomizer
-import com.memoeslink.generator.common.DateTimeGetter
 import com.memoeslink.generator.common.DateTimeHelper
 import com.memoeslink.generator.common.GeneratorManager
 import com.memoeslink.generator.common.LongHelper
@@ -97,6 +96,7 @@ import com.memoeslink.manager.Device
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar
+import java.time.Instant
 import java.time.LocalDate
 import java.util.Locale
 import java.util.Random
@@ -525,17 +525,16 @@ class MainActivity : MenuActivity() {
                 if (isGranted.containsValue(false)) showToast(getString(R.string.denied_permission))
             }
         var permissionsGranted = true
-        val permissions =
-            arrayOf(
-                Manifest.permission.INTERNET,
-                Manifest.permission.READ_CONTACTS,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_NETWORK_STATE,
-                Manifest.permission.CHANGE_NETWORK_STATE,
-                Manifest.permission.ACCESS_WIFI_STATE,
-                Manifest.permission.CHANGE_WIFI_STATE
-            )
+        val permissions = arrayOf(
+            Manifest.permission.INTERNET,
+            Manifest.permission.READ_CONTACTS,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_NETWORK_STATE,
+            Manifest.permission.CHANGE_NETWORK_STATE,
+            Manifest.permission.ACCESS_WIFI_STATE,
+            Manifest.permission.CHANGE_WIFI_STATE
+        )
 
         for (permission in permissions) {
             if (ContextCompat.checkSelfPermission(
@@ -729,12 +728,12 @@ class MainActivity : MenuActivity() {
     private fun showInterstitialAd() {
         if (PreferenceHandler.getBoolean(Preference.SETTING_ADS_ENABLED, true)) {
             val r = device?.getAndroidId()?.let {
-                val seed =
-                    LongHelper.getSeed(DateTimeGetter.getCurrentDateTime() + System.getProperty("line.separator") + device?.getAndroidId())
+                val summarization = "$it${System.getProperty("line.separator")}${Instant.now()}"
+                val seed = LongHelper.getSeed(summarization)
                 Randomizer(seed)
             }
 
-            if (r?.getInt(30) != 0) return
+            if (r?.getInt(50) != 0) return
 
             this@MainActivity.runOnUiThread {
                 if (adView != null && adView?.visibility == View.VISIBLE) destroyAd()
@@ -748,6 +747,7 @@ class MainActivity : MenuActivity() {
                                 super.onAdLoaded(ad)
                                 interstitialAd = ad
                                 interstitialAd?.show(this@MainActivity)
+                                println("The interstitial ad was loaded successfully.")
                             }
 
                             override fun onAdFailedToLoad(error: LoadAdError) {

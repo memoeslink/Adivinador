@@ -309,8 +309,8 @@ public class Divination extends ContextWrapper {
     }
 
     private void resetRandomization() {
-        String dailySeed = person.getSummary() + System.getProperty("line.separator") + date;
-        long seed = LongHelper.getSeed(StringHelper.sha256(dailySeed));
+        String summarization = person.getSummary() + System.getProperty("line.separator") + date;
+        long seed = LongHelper.getSeed(StringHelper.sha256(summarization));
         r = new Randomizer(seed);
         resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
         tagProcessor = new TagProcessor(getBaseContext(), seed);
