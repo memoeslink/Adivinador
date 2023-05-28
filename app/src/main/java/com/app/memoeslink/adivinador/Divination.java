@@ -85,7 +85,7 @@ public class Divination extends ContextWrapper {
             divination = resourceExplorer.getDatabaseFinder().getDivination();
             divination = TextFormatter.colorText(divination, "aqua");
 
-            //Filter profanities
+            //Filter profanity
             TextFilter textFilter = new TextFilterFactory(getBaseContext()).createTextFilter();
             divination = textFilter.censor(divination);
         } else if (probability <= 0.4F) {

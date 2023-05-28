@@ -1,6 +1,7 @@
 package com.app.memoeslink.adivinador;
 
 import android.content.Context;
+import android.os.LocaleList;
 
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
@@ -12,7 +13,7 @@ public class LanguageHelper {
     public static final String[] PERMITTED_LANGUAGES = {"en", "es"};
 
     public static String getDeviceLanguage() {
-        return Locale.getDefault().getLanguage();
+        return LocaleList.getDefault().get(0).getLanguage();
     }
 
     public static String getLanguage() {

@@ -32,7 +32,7 @@ public class SpanishTextFilter implements TextFilter {
         StringBuffer sb = new StringBuffer();
 
         while (matcher.find()) {
-            String replacement = matcher.group("start") + "*".repeat(matcher.group("text").length()) + matcher.group("end");
+            String replacement = matcher.group("start") + StringHelper.mask(matcher.group("text")) + matcher.group("end");
             matcher.appendReplacement(sb, replacement);
         }
         matcher.appendTail(sb);

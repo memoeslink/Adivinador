@@ -33,7 +33,7 @@ public class EnglishTextFilter implements TextFilter {
         StringBuffer sb = new StringBuffer();
 
         while (matcher.find()) {
-            String replacement = "*".repeat(matcher.group().length());
+            String replacement = StringHelper.mask(matcher.group());
             matcher.appendReplacement(sb, replacement);
         }
         matcher.appendTail(sb);
