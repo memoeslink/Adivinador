@@ -63,7 +63,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
-    implementation 'com.github.memoeslink.android-generator:release:2023.1.4'
+    implementation 'com.github.memoeslink.android-generator:release:2023.1.5'
     implementation 'com.github.memoeslink.sharedpreferences-helper:final:2023.0.1'
     implementation 'com.github.memoeslink.device:release:2023.0.2'
     implementation 'io.github.memoeslink:randomizer:2022.0.1-release'
