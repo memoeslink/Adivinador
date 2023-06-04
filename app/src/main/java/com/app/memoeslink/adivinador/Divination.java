@@ -169,7 +169,7 @@ public class Divination extends ContextWrapper {
     }
 
     public String getEmotions() {
-        String emotionDetails = Database.DEFAULT_VALUE;
+        String emotionDetails = "";
         HashMap<Emotion, Integer> emotionCount = new HashMap<>();
         String summarization = person.getSummary() + System.getProperty("line.separator") + date;
         Long seed = LongHelper.getSeed(StringHelper.sha256(summarization));
