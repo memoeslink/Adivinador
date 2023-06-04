@@ -125,7 +125,7 @@ public class Identity extends ContextWrapper {
     public String getPreviousName() {
         Person pastPerson = person;
         pastPerson.setBirthdate(pastPerson.getBirthdate().minusDays(1));
-        long seed = LongHelper.getSeed(StringHelper.sha256(pastPerson.getSha256()));
+        Long seed = LongHelper.getSeed(StringHelper.sha256(pastPerson.getSha256()));
         ResourceExplorer resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
         return TextFormatter.formatName(resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson());
     }
@@ -133,7 +133,7 @@ public class Identity extends ContextWrapper {
     public String getFutureName() {
         Person futurePerson = person;
         futurePerson.setBirthdate(futurePerson.getBirthdate().plusDays(1));
-        long seed = LongHelper.getSeed(StringHelper.sha256(futurePerson.getSha256()));
+        Long seed = LongHelper.getSeed(StringHelper.sha256(futurePerson.getSha256()));
         ResourceExplorer resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
         return TextFormatter.formatName(resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson());
     }
@@ -154,7 +154,7 @@ public class Identity extends ContextWrapper {
     }
 
     private ResourceExplorer getResourceExplorer() {
-        long seed = LongHelper.getSeed(StringHelper.sha256(person.getSha256()));
+        Long seed = LongHelper.getSeed(StringHelper.sha256(person.getSha256()));
         return new ResourceExplorer(getBaseContext(), seed);
     }
 }

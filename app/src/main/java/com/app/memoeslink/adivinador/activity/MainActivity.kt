@@ -1151,7 +1151,7 @@ class MainActivity : MenuActivity() {
                     else resourceExplorer.generatorManager.personGenerator.person
             }
             val divination = Divination(this@MainActivity, person, enquiryDate)
-            prediction = divination.getPrediction(person)
+            prediction = divination.prediction
             status.tasks.remove("generatePrediction")
         }
         return prediction

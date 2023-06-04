@@ -10,8 +10,8 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.util.HashMap;
 
 public class Database extends SQLiteAssetHelper {
-    public static final int DATABASE_VERSION = 52;
-    public static final String DATABASE_NAME = "words_upgrade_51-52.sqlite";
+    public static final int DATABASE_VERSION = 53;
+    public static final String DATABASE_NAME = "words_upgrade_52-53.sqlite";
     public static final String DATABASE_NAME_FORMAT = "words%s.sqlite";
     public static final String DEFAULT_VALUE = "?";
     private static final String ID_PREFIX = "ID";
@@ -65,7 +65,6 @@ public class Database extends SQLiteAssetHelper {
         }
     }
 
-    @SuppressWarnings({"ReturnInsideFinallyBlock", "finally"})
     private String selectRow(String query) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
