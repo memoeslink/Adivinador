@@ -27,13 +27,9 @@ import java.util.Map;
 public class Divination extends ContextWrapper {
     private static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
     private static final Integer[] PROBABILITY_DISTRIBUTION = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
-    private static final char SEPARATOR;
+    private static final char SEPARATOR = CharHelper.getFirstDisplayableGlyph('↓', '⬇', '⇣', '¦', '•');
     private final Person person;
     private final String date;
-
-    static {
-        SEPARATOR = CharHelper.getFirstDisplayableGlyph('↓', '⬇', '⇣', '¦', '•');
-    }
 
     public Divination(Context context) {
         this(context, new Person.PersonBuilder().setAttribute("empty").build(), "");
