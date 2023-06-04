@@ -25,14 +25,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Divination extends ContextWrapper {
-    public static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
-    public static final Integer[] PROBABILITY_DISTRIBUTION = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
-    private static final char separator;
+    private static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
+    private static final Integer[] PROBABILITY_DISTRIBUTION = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
+    private static final char SEPARATOR;
     private final Person person;
     private final String date;
 
     static {
-        separator = CharHelper.getFirstDisplayableGlyph('↓', '⬇', '⇣', '¦', '•');
+        SEPARATOR = CharHelper.getFirstDisplayableGlyph('↓', '⬇', '⇣', '¦', '•');
     }
 
     public Divination(Context context) {
@@ -308,8 +308,8 @@ public class Divination extends ContextWrapper {
             chain.append(chainLink);
 
             //Define link delimiter
-            if (separator != '\u0000') //\u0000 is \0
-                chain.append("<br><font color=\"#A0A8C7\">").append(separator).append("</font><br>");
+            if (SEPARATOR != '\u0000') //\u0000 is \0
+                chain.append("<br><font color=\"#A0A8C7\">").append(SEPARATOR).append("</font><br>");
             else
                 chain.append("<br>");
         }
