@@ -20,6 +20,7 @@ import com.app.memoeslink.adivinador.preference.PreferenceUtils
 import com.memoeslink.generator.common.DateTimeHelper
 import com.memoeslink.generator.common.Gender
 import com.memoeslink.generator.common.StringHelper
+import com.memoeslink.generator.common.Validation
 import kotlin.math.abs
 
 class InputActivity : CommonActivity() {
@@ -38,9 +39,6 @@ class InputActivity : CommonActivity() {
         rgGender = findViewById(R.id.input_gender_radio)
         dpBirthdate = findViewById(R.id.input_date_picker)
 
-        // Set max. and min. date
-        val currentDate = DateTimeHelper.getCurrentDate()
-
         // Initialize values
         PreferenceHandler.getStringOrNull(
             Preference.TEMP_NAME
@@ -57,29 +55,34 @@ class InputActivity : CommonActivity() {
         } ?: PreferenceHandler.put(
             Preference.TEMP_GENDER, Gender.NEUTRAL.value
         )
+        var currentDate = DateTimeHelper.getCurrentDate()
 
         PreferenceHandler.getIntOrNull(
             Preference.TEMP_YEAR_OF_BIRTH
         )?.takeIf { year ->
-            abs(currentDate.year - year) < 200
+            currentDate.year >= 0 && abs(currentDate.year - year) < 200
         }?.let { year ->
-            currentDate.withYear(year)
+            currentDate = currentDate.withYear(year)
         } ?: PreferenceHandler.put(
             Preference.TEMP_YEAR_OF_BIRTH, currentDate.year
         )
 
         PreferenceHandler.getIntOrNull(
             Preference.TEMP_MONTH_OF_BIRTH
-        )?.let { month ->
-            currentDate.withMonth(month)
+        )?.takeIf { month ->
+            month in 1..12
+        }?.let { month ->
+            currentDate = currentDate.withMonth(month)
         } ?: PreferenceHandler.put(
             Preference.TEMP_MONTH_OF_BIRTH, currentDate.monthValue
         )
 
         PreferenceHandler.getIntOrNull(
             Preference.TEMP_DAY_OF_BIRTH
-        )?.let { day ->
-            currentDate.withDayOfMonth(day)
+        )?.takeIf { day ->
+            Validation.isDate("${currentDate.year}-${currentDate.monthValue}-$day")
+        }?.let { day ->
+            currentDate = currentDate.withDayOfMonth(day)
         } ?: PreferenceHandler.put(
             Preference.TEMP_DAY_OF_BIRTH, currentDate.dayOfMonth
         )
