@@ -48,7 +48,7 @@ public class Divination extends ContextWrapper {
         Long seed = LongHelper.getSeed(StringHelper.sha256(summarization));
         ResourceExplorer resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
 
-        //Get prediction information
+        // Get prediction information
         String fortuneCookie = getFortuneCookie();
 
         return new Prediction.PredictionBuilder().setPerson(person)
@@ -97,7 +97,7 @@ public class Divination extends ContextWrapper {
                 divination = resourceExplorer.getDatabaseFinder().getDivination();
                 divination = TextFormatter.colorText(divination, "aqua");
 
-                //Filter profanity
+                // Filter profanity
                 TextFilter textFilter = new TextFilterFactory(getBaseContext()).createTextFilter();
                 divination = textFilter.censor(divination);
             }
@@ -110,21 +110,21 @@ public class Divination extends ContextWrapper {
                 TextComponent component;
                 String segment;
 
-                //Get segments for the divination
+                // Get segments for the divination
                 List<String> segments = new ArrayList<>();
                 segments.add(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_start));
                 segments.add(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_middle));
                 segments.add(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_end));
                 segments.add(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_cause));
 
-                //Format start of divination
+                // Format start of divination
                 segment = segments.get(0);
                 int days = r.getGaussianInt(5, 7, 1);
                 segment = StringHelper.replaceOnce(segment, "‽1", String.valueOf(days));
                 segment = StringHelper.replaceOnce(segment, "‽2", DateTimeHelper.getStrDatePlusDays(date, days));
                 segments.set(0, segment);
 
-                //Format middle of divination
+                // Format middle of divination
                 segment = segments.get(1);
                 segment = (component = tagProcessor.replaceTags(segment)).getText();
 
@@ -135,19 +135,19 @@ public class Divination extends ContextWrapper {
                     plural = true;
                 segments.set(1, segment);
 
-                //Format end of divination
+                // Format end of divination
                 segment = segments.get(2);
                 segment = tagProcessor.replaceTags(segment, gender, plural).getText();
                 segments.set(2, segment);
 
-                //Format cause of divination
+                // Format cause of divination
                 segment = segments.get(3);
 
                 if (!segment.isEmpty())
                     segment = tagProcessor.replaceTags(segment).getText();
                 segments.set(3, segment);
 
-                //Make some replacements and truncate divination if needed
+                // Make some replacements and truncate divination if needed
                 for (int n = 0, size = segments.size(); n < size; n++) {
                     if (done)
                         segments.set(n, "");
@@ -208,7 +208,7 @@ public class Divination extends ContextWrapper {
         ResourceExplorer resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
         TagProcessor tagProcessor = new TagProcessor(getBaseContext(), seed);
 
-        //Add unknown people
+        // Add unknown people
         char letter = 'A';
 
         for (int n = 0, limit = r.getElement(PROBABILITY_DISTRIBUTION); n < limit; n++) {
@@ -225,7 +225,7 @@ public class Divination extends ContextWrapper {
             letter++;
         }
 
-        //Add identified people
+        // Add identified people
         for (int n = 0, limit = r.getInt(3, 8); n < limit; n++) {
             Person identifiedPerson;
 
@@ -239,7 +239,7 @@ public class Divination extends ContextWrapper {
             people.add(identifiedPerson);
         }
 
-        //Add close people
+        // Add close people
         int arrayLength = resourceExplorer.getResourceFinder().getArrayResLength(R.array.person);
         int closePersonType = r.getInt(1, arrayLength - 1);
         int thirdPartyType = closePersonType <= 9 ? r.getInt(11, arrayLength - 11) : r.getInt(1, arrayLength - 1);
@@ -274,10 +274,10 @@ public class Divination extends ContextWrapper {
         people.add(thirdParty);
         people.add(closePerson);
 
-        //Add oneself
+        // Add oneself
         people.add(person);
 
-        //Append gender glyph in people's descriptions
+        // Append gender glyph in people's descriptions
         for (Person currentPerson : people) {
             String description = currentPerson.getDescription();
 
@@ -287,7 +287,7 @@ public class Divination extends ContextWrapper {
             }
         }
 
-        //Define chain links
+        // Define chain links
         int totalKarma = 0;
 
         for (int n = 0; n < people.size() - 1; n++) {
@@ -303,8 +303,8 @@ public class Divination extends ContextWrapper {
             chainLink = tagProcessor.replaceTags(chainLink).getText();
             chain.append(chainLink);
 
-            //Define link delimiter
-            if (SEPARATOR != '\u0000') //\u0000 is \0
+            // Define link delimiter
+            if (SEPARATOR != '\u0000') // \u0000 is \0
                 chain.append("<br><font color=\"#A0A8C7\">").append(SEPARATOR).append("</font><br>");
             else
                 chain.append("<br>");

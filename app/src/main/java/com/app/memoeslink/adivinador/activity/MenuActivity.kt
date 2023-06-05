@@ -26,8 +26,8 @@ open class MenuActivity : CommonActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        this@MenuActivity.menuInflater.inflate(R.menu.default_menu, menu) //Inflate Menu
-        setCustomActionBar() //Set ActionBar aspect
+        this@MenuActivity.menuInflater.inflate(R.menu.default_menu, menu) // Inflate Menu
+        setCustomActionBar() // Set ActionBar aspect
         return true
     }
 
@@ -55,25 +55,25 @@ open class MenuActivity : CommonActivity() {
 
         when (item.itemId) {
             android.R.id.home -> toggleDrawer()
-            R.id.menu_settings -> { //Open settings
+            R.id.menu_settings -> { // Open settings
                 i = Intent(this@MenuActivity, SettingsActivity::class.java)
                 startActivity(i)
             }
 
-            R.id.menu_about -> { //Show information about the app
+            R.id.menu_about -> { // Show information about the app
                 i = Intent(this@MenuActivity, AboutActivity::class.java)
                 startActivity(i)
             }
 
-            R.id.menu_donate -> { //Open donations
+            R.id.menu_donate -> { // Open donations
                 i = Intent(this@MenuActivity, DonationsActivity::class.java)
                 startActivity(i)
             }
 
-            R.id.menu_exit -> { //Exit application
+            R.id.menu_exit -> { // Exit application
                 finishAffinity()
                 //android.os.Process.killProcess(android.os.Process.myPid())
-                Runtime.getRuntime().exit(0) //Try to stop current threads
+                Runtime.getRuntime().exit(0) // Try to stop current threads
             }
         }
         return true

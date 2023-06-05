@@ -17,7 +17,7 @@ import com.takisoft.preferencex.PreferenceFragmentCompat
 class SettingsActivity : CommonActivity() {
     private var dialog: AlertDialog? = null
     private var listener: OnSharedPreferenceChangeListener? =
-        null //Declared as global to avoid destruction by JVM Garbage Collector
+        null // Declared as global to avoid destruction by JVM Garbage Collector
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ class SettingsActivity : CommonActivity() {
         builder.setOnDismissListener { restartApplication() }
         dialog = builder.create()
 
-        //Set listeners
+        // Set listeners
         listener = OnSharedPreferenceChangeListener { _: SharedPreferences?, key: String ->
             if (key == Preference.SETTING_AUDIO_ENABLED.tag && !PreferenceHandler.getBoolean(
                     Preference.SETTING_AUDIO_ENABLED

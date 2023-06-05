@@ -28,7 +28,7 @@ class AboutActivity : CommonActivity() {
         tvContent?.movementMethod = LinkMovementMethod.getInstance()
         btBack = findViewById(R.id.about_back_button)
 
-        //Set listeners
+        // Set listeners
         btBack?.setOnClickListener { finish() }
     }
 }

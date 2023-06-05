@@ -30,7 +30,7 @@ class DonationsActivity : CommonActivity() {
         btDonate = findViewById(R.id.donations_donate_button)
         spnDonation = findViewById(R.id.donations_spinner)
 
-        //Initialize billing library
+        // Initialize billing library
         bc = BillingConnector(this@DonationsActivity, GOOGLE_PUBLIC_KEY)
             .setConsumableIds(GOOGLE_CATALOG.toMutableList())
             .autoAcknowledge()
@@ -47,7 +47,7 @@ class DonationsActivity : CommonActivity() {
         }
         dialog = builder.create()
 
-        //Set adapters
+        // Set adapters
         val adapter = ArrayAdapter(
             this@DonationsActivity,
             android.R.layout.simple_spinner_item,
@@ -56,7 +56,7 @@ class DonationsActivity : CommonActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnDonation?.adapter = adapter
 
-        //Set listeners
+        // Set listeners
         bc?.setBillingEventListener(object : BillingEventListener {
             override fun onProductsFetched(productDetails: MutableList<ProductInfo>) {
             }

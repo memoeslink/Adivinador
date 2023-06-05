@@ -70,12 +70,12 @@ public class TagProcessor extends Binder {
         else
             defaultGender = r.getElement(Gender.values());
 
-        //Verify if the text contains curly brackets
+        // Verify if the text contains curly brackets
         if (StringHelper.containsAny(s, "{", "}")) {
-            //Get an approximate number of curly bracket pairs within the text
+            // Get an approximate number of curly bracket pairs within the text
             int pairsOfBrackets = countPairsOfBrackets(s);
 
-            //Replace simple tags within the text, if there are any
+            // Replace simple tags within the text, if there are any
             Matcher matcher = TAG_PATTERN.matcher(s);
             StringBuffer sb;
 
@@ -125,7 +125,7 @@ public class TagProcessor extends Binder {
                 pairsOfBrackets--;
             }
 
-            //Replace ‘word’ tags within the text, if there are any
+            // Replace ‘word’ tags within the text, if there are any
             matcher = WORD_TAG_PATTERN.matcher(s);
             sb = new StringBuffer();
 
@@ -146,7 +146,7 @@ public class TagProcessor extends Binder {
             matcher.appendTail(sb);
             s = sb.toString();
 
-            //Replace ‘random’ tags within the text, if there are any
+            // Replace ‘random’ tags within the text, if there are any
             matcher = RANDOM_TAG_PATTERN.matcher(s);
 
             while (pairsOfBrackets > 0 && matcher.find()) {
@@ -166,7 +166,7 @@ public class TagProcessor extends Binder {
                 pairsOfBrackets--;
             }
 
-            //Replace grammar tags within the text, if there are any
+            // Replace grammar tags within the text, if there are any
             GrammarTagProcessor grammarTagProcessor = new GrammarTagProcessorFactory(context).createGrammarTagProcessor();
             ProcessedText t = grammarTagProcessor.replaceTags(s, gender, pairsOfBrackets);
             s = t.getText();
@@ -179,7 +179,7 @@ public class TagProcessor extends Binder {
         s = pair.getSubKey();
         gender = gender != null ? gender : defaultGender;
 
-        //Replace subtags within the text, if there are any
+        // Replace subtags within the text, if there are any
         if (StringHelper.containsAny(s, "⸠", "⸡")) {
             s = StringHelper.replaceEach(s, new String[]{"⸠", "⸡"}, new String[]{"{", "}"});
             s = replaceTags(s, gender, plural).getText();

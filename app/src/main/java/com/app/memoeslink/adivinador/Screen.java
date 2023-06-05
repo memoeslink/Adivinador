@@ -16,9 +16,9 @@ public class Screen {
         Configuration configuration = activity.getResources().getConfiguration();
         int rotation = windowManager != null ? windowManager.getDefaultDisplay().getRotation() : 0;
 
-        //Search for the natural position of the device
+        // Search for the natural position of the device
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE && (rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) || configuration.orientation == Configuration.ORIENTATION_PORTRAIT && (rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270)) {
-            switch (rotation) { //Landscape
+            switch (rotation) { // Landscape
                 case Surface.ROTATION_0 ->
                         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 case Surface.ROTATION_90 ->
@@ -29,7 +29,7 @@ public class Screen {
                         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
         } else {
-            switch (rotation) { //Portrait
+            switch (rotation) { // Portrait
                 case Surface.ROTATION_0 ->
                         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 case Surface.ROTATION_90 ->

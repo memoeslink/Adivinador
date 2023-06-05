@@ -15,21 +15,21 @@ class BaseApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        //Initialize SharedPreferences
+        // Initialize SharedPreferences
         PreferenceHandler.init(applicationContext);
 
-        //Initialize Generator database
+        // Initialize Generator database
         Session.getInstance().initDatabase(applicationContext)
 
-        //Set preference default values
+        // Set preference default values
         PreferenceManager.setDefaultValues(
             applicationContext, R.xml.default_preferences, false
         )
 
-        //Delete old databases
+        // Delete old databases
         deleteOldDatabases()
 
-        //Initialize LifecycleEventObserver
+        // Initialize LifecycleEventObserver
         ProcessLifecycleOwner.get().lifecycle.addObserver(LifecycleEventObserver { _, event ->
             when (event) {
                 Lifecycle.Event.ON_STOP -> {

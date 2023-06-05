@@ -28,7 +28,7 @@ class InputActivity : CommonActivity() {
     private var dpBirthdate: CustomDatePicker? = null
     private var btBack: Button? = null
     private var listener: OnSharedPreferenceChangeListener? =
-        null //Declared as global to avoid destruction by JVM Garbage Collector
+        null // Declared as global to avoid destruction by JVM Garbage Collector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +38,10 @@ class InputActivity : CommonActivity() {
         rgGender = findViewById(R.id.input_gender_radio)
         dpBirthdate = findViewById(R.id.input_date_picker)
 
-        //Set max. and min. date
+        // Set max. and min. date
         val currentDate = DateTimeHelper.getCurrentDate()
 
-        //Initialize values
+        // Initialize values
         PreferenceHandler.getStringOrNull(
             Preference.TEMP_NAME
         )?.takeUnless { name ->
@@ -84,10 +84,10 @@ class InputActivity : CommonActivity() {
             Preference.TEMP_DAY_OF_BIRTH, currentDate.dayOfMonth
         )
 
-        //Disable form while a prediction is being retrieved
+        // Disable form while a prediction is being retrieved
         if (PreferenceHandler.getBoolean(Preference.TEMP_BUSY)) toggleViews(false)
 
-        //Set listeners
+        // Set listeners
         tvName?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }
@@ -143,7 +143,7 @@ class InputActivity : CommonActivity() {
     public override fun onStart() {
         super.onStart()
 
-        //Get stored names
+        // Get stored names
         PreferenceUtils.getStoredNames().takeIf { it.isNotEmpty() }?.let { storedNames ->
             tvName?.setAdapter(
                 ArrayAdapter(

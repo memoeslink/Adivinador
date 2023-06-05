@@ -44,7 +44,7 @@ open class CommonActivity : AppCompatActivity() {
         activityState = ActivityState.CREATED
         resourceExplorer = ResourceExplorer(this@CommonActivity)
         audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-        setCustomActionBar() //Set ActionBar aspect
+        setCustomActionBar() // Set ActionBar aspect
     }
 
     override fun onStart() {
@@ -59,7 +59,7 @@ open class CommonActivity : AppCompatActivity() {
             this@CommonActivity, PreferenceHandler.getBoolean(Preference.SETTING_ACTIVE_SCREEN)
         )
 
-        //Stop TTS if it is disabled and continues talking
+        // Stop TTS if it is disabled and continues talking
         if (!PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) || !PreferenceHandler.getBoolean(
                 Preference.SETTING_VOICE_ENABLED
             )

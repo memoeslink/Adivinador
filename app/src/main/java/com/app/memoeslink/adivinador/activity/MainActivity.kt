@@ -183,7 +183,7 @@ class MainActivity : MenuActivity() {
     private var backupPredictions: PredictionHistory? = PredictionHistory()
     private var people: List<Person> = ArrayList()
     private var listener: OnSharedPreferenceChangeListener? =
-        null //Declared as global to avoid destruction by JVM Garbage Collector
+        null // Declared as global to avoid destruction by JVM Garbage Collector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -244,7 +244,7 @@ class MainActivity : MenuActivity() {
         fortuneTeller = FortuneTeller(this@MainActivity)
         device = Device(this@MainActivity)
 
-        //Request ads
+        // Request ads
         val testDevices: MutableList<String> = java.util.ArrayList()
         testDevices.add(AdRequest.DEVICE_ID_EMULATOR)
         testDevices.add(device?.getAndroidId() ?: "0".repeat(32))
@@ -261,25 +261,25 @@ class MainActivity : MenuActivity() {
             println("This device will not show test ads.")
         }
 
-        //Preload prediction
+        // Preload prediction
         backupPredictions?.add(generatePrediction(PreferenceUtils.isEnquiryFormEntered()))
 
-        //Set empty prediction
+        // Set empty prediction
         val emptyPrediction = Prediction.PredictionBuilder().build()
         tvPrediction?.text = emptyPrediction.getFormattedContent(this@MainActivity).toHtmlText()
 
-        //Get a greeting
+        // Get a greeting
         if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED)) tvPhrase?.text =
             fortuneTeller?.greet().toHtmlText()
         else tvPhrase?.text = "…"
 
-        //Change drawable for fortune teller
+        // Change drawable for fortune teller
         fortuneTeller?.randomAppearance?.let { ivFortuneTeller?.setImageResource(it) }
 
-        //Delete temporary preferences
+        // Delete temporary preferences
         PreferenceUtils.deleteTemp()
 
-        //Initialize components
+        // Initialize components
         val nameAdapter: ArrayAdapter<String> = object : ArrayAdapter<String>(
             this@MainActivity,
             android.R.layout.simple_spinner_item,
@@ -509,7 +509,7 @@ class MainActivity : MenuActivity() {
                     .setTitle(R.string.alert_exit_title).setMessage(R.string.alert_exit_message)
                     .setNegativeButton(R.string.action_cancel, null)
                     .setPositiveButton(R.string.action_exit) { _, _ ->
-                        exitProcess(0) //Try to stop current threads
+                        exitProcess(0) // Try to stop current threads
                     }.create().show()
             }
         })
@@ -519,7 +519,7 @@ class MainActivity : MenuActivity() {
         super.onStart()
         updateNameSuggestions()
 
-        //Request permissions
+        // Request permissions
         val launcher =
             registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { isGranted: Map<String, Boolean> ->
                 if (isGranted.containsValue(false)) showToast(getString(R.string.denied_permission))
@@ -545,7 +545,7 @@ class MainActivity : MenuActivity() {
 
         if (!permissionsGranted) launcher.launch(permissions)
 
-        //Show full-screen ads
+        // Show full-screen ads
         showInterstitialAd()
     }
 
@@ -556,7 +556,7 @@ class MainActivity : MenuActivity() {
                 fortuneTeller = FortuneTeller(this@MainActivity)
             }
 
-        //Restart Activity if required
+        // Restart Activity if required
         if (PreferenceHandler.has(Preference.TEMP_RESTART_ACTIVITY)) {
             val intent = intent
             finish()
@@ -564,16 +564,16 @@ class MainActivity : MenuActivity() {
         }
         PreferenceHandler.remove(Preference.TEMP_RESTART_ACTIVITY)
 
-        //Show, avoid, or hide ads
+        // Show, avoid, or hide ads
         prepareAd(false)
 
-        //Update selectable people list
+        // Update selectable people list
         updateInquirySelector()
 
-        //Get a prediction
+        // Get a prediction
         if (!status.initialized || (PreferenceUtils.hasPersonTempStored() && (PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()))) refreshPrediction()
 
-        //Change drawable if the 'fortune teller aspect' preference was changed
+        // Change drawable if the 'fortune teller aspect' preference was changed
         if (PreferenceHandler.has(Preference.TEMP_CHANGE_FORTUNE_TELLER)) {
             fortuneTeller?.randomAppearance?.let { ivFortuneTeller?.setImageResource(it) }
             PreferenceHandler.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER)
@@ -588,7 +588,7 @@ class MainActivity : MenuActivity() {
 
                 if (status.seconds >= frequency && frequency != 0) {
                     this@MainActivity.runOnUiThread {
-                        //Fade out and fade in fortune-telling text
+                        // Fade out and fade in fortune-telling text
                         if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) tvPhrase?.let {
                             fadeAndShowView(
                                 it
@@ -596,17 +596,17 @@ class MainActivity : MenuActivity() {
                         }
 
                         Handler(Looper.getMainLooper()).postDelayed({
-                            //Change drawable for the fortune teller
+                            // Change drawable for the fortune teller
                             fortuneTeller?.randomAppearance?.let {
                                 ivFortuneTeller?.setImageResource(
                                     it
                                 )
                             }
 
-                            //Get random text from the fortune teller
+                            // Get random text from the fortune teller
                             tvPhrase?.text = fortuneTeller?.talk().toHtmlText()
 
-                            //Read the text
+                            // Read the text
                             if (PreferenceHandler.getStringAsInt(Preference.SETTING_TEXT_TYPE) == 0 || PreferenceHandler.getStringAsInt(
                                     Preference.SETTING_TEXT_TYPE
                                 ) == 2
@@ -643,7 +643,7 @@ class MainActivity : MenuActivity() {
 
     override fun onPause() {
         super.onPause()
-        stopConfetti() //Finish any confetti animation
+        stopConfetti() // Finish any confetti animation
         adView?.pause()
     }
 
@@ -674,7 +674,7 @@ class MainActivity : MenuActivity() {
                 adView?.setAdSize(AdSize.BANNER)
                 adView?.adUnitId = AdUnitId.getBannerId()
 
-                //Set observer to get ad view height
+                // Set observer to get ad view height
                 adView?.viewTreeObserver?.addOnGlobalLayoutListener(object :
                     OnGlobalLayoutListener {
                     override fun onGlobalLayout() {
@@ -752,8 +752,8 @@ class MainActivity : MenuActivity() {
 
                             override fun onAdFailedToLoad(error: LoadAdError) {
                                 println("The interstitial ad couldn't be loaded: " + error.message)
-                                prepareAd(false) //Show, avoid, or hide ads@Override
-                                tvSelector?.invalidate() //Force view to be redrawn
+                                prepareAd(false) // Show, avoid, or hide ads@Override
+                                tvSelector?.invalidate() // Force view to be redrawn
                             }
                         })
                 }
@@ -762,18 +762,18 @@ class MainActivity : MenuActivity() {
     }
 
     private fun prepareAnimation() {
-        Screen.lockScreenOrientation(this@MainActivity) //Lock orientation
-        stopConfetti() //Finish previous confetti animation
+        Screen.lockScreenOrientation(this@MainActivity) // Lock orientation
+        stopConfetti() // Finish previous confetti animation
 
-        //Redraw view
+        // Redraw view
         llConfetti?.requestLayout()
         llConfetti?.invalidate()
 
-        //Measure screen and views
+        // Measure screen and views
         if (status.measuredTimes == 0L) llConfetti?.post { performMeasurements() }
         else Handler(Looper.getMainLooper()).postDelayed({ performMeasurements() }, 1000)
 
-        //Wait for measurements to be done
+        // Wait for measurements to be done
         waitTasks()
     }
 
@@ -801,7 +801,7 @@ class MainActivity : MenuActivity() {
                 BounceAnimation(ivFortuneTeller).setBounceDistance(20f).setNumOfBounces(1)
                     .setDuration(500).animate()
             }
-            Screen.unlockScreenOrientation(this@MainActivity) //Unlock orientation
+            Screen.unlockScreenOrientation(this@MainActivity) // Unlock orientation
         }
     }
 
@@ -933,7 +933,7 @@ class MainActivity : MenuActivity() {
                             vMain?.clearAnimation()
                             vMain?.visibility = View.INVISIBLE
                         }
-                    }) //Fade out particles layout
+                    }) // Fade out particles layout
             }
 
             val pickedDate = DateTimeHelper.toIso8601Date(
@@ -1017,7 +1017,7 @@ class MainActivity : MenuActivity() {
                     )
                 ) showToast(predictionHistory?.latest?.person?.descriptor, true)
 
-                //Read the text
+                // Read the text
                 if (PreferenceHandler.getStringAsInt(Preference.SETTING_TEXT_TYPE) == 1 || PreferenceHandler.getStringAsInt(
                         Preference.SETTING_TEXT_TYPE
                     ) == 2
@@ -1033,7 +1033,7 @@ class MainActivity : MenuActivity() {
                     detailsDialog?.show()
                 }
                 tvPick?.isEnabled = true
-                llConfetti?.animate()?.alpha(1.0f)?.duration = 200 //Fade in particles layout
+                llConfetti?.animate()?.alpha(1.0f)?.duration = 200 // Fade in particles layout
                 PreferenceHandler.remove(Preference.TEMP_BUSY)
             }
         }

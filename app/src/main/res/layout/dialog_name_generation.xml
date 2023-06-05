@@ -58,12 +58,12 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="0.8"
                 android:focusable="false"
-                android:inputType="none"
+                android:importantForAutofill="no"
+                android:inputType="textNoSuggestions"
                 android:longClickable="false"
                 android:maxLines="2"
                 android:textAppearance="@android:style/TextAppearance.Medium"
-                android:textIsSelectable="true"
-                android:importantForAutofill="no" />
+                android:textIsSelectable="true" />
 
             <View
                 android:layout_width="0dp"
