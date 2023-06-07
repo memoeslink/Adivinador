@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PredictionHistory {
-    List<Prediction> predictions;
+    List<Prediction> predictions = new ArrayList<>();
 
     public PredictionHistory() {
-        predictions = new ArrayList<>();
     }
 
     public void add(Prediction prediction) {

@@ -96,7 +96,6 @@ import com.memoeslink.generator.common.ZeroWidthChar
 import com.memoeslink.manager.Device
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.time.Instant
 import java.time.LocalDate
 import java.util.Locale
 import java.util.Random
@@ -366,6 +365,7 @@ class MainActivity : MenuActivity() {
                     PreferenceHandler.put(Preference.TEMP_YEAR_OF_ENQUIRY, datePicker.year)
                     PreferenceHandler.put(Preference.TEMP_MONTH_OF_ENQUIRY, datePicker.month + 1)
                     PreferenceHandler.put(Preference.TEMP_DAY_OF_ENQUIRY, datePicker.dayOfMonth)
+                    backupPredictions?.clearHistory()
                     refreshPrediction()
                 }, it.year, it.monthValue - 1, it.dayOfMonth
             )
@@ -728,7 +728,8 @@ class MainActivity : MenuActivity() {
     private fun showInterstitialAd() {
         if (PreferenceHandler.getBoolean(Preference.SETTING_ADS_ENABLED, true)) {
             val r = device?.getAndroidId()?.let {
-                val summarization = "$it${System.getProperty("line.separator")}${Instant.now()}"
+                val summarization =
+                    "$it${System.getProperty("line.separator")}${DateTimeHelper.getCurrentDateTime()}"
                 val seed = LongHelper.getSeed(summarization)
                 Randomizer(seed)
             }
@@ -943,27 +944,26 @@ class MainActivity : MenuActivity() {
             )
             val formEntered = PreferenceUtils.isEnquiryFormEntered()
             var preStoredPrediction: Prediction = Prediction.PredictionBuilder().build()
+            var retrieved = false
 
-            if (!formEntered || predictionHistory!!.isEmpty) {
-                backupPredictions?.let { history ->
-                    while (!history.isEmpty) {
-                        var done = false
+            predictionHistory?.takeIf { !formEntered || it.isEmpty }?.let {
+                backupPredictions?.takeIf { !it.isEmpty }?.let { backups ->
+                    if (backups.oldest.date != pickedDate) backups.clearHistory()
 
-                        history.dispenseOldest()
+                    while (!backups.isEmpty) {
+                        backups.dispenseOldest()
                             ?.takeIf { prediction -> !prediction.person.hasAttribute("empty") && prediction.date == pickedDate }
                             ?.let { prediction ->
                                 preStoredPrediction = prediction
-                                done = true
+                                retrieved = true
                             }
 
-                        if (done) break
+                        if (retrieved) break
                     }
                 }
             }
 
-            if (!preStoredPrediction.person.hasAttribute("empty")) predictionHistory?.add(
-                preStoredPrediction
-            )
+            if (!retrieved) predictionHistory?.add(preStoredPrediction)
             else predictionHistory?.add(generatePrediction(formEntered))
 
             this@MainActivity.runOnUiThread {
