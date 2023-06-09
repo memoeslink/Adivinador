@@ -10,8 +10,8 @@ android {
         applicationId "com.app.memoeslink.adivinador"
         minSdkVersion 26
         targetSdk 34
-        versionCode 128
-        versionName "1.9.9"
+        versionCode 129
+        versionName "1.9.10"
         resourceConfigurations += ['es', 'en']
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "Adivinador-$versionName")
