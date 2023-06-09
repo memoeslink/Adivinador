@@ -33,7 +33,7 @@ class SettingsActivity : CommonActivity() {
         dialog = builder.create()
 
         // Set listeners
-        listener = OnSharedPreferenceChangeListener { _: SharedPreferences?, key: String ->
+        listener = OnSharedPreferenceChangeListener { _: SharedPreferences?, key: String? ->
             if (key == Preference.SETTING_AUDIO_ENABLED.tag && !PreferenceHandler.getBoolean(
                     Preference.SETTING_AUDIO_ENABLED
                 ) || key == Preference.SETTING_VOICE_ENABLED.tag && !PreferenceHandler.getBoolean(

@@ -136,7 +136,7 @@ class InputActivity : CommonActivity() {
 
         btBack?.setOnClickListener { finish() }
 
-        listener = OnSharedPreferenceChangeListener { _: SharedPreferences?, key: String ->
+        listener = OnSharedPreferenceChangeListener { _: SharedPreferences?, key: String? ->
             if (key == Preference.TEMP_BUSY.tag) toggleViews(true)
         }
 

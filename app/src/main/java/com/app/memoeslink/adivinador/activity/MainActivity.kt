@@ -491,7 +491,7 @@ class MainActivity : MenuActivity() {
             copyTextToClipboard(tvNameBox?.text.toString())
         }
 
-        listener = OnSharedPreferenceChangeListener { _: SharedPreferences?, key: String ->
+        listener = OnSharedPreferenceChangeListener { _: SharedPreferences?, key: String? ->
             if (key == Preference.DATA_STORED_PEOPLE.tag) {
                 dialog?.takeIf { it.isShowing }?.dismiss()
                 dialog = null
