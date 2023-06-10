@@ -104,7 +104,6 @@ import java.util.Timer
 import kotlin.concurrent.fixedRateTimer
 import kotlin.system.exitProcess
 
-
 class MainActivity : MenuActivity() {
     private val particleColors = mapOf(
         "legacy" to intArrayOf(
@@ -964,7 +963,7 @@ class MainActivity : MenuActivity() {
                 }
             }
 
-            if (!retrieved) predictionHistory?.add(preStoredPrediction)
+            if (retrieved) predictionHistory?.add(preStoredPrediction)
             else predictionHistory?.add(generatePrediction(formEntered))
 
             this@MainActivity.runOnUiThread {
