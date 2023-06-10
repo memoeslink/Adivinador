@@ -67,7 +67,7 @@
     <style name="BaseTheme.Preference.CheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
         <item name="colorAccent">?attr/accent</item>
         <item name="android:textColorSecondary">?attr/accent</item>
-        <item name="android:button">@drawable/checkbox</item>
+        <item name="android:button">@drawable/ic_checkbox</item>
         <item name="android:alpha">0.8</item>
     </style>
 

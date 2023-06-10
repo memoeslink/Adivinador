@@ -39,6 +39,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
@@ -1068,53 +1069,43 @@ class MainActivity : MenuActivity() {
         }
     }
 
+    private fun refreshNavigationViewItem(
+        @IdRes itemId: Int, enabled: Boolean, visible: Boolean = true
+    ) {
+        navigationView?.menu?.findItem(itemId)?.isVisible = visible
+        navigationView?.menu?.findItem(itemId)?.isEnabled = enabled
+        navigationView?.menu?.findItem(itemId)?.icon?.alpha = if (enabled) 255 else 125
+    }
+
     private fun refreshNavigationView() {
         PreferenceUtils.hasPersonTempStored().let {
-            navigationView?.menu?.findItem(R.id.nav_data_entry)?.isEnabled = !it
-            navigationView?.menu?.findItem(R.id.nav_data_entry)?.icon?.alpha = if (it) 125 else 255
-            navigationView?.menu?.findItem(R.id.nav_reload)?.isEnabled = !it
-            navigationView?.menu?.findItem(R.id.nav_reload)?.icon?.alpha = if (it) 125 else 255
-            navigationView?.menu?.findItem(R.id.nav_save)?.isEnabled = !it
-            navigationView?.menu?.findItem(R.id.nav_save)?.icon?.alpha = if (it) 125 else 255
-            navigationView?.menu?.findItem(R.id.nav_clear)?.isEnabled = it
-            navigationView?.menu?.findItem(R.id.nav_clear)?.icon?.alpha = if (it) 255 else 125
+            refreshNavigationViewItem(R.id.nav_data_entry, enabled = !it)
+            refreshNavigationViewItem(R.id.nav_reload, enabled = !it)
+            refreshNavigationViewItem(R.id.nav_save, enabled = !it)
+            refreshNavigationViewItem(R.id.nav_clear, enabled = it)
         }
+        navigationView?.menu?.findItem(R.id.nav_inquiry)?.title = "…"
 
         when {
             people.isEmpty() -> {
-                navigationView?.menu?.findItem(R.id.nav_inquiry)?.isVisible = false
-                navigationView?.menu?.findItem(R.id.nav_inquiry)?.isEnabled = false
-                navigationView?.menu?.findItem(R.id.nav_inquiry)?.icon?.alpha = 125
-                navigationView?.menu?.findItem(R.id.nav_selector)?.isVisible = false
-                navigationView?.menu?.findItem(R.id.nav_selector)?.isEnabled = false
-                navigationView?.menu?.findItem(R.id.nav_selector)?.icon?.alpha = 125
+                refreshNavigationViewItem(R.id.nav_inquiry, enabled = false, visible = false)
+                refreshNavigationViewItem(R.id.nav_selector, enabled = false, visible = false)
             }
 
             people.size == 1 -> {
                 navigationView?.menu?.findItem(R.id.nav_inquiry)?.title =
                     getString(R.string.inquiry, people[0].descriptor)
 
-                if (PreferenceUtils.hasPersonTempStored()) {
-                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.isVisible = true
-                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.isEnabled = false
-                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.icon?.alpha = 125
-                } else {
-                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.isVisible = true
-                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.isEnabled = true
-                    navigationView?.menu?.findItem(R.id.nav_inquiry)?.icon?.alpha = 255
-                }
-                navigationView?.menu?.findItem(R.id.nav_selector)?.isVisible = false
-                navigationView?.menu?.findItem(R.id.nav_selector)?.isEnabled = false
-                navigationView?.menu?.findItem(R.id.nav_selector)?.icon?.alpha = 125
+                if (PreferenceUtils.hasPersonTempStored()) refreshNavigationViewItem(
+                    R.id.nav_inquiry, enabled = false, visible = true
+                )
+                else refreshNavigationViewItem(R.id.nav_inquiry, enabled = true, visible = true)
+                refreshNavigationViewItem(R.id.nav_selector, enabled = false, visible = false)
             }
 
             else -> {
-                navigationView?.menu?.findItem(R.id.nav_inquiry)?.isVisible = false
-                navigationView?.menu?.findItem(R.id.nav_inquiry)?.isEnabled = false
-                navigationView?.menu?.findItem(R.id.nav_inquiry)?.icon?.alpha = 125
-                navigationView?.menu?.findItem(R.id.nav_selector)?.isVisible = true
-                navigationView?.menu?.findItem(R.id.nav_selector)?.isEnabled = true
-                navigationView?.menu?.findItem(R.id.nav_selector)?.icon?.alpha = 255
+                refreshNavigationViewItem(R.id.nav_inquiry, enabled = false, visible = false)
+                refreshNavigationViewItem(R.id.nav_selector, enabled = true, visible = true)
             }
         }
     }
