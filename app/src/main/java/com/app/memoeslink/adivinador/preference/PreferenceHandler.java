@@ -34,15 +34,13 @@ public class PreferenceHandler {
 
     public static boolean put(Preference preference, Object value) {
         if (isNullOrNone(preference)) return false;
-        Class<?> preferenceClass = preference.getClassType();
 
-        if (!preferenceClass.isInstance(value)) return false;
+        if (!preference.getClassType().isInstance(value)) return false;
         return getPreferences(preference).put(preference.getTag(), value);
     }
 
     public static void save(Preference preference, Object value) {
         if (isNullOrNone(preference)) return;
-        Class<?> preferenceClass = preference.getClassType();
 
         if (!preference.getClassType().isInstance(value)) return;
         getPreferences(preference).save(preference.getTag(), value);
