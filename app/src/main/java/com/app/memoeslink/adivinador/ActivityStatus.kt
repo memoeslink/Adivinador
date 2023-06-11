@@ -7,12 +7,9 @@ data class ActivityStatus(
     var adPaused: Boolean = false,
     var screenWidth: Int = 0,
     var screenHeight: Int = 0,
+    var counters: MutableMap<String, Long> = mutableMapOf(),
     var measurements: MutableMap<String, Int> = mutableMapOf(),
     var tasks: MutableSet<String> = mutableSetOf(),
-    var seconds: Int = 0,
-    var updateSeconds: Int = 0,
-    var resourceSeconds: Int = 0,
-    var adSeconds: Int = 0,
     var measuredTimes: Long = 0,
     var confettiThrown: Long = 0
 )

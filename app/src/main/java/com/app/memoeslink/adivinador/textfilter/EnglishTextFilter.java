@@ -19,7 +19,7 @@ public class EnglishTextFilter implements TextFilter {
     public static final String PARAPHILIA_SLURS_REGEX = "(" + "z[o0]{2}philiac?|bestiality|yiff|pedophiles?|pedophiliac|ped[o0](es)?|cp|(sado)?masochism|(sado)?masochists?|(sado)?masochistic" + ")";
     public static final String HOMOPHOBIC_OR_TRANSPHOBIC_INSULTS_REGEX = "(" + "fag(got)?s?|dykes?|sodomites?|lesbos?|trann(y|ies)|siss(y|ies)|cuntboys?|transexuals?|shemales?" + ")";
     public static final String RACIST_OR_XENOPHOBIC_INSULTS_REGEX = "(" + "niggers?|niggas?|wetbacks?|beaners?|nazis?|crackers?" + ")";
-    public static final String CENSOR_REGEX = "\b" +
+    public static final String CENSOR_REGEX = "(?<start>^|\\s+|\\W)(?<text>" +
             COMMON_PROFANITY_REGEX +
             "|" + INTERNET_PROFANITY_REGEX +
             "|" + VIOLENCE_PROFANITY_REGEX +
@@ -35,7 +35,7 @@ public class EnglishTextFilter implements TextFilter {
             "|" + RACIST_OR_XENOPHOBIC_INSULTS_REGEX +
             //"|" + "" +
             //"|" + "" +
-            "\b";
+            ")(?<end>\\s+|\\W|$)";
     public static final Pattern CENSOR_PATTERN = Pattern.compile(CENSOR_REGEX, Pattern.CASE_INSENSITIVE);
 
     @Override
@@ -46,7 +46,7 @@ public class EnglishTextFilter implements TextFilter {
         StringBuffer sb = new StringBuffer();
 
         while (matcher.find()) {
-            String replacement = StringHelper.mask(matcher.group());
+            String replacement = matcher.group("start") + StringHelper.mask(matcher.group("text")) + matcher.group("end");
             matcher.appendReplacement(sb, replacement);
         }
         matcher.appendTail(sb);

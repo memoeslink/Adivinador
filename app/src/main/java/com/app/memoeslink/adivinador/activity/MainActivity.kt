@@ -544,9 +544,6 @@ class MainActivity : MenuActivity() {
         }
 
         if (!permissionsGranted) launcher.launch(permissions)
-
-        // Show full-screen ads
-        showInterstitialAd()
     }
 
     override fun onResume() {
@@ -581,12 +578,16 @@ class MainActivity : MenuActivity() {
 
         if (timer == null) {
             timer = fixedRateTimer("timer", false, 0L, 1000) {
+                val elapsedSeconds = status.counters.getOrPut("elapsedSeconds") { 0L }
+                val fortuneTellerRefresh = status.counters.getOrPut("fortuneTellerRefresh") { 0L }
+                val predictionRefresh = status.counters.getOrPut("predictionRefresh") { 0L }
+                val resourceReload = status.counters.getOrPut("resourceReload") { 0L }
                 val frequency =
                     PreferenceHandler.getStringAsInt(Preference.SETTING_REFRESH_TIME, 20)
                 val refreshFrequency =
                     PreferenceHandler.getStringAsInt(Preference.SETTING_UPDATE_TIME, 60)
 
-                if (status.seconds >= frequency && frequency != 0) {
+                if (fortuneTellerRefresh >= frequency && frequency != 0) {
                     this@MainActivity.runOnUiThread {
                         // Fade out and fade in fortune-telling text
                         if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) tvPhrase?.let {
@@ -603,7 +604,7 @@ class MainActivity : MenuActivity() {
                                 )
                             }
 
-                            // Get random text from the fortune teller
+                            // Get random phrase from the fortune teller
                             tvPhrase?.text = fortuneTeller?.talk().toHtmlText()
 
                             // Read the text
@@ -613,32 +614,39 @@ class MainActivity : MenuActivity() {
                             ) Speech.getInstance(this@MainActivity).speak(tvPhrase?.text.toString())
                         }, 350)
                     }
-                    status.seconds = 0
-                } else status.seconds++
+                    status.counters["fortuneTellerRefresh"] = 0L
+                } else status.counters["fortuneTellerRefresh"] = fortuneTellerRefresh.inc()
 
-                if (status.updateSeconds >= refreshFrequency) {
-                    if (!PreferenceUtils.hasPersonTempStored() || PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()) refreshPrediction()
-                } else {
-                    if (status.updateSeconds != 0 && status.updateSeconds % 10 == 0) {
+                if (predictionRefresh >= refreshFrequency && (!PreferenceUtils.hasPersonTempStored() || PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate())) refreshPrediction()
+                else {
+                    if (predictionRefresh != 0L && predictionRefresh % 10 == 0L) {
                         backupPredictions?.takeIf { !it.isFull }?.let {
-                            lifecycleScope.launch {
+                            lifecycleScope.launch(Dispatchers.IO) {
                                 backupPredictions?.add(generatePrediction(false))
                             }
                         }
                     }
-                    status.updateSeconds++
+                    status.counters["predictionRefresh"] = predictionRefresh.inc()
                 }
 
-                if (status.resourceSeconds >= 1800) status.resourceSeconds = 0
-                else status.resourceSeconds++
-
-                if (status.adSeconds >= 3600) {
-                    showInterstitialAd()
-                    status.adSeconds = 0
-                } else status.adSeconds++
+                if (resourceReload >= 1800) status.counters["resourceReload"] = 0L
+                else status.counters["resourceReload"] = resourceReload.inc()
+                status.counters["elapsedSeconds"] = elapsedSeconds.inc()
             }
         }
         prepareAnimation()
+
+        // Show full-screen ads
+        device?.getAndroidId()?.let {
+            val summarization =
+                "$it${System.getProperty("line.separator")}${DateTimeHelper.getCurrentDateTime()}"
+            val seed = LongHelper.getSeed(summarization)
+            Randomizer(seed)
+        }?.takeIf {
+            it.getInt(50) == 0
+        }?.let {
+            showInterstitialAd()
+        }
     }
 
     override fun onPause() {
@@ -726,16 +734,7 @@ class MainActivity : MenuActivity() {
     }
 
     private fun showInterstitialAd() {
-        if (PreferenceHandler.getBoolean(Preference.SETTING_ADS_ENABLED, true)) {
-            val r = device?.getAndroidId()?.let {
-                val summarization =
-                    "$it${System.getProperty("line.separator")}${DateTimeHelper.getCurrentDateTime()}"
-                val seed = LongHelper.getSeed(summarization)
-                Randomizer(seed)
-            }
-
-            if (r?.getInt(50) != 0) return
-
+        if (PreferenceHandler.getBoolean(Preference.SETTING_ADS_ENABLED)) {
             this@MainActivity.runOnUiThread {
                 if (adView != null && adView?.visibility == View.VISIBLE) destroyAd()
 
@@ -925,7 +924,7 @@ class MainActivity : MenuActivity() {
 
             this@MainActivity.runOnUiThread {
                 tvPick?.isEnabled = false
-                status.updateSeconds = 0
+                status.counters["predictionRefresh"] = 0L
 
                 llConfetti?.animate()?.alpha(0.0f)?.setDuration(200)
                     ?.setListener(object : AnimatorListenerAdapter() {
