@@ -8,6 +8,7 @@ import android.os.Build
 import android.view.WindowInsets
 import android.view.WindowManager
 
+@Suppress("DEPRECATION")
 fun WindowManager.getCurrentWindowPoint(): Point {
     val point: Point = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         val windowInsets = currentWindowMetrics.windowInsets

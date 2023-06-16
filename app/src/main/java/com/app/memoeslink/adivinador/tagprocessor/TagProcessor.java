@@ -14,7 +14,6 @@ import com.memoeslink.generator.common.TextComponent;
 import com.memoeslink.generator.common.TextProcessor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -152,8 +151,8 @@ public class TagProcessor extends Binder {
             while (pairsOfBrackets > 0 && matcher.find()) {
                 String substring = StringHelper.removeStart(matcher.group(), "{rand:");
                 substring = StringHelper.removeEnd(substring, "}");
-                List<String> items = Arrays.asList(substring.split("\\s*;\\s*"));
-                String replacement = r.getItem(items);
+                String[] parts = StringHelper.split(substring, "\\s*;\\s*");
+                String replacement = r.getElement(parts);
 
                 if (StringHelper.isNullOrEmpty(replacement) || replacement.trim().equals("∅")) {
                     String regex = "\\s*" + Pattern.quote(matcher.group());

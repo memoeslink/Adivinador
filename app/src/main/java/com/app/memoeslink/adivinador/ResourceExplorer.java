@@ -130,7 +130,7 @@ public class ResourceExplorer extends Explorer {
                 METHOD_MAPPING.put(MethodReference.DECIMAL_PERCENTAGE, () -> generatorManager.getStringGenerator().getDecimalPercentage());
                 METHOD_MAPPING.put(MethodReference.HEX_COLOR, () -> generatorManager.getStringGenerator().getStrColor());
                 METHOD_MAPPING.put(MethodReference.DEFAULT_COLOR, () -> resourceFinder.getStrFromArray(Constant.DEFAULT_COLORS));
-                METHOD_MAPPING.put(MethodReference.DEVICE_INFO, () -> new Device(context).getInfo(InformationType.values()[r.getInt(InformationType.values().length)]));
+                METHOD_MAPPING.put(MethodReference.DEVICE_INFO, () -> new Device(context).getInfo(r.getElement(InformationType.values())));
                 METHOD_MAPPING.put(MethodReference.CONTACT_NAME, contactNameFinder::getContactName);
                 METHOD_MAPPING.put(MethodReference.SUGGESTED_NAME, this::getSuggestedName);
                 METHOD_MAPPING.put(MethodReference.FORMATTED_NAME, this::getFormattedName);
