@@ -119,7 +119,7 @@ public class Divination extends ContextWrapper {
 
                 // Format start of divination
                 segment = segments.get(0);
-                int days = r.getGaussianInt(5, 7, 1);
+                int days = r.getGaussianInt(5.0D, 7.0D, 1.0D);
                 segment = StringHelper.replaceOnce(segment, "‽1", String.valueOf(days));
                 segment = StringHelper.replaceOnce(segment, "‽2", DateTimeHelper.getStrDatePlusDays(date, days));
                 segments.set(0, segment);
@@ -226,7 +226,7 @@ public class Divination extends ContextWrapper {
         }
 
         // Add identified people
-        for (int n = 0, limit = r.getInt(3, 8); n < limit; n++) {
+        for (int n = 0, limit = r.getInt(3, 11); n < limit; n++) {
             Person identifiedPerson;
 
             if (r.getInt(4) > 0) {
@@ -241,8 +241,8 @@ public class Divination extends ContextWrapper {
 
         // Add close people
         int arrayLength = resourceExplorer.getResourceFinder().getArrayResLength(R.array.person);
-        int closePersonType = r.getInt(1, arrayLength - 1);
-        int thirdPartyType = closePersonType <= 9 ? r.getInt(11, arrayLength - 11) : r.getInt(1, arrayLength - 1);
+        int closePersonType = r.getInt(1, arrayLength);
+        int thirdPartyType = closePersonType <= 9 ? r.getInt(11, arrayLength) : r.getInt(1, arrayLength);
 
         TextComponent tempComponent = new TextComponent();
         int listSize = IntegerHelper.defaultByRange(resourceExplorer.getContactNameFinder().getContactNamesSize(), 0, 1000);
@@ -291,7 +291,7 @@ public class Divination extends ContextWrapper {
         int totalKarma = 0;
 
         for (int n = 0; n < people.size() - 1; n++) {
-            int karma = r.getInt(-10, 21);
+            int karma = r.getIntInRange(-10, 10);
             totalKarma = totalKarma + karma;
             String chainLink = getString(R.string.chain_link,
                     n + 1,

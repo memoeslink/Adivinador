@@ -91,7 +91,7 @@ public class ResourceExplorer extends Explorer {
 
     public String findTableRowByName(String tableName, int index) {
         if (index < 1)
-            index = r.getInt(1, Database.getInstance(this).countTableRows(tableName));
+            index = r.getIntInRange(1, Database.getInstance(this).countTableRows(tableName));
         else
             index = IntegerHelper.defaultByRange(index, 1, Database.getInstance(this).countTableRows(tableName));
         return Database.getInstance(this).selectFromTable(tableName, index);
@@ -148,13 +148,13 @@ public class ResourceExplorer extends Explorer {
             String suggestedName;
 
             do {
-                suggestedName = r.getItem(suggestedNames);
+                suggestedName = r.getElement(suggestedNames);
             } while (PreferenceHandler.getString(Preference.TEMP_NAME).equals(suggestedName) && suggestedNames.size() > 1);
             return StringHelper.defaultWhenBlank(suggestedName);
         }
 
         private String getFormattedName() {
-            return switch (r.getItem(NAME_SOURCES)) {
+            return switch (r.getElement(NAME_SOURCES)) {
                 case "anonymous" ->
                         TextFormatter.formatUsername(getMethodByRef(MethodReference.USERNAME));
                 case "common" ->

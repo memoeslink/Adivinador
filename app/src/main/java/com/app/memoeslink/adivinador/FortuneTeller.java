@@ -23,23 +23,16 @@ public class FortuneTeller extends ContextWrapper {
 
     public FortuneTeller(Context context) {
         super(context);
-        r = new Randomizer();
-        resourceExplorer = new ResourceExplorer(context);
-        tagProcessor = new TagProcessor(context);
-        bindSeed();
+        Long seed = getSeed();
+        r = new Randomizer(seed);
+        resourceExplorer = new ResourceExplorer(context, seed);
+        tagProcessor = new TagProcessor(context, seed);
     }
 
     public Long getSeed() {
         if (StringHelper.isNotNullOrBlank(PreferenceHandler.getString(Preference.SETTING_SEED)))
             return LongHelper.getSeed(PreferenceHandler.getString(Preference.SETTING_SEED));
         return null;
-    }
-
-    private void bindSeed() {
-        Long seed = getSeed();
-        r.bindSeed(seed);
-        resourceExplorer.bindSeed(seed);
-        tagProcessor.bindSeed(seed);
     }
 
     public String greet() {
@@ -65,7 +58,7 @@ public class FortuneTeller extends ContextWrapper {
             phraseTypes.add("phrases");
 
         if (phraseTypes.size() > 0) {
-            return switch (r.getItem(phraseTypes)) {
+            return switch (r.getElement(phraseTypes)) {
                 case "greetings" -> greet();
                 case "opinions" -> talkAboutSomeone();
                 case "phrases" -> talkAboutSomething();
