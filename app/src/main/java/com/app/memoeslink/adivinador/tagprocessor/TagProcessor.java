@@ -192,22 +192,6 @@ public class TagProcessor extends Binder {
         return component;
     }
 
-    private Pair<String, List<Gender>> replaceGrammaticalNumberTags(String s) {
-        if (StringHelper.isNotNullOrEmpty(s) && StringHelper.containsAny(s, "｢", "｣")) {
-            List<Gender> matches = new ArrayList<>();
-            Matcher matcher = GRAMMATICAL_NUMBER_PATTERN.matcher(s);
-            StringBuffer sb = new StringBuffer();
-
-            while (matcher.find()) {
-                matches.add(getTrueGender(matcher.group(1)));
-                matcher.appendReplacement(sb, "");
-            }
-            matcher.appendTail(sb);
-            return new Pair<>(sb.toString(), matches);
-        }
-        return new Pair<>(s, new ArrayList<>());
-    }
-
     private Pair<String, List<Gender>> replaceGenderTags(String s) {
         if (StringHelper.isNotNullOrEmpty(s) && StringHelper.containsAny(s, "｢", "｣")) {
             List<Gender> matches = new ArrayList<>();
