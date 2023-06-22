@@ -119,7 +119,7 @@ public class Divination extends ContextWrapper {
 
                 // Format start of divination
                 segment = segments.get(0);
-                int days = r.getGaussianInt(5.0D, 7.0D, 1.0D);
+                int days = r.getIntInRange(2, 11);
                 segment = StringHelper.replaceOnce(segment, "‽1", String.valueOf(days));
                 segment = StringHelper.replaceOnce(segment, "‽2", DateTimeHelper.getStrDatePlusDays(date, days));
                 segments.set(0, segment);
@@ -291,7 +291,7 @@ public class Divination extends ContextWrapper {
         int totalKarma = 0;
 
         for (int n = 0; n < people.size() - 1; n++) {
-            int karma = r.getIntInRange(-10, 10);
+            int karma = r.getInt(-10, 11);
             totalKarma = totalKarma + karma;
             String chainLink = getString(R.string.chain_link,
                     n + 1,

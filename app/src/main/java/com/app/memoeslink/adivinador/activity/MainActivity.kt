@@ -31,7 +31,6 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
-import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.ProgressBar
@@ -155,7 +154,7 @@ class MainActivity : MenuActivity() {
     private var tvBinder: TextView? = null
     private var tvCompatibility: TextView? = null
     private var tvTextCopy: TextView? = null
-    private var tvNameBox: EditText? = null
+    private var tvNameBox: TextView? = null
     private var tvDetails: TextView? = null
     private var spnNameType: AppCompatSpinner? = null
     private var dpdInquiryDate: DatePickerDialog? = null

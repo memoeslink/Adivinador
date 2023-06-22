@@ -1195,6 +1195,7 @@
         <item>Username</item>
         <item>Composite username</item>
         <item>Derived username</item>
+        <item>Pattern username</item>
         <item>Anonymous name</item>
         <item>Anonymous animal</item>
     </string-array>

@@ -49,7 +49,7 @@
                 android:layout_height="1dp"
                 android:layout_weight="0.1" />
 
-            <EditText
+            <TextView
                 android:id="@+id/dialog_generated_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -57,13 +57,15 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="0.8"
+                android:background="@drawable/outline"
+                android:clickable="false"
+                android:ellipsize="end"
                 android:focusable="false"
-                android:importantForAutofill="no"
-                android:inputType="textNoSuggestions"
                 android:longClickable="false"
                 android:maxLines="2"
+                android:padding="10dp"
                 android:textAppearance="@android:style/TextAppearance.Medium"
-                android:textIsSelectable="true" />
+                android:textIsSelectable="false" />
 
             <View
                 android:layout_width="0dp"

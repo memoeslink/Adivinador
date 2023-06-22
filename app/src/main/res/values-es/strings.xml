@@ -1195,6 +1195,7 @@
         <item>Nombre de usuario</item>
         <item>Nombre de usuario compuesto</item>
         <item>Nombre de usuario derivado</item>
+        <item>Nombre de usuario con patrón</item>
         <item>Nombre anónimo</item>
         <item>Animal anónimo</item>
     </string-array>

@@ -23,6 +23,7 @@ public class TagProcessor extends Binder {
     private static final String TAG_GENDER_REGEX = "(?<gender>;\\s?gender:(?<genderType>(user|⛌)|(random|⸮)|(default|＃)|" + INTEGER_REGEX + "|(undefined|masculine|feminine)))?";
     private static final String TAG_PLURAL_REGEX = "(?<plural>;\\s?plural:(?<pluralForm>\\+?\\p{L}+))?";
     private static final Pattern GENDER_PATTERN = Pattern.compile("｢([0-2])｣");
+    private static final Pattern GRAMMATICAL_NUMBER_PATTERN = Pattern.compile("｢([sSpP])｣");
     private static final String TAG_REGEX = "\\{((?<resourceType>string|database):(?<resourceName>[\\w\\p{L}]+)(\\[!?[\\d]+\\])?" + TAG_GENDER_REGEX + "|(?<referenceType>method|reference):(?<referenceName>[a-zA-Z0-9_$]+))\\}";
     private static final Pattern TAG_PATTERN = Pattern.compile(TAG_REGEX);
     private static final String WORD_TAG_REGEX = "\\{(?<word>" + TextProcessor.EXTENDED_WORD_REGEX + ")" + TAG_GENDER_REGEX + TAG_PLURAL_REGEX + "\\}";
@@ -171,11 +172,13 @@ public class TagProcessor extends Binder {
             s = t.getText();
             pairsOfBrackets = t.getRemainingMatches();
         }
-        Pair<String, List<Gender>> pair = replaceDigitTags(s);
 
-        if (pair.getSubValue() != null && pair.getSubValue().size() > 0 && !s.equals(pair.getSubKey()))
-            gender = pair.getSubValue().get(pair.getSubValue().size() - 1);
-        s = pair.getSubKey();
+        // Replace gender tags and get the hegemonic gender, which is the most recent gender used
+        Pair<String, List<Gender>> pair = replaceGenderTags(s);
+
+        if (pair.getValue() != null && pair.getValue().size() > 0 && !s.equals(pair.getKey()))
+            gender = pair.getValue().get(pair.getValue().size() - 1);
+        s = pair.getKey();
         gender = gender != null ? gender : defaultGender;
 
         // Replace subtags within the text, if there are any
@@ -189,15 +192,34 @@ public class TagProcessor extends Binder {
         return component;
     }
 
-    private Pair<String, List<Gender>> replaceDigitTags(String s) {
+    private Pair<String, List<Gender>> replaceGrammaticalNumberTags(String s) {
         if (StringHelper.isNotNullOrEmpty(s) && StringHelper.containsAny(s, "｢", "｣")) {
             List<Gender> matches = new ArrayList<>();
-            Matcher matcher = GENDER_PATTERN.matcher(s);
+            Matcher matcher = GRAMMATICAL_NUMBER_PATTERN.matcher(s);
+            StringBuffer sb = new StringBuffer();
 
             while (matcher.find()) {
                 matches.add(getTrueGender(matcher.group(1)));
+                matcher.appendReplacement(sb, "");
             }
-            return new Pair<>(StringHelper.removeAll(s, "\\s*｢[0-2]｣"), matches);
+            matcher.appendTail(sb);
+            return new Pair<>(sb.toString(), matches);
+        }
+        return new Pair<>(s, new ArrayList<>());
+    }
+
+    private Pair<String, List<Gender>> replaceGenderTags(String s) {
+        if (StringHelper.isNotNullOrEmpty(s) && StringHelper.containsAny(s, "｢", "｣")) {
+            List<Gender> matches = new ArrayList<>();
+            Matcher matcher = GENDER_PATTERN.matcher(s);
+            StringBuffer sb = new StringBuffer();
+
+            while (matcher.find()) {
+                matches.add(getTrueGender(matcher.group(1)));
+                matcher.appendReplacement(sb, "");
+            }
+            matcher.appendTail(sb);
+            return new Pair<>(sb.toString(), matches);
         }
         return new Pair<>(s, new ArrayList<>());
     }
