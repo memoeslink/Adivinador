@@ -22,9 +22,11 @@ public class TagProcessor extends Binder {
     private static final String INTEGER_REGEX = "(-?[1-9]\\d*|0)";
     private static final String TAG_GENDER_REGEX = "(?<gender>;\\s?gender:(?<genderType>(user|⛌)|(random|⸮)|(default|＃)|" + INTEGER_REGEX + "|(undefined|masculine|feminine)))?";
     private static final String TAG_PLURAL_REGEX = "(?<plural>;\\s?plural:(?<pluralForm>\\+?\\p{L}+))?";
-    private static final Pattern GENDER_PATTERN = Pattern.compile("｢([0-2])｣");
-    private static final Pattern GRAMMATICAL_NUMBER_PATTERN = Pattern.compile("｢([sSpP])｣");
-    private static final String TAG_REGEX = "\\{((?<resourceType>string|database):(?<resourceName>[\\w\\p{L}]+)(\\[!?[\\d]+\\])?" + TAG_GENDER_REGEX + "|(?<referenceType>method|reference):(?<referenceName>[a-zA-Z0-9_$]+))\\}";
+    private static final String GENDER_REGEX = "｢([0-2])｣";
+    private static final Pattern GENDER_PATTERN = Pattern.compile("(\\s*)" + GENDER_REGEX + "(\\s*)");
+    private static final String GRAMMATICAL_NUMBER_REGEX = "｢([sSpP])｣";
+    private static final Pattern GRAMMATICAL_NUMBER_PATTERN = Pattern.compile("(\\s*)" + GRAMMATICAL_NUMBER_REGEX + "(\\s*)");
+    private static final String TAG_REGEX = "\\{((?<resourceType>string|database):(?<resourceName>[\\w\\p{L}]+)(\\[!?\\d+\\])?" + TAG_GENDER_REGEX + "|(?<referenceType>method|reference):(?<referenceName>[a-zA-Z0-9_$]+))\\}";
     private static final Pattern TAG_PATTERN = Pattern.compile(TAG_REGEX);
     private static final String WORD_TAG_REGEX = "\\{(?<word>" + TextProcessor.EXTENDED_WORD_REGEX + ")" + TAG_GENDER_REGEX + TAG_PLURAL_REGEX + "\\}";
     private static final Pattern WORD_TAG_PATTERN = Pattern.compile(WORD_TAG_REGEX);
@@ -199,8 +201,8 @@ public class TagProcessor extends Binder {
             StringBuffer sb = new StringBuffer();
 
             while (matcher.find()) {
-                matches.add(getTrueGender(matcher.group(1)));
-                matcher.appendReplacement(sb, "");
+                matches.add(getTrueGender(matcher.group(2)));
+                matcher.appendReplacement(sb, StringHelper.defaultIfNull(matcher.group(3)));
             }
             matcher.appendTail(sb);
             return new Pair<>(sb.toString(), matches);
