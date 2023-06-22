@@ -30,7 +30,7 @@
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:text="@string/about_title"
-            android:textAppearance="@android:style/TextAppearance.Large" />
+            android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
         <TextView
             android:id="@+id/about_content"
@@ -39,7 +39,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
         <LinearLayout
             android:layout_width="match_parent"

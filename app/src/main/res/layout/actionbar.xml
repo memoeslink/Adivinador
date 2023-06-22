@@ -35,7 +35,7 @@
             android:maxLines="1"
             android:singleLine="true"
             android:text="@string/app_name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
             android:textColor="@color/selector"
             tools:ignore="UnusedAttribute" />
     </LinearLayout>
