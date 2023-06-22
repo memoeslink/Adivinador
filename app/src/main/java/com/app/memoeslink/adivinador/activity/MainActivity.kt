@@ -604,8 +604,6 @@ class MainActivity : MenuActivity() {
                             }
 
                             // Get random phrase from the fortune teller
-                            val sounds = arrayOf("blip1", "blip2", "bum", "chime_notification", "counter", "level_up", "notification", "notification_sound", "water_drop")
-                            Sound.play(this@MainActivity, r?.getElement(sounds))
                             tvPhrase?.text = fortuneTeller?.talk().toHtmlText()
 
                             // Read the text
