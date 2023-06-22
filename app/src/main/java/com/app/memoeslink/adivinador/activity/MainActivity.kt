@@ -1170,6 +1170,7 @@ class MainActivity : MenuActivity() {
             status.tasks.add("generateName")
             spnNameType?.isEnabled = false
             val nameType = NameType.values()[spnNameType?.selectedItemPosition ?: 0]
+            Sound.play(this@MainActivity, "wind")
             tvNameBox?.text = GeneratorManager(Locale("xx")).nameGenerator.getNameOrRetry(nameType)
             spnNameType?.isEnabled = true
             status.tasks.remove("generateName")
