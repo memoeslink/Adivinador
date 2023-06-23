@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><!DOCTYPE
-    resources [<!ENTITY personType1 "una persona"><!ENTITY personType2 "[un[,a]] [desconocid[o,a]]"><!ENTITY personType3 "una persona relacionada"><!ENTITY personType4 "la pareja"><!ENTITY personType5 "[[el,la]] cónyuge"><!ENTITY personType6 "[[el,la]] [concubin[o,a]]"><!ENTITY personType7 "[[el,la]] mejor [amig[o,a]]"><!ENTITY personType8 "[[el,la]] peor [enemig[o,a]]"><!ENTITY personType9 "la persona más cercana"><!ENTITY personType10 "alguien que ofrece servicios"><!ENTITY personType11 "alguien que vende algo"><!ENTITY personType12 "alguien cercano"><!ENTITY personType13 "[un[,a]] amante"><!ENTITY personType14 "[un[,a]] familiar"><!ENTITY personType15 "[un[,a]] familiar [lejan[o,a]]"><!ENTITY personType16 "[un[,a]] colega"><!ENTITY personType17 "[un[,a]] [amig[o,a]]"><!ENTITY personType18 "[un[,a]] [enemig[o,a]]"><!ENTITY personType19 "[un[,a]] [buen[,a]] [amig[o,a]]"><!ENTITY personType20 "[un[,a]] camarada"><!ENTITY personType21 "[un[,a]] [compañer[o,a]]"><!ENTITY personType22 "[un[,a]] acompañante"><!ENTITY personType23 "[un[,a]] [compañer[o,a]] de equipo"><!ENTITY personType24 "[un[,a]] [compañer[o,a]] de trabajo"><!ENTITY personType25 "[un[,a]] [compañer[o,a]] de clases"><!ENTITY personType26 "[un[,a]] [compañer[o,a]] de cuarto"><!ENTITY personType27 "[un[,a]] [soci[o,a]]"><!ENTITY personType28 "[un[,a]] [client[e,a]]"><!ENTITY personType29 "[un[,a]] prospecto"><!ENTITY personType30 "[un[,a]] [conocid[o,a]]"><!ENTITY personType31 "[un[,a]] [vecin[o,a]]"><!ENTITY personType32 "[un[,a]] [seguidor[,a]]"><!ENTITY personType33 "[un[,a]] [observador[,a]]"><!ENTITY personType34 "[un[,a]] [aliad[o,a]]"><!ENTITY personType35 "[un[,a]] rival"><!ENTITY personType36 "[un[,a]] aprendiz"><!ENTITY personType37 "[un[,a]] [mentor[,a]]">]
+    resources [<!ENTITY personType1 "una persona"><!ENTITY personType2 "[un[,a]] [desconocid[o,a]]"><!ENTITY personType3 "una persona relacionada"><!ENTITY personType4 "la pareja"><!ENTITY personType5 "[[el,la]] cónyuge"><!ENTITY personType6 "[[el,la]] [concubin[o,a]]"><!ENTITY personType7 "[[el,la]] mejor [amig[o,a]]"><!ENTITY personType8 "[[el,la]] peor [enemig[o,a]]"><!ENTITY personType9 "la persona más cercana"><!ENTITY personType10 "alguien que ofrece servicios"><!ENTITY personType11 "alguien que vende algo"><!ENTITY personType12 "alguien cercano"><!ENTITY personType13 "[un[,a]] amante"><!ENTITY personType14 "[un[,a]] familiar"><!ENTITY personType15 "[un[,a]] familiar [lejan[o,a]]"><!ENTITY personType16 "[un[,a]] colega"><!ENTITY personType17 "[un[,a]] [amig[o,a]]"><!ENTITY personType18 "[un[,a]] [enemig[o,a]]"><!ENTITY personType19 "[un[,a]] [buen[,a]] [amig[o,a]]"><!ENTITY personType20 "[un[,a]] camarada"><!ENTITY personType21 "[un[,a]] [compañer[o,a]]"><!ENTITY personType22 "[un[,a]] acompañante"><!ENTITY personType23 "[un[,a]] [compañer[o,a]] de equipo"><!ENTITY personType24 "[un[,a]] [compañer[o,a]] de trabajo"><!ENTITY personType25 "[un[,a]] [compañer[o,a]] de clases"><!ENTITY personType26 "[un[,a]] [compañer[o,a]] de cuarto"><!ENTITY personType27 "[un[,a]] [soci[o,a]]"><!ENTITY personType28 "[un[,a]] [client[e,a]]"><!ENTITY personType29 "[un[,a]] prospecto"><!ENTITY personType30 "[un[,a]] [conocid[o,a]]"><!ENTITY personType31 "[un[,a]] [vecin[o,a]]"><!ENTITY personType32 "[un[,a]] [seguidor[,a]]"><!ENTITY personType33 "[un[,a]] [observador[,a]]"><!ENTITY personType34 "[un[,a]] [aliad[o,a]]"><!ENTITY personType35 "[un[,a]] rival"><!ENTITY personType36 "[un[,a]] aprendiz"><!ENTITY personType37 "[un[,a]] [mentor[,a]]"><!ENTITY personType38 "[un[,a]] [protegid[o,a]]"><!ENTITY personType39 "[un[,a]] dependiente"><!ENTITY personType40 "[un[,a]] [benefactor[,a]]"><!ENTITY personType41 "[un[,a]] [aficionad[o,a]] [compartid[o,a]]"><!ENTITY personType42 "[un[,a]] [voluntari[o,a]]"><!ENTITY personType43 "[un[,a]] [asesor[,a]]">]
     >
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="about">
@@ -642,6 +642,12 @@
         <item>&personType35; {de/del} {string:relationship}</item>
         <item>&personType36; {de/del} {string:relationship}</item>
         <item>&personType37; {de/del} {string:relationship}</item>
+        <item>&personType38; {de/del} {string:relationship}</item>
+        <item>&personType39; {de/del} {string:relationship}</item>
+        <item>&personType40; {de/del} {string:relationship}</item>
+        <item>&personType41; {de/del} {string:relationship}</item>
+        <item>&personType42; {de/del} {string:relationship}</item>
+        <item>&personType43; {de/del} {string:relationship}</item>
     </string-array>
     <string-array name="divination">
         <item>Pasará algo {rand:∅; favorable; desfavorable} acerca {de/del} {method:getNounWithAnyArticle}.</item>
@@ -1629,6 +1635,12 @@
         <item>&personType35;</item>
         <item>&personType36;</item>
         <item>&personType37;</item>
+        <item>&personType38;</item>
+        <item>&personType39;</item>
+        <item>&personType40;</item>
+        <item>&personType41;</item>
+        <item>&personType42;</item>
+        <item>&personType43;</item>
     </string-array>
     <string-array name="phrase_augury">
         <item>Veamos qué te depara el futuro.</item>
@@ -1792,6 +1804,12 @@
         <item>&personType35; {de/del} %1$s</item>
         <item>&personType36; {de/del} %1$s</item>
         <item>&personType37; {de/del} %1$s</item>
+        <item>&personType38; {de/del} %1$s</item>
+        <item>&personType39; {de/del} %1$s</item>
+        <item>&personType40; {de/del} %1$s</item>
+        <item>&personType41; {de/del} %1$s</item>
+        <item>&personType42; {de/del} %1$s</item>
+        <item>&personType43; {de/del} %1$s</item>
     </string-array>
     <string-array name="ruler">
         <item>\?</item>

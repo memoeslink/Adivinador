@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><!DOCTYPE
-    resources [<!ENTITY personType1 "a person"><!ENTITY personType2 "an unknown person"><!ENTITY personType3 "a related person"><!ENTITY personType4 "the couple"><!ENTITY personType5 "the spouse"><!ENTITY personType6 "the concubine"><!ENTITY personType7 "the best friend"><!ENTITY personType8 "the worst enemy"><!ENTITY personType9 "the closest person"><!ENTITY personType10 "someone who offers a service"><!ENTITY personType11 "someone who sells anything"><!ENTITY personType12 "someone close"><!ENTITY personType13 "a lover"><!ENTITY personType14 "a relative"><!ENTITY personType15 "a distant relative"><!ENTITY personType16 "a colleague"><!ENTITY personType17 "a friend"><!ENTITY personType18 "an enemy"><!ENTITY personType19 "a good friend"><!ENTITY personType20 "a comrade"><!ENTITY personType21 "a fellow"><!ENTITY personType22 "a companion"><!ENTITY personType23 "a teammate"><!ENTITY personType24 "a coworker"><!ENTITY personType25 "a classmate"><!ENTITY personType26 "a roommate"><!ENTITY personType27 "a business associate"><!ENTITY personType28 "a customer"><!ENTITY personType29 "a prospect"><!ENTITY personType30 "an acquaintance"><!ENTITY personType31 "a neighbor"><!ENTITY personType32 "a follower"><!ENTITY personType33 "an observer"><!ENTITY personType34 "an ally"><!ENTITY personType35 "a rival"><!ENTITY personType36 "an apprentice"><!ENTITY personType37 "a mentor">]
+    resources [<!ENTITY personType1 "a person"><!ENTITY personType2 "an unknown person"><!ENTITY personType3 "a related person"><!ENTITY personType4 "the couple"><!ENTITY personType5 "the spouse"><!ENTITY personType6 "the concubine"><!ENTITY personType7 "the best friend"><!ENTITY personType8 "the worst enemy"><!ENTITY personType9 "the closest person"><!ENTITY personType10 "someone who offers a service"><!ENTITY personType11 "someone who sells anything"><!ENTITY personType12 "someone close"><!ENTITY personType13 "a lover"><!ENTITY personType14 "a relative"><!ENTITY personType15 "a distant relative"><!ENTITY personType16 "a colleague"><!ENTITY personType17 "a friend"><!ENTITY personType18 "an enemy"><!ENTITY personType19 "a good friend"><!ENTITY personType20 "a comrade"><!ENTITY personType21 "a fellow"><!ENTITY personType22 "a companion"><!ENTITY personType23 "a teammate"><!ENTITY personType24 "a coworker"><!ENTITY personType25 "a classmate"><!ENTITY personType26 "a roommate"><!ENTITY personType27 "a business associate"><!ENTITY personType28 "a customer"><!ENTITY personType29 "a prospect"><!ENTITY personType30 "an acquaintance"><!ENTITY personType31 "a neighbor"><!ENTITY personType32 "a follower"><!ENTITY personType33 "an observer"><!ENTITY personType34 "an ally"><!ENTITY personType35 "a rival"><!ENTITY personType36 "an apprentice"><!ENTITY personType37 "a mentor"><!ENTITY personType38 "a protégé"><!ENTITY personType39 "a dependent"><!ENTITY personType40 "a benefactor"><!ENTITY personType41 "a fellow enthusiast"><!ENTITY personType42 "a volunteer"><!ENTITY personType43 "an advisor">]
     >
 <resources xmlns:tools="http://schemas.android.com/tools" tools:locale="en">
     <string name="about">
@@ -642,6 +642,12 @@
         <item>&personType35; of {string:relationship}</item>
         <item>&personType36; of {string:relationship}</item>
         <item>&personType37; of {string:relationship}</item>
+        <item>&personType38; of {string:relationship}</item>
+        <item>&personType39; of {string:relationship}</item>
+        <item>&personType40; of {string:relationship}</item>
+        <item>&personType41; of {string:relationship}</item>
+        <item>&personType42; of {string:relationship}</item>
+        <item>&personType43; of {string:relationship}</item>
     </string-array>
     <string-array name="divination">
         <item>Something {rand:∅; favorable; unfavorable}, related to {method:getNounWithAnyArticle}, will happen.</item>
@@ -1629,6 +1635,12 @@
         <item>&personType35;</item>
         <item>&personType36;</item>
         <item>&personType37;</item>
+        <item>&personType38;</item>
+        <item>&personType39;</item>
+        <item>&personType40;</item>
+        <item>&personType41;</item>
+        <item>&personType42;</item>
+        <item>&personType43;</item>
     </string-array>
     <string-array name="phrase_augury">
         <item>Let\'s see what the future holds for you.</item>
@@ -1792,6 +1804,12 @@
         <item>&personType35; of %1$s</item>
         <item>&personType36; of %1$s</item>
         <item>&personType37; of %1$s</item>
+        <item>&personType38; of %1$s</item>
+        <item>&personType39; of %1$s</item>
+        <item>&personType40; of %1$s</item>
+        <item>&personType41; of %1$s</item>
+        <item>&personType42; of %1$s</item>
+        <item>&personType43; of %1$s</item>
     </string-array>
     <string-array name="ruler">
         <item>\?</item>
