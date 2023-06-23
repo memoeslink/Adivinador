@@ -4,10 +4,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="about">
         <![CDATA[
-        <big><b>%1$s</b></big>
+        <big><big>&#128302;</big></big>
+        <br><big><b>%1$s</b></big>
         <br><b>Versión: %2$s (%3$d)</b>
         <br><br>2014-%4$d Memoeslink Futura
-        <br><small>Guillermo Almaguer (memoeslink)</small>
+        <br><small>Guillermo Almaguer (Memoeslink)</small>
         <br><small>memocad@gmail.com</small>
         <br><br>Aplicación de predicción del futuro
         <br><br><font color="#53E3B3">Imágenes:</font>
@@ -44,6 +45,26 @@
         <br><i><font color="#FDFCDA">• Nee Si Yao, Phu Tang, Umair Vatao: </font><font color=#FFFDC4>EasyAndroidAnimations</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/2359media/EasyAndroidAnimations/">https://github.com/</a>)
         <br><i><font color="#FDFCDA">• Wouter Dullaert: </font><font color=#FFFDC4>Material DateTime Picker</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/wdullaer/MaterialDateTimePicker/">https://github.com/</a>)
         <br><i><font color="#FDFCDA">• Zhang Hai: </font><font color=#FFFDC4>MaterialProgressBar</font></i> [<font color=#D0F0B7>Licencia Apache v2.0</font>] (<a href="https://github.com/DreaminginCodeZH/MaterialProgressBar/">https://github.com/</a>)
+        <br><br><br>&#128195;<br><font color="#7ED6D2">Política de Privacidad:</font>
+        <br><br><font color="#8888FC">1. Introducción</font>
+        <br>Bienvenido a "%1$s", una aplicación desarrollada por Guillermo Almaguer, también conocido como Memoeslink. Esta política de privacidad tiene como objetivo informarle sobre cómo recopilamos, usamos, salvaguardamos y divulgamos la información que recopilamos de los usuarios de nuestra aplicación.
+        <br><br><font color="#8888FC">2. Información recopilada</font>
+        <br>"%1$s" no recopila ni almacena, de manera automática, información personal identificable, como su nombre, fecha de nacimiento u otros detalles que puedan ser relevantes para personalizar las predicciones. Solo se recogerán y utilizarán los datos que el usuario decida proporcionar voluntariamente a través de la interacción con la aplicación.
+        <br><br><font color="#8888FC">3. Uso de la información</font>
+        <br>Cualquier información personal proporcionada por el usuario solo se utiliza con el fin de personalizar las predicciones del futuro que ofrece nuestra aplicación. Esta información no se almacena en una base de datos remota y no se utiliza para fines comerciales.
+        <br><br>La información proporcionada por el usuario no se utiliza para tomar decisiones que puedan afectarle de manera adversa.
+        <br><br><font color="#8888FC">4. Seguridad de la información</font>
+        <br>Dado que la información personal que recopilamos no se almacena en una base de datos remota, el riesgo de brechas de seguridad es significativamente menor. Sin embargo, nos esforzamos por utilizar prácticas aceptables para proteger su información.
+        <br><br><font color="#8888FC">5. Control de su información</font>
+        <br>El usuario tiene control total sobre la información que proporciona a la aplicación "%1$s". Puede optar por no proporcionar cierta información, pero eso puede limitar la capacidad de la aplicación para personalizar las predicciones del futuro.
+        <br><br>La información proporcionada a "%1$s" se puede eliminar en cualquier momento de manera manual por el usuario. Además, cuando la aplicación se desinstala, todos los datos proporcionados por el usuario se eliminan de la aplicación.
+        <br><br><font color="#8888FC">6. Cambios a esta Política de Privacidad</font>
+        <br>"%1$s" se reserva el derecho de modificar esta política de privacidad en cualquier momento. Le recomendamos que revise esta política de privacidad periódicamente para estar al tanto de cualquier cambio.
+        <br><br><font color="#8888FC">7. Contacto</font>
+        <br>Si tiene alguna pregunta sobre esta Política de privacidad, puede ponerse en contacto con nosotros:
+        <br><br>Guillermo Almaguer (Memoeslink)
+        <br>Correo electrónico: <a href="mailto:memocad@gmail.com">memocad@gmail.com</a>
+        <br><br>Al usar "%1$s", usted acepta esta Política de privacidad. Si no está de acuerdo con esta política, por favor no utilice nuestra aplicación. Su uso continuado de la aplicación tras la publicación de cambios a esta política se considerará como su aceptación de dichos cambios.
         ]]>
     </string>
     <string name="adjectives">[aburrid[o,a]]¶ [afectuos[o,a]]¶ ágil¶ agradable¶ alegre¶ amable¶ [amargad[o,a]]¶ [ambicios[o,a]]¶ amigable¶ angelical¶ [apasionad[o,a]]¶ [apátic[o,a]]¶ ardiente¶ [atent[o,a]]¶ [atontad[o,a]]¶ [atrevid[o,a]]¶ [aventurer[o,a]]¶ [avispad[o,a]]¶ [bast[o,a]]¶ beligerante¶ brillante¶ [burl[ón,ona]]¶ cascarrabias¶ [caut[o,a]]¶ [celos[o,a]]¶ [cínic[o,a]]¶ cobarde¶ coherente¶ [comprensiv[o,a]]¶ [concienzud[o,a]]¶ [conservador[,a]]¶ [considerad[o,a]]¶ [consternad[o,a]]¶ convencional¶ [conversador[,a]]¶ [coquet[o,a]]¶ cordial¶ cortante¶ cortés¶ [creíd[o,a]]¶ cruel¶ [cuidados[o,a]]¶ [curios[o,a]]¶ de actitud abierta¶ de actitud relajada¶ de buen trato¶ de humor cambiante¶ de mal carácter¶ de mal genio¶ de mentalidad cerrada¶ débil¶ dependiente¶ deprimente¶ [deprimid[o,a]]¶ [desaliñad[o,a]]¶ [desconfiad[o,a]]¶ [desconsiderad[o,a]]¶ [descuidad[o,a]]¶ [desocupad[o,a]]¶ [despreocupad[o,a]]¶ [dign[o,a]] de confianza¶ diligente¶ [diplomátic[o,a]]¶ [direct[o,a]]¶ [discret[o,a]]¶ [discutidor[,a]]¶ distante¶ [distraíd[o,a]]¶ [divertid[o,a]]¶ [dubitativ[o,a]]¶ dulce¶ [educad[o,a]]¶ eficiente¶ egoísta¶ elegante¶ [embuster[o,a]]¶ [emotiv[o,a]]¶ [emprendedor[,a]]¶ [encantador[,a]]¶ [energétic[o,a]]¶ [enfadad[o,a]]¶ [engreíd[o,a]]¶ [entrometid[o,a]]¶ [entusiasmad[o,a]]¶ [equilibrad[o,a]]¶ [escandalos[o,a]]¶ [escrupulos[o,a]]¶ [estoic[o,a]]¶ [estrict[o,a]]¶ [estúpid[o,a]]¶ [excéntric[o,a]]¶ exigente¶ [experimentad[o,a]]¶ [extrañ[o,a]]¶ [extravertid[o,a]]¶ [fervoros[o,a]]¶ fiable¶ fiel¶ [fof[o,a]]¶ formal¶ [frí[o,a]]¶ [generos[o,a]]¶ gentil¶ [gracios[o,a]]¶ [gruñ[ón,ona]]¶ hábil¶ [hermos[o,a]]¶ [histéric[o,a]]¶ [holgaz[án,ana]]¶ [honest[o,a]]¶ horrible¶ [hurañ[o,a]]¶ [imaginativ[o,a]]¶ imbécil¶ impaciente¶ [impetuos[o,a]]¶ [impulsiv[o,a]]¶ independiente¶ infantil¶ [ingenu[o,a]]¶ [inmadur[o,a]]¶ [inquiet[o,a]]¶ insensible¶ inteligente¶ interesante¶ intolerante¶ [intrépid[o,a]]¶ [juguet[ón,ona]]¶ [list[o,a]]¶ [llor[ón,ona]]¶ [loc[o,a]]¶ [madur[o,a]]¶ [maleducad[o,a]]¶ [malhumorad[o,a]]¶ [malicios[o,a]]¶ [mal[o,a]]¶ maternal¶ [melancólic[o,a]]¶ [meticulos[o,a]]¶ [modest[o,a]]¶ mordaz¶ [nervios[o,a]]¶ [odios[o,a]]¶ [orgullos[o,a]]¶ paciente¶ [pacífic[o,a]]¶ pasional¶ [pensativ[o,a]]¶ [perezos[o,a]]¶ perseverante¶ [perturbador[,a]]¶ [pesad[o,a]]¶ [pícar[o,a]]¶ [poderos[o,a]]¶ [positiv[o,a]]¶ [práctic[o,a]]¶ [presumid[o,a]]¶ [pretencios[o,a]]¶ [provocador[,a]]¶ prudente¶ puntual¶ [quisquillos[o,a]]¶ [reaci[o,a]]¶ realista¶ [recelos[o,a]]¶ [reservad[o,a]]¶ responsable¶ [ridícul[o,a]]¶ sagaz¶ [segur[o,a]]¶ [segur[o,a]] de sí [mism[o,a]]¶ [sensat[o,a]]¶ sensible¶ [seren[o,a]]¶ [seri[o,a]]¶ servicial¶ [sever[o,a]]¶ [simpátic[o,a]]¶ [sincer[o,a]]¶ [sofisticad[o,a]]¶ [somnolient[o,a]]¶ [sos[o,a]]¶ [suci[o,a]]¶ superficial¶ [tacañ[o,a]]¶ [taciturn[o,a]]¶ [talentos[o,a]]¶ [terc[o,a]]¶ [tímid[o,a]]¶ [tont[o,a]]¶ torpe¶ [trabajador[,a]]¶ [tranquilizador[,a]]¶ [tranquil[o,a]]¶ [travies[o,a]]¶ triste¶ útil¶ valiente¶ [venenos[o,a]]¶ vivaz</string>
