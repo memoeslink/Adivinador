@@ -734,28 +734,26 @@ class MainActivity : MenuActivity() {
 
     private fun showInterstitialAd() {
         if (PreferenceHandler.getBoolean(Preference.SETTING_ADS_ENABLED)) {
-            this@MainActivity.runOnUiThread {
-                if (adView != null && adView?.visibility == View.VISIBLE) destroyAd()
+            if (adView != null && adView?.visibility == View.VISIBLE) destroyAd()
 
-                adRequest?.let { adRequest ->
-                    InterstitialAd.load(this,
-                        AdUnitId.getInterstitialId(),
-                        adRequest,
-                        object : InterstitialAdLoadCallback() {
-                            override fun onAdLoaded(ad: InterstitialAd) {
-                                super.onAdLoaded(ad)
-                                interstitialAd = ad
-                                interstitialAd?.show(this@MainActivity)
-                                println("The interstitial ad was loaded successfully.")
-                            }
+            adRequest?.let { adRequest ->
+                InterstitialAd.load(this,
+                    AdUnitId.getInterstitialId(),
+                    adRequest,
+                    object : InterstitialAdLoadCallback() {
+                        override fun onAdLoaded(ad: InterstitialAd) {
+                            super.onAdLoaded(ad)
+                            interstitialAd = ad
+                            interstitialAd?.show(this@MainActivity)
+                            println("The interstitial ad was loaded successfully.")
+                        }
 
-                            override fun onAdFailedToLoad(error: LoadAdError) {
-                                println("The interstitial ad couldn't be loaded: " + error.message)
-                                prepareAd(false) // Show, avoid, or hide ads@Override
-                                tvSelector?.invalidate() // Force view to be redrawn
-                            }
-                        })
-                }
+                        override fun onAdFailedToLoad(error: LoadAdError) {
+                            println("The interstitial ad couldn't be loaded: " + error.message)
+                            prepareAd(false) // Show, avoid, or hide ads
+                            tvSelector?.invalidate() // Force view to be redrawn
+                        }
+                    })
             }
         }
     }
@@ -921,7 +919,7 @@ class MainActivity : MenuActivity() {
             PreferenceHandler.put(Preference.TEMP_BUSY, true)
             Sound.play(this@MainActivity, "ding")
 
-            this@MainActivity.runOnUiThread {
+            runOnUiThread {
                 tvPick?.isEnabled = false
                 status.counters["predictionRefresh"] = 0L
 
@@ -964,7 +962,7 @@ class MainActivity : MenuActivity() {
             if (retrieved) predictionHistory?.add(preStoredPrediction)
             else predictionHistory?.add(generatePrediction(formEntered))
 
-            this@MainActivity.runOnUiThread {
+            runOnUiThread {
                 refreshHolders()
                 refreshNavigationView()
                 refreshSaveButton()
