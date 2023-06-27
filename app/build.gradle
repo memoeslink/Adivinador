@@ -10,8 +10,8 @@ android {
         applicationId "com.app.memoeslink.adivinador"
         minSdkVersion 26
         targetSdk 34
-        versionCode 134
-        versionName "1.9.15"
+        versionCode 135
+        versionName "1.9.16"
         resourceConfigurations += ['es', 'en']
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "Adivinador-$versionName")
@@ -67,11 +67,11 @@ dependencies {
     implementation 'com.github.memoeslink.android-generator:release:2023.2.8'
     implementation 'com.github.memoeslink.sharedpreferences-helper:final:2023.0.2'
     implementation 'com.github.memoeslink.device:release:2023.0.3'
-    implementation 'io.github.memoeslink:randomizer:2023.1.1-release'
+    implementation 'io.github.memoeslink:randomizer:2023.1.4-release'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
-    implementation 'com.networknt:json-schema-validator:1.0.83'
+    implementation 'com.networknt:json-schema-validator:1.0.85'
     implementation 'com.takisoft.preferencex:preferencex:1.1.0'
     implementation 'com.github.amarjain07:StickyScrollView:1.0.3'
     implementation 'com.github.jinatonic.confetti:confetti:1.1.2'
