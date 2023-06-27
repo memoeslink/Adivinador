@@ -28,11 +28,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_19
+        targetCompatibility JavaVersion.VERSION_19
     }
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = '19'
     }
     packagingOptions {
         resources {
@@ -52,7 +52,7 @@ android {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(19))
     }
 }
 
@@ -71,7 +71,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
-    implementation 'com.networknt:json-schema-validator:1.0.85'
+    implementation 'com.networknt:json-schema-validator:1.0.83'
     implementation 'com.takisoft.preferencex:preferencex:1.1.0'
     implementation 'com.github.amarjain07:StickyScrollView:1.0.3'
     implementation 'com.github.jinatonic.confetti:confetti:1.1.2'

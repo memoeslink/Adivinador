@@ -218,6 +218,8 @@
     <string name="preference_opinions_summary">Allows the fortune-teller to say opinions about other people</string>
     <string name="preference_phrases">Enable phrases</string>
     <string name="preference_phrases_summary">Allows the fortune-teller to say common phrases</string>
+    <string name="preference_profanity_filter">Profanity filter</string>
+    <string name="preference_profanity_filter_summary">Enables a filter that censors profanity in some texts.</string>
     <string name="preference_refresh_frequency">Frequency of change</string>
     <string name="preference_refresh_frequency_summary">Change the time between each phrase from the fortune-teller</string>
     <string name="preference_registry">Registry</string>

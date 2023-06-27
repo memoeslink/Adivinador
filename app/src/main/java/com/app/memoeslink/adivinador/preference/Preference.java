@@ -37,6 +37,7 @@ public enum Preference {
     SETTING_PARTICLES_ENABLED("setting_particlesEnabled", Boolean.class),
     SETTING_ADS_ENABLED("setting_adsEnabled", Boolean.class),
     SETTING_LANGUAGE("setting_language", String.class),
+    SETTING_PROFANITY_FILTER_ENABLED("setting_profanityFilterEnabled", Boolean.class),
     SETTING_THEME("setting_theme", String.class),
     SETTING_ACTIVE_SCREEN("setting_activeScreen", Boolean.class),
     SETTING_KEEP_FORM("setting_keepForm", Boolean.class),

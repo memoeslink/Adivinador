@@ -102,6 +102,11 @@
             android:summaryOff="@string/preference_enable_ads_summary_off"
             android:summaryOn="@string/preference_enable_ads_summary_on"
             android:title="@string/preference_enable_ads" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="setting_profanityFilterEnabled"
+            android:summary="@string/preference_profanity_filter_summary"
+            android:title="@string/preference_profanity_filter" />
         <ListPreference
             android:defaultValue="@string/default_language"
             android:entries="@array/language"

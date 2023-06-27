@@ -218,6 +218,8 @@
     <string name="preference_opinions_summary">Permite que el adivino emita opiniones sobre otras personas</string>
     <string name="preference_phrases">Habilitar frases</string>
     <string name="preference_phrases_summary">Permite que el adivino diga frases comunes</string>
+    <string name="preference_profanity_filter">Filtro de obscenidades</string>
+    <string name="preference_profanity_filter_summary">Permite filtrar obscenidades en algunos textos.</string>
     <string name="preference_refresh_frequency">Frecuencia de cambio</string>
     <string name="preference_refresh_frequency_summary">Cambia el tiempo entre cada cambio de frase del adivino</string>
     <string name="preference_registry">Registro</string>
