@@ -10,14 +10,15 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializer;
 import com.google.gson.reflect.TypeToken;
-import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.Person;
-import com.memoeslink.generator.common.StringHelper;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
 import com.networknt.schema.ValidationMessage;
+
+import org.memoeslink.DateTimeHelper;
+import org.memoeslink.StringHelper;
 
 import java.io.IOException;
 import java.lang.reflect.Type;

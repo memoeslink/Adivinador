@@ -2,7 +2,8 @@ package com.app.memoeslink.adivinador.textfilter;
 
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
-import com.memoeslink.generator.common.StringHelper;
+
+import org.memoeslink.StringHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

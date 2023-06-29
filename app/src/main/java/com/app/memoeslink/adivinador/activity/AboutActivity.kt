@@ -7,7 +7,7 @@ import android.widget.TextView
 import com.app.memoeslink.adivinador.BuildConfig
 import com.app.memoeslink.adivinador.R
 import com.app.memoeslink.adivinador.extensions.toHtmlText
-import com.memoeslink.generator.common.DateTimeHelper
+import org.memoeslink.DateTimeHelper
 
 class AboutActivity : CommonActivity() {
     private var tvContent: TextView? = null

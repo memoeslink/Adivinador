@@ -29,7 +29,7 @@ import com.app.memoeslink.adivinador.Sound
 import com.app.memoeslink.adivinador.Speech
 import com.app.memoeslink.adivinador.preference.Preference
 import com.app.memoeslink.adivinador.preference.PreferenceHandler
-import com.memoeslink.generator.common.StringHelper
+import org.memoeslink.StringHelper
 import java.util.Locale
 
 open class CommonActivity : AppCompatActivity() {

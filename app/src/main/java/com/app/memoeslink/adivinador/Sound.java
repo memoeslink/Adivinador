@@ -5,7 +5,8 @@ import android.media.MediaPlayer;
 
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
-import com.memoeslink.generator.common.StringHelper;
+
+import org.memoeslink.StringHelper;
 
 public class Sound {
     private static MediaPlayer mediaPlayer;

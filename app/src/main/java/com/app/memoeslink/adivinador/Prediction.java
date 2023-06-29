@@ -3,9 +3,10 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 
 import com.app.memoeslink.adivinador.extensions.StringExtensions;
-import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.Person;
-import com.memoeslink.generator.common.ZeroWidthChar;
+
+import org.memoeslink.DateTimeHelper;
+import org.memoeslink.ZeroWidthChar;
 
 import java.util.HashMap;
 

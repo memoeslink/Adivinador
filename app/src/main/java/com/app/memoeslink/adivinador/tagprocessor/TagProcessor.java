@@ -9,9 +9,10 @@ import com.memoeslink.generator.common.Binder;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.Pair;
 import com.memoeslink.generator.common.ResourceReference;
-import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextComponent;
 import com.memoeslink.generator.common.TextProcessor;
+
+import org.memoeslink.StringHelper;
 
 import java.util.ArrayList;
 import java.util.List;

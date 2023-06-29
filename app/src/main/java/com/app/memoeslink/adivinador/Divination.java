@@ -7,16 +7,17 @@ import com.app.memoeslink.adivinador.tagprocessor.TagProcessor;
 import com.app.memoeslink.adivinador.textfilter.TextFilter;
 import com.app.memoeslink.adivinador.textfilter.TextFilterFactory;
 import com.memoeslink.common.Randomizer;
-import com.memoeslink.generator.common.CharHelper;
-import com.memoeslink.generator.common.DateTimeHelper;
 import com.memoeslink.generator.common.Gender;
-import com.memoeslink.generator.common.IntegerHelper;
-import com.memoeslink.generator.common.LongHelper;
 import com.memoeslink.generator.common.Person;
-import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextComponent;
 import com.memoeslink.generator.common.TextFormatter;
 import com.memoeslink.generator.common.TextProcessor;
+
+import org.memoeslink.CharHelper;
+import org.memoeslink.DateTimeHelper;
+import org.memoeslink.IntegerHelper;
+import org.memoeslink.LongHelper;
+import org.memoeslink.StringHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;

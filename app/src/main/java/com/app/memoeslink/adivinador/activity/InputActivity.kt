@@ -17,10 +17,10 @@ import com.app.memoeslink.adivinador.extensions.toHtmlText
 import com.app.memoeslink.adivinador.preference.Preference
 import com.app.memoeslink.adivinador.preference.PreferenceHandler
 import com.app.memoeslink.adivinador.preference.PreferenceUtils
-import com.memoeslink.generator.common.DateTimeHelper
 import com.memoeslink.generator.common.Gender
-import com.memoeslink.generator.common.StringHelper
-import com.memoeslink.generator.common.Validation
+import org.memoeslink.DateTimeHelper
+import org.memoeslink.StringHelper
+import org.memoeslink.Validation
 import kotlin.math.abs
 
 class InputActivity : CommonActivity() {

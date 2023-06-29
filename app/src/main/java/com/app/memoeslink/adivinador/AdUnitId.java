@@ -1,6 +1,6 @@
 package com.app.memoeslink.adivinador;
 
-import com.memoeslink.generator.common.StringHelper;
+import org.memoeslink.StringHelper;
 
 public class AdUnitId {
     public static final String APP_OPEN_ID = "";

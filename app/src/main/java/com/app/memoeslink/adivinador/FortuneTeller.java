@@ -8,10 +8,11 @@ import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.app.memoeslink.adivinador.tagprocessor.TagProcessor;
 import com.memoeslink.common.Randomizer;
-import com.memoeslink.generator.common.LongHelper;
 import com.memoeslink.generator.common.ResourceReference;
-import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextProcessor;
+
+import org.memoeslink.LongHelper;
+import org.memoeslink.StringHelper;
 
 import java.util.ArrayList;
 import java.util.List;

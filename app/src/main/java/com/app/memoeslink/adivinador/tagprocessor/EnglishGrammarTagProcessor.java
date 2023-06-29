@@ -1,8 +1,9 @@
 package com.app.memoeslink.adivinador.tagprocessor;
 
 import com.memoeslink.generator.common.Gender;
-import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.english.IndefiniteArticle;
+
+import org.memoeslink.StringHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

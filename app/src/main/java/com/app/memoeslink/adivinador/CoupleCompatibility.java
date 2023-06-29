@@ -1,8 +1,9 @@
 package com.app.memoeslink.adivinador;
 
 import com.memoeslink.common.Randomizer;
-import com.memoeslink.generator.common.LongHelper;
-import com.memoeslink.generator.common.StringHelper;
+
+import org.memoeslink.LongHelper;
+import org.memoeslink.StringHelper;
 
 public class CoupleCompatibility {
 

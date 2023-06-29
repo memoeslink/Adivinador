@@ -3,14 +3,15 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 import android.content.ContextWrapper;
 
-import com.memoeslink.generator.common.DateTimeHelper;
-import com.memoeslink.generator.common.LongHelper;
 import com.memoeslink.generator.common.Maker;
 import com.memoeslink.generator.common.NameType;
 import com.memoeslink.generator.common.Person;
-import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextFormatter;
 import com.memoeslink.generator.common.TextProcessor;
+
+import org.memoeslink.DateTimeHelper;
+import org.memoeslink.LongHelper;
+import org.memoeslink.StringHelper;
 
 import java.time.Period;
 import java.util.HashMap;

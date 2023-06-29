@@ -12,13 +12,14 @@ import com.memoeslink.generator.common.DateTimeGetter;
 import com.memoeslink.generator.common.Explorer;
 import com.memoeslink.generator.common.Form;
 import com.memoeslink.generator.common.GeneratorManager;
-import com.memoeslink.generator.common.IntegerHelper;
 import com.memoeslink.generator.common.NameType;
 import com.memoeslink.generator.common.PhraseType;
-import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextFormatter;
 import com.memoeslink.manager.Device;
 import com.memoeslink.manager.InformationType;
+
+import org.memoeslink.IntegerHelper;
+import org.memoeslink.StringHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
