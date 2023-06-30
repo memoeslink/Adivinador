@@ -27,7 +27,7 @@ public class TagProcessor extends Binder {
     private static final Pattern GENDER_PATTERN = Pattern.compile("(\\s*)" + GENDER_REGEX + "(\\s*)");
     private static final String GRAMMATICAL_NUMBER_REGEX = "｢([sSpP])｣";
     private static final Pattern GRAMMATICAL_NUMBER_PATTERN = Pattern.compile("(\\s*)" + GRAMMATICAL_NUMBER_REGEX + "(\\s*)");
-    private static final String TAG_REGEX = "\\{((?<resourceType>string|database):(?<resourceName>[\\w\\p{L}]+)(\\[!?\\d+\\])?" + TAG_GENDER_REGEX + "|(?<referenceType>method|reference):(?<referenceName>[a-zA-Z0-9_$]+))\\}";
+    private static final String TAG_REGEX = "\\{((?<resourceType>string|database):(?<resourceName>[\\w\\p{L}]+)(\\[!?\\d+\\])?" + TAG_GENDER_REGEX + "|(?<referenceType>method|reference|preference):(?<referenceName>[a-zA-Z0-9_$]+))\\}";
     private static final Pattern TAG_PATTERN = Pattern.compile(TAG_REGEX);
     private static final String WORD_TAG_REGEX = "\\{(?<word>" + TextProcessor.EXTENDED_WORD_REGEX + ")" + TAG_GENDER_REGEX + TAG_PLURAL_REGEX + "\\}";
     private static final Pattern WORD_TAG_PATTERN = Pattern.compile(WORD_TAG_REGEX);
@@ -107,6 +107,8 @@ public class TagProcessor extends Binder {
                     replacement = resourceExplorer.findMethodByName(resourceName);
                 else if (StringHelper.startsWith(matcher.group(), "{reference:"))
                     replacement = resourceExplorer.findByRef(ResourceReference.get(resourceName));
+                else if (StringHelper.startsWith(matcher.group(), "{preference:"))
+                    replacement = resourceExplorer.findPrefByTag(resourceName);
                 int openingIndex = StringHelper.indexOf(replacement, '{');
                 int closingIndex;
                 boolean empty = false;

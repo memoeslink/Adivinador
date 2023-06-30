@@ -47,6 +47,15 @@ public class PreferenceHandler {
         getPreferences(preference).save(preference.getTag(), value);
     }
 
+    public static String get(Preference preference) {
+        return get(preference, SharedPreferencesHelper.getDEFAULT_STRING());
+    }
+
+    public static String get(Preference preference, String defaultValue) {
+        if (isNullOrNone(preference)) return defaultValue;
+        return String.valueOf(getPreferences(preference).get(preference.getTag(), defaultValue));
+    }
+
     public static boolean getBoolean(Preference preference) {
         return getBoolean(preference, SharedPreferencesHelper.getDEFAULT_BOOLEAN());
     }

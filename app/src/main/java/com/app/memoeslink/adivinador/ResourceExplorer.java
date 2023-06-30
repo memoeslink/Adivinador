@@ -106,6 +106,11 @@ public class ResourceExplorer extends Explorer {
         return StringHelper.defaultWhenEmpty(methodFinder.getMethodByRef(reference));
     }
 
+    public String findPrefByTag(String tag) {
+        Preference preference = Preference.get(tag);
+        return PreferenceHandler.get(preference);
+    }
+
     private class MethodFinder {
 
         public String getMethodByName(String methodName) {
