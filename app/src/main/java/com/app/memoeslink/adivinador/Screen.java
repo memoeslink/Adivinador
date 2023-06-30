@@ -14,7 +14,12 @@ public class Screen {
     public static void lockScreenOrientation(Activity activity) {
         WindowManager windowManager = (WindowManager) activity.getSystemService(Context.WINDOW_SERVICE);
         Configuration configuration = activity.getResources().getConfiguration();
-        int rotation = windowManager != null ? windowManager.getDefaultDisplay().getRotation() : 0;
+        int rotation;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R)
+            rotation = activity.getDisplay().getRotation();
+        else
+            rotation = windowManager != null ? windowManager.getDefaultDisplay().getRotation() : 0;
 
         // Search for the natural position of the device
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE && (rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) || configuration.orientation == Configuration.ORIENTATION_PORTRAIT && (rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270)) {
