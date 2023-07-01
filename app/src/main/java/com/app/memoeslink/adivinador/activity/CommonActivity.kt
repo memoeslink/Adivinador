@@ -4,16 +4,12 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Rect
 import android.media.AudioManager
 import android.os.Bundle
 import android.os.LocaleList
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.LayoutInflater
-import android.view.View
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -151,21 +147,6 @@ open class CommonActivity : AppCompatActivity() {
             actionBar.setIcon(android.R.color.transparent)
             actionBar.setCustomView(v, params)
         }
-    }
-
-    protected fun isViewVisible(view: View?): Boolean {
-        if (view == null || !view.isShown) return false
-        val rect = Rect()
-        return view.getGlobalVisibleRect(rect) && view.height == rect.height() && view.width == rect.width()
-    }
-
-    protected fun fadeAndShowView(v: View) {
-        v.clearAnimation()
-        val alphaAnimation = AlphaAnimation(1.0f, 0.0f)
-        alphaAnimation.duration = 350
-        alphaAnimation.repeatCount = 1
-        alphaAnimation.repeatMode = Animation.REVERSE
-        v.startAnimation(alphaAnimation)
     }
 
     protected fun showToast(text: String?, quick: Boolean = false) {

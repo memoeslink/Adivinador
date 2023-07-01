@@ -62,7 +62,9 @@ import com.app.memoeslink.adivinador.R
 import com.app.memoeslink.adivinador.Screen
 import com.app.memoeslink.adivinador.Sound
 import com.app.memoeslink.adivinador.Speech
+import com.app.memoeslink.adivinador.extensions.fadeAndShow
 import com.app.memoeslink.adivinador.extensions.getCurrentWindowPoint
+import com.app.memoeslink.adivinador.extensions.isObservable
 import com.app.memoeslink.adivinador.extensions.toHtmlText
 import com.app.memoeslink.adivinador.extensions.toLinkedHtmlText
 import com.app.memoeslink.adivinador.preference.Preference
@@ -590,9 +592,7 @@ class MainActivity : MenuActivity() {
                     this@MainActivity.runOnUiThread {
                         // Fade out and fade in fortune-telling text
                         if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) tvPhrase?.let {
-                            fadeAndShowView(
-                                it
-                            )
+                            it.fadeAndShow()
                         }
 
                         Handler(Looper.getMainLooper()).postDelayed({
@@ -1008,10 +1008,9 @@ class MainActivity : MenuActivity() {
                     tvPrediction?.movementMethod = LinkMovementMethod.getInstance()
                 }
 
-                if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED && !isViewVisible(
-                        tvPersonInfo
-                    )
-                ) showToast(predictionHistory?.latest?.person?.descriptor, true)
+                if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED && !tvPersonInfo.isObservable()) showToast(
+                    predictionHistory?.latest?.person?.descriptor, true
+                )
 
                 // Read the text
                 if (PreferenceHandler.getStringAsInt(Preference.SETTING_TEXT_TYPE) == 1 || PreferenceHandler.getStringAsInt(
