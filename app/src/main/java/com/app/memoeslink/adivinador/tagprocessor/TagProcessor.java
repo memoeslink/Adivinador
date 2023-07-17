@@ -88,7 +88,7 @@ public class TagProcessor extends Binder {
                 gender = getTrueGender(matcher.group("genderType"), defaultGender);
                 String resourceType = matcher.group("resourceType");
                 String resourceName = matcher.group("resourceName");
-                int index = IntegerHelper.tryParse(matcher.group("resourceType"), -1);
+                int index = IntegerHelper.tryParse(matcher.group("specifiedIndex"), -1);
 
                 String replacement = switch (resourceType) {
                     case "string" -> resourceExplorer.findResByName(resourceName, index);
