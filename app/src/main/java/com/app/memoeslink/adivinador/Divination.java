@@ -8,6 +8,7 @@ import com.app.memoeslink.adivinador.textfilter.TextFilter;
 import com.app.memoeslink.adivinador.textfilter.TextFilterFactory;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.Gender;
+import com.memoeslink.generator.common.GrammaticalNumber;
 import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.PrintableCharUtils;
 import com.memoeslink.generator.common.TextComponent;
@@ -59,7 +60,7 @@ public class Divination extends ContextWrapper {
                 .setComponent("gibberish", TextProcessor.turnIntoGibberish(fortuneCookie))
                 .setComponent("divination", getDivination())
                 .setComponent("emotions", getEmotions())
-                .setComponent("characteristic", StringHelper.capitalizeFirst(resourceExplorer.getDatabaseFinder().getAbstractNoun()))
+                .setComponent("characteristic", StringHelper.capitalizeFirst(resourceExplorer.getResourceFinder().getStrFromArrayRes(R.array.abstract_noun)))
                 .setComponent("chainOfEvents", getChainOfEvents(person))
                 .build();
     }
@@ -76,7 +77,7 @@ public class Divination extends ContextWrapper {
         else {
             fortuneCookie = resourceExplorer.getDatabaseFinder().getFortuneCookie();
             fortuneCookie = StringHelper.quote(fortuneCookie);
-            fortuneCookie = TextFormatter.colorText(fortuneCookie, "aqua");
+            fortuneCookie = TextFormatter.formatBotMessage(fortuneCookie);
         }
         return fortuneCookie;
     }
@@ -91,12 +92,12 @@ public class Divination extends ContextWrapper {
 
         switch (r.getInt(5)) {
             case 0 -> {
-                divination = resourceExplorer.getDatabaseFinder().getLegacyDivination();
+                divination = resourceExplorer.getDatabaseFinder().getLegacyPrediction();
                 divination = tagProcessor.replaceTags(divination).getText();
             }
             case 1 -> {
-                divination = resourceExplorer.getDatabaseFinder().getDivination();
-                divination = TextFormatter.colorText(divination, "aqua");
+                divination = resourceExplorer.getDatabaseFinder().getPrediction();
+                divination = TextFormatter.formatBotMessage(divination);
 
                 // Filter profanity
                 TextFilter textFilter = new TextFilterFactory(getBaseContext()).createTextFilter();
@@ -106,62 +107,38 @@ public class Divination extends ContextWrapper {
                     divination = tagProcessor.replaceTags(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination)).getText();
             case 3, 4 -> {
                 Gender gender = Gender.UNDEFINED;
-                boolean plural = false;
-                boolean done = false;
-                TextComponent component;
-                String segment;
-
-                // Get segments for the divination
+                GrammaticalNumber grammaticalNumber = GrammaticalNumber.UNDEFINED;
                 List<String> segments = new ArrayList<>();
-                segments.add(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_start));
-                segments.add(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_middle));
-                segments.add(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_end));
-                segments.add(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_cause));
 
                 // Format start of divination
-                segment = segments.get(0);
-                int days = r.getIntInRange(2, 11);
-                segment = StringHelper.replaceOnce(segment, "‽1", String.valueOf(days));
-                segment = StringHelper.replaceOnce(segment, "‽2", DateTimeHelper.getStrDatePlusDays(date, days));
-                segments.set(0, segment);
+                String startSegment = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_start);
+                startSegment = tagProcessor.replaceTags(startSegment).getText();
+                segments.add(startSegment);
 
                 // Format middle of divination
-                segment = segments.get(1);
-                segment = (component = tagProcessor.replaceTags(segment)).getText();
+                String middleSegment = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_middle);
+                TextComponent component = tagProcessor.replaceTags(middleSegment);
+                middleSegment = component.getText();
 
                 if (component.getHegemonicGender() != null && component.getHegemonicGender() != Gender.UNDEFINED)
                     gender = component.getHegemonicGender();
 
-                if (StringHelper.startsWithAny(segment, "tus ", "los ", "las "))
-                    plural = true;
-                segments.set(1, segment);
+                if (component.getHegemonicGrammaticalNumber() != null && component.getHegemonicGrammaticalNumber() != GrammaticalNumber.UNDEFINED)
+                    grammaticalNumber = component.getHegemonicGrammaticalNumber();
+                segments.add(middleSegment);
 
                 // Format end of divination
-                segment = segments.get(2);
-                segment = tagProcessor.replaceTags(segment, gender, plural).getText();
-                segments.set(2, segment);
+                String endSegment = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_end);
+                endSegment = tagProcessor.replaceTags(endSegment, gender, grammaticalNumber).getText();
+                segments.add(endSegment);
 
                 // Format cause of divination
-                segment = segments.get(3);
+                String causeSegment = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_cause);
 
-                if (!segment.isEmpty())
-                    segment = tagProcessor.replaceTags(segment).getText();
-                segments.set(3, segment);
+                if (!causeSegment.isEmpty())
+                    causeSegment = tagProcessor.replaceTags(causeSegment).getText();
+                segments.add(causeSegment);
 
-                // Make some replacements and truncate divination if needed
-                for (int n = 0, size = segments.size(); n < size; n++) {
-                    if (done)
-                        segments.set(n, "");
-                    else {
-                        segment = segments.get(n);
-
-                        if (StringHelper.endsWith(segment, '꘎')) {
-                            segment = StringHelper.remove(segment, "꘎");
-                            done = true;
-                        }
-                        segments.set(n, segment);
-                    }
-                }
                 segments.removeAll(Collections.singleton(""));
                 divination = StringHelper.joinWithSpace(segments);
             }
@@ -215,7 +192,7 @@ public class Divination extends ContextWrapper {
         for (int n = 0, limit = r.getElement(PROBABILITY_DISTRIBUTION); n < limit; n++) {
             Gender gender = r.getBoolean() ? Gender.MASCULINE : Gender.FEMININE;
             String description = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.person, 0) + " " + String.format("<font color=\"%s\">%s</font>", COMMON_COLORS[n], TextFormatter.formatText(Character.toString(letter), "b", "i"));
-            description += ", " + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.probability) + " " + tagProcessor.replaceTags(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.individual), gender, false).getText();
+            description += ", " + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.probability) + " " + tagProcessor.replaceTags(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.individual), gender, GrammaticalNumber.SINGULAR).getText();
             people.add(new Person.PersonBuilder()
                     .setNickname(Character.toString(letter))
                     .setGender(gender)
@@ -251,12 +228,12 @@ public class Divination extends ContextWrapper {
 
         if (r.getFloat() <= probability && listSize > 0 && !person.hasAttribute("generated") && person.hasAttribute("entered")) {
             tempComponent.setText(TextFormatter.formatContactName(resourceExplorer.getContactNameFinder().getContactName()));
-            tempComponent.setHegemonicGender(Gender.UNDEFINED);
+            tempComponent.addGender(Gender.UNDEFINED);
 
             if (tempComponent.getText().isEmpty())
                 tempComponent.setText("?");
         } else {
-            tempComponent = tagProcessor.replaceTags("{string:relationship[" + closePersonType + "]; gender:⸮}");
+            tempComponent = tagProcessor.replaceTags("{string:relationship; index:" + closePersonType + "; gender:⸮}");
             tempComponent.setText(String.format(tempComponent.getText(), person.getDescription()));
         }
         Person closePerson = new Person.PersonBuilder()
@@ -265,7 +242,7 @@ public class Divination extends ContextWrapper {
                 .setAttribute("nonspecific")
                 .build();
 
-        tempComponent = tagProcessor.replaceTags("{string:relationship[" + thirdPartyType + "]; gender:⸮}");
+        tempComponent = tagProcessor.replaceTags("{string:relationship; index:" + thirdPartyType + "; gender:⸮}");
         tempComponent.setText(String.format(tempComponent.getText(), closePerson.getDescription()));
         Person thirdParty = new Person.PersonBuilder()
                 .setGender(tempComponent.getHegemonicGender())

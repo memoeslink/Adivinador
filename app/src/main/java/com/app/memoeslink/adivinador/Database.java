@@ -10,23 +10,25 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.util.HashMap;
 
 public class Database extends SQLiteAssetHelper {
-    public static final int DATABASE_VERSION = 57;
-    public static final String DATABASE_NAME = "words_upgrade_56-57.sqlite";
+    public static final int DATABASE_VERSION = 58;
+    public static final String DATABASE_NAME = "words_upgrade_57-58.sqlite";
     public static final String DATABASE_NAME_FORMAT = "words%s.sqlite";
     public static final String DEFAULT_VALUE = "?";
-    private static final String ID_PREFIX = "ID";
-    private static final String TABLE_ENGLISH_ABSTRACT_NOUNS = "EnglishAbstractNouns";
-    private static final String TABLE_ENGLISH_FORTUNE_COOKIES = "EnglishFortuneCookies";
-    private static final String TABLE_ENGLISH_LEGACY_FORTUNE_COOKIES = "EnglishLegacyFortuneCookies";
-    private static final String TABLE_ENGLISH_LEGACY_PREDICTIONS = "EnglishLegacyPredictions";
-    private static final String TABLE_ENGLISH_PHRASES = "EnglishPhrases";
-    private static final String TABLE_ENGLISH_PREDICTIONS = "EnglishPredictions";
-    private static final String TABLE_SPANISH_ABSTRACT_NOUNS = "SpanishAbstractNouns";
-    private static final String TABLE_SPANISH_FORTUNE_COOKIES = "SpanishFortuneCookies";
-    private static final String TABLE_SPANISH_LEGACY_FORTUNE_COOKIES = "SpanishLegacyFortuneCookies";
-    private static final String TABLE_SPANISH_LEGACY_PREDICTIONS = "SpanishLegacyPredictions";
-    private static final String TABLE_SPANISH_PHRASES = "SpanishPhrases";
-    private static final String TABLE_SPANISH_PREDICTIONS = "SpanishPredictions";
+    public static final String ID_PREFIX = "ID";
+    public static final String TABLE_ENGLISH_FORTUNE_COOKIES = "EnglishFortuneCookies";
+    public static final String TABLE_ENGLISH_LEGACY_FORTUNE_COOKIES = "EnglishLegacyFortuneCookies";
+    public static final String TABLE_ENGLISH_LEGACY_PHRASES = "EnglishLegacyPhrases";
+    public static final String TABLE_ENGLISH_LEGACY_PREDICTIONS = "EnglishLegacyPredictions";
+    public static final String TABLE_ENGLISH_PHRASES = "EnglishPhrases";
+    public static final String TABLE_ENGLISH_PREDICTIONS = "EnglishPredictions";
+    public static final String TABLE_ENGLISH_RECITATIONS = "EnglishRecitations";
+    public static final String TABLE_SPANISH_FORTUNE_COOKIES = "SpanishFortuneCookies";
+    public static final String TABLE_SPANISH_LEGACY_FORTUNE_COOKIES = "SpanishLegacyFortuneCookies";
+    public static final String TABLE_SPANISH_LEGACY_PHRASES = "SpanishLegacyPhrases";
+    public static final String TABLE_SPANISH_LEGACY_PREDICTIONS = "SpanishLegacyPredictions";
+    public static final String TABLE_SPANISH_PHRASES = "SpanishPhrases";
+    public static final String TABLE_SPANISH_PREDICTIONS = "SpanishPredictions";
+    public static final String TABLE_SPANISH_RECITATIONS = "SpanishRecitations";
     private static final HashMap<String, Integer> TABLE_COUNT_REGISTRY = new HashMap<>();
     private static final HashMap<String, Integer> TABLE_MAX_ROW_ID = new HashMap<>();
     private static Database instance;
@@ -121,18 +123,6 @@ public class Database extends SQLiteAssetHelper {
         return selectRow("SELECT * FROM " + table + " WHERE " + table + ID_PREFIX + "=" + id);
     }
 
-    public int countEnglishAbstractNouns() {
-        return countRows(TABLE_ENGLISH_ABSTRACT_NOUNS);
-    }
-
-    public String selectEnglishAbstractNoun() {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_ABSTRACT_NOUNS + " ORDER BY RANDOM() LIMIT 1");
-    }
-
-    public String selectEnglishAbstractNoun(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_ABSTRACT_NOUNS + " WHERE " + TABLE_ENGLISH_ABSTRACT_NOUNS + ID_PREFIX + "=" + id);
-    }
-
     public int countEnglishFortuneCookies() {
         return countRows(TABLE_ENGLISH_FORTUNE_COOKIES);
     }
@@ -155,6 +145,18 @@ public class Database extends SQLiteAssetHelper {
 
     public String selectEnglishLegacyFortuneCookie(int id) {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_LEGACY_FORTUNE_COOKIES + " WHERE " + TABLE_ENGLISH_LEGACY_FORTUNE_COOKIES + ID_PREFIX + "=" + id);
+    }
+
+    public int countEnglishLegacyPhrases() {
+        return countRows(TABLE_ENGLISH_LEGACY_PHRASES);
+    }
+
+    public String selectEnglishLegacyPhrases() {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_LEGACY_PHRASES + " ORDER BY RANDOM() LIMIT 1");
+    }
+
+    public String selectEnglishLegacyPhrases(int id) {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_LEGACY_PHRASES + " WHERE " + TABLE_ENGLISH_LEGACY_PHRASES + ID_PREFIX + "=" + id);
     }
 
     public int countEnglishLegacyPredictions() {
@@ -193,16 +195,16 @@ public class Database extends SQLiteAssetHelper {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_PREDICTIONS + " WHERE " + TABLE_ENGLISH_PREDICTIONS + ID_PREFIX + "=" + id);
     }
 
-    public int countSpanishAbstractNouns() {
-        return countRows(TABLE_SPANISH_ABSTRACT_NOUNS);
+    public int countEnglishRecitations() {
+        return countRows(TABLE_ENGLISH_RECITATIONS);
     }
 
-    public String selectSpanishAbstractNoun() {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_ABSTRACT_NOUNS + " ORDER BY RANDOM() LIMIT 1");
+    public String selectEnglishRecitations() {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_RECITATIONS + " ORDER BY RANDOM() LIMIT 1");
     }
 
-    public String selectSpanishAbstractNoun(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_ABSTRACT_NOUNS + " WHERE " + TABLE_SPANISH_ABSTRACT_NOUNS + ID_PREFIX + "=" + id);
+    public String selectEnglishRecitations(int id) {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_RECITATIONS + " WHERE " + TABLE_ENGLISH_RECITATIONS + ID_PREFIX + "=" + id);
     }
 
     public int countSpanishFortuneCookies() {
@@ -227,6 +229,18 @@ public class Database extends SQLiteAssetHelper {
 
     public String selectSpanishLegacyFortuneCookie(int id) {
         return selectRow("SELECT * FROM " + TABLE_SPANISH_LEGACY_FORTUNE_COOKIES + " WHERE " + TABLE_SPANISH_LEGACY_FORTUNE_COOKIES + ID_PREFIX + "=" + id);
+    }
+
+    public int countSpanishLegacyPhrases() {
+        return countRows(TABLE_SPANISH_LEGACY_PHRASES);
+    }
+
+    public String selectSpanishLegacyPhrases() {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_LEGACY_PHRASES + " ORDER BY RANDOM() LIMIT 1");
+    }
+
+    public String selectSpanishLegacyPhrases(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_LEGACY_PHRASES + " WHERE " + TABLE_SPANISH_LEGACY_PHRASES + ID_PREFIX + "=" + id);
     }
 
     public int countSpanishLegacyPredictions() {
@@ -263,5 +277,17 @@ public class Database extends SQLiteAssetHelper {
 
     public String selectSpanishPrediction(int id) {
         return selectRow("SELECT * FROM " + TABLE_SPANISH_PREDICTIONS + " WHERE " + TABLE_SPANISH_PREDICTIONS + ID_PREFIX + "=" + id);
+    }
+
+    public int countSpanishRecitations() {
+        return countRows(TABLE_SPANISH_RECITATIONS);
+    }
+
+    public String selectSpanishRecitations() {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_RECITATIONS + " ORDER BY RANDOM() LIMIT 1");
+    }
+
+    public String selectSpanishRecitations(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_RECITATIONS + " WHERE " + TABLE_SPANISH_RECITATIONS + ID_PREFIX + "=" + id);
     }
 }

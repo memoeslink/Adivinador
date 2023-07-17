@@ -270,7 +270,7 @@ class MainActivity : MenuActivity() {
 
         // Get a greeting
         if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED)) tvPhrase?.text =
-            fortuneTeller?.greet().toHtmlText()
+            fortuneTeller?.talk("greeting").toHtmlText()
         else tvPhrase?.text = "…"
 
         // Change drawable for fortune teller
@@ -1190,12 +1190,12 @@ class MainActivity : MenuActivity() {
                 it.getValue("element"),
                 it.getValue("signColor"),
                 it.getValue("signNumbers"),
+                it.getValue("signPersonality"),
                 it.getValue("compatibility"),
                 it.getValue("incompatibility"),
                 it.getValue("walterBergZodiacSign"),
                 it.getValue("chineseZodiacSign"),
                 it.getValue("animal"),
-                it.getValue("psychologicalType"),
                 it.getValue("secretName"),
                 it.getValue("demonicName"),
                 it.getValue("previousName"),

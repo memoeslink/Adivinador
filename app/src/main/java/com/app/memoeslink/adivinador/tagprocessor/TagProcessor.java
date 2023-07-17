@@ -2,34 +2,39 @@ package com.app.memoeslink.adivinador.tagprocessor;
 
 import android.content.Context;
 
+import com.app.memoeslink.adivinador.Database;
 import com.app.memoeslink.adivinador.ResourceExplorer;
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.memoeslink.generator.common.Binder;
 import com.memoeslink.generator.common.Gender;
-import com.memoeslink.generator.common.Pair;
+import com.memoeslink.generator.common.GrammaticalNumber;
 import com.memoeslink.generator.common.ResourceReference;
 import com.memoeslink.generator.common.TextComponent;
 import com.memoeslink.generator.common.TextProcessor;
 
+import org.memoeslink.IntegerHelper;
 import org.memoeslink.StringHelper;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import kotlin.Triple;
+
 public class TagProcessor extends Binder {
     private static final String INTEGER_REGEX = "(-?[1-9]\\d*|0)";
-    private static final String TAG_GENDER_REGEX = "(?<gender>;\\s?gender:(?<genderType>(user|⛌)|(random|⸮)|(default|＃)|" + INTEGER_REGEX + "|(undefined|masculine|feminine)))?";
-    private static final String TAG_PLURAL_REGEX = "(?<plural>;\\s?plural:(?<pluralForm>\\+?\\p{L}+))?";
-    private static final String GENDER_REGEX = "｢([0-2])｣";
-    private static final Pattern GENDER_PATTERN = Pattern.compile("(\\s*)" + GENDER_REGEX + "(\\s*)");
-    private static final String GRAMMATICAL_NUMBER_REGEX = "｢([sSpP])｣";
-    private static final Pattern GRAMMATICAL_NUMBER_PATTERN = Pattern.compile("(\\s*)" + GRAMMATICAL_NUMBER_REGEX + "(\\s*)");
-    private static final String TAG_REGEX = "\\{((?<resourceType>string|database):(?<resourceName>[\\w\\p{L}]+)(\\[!?\\d+\\])?" + TAG_GENDER_REGEX + "|(?<referenceType>method|reference|preference):(?<referenceName>[a-zA-Z0-9_$]+))\\}";
+    private static final String INDEX_ATTRIBUTE_REGEX = "(?<index>index:(?<specifiedIndex>" + INTEGER_REGEX + "))";
+    private static final String GENDER_ATTRIBUTE_REGEX = "(?<gender>gender:(?<genderType>(user|⛌)|(random|⸮)|(default|＃)|" + INTEGER_REGEX + "|(undefined|masculine|feminine)))";
+    private static final String PLURAL_ATTRIBUTE_REGEX = "(?<plural>plural:(?<pluralForm>\\+?\\p{L}+))";
+    private static final String GENDER_REGEX = "｢(?<content>[0-2])｣";
+    private static final Pattern GENDER_PATTERN = Pattern.compile("(?<startSpaces>\\s*)" + GENDER_REGEX + "(?<endSpaces>\\s*)");
+    private static final String GRAMMATICAL_NUMBER_REGEX = "｢(?<content>[sSpPuU])｣";
+    private static final Pattern GRAMMATICAL_NUMBER_PATTERN = Pattern.compile("(?<startSpaces>\\s*)" + GRAMMATICAL_NUMBER_REGEX + "(?<endSpaces>\\s*)");
+    private static final String GENDER_AND_NUMBER_REGEX = "｢(?<content>[0-2sSpPuU])｣";
+    private static final Pattern GENDER_AND_NUMBER_PATTERN = Pattern.compile("(?<startSpaces>\\s*)" + GENDER_AND_NUMBER_REGEX + "(?<endSpaces>\\s*)");
+    private static final String TAG_REGEX = "\\{(?<resourceType>string|database|method|reference|preference):(?<resourceName>[a-zA-Z0-9_$.]+)(?<indexAttribute>;\\s?" + INDEX_ATTRIBUTE_REGEX + ")?(?<genderAttribute>;\\s?" + GENDER_ATTRIBUTE_REGEX + ")?\\}";
     private static final Pattern TAG_PATTERN = Pattern.compile(TAG_REGEX);
-    private static final String WORD_TAG_REGEX = "\\{(?<word>" + TextProcessor.EXTENDED_WORD_REGEX + ")" + TAG_GENDER_REGEX + TAG_PLURAL_REGEX + "\\}";
+    private static final String WORD_TAG_REGEX = "\\{(?<word>" + TextProcessor.EXTENDED_WORD_REGEX + ")" + "(?<genderAttribute>;\\s?" + GENDER_ATTRIBUTE_REGEX + ")?" + "(?<pluralAttribute>;\\s?" + PLURAL_ATTRIBUTE_REGEX + ")?" + "\\}";
     private static final Pattern WORD_TAG_PATTERN = Pattern.compile(WORD_TAG_REGEX);
     private static final String RANDOM_TAG_REGEX = "\\{rand:[^{}⸠⸡;]+(;[^{}⸠⸡;]+)*\\}";
     private static final Pattern RANDOM_TAG_PATTERN = Pattern.compile(RANDOM_TAG_REGEX);
@@ -57,25 +62,22 @@ public class TagProcessor extends Binder {
     }
 
     public TextComponent replaceTags(String s) {
-        return replaceTags(s, null, false);
+        return replaceTags(s, null, null);
     }
 
-    public TextComponent replaceTags(String s, Gender predefinedGender, boolean plural) {
+    public TextComponent replaceTags(String s, Gender defaultGender, GrammaticalNumber defaultGrammaticalNumber) {
         if (StringHelper.isNullOrBlank(s))
             return new TextComponent();
-        TextComponent component = new TextComponent();
+        defaultGender = defaultGender != null ? defaultGender : r.getElement(Gender.values());
+        defaultGrammaticalNumber = defaultGrammaticalNumber != null ? defaultGrammaticalNumber : r.getElement(GrammaticalNumber.values());
         Gender gender = null;
-        Gender defaultGender;
+        GrammaticalNumber grammaticalNumber = null;
         boolean nullified = false;
-
-        if (predefinedGender != null)
-            defaultGender = predefinedGender;
-        else
-            defaultGender = r.getElement(Gender.values());
+        TextComponent component = new TextComponent();
 
         // Verify if the text contains curly brackets
         if (StringHelper.containsAny(s, "{", "}")) {
-            // Get an approximate number of curly bracket pairs within the text
+            // Get an approximate number of pairs of curly brackets within the text
             int pairsOfBrackets = countPairsOfBrackets(s);
 
             // Replace simple tags within the text, if there are any
@@ -83,39 +85,27 @@ public class TagProcessor extends Binder {
             StringBuffer sb;
 
             while (matcher.find()) {
-                String replacement = "";
-                String resourceName = matcher.group("referenceName") != null ? matcher.group("referenceName") : matcher.group("resourceName");
                 gender = getTrueGender(matcher.group("genderType"), defaultGender);
-                int index = -1;
+                String resourceType = matcher.group("resourceType");
+                String resourceName = matcher.group("resourceName");
+                int index = IntegerHelper.tryParse(matcher.group("resourceType"), -1);
 
-                try {
-                    Matcher indexMatcher = Pattern.compile("\\[!?\\d+\\]").matcher(matcher.group());
-
-                    if (indexMatcher.find()) {
-                        String match = StringHelper.removeAll(indexMatcher.group(), "[^\\d]");
-                        index = Integer.valueOf(match);
-                    }
-                } catch (Exception e) {
-                    index = -1;
-                }
-
-                if (StringHelper.startsWith(matcher.group(), "{string:"))
-                    replacement = resourceExplorer.findResByName(resourceName, index);
-                else if (StringHelper.startsWith(matcher.group(), "{database:"))
-                    replacement = resourceExplorer.findTableRowByName(resourceName, index);
-                else if (StringHelper.startsWith(matcher.group(), "{method:"))
-                    replacement = resourceExplorer.findMethodByName(resourceName);
-                else if (StringHelper.startsWith(matcher.group(), "{reference:"))
-                    replacement = resourceExplorer.findByRef(ResourceReference.get(resourceName));
-                else if (StringHelper.startsWith(matcher.group(), "{preference:"))
-                    replacement = resourceExplorer.findPrefByTag(resourceName);
+                String replacement = switch (resourceType) {
+                    case "string" -> resourceExplorer.findResByName(resourceName, index);
+                    case "database" -> resourceExplorer.findTableRowByName(resourceName, index);
+                    case "method" -> resourceExplorer.findMethodByName(resourceName);
+                    case "reference" ->
+                            resourceExplorer.findByRef(ResourceReference.get(resourceName));
+                    case "preference" -> resourceExplorer.findPrefByTag(resourceName);
+                    default -> Database.DEFAULT_VALUE;
+                };
                 int openingIndex = StringHelper.indexOf(replacement, '{');
-                int closingIndex;
+                int closingIndex = StringHelper.indexOf(replacement, '}');
                 boolean empty = false;
 
-                if (openingIndex >= 0 && (closingIndex = StringHelper.indexOf(replacement, '}')) >= 0 && openingIndex < closingIndex) {
+                if (openingIndex >= 0 && closingIndex >= 0 && openingIndex < closingIndex) {
                     TextComponent tempComponent;
-                    tempComponent = replaceTags(replacement, defaultGender, plural);
+                    tempComponent = replaceTags(replacement, defaultGender, defaultGrammaticalNumber);
                     replacement = tempComponent.getText();
                     gender = tempComponent.getHegemonicGender();
                     empty = replacement.isEmpty() || (tempComponent.isNullified() && StringHelper.isNullOrBlank(replacement));
@@ -139,7 +129,7 @@ public class TagProcessor extends Binder {
                 gender = getTrueGender(matcher.group("genderType"), defaultGender);
                 replacement = TextProcessor.genderifyStr(replacement, gender).getText();
 
-                if (matcher.group("plural") != null && plural) {
+                if (matcher.group("plural") != null && defaultGrammaticalNumber == GrammaticalNumber.PLURAL) {
                     if (StringHelper.startsWith(matcher.group("pluralForm"), '+'))
                         replacement = replacement + StringHelper.removeStart(matcher.group("pluralForm"), "+");
                     else
@@ -178,39 +168,62 @@ public class TagProcessor extends Binder {
             pairsOfBrackets = t.getRemainingMatches();
         }
 
-        // Replace gender tags and get the hegemonic gender, which is the most recent gender used
-        Pair<String, List<Gender>> pair = replaceGenderTags(s);
+        // Replace gender and number tags and get the hegemonic, or most recent, values
+        Triple<String, Gender, GrammaticalNumber> result = replaceGrammarTags(s);
 
-        if (pair.getValue() != null && pair.getValue().size() > 0 && !s.equals(pair.getKey()))
-            gender = pair.getValue().get(pair.getValue().size() - 1);
-        s = pair.getKey();
+        if (!StringHelper.equals(s, result.getFirst())) {
+            s = result.getFirst();
+
+            if (result.getSecond() != null)
+                gender = result.getSecond();
+
+            if (result.getSecond() != null)
+                grammaticalNumber = result.getThird();
+        }
         gender = gender != null ? gender : defaultGender;
+        grammaticalNumber = grammaticalNumber != null ? grammaticalNumber : defaultGrammaticalNumber;
 
         // Replace subtags within the text, if there are any
         if (StringHelper.containsAny(s, "⸠", "⸡")) {
             s = StringHelper.replaceEach(s, new String[]{"⸠", "⸡"}, new String[]{"{", "}"});
-            s = replaceTags(s, gender, plural).getText();
+            s = replaceTags(s, gender, grammaticalNumber).getText();
         }
         component.setText(s);
-        component.setHegemonicGender(gender);
+        component.addGender(gender);
+        component.addGrammaticalNumber(grammaticalNumber);
         component.setNullified(nullified);
         return component;
     }
 
-    private Pair<String, List<Gender>> replaceGenderTags(String s) {
-        if (StringHelper.isNotNullOrEmpty(s) && StringHelper.containsAny(s, "｢", "｣")) {
-            List<Gender> matches = new ArrayList<>();
-            Matcher matcher = GENDER_PATTERN.matcher(s);
+    private Triple<String, Gender, GrammaticalNumber> replaceGrammarTags(String s) {
+        Triple<String, Gender, GrammaticalNumber> result = new Triple<>(s, null, null);
+
+        if (StringHelper.containsAny(s, "｢", "｣")) {
+            Gender gender = null;
+            GrammaticalNumber grammaticalNumber = null;
+            Matcher matcher = GENDER_AND_NUMBER_PATTERN.matcher(s);
             StringBuffer sb = new StringBuffer();
 
             while (matcher.find()) {
-                matches.add(getTrueGender(matcher.group(2)));
-                matcher.appendReplacement(sb, StringHelper.defaultIfNull(matcher.group(3)));
+                String content = matcher.group("content");
+
+                if (content == null) continue;
+
+                switch (content) {
+                    case "0", "1", "2" -> {
+                        int value = IntegerHelper.tryParse(content, -1);
+                        gender = Gender.get(value);
+                    }
+                    case "s", "S" -> grammaticalNumber = GrammaticalNumber.SINGULAR;
+                    case "p", "P" -> grammaticalNumber = GrammaticalNumber.PLURAL;
+                    case "u", "U" -> grammaticalNumber = GrammaticalNumber.UNDEFINED;
+                }
+                matcher.appendReplacement(sb, StringHelper.defaultIfNull(matcher.group("endSpaces")));
             }
             matcher.appendTail(sb);
-            return new Pair<>(sb.toString(), matches);
+            result = new Triple<>(sb.toString(), gender, grammaticalNumber);
         }
-        return new Pair<>(s, new ArrayList<>());
+        return result;
     }
 
     private Gender getTrueGender(String s) {

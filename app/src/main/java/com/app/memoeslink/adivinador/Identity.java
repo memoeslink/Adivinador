@@ -38,12 +38,12 @@ public class Identity extends ContextWrapper {
         information.put("element", getElement());
         information.put("signColor", getSignColor());
         information.put("signNumbers", getSignNumbers());
+        information.put("signPersonality", getSignPersonality());
         information.put("compatibility", getCompatibility());
         information.put("incompatibility", getIncompatibility());
         information.put("walterBergZodiacSign", getWalterBergZodiacSignName());
         information.put("chineseZodiacSign", getChineseZodiacSignName());
         information.put("animal", getAnimal());
-        information.put("psychologicalType", getPsychologicalType());
         information.put("secretName", getSecretName());
         information.put("demonicName", getDemonicName());
         information.put("previousName", getPreviousName());
@@ -91,6 +91,10 @@ public class Identity extends ContextWrapper {
         return getZodiacSign().getNumbers(getBaseContext());
     }
 
+    public String getSignPersonality() {
+        return getZodiacSign().getPersonalityDescription(getBaseContext());
+    }
+
     public String getCompatibility() {
         return getZodiacSign().getCompatibility(getBaseContext());
     }
@@ -108,11 +112,7 @@ public class Identity extends ContextWrapper {
     }
 
     public String getAnimal() {
-        return StringHelper.capitalizeFirst(getResourceExplorer().getResourceFinder().getStrFromStrArrayRes(R.array.animal));
-    }
-
-    public String getPsychologicalType() {
-        return getResourceExplorer().getResourceFinder().getStrFromStrArrayRes(R.array.psychological_type);
+        return getResourceExplorer().getResourceFinder().getStrFromStrArrayRes(R.array.animal);
     }
 
     public String getSecretName() {

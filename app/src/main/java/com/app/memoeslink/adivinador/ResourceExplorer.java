@@ -156,7 +156,7 @@ public class ResourceExplorer extends Explorer {
             do {
                 suggestedName = r.getElement(suggestedNames);
             } while (PreferenceHandler.getString(Preference.TEMP_NAME).equals(suggestedName) && suggestedNames.size() > 1);
-            return StringHelper.defaultWhenBlank(suggestedName);
+            return StringHelper.defaultIfBlank(suggestedName, Constant.DEVELOPER);
         }
 
         private String getFormattedName() {

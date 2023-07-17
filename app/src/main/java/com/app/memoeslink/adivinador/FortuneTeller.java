@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.TypedArray;
 
+import com.app.memoeslink.adivinador.dialoguecreator.AiDialogueCreator;
+import com.app.memoeslink.adivinador.dialoguecreator.DialogueCreator;
+import com.app.memoeslink.adivinador.dialoguecreator.DialogueCreatorFactory;
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
-import com.app.memoeslink.adivinador.tagprocessor.TagProcessor;
 import com.memoeslink.common.Randomizer;
-import com.memoeslink.generator.common.ResourceReference;
-import com.memoeslink.generator.common.TextProcessor;
+import com.memoeslink.generator.common.TextFormatter;
 
 import org.memoeslink.LongHelper;
 import org.memoeslink.StringHelper;
@@ -19,15 +20,15 @@ import java.util.List;
 
 public class FortuneTeller extends ContextWrapper {
     private final Randomizer r;
-    private final ResourceExplorer resourceExplorer;
-    private final TagProcessor tagProcessor;
+    private final DialogueCreator aiDialogueCreator;
+    private final DialogueCreator legacyDialogueCreator;
 
     public FortuneTeller(Context context) {
         super(context);
         Long seed = getSeed();
         r = new Randomizer(seed);
-        resourceExplorer = new ResourceExplorer(context, seed);
-        tagProcessor = new TagProcessor(context, seed);
+        aiDialogueCreator = new DialogueCreatorFactory().getDialogueCreator("AI", context, getSeed());
+        legacyDialogueCreator = new DialogueCreatorFactory().getDialogueCreator("legacy", context, getSeed());
     }
 
     public Long getSeed() {
@@ -36,53 +37,34 @@ public class FortuneTeller extends ContextWrapper {
         return null;
     }
 
-    public String greet() {
-        String s;
-        String greeting = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.conversation_greeting);
-        String auguryPhrase = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.phrase_augury);
-        String pictogram = r.getBoolean() ? resourceExplorer.findByRef(ResourceReference.FORMATTED_PICTOGRAM) : "";
-        s = tagProcessor.replaceTags(greeting, null, r.getBoolean()).getText() + StringHelper.prependSpaceIfNotEmpty(auguryPhrase) + StringHelper.prependIfNotEmpty(pictogram, "<br>");
-        s = StringHelper.replace(s, "..", ".");
-        return getString(R.string.html_format, s);
-    }
-
     public String talk() {
         List<String> phraseTypes = new ArrayList<>();
 
         if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED))
-            phraseTypes.add("greetings");
+            phraseTypes.add("greeting");
 
         if (PreferenceHandler.getBoolean(Preference.SETTING_OPINIONS_ENABLED))
-            phraseTypes.add("opinions");
+            phraseTypes.add("opinion");
 
         if (PreferenceHandler.getBoolean(Preference.SETTING_PHRASES_ENABLED))
-            phraseTypes.add("phrases");
-
-        if (phraseTypes.size() > 0) {
-            return switch (r.getElement(phraseTypes)) {
-                case "greetings" -> greet();
-                case "opinions" -> talkAboutSomeone();
-                case "phrases" -> talkAboutSomething();
-                default -> "…";
-            };
-        }
-        return "…";
+            phraseTypes.add("phrase");
+        return talk(r.getElement(phraseTypes));
     }
 
-    public String talkAboutSomething() {
-        String pictogram = r.getBoolean() ? resourceExplorer.findByRef(ResourceReference.FORMATTED_PICTOGRAM) : "";
-        String phrase = resourceExplorer.getDatabaseFinder().getPhrase();
-        return StringHelper.trimToEmpty(phrase) + StringHelper.prependIfNotEmpty(pictogram, "<br>");
-    }
+    public String talk(String dialogueType) {
+        dialogueType = StringHelper.defaultIfNull(dialogueType);
+        DialogueCreator dialogueCreator = r.getBoolean() ? aiDialogueCreator : legacyDialogueCreator;
 
-    public String talkAboutSomeone() {
-        String s = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.opinion);
-        s = tagProcessor.replaceTags(s).getText();
-        s = TextProcessor.removeDoubleFullStop(s);
+        String dialogue = switch (dialogueType) {
+            case "greeting" -> dialogueCreator.greet();
+            case "opinion" -> dialogueCreator.talkAboutSomeone();
+            case "phrase" -> dialogueCreator.talkAboutSomething();
+            default -> "…";
+        };
 
-        String pictogram = r.getBoolean() ? resourceExplorer.findByRef(ResourceReference.FORMATTED_PICTOGRAM) : "";
-        s = s + StringHelper.prependIfNotEmpty(pictogram, "<br>");
-        return getString(R.string.html_format, s);
+        if (dialogueCreator instanceof AiDialogueCreator)
+            dialogue = TextFormatter.formatBotMessage(dialogue);
+        return dialogue;
     }
 
     public int getRandomAppearance() {

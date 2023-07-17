@@ -139,17 +139,17 @@
         <br>%6$s
         <br><br><font color="#53E3B3">Sign numbers:</font>
         <br>%7$s
-        <br><br><font color="#53E3B3">Compatibility:</font>
+        <br><br><font color="#53E3B3">Sign personality:</font>
         <br>%8$s
-        <br><br><font color="#53E3B3">Incompatibility:</font>
+        <br><br><font color="#53E3B3">Compatibility:</font>
         <br>%9$s
-        <br><br><font color="#53E3B3">Walter Berg Zodiac Sign:</font>
+        <br><br><font color="#53E3B3">Incompatibility:</font>
         <br>%10$s
-        <br><br><font color="#53E3B3">Chinese Zodiac Sign:</font>
+        <br><br><font color="#53E3B3">Walter Berg Zodiac Sign:</font>
         <br>%11$s
-        <br><br><font color="#53E3B3">Animal:</font>
+        <br><br><font color="#53E3B3">Chinese Zodiac Sign:</font>
         <br>%12$s
-        <br><br><font color="#53E3B3">Psychological type:</font>
+        <br><br><font color="#53E3B3">Animal:</font>
         <br>%13$s
         <br><br><font color="#53E3B3">Secret name:</font>
         <br>%14$s
@@ -261,204 +261,832 @@
     <string name="value_as_null">null</string>
     <string name="value_as_positive">positive</string>
     <string name="value_as_zero">zero</string>
+    <string-array name="abstract_noun">
+        <item>abandonment</item>
+        <item>self-denial</item>
+        <item>abhorrence</item>
+        <item>abstinence</item>
+        <item>abundance</item>
+        <item>boredom</item>
+        <item>overindulgence</item>
+        <item>acceptation</item>
+        <item>action</item>
+        <item>adaptability</item>
+        <item>admiration</item>
+        <item>adoration</item>
+        <item>affability</item>
+        <item>affection</item>
+        <item>affectionateness</item>
+        <item>fondness</item>
+        <item>affliction</item>
+        <item>liking</item>
+        <item>aggression</item>
+        <item>aggressiveness</item>
+        <item>incisiveness</item>
+        <item>isolation</item>
+        <item>boast</item>
+        <item>cheerfulness</item>
+        <item>haughtiness</item>
+        <item>altruism</item>
+        <item>kindness</item>
+        <item>grief</item>
+        <item>ambition</item>
+        <item>pleasantness</item>
+        <item>friendliness</item>
+        <item>love</item>
+        <item>anarchy</item>
+        <item>angst</item>
+        <item>longing</item>
+        <item>animosity</item>
+        <item>yearning</item>
+        <item>eagerness</item>
+        <item>uneasiness</item>
+        <item>antipathy</item>
+        <item>apathy</item>
+        <item>appreciation</item>
+        <item>apprehension</item>
+        <item>ability</item>
+        <item>harmony</item>
+        <item>arrogance</item>
+        <item>assertiveness</item>
+        <item>cunning</item>
+        <item>attention</item>
+        <item>audacity</item>
+        <item>boldness</item>
+        <item>absence</item>
+        <item>severity</item>
+        <item>authenticity</item>
+        <item>complacency</item>
+        <item>self-control</item>
+        <item>self-esteem</item>
+        <item>self-reliance</item>
+        <item>avarice</item>
+        <item>endeavor</item>
+        <item>banality</item>
+        <item>beauty</item>
+        <item>beneficence</item>
+        <item>benevolence</item>
+        <item>happiness</item>
+        <item>prosperity</item>
+        <item>kindliness</item>
+        <item>brilliance</item>
+        <item>verve</item>
+        <item>goodwill</item>
+        <item>quality</item>
+        <item>calm</item>
+        <item>exhaustion</item>
+        <item>chaos</item>
+        <item>proficiency</item>
+        <item>charity</item>
+        <item>care</item>
+        <item>charisma</item>
+        <item>chastity</item>
+        <item>caution</item>
+        <item>swiftness</item>
+        <item>ceremony</item>
+        <item>certainty</item>
+        <item>knowledge</item>
+        <item>cynicism</item>
+        <item>clemency</item>
+        <item>cowardice</item>
+        <item>greed</item>
+        <item>consistency</item>
+        <item>comfort</item>
+        <item>fellowship</item>
+        <item>sympathy</item>
+        <item>competence</item>
+        <item>comprehension</item>
+        <item>commitment</item>
+        <item>communication</item>
+        <item>condescension</item>
+        <item>condolence</item>
+        <item>reliance</item>
+        <item>confusion</item>
+        <item>anguish</item>
+        <item>commotion</item>
+        <item>understanding</item>
+        <item>enshrinement</item>
+        <item>awareness</item>
+        <item>thoughtfulness</item>
+        <item>resolve</item>
+        <item>solace</item>
+        <item>contemplation</item>
+        <item>contentment</item>
+        <item>discrepancy</item>
+        <item>contribution</item>
+        <item>persuasion</item>
+        <item>cooperation</item>
+        <item>bravery</item>
+        <item>warmth</item>
+        <item>sanity</item>
+        <item>corruption</item>
+        <item>courtesy</item>
+        <item>gossip</item>
+        <item>inventiveness</item>
+        <item>credibility</item>
+        <item>credulity</item>
+        <item>belief</item>
+        <item>crime</item>
+        <item>judgement</item>
+        <item>savagery</item>
+        <item>fault</item>
+        <item>culture</item>
+        <item>curiosity</item>
+        <item>decay</item>
+        <item>honesty</item>
+        <item>disappointment</item>
+        <item>decision</item>
+        <item>dedication</item>
+        <item>defense</item>
+        <item>gentleness</item>
+        <item>delight</item>
+        <item>democracy</item>
+        <item>depravity</item>
+        <item>depression</item>
+        <item>defeat</item>
+        <item>defeatism</item>
+        <item>disagreement</item>
+        <item>helplessness</item>
+        <item>discouragement</item>
+        <item>disapproval</item>
+        <item>disturbance</item>
+        <item>rest</item>
+        <item>bewilderment</item>
+        <item>misgiving</item>
+        <item>discontent</item>
+        <item>carelessness</item>
+        <item>disdain</item>
+        <item>misfortune</item>
+        <item>disenchantment</item>
+        <item>desire</item>
+        <item>imbalance</item>
+        <item>despair</item>
+        <item>hopelessness</item>
+        <item>reluctance</item>
+        <item>attrition</item>
+        <item>disgrace</item>
+        <item>dishonesty</item>
+        <item>dishonor</item>
+        <item>disillusionment</item>
+        <item>disinterest</item>
+        <item>disloyalty</item>
+        <item>disobedience</item>
+        <item>unemployment</item>
+        <item>desolation</item>
+        <item>disorder</item>
+        <item>contempt</item>
+        <item>dexterity</item>
+        <item>disadvantage</item>
+        <item>determination</item>
+        <item>devotion</item>
+        <item>bliss</item>
+        <item>difficulty</item>
+        <item>dignity</item>
+        <item>diligence</item>
+        <item>discernment</item>
+        <item>discipline</item>
+        <item>discord</item>
+        <item>discrimination</item>
+        <item>estrangement</item>
+        <item>assortment</item>
+        <item>fun</item>
+        <item>meekness</item>
+        <item>malice</item>
+        <item>sorrow</item>
+        <item>drama</item>
+        <item>doubt</item>
+        <item>mourning</item>
+        <item>sweetness</item>
+        <item>harshness</item>
+        <item>learning</item>
+        <item>efficacy</item>
+        <item>efficiency</item>
+        <item>ego</item>
+        <item>selfishness</item>
+        <item>grace</item>
+        <item>empathy</item>
+        <item>empowerment</item>
+        <item>charm</item>
+        <item>infatuation</item>
+        <item>enmity</item>
+        <item>vigor</item>
+        <item>focus</item>
+        <item>deceitfulness</item>
+        <item>annoyance</item>
+        <item>daydream</item>
+        <item>elation</item>
+        <item>jealousy</item>
+        <item>equity</item>
+        <item>balance</item>
+        <item>scarcity</item>
+        <item>disbelief</item>
+        <item>enslavement</item>
+        <item>specialization</item>
+        <item>speculation</item>
+        <item>hope</item>
+        <item>spirituality</item>
+        <item>splendor</item>
+        <item>spontaneity</item>
+        <item>stability</item>
+        <item>esteem</item>
+        <item>shudder</item>
+        <item>stress</item>
+        <item>structure</item>
+        <item>astonishment</item>
+        <item>stupidity</item>
+        <item>ethics</item>
+        <item>correctness</item>
+        <item>exaltation</item>
+        <item>distinction</item>
+        <item>excitement</item>
+        <item>exclusion</item>
+        <item>experience</item>
+        <item>exploration</item>
+        <item>expression</item>
+        <item>expressiveness</item>
+        <item>surprise</item>
+        <item>ease</item>
+        <item>fame</item>
+        <item>fantasy</item>
+        <item>allure</item>
+        <item>fatigue</item>
+        <item>cronyism</item>
+        <item>faith</item>
+        <item>ugliness</item>
+        <item>joy</item>
+        <item>fervor</item>
+        <item>fidelity</item>
+        <item>delicacy</item>
+        <item>steadfastness</item>
+        <item>frailty</item>
+        <item>flexibility</item>
+        <item>weakness</item>
+        <item>fortitude</item>
+        <item>failure</item>
+        <item>brittleness</item>
+        <item>frankness</item>
+        <item>fraternity</item>
+        <item>freshness</item>
+        <item>coldness</item>
+        <item>thriftiness</item>
+        <item>frustration</item>
+        <item>generosity</item>
+        <item>wit</item>
+        <item>glory</item>
+        <item>gracefulness</item>
+        <item>majesty</item>
+        <item>gratitude</item>
+        <item>war</item>
+        <item>starvation</item>
+        <item>sorority</item>
+        <item>hypocrisy</item>
+        <item>clearance</item>
+        <item>sense of honor</item>
+        <item>honor</item>
+        <item>trustworthiness</item>
+        <item>reputation</item>
+        <item>truthfulness</item>
+        <item>hospitality</item>
+        <item>humility</item>
+        <item>humiliation</item>
+        <item>disposition</item>
+        <item>idealism</item>
+        <item>identity</item>
+        <item>idiosyncrasy</item>
+        <item>idiocy</item>
+        <item>ignorance</item>
+        <item>illusion</item>
+        <item>enlightenment</item>
+        <item>imagination</item>
+        <item>mimicry</item>
+        <item>impatience</item>
+        <item>impetuosity</item>
+        <item>prominence</item>
+        <item>impotence</item>
+        <item>impunity</item>
+        <item>incapacity</item>
+        <item>instability</item>
+        <item>inclusion</item>
+        <item>incompetence</item>
+        <item>incomprehension</item>
+        <item>indecision</item>
+        <item>independence</item>
+        <item>disregard</item>
+        <item>ineptitude</item>
+        <item>inertia</item>
+        <item>unfaithfulness</item>
+        <item>cleverness</item>
+        <item>ingratitude</item>
+        <item>inherence</item>
+        <item>injustice</item>
+        <item>immaturity</item>
+        <item>innovation</item>
+        <item>innocence</item>
+        <item>disquiet</item>
+        <item>dissatisfaction</item>
+        <item>insecurity</item>
+        <item>folly</item>
+        <item>insensitivity</item>
+        <item>insolence</item>
+        <item>inspiration</item>
+        <item>insubordination</item>
+        <item>integrity</item>
+        <item>intelligence</item>
+        <item>intensity</item>
+        <item>intimacy</item>
+        <item>intolerance</item>
+        <item>intrigue</item>
+        <item>intuition</item>
+        <item>involvement</item>
+        <item>rage</item>
+        <item>unreality</item>
+        <item>irresponsibility</item>
+        <item>retirement</item>
+        <item>rightfulness</item>
+        <item>youth</item>
+        <item>listlessness</item>
+        <item>loyalty</item>
+        <item>freedom</item>
+        <item>leadership</item>
+        <item>cleanliness</item>
+        <item>long-suffering</item>
+        <item>lucidity</item>
+        <item>lust</item>
+        <item>maturity</item>
+        <item>magic</item>
+        <item>magnanimity</item>
+        <item>wickedness</item>
+        <item>misunderstanding</item>
+        <item>docility</item>
+        <item>wonder</item>
+        <item>meditation</item>
+        <item>improvement</item>
+        <item>begging</item>
+        <item>necessity</item>
+        <item>open-mindedness</item>
+        <item>falsehood</item>
+        <item>restraint</item>
+        <item>goals</item>
+        <item>fear</item>
+        <item>compassion</item>
+        <item>moderation</item>
+        <item>modesty</item>
+        <item>morality</item>
+        <item>motivation</item>
+        <item>motion</item>
+        <item>murmur</item>
+        <item>silliness</item>
+        <item>negligence</item>
+        <item>impartiality</item>
+        <item>clarity</item>
+        <item>nobility</item>
+        <item>perception</item>
+        <item>nostalgia</item>
+        <item>novelty</item>
+        <item>objectivity</item>
+        <item>obsession</item>
+        <item>obstinacy</item>
+        <item>wisecrack</item>
+        <item>hatred</item>
+        <item>opportunity</item>
+        <item>opportunism</item>
+        <item>oppression</item>
+        <item>optimism</item>
+        <item>affluence</item>
+        <item>originality</item>
+        <item>daring</item>
+        <item>ostentation</item>
+        <item>patience</item>
+        <item>particularity</item>
+        <item>passion</item>
+        <item>patriotism</item>
+        <item>peace</item>
+        <item>inner peace</item>
+        <item>thinking</item>
+        <item>forgiveness</item>
+        <item>sluggishness</item>
+        <item>perfection</item>
+        <item>expertise</item>
+        <item>permeability</item>
+        <item>perseverance</item>
+        <item>persistence</item>
+        <item>shrewdness</item>
+        <item>heaviness</item>
+        <item>pessimism</item>
+        <item>mercy</item>
+        <item>enjoyment</item>
+        <item>fullness</item>
+        <item>poverty</item>
+        <item>power</item>
+        <item>practicality</item>
+        <item>precision</item>
+        <item>prejudice</item>
+        <item>unease</item>
+        <item>foreshadowing</item>
+        <item>forecast</item>
+        <item>proactivity</item>
+        <item>progress</item>
+        <item>purpose</item>
+        <item>prudence</item>
+        <item>purity</item>
+        <item>anger</item>
+        <item>reasoning</item>
+        <item>grandeur</item>
+        <item>reality</item>
+        <item>achievement</item>
+        <item>mistrust</item>
+        <item>rejection</item>
+        <item>mutuality</item>
+        <item>recognition</item>
+        <item>fairness</item>
+        <item>redemption</item>
+        <item>reflection</item>
+        <item>exhilaration</item>
+        <item>relaxation</item>
+        <item>religiousness</item>
+        <item>remembrance</item>
+        <item>resentment</item>
+        <item>quietness</item>
+        <item>repression</item>
+        <item>repugnance</item>
+        <item>revenge</item>
+        <item>resignation</item>
+        <item>resilience</item>
+        <item>respect</item>
+        <item>responsibility</item>
+        <item>revelation</item>
+        <item>reverence</item>
+        <item>ridiculousness</item>
+        <item>richness</item>
+        <item>rivalry</item>
+        <item>romanticism</item>
+        <item>roughness</item>
+        <item>wisdom</item>
+        <item>sacrifice</item>
+        <item>health</item>
+        <item>pleasure</item>
+        <item>safety</item>
+        <item>common sense</item>
+        <item>sensitivity</item>
+        <item>serenity</item>
+        <item>seriousness</item>
+        <item>service</item>
+        <item>simplicity</item>
+        <item>sincerity</item>
+        <item>awe</item>
+        <item>assistance</item>
+        <item>sophistication</item>
+        <item>solitude</item>
+        <item>solidarity</item>
+        <item>solidness</item>
+        <item>solvency</item>
+        <item>submission</item>
+        <item>peace of mind</item>
+        <item>suspicion</item>
+        <item>softness</item>
+        <item>dreams</item>
+        <item>luck</item>
+        <item>suffering</item>
+        <item>sumptuousness</item>
+        <item>overcoming</item>
+        <item>subtlety</item>
+        <item>talent</item>
+        <item>dread</item>
+        <item>temperance</item>
+        <item>tenacity</item>
+        <item>temptation</item>
+        <item>tenderness</item>
+        <item>stubbornness</item>
+        <item>terror</item>
+        <item>tyranny</item>
+        <item>tolerance</item>
+        <item>betrayal</item>
+        <item>tranquility</item>
+        <item>transparency</item>
+        <item>sadness</item>
+        <item>accomplishment</item>
+        <item>togetherness</item>
+        <item>immediacy</item>
+        <item>loitering</item>
+        <item>fearlessness</item>
+        <item>legitimacy</item>
+        <item>value</item>
+        <item>vanity</item>
+        <item>vengeance</item>
+        <item>verity</item>
+        <item>shame</item>
+        <item>versatility</item>
+        <item>victimization</item>
+        <item>violation</item>
+        <item>violence</item>
+        <item>virtue</item>
+        <item>vision</item>
+        <item>vitality</item>
+        <item>liveliness</item>
+        <item>will</item>
+        <item>vulnerability</item>
+    </string-array>
     <string-array name="animal">
-        <item>bee</item>
-        <item>eagle</item>
-        <item>moose</item>
-        <item>clams</item>
-        <item>lark</item>
-        <item>anchovy</item>
-        <item>eel</item>
-        <item>antelope</item>
-        <item>spider</item>
-        <item>squirrel</item>
-        <item>herring</item>
-        <item>tuna</item>
-        <item>ostrich</item>
-        <item>wasp</item>
-        <item>slug</item>
-        <item>cod</item>
-        <item>whale</item>
-        <item>ox</item>
-        <item>buffalo</item>
-        <item>owl</item>
-        <item>vulture</item>
-        <item>donkey</item>
-        <item>mackerel</item>
-        <item>sea-horse</item>
-        <item>horse</item>
-        <item>goat</item>
-        <item>cockatoo</item>
-        <item>alligator</item>
-        <item>squid</item>
-        <item>chameleon</item>
-        <item>shrimp</item>
-        <item>camel</item>
-        <item>canary</item>
-        <item>crab</item>
-        <item>kangaroo</item>
-        <item>snail</item>
-        <item>beaver</item>
-        <item>zebra</item>
-        <item>pig</item>
-        <item>hog</item>
-        <item>jackal</item>
-        <item>chimpanzee</item>
-        <item>bedbug</item>
-        <item>centipede</item>
-        <item>deer</item>
-        <item>stag</item>
-        <item>cicada</item>
-        <item>stork</item>
-        <item>swan</item>
-        <item>guinea pig</item>
-        <item>crocodile</item>
-        <item>quail</item>
-        <item>hummingbird</item>
-        <item>weasel</item>
-        <item>condor</item>
-        <item>rabbit</item>
-        <item>roadrunner</item>
-        <item>roe</item>
-        <item>budgie</item>
-        <item>cockroach</item>
-        <item>cuckoo</item>
-        <item>crow</item>
-        <item>dolphin</item>
-        <item>dromedary</item>
-        <item>elephant</item>
-        <item>hedgehog</item>
-        <item>beetle</item>
-        <item>scorpion</item>
-        <item>starfish</item>
-        <item>pheasant</item>
-        <item>flamingo</item>
-        <item>seal</item>
-        <item>gazelle</item>
-        <item>hen</item>
-        <item>rooster</item>
-        <item>prawn</item>
-        <item>goose</item>
-        <item>tick</item>
-        <item>cat</item>
-        <item>buzzard</item>
-        <item>seagull</item>
-        <item>swallow</item>
-        <item>gorilla</item>
-        <item>sparrow</item>
-        <item>cricket</item>
-        <item>crane</item>
-        <item>cheetah</item>
-        <item>worm</item>
-        <item>falcon</item>
-        <item>hyena</item>
-        <item>hippopotamus</item>
-        <item>ant</item>
-        <item>ferret</item>
-        <item>magpie</item>
-        <item>iguana</item>
-        <item>boar</item>
-        <item>jaguar</item>
-        <item>goldfinch</item>
-        <item>giraffe</item>
-        <item>koala</item>
-        <item>lizard</item>
-        <item>lobster</item>
-        <item>sole</item>
-        <item>lion</item>
-        <item>sea lion</item>
-        <item>leopard</item>
-        <item>dragonfly</item>
-        <item>hare</item>
-        <item>lynx</item>
-        <item>llama</item>
-        <item>wolf</item>
-        <item>earthworm</item>
-        <item>parrot</item>
-        <item>firefly</item>
-        <item>mammoth</item>
-        <item>manatee</item>
-        <item>baboon</item>
-        <item>praying mantis</item>
-        <item>racoon</item>
-        <item>butterfly</item>
-        <item>ladybird</item>
-        <item>groundhog</item>
-        <item>jellyfish</item>
-        <item>mussel</item>
-        <item>blackbird</item>
-        <item>skunk</item>
-        <item>monkey</item>
-        <item>walrus</item>
-        <item>fly</item>
-        <item>mule</item>
-        <item>bat</item>
-        <item>otter</item>
-        <item>killer whale</item>
-        <item>caterpillar</item>
-        <item>bear</item>
-        <item>anteater</item>
-        <item>panda bear</item>
-        <item>sloth</item>
-        <item>polar bear</item>
-        <item>oyster</item>
-        <item>sheep</item>
-        <item>bird</item>
-        <item>woodpecker</item>
-        <item>pigeon</item>
-        <item>panther</item>
-        <item>duck</item>
-        <item>turkey</item>
-        <item>peacock</item>
-        <item>pelican</item>
-        <item>partridge</item>
-        <item>parakeet</item>
-        <item>dog</item>
-        <item>robin</item>
-        <item>swordfish</item>
-        <item>fish</item>
-        <item>penguin</item>
-        <item>moth</item>
-        <item>chicken</item>
-        <item>chick</item>
-        <item>pony</item>
-        <item>foal</item>
-        <item>porcupine</item>
-        <item>flea</item>
-        <item>octopus</item>
-        <item>cougar</item>
-        <item>frog</item>
-        <item>rat</item>
-        <item>mouse</item>
-        <item>ray</item>
-        <item>reindeer</item>
-        <item>rhino</item>
-        <item>nightingale</item>
-        <item>salamander</item>
-        <item>salmon</item>
-        <item>grasshopper</item>
-        <item>leech</item>
-        <item>toad</item>
-        <item>sardine</item>
-        <item>snake</item>
-        <item>tapir</item>
-        <item>badger</item>
-        <item>calf</item>
-        <item>shark</item>
-        <item>tiger</item>
-        <item>mole</item>
-        <item>thrush</item>
-        <item>bull</item>
-        <item>turtle</item>
-        <item>tortoise</item>
-        <item>newt</item>
-        <item>trout</item>
-        <item>toucan</item>
-        <item>cow</item>
-        <item>adder</item>
-        <item>mink</item>
-        <item>mare</item>
-        <item>fox</item>
+        <item>Lion (Panthera leo)</item>
+        <item>Tiger (Panthera tigris)</item>
+        <item>Cheetah (Acinonyx jubatus)</item>
+        <item>Leopard (Panthera pardus)</item>
+        <item>Elephant (Loxodonta africana)</item>
+        <item>Giraffe (Giraffa camelopardalis)</item>
+        <item>Zebra (Equus quagga)</item>
+        <item>Hippopotamus (Hippopotamus amphibius)</item>
+        <item>Kangaroo (Macropus rufus)</item>
+        <item>Koala (Phascolarctos cinereus)</item>
+        <item>Panda (Ailuropoda melanoleuca)</item>
+        <item>Gorilla (Gorilla gorilla)</item>
+        <item>Orangutan (Pongo pygmaeus)</item>
+        <item>Chimpanzee (Pan troglodytes)</item>
+        <item>Bonobo (Pan paniscus)</item>
+        <item>Platypus (Ornithorhynchus anatinus)</item>
+        <item>Ostrich (Struthio camelus)</item>
+        <item>Eagle (Aquila chrysaetos)</item>
+        <item>Hawk (Buteo jamaicensis)</item>
+        <item>Owl (Bubo bubo)</item>
+        <item>Penguin (Aptenodytes forsteri)</item>
+        <item>Albatross (Diomedea exulans)</item>
+        <item>Pigeon (Columba livia)</item>
+        <item>Parrot (Psittacus erithacus)</item>
+        <item>Swan (Cygnus olor)</item>
+        <item>Duck (Anas platyrhynchos)</item>
+        <item>Flamingo (Phoenicopterus ruber)</item>
+        <item>Peacock (Pavo cristatus)</item>
+        <item>Frog (Rana temporaria)</item>
+        <item>Crocodile (Crocodylus niloticus)</item>
+        <item>Alligator (Alligator mississippiensis)</item>
+        <item>Komodo dragon (Varanus komodoensis)</item>
+        <item>Snake (Python regius)</item>
+        <item>Lizard (Anolis carolinensis)</item>
+        <item>Chameleon (Chamaeleo calyptratus)</item>
+        <item>Tuna (Thunnus thynnus)</item>
+        <item>Shark (Carcharodon carcharias)</item>
+        <item>Dolphin (Delphinus delphis)</item>
+        <item>Whale (Balaenoptera musculus)</item>
+        <item>Octopus (Octopus vulgaris)</item>
+        <item>Squid (Architeuthis dux)</item>
+        <item>Lobster (Homarus americanus)</item>
+        <item>Crab (Callinectes sapidus)</item>
+        <item>Shrimp (Litopenaeus setiferus)</item>
+        <item>Jellyfish (Aurelia aurita)</item>
+        <item>Starfish (Asterias rubens)</item>
+        <item>Sea urchin (Strongylocentrotus purpuratus)</item>
+        <item>Coral (Acropora millepora)</item>
+        <item>Seahorse (Hippocampus erectus)</item>
+        <item>Clownfish (Amphiprion ocellaris)</item>
+        <item>Goldfish (Carassius auratus)</item>
+        <item>Salmon (Salmo salar)</item>
+        <item>Trout (Oncorhynchus mykiss)</item>
+        <item>Catfish (Ictalurus punctatus)</item>
+        <item>Eel (Anguilla anguilla)</item>
+        <item>Butterfly (Papilio machaon)</item>
+        <item>Bee (Apis mellifera)</item>
+        <item>Ant (Formica rufa)</item>
+        <item>Grasshopper (Orthoptera acrididae)</item>
+        <item>Beetle (Coleoptera scarabaeidae)</item>
+        <item>Spider (Latrodectus mactans)</item>
+        <item>Scorpion (Buthus occitanus)</item>
+        <item>Fly (Musca domestica)</item>
+        <item>Mosquito (Aedes aegypti)</item>
+        <item>Cockroach (Blattella germanica)</item>
+        <item>Snail (Helix aspersa)</item>
+        <item>Worm (Lumbricus terrestris)</item>
+        <item>Bat (Myotis myotis)</item>
+        <item>Squirrel (Sciurus carolinensis)</item>
+        <item>Rabbit (Oryctolagus cuniculus)</item>
+        <item>Deer (Cervus elaphus)</item>
+        <item>Bear (Ursus arctos)</item>
+        <item>Wolf (Canis lupus)</item>
+        <item>Fox (Vulpes vulpes)</item>
+        <item>Raccoon (Procyon lotor)</item>
+        <item>Skunk (Mephitis mephitis)</item>
+        <item>Beaver (Castor canadensis)</item>
+        <item>Otter (Lutra lutra)</item>
+        <item>Badger (Meles meles)</item>
+        <item>Hedgehog (Erinaceus europaeus)</item>
+        <item>Mouse (Mus musculus)</item>
+        <item>Rat (Rattus norvegicus)</item>
+        <item>Hamster (Mesocricetus auratus)</item>
+        <item>Guinea Pig (Cavia porcellus)</item>
+        <item>Ferret (Mustela putorius furo)</item>
+        <item>Dog (Canis lupus familiaris)</item>
+        <item>Cat (Felis catus)</item>
+        <item>Horse (Equus ferus caballus)</item>
+        <item>Donkey (Equus africanus asinus)</item>
+        <item>Cow (Bos taurus)</item>
+        <item>Pig (Sus scrofa domesticus)</item>
+        <item>Sheep (Ovis aries)</item>
+        <item>Goat (Capra aegagrus hircus)</item>
+        <item>Chicken (Gallus gallus domesticus)</item>
+        <item>Turkey (Meleagris gallopavo)</item>
+        <item>Pheasant (Phasianus colchicus)</item>
+        <item>Quail (Coturnix coturnix)</item>
+        <item>Dove (Streptopelia decaocto)</item>
+        <item>Sparrow (Passer domesticus)</item>
+        <item>Finch (Fringilla coelebs)</item>
+        <item>Moose (Alces alces)</item>
+        <item>Reindeer (Rangifer tarandus)</item>
+        <item>Bison (Bison bison)</item>
+        <item>Wild boar (Sus scrofa)</item>
+        <item>Lynx (Lynx lynx)</item>
+        <item>Bobcat (Lynx rufus)</item>
+        <item>Snow leopard (Panthera uncia)</item>
+        <item>Jaguar (Panthera onca)</item>
+        <item>Puma (Puma concolor)</item>
+        <item>Hyena (Crocuta crocuta)</item>
+        <item>Meerkat (Suricata suricatta)</item>
+        <item>Raccoon dog (Nyctereutes procyonoides)</item>
+        <item>Opossum (Didelphis virginiana)</item>
+        <item>Sloth (Bradypus variegatus)</item>
+        <item>Anteater (Myrmecophaga tridactyla)</item>
+        <item>Armadillo (Dasypus novemcinctus)</item>
+        <item>Tasmanian devil (Sarcophilus harrisii)</item>
+        <item>Wombat (Vombatus ursinus)</item>
+        <item>Red panda (Ailurus fulgens)</item>
+        <item>Sea lion (Zalophus californianus)</item>
+        <item>Seal (Phoca vitulina)</item>
+        <item>Walrus (Odobenus rosmarus)</item>
+        <item>Narwhal (Monodon monoceros)</item>
+        <item>Beluga whale (Delphinapterus leucas)</item>
+        <item>Orca (Orcinus orca)</item>
+        <item>Platypus (Ornithorhynchus anatinus)</item>
+        <item>Stingray (Dasyatis americana)</item>
+        <item>Swordfish (Xiphias gladius)</item>
+        <item>Barracuda (Sphyraena barracuda)</item>
+        <item>Piranha (Pygocentrus nattereri)</item>
+        <item>Seahorse (Hippocampus erectus)</item>
+        <item>Electric eel (Electrophorus electricus)</item>
+        <item>Marlin (Makaira nigricans)</item>
+        <item>Pufferfish (Tetraodontidae)</item>
+        <item>Clownfish (Amphiprioninae)</item>
+        <item>Sea cucumber (Holothuroidea)</item>
+        <item>Coral snake (Micrurus fulvius)</item>
+        <item>Rattlesnake (Crotalus atrox)</item>
+        <item>Anaconda (Eunectes murinus)</item>
+        <item>Komodo dragon (Varanus komodoensis)</item>
+        <item>Boa constrictor (Boa constrictor)</item>
+        <item>Gila monster (Heloderma suspectum)</item>
+        <item>Iguana (Iguana iguana)</item>
+        <item>Gecko (Gekko gecko)</item>
+        <item>Monitor lizard (Varanus varius)</item>
+        <item>Tortoise (Testudo hermanni)</item>
+        <item>Turtle (Chelonia mydas)</item>
+        <item>Box turtle (Terrapene carolina)</item>
+        <item>Tarantula (Theraphosidae)</item>
+        <item>Scorpion (Scorpiones)</item>
+        <item>Earthworm (Lumbricus terrestris)</item>
+        <item>Ladybug (Coccinellidae)</item>
+        <item>Dragonfly (Anisoptera)</item>
+        <item>Termite (Isoptera)</item>
+        <item>Firefly (Lampyridae)</item>
+        <item>Mosquito (Culicidae)</item>
+        <item>Grasshopper (Caelifera)</item>
+        <item>Cricket (Gryllidae)</item>
+        <item>Cockroach (Blattodea)</item>
+        <item>Tick (Ixodida)</item>
+        <item>Flea (Siphonaptera)</item>
+        <item>Moth (Bombyx mori)</item>
+        <item>Spider (Araneae)</item>
+        <item>Centipede (Scolopendra)</item>
+        <item>Millipede (Diplopoda)</item>
+        <item>Praying mantis (Mantis religiosa)</item>
+        <item>Stick insect (Phasmatodea)</item>
+        <item>Bed bug (Cimex lectularius)</item>
+        <item>Fruit fly (Drosophila melanogaster)</item>
+        <item>Louse (Pediculus humanus)</item>
+        <item>Snail (Gastropoda)</item>
+        <item>Oyster (Crassostrea virginica)</item>
+        <item>Mussel (Mytilus edulis)</item>
+        <item>Clam (Mercenaria mercenaria)</item>
+        <item>Scallop (Pectinidae)</item>
+        <item>Barnacle (Balanidae)</item>
+        <item>Squid (Teuthida)</item>
+        <item>Octopus (Octopoda)</item>
+        <item>Cuttlefish (Sepiida)</item>
+        <item>Nautilus (Nautilidae)</item>
+        <item>Jellyfish (Scyphozoa)</item>
+        <item>Starfish (Asteroidea)</item>
+        <item>Sea anemone (Actiniaria)</item>
+        <item>Sea urchin (Echinoidea)</item>
+        <item>Crayfish (Astacoidea)</item>
+        <item>Lobster (Nephropidae)</item>
+        <item>Hermit crab (Paguroidea)</item>
+        <item>Shrimp (Caridea)</item>
+        <item>Horseshoe crab (Limulidae)</item>
+        <item>Sparrow (Passeridae)</item>
+        <item>Woodpecker (Picidae)</item>
+        <item>Pigeon (Columba livia)</item>
+        <item>Canary (Serinus canaria)</item>
+        <item>Pelican (Pelecanus onocrotalus)</item>
+        <item>Albatross (Diomedeidae)</item>
+        <item>Hummingbird (Trochilidae)</item>
+        <item>Swallow (Hirundo rustica)</item>
+        <item>Parakeet (Melopsittacus undulatus)</item>
+        <item>Raven (Corvus corax)</item>
+        <item>Toucan (Ramphastos toco)</item>
+        <item>Koala (Phascolarctos cinereus)</item>
+        <item>Kangaroo (Macropus rufus)</item>
+        <item>Tasmanian Tiger (Thylacinus cynocephalus)</item>
+        <item>Quokka (Setonix brachyurus)</item>
+        <item>Bandicoot (Peramelemorphia)</item>
+        <item>Emu (Dromaius novaehollandiae)</item>
+        <item>Wombat (Vombatus ursinus)</item>
+        <item>Kiwi (Apteryx australis)</item>
+        <item>Echidna (Tachyglossidae)</item>
+        <item>Dingo (Canis lupus dingo)</item>
+        <item>Sugar Glider (Petaurus breviceps)</item>
+        <item>Wallaby (Macropodidae)</item>
+        <item>Kakapo (Strigops habroptilus)</item>
+        <item>Tuatara (Sphenodon punctatus)</item>
+        <item>Kookaburra (Dacelo novaeguineae)</item>
+        <item>Quoll (Dasyuridae)</item>
+        <item>Yabby (Cherax destructor)</item>
+        <item>Thorny Devil (Moloch horridus)</item>
+        <item>Bilby (Macrotis)</item>
+        <item>Cane Toad (Rhinella marina)</item>
+        <item>Tasmanian Pademelon (Thylogale billardierii)</item>
+        <item>Little Penguin (Eudyptula minor)</item>
+        <item>Australian Magpie (Gymnorhina tibicen)</item>
+        <item>Dugong (Dugong dugon)</item>
+        <item>Box Jellyfish (Chironex fleckeri)</item>
+        <item>Saltwater Crocodile (Crocodylus porosus)</item>
+        <item>Barramundi (Lates calcarifer)</item>
+        <item>Goliath Birdeater (Theraphosa blondi)</item>
+        <item>African Elephant (Loxodonta africana)</item>
+        <item>Asian Elephant (Elephas maximus)</item>
+        <item>Capybara (Hydrochoerus hydrochaeris)</item>
+        <item>Okapi (Okapia johnstoni)</item>
+        <item>Bonobo (Pan paniscus)</item>
+        <item>Mandrill (Mandrillus sphinx)</item>
+        <item>Aye-aye (Daubentonia madagascariensis)</item>
+        <item>Sun Bear (Helarctos malayanus)</item>
+        <item>Colossal Squid (Mesonychoteuthis hamiltoni)</item>
+        <item>Vampire Bat (Desmodus rotundus)</item>
+        <item>Golden Lion Tamarin (Leontopithecus rosalia)</item>
+        <item>Red Howler Monkey (Alouatta seniculus)</item>
+        <item>Blue Whale (Balaenoptera musculus)</item>
+        <item>Pangolin (Manis)</item>
+        <item>Giant Anteater (Myrmecophaga tridactyla)</item>
+        <item>Sloth Bear (Melursus ursinus)</item>
+        <item>Golden Eagle (Aquila chrysaetos)</item>
+        <item>Secretary Bird (Sagittarius serpentarius)</item>
+        <item>Tarsier (Tarsiidae)</item>
+        <item>Horned Lizard (Phrynosoma)</item>
+        <item>Peking Man (Homo erectus pekinensis)</item>
+        <item>African Wild Dog (Lycaon pictus)</item>
+        <item>Shoebill (Balaeniceps rex)</item>
+        <item>Narwhal (Monodon monoceros)</item>
+        <item>Sperm Whale (Physeter macrocephalus)</item>
+        <item>Clouded Leopard (Neofelis nebulosa)</item>
+        <item>Fennec Fox (Vulpes zerda)</item>
+        <item>Greater Flamingo (Phoenicopterus roseus)</item>
+        <item>Mountain Gorilla (Gorilla beringei beringei)</item>
+        <item>Sumatran Tiger (Panthera tigris sumatrae)</item>
+        <item>Kakapo (Strigops habroptila)</item>
+        <item>Humpback Whale (Megaptera novaeangliae)</item>
+        <item>Antilopine Kangaroo (Macropus antilopinus)</item>
+        <item>Satanic Leaf-Tailed Gecko (Uroplatus phantasticus)</item>
+        <item>Blue-Footed Booby (Sula nebouxii)</item>
+        <item>Galápagos Tortoise (Chelonoidis niger)</item>
+        <item>Vicuña (Vicugna vicugna)</item>
+        <item>Wandering Albatross (Diomedea exulans)</item>
+        <item>European Hare (Lepus europaeus)</item>
+        <item>Reticulated Giraffe (Giraffa reticulata)</item>
+        <item>Cheetah (Acinonyx jubatus)</item>
+        <item>Polar Bear (Ursus maritimus)</item>
+        <item>Komodo Dragon (Varanus komodoensis)</item>
+        <item>Snow Leopard (Panthera uncia)</item>
+        <item>Sunda Flying Lemur (Galeopterus variegatus)</item>
+        <item>California Condor (Gymnogyps californianus)</item>
+        <item>Tasmanian Tiger (Thylacinus cynocephalus)</item>
+        <item>Hippopotamus (Hippopotamus amphibius)</item>
+        <item>Dodo (Raphus cucullatus)</item>
+        <item>White Rhinoceros (Ceratotherium simum)</item>
+        <item>Passenger Pigeon (Ectopistes migratorius)</item>
+        <item>Ocelot (Leopardus pardalis)</item>
+        <item>Brown Bear (Ursus arctos)</item>
+        <item>Leatherback Sea Turtle (Dermochelys coriacea)</item>
+        <item>Giant Panda (Ailuropoda melanoleuca)</item>
+        <item>Grey Wolf (Canis lupus)</item>
+        <item>Great White Shark (Carcharodon carcharias)</item>
+        <item>Black Mamba (Dendroaspis polylepis)</item>
+        <item>Bald Eagle (Haliaeetus leucocephalus)</item>
+        <item>Pterodactyl (Pterodactylus antiquus)</item>
+        <item>Stegosaurus (Stegosaurus stenops)</item>
+        <item>Brachiosaurus (Brachiosaurus altithorax)</item>
+        <item>Velociraptor (Velociraptor mongoliensis)</item>
+        <item>Spinosaurus (Spinosaurus aegyptiacus)</item>
+        <item>Tyrannosaurus Rex (Tyrannosaurus rex)</item>
+        <item>Triceratops (Triceratops horridus)</item>
+        <item>Ankylosaurus (Ankylosaurus magniventris)</item>
+        <item>Plesiosaurus (Plesiosaurus dolichodeirus)</item>
+        <item>Mammoth (Mammuthus primigenius)</item>
+        <item>Smilodon (Smilodon fatalis)</item>
+        <item>Dire Wolf (Canis dirus)</item>
+        <item>Sabre-Toothed Tiger (Smilodon fatalis)</item>
     </string-array>
     <string-array name="astrological_house">
         <item>\?</item>
@@ -607,6 +1235,22 @@
         <item><![CDATA[<font color="{method:getDefaultColor}"><b>{string:subject}</b></font>]]></item>
         <item><![CDATA[<i>{string:interjections}</i>]]></item>
         <item><![CDATA[<font color="{method:getDefaultColor}"><b>user of {method:getDeviceInfo}</b></font>]]></item>
+    </string-array>
+    <string-array name="day_period">
+        <item>one day</item>
+        <item>two days</item>
+        <item>three days</item>
+        <item>four days</item>
+        <item>five days</item>
+        <item>six days</item>
+        <item>a week</item>
+        <item>eight days</item>
+        <item>nine days</item>
+        <item>ten days</item>
+        <item>eleven days</item>
+        <item>twelve days</item>
+        <item>thirteen days</item>
+        <item>two weeks</item>
     </string-array>
     <string-array name="distant_relationship">
         <item>&personType1;</item>
@@ -758,12 +1402,16 @@
         <item>will end.</item>
         <item>will increase or strengthen {rand:∅; although gradually; suddenly; all of a sudden; slowly; a bit; a lot}.</item>
         <item>will decrease or deteriorate {rand:∅; although gradually; suddenly; all of a sudden; slowly; a bit; a lot}.</item>
-        <item>will bring good results, benefits or advantages in other areas of your life.꘎</item>
-        <item>will bring bad results, drawbacks or disadvantages in other areas of your life.꘎</item>
-        <item>will affect positively to {string:divination_middle}.꘎</item>
-        <item>will affect negatively to {string:divination_middle}.꘎</item>
+        <item>will bring good results, benefits or advantages in other areas of your life.</item>
+        <item>will bring bad results, drawbacks or disadvantages in other areas of your life.</item>
+        <item>will affect positively to {string:divination_middle}.</item>
+        <item>will affect negatively to {string:divination_middle}.</item>
     </string-array>
     <string-array name="divination_middle">
+        <item>{string:divination_middle_common}</item>
+        <item>{string:divination_middle_ambit}</item>
+    </string-array>
+    <string-array name="divination_middle_common">
         <item>your {rand:life; destiny; karma}</item>
         <item>your {rand:personal development; self-growth}</item>
         <item>your {rand:life plan; trajectory}</item>
@@ -842,8 +1490,110 @@
         <item>your decision making</item>
         <item>the achievement of objectives related to {string:divination_middle}</item>
     </string-array>
+    <string-array name="divination_middle_ambit">
+        <item>your romantic love</item>
+        <item>your family relationships</item>
+        <item>your friendships</item>
+        <item>your professional career</item>
+        <item>your finances and money</item>
+        <item>your physical health</item>
+        <item>your emotional well-being</item>
+        <item>your spirituality</item>
+        <item>your personal growth</item>
+        <item>your self-esteem</item>
+        <item>your important decisions</item>
+        <item>your trips and adventures</item>
+        <item>your relocations and changes of residence</item>
+        <item>your creative projects</item>
+        <item>your education and learning</item>
+        <item>your life purpose</item>
+        <item>your personal transformation</item>
+        <item>your overcome obstacles</item>
+        <item>your self-knowledge</item>
+        <item>your work-life balance</item>
+        <item>your effective communication</item>
+        <item>your conflict resolution</item>
+        <item>your business and entrepreneurship</item>
+        <item>your job relocation</item>
+        <item>your financial stability</item>
+        <item>your inheritances and legacies</item>
+        <item>your past experiences</item>
+        <item>your short-term future</item>
+        <item>your long-term future</item>
+        <item>your karmic relationships</item>
+        <item>your establishment of personal boundaries</item>
+        <item>your creative expression</item>
+        <item>your emotional recovery</item>
+        <item>your major life changes</item>
+        <item>your parenthood</item>
+        <item>your family responsibilities</item>
+        <item>your manifestation of desires</item>
+        <item>your rest and self-care time</item>
+        <item>your connection with nature</item>
+        <item>your life cycles and phases</item>
+        <item>your forgiveness and healing</item>
+        <item>your self-confidence</item>
+        <item>your sexuality and sexual expression</item>
+        <item>your emotional support</item>
+        <item>your energy balance</item>
+        <item>your fertility and pregnancy</item>
+        <item>your spiritual learning</item>
+        <item>your goal accomplishment</item>
+        <item>your protection and safety</item>
+        <item>your mental clarity</item>
+        <item>your acceptance of reality</item>
+        <item>your creative solutions</item>
+        <item>your social celebrations and events</item>
+        <item>your housing projects</item>
+        <item>your exploration of hidden talents</item>
+        <item>your self-empowerment</item>
+        <item>your release of old patterns</item>
+        <item>your spiritual connections</item>
+        <item>your wisdom advice</item>
+        <item>your consciousness expansion</item>
+        <item>your compatibility in relationships</item>
+        <item>your past healing</item>
+        <item>your authentic self-expression</item>
+        <item>your balance between giving and receiving</item>
+        <item>your energetic protection</item>
+        <item>your recovery from losses</item>
+        <item>your time management</item>
+        <item>your personal renewal</item>
+        <item>your new opportunities</item>
+        <item>your connection with spiritual guides</item>
+        <item>your intuition improvement</item>
+        <item>your exploration of artistic talents</item>
+        <item>your financial responsibilities</item>
+        <item>your negotiations and agreements</item>
+        <item>your release of fears</item>
+        <item>your creation of harmonious relationships</item>
+        <item>your emotional self-control</item>
+        <item>your meditation and relaxation</item>
+        <item>your exploration of passions</item>
+        <item>your appreciation of the present</item>
+        <item>your adaptability to change</item>
+        <item>your transformation of limiting beliefs</item>
+        <item>your connection with inner wisdom</item>
+        <item>your recovery of trust</item>
+        <item>your personal protection and care</item>
+        <item>your overcoming of creative blocks</item>
+        <item>your financial empowerment</item>
+        <item>your exploration of new perspectives</item>
+        <item>your cycles of completion and new beginnings</item>
+        <item>your self-acceptance and self-love</item>
+        <item>your empathy and compassion</item>
+        <item>your connection with everyday spirituality</item>
+        <item>your personal responsibility</item>
+        <item>your fostering of gratitude</item>
+        <item>your resolution of dilemmas</item>
+        <item>your inner peace</item>
+        <item>your exploration of past lives</item>
+        <item>your improvement of communication skills</item>
+        <item>your balance between giving and receiving</item>
+        <item>your manifestation of dreams and desires</item>
+    </string-array>
     <string-array name="divination_start">
-        <item>Within ‽1 days (‽2)</item>
+        <item>Within {string:day_period}</item>
         <item>Today</item>
         <item>Today, any second now,</item>
         <item>At any time of the day</item>
@@ -936,6 +1686,10 @@
         <item>Remorse</item>
     </string-array>
     <string-array name="explicit_cause">
+        <item>{string:explicit_cause_common}</item>
+        <item>{string:explicit_cause_specific}</item>
+    </string-array>
+    <string-array name="explicit_cause_common">
         <item>recent actions</item>
         <item>actions made in a distant past</item>
         <item>recent decisions</item>
@@ -1004,6 +1758,208 @@
         <item>influences of the divine or from higher forces</item>
         <item>the occult</item>
     </string-array>
+    <string-array name="explicit_cause_specific">
+        <item>the influence of the stars</item>
+        <item>your internal thoughts</item>
+        <item>the energetic vibrations of the place</item>
+        <item>the weather at the time of divination</item>
+        <item>the current lunar phase</item>
+        <item>the presence of spirits in the place</item>
+        <item>the time of day during divination</item>
+        <item>your feelings towards the person performing the divination</item>
+        <item>the aura of those present</item>
+        <item>personal interpretation of signs</item>
+        <item>your spiritual beliefs</item>
+        <item>the previous sleep patterns</item>
+        <item>interactions with others on that day</item>
+        <item>food intake of the day</item>
+        <item>the alignment of the planets</item>
+        <item>your physical health status</item>
+        <item>your mental health status</item>
+        <item>the presence of natural elements in the room</item>
+        <item>fluctuations in the Earth\'s magnetic field</item>
+        <item>personal energy levels</item>
+        <item>your past experiences</item>
+        <item>accumulated karma in life</item>
+        <item>the diviner\'s intuition</item>
+        <item>your recent dreams</item>
+        <item>amount of sunlight you\'ve received</item>
+        <item>your recent activities</item>
+        <item>current stress levels</item>
+        <item>the presence of amulets or talismans</item>
+        <item>focus during divination</item>
+        <item>the day of the week</item>
+        <item>your hopes and desires</item>
+        <item>the body\'s biological cycles</item>
+        <item>music or sounds in the environment</item>
+        <item>clothing worn</item>
+        <item>interactions with animals before divination</item>
+        <item>the state of your personal relationships</item>
+        <item>proximity to bodies of water</item>
+        <item>cultural influences in interpretation</item>
+        <item>your attitudes towards divination</item>
+        <item>emotions experienced during the day</item>
+        <item>the body\'s hydration level</item>
+        <item>the presence of objects of personal significance</item>
+        <item>family or ancestral traditions</item>
+        <item>cosmic alignments</item>
+        <item>symbols observed in the environment</item>
+        <item>the season of the year</item>
+        <item>your socioeconomic situation</item>
+        <item>exposure to toxic elements</item>
+        <item>the aromas present in the place</item>
+        <item>the presence of mirrors in the room</item>
+        <item>the materials that the divination place is made of</item>
+        <item>your attitudes towards the future</item>
+        <item>proximity to electronic objects</item>
+        <item>the influence of flora in the environment</item>
+        <item>body language during divination</item>
+        <item>childhood experiences</item>
+        <item>the geographical location of the divination</item>
+        <item>educational influences</item>
+        <item>pollution levels in the environment</item>
+        <item>the state of work relationships</item>
+        <item>the presence of plants in the room</item>
+        <item>your goals and aspirations</item>
+        <item>number of people present</item>
+        <item>medication intake</item>
+        <item>meditation practices</item>
+        <item>effects of alcohol or drugs</item>
+        <item>the presence of religious objects</item>
+        <item>use of crystals during divination</item>
+        <item>trust level in the diviner</item>
+        <item>dream interpretation</item>
+        <item>recent solar activity</item>
+        <item>the presence of fire or candles</item>
+        <item>the resonance of colors in the place</item>
+        <item>the presence of domestic animals</item>
+        <item>current world events</item>
+        <item>proximity to a birthday or anniversary</item>
+        <item>exposure to artificial light</item>
+        <item>recent changes in life</item>
+        <item>unresolved past traumas</item>
+        <item>breathing patterns during divination</item>
+        <item>yoga or exercise practices</item>
+        <item>the condition of the astral weather</item>
+        <item>wind currents in the place</item>
+        <item>connection with nature</item>
+        <item>hormonal changes in the body</item>
+        <item>expectations towards divination</item>
+        <item>cosmic energy levels</item>
+        <item>the presence of authority figures</item>
+        <item>proximity to a water source</item>
+        <item>technological influences</item>
+        <item>the state of your love life</item>
+        <item>messages from local fauna</item>
+        <item>interpretations of the clouds</item>
+        <item>the weather condition</item>
+        <item>the global economic situation</item>
+        <item>patterns in the tea leaves</item>
+        <item>the interpretation of palm lines</item>
+        <item>hidden messages in dreams</item>
+        <item>the position of the Sun and the Moon</item>
+        <item>the condition of the sky at the time of divination</item>
+        <item>predominant colors in the environment</item>
+        <item>energy released in the place</item>
+        <item>your consumption habits</item>
+        <item>the design of the divination space</item>
+        <item>signs from animals</item>
+        <item>songs heard in the day</item>
+        <item>personal memories</item>
+        <item>synchronicity of events</item>
+        <item>recently read books</item>
+        <item>the condition of retrograde planets</item>
+        <item>the interpretation of numbers</item>
+        <item>the presence of art in the room</item>
+        <item>your recent work activities</item>
+        <item>interpretation of the runes</item>
+        <item>recent physical activity</item>
+        <item>influences of the media</item>
+        <item>menstrual cycles</item>
+        <item>patterns of the candles</item>
+        <item>recent astronomical events</item>
+        <item>the presence of images or statues</item>
+        <item>current emotions</item>
+        <item>sleep habits</item>
+        <item>personal scents</item>
+        <item>interactions with technology</item>
+        <item>the impact of Chinese astrology</item>
+        <item>proximity to solstices or equinoxes</item>
+        <item>the condition of personal items</item>
+        <item>the direction of the wind</item>
+        <item>influences of local legends</item>
+        <item>phases of personal growth</item>
+        <item>interpretation of the oracles</item>
+        <item>the state of your personal finances</item>
+        <item>noise levels in the environment</item>
+        <item>the presence of certain minerals in the environment</item>
+        <item>star alignments</item>
+        <item>past events in the place</item>
+        <item>your inner desires</item>
+        <item>signs from the universe</item>
+        <item>recent traumatic experiences</item>
+        <item>energy on the day of divination</item>
+        <item>connections with ancestors</item>
+        <item>the time of birth</item>
+        <item>personal life cycles</item>
+        <item>the presence of certain metals in the environment</item>
+        <item>influences of the tarot</item>
+        <item>recent travel experiences</item>
+        <item>time since the last divination</item>
+        <item>the influence of deities</item>
+        <item>patterns of the birds</item>
+        <item>proximity to sacred places</item>
+        <item>dietary habits</item>
+        <item>colors used in divination</item>
+        <item>interpretation of shadows</item>
+        <item>recent conversations</item>
+        <item>influences of numerology</item>
+        <item>signs in the clouds</item>
+        <item>level of connection with the earth</item>
+        <item>precious stones present</item>
+        <item>the presence of water in the environment</item>
+        <item>proximity to the Earth\'s energy points</item>
+        <item>anxiety levels</item>
+        <item>daily habits</item>
+        <item>the condition of the home</item>
+        <item>experiences of the ancestors</item>
+        <item>metal objects present</item>
+        <item>telluric energy currents</item>
+        <item>the number of people in the place</item>
+        <item>interpretation of the I Ching</item>
+        <item>proximity to mountains</item>
+        <item>recurrent thoughts</item>
+        <item>recent experiences with nature</item>
+        <item>images observed in the fire</item>
+        <item>interpretation of divination cards</item>
+        <item>levels of light in the environment</item>
+        <item>interpretation of constellations</item>
+        <item>life and death cycles</item>
+        <item>interpretation of lucid dreams</item>
+        <item>patterns in mirrors</item>
+        <item>interpretation of sacred scriptures</item>
+        <item>chi energy levels</item>
+        <item>noise pollution levels</item>
+        <item>positive or negative thoughts</item>
+        <item>near-death experiences</item>
+        <item>connections with spiritual guides</item>
+        <item>the presence of gems in the environment</item>
+        <item>the location of magnetic north</item>
+        <item>interactions with the elements</item>
+        <item>influences of the zodiac signs</item>
+        <item>interpretation of hieroglyphs</item>
+        <item>plant growth patterns</item>
+        <item>humidity levels in the air</item>
+        <item>interpretation of prophecies</item>
+        <item>closeness to nature</item>
+        <item>proximity to trees</item>
+        <item>radiation levels in the environment</item>
+        <item>light sources present</item>
+        <item>signs of the Chinese horoscope</item>
+        <item>positions of the furniture in the place</item>
+        <item>smoke patterns from candles</item>
+        <item>thoughts during divination</item>
+    </string-array>
     <string-array name="foreboding_end">
         <item>will {rand:∅; not} happen.</item>
         <item>is {rand:∅; not} going to happen.</item>
@@ -1018,7 +1974,7 @@
     <string-array name="foreboding_start">
         <item>What you think will {rand:∅; not} happen,</item>
         <item>What you are thinking about</item>
-        <item>Yes, what you\'re thinking about,</item>
+        <item>Yes, what you\'re thinking about</item>
         <item>What you dreamed of</item>
         <item>What you {rand:∅; don\'t} want</item>
         <item>What you {rand:∅; don\'t} expect</item>
@@ -1036,7 +1992,7 @@
         <item>Pixel</item>
         <item>Smiley</item>
     </string-array>
-    <string-array name="greetings">
+    <string-array name="greeting">
         <item>Hi</item>
         <item>Hello</item>
         <item>Welcome</item>
@@ -1061,8 +2017,441 @@
         <item>Aries, Pisces, Aquarius.</item>
     </string-array>
     <string-array name="individual">
+        <item>{string:individual_aspect}</item>
         <item>{a/an} {string:individual_base}</item>
         <item>{a/an} {string:individual_representation}</item>
+    </string-array>
+    <string-array name="individual_aspect">
+        <item>a woman of short stature</item>
+        <item>a woman with fair skin</item>
+        <item>a woman with curly hair</item>
+        <item>a woman with freckles on her face</item>
+        <item>a woman with blue eyes</item>
+        <item>a woman with thick lips</item>
+        <item>a woman with small breasts</item>
+        <item>a woman with wide hips</item>
+        <item>a woman of thin build</item>
+        <item>a woman with brown skin</item>
+        <item>a woman with long legs</item>
+        <item>a woman with a thin neck</item>
+        <item>a woman with a snub nose</item>
+        <item>a woman with short hair</item>
+        <item>a woman with small hands</item>
+        <item>a woman of robust build</item>
+        <item>a woman with moles on her neck</item>
+        <item>a woman with medium-sized breasts</item>
+        <item>a woman with broad shoulders</item>
+        <item>a woman with tanned skin</item>
+        <item>a woman with honey-colored eyes</item>
+        <item>a woman with toned legs</item>
+        <item>a woman with graying hair</item>
+        <item>a woman with strong arms</item>
+        <item>a woman with small buttocks</item>
+        <item>a woman with small eyes</item>
+        <item>a woman with thin lips</item>
+        <item>a woman with a wide forehead</item>
+        <item>a woman with large breasts</item>
+        <item>a woman with dark skin</item>
+        <item>a woman with short legs</item>
+        <item>a woman with a wide smile</item>
+        <item>a woman with narrow hips</item>
+        <item>a woman of athletic build</item>
+        <item>a woman with wavy hair</item>
+        <item>a woman with green eyes</item>
+        <item>a woman with large buttocks</item>
+        <item>a woman with high cheekbones</item>
+        <item>a woman with large hands</item>
+        <item>a woman with a long neck</item>
+        <item>a woman with thick eyebrows</item>
+        <item>a woman with scarred skin</item>
+        <item>a woman with a small nose</item>
+        <item>a woman with almond-shaped eyes</item>
+        <item>a woman with toned buttocks</item>
+        <item>a woman of tall stature</item>
+        <item>a woman with long hair</item>
+        <item>a woman with soft cheekbones</item>
+        <item>a woman with a long nose</item>
+        <item>a woman with freckled skin</item>
+        <item>a woman with thin eyebrows</item>
+        <item>a woman of muscular build</item>
+        <item>a woman with delicate hands</item>
+        <item>a woman with small ears</item>
+        <item>a woman with a flat chest</item>
+        <item>a woman with smooth skin</item>
+        <item>a woman with thinning hair</item>
+        <item>a woman with slanted eyes</item>
+        <item>a woman with firm buttocks</item>
+        <item>a woman with perfect teeth</item>
+        <item>a woman with thick legs</item>
+        <item>a woman with a narrow waist</item>
+        <item>a woman with straight hair</item>
+        <item>a woman with small lips</item>
+        <item>a woman with pale skin</item>
+        <item>a woman with large eyes</item>
+        <item>a woman with round hips</item>
+        <item>a woman of curvaceous build</item>
+        <item>a woman with a shy smile</item>
+        <item>a woman with sagging breasts</item>
+        <item>a woman with wide buttocks</item>
+        <item>a woman with a robust neck</item>
+        <item>a woman with wrinkled skin</item>
+        <item>a woman with arched eyebrows</item>
+        <item>a woman with large ears</item>
+        <item>a woman with piercing eyes</item>
+        <item>a woman with calloused hands</item>
+        <item>a woman of medium height</item>
+        <item>a woman with full lips</item>
+        <item>a woman with dyed hair</item>
+        <item>a woman with a wide waist</item>
+        <item>a woman with thin legs</item>
+        <item>a woman with a hooked nose</item>
+        <item>a woman with sun-kissed skin</item>
+        <item>a woman with firm breasts</item>
+        <item>a woman with sparkling eyes</item>
+        <item>a woman with short, curly hair</item>
+        <item>a woman with soft hands</item>
+        <item>a woman with angular hips</item>
+        <item>a woman with dry lips</item>
+        <item>a woman with narrow shoulders</item>
+        <item>a woman of large build</item>
+        <item>a woman with acne-scarred skin</item>
+        <item>a woman with elongated ears</item>
+        <item>a woman with brown eyes</item>
+        <item>a woman with a wide nose</item>
+        <item>a woman with muscular legs</item>
+        <item>a woman with dyed, curly hair</item>
+        <item>a woman with a small waist</item>
+        <item>a woman with prominent cheekbones</item>
+        <item>a woman with small, firm breasts</item>
+        <item>a woman with large, toned buttocks</item>
+        <item>a woman with tattooed skin</item>
+        <item>a woman with a crooked smile</item>
+        <item>a woman with drooping shoulders</item>
+        <item>a woman of skinny build</item>
+        <item>a woman with protruding ears</item>
+        <item>a woman with large, almond-shaped eyes</item>
+        <item>a woman with rough hands</item>
+        <item>a woman with penciled eyebrows</item>
+        <item>a woman with a flat nose</item>
+        <item>a woman with snow-white skin</item>
+        <item>a woman with long, straight hair</item>
+        <item>a woman with round breasts</item>
+        <item>a woman with low hips</item>
+        <item>a woman with flaccid buttocks</item>
+        <item>a woman with amber-colored eyes</item>
+        <item>a woman of gaunt build</item>
+        <item>a woman with a defined jawline</item>
+        <item>a woman with red lips</item>
+        <item>a woman with droopy eyes</item>
+        <item>a woman with blonde hair</item>
+        <item>a woman with fine hands</item>
+        <item>a woman with a small, upturned nose</item>
+        <item>a woman with a high waist</item>
+        <item>a woman with asymmetrical breasts</item>
+        <item>a woman with rounded buttocks</item>
+        <item>a woman with light-brown skin</item>
+        <item>a woman with chestnut hair</item>
+        <item>a woman with laughing eyes</item>
+        <item>a woman with pierced ears</item>
+        <item>a woman with a round nose</item>
+        <item>a woman with a radiant smile</item>
+        <item>a woman with oily skin</item>
+        <item>a woman with chapped lips</item>
+        <item>a woman with bushy eyebrows</item>
+        <item>a woman with voluptuous breasts</item>
+        <item>a woman with high hips</item>
+        <item>a woman with flat buttocks</item>
+        <item>a woman with short, straight hair</item>
+        <item>a woman of strong build</item>
+        <item>a woman with emerald-green eyes</item>
+        <item>a woman with long hands</item>
+        <item>a woman with a perfect nose</item>
+        <item>a woman with a small spot on her cheek</item>
+        <item>a woman with velvety-smooth skin</item>
+        <item>a woman with an hourglass waist</item>
+        <item>a woman with voluptuous lips</item>
+        <item>a woman with long, wavy hair</item>
+        <item>a woman with black eyes</item>
+        <item>a woman with swollen breasts</item>
+        <item>a woman with plump buttocks</item>
+        <item>a woman of heavy build</item>
+        <item>a woman with soft, delicate hands</item>
+        <item>a woman with moles on her skin</item>
+        <item>a woman with a sweet smile</item>
+        <item>a woman of towering height</item>
+        <item>a woman with platinum blonde hair</item>
+        <item>a woman with a curvy waist</item>
+        <item>a woman with hazel eyes</item>
+        <item>a woman with full breasts</item>
+        <item>a woman with prominent buttocks</item>
+        <item>a woman with varicose veins</item>
+        <item>a woman with round ears</item>
+        <item>a woman with thick hair</item>
+        <item>a woman with thin, arched eyebrows</item>
+        <item>a woman with gray eyes</item>
+        <item>a woman with a straight nose</item>
+        <item>a woman with hairy skin</item>
+        <item>a woman with wrinkled hands</item>
+        <item>a woman with voluptuous hips</item>
+        <item>a woman with saggy, large breasts</item>
+        <item>a woman with voluminous buttocks</item>
+        <item>a woman with short, thick hair</item>
+        <item>a woman with pink lips</item>
+        <item>a woman with lively eyes</item>
+        <item>a woman with well-defined eyebrows</item>
+        <item>a woman with slightly pointy ears</item>
+        <item>a woman with a tilted nose</item>
+        <item>a woman with bronzed skin</item>
+        <item>a woman with short, thin hair</item>
+        <item>a woman with a charming smile</item>
+        <item>a woman with a curvaceous waist</item>
+        <item>a woman with stretch mark skin</item>
+        <item>a woman with sea-blue eyes</item>
+        <item>a woman with black, curly hair</item>
+        <item>a woman with a stocky back</item>
+        <item>a woman with a slim waist</item>
+        <item>a woman with long, toned legs</item>
+        <item>a woman with a voluptuous chest</item>
+        <item>a woman with a slender back</item>
+        <item>a woman with pronounced collarbones</item>
+        <item>a woman with a flat abdomen</item>
+        <item>a woman with slim arms</item>
+        <item>a woman with a pointed chin</item>
+        <item>a woman with long, thin fingers</item>
+        <item>a woman with strong thighs</item>
+        <item>a woman with freckles on her cheeks</item>
+        <item>a woman with dark brown hair</item>
+        <item>a woman with an oval face</item>
+        <item>a woman with long eyelashes</item>
+        <item>a woman with curvy hips</item>
+        <item>a woman with slender ankles</item>
+        <item>a woman with perfectly aligned teeth</item>
+        <item>a woman with freckles on her nose</item>
+        <item>a woman with small feet</item>
+        <item>a woman with jet black hair</item>
+        <item>a woman with emerald green eyes</item>
+        <item>a woman with ruby red lips</item>
+        <item>a woman with a long, thin neck</item>
+        <item>a woman with bare shoulders</item>
+        <item>a woman with olive-colored skin</item>
+        <item>a woman with a round face</item>
+        <item>a woman with waist-length hair</item>
+        <item>a woman with cinnamon-colored skin</item>
+        <item>a man with a wide back</item>
+        <item>a man with a toned abdomen</item>
+        <item>a man with firm buttocks</item>
+        <item>a man with dark brown hair</item>
+        <item>a man with an athletic build</item>
+        <item>a man with sculpted legs</item>
+        <item>a man with muscular arms</item>
+        <item>a man with firm pectorals</item>
+        <item>a man with large hands</item>
+        <item>a man with honey-colored eyes</item>
+        <item>a man with a narrow waist</item>
+        <item>a man with an angular face</item>
+        <item>a man with tan skin</item>
+        <item>a man with broad shoulders</item>
+        <item>a man with pale complexion</item>
+        <item>a man with a thick beard</item>
+        <item>a man with high cheekbones</item>
+        <item>a man with a long neck</item>
+        <item>a man with bushy eyebrows</item>
+        <item>a man with almond-shaped eyes</item>
+        <item>a man with a hairy chest</item>
+        <item>a man with small ears</item>
+        <item>a man with long legs</item>
+        <item>a man with tattooed arms</item>
+        <item>a man with prominent buttocks</item>
+        <item>a man with full lips</item>
+        <item>a man with a straight nose</item>
+        <item>a man with a square jaw</item>
+        <item>a man with large feet</item>
+        <item>a man with muscular thighs</item>
+        <item>a man with curly hair</item>
+        <item>a man with rounded shoulders</item>
+        <item>a man with a defined back</item>
+        <item>a man with toned buttocks</item>
+        <item>a man with blue eyes</item>
+        <item>a man with a washboard stomach</item>
+        <item>a man with narrow hips</item>
+        <item>a man with a muscular chest</item>
+        <item>a man with plump lips</item>
+        <item>a man with tanned skin</item>
+        <item>a man with angular eyebrows</item>
+        <item>a man with a pointed nose</item>
+        <item>a man with short hair</item>
+        <item>a man with deep-set eyes</item>
+        <item>a man with long fingers</item>
+        <item>a man with strong arms</item>
+        <item>a man with a defined waist</item>
+        <item>a man with a broad forehead</item>
+        <item>a man with a sparse beard</item>
+        <item>a man with light skin</item>
+        <item>a man with rosy cheeks</item>
+        <item>a man with squared shoulders</item>
+        <item>a man with strong hands</item>
+        <item>a man with defined forearms</item>
+        <item>a man with green eyes</item>
+        <item>a man with jet black hair</item>
+        <item>a man with a gray beard</item>
+        <item>a man with muscular calves</item>
+        <item>a man with a flat stomach</item>
+        <item>a man with tattooed skin</item>
+        <item>a man with a muscular neck</item>
+        <item>a man with hairy arms</item>
+        <item>a man with a pronounced jawline</item>
+        <item>a man with a hairy back</item>
+        <item>a man with a wide nose</item>
+        <item>a man with wide hips</item>
+        <item>a man with long hair</item>
+        <item>a man with thin eyebrows</item>
+        <item>a man with thin lips</item>
+        <item>a man with black eyes</item>
+        <item>a man with a defined chest</item>
+        <item>a man with large ears</item>
+        <item>a man with hairy feet</item>
+        <item>a man with wide arms</item>
+        <item>a man with a sculpted back</item>
+        <item>a man with marked buttocks</item>
+        <item>a man with strong thighs</item>
+        <item>a man with gray eyes</item>
+        <item>a man with blond hair</item>
+        <item>a man with weathered skin</item>
+        <item>a man with full cheeks</item>
+        <item>a man with a goatee</item>
+        <item>a man with hairy forearms</item>
+        <item>a man with a ripped stomach</item>
+        <item>a man with a sculpted waist</item>
+        <item>a man with a hawkish nose</item>
+        <item>a man with olive skin</item>
+        <item>a man with wavy hair</item>
+        <item>a man with small eyes</item>
+        <item>a man with a clear forehead</item>
+        <item>a man with a thick neck</item>
+        <item>a man with a smooth chest</item>
+        <item>a man with round cheekbones</item>
+        <item>a man with a sturdy jawline</item>
+        <item>a man with ears close to his head</item>
+        <item>a man with strong feet</item>
+        <item>a man with smooth skin</item>
+        <item>a man with sloping shoulders</item>
+        <item>a man with light eyebrows</item>
+        <item>a man with hairy legs</item>
+        <item>a man with long arms</item>
+        <item>a man with a striped abdomen</item>
+        <item>a man with round buttocks</item>
+        <item>a man with a slim build</item>
+        <item>a man with slanted eyes</item>
+        <item>a man with rough hands</item>
+        <item>a man with light-brown skin</item>
+        <item>a man with defined pectorals</item>
+        <item>a man with a wide waist</item>
+        <item>a man with a smooth face</item>
+        <item>a man with defined shoulders</item>
+        <item>a man with marked legs</item>
+        <item>a man with defined arms</item>
+        <item>a man with delicate lips</item>
+        <item>a man with a prominent nose</item>
+        <item>a man with a strong jawline</item>
+        <item>a man with wide feet</item>
+        <item>a man with defined thighs</item>
+        <item>a man with straight hair</item>
+        <item>a man with relaxed shoulders</item>
+        <item>a man with a strong back</item>
+        <item>a man with tight buttocks</item>
+        <item>a man with hazel eyes</item>
+        <item>a man with defined hips</item>
+        <item>a man with a wide chest</item>
+        <item>a man with rosy lips</item>
+        <item>a man with golden skin</item>
+        <item>a man with sturdy legs</item>
+        <item>a man with thick eyebrows</item>
+        <item>a man with a round nose</item>
+        <item>a man with thick hair</item>
+        <item>a man with bright eyes</item>
+        <item>a man with defined fingers</item>
+        <item>a man with toned arms</item>
+        <item>a man with an athletic waist</item>
+        <item>a man with a pronounced forehead</item>
+        <item>a man with a bushy beard</item>
+        <item>a man with white skin</item>
+        <item>a man with prominent cheekbones</item>
+        <item>a man with deep-set cheeks</item>
+        <item>a man with firm shoulders</item>
+        <item>a man with hairy hands</item>
+        <item>a man with strong forearms</item>
+        <item>a man with sculpted buttocks</item>
+        <item>a man with dark eyes</item>
+        <item>a man with gray hair</item>
+        <item>a man with a blonde beard</item>
+        <item>a man with defined calves</item>
+        <item>a man with a smooth abdomen</item>
+        <item>a man with satin skin</item>
+        <item>a man with a short neck</item>
+        <item>a man with a defined jawline</item>
+        <item>a man with a smooth back</item>
+        <item>a man with a profiled nose</item>
+        <item>a man with muscular hips</item>
+        <item>a man with stiff hair</item>
+        <item>a man with dark eyebrows</item>
+        <item>a man with dark green eyes</item>
+        <item>a man with thin ears</item>
+        <item>a man with muscular feet</item>
+        <item>a man with stylized arms</item>
+        <item>a man with a muscular back</item>
+        <item>a man with tattoos on his shoulders</item>
+        <item>a man with shaved hair</item>
+        <item>a man with sun-kissed skin</item>
+        <item>a man with prominent cheeks</item>
+        <item>a man with a scruffy beard</item>
+        <item>a man with toned forearms</item>
+        <item>a man with a chiseled abdomen</item>
+        <item>a man with a stylized waist</item>
+        <item>a man with a snub nose</item>
+        <item>a man with cinnamon skin</item>
+        <item>a man with silky hair</item>
+        <item>a man with captivating eyes</item>
+        <item>a man with blushed lips</item>
+        <item>a man with a high forehead</item>
+        <item>a man with a stylized neck</item>
+        <item>a man with a flat chest</item>
+        <item>a man with angular cheekbones</item>
+        <item>a man with stylized feet</item>
+        <item>a man with muscular fingers</item>
+        <item>a man with a brawny back</item>
+        <item>a man with thick wrists</item>
+        <item>a man with coppery skin</item>
+        <item>a man with short, sturdy legs</item>
+        <item>a man with bushy sideburns</item>
+        <item>a man with a stubble beard</item>
+        <item>a man with a robust build</item>
+        <item>a man with chiseled abs</item>
+        <item>a man with slim, sculpted legs</item>
+        <item>a man with well-formed pectorals</item>
+        <item>a man with veiny arms</item>
+        <item>a man with slender, long fingers</item>
+        <item>a man with bright blue eyes</item>
+        <item>a man with a cleft chin</item>
+        <item>a man with taut skin</item>
+        <item>a man with a dimpled smile</item>
+        <item>a man with raven black hair</item>
+        <item>a man with powerful biceps</item>
+        <item>a man with a broad, barrel chest</item>
+        <item>a man with a thin layer of chest hair</item>
+        <item>a man with deep dimples</item>
+        <item>a man with a sturdy frame</item>
+        <item>a man with marble-like skin</item>
+        <item>a man with lean arms</item>
+        <item>a man with aquiline nose</item>
+        <item>a man with ruggedly handsome features</item>
+        <item>a man with sculpted trapezius muscles</item>
+        <item>a man with sleek hair</item>
+        <item>a man with lanky legs</item>
+        <item>a man with finely chiseled facial features</item>
+        <item>a man with a slender, lithe build</item>
+        <item>a man with small, deep-set eyes</item>
+        <item>a man with a gentle slope to his nose</item>
+        <item>a man with a thick mop of hair</item>
     </string-array>
     <string-array name="individual_base">
         <item>[[,wo]man]</item>
@@ -1646,6 +3035,21 @@
         <item>&personType42;</item>
         <item>&personType43;</item>
     </string-array>
+    <string-array name="personality_description">
+        <item>\?</item>
+        <item>Aquarians are original, independent, and highly intellectual. As an air sign, they are quick thinkers and often see the world from a unique angle. They value freedom and individuality, and are often drawn to what is novel or unusual. However, their independence can lead them to be distant and detached, and they may struggle to connect emotionally with others. Aquarius is known for their altruism and desire to make the world a better place, but they can also be rebellious and stubborn.</item>
+        <item>Pisces are sensitive, empathetic, and often highly intuitive. As a water sign, they have a strong connection to the emotional realm and often feel others\' emotions as if they were their own. They are dreamers and have a rich inner life, with a vibrant imagination and a desire to escape reality. However, their sensitivity can lead them to be overly impressionable or avoid facing reality. Pisces have a strong desire to help and heal others, but also need to learn to set boundaries to protect themselves.</item>
+        <item>As the first sign of the zodiac, Aries is often filled with energy, adventure, and pioneering spirit. They are natural leaders who enthusiastically dive into new challenges. They dislike sitting in the background and are always looking for ways to drive personal progress. However, they can be impulsive and sometimes act without considering the consequences. Their sincerity and honesty are commendable, but their straightforward character can inadvertently hurt sensitivities. They may sometimes be seen as selfish or dominating, but it\'s often just their vigor and desire to do things their way.</item>
+        <item>Taurus is an earth sign and is deeply rooted in its environment. They are known for their reliability, practicality, and ambition. Taurus people are usually very determined and hard-working, which helps them reach high levels of success. However, they can also be stubborn and resist change, preferring security and stability over risk and uncertainty. Taurus has a strong aesthetic sense and often enjoys life\'s comforts and luxuries. While they seem calm and measured on the surface, they also have a passionate and sensual streak.</item>
+        <item>Geminis are curious, adaptable, and always ready for an adventure. As an air sign, their minds are always on the move, swiftly jumping from one topic to another. They love to learn and share information, making them excellent communicators. However, this mutable energy can also lead to indecisiveness, inconsistency, and a tendency to scatter. While Gemini may be viewed as superficial or inconsistent, their spirit is that of an eternal knowledge-seeker, always looking to understand the world from different perspectives.</item>
+        <item>Cancers are deeply emotional and sensitive, with a strong sense of empathy toward others. As a water sign, they feel emotions on a deeper level than other signs, and are highly connected to their home and family environment. Cancers value security and comfort, and tend to be very protective of the people they care about. However, their sensitivity can lead them to be shy, reserved, or overly cautious. Their fear of being hurt may cause them to retreat into their shell, making it hard for others to get to know them genuinely.</item>
+        <item>Leos are known for their charisma, self-confidence, and desire to be in the limelight. They are natural leaders, with a noble and generous spirit that drives them to care for and protect those around them. As a fire sign, Leos are passionate, creative, and full of energy, with a personality that shines brightly. However, this confidence can also turn into arrogance or egocentrism if not kept in check. Leos can be stubborn and dominating, insisting on doing things their way.</item>
+        <item>Virgos are practical, meticulous, and detail-oriented. As an earth sign, they are deeply rooted in the material world and seek to create order and efficiency in everything they do. They are excellent problem solvers, with a sharp and analytical mind that can see the details others overlook. However, this attention to detail can turn into perfectionism, which can lead to anxiety and over-criticism. Although Virgos may appear cold or distant on the surface, they often have a rich inner life and a strong desire to help others.</item>
+        <item>Libras are known for their sense of justice, balance, and desire for peace. As an air sign, they are excellent communicators and mediators, always looking for ways to harmonize and balance relationships. They have a strong aesthetic sense and enjoy beauty and luxury in all its forms. However, their desire to maintain peace can lead them to avoid conflict and be indecisive. Libras may struggle with authenticity, often sacrificing their own wants or needs to keep others happy.</item>
+        <item>Scorpios are intense, deep, and passionate. As a water sign, they feel emotions deeply and often have an introspective and mysterious nature. They are extremely loyal and dedicated, but can also be jealous and possessive. They have a great desire to understand the secrets and mysteries of the universe, leading them to be excellent investigators. However, their intensity can be overwhelming, and they may have difficulty opening up to others. Scorpios have a strong will and can be relentless in the pursuit of their goals.</item>
+        <item>Sagittarians are adventurous, optimistic, and full of enthusiasm. As a fire sign, they are filled with passion and energy, always in search of new experiences and knowledge. They are very independent and value their freedom above all else. However, their desire for freedom can lead them to be irresponsible or reckless, and their honesty can sometimes be blunt. Sagittarius are known for their sense of humor and love for fun, but they can also be impatient and struggle to focus on details.</item>
+        <item>Capricorns are practical, ambitious, and very hard-working. As an earth sign, they are grounded in reality and seek stability and security. They are highly responsible and disciplined, with an innate ability to plan and organize. However, their ambition can lead them to be overly serious or reserved, and they may have trouble relaxing and enjoying life. Capricorns have a strong sense of duty and responsibility, but they can also be stubborn and have difficulty accepting help from others.</item>
+    </string-array>
     <string-array name="phrase_augury">
         <item>Let\'s see what the future holds for you.</item>
         <item>Let\'s see what we have for you.</item>
@@ -1750,16 +3154,6 @@
         <item>maybe</item>
         <item>assuredly</item>
     </string-array>
-    <string-array name="psychological_type">
-        <item>Reflexive introvert: The reflexive introvert is a person with great intellectual activity, but who, however, has difficulties relating or interacting with other people. They tend to be stubborn and tenacious when it comes to achieving their objectives. Sometimes they are seen as misfits and harmless, yet interesting.</item>
-        <item>Sentimental introvert: The sentimental introvert personality type corresponds with solitary people who have great difficulty establishing social relationships with other people. They can be unsociable and melancholy. They do everything within their power to go unnoticed, and they like to remain silent. However, they are very sensitive to the needs of others.</item>
-        <item>Perceptive introvert: It’s a type of personality commonly found in artists and musicians. Perceptive introvert people put special emphasis on sensory experiences. They give color, shape and texture great value. They belong to the world of shapes as a source of internal experiences.</item>
-        <item>Intuitive introvert: These people are extremely sensitive to the most subtle stimuli. Intuitive introverts correspond to the type of people who can almost guess what others are thinking, feeling or willing to do. They are imaginative, dreamers and idealists. They struggle with “keeping their feet on the ground”.</item>
-        <item>Reflexive extrovert: The reflexive extrovert personality corresponds with the objective brainy individuals, whose actions are almost exclusively based on reason. They only accept as true the things that they can confirm with enough evidence. They are not very sensitive and can even be tyrannical and manipulative towards other people.</item>
-        <item>Sentimental extrovert: The people who fall into this category have a great ability to understand others and establish social relationships. However, they struggle to separate themselves from the herd and suffer when they are ignored by the people around them. They are very skilled at communication.</item>
-        <item>Perceptive extrovert: Perceptive extrovert individuals have a special weakness for objects, to which they can even attribute magical qualities, though they may do so unconsciously. They aren’t passionate about ideas, but rather about the way these ideas take the shape of concrete things. They seek out pleasure above all things.</item>
-        <item>Intuitive extrovert: This corresponds to the typical adventurer. Intuitive extroverts are very active and restless. They need a lot of stimuli all of the time. They are tenacious when it comes to achieving their objectives, and once they do, they go right on to the next goal quickly forgetting the previous one. They don’t care much about the well-being of those around them.</item>
-    </string-array>
     <string-array name="refresh_time">
         <item>Never</item>
         <item>5 seconds</item>
@@ -1829,6 +3223,108 @@
         <item>Pluto</item>
         <item>Jupiter</item>
         <item>Saturn</item>
+    </string-array>
+    <string-array name="salutation">
+        <item>Hello.</item>
+        <item>Good morning!</item>
+        <item>Good afternoon!</item>
+        <item>Good evening!</item>
+        <item>How are you?</item>
+        <item>What\'s up?</item>
+        <item>How\'s it going?</item>
+        <item>Hello, friend!</item>
+        <item>Nice to see you!</item>
+        <item>Hello, handsome/beautiful!</item>
+        <item>How have you been?</item>
+        <item>How are you doing?</item>
+        <item>How are you holding up?</item>
+        <item>What\'s new?</item>
+        <item>What\'s the news?</item>
+        <item>Hello, pretty!</item>
+        <item>Hello, darling!</item>
+        <item>What\'s up?</item>
+        <item>Hello, family!</item>
+        <item>How is everything?</item>
+        <item>Great to see you!</item>
+        <item>Hello, mate!</item>
+        <item>Hello, champ!</item>
+        <item>Hello, boss!</item>
+        <item>How\'s it going?</item>
+        <item>Hello, brother/sister!</item>
+        <item>Hello, mate!</item>
+        <item>Hello!</item>
+        <item>Hey, hello!</item>
+        <item>Hello, partner!</item>
+        <item>Hello, neighbor!</item>
+        <item>Greetings!</item>
+        <item>Hello, cousin!</item>
+        <item>How are you holding up?</item>
+        <item>Hello, teacher!</item>
+        <item>Hello, partner!</item>
+        <item>Hello, beauty!</item>
+        <item>Welcome!</item>
+        <item>Hello, king/queen!</item>
+        <item>Hello, sweetheart!</item>
+        <item>Hello, kid!</item>
+        <item>Hello, genius!</item>
+        <item>Hello, boss!</item>
+        <item>How\'s everything?</item>
+        <item>Hello, youngster!</item>
+        <item>What\'s going on?</item>
+        <item>How\'s your day going?</item>
+        <item>Hello, star!</item>
+        <item>How\'s the day shaping up?</item>
+        <item>Hello, champion!</item>
+        <item>All good?</item>
+        <item>Hello, boss lady/boss man!</item>
+        <item>How\'s life?</item>
+        <item>Hello, sweetheart!</item>
+        <item>Hello, warrior!</item>
+        <item>Hello, sunshine!</item>
+        <item>What\'s the news?</item>
+        <item>Hello, treasure!</item>
+        <item>Hello, gorgeous!</item>
+        <item>Hello, darling!</item>
+        <item>How\'s the day?</item>
+        <item>Hello, artist!</item>
+        <item>Hello, sweetness!</item>
+        <item>How\'s life?</item>
+        <item>Hello, star!</item>
+        <item>Hello, diva!</item>
+        <item>Everything in order?</item>
+        <item>Hello, champ!</item>
+        <item>Hello, my king/queen!</item>
+        <item>Hello, my love!</item>
+        <item>How\'s everything going?</item>
+        <item>Hello, beauty!</item>
+        <item>Hello, prince/princess!</item>
+        <item>Hello, titan!</item>
+        <item>Hello, genius!</item>
+        <item>Hello, angel!</item>
+        <item>How\'s everything?</item>
+        <item>Hello, champion!</item>
+        <item>Hello, boss!</item>
+        <item>What\'s up?</item>
+        <item>Hello, wonder!</item>
+        <item>What\'s up, star?</item>
+        <item>Hello, guy/girl!</item>
+        <item>How\'s your mood?</item>
+        <item>How\'s your day?</item>
+        <item>How is everything?</item>
+        <item>What\'s cooking?</item>
+        <item>How do you feel today?</item>
+        <item>Hello, majesty!</item>
+        <item>Hello, hero/heroine!</item>
+        <item>What about mine?</item>
+        <item>How\'s life treating you?</item>
+        <item>Hello, goddess/god!</item>
+        <item>Hello, legend!</item>
+        <item>How are things?</item>
+        <item>Hello, charm!</item>
+        <item>Hello, jewel!</item>
+        <item>How\'s it going?</item>
+        <item>Hello, flower of life!</item>
+        <item>Hello, light of my eyes!</item>
     </string-array>
     <string-array name="text_type">
         <item>Read phrases from the fortune-teller</item>
