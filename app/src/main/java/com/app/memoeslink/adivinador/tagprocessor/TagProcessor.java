@@ -68,8 +68,8 @@ public class TagProcessor extends Binder {
     public TextComponent replaceTags(String s, Gender defaultGender, GrammaticalNumber defaultGrammaticalNumber) {
         if (StringHelper.isNullOrBlank(s))
             return new TextComponent();
-        defaultGender = defaultGender != null ? defaultGender : r.getElement(Gender.values());
-        defaultGrammaticalNumber = defaultGrammaticalNumber != null ? defaultGrammaticalNumber : r.getElement(GrammaticalNumber.values());
+        defaultGender = defaultGender != null ? defaultGender : r.getEnum(Gender.class);
+        defaultGrammaticalNumber = defaultGrammaticalNumber != null ? defaultGrammaticalNumber : r.getEnum(GrammaticalNumber.class);
         Gender gender = null;
         GrammaticalNumber grammaticalNumber = null;
         boolean nullified = false;
@@ -237,7 +237,7 @@ public class TagProcessor extends Binder {
             return defaultGender;
 
         if (StringHelper.equalsAny(s, "user", "⛌")) {
-            int genderValue = PreferenceHandler.getInt(Preference.TEMP_GENDER, r.getInt(3));
+            int genderValue = PreferenceHandler.getInt(Preference.TEMP_GENDER, -1);
             return Gender.get(genderValue);
         }
 

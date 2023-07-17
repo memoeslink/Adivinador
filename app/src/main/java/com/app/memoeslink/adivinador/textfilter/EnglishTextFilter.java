@@ -43,7 +43,7 @@ public class EnglishTextFilter implements TextFilter {
 
     @Override
     public String censor(String s) {
-        if (StringHelper.isNullOrBlank(s) || PreferenceHandler.getBoolean(Preference.SETTING_PROFANITY_FILTER_ENABLED, true))
+        if (StringHelper.isNullOrBlank(s) || !PreferenceHandler.getBoolean(Preference.SETTING_PROFANITY_FILTER_ENABLED, true))
             return s;
         Matcher matcher = CENSOR_PATTERN.matcher(s);
         StringBuffer sb = new StringBuffer();

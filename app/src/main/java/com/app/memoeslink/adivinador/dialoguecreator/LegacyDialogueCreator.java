@@ -3,7 +3,6 @@ package com.app.memoeslink.adivinador.dialoguecreator;
 import android.content.Context;
 import android.content.ContextWrapper;
 
-import com.app.memoeslink.adivinador.DatabaseReference;
 import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.ResourceExplorer;
 import com.app.memoeslink.adivinador.tagprocessor.TagProcessor;

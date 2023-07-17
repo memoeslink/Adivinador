@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Divination extends ContextWrapper {
-    private static final String[] COMMON_COLORS = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", "#925BFF"};
     private static final Integer[] PROBABILITY_DISTRIBUTION = {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
     private static final char SEPARATOR = PrintableCharUtils.getFirstDisplayable('↓', '⬇', '⇣', '¦', '•');
     private final Person person;
@@ -161,7 +160,7 @@ public class Divination extends ContextWrapper {
         while (remainingPoints > 0) {
             points = r.getInt(remainingPoints + 1);
             remainingPoints -= points;
-            Emotion currentEmotion = r.getElement(Emotion.values());
+            Emotion currentEmotion = r.getEnum(Emotion.class);
             int currentCount = emotionCount.getOrDefault(currentEmotion, 0);
             emotionCount.put(currentEmotion, currentCount + points);
         }
@@ -188,11 +187,13 @@ public class Divination extends ContextWrapper {
 
         // Add unknown people
         char letter = 'A';
+        final String[] basicColors = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", ">#925BFF"};
 
         for (int n = 0, limit = r.getElement(PROBABILITY_DISTRIBUTION); n < limit; n++) {
-            Gender gender = r.getBoolean() ? Gender.MASCULINE : Gender.FEMININE;
-            String description = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.person, 0) + " " + String.format("<font color=\"%s\">%s</font>", COMMON_COLORS[n], TextFormatter.formatText(Character.toString(letter), "b", "i"));
-            description += ", " + resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.probability) + " " + tagProcessor.replaceTags(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.individual), gender, GrammaticalNumber.SINGULAR).getText();
+            Gender gender = r.getEnum(Gender.class);
+            String formattedLetter = String.format("<font color=\"%s\">%s</font>", basicColors[n], TextFormatter.formatText(Character.toString(letter), "b", "i"));
+            String description = String.format("{string:person; index:0} %s, {string:probability} {string:individual}", formattedLetter);
+            description = tagProcessor.replaceTags(description, gender, GrammaticalNumber.SINGULAR).getText();
             people.add(new Person.PersonBuilder()
                     .setNickname(Character.toString(letter))
                     .setGender(gender)
