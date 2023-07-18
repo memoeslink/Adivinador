@@ -923,6 +923,7 @@ class MainActivity : MenuActivity() {
                 tvPick?.isEnabled = false
                 status.counters["predictionRefresh"] = 0L
 
+                // Fade out particles layout
                 llConfetti?.animate()?.alpha(0.0f)?.setDuration(200)
                     ?.setListener(object : AnimatorListenerAdapter() {
                         override fun onAnimationCancel(animation: Animator) {
@@ -930,7 +931,7 @@ class MainActivity : MenuActivity() {
                             vMain?.clearAnimation()
                             vMain?.visibility = View.INVISIBLE
                         }
-                    }) // Fade out particles layout
+                    })
             }
 
             val pickedDate = DateTimeHelper.toIso8601Date(

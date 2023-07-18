@@ -10,6 +10,7 @@ import com.app.memoeslink.adivinador.dialoguecreator.DialogueCreatorFactory;
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.memoeslink.common.Randomizer;
+import com.memoeslink.generator.common.ResourceReference;
 import com.memoeslink.generator.common.TextFormatter;
 
 import org.memoeslink.LongHelper;
@@ -20,6 +21,7 @@ import java.util.List;
 
 public class FortuneTeller extends ContextWrapper {
     private final Randomizer r;
+    private final ResourceExplorer resourceExplorer;
     private final DialogueCreator aiDialogueCreator;
     private final DialogueCreator legacyDialogueCreator;
 
@@ -27,6 +29,7 @@ public class FortuneTeller extends ContextWrapper {
         super(context);
         Long seed = getSeed();
         r = new Randomizer(seed);
+        resourceExplorer = new ResourceExplorer(context, seed);
         aiDialogueCreator = new DialogueCreatorFactory().getDialogueCreator("AI", context, getSeed());
         legacyDialogueCreator = new DialogueCreatorFactory().getDialogueCreator("legacy", context, getSeed());
     }
@@ -63,7 +66,13 @@ public class FortuneTeller extends ContextWrapper {
         };
 
         if (dialogueCreator instanceof AiDialogueCreator)
-            dialogue = TextFormatter.formatBotMessage(dialogue);
+            dialogue = TextFormatter.colorText(dialogue, "aqua");
+
+        if (r.getBoolean()) {
+            String pictogram = resourceExplorer.findByRef(ResourceReference.PICTOGRAM);
+            dialogue = dialogue + StringHelper.prependIfNotEmpty(pictogram, "<br>");
+            dialogue = getString(R.string.html_format, dialogue);
+        }
         return dialogue;
     }
 
