@@ -127,20 +127,20 @@ public class Identity extends ContextWrapper {
         Person pastPerson = person;
         pastPerson.setBirthdate(pastPerson.getBirthdate().minusDays(1));
         Long seed = LongHelper.getSeed(StringHelper.sha256(pastPerson.getSha256()));
-        ResourceExplorer resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
-        return TextFormatter.formatName(resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson());
+        ResourceExplorer explorer = new ResourceExplorer(getBaseContext(), seed);
+        return TextFormatter.formatName(explorer.getGeneratorManager().getPersonGenerator().getPerson());
     }
 
     public String getFutureName() {
         Person futurePerson = person;
         futurePerson.setBirthdate(futurePerson.getBirthdate().plusDays(1));
         Long seed = LongHelper.getSeed(StringHelper.sha256(futurePerson.getSha256()));
-        ResourceExplorer resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
-        return TextFormatter.formatName(resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson());
+        ResourceExplorer explorer = new ResourceExplorer(getBaseContext(), seed);
+        return TextFormatter.formatName(explorer.getGeneratorManager().getPersonGenerator().getPerson());
     }
 
     public String getRecommendedUsername() {
-        return TextFormatter.formatUsername(getResourceExplorer().getGeneratorManager().getNameGenerator().getUsername());
+        return TextFormatter.formatUsername(getResourceExplorer().getGeneratorManager().getPersonGenerator().getAnonymousPerson().getUsername());
     }
 
     public String getDaysBetweenDates(String enquiryDate) {
