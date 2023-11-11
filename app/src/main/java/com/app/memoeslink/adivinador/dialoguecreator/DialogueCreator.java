@@ -8,5 +8,5 @@ public interface DialogueCreator {
 
     String talkAboutSomething();
 
-    String recite();
+    String chat();
 }

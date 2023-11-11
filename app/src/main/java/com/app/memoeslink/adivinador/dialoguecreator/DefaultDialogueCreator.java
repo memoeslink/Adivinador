@@ -20,7 +20,7 @@ public class DefaultDialogueCreator implements DialogueCreator {
     }
 
     @Override
-    public String recite() {
+    public String chat() {
         return Database.DEFAULT_VALUE;
     }
 }
