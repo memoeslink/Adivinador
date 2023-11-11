@@ -7,7 +7,6 @@ import androidx.multidex.MultiDexApplication
 import androidx.preference.PreferenceManager
 import com.app.memoeslink.adivinador.preference.Preference
 import com.app.memoeslink.adivinador.preference.PreferenceHandler
-import com.memoeslink.generator.common.Session
 import java.io.File
 
 class BaseApplication : MultiDexApplication() {
@@ -17,9 +16,6 @@ class BaseApplication : MultiDexApplication() {
 
         // Initialize SharedPreferences
         PreferenceHandler.init(applicationContext);
-
-        // Initialize Generator database
-        Session.getInstance().initDatabase(applicationContext)
 
         // Set preference default values
         PreferenceManager.setDefaultValues(
