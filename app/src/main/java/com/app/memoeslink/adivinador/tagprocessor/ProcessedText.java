@@ -1,8 +1,5 @@
 package com.app.memoeslink.adivinador.tagprocessor;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class ProcessedText {
     private String text;
     private int replacementCount;

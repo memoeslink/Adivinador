@@ -86,6 +86,10 @@ public class TagProcessor extends Binder {
     }
 
     public TextComponent replaceTags(String s) {
+        return replaceTags(s, false);
+    }
+
+    private TextComponent replaceTags(String s, boolean nested) {
         if (StringHelper.isNullOrBlank(s))
             return new TextComponent();
 
@@ -110,7 +114,7 @@ public class TagProcessor extends Binder {
         t = replaceResourceTags(t.getText(), t.getRemainingMatches());
 
         // Replace word tags within the text, if there are any
-        t = replaceWordTags(t.getText(), t.getRemainingMatches());
+        t = replaceWordTags(t.getText(), t.getRemainingMatches(), nested ? DefaultHandling.NULL : DefaultHandling.ANY);
 
         // Replace date-time tags within the text, if there are any
         t = replaceDateTimeTags(t.getText(), t.getRemainingMatches());
@@ -161,7 +165,7 @@ public class TagProcessor extends Binder {
             if (StringHelper.isNullOrEmpty(replacement) || replacement.trim().equals("∅"))
                 replacement = matcher.group("randomTagEndSpaces");
             else {
-                TextComponent tempComponent = this.replaceTags(replacement);
+                TextComponent tempComponent = this.replaceTags(replacement, true);
                 replacement = matcher.group("randomTagStartSpaces") + tempComponent.getText() + matcher.group("randomTagEndSpaces");
             }
             matcher.appendReplacement(sb, replacement);
@@ -286,7 +290,7 @@ public class TagProcessor extends Binder {
             int closingIndex = StringHelper.indexOf(replacement, '}');
 
             if (openingIndex >= 0 && closingIndex >= 0 && openingIndex < closingIndex) {
-                TextComponent tempComponent = this.replaceTags(replacement);
+                TextComponent tempComponent = this.replaceTags(replacement, true);
                 replacement = tempComponent.getText();
             }
 
@@ -309,6 +313,10 @@ public class TagProcessor extends Binder {
     }
 
     public ProcessedText replaceWordTags(String s, int remainingMatches) {
+        return replaceWordTags(s, remainingMatches, DefaultHandling.ANY);
+    }
+
+    private ProcessedText replaceWordTags(String s, int remainingMatches, DefaultHandling defaultHandling) {
         Matcher matcher = WORD_TAG_PATTERN.matcher(s);
         StringBuffer sb = new StringBuffer();
         int replacementCount = 0;
@@ -322,9 +330,9 @@ public class TagProcessor extends Binder {
         while (remainingMatches > 0 && matcher.find()) {
             String replacement = matcher.group("wordTagContent");
             String actorId = matcher.group("wordTagInfluence");
+            Actor actor = actorRegistry.getOrDefault(actorId, defaultHandling);
 
-            if (actorId == null || actorRegistry.has(actorId)) {
-                Actor actor = actorRegistry.getOrDefault(actorId);
+            if (actor != null) {
                 String pluralForm = matcher.group("wordTagPluralForm");
                 replacement = TextProcessor.genderifyStr(replacement, actor.getGender()).getText();
 
