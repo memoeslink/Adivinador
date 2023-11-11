@@ -54,7 +54,7 @@ public enum ZodiacSign {
     }
 
     public String getNumbers(Context context) {
-        return context.getResources().getStringArray(R.array.numbers)[this.ordinal()];
+        return context.getResources().getStringArray(R.array.zodiac_number)[this.ordinal()];
     }
 
     public String getPersonalityDescription(Context context) {
