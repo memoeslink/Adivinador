@@ -4,12 +4,13 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.TypedArray;
 
-import com.app.memoeslink.adivinador.dialoguecreator.AiDialogueCreator;
 import com.app.memoeslink.adivinador.dialoguecreator.DialogueCreator;
 import com.app.memoeslink.adivinador.dialoguecreator.DialogueCreatorFactory;
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.memoeslink.common.Randomizer;
+import com.memoeslink.generator.common.Constant;
+import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.ResourceReference;
 import com.memoeslink.generator.common.TextFormatter;
 
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class FortuneTeller extends ContextWrapper {
     private final Randomizer r;
-    private final ResourceExplorer resourceExplorer;
+    private final ResourceExplorer explorer;
     private final DialogueCreator aiDialogueCreator;
     private final DialogueCreator legacyDialogueCreator;
 
@@ -29,7 +30,7 @@ public class FortuneTeller extends ContextWrapper {
         super(context);
         Long seed = getSeed();
         r = new Randomizer(seed);
-        resourceExplorer = new ResourceExplorer(context, seed);
+        explorer = new ResourceExplorer(context, seed);
         aiDialogueCreator = new DialogueCreatorFactory().getDialogueCreator("AI", context, getSeed());
         legacyDialogueCreator = new DialogueCreatorFactory().getDialogueCreator("legacy", context, getSeed());
     }
@@ -49,8 +50,10 @@ public class FortuneTeller extends ContextWrapper {
         if (PreferenceHandler.getBoolean(Preference.SETTING_OPINIONS_ENABLED))
             phraseTypes.add("opinion");
 
-        if (PreferenceHandler.getBoolean(Preference.SETTING_PHRASES_ENABLED))
+        if (PreferenceHandler.getBoolean(Preference.SETTING_PHRASES_ENABLED)) {
             phraseTypes.add("phrase");
+            phraseTypes.add("dialogue");
+        }
         return talk(r.getElement(phraseTypes));
     }
 
@@ -62,14 +65,14 @@ public class FortuneTeller extends ContextWrapper {
             case "greeting" -> dialogueCreator.greet();
             case "opinion" -> dialogueCreator.talkAboutSomeone();
             case "phrase" -> dialogueCreator.talkAboutSomething();
+            case "dialogue" -> dialogueCreator.chat();
             default -> "…";
         };
-
-        if (dialogueCreator instanceof AiDialogueCreator)
-            dialogue = TextFormatter.colorText(dialogue, "aqua");
+        dialogue = StringHelper.trimToDefault(dialogue, "…");
 
         if (r.getBoolean()) {
-            String pictogram = resourceExplorer.findByRef(ResourceReference.PICTOGRAM);
+            String pictogram = explorer.getResourceFinder().getResByRefId(ResourceReference.REACTION);
+            pictogram = String.format("<font color=\"%s\">%s</font>", ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS), TextFormatter.formatText(pictogram, "b"));
             dialogue = dialogue + StringHelper.prependIfNotEmpty(pictogram, "<br>");
             dialogue = getString(R.string.html_format, dialogue);
         }

@@ -8,7 +8,6 @@ import com.app.memoeslink.adivinador.textfilter.TextFilter;
 import com.app.memoeslink.adivinador.textfilter.TextFilterFactory;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.Gender;
-import com.memoeslink.generator.common.GrammaticalNumber;
 import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.PrintableCharUtils;
 import com.memoeslink.generator.common.TextComponent;
@@ -21,7 +20,6 @@ import org.memoeslink.LongHelper;
 import org.memoeslink.StringHelper;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +45,7 @@ public class Divination extends ContextWrapper {
     public Prediction getPrediction() {
         String summarization = person.getSummary() + System.getProperty("line.separator") + date;
         Long seed = LongHelper.getSeed(StringHelper.sha256(summarization));
-        ResourceExplorer resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
+        ResourceExplorer explorer = new ResourceExplorer(getBaseContext(), seed);
 
         // Get prediction information
         String fortuneCookie = getFortuneCookie();
@@ -59,7 +57,7 @@ public class Divination extends ContextWrapper {
                 .setComponent("gibberish", TextProcessor.turnIntoGibberish(fortuneCookie))
                 .setComponent("divination", getDivination())
                 .setComponent("emotions", getEmotions())
-                .setComponent("characteristic", StringHelper.capitalizeFirst(resourceExplorer.getResourceFinder().getStrFromArrayRes(R.array.abstract_noun)))
+                .setComponent("characteristic", StringHelper.capitalizeFirst(explorer.getResourceFinder().getStrFromArrayRes(R.array.abstract_noun)))
                 .setComponent("chainOfEvents", getChainOfEvents(person))
                 .build();
     }
@@ -69,14 +67,13 @@ public class Divination extends ContextWrapper {
         String summarization = person.getSummary() + System.getProperty("line.separator") + date;
         Long seed = LongHelper.getSeed(StringHelper.sha256(summarization));
         Randomizer r = new Randomizer(seed);
-        ResourceExplorer resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
+        ResourceExplorer explorer = new ResourceExplorer(getBaseContext(), seed);
 
         if (r.getBoolean())
-            fortuneCookie = resourceExplorer.getDatabaseFinder().getLegacyFortuneCookie();
+            fortuneCookie = explorer.getDatabaseFinder().getLegacyFortuneCookie();
         else {
-            fortuneCookie = resourceExplorer.getDatabaseFinder().getFortuneCookie();
+            fortuneCookie = explorer.getDatabaseFinder().getFortuneCookie();
             fortuneCookie = StringHelper.quote(fortuneCookie);
-            fortuneCookie = TextFormatter.formatBotMessage(fortuneCookie);
         }
         return fortuneCookie;
     }
@@ -86,62 +83,22 @@ public class Divination extends ContextWrapper {
         String summarization = person.getSummary() + System.getProperty("line.separator") + date;
         Long seed = LongHelper.getSeed(StringHelper.sha256(summarization));
         Randomizer r = new Randomizer(seed);
-        ResourceExplorer resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
-        TagProcessor tagProcessor = new TagProcessor(getBaseContext(), seed);
+        ResourceExplorer explorer = new ResourceExplorer(getBaseContext(), seed);
+        TagProcessor tagProcessor = new TagProcessor.NewTagProcessorBuilder(getBaseContext())
+                .setSeed(seed)
+                .build();
 
         switch (r.getInt(5)) {
-            case 0 -> {
-                divination = resourceExplorer.getDatabaseFinder().getLegacyPrediction();
-                divination = tagProcessor.replaceTags(divination).getText();
-            }
-            case 1 -> {
-                divination = resourceExplorer.getDatabaseFinder().getPrediction();
-                divination = TextFormatter.formatBotMessage(divination);
-
-                // Filter profanity
-                TextFilter textFilter = new TextFilterFactory(getBaseContext()).createTextFilter();
-                divination = textFilter.censor(divination);
-            }
-            case 2 ->
-                    divination = tagProcessor.replaceTags(resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination)).getText();
-            case 3, 4 -> {
-                Gender gender = Gender.UNDEFINED;
-                GrammaticalNumber grammaticalNumber = GrammaticalNumber.UNDEFINED;
-                List<String> segments = new ArrayList<>();
-
-                // Format start of divination
-                String startSegment = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_start);
-                startSegment = tagProcessor.replaceTags(startSegment).getText();
-                segments.add(startSegment);
-
-                // Format middle of divination
-                String middleSegment = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_middle);
-                TextComponent component = tagProcessor.replaceTags(middleSegment);
-                middleSegment = component.getText();
-
-                if (component.getHegemonicGender() != null && component.getHegemonicGender() != Gender.UNDEFINED)
-                    gender = component.getHegemonicGender();
-
-                if (component.getHegemonicGrammaticalNumber() != null && component.getHegemonicGrammaticalNumber() != GrammaticalNumber.UNDEFINED)
-                    grammaticalNumber = component.getHegemonicGrammaticalNumber();
-                segments.add(middleSegment);
-
-                // Format end of divination
-                String endSegment = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_end);
-                endSegment = tagProcessor.replaceTags(endSegment, gender, grammaticalNumber).getText();
-                segments.add(endSegment);
-
-                // Format cause of divination
-                String causeSegment = resourceExplorer.getResourceFinder().getStrFromStrArrayRes(R.array.divination_cause);
-
-                if (!causeSegment.isEmpty())
-                    causeSegment = tagProcessor.replaceTags(causeSegment).getText();
-                segments.add(causeSegment);
-
-                segments.removeAll(Collections.singleton(""));
-                divination = StringHelper.joinWithSpace(segments);
-            }
+            case 0 -> divination = explorer.getDatabaseFinder().getLegacyPrediction();
+            case 1 -> divination = explorer.getDatabaseFinder().getPrediction();
+            case 2 -> divination = tagProcessor.replaceTags("{string:divination}").getText();
+            case 3, 4 ->
+                    divination = tagProcessor.replaceTags("{string:divination_base}").getText();
         }
+
+        // Filter profanity
+        TextFilter textFilter = new TextFilterFactory(getBaseContext()).createTextFilter();
+        divination = textFilter.censor(divination);
         return divination;
     }
 
@@ -182,8 +139,10 @@ public class Divination extends ContextWrapper {
         String summarization = person.getSummary() + System.getProperty("line.separator") + date;
         Long seed = LongHelper.getSeed(StringHelper.sha256(summarization));
         Randomizer r = new Randomizer(seed);
-        ResourceExplorer resourceExplorer = new ResourceExplorer(getBaseContext(), seed);
-        TagProcessor tagProcessor = new TagProcessor(getBaseContext(), seed);
+        ResourceExplorer explorer = new ResourceExplorer(getBaseContext(), seed);
+        TagProcessor tagProcessor = new TagProcessor.NewTagProcessorBuilder(getBaseContext())
+                .setSeed(seed)
+                .build();
 
         // Add unknown people
         char letter = 'A';
@@ -193,7 +152,7 @@ public class Divination extends ContextWrapper {
             Gender gender = r.getEnum(Gender.class);
             String formattedLetter = String.format("<font color=\"%s\">%s</font>", basicColors[n], TextFormatter.formatText(Character.toString(letter), "b", "i"));
             String description = String.format("{string:person; index:0} %s, {string:probability} {string:individual}", formattedLetter);
-            description = tagProcessor.replaceTags(description, gender, GrammaticalNumber.SINGULAR).getText();
+            description = tagProcessor.replaceTags(description).getText();
             people.add(new Person.PersonBuilder()
                     .setNickname(Character.toString(letter))
                     .setGender(gender)
@@ -209,32 +168,32 @@ public class Divination extends ContextWrapper {
             Person identifiedPerson;
 
             if (r.getInt(4) > 0) {
-                identifiedPerson = resourceExplorer.getGeneratorManager().getPersonGenerator().getPerson();
+                identifiedPerson = explorer.getGeneratorManager().getPersonGenerator().getPerson();
                 identifiedPerson.setDescription(TextFormatter.formatName(identifiedPerson.getFullName()));
             } else {
-                identifiedPerson = resourceExplorer.getGeneratorManager().getPersonGenerator().getAnonymousPerson();
+                identifiedPerson = explorer.getGeneratorManager().getPersonGenerator().getAnonymousPerson();
                 identifiedPerson.setDescription(TextFormatter.formatUsername(identifiedPerson.getUsername()));
             }
             people.add(identifiedPerson);
         }
 
         // Add close people
-        int arrayLength = resourceExplorer.getResourceFinder().getArrayResLength(R.array.person);
+        int arrayLength = explorer.getResourceFinder().getArrayResLength(R.array.person);
         int closePersonType = r.getInt(1, arrayLength);
         int thirdPartyType = closePersonType <= 9 ? r.getInt(11, arrayLength) : r.getInt(1, arrayLength);
 
         TextComponent tempComponent = new TextComponent();
-        int listSize = IntegerHelper.defaultByRange(resourceExplorer.getContactNameFinder().getContactNamesSize(), 0, 1000);
+        int listSize = IntegerHelper.defaultByRange(explorer.getContactNameFinder().getContactNamesSize(), 0, 1000);
         double probability = 0.1F + (0.5F / 1000 * listSize);
 
         if (r.getFloat() <= probability && listSize > 0 && !person.hasAttribute("generated") && person.hasAttribute("entered")) {
-            tempComponent.setText(TextFormatter.formatContactName(resourceExplorer.getContactNameFinder().getContactName()));
+            tempComponent.setText(TextFormatter.formatContactName(explorer.getContactNameFinder().getContactName()));
             tempComponent.addGender(Gender.UNDEFINED);
 
             if (tempComponent.getText().isEmpty())
                 tempComponent.setText("?");
         } else {
-            tempComponent = tagProcessor.replaceTags("{string:relationship; index:" + closePersonType + "; gender:⸮}");
+            tempComponent = tagProcessor.replaceTags("{string:relationship; index:" + closePersonType + "}");
             tempComponent.setText(String.format(tempComponent.getText(), person.getDescription()));
         }
         Person closePerson = new Person.PersonBuilder()
@@ -243,7 +202,7 @@ public class Divination extends ContextWrapper {
                 .setAttribute("nonspecific")
                 .build();
 
-        tempComponent = tagProcessor.replaceTags("{string:relationship; index:" + thirdPartyType + "; gender:⸮}");
+        tempComponent = tagProcessor.replaceTags("{string:relationship; index:" + thirdPartyType + "}");
         tempComponent.setText(String.format(tempComponent.getText(), closePerson.getDescription()));
         Person thirdParty = new Person.PersonBuilder()
                 .setGender(tempComponent.getHegemonicGender())

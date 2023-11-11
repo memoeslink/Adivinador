@@ -1,8 +1,6 @@
 package com.app.memoeslink.adivinador.activity
 
 import android.Manifest
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -63,6 +61,8 @@ import com.app.memoeslink.adivinador.Screen
 import com.app.memoeslink.adivinador.Sound
 import com.app.memoeslink.adivinador.Speech
 import com.app.memoeslink.adivinador.extensions.fadeAndShow
+import com.app.memoeslink.adivinador.extensions.fadeIn
+import com.app.memoeslink.adivinador.extensions.fadeOut
 import com.app.memoeslink.adivinador.extensions.getCurrentWindowPoint
 import com.app.memoeslink.adivinador.extensions.isObservable
 import com.app.memoeslink.adivinador.extensions.toHtmlText
@@ -592,7 +592,7 @@ class MainActivity : MenuActivity() {
                     this@MainActivity.runOnUiThread {
                         // Fade out and fade in fortune-telling text
                         if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) tvPhrase?.let {
-                            it.fadeAndShow()
+                            it.fadeAndShow(duration = 350)
                         }
 
                         Handler(Looper.getMainLooper()).postDelayed({
@@ -919,19 +919,10 @@ class MainActivity : MenuActivity() {
             PreferenceHandler.put(Preference.TEMP_BUSY, true)
             Sound.play(this@MainActivity, "ding")
 
-            runOnUiThread {
+            this@MainActivity.runOnUiThread {
                 tvPick?.isEnabled = false
                 status.counters["predictionRefresh"] = 0L
-
-                // Fade out particles layout
-                llConfetti?.animate()?.alpha(0.0f)?.setDuration(200)
-                    ?.setListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationCancel(animation: Animator) {
-                            super.onAnimationEnd(animation)
-                            vMain?.clearAnimation()
-                            vMain?.visibility = View.INVISIBLE
-                        }
-                    })
+                llConfetti?.fadeOut(duration = 100)
             }
 
             val pickedDate = DateTimeHelper.toIso8601Date(
@@ -963,7 +954,7 @@ class MainActivity : MenuActivity() {
             if (retrieved) predictionHistory?.add(preStoredPrediction)
             else predictionHistory?.add(generatePrediction(formEntered))
 
-            runOnUiThread {
+            this@MainActivity.runOnUiThread {
                 refreshHolders()
                 refreshNavigationView()
                 refreshSaveButton()
@@ -1029,7 +1020,7 @@ class MainActivity : MenuActivity() {
                     detailsDialog?.show()
                 }
                 tvPick?.isEnabled = true
-                llConfetti?.animate()?.alpha(1.0f)?.duration = 200 // Fade in particles layout
+                llConfetti?.fadeIn(duration = 100)
                 PreferenceHandler.remove(Preference.TEMP_BUSY)
             }
         }
