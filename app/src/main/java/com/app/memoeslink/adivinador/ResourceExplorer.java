@@ -8,11 +8,9 @@ import com.app.memoeslink.adivinador.finder.DatabaseFinder;
 import com.app.memoeslink.adivinador.preference.Preference;
 import com.app.memoeslink.adivinador.preference.PreferenceHandler;
 import com.memoeslink.generator.common.Constant;
-import com.memoeslink.generator.common.DateTimeGetter;
 import com.memoeslink.generator.common.Explorer;
 import com.memoeslink.generator.common.Form;
 import com.memoeslink.generator.common.GeneratorManager;
-import com.memoeslink.generator.common.NameType;
 import com.memoeslink.generator.common.PhraseType;
 import com.memoeslink.generator.common.TextFormatter;
 import com.memoeslink.manager.Device;
@@ -123,27 +121,34 @@ public class ResourceExplorer extends Explorer {
             if (METHOD_MAPPING.isEmpty()) {
                 METHOD_MAPPING.put(MethodReference.NONE, () -> Database.DEFAULT_VALUE);
                 METHOD_MAPPING.put(MethodReference.NAME, () -> generatorManager.getPersonGenerator().getPerson().getFullName());
-                METHOD_MAPPING.put(MethodReference.USERNAME, () -> generatorManager.getNameGenerator().getUsername());
-                METHOD_MAPPING.put(MethodReference.ALT_SUMMARY, () -> generatorManager.getPersonGenerator().getPerson().getAltSummary());
-                METHOD_MAPPING.put(MethodReference.SECRET_NAME, () -> generatorManager.getNameGenerator().getName(NameType.SECRET_NAME));
+                METHOD_MAPPING.put(MethodReference.USERNAME, () -> generatorManager.getPersonGenerator().getAnonymousPerson().getUsername());
                 METHOD_MAPPING.put(MethodReference.NOUN, () -> generatorManager.getNounGenerator().getNoun(Form.UNDEFINED));
                 METHOD_MAPPING.put(MethodReference.NOUN_WITH_ARTICLE, () -> generatorManager.getNounGenerator().getNounWithArticle(Form.UNDEFINED));
                 METHOD_MAPPING.put(MethodReference.NOUN_WITH_INDEFINITE_ARTICLE, () -> generatorManager.getNounGenerator().getNounWithArticle(Form.UNDEFINED));
                 METHOD_MAPPING.put(MethodReference.NOUN_WITH_ANY_ARTICLE, () -> generatorManager.getNounGenerator().getNounWithArticle());
                 METHOD_MAPPING.put(MethodReference.DATE, () -> generatorManager.getDateTimeGenerator().getStrDate());
                 METHOD_MAPPING.put(MethodReference.TIME, () -> generatorManager.getDateTimeGenerator().getStrTime());
-                METHOD_MAPPING.put(MethodReference.PERCENTAGE, () -> generatorManager.getStringGenerator().getPercentage());
-                METHOD_MAPPING.put(MethodReference.DECIMAL_PERCENTAGE, () -> generatorManager.getStringGenerator().getDecimalPercentage());
-                METHOD_MAPPING.put(MethodReference.HEX_COLOR, () -> generatorManager.getStringGenerator().getStrColor());
+                METHOD_MAPPING.put(MethodReference.PERCENTAGE, () -> generatorManager.getStringGenerator().getPercentage(false));
+                METHOD_MAPPING.put(MethodReference.DECIMAL_PERCENTAGE, () -> generatorManager.getStringGenerator().getPercentage(true));
+                METHOD_MAPPING.put(MethodReference.HEX_COLOR, () -> generatorManager.getStringGenerator().getHexColor());
                 METHOD_MAPPING.put(MethodReference.DEFAULT_COLOR, () -> resourceFinder.getStrFromArray(Constant.DEFAULT_COLORS));
                 METHOD_MAPPING.put(MethodReference.DEVICE_INFO, () -> new Device(context).getInfo(r.getElement(InformationType.values())));
                 METHOD_MAPPING.put(MethodReference.CONTACT_NAME, contactNameFinder::getContactName);
                 METHOD_MAPPING.put(MethodReference.SUGGESTED_NAME, this::getSuggestedName);
                 METHOD_MAPPING.put(MethodReference.FORMATTED_NAME, this::getFormattedName);
-                METHOD_MAPPING.put(MethodReference.SIMPLE_GREETING, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.SIMPLE_GREETING));
-                METHOD_MAPPING.put(MethodReference.CURRENT_DAY_OF_WEEK, () -> DateTimeGetter.with(LanguageHelper.getLocale(context), r).getNameOfDayOfWeek());
-                METHOD_MAPPING.put(MethodReference.CURRENT_DATE, () -> DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentDate());
-                METHOD_MAPPING.put(MethodReference.CURRENT_TIME, () -> DateTimeGetter.with(LanguageHelper.getLocale(context), r).getCurrentTime());
+                METHOD_MAPPING.put(MethodReference.AGREEMENT, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.AGREEMENT));
+                METHOD_MAPPING.put(MethodReference.AMAZEMENT, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.AMAZEMENT));
+                METHOD_MAPPING.put(MethodReference.APOLOGY, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.APOLOGY));
+                METHOD_MAPPING.put(MethodReference.APPRECIATION, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.APPRECIATION));
+                METHOD_MAPPING.put(MethodReference.CONGRATULATION, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.CONGRATULATION));
+                METHOD_MAPPING.put(MethodReference.DISAGREEMENT, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.DISAGREEMENT));
+                METHOD_MAPPING.put(MethodReference.DOUBT, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.DOUBT));
+                METHOD_MAPPING.put(MethodReference.FAREWELL, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.FAREWELL));
+                METHOD_MAPPING.put(MethodReference.GREETING, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.GREETING));
+                METHOD_MAPPING.put(MethodReference.INITIATION_QUESTION, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.INITIATION_QUESTION));
+                METHOD_MAPPING.put(MethodReference.INQUIRY_QUESTION, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.INQUIRY_QUESTION));
+                METHOD_MAPPING.put(MethodReference.SHORT_ANSWER, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.SHORT_ANSWER));
+                METHOD_MAPPING.put(MethodReference.WELCOME, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.WELCOME));
             }
             return METHOD_MAPPING.getOrDefault(reference, () -> Database.DEFAULT_VALUE).get();
         }
@@ -163,8 +168,7 @@ public class ResourceExplorer extends Explorer {
             return switch (r.getElement(NAME_SOURCES)) {
                 case "anonymous" ->
                         TextFormatter.formatUsername(getMethodByRef(MethodReference.USERNAME));
-                case "common" ->
-                        TextFormatter.formatName(getMethodByRef(MethodReference.ALT_SUMMARY));
+                case "common" -> TextFormatter.formatName(getMethodByRef(MethodReference.NAME));
                 case "contact" ->
                         TextFormatter.formatContactName(getMethodByRef(MethodReference.CONTACT_NAME));
                 case "suggestion" ->
