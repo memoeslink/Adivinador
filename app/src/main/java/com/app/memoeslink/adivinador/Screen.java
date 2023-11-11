@@ -17,7 +17,7 @@ public class Screen {
         int rotation;
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R)
-            rotation = activity.getDisplay().getRotation();
+            rotation = activity.getDisplay() != null ? activity.getDisplay().getRotation() : 0;
         else
             rotation = windowManager != null ? windowManager.getDefaultDisplay().getRotation() : 0;
 
