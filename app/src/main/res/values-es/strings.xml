@@ -1418,7 +1418,7 @@
         <item>{[causará]; plural-form:[causarán]; influence:divinationScope} problemas o perjuicios a otras personas</item>
         <item>{[pasará]; plural-form:[pasarán]; influence:divinationScope} a segundo plano</item>
         <item>{[pasará]; plural-form:[pasarán]; influence:divinationScope} a primer plano</item>
-        <item>{[saldrá]; plural-form:[saldrán]}; influence:divinationScope a la luz</item>
+        <item>{[saldrá]; plural-form:[saldrán]; influence:divinationScope} a la luz</item>
         <item>{[será]; plural-form:[serán]; influence:divinationScope} {[revelad[o,a]]; plural-form:+s; influence:divinationScope}</item>
         <item>{[será]; plural-form:[serán]; influence:divinationScope} {[recuperad[o,a]]; plural-form:+s; influence:divinationScope}</item>
         <item>se {[perderá]; plural-form:[perderán]; influence:divinationScope}</item>
