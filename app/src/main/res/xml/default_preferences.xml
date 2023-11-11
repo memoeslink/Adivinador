@@ -28,21 +28,21 @@
         <ListPreference
             android:defaultValue="60"
             android:entries="@array/update_time"
-            android:entryValues="@array/update_time_values"
+            android:entryValues="@array/update_time_value"
             android:key="setting_updateTime"
             android:summary="@string/preference_update_frequency_summary"
             android:title="@string/preference_update_frequency" />
         <ListPreference
             android:defaultValue="1"
             android:entries="@array/fortune_teller_aspect"
-            android:entryValues="@array/fortune_teller_aspects"
+            android:entryValues="@array/fortune_teller_aspect_value"
             android:key="setting_fortuneTellerAspect"
             android:summary="@string/preference_fortune_teller_aspect_summary"
             android:title="@string/preference_fortune_teller_aspect" />
         <ListPreference
             android:defaultValue="20"
             android:entries="@array/refresh_time"
-            android:entryValues="@array/refresh_time_values"
+            android:entryValues="@array/refresh_time_value"
             android:key="setting_refreshTime"
             android:summary="@string/preference_refresh_frequency_summary"
             android:title="@string/preference_refresh_frequency" />
@@ -74,7 +74,7 @@
         <ListPreference
             android:defaultValue="0"
             android:entries="@array/text_type"
-            android:entryValues="@array/text_type_values"
+            android:entryValues="@array/text_type_value"
             android:key="setting_textType"
             android:summary="@string/preference_text_reading_summary"
             android:title="@string/preference_text_reading" />
@@ -110,14 +110,14 @@
         <ListPreference
             android:defaultValue="@string/default_language"
             android:entries="@array/language"
-            android:entryValues="@array/languages"
+            android:entryValues="@array/language_value"
             android:key="setting_language"
             android:summary="@string/preference_language_summary"
             android:title="@string/preference_language" />
         <ListPreference
             android:defaultValue="0"
             android:entries="@array/theme"
-            android:entryValues="@array/theme_values"
+            android:entryValues="@array/theme_value"
             android:key="setting_theme"
             android:summary="@string/preference_theme_summary"
             android:title="@string/preference_theme" />
