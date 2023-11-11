@@ -17,6 +17,16 @@ public class DatabaseFinder extends Binder {
         super(context, seed);
     }
 
+    public String getDialogue() {
+        return switch (getString(R.string.locale)) {
+            case "en" ->
+                    Database.getInstance(context).selectEnglishDialogue(r.getIntInRange(1, Database.getInstance(context).countEnglishDialogues()));
+            case "es" ->
+                    Database.getInstance(context).selectSpanishDialogues(r.getIntInRange(1, Database.getInstance(context).countSpanishDialogues()));
+            default -> ResourceFinder.RESOURCE_NOT_FOUND;
+        };
+    }
+
     public String getFortuneCookie() {
         return switch (getString(R.string.locale)) {
             case "en" ->
@@ -57,6 +67,16 @@ public class DatabaseFinder extends Binder {
         };
     }
 
+    public String getOpinion() {
+        return switch (getString(R.string.locale)) {
+            case "en" ->
+                    Database.getInstance(context).selectEnglishOpinion(r.getIntInRange(1, Database.getInstance(context).countEnglishOpinions()));
+            case "es" ->
+                    Database.getInstance(context).selectSpanishOpinion(r.getIntInRange(1, Database.getInstance(context).countSpanishOpinions()));
+            default -> ResourceFinder.RESOURCE_NOT_FOUND;
+        };
+    }
+
     public String getPhrase() {
         return switch (getString(R.string.locale)) {
             case "en" ->
@@ -73,16 +93,6 @@ public class DatabaseFinder extends Binder {
                     Database.getInstance(context).selectEnglishPrediction(r.getIntInRange(1, Database.getInstance(context).countEnglishPredictions()));
             case "es" ->
                     Database.getInstance(context).selectSpanishPrediction(r.getIntInRange(1, Database.getInstance(context).countSpanishPredictions()));
-            default -> ResourceFinder.RESOURCE_NOT_FOUND;
-        };
-    }
-
-    public String getRecitation() {
-        return switch (getString(R.string.locale)) {
-            case "en" ->
-                    Database.getInstance(context).selectEnglishRecitations(r.getIntInRange(1, Database.getInstance(context).countEnglishRecitations()));
-            case "es" ->
-                    Database.getInstance(context).selectSpanishRecitations(r.getIntInRange(1, Database.getInstance(context).countSpanishRecitations()));
             default -> ResourceFinder.RESOURCE_NOT_FOUND;
         };
     }

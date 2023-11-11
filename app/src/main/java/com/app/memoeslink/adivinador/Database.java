@@ -10,25 +10,27 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 import java.util.HashMap;
 
 public class Database extends SQLiteAssetHelper {
-    public static final int DATABASE_VERSION = 58;
-    public static final String DATABASE_NAME = "words_upgrade_57-58.sqlite";
+    public static final int DATABASE_VERSION = 59;
+    public static final String DATABASE_NAME = "words_upgrade_58-59.sqlite";
     public static final String DATABASE_NAME_FORMAT = "words%s.sqlite";
     public static final String DEFAULT_VALUE = "?";
     public static final String ID_PREFIX = "ID";
+    public static final String TABLE_ENGLISH_DIALOGUES = "EnglishDialogues";
     public static final String TABLE_ENGLISH_FORTUNE_COOKIES = "EnglishFortuneCookies";
     public static final String TABLE_ENGLISH_LEGACY_FORTUNE_COOKIES = "EnglishLegacyFortuneCookies";
     public static final String TABLE_ENGLISH_LEGACY_PHRASES = "EnglishLegacyPhrases";
     public static final String TABLE_ENGLISH_LEGACY_PREDICTIONS = "EnglishLegacyPredictions";
+    public static final String TABLE_ENGLISH_OPINIONS = "EnglishOpinions";
     public static final String TABLE_ENGLISH_PHRASES = "EnglishPhrases";
     public static final String TABLE_ENGLISH_PREDICTIONS = "EnglishPredictions";
-    public static final String TABLE_ENGLISH_RECITATIONS = "EnglishRecitations";
+    public static final String TABLE_SPANISH_DIALOGUES = "SpanishDialogues";
     public static final String TABLE_SPANISH_FORTUNE_COOKIES = "SpanishFortuneCookies";
     public static final String TABLE_SPANISH_LEGACY_FORTUNE_COOKIES = "SpanishLegacyFortuneCookies";
     public static final String TABLE_SPANISH_LEGACY_PHRASES = "SpanishLegacyPhrases";
     public static final String TABLE_SPANISH_LEGACY_PREDICTIONS = "SpanishLegacyPredictions";
+    public static final String TABLE_SPANISH_OPINIONS = "SpanishOpinions";
     public static final String TABLE_SPANISH_PHRASES = "SpanishPhrases";
     public static final String TABLE_SPANISH_PREDICTIONS = "SpanishPredictions";
-    public static final String TABLE_SPANISH_RECITATIONS = "SpanishRecitations";
     private static final HashMap<String, Integer> TABLE_COUNT_REGISTRY = new HashMap<>();
     private static final HashMap<String, Integer> TABLE_MAX_ROW_ID = new HashMap<>();
     private static Database instance;
@@ -123,6 +125,18 @@ public class Database extends SQLiteAssetHelper {
         return selectRow("SELECT * FROM " + table + " WHERE " + table + ID_PREFIX + "=" + id);
     }
 
+    public int countEnglishDialogues() {
+        return countRows(TABLE_ENGLISH_DIALOGUES);
+    }
+
+    public String selectEnglishDialogue() {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_DIALOGUES + " ORDER BY RANDOM() LIMIT 1");
+    }
+
+    public String selectEnglishDialogue(int id) {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_DIALOGUES + " WHERE " + TABLE_ENGLISH_DIALOGUES + ID_PREFIX + "=" + id);
+    }
+
     public int countEnglishFortuneCookies() {
         return countRows(TABLE_ENGLISH_FORTUNE_COOKIES);
     }
@@ -171,6 +185,18 @@ public class Database extends SQLiteAssetHelper {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_LEGACY_PREDICTIONS + " WHERE " + TABLE_ENGLISH_LEGACY_PREDICTIONS + ID_PREFIX + "=" + id);
     }
 
+    public int countEnglishOpinions() {
+        return countRows(TABLE_ENGLISH_OPINIONS);
+    }
+
+    public String selectEnglishOpinions() {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_OPINIONS + " ORDER BY RANDOM() LIMIT 1");
+    }
+
+    public String selectEnglishOpinion(int id) {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_OPINIONS + " WHERE " + TABLE_ENGLISH_OPINIONS + ID_PREFIX + "=" + id);
+    }
+
     public int countEnglishPhrases() {
         return countRows(TABLE_ENGLISH_PHRASES);
     }
@@ -195,16 +221,16 @@ public class Database extends SQLiteAssetHelper {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_PREDICTIONS + " WHERE " + TABLE_ENGLISH_PREDICTIONS + ID_PREFIX + "=" + id);
     }
 
-    public int countEnglishRecitations() {
-        return countRows(TABLE_ENGLISH_RECITATIONS);
+    public int countSpanishDialogues() {
+        return countRows(TABLE_SPANISH_DIALOGUES);
     }
 
-    public String selectEnglishRecitations() {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_RECITATIONS + " ORDER BY RANDOM() LIMIT 1");
+    public String selectSpanishDialogues() {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_DIALOGUES + " ORDER BY RANDOM() LIMIT 1");
     }
 
-    public String selectEnglishRecitations(int id) {
-        return selectRow("SELECT * FROM " + TABLE_ENGLISH_RECITATIONS + " WHERE " + TABLE_ENGLISH_RECITATIONS + ID_PREFIX + "=" + id);
+    public String selectSpanishDialogues(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_DIALOGUES + " WHERE " + TABLE_SPANISH_DIALOGUES + ID_PREFIX + "=" + id);
     }
 
     public int countSpanishFortuneCookies() {
@@ -255,6 +281,18 @@ public class Database extends SQLiteAssetHelper {
         return selectRow("SELECT * FROM " + TABLE_SPANISH_LEGACY_PREDICTIONS + " WHERE " + TABLE_SPANISH_LEGACY_PREDICTIONS + ID_PREFIX + "=" + id);
     }
 
+    public int countSpanishOpinions() {
+        return countRows(TABLE_SPANISH_OPINIONS);
+    }
+
+    public String selectSpanishOpinion() {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_OPINIONS + " ORDER BY RANDOM() LIMIT 1");
+    }
+
+    public String selectSpanishOpinion(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_OPINIONS + " WHERE " + TABLE_SPANISH_OPINIONS + ID_PREFIX + "=" + id);
+    }
+
     public int countSpanishPhrases() {
         return countRows(TABLE_SPANISH_PHRASES);
     }
@@ -277,17 +315,5 @@ public class Database extends SQLiteAssetHelper {
 
     public String selectSpanishPrediction(int id) {
         return selectRow("SELECT * FROM " + TABLE_SPANISH_PREDICTIONS + " WHERE " + TABLE_SPANISH_PREDICTIONS + ID_PREFIX + "=" + id);
-    }
-
-    public int countSpanishRecitations() {
-        return countRows(TABLE_SPANISH_RECITATIONS);
-    }
-
-    public String selectSpanishRecitations() {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_RECITATIONS + " ORDER BY RANDOM() LIMIT 1");
-    }
-
-    public String selectSpanishRecitations(int id) {
-        return selectRow("SELECT * FROM " + TABLE_SPANISH_RECITATIONS + " WHERE " + TABLE_SPANISH_RECITATIONS + ID_PREFIX + "=" + id);
     }
 }
