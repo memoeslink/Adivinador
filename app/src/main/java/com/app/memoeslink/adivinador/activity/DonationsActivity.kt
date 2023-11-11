@@ -51,7 +51,7 @@ class DonationsActivity : CommonActivity() {
         val adapter = ArrayAdapter(
             this@DonationsActivity,
             android.R.layout.simple_spinner_item,
-            resources.getStringArray(R.array.donation_amounts)
+            resources.getStringArray(R.array.donation_amount)
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnDonation?.adapter = adapter
