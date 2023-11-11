@@ -3276,7 +3276,7 @@
         <item>{[ambicios[o,a]]; influence:person}</item>
         <item>amigable</item>
         <item>{[animad[o,a]]; influence:person}</item>
-        <item>[atent[o,a]]</item>
+        <item>{[atent[o,a]]; influence:person}</item>
         <item>audaz</item>
         <item>{[batallador[,a]]; influence:person}</item>
         <item>{[cautelos[o,a]]; influence:person}</item>
