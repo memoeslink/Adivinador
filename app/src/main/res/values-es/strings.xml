@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><!DOCTYPE
-    resources [<!ENTITY personType1 "una persona"><!ENTITY personType2 "[un[,a]] [desconocid[o,a]]"><!ENTITY personType3 "una persona relacionada"><!ENTITY personType4 "la pareja"><!ENTITY personType5 "[[el,la]] cónyuge"><!ENTITY personType6 "[[el,la]] [concubin[o,a]]"><!ENTITY personType7 "[[el,la]] mejor [amig[o,a]]"><!ENTITY personType8 "[[el,la]] peor [enemig[o,a]]"><!ENTITY personType9 "la persona más cercana"><!ENTITY personType10 "alguien que ofrece servicios"><!ENTITY personType11 "alguien que vende algo"><!ENTITY personType12 "alguien cercano"><!ENTITY personType13 "[un[,a]] amante"><!ENTITY personType14 "[un[,a]] familiar"><!ENTITY personType15 "[un[,a]] familiar [lejan[o,a]]"><!ENTITY personType16 "[un[,a]] colega"><!ENTITY personType17 "[un[,a]] [amig[o,a]]"><!ENTITY personType18 "[un[,a]] [enemig[o,a]]"><!ENTITY personType19 "[un[,a]] [buen[,a]] [amig[o,a]]"><!ENTITY personType20 "[un[,a]] camarada"><!ENTITY personType21 "[un[,a]] [compañer[o,a]]"><!ENTITY personType22 "[un[,a]] acompañante"><!ENTITY personType23 "[un[,a]] [compañer[o,a]] de equipo"><!ENTITY personType24 "[un[,a]] [compañer[o,a]] de trabajo"><!ENTITY personType25 "[un[,a]] [compañer[o,a]] de clases"><!ENTITY personType26 "[un[,a]] [compañer[o,a]] de cuarto"><!ENTITY personType27 "[un[,a]] [soci[o,a]]"><!ENTITY personType28 "[un[,a]] [client[e,a]]"><!ENTITY personType29 "[un[,a]] prospecto"><!ENTITY personType30 "[un[,a]] [conocid[o,a]]"><!ENTITY personType31 "[un[,a]] [vecin[o,a]]"><!ENTITY personType32 "[un[,a]] [seguidor[,a]]"><!ENTITY personType33 "[un[,a]] [observador[,a]]"><!ENTITY personType34 "[un[,a]] [aliad[o,a]]"><!ENTITY personType35 "[un[,a]] rival"><!ENTITY personType36 "[un[,a]] aprendiz"><!ENTITY personType37 "[un[,a]] [mentor[,a]]"><!ENTITY personType38 "[un[,a]] [protegid[o,a]]"><!ENTITY personType39 "[un[,a]] dependiente"><!ENTITY personType40 "[un[,a]] [benefactor[,a]]"><!ENTITY personType41 "[un[,a]] [aficionad[o,a]] [compartid[o,a]]"><!ENTITY personType42 "[un[,a]] [voluntari[o,a]]"><!ENTITY personType43 "[un[,a]] [asesor[,a]]">]
+    resources [<!ENTITY personType1 "una persona"><!ENTITY personType2 "{[un[,a]]; influence:?} {[desconocid[o,a]]; influence:?}"><!ENTITY personType3 "una persona relacionada"><!ENTITY personType4 "la pareja"><!ENTITY personType5 "{[[el,la]]; influence:?} cónyuge"><!ENTITY personType6 "{[[el,la]]; influence:?} {[concubin[o,a]]; influence:?}"><!ENTITY personType7 "{[[el,la]]; influence:?} mejor {[amig[o,a]]; influence:?}"><!ENTITY personType8 "{[[el,la]]; influence:?} peor {[enemig[o,a]]; influence:?}"><!ENTITY personType9 "la persona más cercana"><!ENTITY personType10 "alguien que ofrece servicios"><!ENTITY personType11 "alguien que vende algo"><!ENTITY personType12 "alguien cercano"><!ENTITY personType13 "{[un[,a]]; influence:?} amante"><!ENTITY personType14 "{[un[,a]]; influence:?} familiar"><!ENTITY personType15 "{[un[,a]]; influence:?} familiar {[lejan[o,a]]; influence:?}"><!ENTITY personType16 "{[un[,a]]; influence:?} colega"><!ENTITY personType17 "{[un[,a]]; influence:?} {[amig[o,a]]; influence:?}"><!ENTITY personType18 "{[un[,a]]; influence:?} {[enemig[o,a]]; influence:?}"><!ENTITY personType19 "{[un[,a]]; influence:?} {[buen[,a]]; influence:?} {[amig[o,a]]; influence:?}"><!ENTITY personType20 "{[un[,a]]; influence:?} camarada"><!ENTITY personType21 "{[un[,a]]; influence:?} {[compañer[o,a]]; influence:?}"><!ENTITY personType22 "{[un[,a]]; influence:?} acompañante"><!ENTITY personType23 "{[un[,a]]; influence:?} {[compañer[o,a]]; influence:?} de equipo"><!ENTITY personType24 "{[un[,a]]; influence:?} {[compañer[o,a]]; influence:?} de trabajo"><!ENTITY personType25 "{[un[,a]]; influence:?} {[compañer[o,a]]; influence:?} de clases"><!ENTITY personType26 "{[un[,a]]; influence:?} {[compañer[o,a]]; influence:?} de cuarto"><!ENTITY personType27 "{[un[,a]]; influence:?} {[soci[o,a]]; influence:?}"><!ENTITY personType28 "{[un[,a]]; influence:?} {[client[e,a]]; influence:?}"><!ENTITY personType29 "{[un[,a]]; influence:?} prospecto"><!ENTITY personType30 "{[un[,a]]; influence:?} {[conocid[o,a]]; influence:?}"><!ENTITY personType31 "{[un[,a]]; influence:?} {[vecin[o,a]]; influence:?}"><!ENTITY personType32 "{[un[,a]]; influence:?} {[seguidor[,a]]; influence:?}"><!ENTITY personType33 "{[un[,a]]; influence:?} {[observador[,a]]; influence:?}"><!ENTITY personType34 "{[un[,a]]; influence:?} {[aliad[o,a]]; influence:?}"><!ENTITY personType35 "{[un[,a]]; influence:?} rival"><!ENTITY personType36 "{[un[,a]]; influence:?} aprendiz"><!ENTITY personType37 "{[un[,a]]; influence:?} {[mentor[,a]]; influence:?}"><!ENTITY personType38 "{[un[,a]]; influence:?} {[protegid[o,a]]; influence:?}"><!ENTITY personType39 "{[un[,a]]; influence:?} dependiente"><!ENTITY personType40 "{[un[,a]]; influence:?} {[benefactor[,a]]; influence:?}"><!ENTITY personType41 "{[un[,a]]; influence:?} {[aficionad[o,a]]; influence:?} {[compartid[o,a]]; influence:?}"><!ENTITY personType42 "{[un[,a]]; influence:?} {[voluntari[o,a]]; influence:?}"><!ENTITY personType43 "{[un[,a]]; influence:?} {[asesor[,a]]; influence:?}">]
     >
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="about">
@@ -69,7 +69,6 @@
         <br><br>Para más información al respecto, por favor revise la <a href="https://drive.google.com/file/d/1NFvPJOEIhUV-v8Tr9nuDC_seqhYz1b46/view?usp=sharing">Política de Privacidad</a> completa.
         ]]>
     </string>
-    <string name="adjective">[aburrid[o,a]]¶ [afectuos[o,a]]¶ ágil¶ agradable¶ alegre¶ amable¶ [amargad[o,a]]¶ [ambicios[o,a]]¶ amigable¶ angelical¶ [apasionad[o,a]]¶ [apátic[o,a]]¶ ardiente¶ [atent[o,a]]¶ [atontad[o,a]]¶ [atrevid[o,a]]¶ [aventurer[o,a]]¶ [avispad[o,a]]¶ [bast[o,a]]¶ beligerante¶ brillante¶ [burl[ón,ona]]¶ cascarrabias¶ [caut[o,a]]¶ [celos[o,a]]¶ [cínic[o,a]]¶ cobarde¶ coherente¶ [comprensiv[o,a]]¶ [concienzud[o,a]]¶ [conservador[,a]]¶ [considerad[o,a]]¶ [consternad[o,a]]¶ convencional¶ [conversador[,a]]¶ [coquet[o,a]]¶ cordial¶ cortante¶ cortés¶ [creíd[o,a]]¶ cruel¶ [cuidados[o,a]]¶ [curios[o,a]]¶ de actitud abierta¶ de actitud relajada¶ de buen trato¶ de humor cambiante¶ de mal carácter¶ de mal genio¶ de mentalidad cerrada¶ débil¶ dependiente¶ deprimente¶ [deprimid[o,a]]¶ [desaliñad[o,a]]¶ [desconfiad[o,a]]¶ [desconsiderad[o,a]]¶ [descuidad[o,a]]¶ [desocupad[o,a]]¶ [despreocupad[o,a]]¶ [dign[o,a]] de confianza¶ diligente¶ [diplomátic[o,a]]¶ [direct[o,a]]¶ [discret[o,a]]¶ [discutidor[,a]]¶ distante¶ [distraíd[o,a]]¶ [divertid[o,a]]¶ [dubitativ[o,a]]¶ dulce¶ [educad[o,a]]¶ eficiente¶ egoísta¶ elegante¶ [embuster[o,a]]¶ [emotiv[o,a]]¶ [emprendedor[,a]]¶ [encantador[,a]]¶ [energétic[o,a]]¶ [enfadad[o,a]]¶ [engreíd[o,a]]¶ [entrometid[o,a]]¶ [entusiasmad[o,a]]¶ [equilibrad[o,a]]¶ [escandalos[o,a]]¶ [escrupulos[o,a]]¶ [estoic[o,a]]¶ [estrict[o,a]]¶ [estúpid[o,a]]¶ [excéntric[o,a]]¶ exigente¶ [experimentad[o,a]]¶ [extrañ[o,a]]¶ [extravertid[o,a]]¶ [fervoros[o,a]]¶ fiable¶ fiel¶ [fof[o,a]]¶ formal¶ [frí[o,a]]¶ [generos[o,a]]¶ gentil¶ [gracios[o,a]]¶ [gruñ[ón,ona]]¶ hábil¶ [hermos[o,a]]¶ [histéric[o,a]]¶ [holgaz[án,ana]]¶ [honest[o,a]]¶ horrible¶ [hurañ[o,a]]¶ [imaginativ[o,a]]¶ imbécil¶ impaciente¶ [impetuos[o,a]]¶ [impulsiv[o,a]]¶ independiente¶ infantil¶ [ingenu[o,a]]¶ [inmadur[o,a]]¶ [inquiet[o,a]]¶ insensible¶ inteligente¶ interesante¶ intolerante¶ [intrépid[o,a]]¶ [juguet[ón,ona]]¶ [list[o,a]]¶ [llor[ón,ona]]¶ [loc[o,a]]¶ [madur[o,a]]¶ [maleducad[o,a]]¶ [malhumorad[o,a]]¶ [malicios[o,a]]¶ [mal[o,a]]¶ maternal¶ [melancólic[o,a]]¶ [meticulos[o,a]]¶ [modest[o,a]]¶ mordaz¶ [nervios[o,a]]¶ [odios[o,a]]¶ [orgullos[o,a]]¶ paciente¶ [pacífic[o,a]]¶ pasional¶ [pensativ[o,a]]¶ [perezos[o,a]]¶ perseverante¶ [perturbador[,a]]¶ [pesad[o,a]]¶ [pícar[o,a]]¶ [poderos[o,a]]¶ [positiv[o,a]]¶ [práctic[o,a]]¶ [presumid[o,a]]¶ [pretencios[o,a]]¶ [provocador[,a]]¶ prudente¶ puntual¶ [quisquillos[o,a]]¶ [reaci[o,a]]¶ realista¶ [recelos[o,a]]¶ [reservad[o,a]]¶ responsable¶ [ridícul[o,a]]¶ sagaz¶ [segur[o,a]]¶ [segur[o,a]] de sí [mism[o,a]]¶ [sensat[o,a]]¶ sensible¶ [seren[o,a]]¶ [seri[o,a]]¶ servicial¶ [sever[o,a]]¶ [simpátic[o,a]]¶ [sincer[o,a]]¶ [sofisticad[o,a]]¶ [somnolient[o,a]]¶ [sos[o,a]]¶ [suci[o,a]]¶ superficial¶ [tacañ[o,a]]¶ [taciturn[o,a]]¶ [talentos[o,a]]¶ [terc[o,a]]¶ [tímid[o,a]]¶ [tont[o,a]]¶ torpe¶ [trabajador[,a]]¶ [tranquilizador[,a]]¶ [tranquil[o,a]]¶ [travies[o,a]]¶ triste¶ útil¶ valiente¶ [venenos[o,a]]¶ vivaz</string>
     <string name="app_name">Adivinador</string>
     <string name="about_title">Acerca de</string>
     <string name="action_back">Regresar</string>
@@ -96,11 +95,13 @@
     <string name="data_entry">Introducir datos</string>
     <string name="date_component">Ya es¶ Hoy es¶ Estamos a¶ El día de hoy es¶ La fecha es¶ Hoy estamos a¶ El día es</string>
     <string name="denied_permission">Algunas funciones serán deshabilitadas debido a que no se tienen todos los permisos.</string>
+    <string name="descriptor_adjective">{[aburrid[o,a]]; influence:descriptor}¶ {[afectuos[o,a]]; influence:descriptor}¶ ágil¶ agradable¶ alegre¶ amable¶ {[amargad[o,a]]; influence:descriptor}¶ {[ambicios[o,a]]; influence:descriptor}¶ amigable¶ angelical¶ {[apasionad[o,a]]; influence:descriptor}¶ {[apátic[o,a]]; influence:descriptor}¶ ardiente¶ {[atent[o,a]]; influence:descriptor}¶ {[atontad[o,a]]; influence:descriptor}¶ {[atrevid[o,a]]; influence:descriptor}¶ {[aventurer[o,a]]; influence:descriptor}¶ {[avispad[o,a]]; influence:descriptor}¶ {[bast[o,a]]; influence:descriptor}¶ beligerante¶ brillante¶ {[burl[ón,ona]]; influence:descriptor}¶ cascarrabias¶ {[caut[o,a]]; influence:descriptor}¶ {[celos[o,a]]; influence:descriptor}¶ {[cínic[o,a]]; influence:descriptor}¶ cobarde¶ coherente¶ {[comprensiv[o,a]]; influence:descriptor}¶ {[concienzud[o,a]]; influence:descriptor}¶ {[conservador[,a]]; influence:descriptor}¶ {[considerad[o,a]]; influence:descriptor}¶ {[consternad[o,a]]; influence:descriptor}¶ convencional¶ {[conversador[,a]]; influence:descriptor}¶ {[coquet[o,a]]; influence:descriptor}¶ cordial¶ cortante¶ cortés¶ {[creíd[o,a]]; influence:descriptor}¶ cruel¶ {[cuidados[o,a]]; influence:descriptor}¶ {[curios[o,a]]; influence:descriptor}¶ de actitud abierta¶ de actitud relajada¶ de buen trato¶ de humor cambiante¶ de mal carácter¶ de mal genio¶ de mentalidad cerrada¶ débil¶ dependiente¶ deprimente¶ {[deprimid[o,a]]; influence:descriptor}¶ {[desaliñad[o,a]]; influence:descriptor}¶ {[desconfiad[o,a]]; influence:descriptor}¶ {[desconsiderad[o,a]]; influence:descriptor}¶ {[descuidad[o,a]]; influence:descriptor}¶ {[desocupad[o,a]]; influence:descriptor}¶ {[despreocupad[o,a]]; influence:descriptor}¶ {[dign[o,a]]; influence:descriptor} de confianza¶ diligente¶ {[diplomátic[o,a]]; influence:descriptor}¶ {[direct[o,a]]; influence:descriptor}¶ {[discret[o,a]]; influence:descriptor}¶ {[discutidor[,a]]; influence:descriptor}¶ distante¶ {[distraíd[o,a]]; influence:descriptor}¶ {[divertid[o,a]]; influence:descriptor}¶ {[dubitativ[o,a]]; influence:descriptor}¶ dulce¶ {[educad[o,a]]; influence:descriptor}¶ eficiente¶ egoísta¶ elegante¶ {[embuster[o,a]]; influence:descriptor}¶ {[emotiv[o,a]]; influence:descriptor}¶ {[emprendedor[,a]]; influence:descriptor}¶ {[encantador[,a]]; influence:descriptor}¶ {[energétic[o,a]]; influence:descriptor}¶ {[enfadad[o,a]]; influence:descriptor}¶ {[engreíd[o,a]]; influence:descriptor}¶ {[entrometid[o,a]]; influence:descriptor}¶ {[entusiasmad[o,a]]; influence:descriptor}¶ {[equilibrad[o,a]]; influence:descriptor}¶ {[escandalos[o,a]]; influence:descriptor}¶ {[escrupulos[o,a]]; influence:descriptor}¶ {[estoic[o,a]]; influence:descriptor}¶ {[estrict[o,a]]; influence:descriptor}¶ {[estúpid[o,a]]; influence:descriptor}¶ {[excéntric[o,a]]; influence:descriptor}¶ exigente¶ {[experimentad[o,a]]; influence:descriptor}¶ {[extrañ[o,a]]; influence:descriptor}¶ {[extravertid[o,a]]; influence:descriptor}¶ {[fervoros[o,a]]; influence:descriptor}¶ fiable¶ fiel¶ {[fof[o,a]]; influence:descriptor}¶ formal¶ {[frí[o,a]]; influence:descriptor}¶ {[generos[o,a]]; influence:descriptor}¶ gentil¶ {[gracios[o,a]]; influence:descriptor}¶ {[gruñ[ón,ona]]; influence:descriptor}¶ hábil¶ {[hermos[o,a]]; influence:descriptor}¶ {[histéric[o,a]]; influence:descriptor}¶ {[holgaz[án,ana]]; influence:descriptor}¶ {[honest[o,a]]; influence:descriptor}¶ horrible¶ {[hurañ[o,a]]; influence:descriptor}¶ {[imaginativ[o,a]]; influence:descriptor}¶ imbécil¶ impaciente¶ {[impetuos[o,a]]; influence:descriptor}¶ {[impulsiv[o,a]]; influence:descriptor}¶ independiente¶ infantil¶ {[ingenu[o,a]]; influence:descriptor}¶ {[inmadur[o,a]]; influence:descriptor}¶ {[inquiet[o,a]]; influence:descriptor}¶ insensible¶ inteligente¶ interesante¶ intolerante¶ {[intrépid[o,a]]; influence:descriptor}¶ {[juguet[ón,ona]]; influence:descriptor}¶ {[list[o,a]]; influence:descriptor}¶ {[llor[ón,ona]]; influence:descriptor}¶ {[loc[o,a]]; influence:descriptor}¶ {[madur[o,a]]; influence:descriptor}¶ {[maleducad[o,a]]; influence:descriptor}¶ {[malhumorad[o,a]]; influence:descriptor}¶ [{malicios[o,a]]; influence:descriptor}¶ {[mal[o,a]]; influence:descriptor}¶ maternal¶ {[melancólic[o,a]]; influence:descriptor}¶ {[meticulos[o,a]]; influence:descriptor}¶ {[modest[o,a]]; influence:descriptor}¶ mordaz¶ {[nervios[o,a]]; influence:descriptor}¶ {[odios[o,a]]; influence:descriptor}¶ {[orgullos[o,a]]; influence:descriptor}¶ paciente¶ {[pacífic[o,a]]; influence:descriptor}¶ pasional¶ {[pensativ[o,a]]; influence:descriptor}¶ {[perezos[o,a]]; influence:descriptor}¶ perseverante¶ {[perturbador[,a]]; influence:descriptor}¶ {[pesad[o,a]]; influence:descriptor}¶ {[pícar[o,a]]; influence:descriptor}¶ {[poderos[o,a]]; influence:descriptor}¶ {[positiv[o,a]]; influence:descriptor}¶ {[práctic[o,a]]; influence:descriptor}¶ {[presumid[o,a]]; influence:descriptor}¶ {[pretencios[o,a]]; influence:descriptor}¶ {[provocador[,a]]; influence:descriptor}¶ prudente¶ puntual¶ {[quisquillos[o,a]]; influence:descriptor}¶ {[reaci[o,a]]; influence:descriptor}¶ realista¶ {[recelos[o,a]]; influence:descriptor}¶ {[reservad[o,a]]; influence:descriptor}¶ responsable¶ {; influence:descriptor}¶ sagaz¶ {[segur[o,a]]; influence:descriptor}¶ {[segur[o,a]]; influence:descriptor} de sí {[mism[o,a]]; influence:descriptor}¶ {[sensat[o,a]]; influence:descriptor}¶ sensible¶ {[seren[o,a]]; influence:descriptor}¶ {[seri[o,a]]; influence:descriptor}¶ servicial¶ {[sever[o,a]]; influence:descriptor}¶ {[simpátic[o,a]]; influence:descriptor}¶ {[sincer[o,a]]; influence:descriptor}¶ {[sofisticad[o,a]]; influence:descriptor}¶ {[somnolient[o,a]]; influence:descriptor}¶ {[sos[o,a]]; influence:descriptor}¶ {[suci[o,a]]; influence:descriptor}¶ superficial¶ {[tacañ[o,a]]; influence:descriptor}¶ {[taciturn[o,a]]; influence:descriptor}¶ {[talentos[o,a]]; influence:descriptor}¶ {[terc[o,a]]; influence:descriptor}¶ {[tímid[o,a]]; influence:descriptor}¶ {[tont[o,a]]; influence:descriptor}¶ torpe¶ {[trabajador[,a]]; influence:descriptor}¶ {[tranquilizador[,a]]; influence:descriptor}¶ {[tranquil[o,a]]; influence:descriptor}¶ {[travies[o,a]]; influence:descriptor}¶ triste¶ útil¶ valiente¶ {[venenos[o,a]]; influence:descriptor}¶ vivaz</string>
+    <string name="descriptor_noun">{actor:alma; id:descriptor; grammatical-indicator:feminine}¶ {actor:ciudadano; id:descriptor; grammatical-indicator:masculine}¶ {rand:{actor:cliente; id:descriptor; grammatical-indicator:masculine}; {actor:clienta; id:descriptor; grammatical-indicator:feminine}}¶ {actor:cosa; id:descriptor; grammatical-indicator:feminine}¶ {actor:criatura; id:descriptor; grammatical-indicator:feminine}¶ {actor:cuerpo; id:descriptor; grammatical-indicator:masculine}¶ {actor:ente; id:descriptor; grammatical-indicator:masculine}¶ {actor:entidad; id:descriptor; grammatical-indicator:feminine}¶ {actor:esencia; id:descriptor; grammatical-indicator:feminine}¶ {actor:espécimen; id:descriptor; grammatical-indicator:masculine}¶ {actor:espíritu; id:descriptor; grammatical-indicator:masculine}¶ {actor:existencia; id:descriptor; grammatical-indicator:feminine}¶ {actor:figura; id:descriptor; grammatical-indicator:feminine}¶ {actor:forma; id:descriptor; grammatical-indicator:feminine}¶ {actor:forma de vida; id:descriptor; grammatical-indicator:feminine}¶ {actor:habitante; id:descriptor; grammatical-indicator:masculine}¶ {rand:{actor:individuo; id:descriptor; grammatical-indicator:masculine}; {actor:individua; id:descriptor; grammatical-indicator:feminine}}¶ {actor:materia; id:descriptor; grammatical-indicator:feminine}¶ {actor:organismo; id:descriptor; grammatical-indicator:masculine}¶ {actor:persona; id:descriptor; grammatical-indicator:feminine}¶ {actor:personaje; id:descriptor; grammatical-indicator:masculine}¶ {actor:personificación; id:descriptor; grammatical-indicator:feminine}¶ {actor:ser; id:descriptor; grammatical-indicator:masculine}¶ {actor:ser humano; id:descriptor; grammatical-indicator:masculine}¶ {actor:ser pensante; id:descriptor; grammatical-indicator:masculine}¶ {actor:ser racional; id:descriptor; grammatical-indicator:masculine}¶ {actor:ser sintiente; id:descriptor; grammatical-indicator:masculine}¶ {actor:ser vivo; id:descriptor; grammatical-indicator:masculine}¶ {actor:sujeto; id:descriptor; grammatical-indicator:masculine}¶ {actor:sustancia; id:descriptor; grammatical-indicator:feminine}¶ {rand:{actor:tipo; id:descriptor; grammatical-indicator:masculine}; {actor:tipa; id:descriptor; grammatical-indicator:feminine}}¶ {rand:{actor:usuario; id:descriptor; grammatical-indicator:masculine}; {actor:usuaria; id:descriptor; grammatical-indicator:feminine}}</string>
     <string name="donations_description">¡Por favor, considera donar algo de dinero para el desarrollo de la aplicación, eso me permitirá hacer esta aplicación aun mejor! Google Play Store aplica un porcentaje de impuestos dependiendo de tu país.</string>
     <string name="donations_donate">¡DONAR!</string>
     <string name="donations_title">Donar</string>
-    <string name="extended_family_member">[suegr[o,a]]¶ [cuñad[o,a]]¶ [[yerno,nuera]]¶ [[padrastro,madrastra]]¶ [hijastr[o,a]]¶ [[padrino,madrina]]¶ [ahijad[o,a]]</string>
-    <string name="family_member">{string:relative; gender:⸮}¶ {string:extended_family_member; gender:⸮}</string>
+    <string name="extended_family_member">{[suegr[o,a]]; influence:?}¶ {[cuñad[o,a]]; influence:?}¶ {[[yerno,nuera]]; influence:?}¶ {[[padrastro,madrastra]]; influence:?}¶ {[hijastr[o,a]]; influence:?}¶ {[[padrino,madrina]]; influence:?}¶ {[ahijad[o,a]]; influence:?}</string>
+    <string name="family_member">{string:relative}¶ {string:extended_family_member}</string>
     <string name="greeting_variant">¡Qué gusto de verte!¶ Tanto tiempo sin verte.¶ ¿Cómo estás?¶ ¿Qué tal?¶ ¿Cómo has estado?¶ ¿Cómo te ha ido?¶ ¿Cómo te está yendo?¶ ¿Cómo te va?¶ ¿Cómo está todo?¶ ¿Cómo va todo?¶ ¿Qué has hecho?¶ ¿Qué has hecho últimamente?¶ ¿Qué pasa?¶ ¿Qué hay?¶ ¿Qué hay de nuevo?¶ ¿Qué cuentas?¶ ¿Qué me cuentas?¶ Espero que te encuentres bien.¶ Espero que estés bien.¶ Espero que todo esté en orden.¶ Espero que todo esté bien contigo.</string>
     <string name="input_birthdate">Fecha de nacimiento:</string>
     <string name="input_gender_description">Género:</string>
@@ -119,7 +120,6 @@
     <string name="menu_about">Acerca de</string>
     <string name="menu_exit">Salir</string>
     <string name="name_generation">Generar nombre</string>
-    <string name="noun">existencia｢2｣¶ materia｢2｣¶ persona｢2｣¶ ser｢1｣¶ [human[o,a]]¶ [individu[o,a]]¶ entidad｢2｣¶ [[hombre,mujer]]¶ [client[e,a]]¶ sujeto｢1｣¶ ente｢1｣¶ esencia｢2｣¶ cosa｢2｣¶ sustancia｢2｣¶ criatura｢2｣¶ organismo｢1｣¶ forma｢2｣¶ espécimen｢1｣¶ forma de vida｢2｣¶ ser vivo｢1｣¶ [usuari[o,a]]¶ [amig[o,a]]¶ [conocid[o,a]]¶ [desconocid[o,a]]¶ colega｢0｣¶ camarada｢0｣¶ mejor [amig[o,a]]¶ [novi[o,a]]¶ [tip[o,a]]¶ personaje｢1｣¶ vástago｢1｣¶ figura｢2｣¶ habitante｢1｣¶ [muchach[o,a]]¶ joven｢0｣¶ [chic[o,a]]¶ personificación｢2｣</string>
     <string name="ok">OK</string>
     <string name="person_data"><![CDATA[%1$s<font color="#F6FBB2">, de género %2$s (%3$s)</font>]]></string>
     <string name="person_details">Detalles personales</string>
@@ -237,8 +237,8 @@
     <string name="preference_theme_summary">Cambia el tema de la aplicación</string>
     <string name="preference_update_frequency">Frecuencia de actualización</string>
     <string name="preference_update_frequency_summary">Cambia el tiempo que tarda en actualizarse la predicción</string>
-    <string name="qualitative_adjective">{[agradable]; plural:+s}¶ {[brillante]; plural:+s}¶ {[desagradable]; plural:+s}¶ {[diferente]; plural:+s}¶ {[frágil]; plural:+es}¶ {[electrizante]; plural:+s}¶ {[grandios[o,a]]; plural:+s}¶ {[mejor]; plural:+es}¶ {[normal]; plural:+es}¶ {[negativ[o,a]]; plural:+s}¶ {[oscur[o,a]]; plural:+s}¶ {[peor]; plural:+es}¶ {[positiv[o,a]]; plural:+s}¶ {[rar[o,a]]; plural:+s}¶ {[sólid[o,a]]; plural:+s}¶ {[terrible]; plural:+s}</string>
-    <string name="relative">[[padre,madre]]¶ [[papá,mamá]]¶ [hij[o,a]]¶ [prim[o,a]]¶ [tí[o,a]]¶ [sobrin[o,a]]¶ [herman[o,a]]¶ [abuel[o,a]]¶ [niet[o,a]]¶ [bisabuel[o,a]]</string>
+    <string name="qualitative_adjective">{[agradable]; plural-form:+s}¶ {[brillante]; plural-form:+s}¶ {[desagradable]; plural-form:+s}¶ {[diferente]; plural-form:+s}¶ {[frágil]; plural-form:+es}¶ {[electrizante]; plural-form:+s}¶ {[grandios[o,a]]; plural-form:+s}¶ {[mejor]; plural-form:+es}¶ {[normal]; plural-form:+es}¶ {[negativ[o,a]]; plural-form:+s}¶ {[oscur[o,a]]; plural-form:+s}¶ {[peor]; plural-form:+es}¶ {[positiv[o,a]]; plural-form:+s}¶ {[rar[o,a]]; plural-form:+s}¶ {[sólid[o,a]]; plural-form:+s}¶ {[terrible]; plural-form:+s}</string>
+    <string name="relative">{[[padre,madre]]; influence:?}¶ {[[papá,mamá]]; influence:?}¶ {[hij[o,a]]; influence:?}¶ {[prim[o,a]]; influence:?}¶ {[tí[o,a]]; influence:?}¶ {[sobrin[o,a]]; influence:?}¶ {[herman[o,a]]; influence:?}¶ {[abuel[o,a]]; influence:?}¶ {[niet[o,a]]; influence:?}¶ {[bisabuel[o,a]]; influence:?}</string>
     <string name="reload">Generar consulta</string>
     <string name="save">Guardar consulta</string>
     <string name="selector">Elegir consulta</string>
@@ -1099,36 +1099,36 @@
         <item>Décima – Integración del ‘yo’: profesión, vocación, carrera, estatus social. Ambición, Independencia social, capacidad para asumir responsabilidades y triunfar.</item>
     </string-array>
     <string-array name="augury_entity">
-        <item>un buda｢1｣</item>
-        <item>un demonio｢1｣</item>
-        <item>un ángel｢1｣</item>
-        <item>una mujer con los ojos vendados｢2｣</item>
-        <item>un esqueleto｢1｣</item>
-        <item>una doncella｢2｣</item>
-        <item>un hombre degollado｢1｣</item>
-        <item>una divinidad｢2｣</item>
-        <item>un dios｢1｣</item>
-        <item>un espíritu｢1｣</item>
-        <item>una aparición｢2｣</item>
-        <item>una estatua｢2｣</item>
-        <item>una edificación｢2｣</item>
-        <item>un cuerpo｢1｣</item>
-        <item>un cadáver｢1｣</item>
-        <item>un rey｢1｣</item>
-        <item>un emperador｢1｣</item>
-        <item>un caballero｢1｣</item>
-        <item>un dragón｢1｣</item>
-        <item>un perro｢1｣</item>
-        <item>una estrella｢2｣</item>
-        <item>un criminal｢1｣</item>
-        <item>un animal extraño｢1｣</item>
-        <item>un ave {rand:bicéfala; tricéfala}｢2｣</item>
-        <item>un rosario｢1｣</item>
-        <item>un ojo｢1｣</item>
-        <item>{string:individual; gender:⸮}</item>
-        <item>{string:individual; gender:⸮}</item>
-        <item>{string:individual; gender:⸮}</item>
-        <item>{string:individual; gender:⸮}</item>
+        <item>un {actor:buda; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:demonio; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:ángel; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>una {actor:mujer con los ojos vendados; id:auguryEntity; grammatical-indicator:feminine}</item>
+        <item>un {actor:esqueleto; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>una {actor:doncella; id:auguryEntity; grammatical-indicator:feminine}</item>
+        <item>un {actor:hombre degollado; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>una {actor:divinidad; id:auguryEntity; grammatical-indicator:feminine}</item>
+        <item>un {actor:dios; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:espíritu; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>una {actor:aparición; id:auguryEntity; grammatical-indicator:feminine}</item>
+        <item>una {actor:estatua; id:auguryEntity; grammatical-indicator:feminine}</item>
+        <item>una {actor:edificación; id:auguryEntity; grammatical-indicator:feminine}</item>
+        <item>un {actor:cuerpo; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:cadáver; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:rey; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:emperador; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:caballero; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:dragón; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:perro; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>una {actor:estrella; id:auguryEntity; grammatical-indicator:feminine}</item>
+        <item>un {actor:criminal; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:animal extraño; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:ave; id:auguryEntity; grammatical-indicator:feminine} {rand:{[bicéfal[o,a]]; influence:auguryEntity}; {[tricéfalo[o,a]]; influence:auguryEntity}}</item>
+        <item>un {actor:rosario; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>un {actor:ojo; id:auguryEntity; grammatical-indicator:masculine}</item>
+        <item>{string:individual}</item>
+        <item>{string:individual}</item>
+        <item>{string:individual}</item>
+        <item>{string:individual}</item>
     </string-array>
     <string-array name="augury_situation">
         <item>en medio del vacío</item>
@@ -1137,7 +1137,7 @@
         <item>orando</item>
         <item>{rand:desvaneciéndose; materializándose}</item>
         <item>naciente</item>
-        <item>[moribund[o,a]]</item>
+        <item>{[moribund[o,a]]; influence:auguryEntity}</item>
         <item>sosteniendo una espada</item>
         <item>sosteniendo una moneda</item>
         <item>sosteniendo una balanza</item>
@@ -1147,27 +1147,27 @@
         <item>devorando a alguien</item>
         <item>persiguiendo a alguien</item>
         <item>encima de un caballo</item>
-        <item>siendo [consumid[o,a]] por las llamas</item>
-        <item>siendo [consumid[o,a]] por la oscuridad</item>
-        <item>siendo [purificad[o,a]]</item>
-        <item>siendo [atravesad[o,a]] por una espada</item>
-        <item>[lauread[o,a]]</item>
-        <item>[rodead[o,a]] de personas</item>
-        <item>[rodead[o,a]] de flores</item>
-        <item>[rodead[o,a]] de espadas</item>
-        <item>[rodead[o,a]] por una aureola</item>
+        <item>siendo {[consumid[o,a]]; influence:auguryEntity} por las llamas</item>
+        <item>siendo {[consumid[o,a]]; influence:auguryEntity} por la oscuridad</item>
+        <item>siendo {[purificad[o,a]]; influence:auguryEntity}</item>
+        <item>siendo {[atravesad[o,a]]; influence:auguryEntity} por una espada</item>
+        <item>{[lauread[o,a]]; influence:auguryEntity}</item>
+        <item>{[rodead[o,a]]; influence:auguryEntity} de personas</item>
+        <item>{[rodead[o,a]]; influence:auguryEntity} de flores</item>
+        <item>{[rodead[o,a]]; influence:auguryEntity} de espadas</item>
+        <item>{[coronad[o,a]]; influence:auguryEntity} por una aureola</item>
         <item>resplandeciendo</item>
-        <item>siendo [vitoread[o,a]]</item>
-        <item>siendo [exaltad[o,a]]</item>
-        <item>siendo [sepultad[o,a]]</item>
-        <item>[sumergid[o,a]] en lágrimas</item>
+        <item>siendo {[vitoread[o,a]]; influence:auguryEntity}</item>
+        <item>siendo {[exaltad[o,a]]; influence:auguryEntity}</item>
+        <item>siendo {[sepultad[o,a]]; influence:auguryEntity}</item>
+        <item>{[sumergid[o,a]]; influence:auguryEntity} en lágrimas</item>
         <item>levitando</item>
         <item>volando</item>
         <item>cayendo</item>
         <item>danzando</item>
         <item>girando</item>
-        <item>de cabeza o [invertid[o,a]]</item>
-        <item>[perdid[o,a]]</item>
+        <item>de cabeza o {[invertid[o,a]]; influence:auguryEntity}</item>
+        <item>{[perdid[o,a]]; influence:auguryEntity}</item>
         <item>que gime</item>
         <item>que chilla</item>
         <item>emitiendo un sonido</item>
@@ -1205,6 +1205,32 @@
         <item>Azul</item>
         <item>Negro</item>
     </string-array>
+    <string-array name="common_greeting">
+        <item>{[Buena]; plural-form:+s; influence:?} {[noche]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[noche]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[noche]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[noche]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[noche]; plural-form:+s; influence:?}</item>
+        <item>{[Buen]; plural-form:+os; influence:?} {[día]; plural-form:+s; influence:?}</item>
+        <item>{[Buen]; plural-form:+os; influence:?} {[día]; plural-form:+s; influence:?}</item>
+        <item>{[Buen]; plural-form:+os; influence:?} {[día]; plural-form:+s; influence:?}</item>
+        <item>{[Buen]; plural-form:+os; influence:?} {[día]; plural-form:+s; influence:?}</item>
+        <item>{[Buen]; plural-form:+os; influence:?} {[día]; plural-form:+s; influence:?}</item>
+        <item>{[Buen]; plural-form:+os; influence:?} {[día]; plural-form:+s; influence:?}</item>
+        <item>{[Buen]; plural-form:+os; influence:?} {[día]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[tarde]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[tarde]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[tarde]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[tarde]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[tarde]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[tarde]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[tarde]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[tarde]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[noche]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[noche]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[noche]; plural-form:+s; influence:?}</item>
+        <item>{[Buena]; plural-form:+s; influence:?} {[noche]; plural-form:+s; influence:?}</item>
+    </string-array>
     <string-array name="compatibility">
         <item>\?</item>
         <item>Sagitario, Leo, Libra, Aries, Géminis.</item>
@@ -1227,9 +1253,9 @@
         <item>{string:greeting}, {string:conversation_addendum}. {string:greeting_variant}</item>
     </string-array>
     <string-array name="conversation_addendum">
-        <item><![CDATA[<font color="{method:getDefaultColor}"><b>{string:subject; gender:⛌}</b></font>]]></item>
+        <item>{string:subject}</item>
         <item><![CDATA[<i>{string:interjection}</i>]]></item>
-        <item><![CDATA[<font color="{method:getDefaultColor}"><b>{[usuari[o,a]]; gender:⛌} de {method:getDeviceInfo}</b></font>]]></item>
+        <item><![CDATA[<font color="{method:getDefaultColor}"><b>{[usuari[o,a]]} de {method:getDeviceInfo}</b></font>]]></item>
     </string-array>
     <string-array name="day_period">
         <item>un día</item>
@@ -1296,18 +1322,18 @@
         <item>Pasará algo {rand:∅; favorable; desfavorable} acerca {de/del} {method:getNounWithAnyArticle}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca {de/del} {method:getNounWithAnyArticle}.</item>
         <item>Un evento {string:situation_descriptor}, relacionado con {method:getNounWithAnyArticle}, ocurrirá.</item>
-        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas}, relacionadas con {string:divination_middle}, provenientes de {string:unspecific_person; gender:⸮}.</item>
+        <item>Recibirás noticias {rand:∅; buenas; malas; extrañas}, relacionadas con {string:divination_middle}, provenientes de {string:unspecific_person}.</item>
         <item>Recibirás noticias {rand:∅; buenas; malas; extrañas} acerca de {string:divination_middle}.</item>
         <item>Pasará algo {string:situation_descriptor} relacionado con {string:divination_middle}.</item>
-        <item>Ocurrirá algo relacionado con {string:unspecific_person; gender:⸮}.</item>
+        <item>Ocurrirá algo relacionado con {string:unspecific_person}.</item>
         <item>Tendrás problemas con una persona de signo {string:astrological_sign}.</item>
         <item>Una persona de signo {string:astrological_sign} te ayudará a resolver tus problemas.</item>
         <item>Una persona de signo {string:astrological_sign} te {rand:perjudicará; beneficiará; ayudará; abandonará; ignorará; verá}.</item>
         <item>Una persona de signo {string:astrological_sign} te afectará {rand:negativamente; positivamente} en {string:divination_middle}.</item>
         <item>Estás en un momento en el que debes tomar decisiones {rand:∅; críticas; apresuradas; importantes; bien pensadas; necesarias; esenciales} sobre {string:divination_middle}.</item>
-        <item>En este momento otros te perciben como una persona｢2｣ ⸠string:personality_trait; gender:2⸡.</item>
+        <item>En este momento otros te perciben como una {actor:persona; id:person; grammatical-indicator:feminine} {string:personality_trait}.</item>
         <item>{string:foreboding_start} {string:foreboding_end}</item>
-        <item>Yo {rand:veo; percibo; visualizo; contemplo} una imagen de {string:augury_entity} ⸠string:augury_situation⸡.</item>
+        <item>Yo {rand:veo; percibo; visualizo; contemplo} una imagen de {string:augury_entity} {string:augury_situation}.</item>
     </string-array>
     <string-array name="divination_appendix">
         <item>Algunas cosas, relacionadas con esta adivinación, son:</item>
@@ -1320,272 +1346,275 @@
         <item>Estas cosas tienen relación con lo anterior:</item>
         <item>Esto también aparece en la adivinación:</item>
     </string-array>
+    <string-array name="divination_base">
+        <item>{string:divination_start}, {string:divination_middle} {string:divination_end}.</item>
+        <item>{string:divination_start}, {string:divination_middle} {string:divination_end}. {string:divination_cause}.</item>
+    </string-array>
     <string-array name="divination_cause">
-        <item />
-        <item>Todo parece indicar que esto podría deberse {a/al} {string:divination_causative_factor}.</item>
-        <item>Posiblemente se deba {a/al} {string:divination_causative_factor}.</item>
-        <item>Se presume que esto podría ser causado por {string:divination_causative_factor}.</item>
-        <item>Esto se debe {a/al} {string:divination_causative_factor}.</item>
-        <item>Esto es causado por {string:divination_causative_factor}.</item>
-        <item>Esto puede ser debido {a/al} {string:divination_causative_factor}.</item>
-        <item>Esto podría ser causado por {string:divination_causative_factor}.</item>
-        <item>Puede que esto se deba {a/al} {string:divination_causative_factor}.</item>
-        <item>Aparentemente esto es causado por {string:divination_causative_factor}.</item>
-        <item>Esto es gracias {a/al} {string:divination_causative_factor}.</item>
-        <item>Podría decirse que esto es causado por {string:divination_causative_factor}.</item>
-        <item>Si no me equivoco, esto es debido {a/al} {string:divination_causative_factor}.</item>
-        <item>Creo que esto se debe {a/al} {string:divination_causative_factor}.</item>
-        <item>Supongo que lo anterior es causado por {string:divination_causative_factor}.</item>
-        <item>Puedo {rand:ver; percibir; detectar; sentir; observar; notar} que eso es debido {a/al} {string:divination_causative_factor}.</item>
-        <item>Se puede decir que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:divination_causative_factor}.</item>
-        <item>Veo que ⸠[[el,la]]⸡ {rand:razón｢2｣; causa｢2｣; circunstancia｢2｣; motivo｢1｣} de esto podría ser {string:divination_causative_factor}.</item>
-        <item>El {rand:responsable; causante; motivo} de ello podría ser {string:divination_causative_factor}.</item>
-        <item>La adivinación dice que, posiblemente, lo que causa esto sea {string:divination_causative_factor}.</item>
-        <item>Aparentemente, {string:divination_causative_factor} podría ser la causa de esto, de acuerdo a lo que puedo {rand:ver; percibir; detectar; sentir; observar; notar} en ⸠[est[e,a]]⸡ {rand:fortuna｢2｣; adivinación｢2｣; predicción｢2｣; augurio｢1｣}.</item>
-        <item>Es posible que {string:divination_causative_factor} tenga algo que ver.</item>
+        <item>Todo parece indicar que esto podría deberse {a/al} {string:divination_causative_factor}</item>
+        <item>Posiblemente se deba {a/al} {string:divination_causative_factor}</item>
+        <item>Se presume que esto podría ser causado por {string:divination_causative_factor}</item>
+        <item>Esto se debe {a/al} {string:divination_causative_factor}</item>
+        <item>Esto es causado por {string:divination_causative_factor}</item>
+        <item>Esto puede ser debido {a/al} {string:divination_causative_factor}</item>
+        <item>Esto podría ser causado por {string:divination_causative_factor}</item>
+        <item>Puede que esto se deba {a/al} {string:divination_causative_factor}</item>
+        <item>Aparentemente esto es causado por {string:divination_causative_factor}</item>
+        <item>Esto es gracias {a/al} {string:divination_causative_factor}</item>
+        <item>Podría decirse que esto es causado por {string:divination_causative_factor}</item>
+        <item>Si no me equivoco, esto es debido {a/al} {string:divination_causative_factor}</item>
+        <item>Creo que esto se debe {a/al} {string:divination_causative_factor}</item>
+        <item>Supongo que lo anterior es causado por {string:divination_causative_factor}</item>
+        <item>Puedo {rand:ver; percibir; detectar; sentir; observar; notar} que eso es debido {a/al} {string:divination_causative_factor}</item>
+        <item>Se puede decir que {[[el,la]]; influence:cause} {rand:{actor:razón; id:cause; grammatical-indicator:feminine}; {actor:causa; id:cause; grammatical-indicator:feminine}; {actor:circunstancia; id:cause; grammatical-indicator:feminine}; {actor:motivo; id:cause; grammatical-indicator:masculine}} de esto podría ser {string:divination_causative_factor}</item>
+        <item>Veo que {[[el,la]]; influence:cause} {rand:{actor:razón; id:cause; grammatical-indicator:feminine}; {actor:causa; id:cause; grammatical-indicator:feminine}; {actor:circunstancia; id:cause; grammatical-indicator:feminine}; {actor:motivo; id:cause; grammatical-indicator:masculine}} de esto podría ser {string:divination_causative_factor}</item>
+        <item>El {rand:responsable; causante; motivo} de ello podría ser {string:divination_causative_factor}</item>
+        <item>La adivinación dice que, posiblemente, lo que causa esto sea {string:divination_causative_factor}</item>
+        <item>Aparentemente, {string:divination_causative_factor} podría ser la causa de esto, de acuerdo a lo que puedo {rand:ver; percibir; detectar; sentir; observar; notar} en {[est[e,a]]; influence:divination} {rand:{actor:fortuna; id:divination; grammatical-indicator:feminine}; {actor:adivinación; id:divination; grammatical-indicator:feminine}; {actor:predicción; id:divination; grammatical-indicator:feminine}; {actor:augurio; id:divination; grammatical-indicator:masculine}}</item>
+        <item>Es posible que {string:divination_causative_factor} tenga algo que ver</item>
     </string-array>
     <string-array name="divination_causative_factor">
-        <item>{string:unspecific_person; gender:⸮}</item>
-        <item>{string:person; gender:⸮}</item>
-        <item>{string:individual; gender:⸮}</item>
-        <item>{string:individual; gender:⸮}</item>
+        <item>{string:unspecific_person}</item>
+        <item>{string:person}</item>
+        <item>{string:individual}</item>
+        <item>{string:individual}</item>
         <item>{string:divination_middle}</item>
         <item>{string:divination_middle}</item>
-        <item>{string:explicit_cause; gender:⸮}</item>
-        <item>{string:explicit_cause; gender:⸮}</item>
-        <item>{string:explicit_cause; gender:⸮}</item>
-        <item>{string:explicit_cause; gender:⸮}</item>
+        <item>{string:explicit_cause}</item>
+        <item>{string:explicit_cause}</item>
+        <item>{string:explicit_cause}</item>
+        <item>{string:explicit_cause}</item>
     </string-array>
     <string-array name="divination_end">
-        <item>{[será]; plural:serán} {string:qualitative_adjective; gender:＃}.</item>
-        <item>{[tendrá]; plural:tendrán} cambios positivos.</item>
-        <item>{[tendrá]; plural:tendrán} cambios negativos.</item>
-        <item>se {[verá]; plural:verán} {[afectad[o,a]]; gender:＃; plural:+s} de manera positiva.</item>
-        <item>se {[verá]; plural:verán} {[afectad[o,a]]; gender:＃; plural:+s} de manera negativa.</item>
-        <item>{[será]; plural:serán} {[afectad[o,a]]; gender:＃; plural:+s} positivamente.</item>
-        <item>{[será]; plural:serán} {[afectad[o,a]]; gender:＃; plural:+s} negativamente.</item>
-        <item>{[mejorará]; plural:mejorarán}.</item>
-        <item>{[empeorará]; plural:empeorarán}.</item>
-        <item>{[será]; plural:serán} {[buen[o,a]]; gender:＃; plural:+s}, o se {[remediará]; plural:remediarán} o {[reparará]; plural:repararán}.</item>
-        <item>{[será]; plural:serán} {[mal[o,a]]; gender:＃; plural:+s} o se {[deteriorará]; plural:deteriorarán}.</item>
-        <item>{[estará]; plural:estarán} bien o {[será]; plural:serán} {[óptim[o,a]]; gender:＃; plural:+s}.</item>
-        <item>{[estará]; plural:estarán} mal o {[será]; plural:serán} {[pésim[o,a]]; gender:＃; plural:+s}.</item>
-        <item>no {[será]; plural:serán} {[afectad[o,a]]; gender:＃; plural:+s} en modo alguno.</item>
-        <item>no se {[verá]; plural:verán} {[afectad[o,a]]; gender:＃; plural:+s}.</item>
-        <item>no {[cambiará]; plural:cambiarán}.</item>
-        <item>{[seguirá]; plural:seguirán} igual.</item>
-        <item>{[cambiará]; plural:cambiarán}.</item>
-        <item>{[cambiará]; plural:cambiarán} totalmente.</item>
-        <item>{[cambiará]; plural:cambiarán} a la inversa.</item>
-        <item>{[estará]; plural:estarán} al {method:getPercentage}.</item>
-        <item>se {[revertirá]; plural:revertirán}.</item>
-        <item>{[volverá]; plural:volverán} a ser como antes.</item>
-        <item>no {[será]; plural:serán} como antes.</item>
-        <item>se {[verá]; plural:verán} seriamente {[perjudicad[o,a]]; gender:＃; plural:+s}.</item>
-        <item>se {[verá]; plural:verán} realmente {[mejorad[o,a]]; gender:＃; plural:+s}.</item>
-        <item>{[será]; plural:serán} {[debilitad[o,a]]; gender:＃; plural:+s} o {[menguad[o,a]]; gender:＃; plural:+s}.</item>
-        <item>{[será]; plural:serán} {[potenciad[o,a]]; gender:＃; plural:+s} o {[crecerá]; plural:crecerán}.</item>
-        <item>{[traerá]; plural:traerán} soluciones o bienestar a otras personas.</item>
-        <item>{[causará]; plural:causarán} problemas o perjuicios a otras personas.</item>
-        <item>{[pasará]; plural:pasarán} a segundo plano.</item>
-        <item>{[pasará]; plural:pasarán} a primer plano.</item>
-        <item>{[saldrá]; plural:saldrán} a la luz.</item>
-        <item>{[será]; plural:serán} {[revelad[o,a]]; gender:＃; plural:+s}.</item>
-        <item>{[será]; plural:serán} {[recuperad[o,a]]; gender:＃; plural:+s}.</item>
-        <item>se {[perderá]; plural:perderán}.</item>
-        <item>{[regresará]; plural:regresarán}.</item>
-        <item>{[terminará]; plural:terminarán}.</item>
-        <item>{[aumentará]; plural:aumentarán} o se {[fortalecerá]; plural:fortalecerán} {rand:∅; aunque de manera gradual; súbitamente; de repente; poco a poco; un poco; demasiado}.</item>
-        <item>{[disminuirá]; plural:disminuirán} o se {[deteriorará]; plural:deteriorarán} {rand:∅; aunque de manera gradual; súbitamente; de repente; poco a poco; un poco; demasiado}.</item>
-        <item>{[traerá]; plural:traerán} buenos resultados, beneficios o ventajas en otros ámbitos de tu vida.</item>
-        <item>{[traerá]; plural:traerán} malos resultados, perjuicios o desventajas en otros ámbitos de tu vida.</item>
-        <item>{[repercutirá]; plural:repercutirán} positivamente en {string:divination_middle}.</item>
-        <item>{[repercutirá]; plural:repercutirán} negativamente en {string:divination_middle}.</item>
+        <item>{[será]; plural-form:[serán]; influence:divinationScope} {string:qualitative_adjective; influence:divinationScope}</item>
+        <item>{[tendrá]; plural-form:[tendrán]; influence:divinationScope} cambios positivos</item>
+        <item>{[tendrá]; plural-form:[tendrán]; influence:divinationScope} cambios negativos</item>
+        <item>se {[verá]; plural-form:[verán]; influence:divinationScope} {[afectad[o,a]]; plural-form:+s; influence:divinationScope} de manera positiva</item>
+        <item>se {[verá]; plural-form:[verán]; influence:divinationScope} {[afectad[o,a]]; plural-form:+s; influence:divinationScope} de manera negativa</item>
+        <item>{[será]; plural-form:[serán]; influence:divinationScope} {[afectad[o,a]]; plural-form:+s; influence:divinationScope} positivamente</item>
+        <item>{[será]; plural-form:[serán]; influence:divinationScope} {[afectad[o,a]]; plural-form:+s; influence:divinationScope} negativamente</item>
+        <item>{[mejorará]; plural-form:[mejorarán]; influence:divinationScope}</item>
+        <item>{[empeorará]; plural-form:[empeorarán]; influence:divinationScope}</item>
+        <item>{[será]; plural-form:[serán]; influence:divinationScope} {[buen[o,a]]; plural-form:+s; influence:divinationScope}, o se {[remediará]; plural-form:[remediarán]; influence:divinationScope} o {[reparará]; plural-form:[repararán]; influence:divinationScope}</item>
+        <item>{[será]; plural-form:[serán]; influence:divinationScope} {[mal[o,a]]; plural-form:+s; influence:divinationScope} o se {[deteriorará]; plural-form:[deteriorarán]; influence:divinationScope}</item>
+        <item>{[estará]; plural-form:[estarán]; influence:divinationScope} bien o {[será]; plural-form:[serán]; influence:divinationScope} {[óptim[o,a]]; plural-form:+s; influence:divinationScope}</item>
+        <item>{[estará]; plural-form:[estarán]; influence:divinationScope} mal o {[será]; plural-form:[serán]; influence:divinationScope} {[pésim[o,a]]; plural-form:+s; influence:divinationScope}</item>
+        <item>no {[será]; plural-form:[serán]; influence:divinationScope} {[afectad[o,a]]; plural-form:+s; influence:divinationScope} en modo alguno</item>
+        <item>no se {[verá]; plural-form:[verán]; influence:divinationScope} {[afectad[o,a]]; plural-form:+s; influence:divinationScope}</item>
+        <item>no {[cambiará]; plural-form:[cambiarán]; influence:divinationScope}</item>
+        <item>{[seguirá]; plural-form:[seguirán]; influence:divinationScope} igual</item>
+        <item>{[cambiará]; plural-form:[cambiarán]; influence:divinationScope}</item>
+        <item>{[cambiará]; plural-form:[cambiarán]; influence:divinationScope} totalmente</item>
+        <item>{[cambiará]; plural-form:[cambiarán]; influence:divinationScope} a la inversa</item>
+        <item>{[estará]; plural-form:[estarán]; influence:divinationScope} al {method:getPercentage}</item>
+        <item>se {[revertirá]; plural-form:[revertirán]; influence:divinationScope}</item>
+        <item>{[volverá]; plural-form:[volverán]; influence:divinationScope} a ser como antes</item>
+        <item>no {[será]; plural-form:[serán]; influence:divinationScope} como antes</item>
+        <item>se {[verá]; plural-form:[verán]; influence:divinationScope} seriamente {[perjudicad[o,a]]; plural-form:+s; influence:divinationScope}</item>
+        <item>se {[verá]; plural-form:[verán]; influence:divinationScope} realmente {[mejorad[o,a]]; plural-form:+s; influence:divinationScope}</item>
+        <item>{[será]; plural-form:[serán]; influence:divinationScope} {[debilitad[o,a]]; plural-form:+s; influence:divinationScope} o {[menguad[o,a]]; plural-form:+s; influence:divinationScope}</item>
+        <item>{[será]; plural-form:[serán]; influence:divinationScope} {[potenciad[o,a]]; plural-form:+s; influence:divinationScope} o {[crecerá]; plural-form:[crecerán]; influence:divinationScope}</item>
+        <item>{[traerá]; plural-form:[traerán]; influence:divinationScope} soluciones o bienestar a otras personas</item>
+        <item>{[causará]; plural-form:[causarán]; influence:divinationScope} problemas o perjuicios a otras personas</item>
+        <item>{[pasará]; plural-form:[pasarán]; influence:divinationScope} a segundo plano</item>
+        <item>{[pasará]; plural-form:[pasarán]; influence:divinationScope} a primer plano</item>
+        <item>{[saldrá]; plural-form:[saldrán]}; influence:divinationScope a la luz</item>
+        <item>{[será]; plural-form:[serán]; influence:divinationScope} {[revelad[o,a]]; plural-form:+s; influence:divinationScope}</item>
+        <item>{[será]; plural-form:[serán]; influence:divinationScope} {[recuperad[o,a]]; plural-form:+s; influence:divinationScope}</item>
+        <item>se {[perderá]; plural-form:[perderán]; influence:divinationScope}</item>
+        <item>{[regresará]; plural-form:[regresarán]; influence:divinationScope}</item>
+        <item>{[terminará]; plural-form:[terminarán]; influence:divinationScope}</item>
+        <item>{[aumentará]; plural-form:[aumentarán]; influence:divinationScope} o se {[fortalecerá]; plural-form:[fortalecerán]; influence:divinationScope} {rand:∅; aunque de manera gradual; súbitamente; de repente; poco a poco; un poco; demasiado}</item>
+        <item>{[disminuirá]; plural-form:[disminuirán]; influence:divinationScope} o se {[deteriorará]; plural-form:[deteriorarán]; influence:divinationScope} {rand:∅; aunque de manera gradual; súbitamente; de repente; poco a poco; un poco; demasiado}</item>
+        <item>{[traerá]; plural-form:[traerán]; influence:divinationScope} buenos resultados, beneficios o ventajas en otros ámbitos de tu vida</item>
+        <item>{[traerá]; plural-form:[traerán]; influence:divinationScope} malos resultados, perjuicios o desventajas en otros ámbitos de tu vida</item>
+        <item>{[repercutirá]; plural-form:[repercutirán]; influence:divinationScope} positivamente en {string:divination_middle}</item>
+        <item>{[repercutirá]; plural-form:[repercutirán]; influence:divinationScope} negativamente en {string:divination_middle}</item>
     </string-array>
     <string-array name="divination_middle">
         <item>{string:divination_middle_common}</item>
         <item>{string:divination_middle_ambit}</item>
     </string-array>
     <string-array name="divination_middle_common">
-        <item>tu {rand:vida｢2｣; destino｢1｣; karma｢1｣}｢s｣</item>
-        <item>tu {rand:desarrollo personal｢1｣; crecimiento personal｢1｣}｢s｣</item>
-        <item>tu {rand:plan de vida｢1｣; trayectoria｢2｣}｢s｣</item>
-        <item>tu desarrollo profesional｢1｣｢s｣</item>
-        <item>tu situación económica｢2｣｢s｣</item>
-        <item>tu {rand:salud｢2｣; estado de salud｢1｣}｢s｣</item>
-        <item>tu situación financiera｢2｣｢s｣</item>
-        <item>tu situación amorosa｢2｣｢s｣</item>
-        <item>tu vida social｢2｣｢s｣</item>
-        <item>tu {rand:sexualidad｢2｣; vida sexual｢2｣}｢s｣</item>
-        <item>tus {rand:relaciones｢2｣; relaciones interpersonales｢2｣}｢p｣</item>
-        <item>tus {rand:amoríos｢1｣; relaciones amorosas｢2｣}｢p｣</item>
-        <item>tus {rand:finanzas｢2｣; riquezas｢2｣; recursos financieros｢1｣; ganancias financieras｢2｣}｢p｣</item>
-        <item>tus negocios o proyectos｢1｣｢p｣</item>
-        <item>tus actividades｢2｣｢p｣</item>
-        <item>tu estabilidad｢2｣｢s｣</item>
-        <item>tu {rand:estabilidad emocional｢2｣; inteligencia emocional｢2｣}｢s｣</item>
-        <item>tu {rand:cordura｢2｣; destreza mental｢2｣; salud mental｢2｣; inteligencia｢2｣; sentido común｢1｣}｢s｣</item>
-        <item>tus relaciones familiares｢2｣｢p｣</item>
-        <item>tus relaciones laborales｢2｣｢p｣</item>
-        <item>tus amistades｢2｣｢p｣</item>
-        <item>tu sentido de comunidad｢1｣｢s｣</item>
-        <item>tu sentido de identidad｢1｣｢s｣</item>
-        <item>tu identidad de grupo｢2｣｢s｣</item>
-        <item>tu rol｢1｣｢s｣</item>
-        <item>tu contribución｢2｣｢s｣</item>
-        <item>tu aprendizaje｢1｣｢s｣</item>
-        <item>tu trabajo｢1｣｢s｣</item>
-        <item>tus estudios o empleos｢1｣｢p｣</item>
-        <item>tus pasatiempos o intereses｢1｣｢p｣</item>
-        <item>tu situación legal｢2｣｢s｣</item>
-        <item>tus {rand:bienes｢1｣; propiedades o pertenencias｢2｣}｢p｣</item>
-        <item>tu seguridad｢2｣｢s｣</item>
-        <item>tu {rand:estilo de vida｢1｣; manera de vivir｢2｣}｢s｣</item>
-        <item>tu {rand:comodidad｢2｣; calidad de vida｢2｣}｢s｣</item>
-        <item>tu {rand:prestigio｢1｣; reputación｢2｣; fama｢2｣; popularidad｢2｣; renombre｢1｣}｢s｣</item>
-        <item>tu honor｢1｣｢s｣</item>
-        <item>tu bienestar｢1｣｢s｣</item>
-        <item>tu suerte｢2｣｢s｣</item>
-        <item>tus emociones｢2｣｢p｣</item>
-        <item>tus sentidos｢1｣｢p｣</item>
-        <item>tu personalidad｢2｣｢s｣</item>
-        <item>tu armonía｢2｣｢s｣</item>
-        <item>el equilibrio de tu hogar｢1｣｢s｣</item>
-        <item>la dependencia｢2｣ de, o hacia, otras personas｢s｣</item>
-        <item>tu autoestima｢2｣｢s｣</item>
-        <item>tu {rand:humor｢1｣; estado de ánimo｢1｣}｢s｣</item>
-        <item>tu {rand:carácter｢1｣; idiosincracia｢2｣; temperamento｢1｣}｢s｣</item>
-        <item>tu carisma｢1｣｢s｣</item>
-        <item>tu {rand:poder｢1｣; autoridad｢2｣; dominio｢1｣; influencia sobre otros｢2｣}｢s｣</item>
-        <item>tu zona de confort｢2｣｢s｣</item>
-        <item>tu {rand:razón de ser｢2｣; sentido de la vida｢1｣}｢s｣</item>
-        <item>tu fuerza de voluntad｢2｣｢s｣</item>
-        <item>tu recreación｢2｣｢s｣</item>
-        <item>tu {rand:prosperidad｢2｣; abundancia｢2｣}｢s｣</item>
-        <item>tu espiritualidad｢2｣｢s｣</item>
-        <item>tu {rand:desempeño｢1｣; rendimiento｢1｣; productividad｢2｣}｢s｣</item>
-        <item>tus asociaciones｢2｣｢p｣</item>
-        <item>tu {rand:estatus social｢1｣; posición social｢2｣}｢s｣</item>
-        <item>tu {rand:relevancia｢2｣; importancia｢2｣}｢s｣</item>
-        <item>tu {rand:vigor｢1｣; fuerza｢2｣; condición física｢2｣; energía｢2｣}｢s｣</item>
-        <item>tus {rand:estímulos｢1｣; fuentes de placer｢2｣}｢p｣</item>
-        <item>tu éxito｢1｣｢s｣</item>
-        <item>tus {rand:deseos｢1｣; expectativas｢2｣; sueños｢1｣; ambiciones｢2｣}｢p｣</item>
-        <item>tus pasiones｢2｣｢p｣</item>
-        <item>tus talentos｢1｣｢p｣</item>
-        <item>tu legado o herencia｢1｣｢s｣</item>
-        <item>tus planes｢1｣｢p｣</item>
-        <item>tus necesidades fisiológicas｢2｣｢p｣</item>
-        <item>tus ganas de hacer algo｢2｣｢p｣</item>
-        <item>tu tiempo｢1｣｢s｣</item>
-        <item>tu privacidad｢2｣｢s｣</item>
-        <item>tu autorrealización｢2｣｢s｣</item>
-        <item>tu motivación｢2｣｢s｣</item>
-        <item>tu presencia｢2｣｢s｣</item>
-        <item>tu toma de decisiones｢2｣｢s｣</item>
-        <item>la consecución de objetivos relacionada con {string:divination_middle}｢2｣｢s｣</item>
+        <item>tu {rand:{actor:vida; id:divinationScope; grammatical-indicator:feminine}; {actor:destino; id:divinationScope; grammatical-indicator:masculine}; {actor:karma; id:divinationScope; grammatical-indicator:masculine}}</item>
+        <item>tu {rand:{actor:desarrollo personal; id:divinationScope; grammatical-indicator:masculine}; {actor:crecimiento personal; id:divinationScope; grammatical-indicator:masculine}}</item>
+        <item>tu {rand:{actor:plan de vida; id:divinationScope; grammatical-indicator:masculine}; {actor:trayectoria; id:divinationScope; grammatical-indicator:feminine}}</item>
+        <item>tu {actor:desarrollo profesional; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:situación económica; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {rand:{actor:salud; id:divinationScope; grammatical-indicator:feminine}; {actor:estado de salud; id:divinationScope; grammatical-indicator:masculine}}</item>
+        <item>tu {actor:situación financiera; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:situación amorosa; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:vida social; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {rand:{actor:sexualidad; id:divinationScope; grammatical-indicator:feminine}; {actor:vida sexual; id:divinationScope; grammatical-indicator:feminine}}</item>
+        <item>tus {rand:{actor:relaciones; id:divinationScope; grammatical-indicator:plural-feminine}; {actor:relaciones interpersonales; id:divinationScope; grammatical-indicator:plural-feminine}}</item>
+        <item>tus {rand:{actor:amoríos; id:divinationScope; grammatical-indicator:plural-masculine}; {actor:relaciones amorosas; id:divinationScope; grammatical-indicator:plural-feminine}}</item>
+        <item>tus {rand:{actor:finanzas; id:divinationScope; grammatical-indicator:plural-feminine}; {actor:riquezas; id:divinationScope; grammatical-indicator:plural-feminine}; {actor:recursos financieros; id:divinationScope; grammatical-indicator:plural-masculine}; {actor:ganancias financieras; id:divinationScope; grammatical-indicator:plural-feminine}}</item>
+        <item>tus {actor:negocios o proyectos; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tus {actor:actividades; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {actor:estabilidad; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {rand:{actor:estabilidad emocional; id:divinationScope; grammatical-indicator:feminine}; {actor:inteligencia emocional; id:divinationScope; grammatical-indicator:feminine}}</item>
+        <item>tu {rand:{actor:cordura; id:divinationScope; grammatical-indicator:feminine}; {actor:destreza mental; id:divinationScope; grammatical-indicator:feminine}; {actor:salud mental; id:divinationScope; grammatical-indicator:feminine}; {actor:inteligencia; id:divinationScope; grammatical-indicator:feminine}; {actor:sentido común; id:divinationScope; grammatical-indicator:masculine}}</item>
+        <item>tus {actor:relaciones familiares; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tus {actor:relaciones laborales; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tus {actor:amistades; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {actor:sentido de comunidad; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:sentido de identidad; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:identidad de grupo; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:rol; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:contribución; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:aprendizaje; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:trabajo; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tus {actor:estudios o empleos; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tus {actor:pasatiempos o intereses; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:situación legal; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {rand:{actor:bienes; id:divinationScope; grammatical-indicator:plural-masculine}; {actor:propiedades o pertenencias; id:divinationScope; grammatical-indicator:plural-feminine}}</item>
+        <item>tu {actor:seguridad; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {rand:{actor:estilo de vida; id:divinationScope; grammatical-indicator:masculine}; {actor:manera de vivir; id:divinationScope; grammatical-indicator:feminine}}</item>
+        <item>tu {rand:{actor:comodidad; id:divinationScope; grammatical-indicator:feminine}; {actor:calidad de vida; id:divinationScope; grammatical-indicator:feminine}}</item>
+        <item>tu {rand:{actor:prestigio; id:divinationScope; grammatical-indicator:masculine}; {actor:reputación; id:divinationScope; grammatical-indicator:feminine}; {actor:fama; id:divinationScope; grammatical-indicator:feminine}; {actor:popularidad; id:divinationScope; grammatical-indicator:feminine}; {actor:renombre; id:divinationScope; grammatical-indicator:masculine}}</item>
+        <item>tu {actor:honor; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:bienestar; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:suerte; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:emociones; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tus {actor:sentidos; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:personalidad; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:armonía; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>el {actor:equilibrio de tu hogar; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>la {actor:dependencia; id:divinationScope; grammatical-indicator:feminine} de, o hacia, otras personas</item>
+        <item>tu {actor:autoestima; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {rand:{actor:humor; id:divinationScope; grammatical-indicator:masculine}; {actor:estado de ánimo; id:divinationScope; grammatical-indicator:masculine}}</item>
+        <item>tu {rand:{actor:carácter; id:divinationScope; grammatical-indicator:masculine}; {actor:idiosincrasia; id:divinationScope; grammatical-indicator:feminine}; {actor:temperamento; id:divinationScope; grammatical-indicator:masculine}}</item>
+        <item>tu {actor:carisma; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {rand:{actor:poder; id:divinationScope; grammatical-indicator:masculine}; {actor:autoridad; id:divinationScope; grammatical-indicator:feminine}; {actor:dominio; id:divinationScope; grammatical-indicator:masculine}; {actor:influencia sobre otros; id:divinationScope; grammatical-indicator:feminine}}</item>
+        <item>tu {actor:zona de confort; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {rand:{actor:razón de ser; id:divinationScope; grammatical-indicator:feminine}; {actor:sentido de la vida; id:divinationScope; grammatical-indicator:masculine}}</item>
+        <item>tu {actor:fuerza de voluntad; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:recreación; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {rand:{actor:prosperidad; id:divinationScope; grammatical-indicator:feminine}; {actor:abundancia; id:divinationScope; grammatical-indicator:feminine}}</item>
+        <item>tu {actor:espiritualidad; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {rand:{actor:desempeño; id:divinationScope; grammatical-indicator:masculine}; {actor:rendimiento; id:divinationScope; grammatical-indicator:masculine}; {actor:productividad; id:divinationScope; grammatical-indicator:feminine}}</item>
+        <item>tus {actor:asociaciones; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {rand:{actor:estatus social; id:divinationScope; grammatical-indicator:masculine}; {actor:posición social; id:divinationScope; grammatical-indicator:feminine}}</item>
+        <item>tu {rand:{actor:relevancia; id:divinationScope; grammatical-indicator:feminine}; {actor:importancia; id:divinationScope; grammatical-indicator:feminine}}</item>
+        <item>tu {rand:{actor:vigor; id:divinationScope; grammatical-indicator:masculine}; {actor:fuerza; id:divinationScope; grammatical-indicator:feminine}; {actor:condición física; id:divinationScope; grammatical-indicator:feminine}; {actor:energía; id:divinationScope; grammatical-indicator:feminine}}</item>
+        <item>tus {rand:{actor:estímulos; id:divinationScope; grammatical-indicator:plural-masculine}; {actor:fuentes de placer; id:divinationScope; grammatical-indicator:plural-feminine}}</item>
+        <item>tu {actor:éxito; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tus {rand:{actor:deseos; id:divinationScope; grammatical-indicator:plural-masculine}; {actor:expectativas; id:divinationScope; grammatical-indicator:plural-feminine}; {actor:sueños; id:divinationScope; grammatical-indicator:plural-masculine}; {actor:ambiciones; id:divinationScope; grammatical-indicator:plural-feminine}}</item>
+        <item>tus {actor:pasiones; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tus {actor:talentos; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:legado o herencia; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tus {actor:planes; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tus {actor:necesidades fisiológicas; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tus {actor:ganas de hacer algo; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {actor:tiempo; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:privacidad; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:autorrealización; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:motivación; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:presencia; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:toma de decisiones; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>la {actor:consecución de objetivos; id:divinationScope; grammatical-indicator:feminine} relacionada con {string:divination_middle}</item>
     </string-array>
     <string-array name="divination_middle_ambit">
-        <item>tu amor romántico｢1｣｢s｣</item>
-        <item>tus relaciones familiares｢2｣｢p｣</item>
-        <item>tus amistades｢2｣｢p｣</item>
-        <item>tu carrera profesional｢2｣｢s｣</item>
-        <item>tus finanzas y dinero｢1｣｢p｣</item>
-        <item>tu salud física｢2｣｢s｣</item>
-        <item>tu bienestar emocional｢1｣｢s｣</item>
-        <item>tu espiritualidad｢2｣｢s｣</item>
-        <item>tu crecimiento personal｢1｣｢s｣</item>
-        <item>tu autoestima｢2｣｢s｣</item>
-        <item>tus decisiones importantes｢2｣｢p｣</item>
-        <item>tus viajes y aventuras｢1｣｢p｣</item>
-        <item>tus mudanzas y cambios de residencia｢1｣｢p｣</item>
-        <item>tus proyectos creativos｢1｣｢p｣</item>
-        <item>tu educación y aprendizaje｢1｣｢p｣</item>
-        <item>tu propósito de vida｢1｣｢s｣</item>
-        <item>tu transformación personal｢2｣｢s｣</item>
-        <item>tus obstáculos a superar｢1｣｢p｣</item>
-        <item>tu autoconocimiento｢1｣｢s｣</item>
-        <item>tu equilibrio entre trabajo y vida personal｢1｣｢s｣</item>
-        <item>tu comunicación efectiva｢2｣｢s｣</item>
-        <item>tu resolución de conflictos｢2｣｢s｣</item>
-        <item>tus negocios y emprendimientos｢1｣</item>
-        <item>tu reubicación laboral｢2｣｢s｣</item>
-        <item>tu estabilidad financiera｢2｣｢s｣</item>
-        <item>tus herencias y legados｢1｣｢p｣</item>
-        <item>tus experiencias pasadas｢2｣｢p｣</item>
-        <item>tu futuro a corto plazo｢1｣｢s｣</item>
-        <item>tu futuro a largo plazo｢1｣｢s｣</item>
-        <item>tus relaciones kármicas｢2｣｢p｣</item>
-        <item>tu establecimiento de límites personales｢1｣｢s｣</item>
-        <item>tu expresión creativa｢2｣｢s｣</item>
-        <item>tu recuperación emocional｢2｣｢s｣</item>
-        <item>tus cambios de vida importantes｢1｣｢p｣</item>
-        <item>tu maternidad o paternidad｢2｣｢s｣</item>
-        <item>tus responsabilidades familiares｢2｣｢p｣</item>
-        <item>tu manifestación de deseos｢2｣｢s｣</item>
-        <item>tu tiempo de descanso y autocuidado｢1｣｢s｣</item>
-        <item>tu conexión con la naturaleza｢2｣｢s｣</item>
-        <item>tus ciclos y fases de la vida｢1｣｢p｣</item>
-        <item>tu perdón y sanación｢1｣｢p｣</item>
-        <item>tu autoconfianza｢2｣｢s｣</item>
-        <item>tu sexualidad y expresión sexual｢2｣｢p｣</item>
-        <item>tu apoyo emocional｢1｣｢s｣</item>
-        <item>tu equilibrio energético｢1｣｢s｣</item>
-        <item>tu fertilidad o embarazo｢1｣｢p｣</item>
-        <item>tu aprendizaje espiritual｢1｣｢s｣</item>
-        <item>tu realización de metas｢2｣｢s｣</item>
-        <item>tu protección y seguridad｢2｣｢p｣</item>
-        <item>tu claridad mental｢2｣｢s｣</item>
-        <item>tu aceptación de la realidad｢2｣｢s｣</item>
-        <item>tus soluciones creativas｢2｣｢p｣</item>
-        <item>tus celebraciones y eventos sociales｢1｣｢p｣</item>
-        <item>tus proyectos de vivienda｢1｣｢p｣</item>
-        <item>tu exploración de talentos ocultos｢2｣｢s｣</item>
-        <item>tu autoempoderamiento｢1｣｢s｣</item>
-        <item>tu liberación de viejos patrones｢2｣｢s｣</item>
-        <item>tus conexiones espirituales｢2｣｢p｣</item>
-        <item>tus consejos de sabiduría｢1｣｢p｣</item>
-        <item>tu expansión de la conciencia｢2｣｢s｣</item>
-        <item>tu compatibilidad en relaciones｢2｣｢s｣</item>
-        <item>tu sanación del pasado｢2｣｢s｣</item>
-        <item>tu autoexpresión auténtica｢2｣｢s｣</item>
-        <item>tu equilibrio entre dar y recibir｢1｣｢s｣</item>
-        <item>tu protección energética｢2｣｢s｣</item>
-        <item>tu recuperación de pérdidas｢2｣｢s｣</item>
-        <item>tu administración del tiempo｢2｣｢s｣</item>
-        <item>tu renovación personal｢2｣｢s｣</item>
-        <item>tus nuevas oportunidades｢2｣｢p｣</item>
-        <item>tu conexión con guías espirituales｢2｣｢s｣</item>
-        <item>tu mejora de la intuición｢2｣｢s｣</item>
-        <item>tu exploración de talentos artísticos｢2｣｢s｣</item>
-        <item>tus responsabilidades financieras｢2｣｢p｣</item>
-        <item>tus negociaciones y acuerdos｢1｣｢p｣</item>
-        <item>tu liberación de miedos｢2｣｢s｣</item>
-        <item>tu creación de relaciones armoniosas｢2｣｢s｣</item>
-        <item>tu autocontrol emocional｢1｣｢s｣</item>
-        <item>tu meditación y relajación｢1｣｢s｣</item>
-        <item>tu exploración de pasiones｢2｣｢s｣</item>
-        <item>tu apreciación del presente｢2｣｢s｣</item>
-        <item>tu adaptabilidad al cambio｢2｣｢s｣</item>
-        <item>tu transformación de creencias limitantes｢2｣｢s｣</item>
-        <item>tu conexión con la sabiduría interior｢2｣｢s｣</item>
-        <item>tu recuperación de la confianza｢2｣｢s｣</item>
-        <item>tu protección y cuidado personal｢1｣｢p｣</item>
-        <item>tu superación de bloqueos creativos｢2｣｢s｣</item>
-        <item>tu empoderamiento financiero｢1｣｢s｣</item>
-        <item>tu exploración de nuevas perspectivas｢2｣｢s｣</item>
-        <item>tus ciclos de finalización y nuevos comienzos｢1｣｢p｣</item>
-        <item>tu autoaceptación y amor propio｢1｣｢p｣</item>
-        <item>tu empatía y compasión｢2｣｢p｣</item>
-        <item>tu conexión con la espiritualidad cotidiana｢2｣｢s｣</item>
-        <item>tu responsabilidad personal｢2｣｢s｣</item>
-        <item>tu fomento de la gratitud｢1｣｢s｣</item>
-        <item>tu resolución de dilemas｢2｣｢s｣</item>
-        <item>tu paz interior｢2｣｢s｣</item>
-        <item>tu exploración de vidas pasadas｢2｣｢s｣</item>
-        <item>tu mejoramiento de habilidades de comunicación｢1｣｢s｣</item>
-        <item>tu equilibrio entre dar y recibir｢1｣｢s｣</item>
-        <item>tu manifestación de sueños y deseos｢2｣｢s｣</item>
+        <item>tu {actor:amor romántico; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tus {actor:relaciones familiares; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tus {actor:amistades; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {actor:carrera profesional; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:finanzas y dinero; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:salud física; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:bienestar emocional; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:espiritualidad; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:crecimiento personal; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:autoestima; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:decisiones importantes; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tus {actor:viajes y aventuras; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tus {actor:mudanzas y cambios de residencia; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tus {actor:proyectos creativos; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:educación y aprendizaje; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:propósito de vida; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:transformación personal; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:obstáculos a superar; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:autoconocimiento; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:equilibrio entre trabajo y vida personal; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:comunicación efectiva; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:resolución de conflictos; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:negocios y emprendimientos; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:reubicación laboral; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:estabilidad financiera; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:herencias y legados; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tus {actor:experiencias pasadas; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {actor:futuro a corto plazo; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:futuro a largo plazo; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tus {actor:relaciones kármicas; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {actor:establecimiento de límites personales; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:expresión creativa; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:recuperación emocional; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:cambios de vida importantes; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:maternidad o paternidad; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:responsabilidades familiares; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {actor:manifestación de deseos; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:tiempo de descanso y autocuidado; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:conexión con la naturaleza; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:ciclos y fases de la vida; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:perdón y sanación; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:autoconfianza; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:sexualidad y expresión sexual; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {actor:apoyo emocional; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:equilibrio energético; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:fertilidad o embarazo; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:aprendizaje espiritual; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:realización de metas; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:protección y seguridad; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {actor:claridad mental; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:aceptación de la realidad; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:soluciones creativas; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tus {actor:celebraciones y eventos sociales; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tus {actor:proyectos de vivienda; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:exploración de talentos ocultos; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:autoempoderamiento; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:liberación de viejos patrones; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:conexiones espirituales; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tus {actor:consejos de sabiduría; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:expansión de la conciencia; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:compatibilidad en relaciones; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:sanación del pasado; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:autoexpresión auténtica; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:equilibrio entre dar y recibir; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:protección energética; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:recuperación de pérdidas; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:administración del tiempo; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:renovación personal; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:nuevas oportunidades; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {actor:conexión con guías espirituales; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:mejora de la intuición; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:exploración de talentos artísticos; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:responsabilidades financieras; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tus {actor:negociaciones y acuerdos; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:liberación de miedos; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:creación de relaciones armoniosas; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:autocontrol emocional; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:meditación y relajación; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:exploración de pasiones; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:apreciación del presente; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:adaptabilidad al cambio; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:transformación de creencias limitantes; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:conexión con la sabiduría interior; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:recuperación de la confianza; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:protección y cuidado personal; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:superación de bloqueos creativos; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:empoderamiento financiero; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:exploración de nuevas perspectivas; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tus {actor:ciclos de finalización y nuevos comienzos; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:autoaceptación y amor propio; id:divinationScope; grammatical-indicator:plural-masculine}</item>
+        <item>tu {actor:empatía y compasión; id:divinationScope; grammatical-indicator:plural-feminine}</item>
+        <item>tu {actor:conexión con la espiritualidad cotidiana; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:responsabilidad personal; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:fomento de la gratitud; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:resolución de dilemas; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:paz interior; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:exploración de vidas pasadas; id:divinationScope; grammatical-indicator:feminine}</item>
+        <item>tu {actor:mejoramiento de habilidades de comunicación; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:equilibrio entre dar y recibir; id:divinationScope; grammatical-indicator:masculine}</item>
+        <item>tu {actor:manifestación de sueños y deseos; id:divinationScope; grammatical-indicator:feminine}</item>
     </string-array>
     <string-array name="divination_start">
         <item>Dentro de {string:day_period}</item>
@@ -1723,17 +1752,17 @@
         <item>el comportamiento de otros</item>
         <item>tu actitud</item>
         <item>la presencia de una persona</item>
-        <item>la presencia de {string:unspecific_person; gender:⸮}</item>
+        <item>la presencia de {string:unspecific_person}</item>
         <item>las personas que te rodean</item>
         <item>la influencia de otros</item>
         <item>las acciones de otros</item>
         <item>las decisiones de otros</item>
         <item>la actitud de los demás</item>
-        <item>la influencia de {string:unspecific_person; gender:⸮}</item>
-        <item>la intromisión de {string:unspecific_person; gender:⸮}</item>
-        <item>la interferencia u oposición de {string:unspecific_person; gender:⸮}</item>
-        <item>los actos de {string:unspecific_person; gender:⸮}</item>
-        <item>las palabras de {string:unspecific_person; gender:⸮}</item>
+        <item>la influencia de {string:unspecific_person}</item>
+        <item>la intromisión de {string:unspecific_person}</item>
+        <item>la interferencia u oposición de {string:unspecific_person}</item>
+        <item>los actos de {string:unspecific_person}</item>
+        <item>las palabras de {string:unspecific_person}</item>
         <item>las palabras de otros</item>
         <item>los deseos de otros</item>
         <item>las plegarias de los demás</item>
@@ -1990,11 +2019,11 @@
     <string-array name="greeting">
         <item>Buenas</item>
         <item>Hola</item>
-        <item>{[Bienvenid[o,a]]; gender:⛌}</item>
-        <item>{method:getSimpleGreeting}</item>
-        <item>Buen {method:getCurrentDayOfWeek}</item>
-        <item>{string:date_component} {method:getCurrentDate}</item>
-        <item>{string:time_component} {method:getCurrentTime}</item>
+        <item>{[Bienvenid[o,a]]}</item>
+        <item>{string:common_greeting; index:h}</item>
+        <item>Buen {date-time:EEEE}</item>
+        <item>{string:date_component} {date}</item>
+        <item>{string:time_component} {time}</item>
     </string-array>
     <string-array name="incompatibility">
         <item>\?</item>
@@ -2014,7 +2043,7 @@
     <string-array name="individual">
         <item>{string:individual_aspect}</item>
         <item>{string:individual_base}</item>
-        <item>{string:individual_base} ⸠string:individual_trait⸡</item>
+        <item>{string:individual_base} {string:individual_trait}</item>
     </string-array>
     <string-array name="individual_aspect">
         <item>una mujer de estatura baja</item>
@@ -2449,33 +2478,33 @@
         <item>un hombre con una gruesa melena de pelo</item>
     </string-array>
     <string-array name="individual_base">
-        <item>[un[,a]] [[hombre,mujer]]</item>
-        <item>[un[,a]] [niñ[o,a]]</item>
-        <item>[un[,a]] [chic[o,a]]</item>
-        <item>[un[,a]] joven</item>
-        <item>[un[,a]] [[hombre,mujer]] [viej[o,a]]</item>
-        <item>[un[,a]] [muchach[o,a]]</item>
-        <item>[un[,a]] infante</item>
-        <item>[un[,a]] [adult[o,a]]</item>
-        <item>[un[,a]] adolescente</item>
-        <item>una persona de menor edad｢2｣</item>
-        <item>una persona de mayor edad｢2｣</item>
-        <item>una persona de la misma edad｢2｣</item>
-        <item>una persona mayor de edad｢2｣</item>
-        <item>[un[,a]] menor de edad</item>
-        <item>[un[,a]] bebé</item>
-        <item>[un[,a]] recién [nacid[o,a]]</item>
-        <item>[un[,a]] preadolescente</item>
-        <item>[un[,a]] [ancian[o,a]]</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:hombre; id:individual; grammatical-indicator:masculine}; {actor:mujer; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:niño; id:individual; grammatical-indicator:masculine}; {actor:niña; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:chico; id:individual; grammatical-indicator:masculine}; {actor:chica; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:joven; id:individual; grammatical-indicator:masculine}; {actor:joven; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:hombre; id:individual; grammatical-indicator:masculine}; {actor:mujer; id:individual; grammatical-indicator:feminine}} {[viej[o,a]]; influence:individual}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:muchacho; id:individual; grammatical-indicator:masculine}; {actor:muchacha; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:infante; id:individual; grammatical-indicator:masculine}; {actor:infante; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:adulto; id:individual; grammatical-indicator:masculine}; {actor:adulta; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:adolescente; id:individual; grammatical-indicator:masculine}; {actor:adolescente; id:individual; grammatical-indicator:feminine}}</item>
+        <item>una {actor:persona de menor edad; id:individual; grammatical-indicator:feminine}</item>
+        <item>una {actor:persona de mayor edad; id:individual; grammatical-indicator:feminine}</item>
+        <item>una {actor:persona de la misma edad; id:individual; grammatical-indicator:feminine}</item>
+        <item>una {actor:persona mayor de edad; id:individual; grammatical-indicator:feminine}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:menor de edad; id:individual; grammatical-indicator:masculine}; {actor:menor de edad; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:bebé; id:individual; grammatical-indicator:masculine}; {actor:bebé; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{[un[,a]]; influence:individual} recién {rand:{actor:nacido; id:individual; grammatical-indicator:masculine}; {actor:nacida; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:preadolescente; id:individual; grammatical-indicator:masculine}; {actor:preadolescente; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{[un[,a]]; influence:individual} {rand:{actor:anciano; id:individual; grammatical-indicator:masculine}; {actor:anciana; id:individual; grammatical-indicator:feminine}}</item>
     </string-array>
     <string-array name="individual_build">
-        <item>[regordet[e,a]]</item>
+        <item>{[regordet[e,a]]; influence:individual}</item>
         <item>con sobrepeso</item>
-        <item>[baj[o,a]] y [fornid[o,a]]</item>
+        <item>{[baj[o,a]]; influence:individual} y {[fornid[o,a]]; influence:individual}</item>
         <item>fuerte</item>
-        <item>[corpulent[o,a]]</item>
-        <item>[esbelt[o,a]]</item>
-        <item>[delgad[o,a]]</item>
+        <item>{[corpulent[o,a]]; influence:individual}</item>
+        <item>{[esbelt[o,a]]; influence:individual}</item>
+        <item>{[delgad[o,a]]; influence:individual}</item>
     </string-array>
     <string-array name="individual_eyes">
         <item>de ojos azules</item>
@@ -2495,14 +2524,14 @@
         <item>de ojos grandes</item>
     </string-array>
     <string-array name="individual_hair">
-        <item>[calv[o,a]]</item>
-        <item>[rapad[o,a]]</item>
+        <item>{[calv[o,a]]; influence:individual}</item>
+        <item>{[rapad[o,a]]; influence:individual}</item>
         <item>de cabello claro</item>
         <item>de cabello blanquecino</item>
         <item>de cabello rubio</item>
         <item>de cabello castaño</item>
         <item>de cabello castaño rojizo</item>
-        <item>[pelirroj[o,a]]</item>
+        <item>{[pelirroj[o,a]]; influence:individual}</item>
         <item>de cabello grisáceo</item>
         <item>de cabello oscuro</item>
         <item>de cabello oscuro</item>
@@ -2518,14 +2547,14 @@
         <item>de cabello esponjado</item>
     </string-array>
     <string-array name="individual_height">
-        <item>muy [baj[o,a]]</item>
-        <item>[baj[o,a]]</item>
-        <item>[baj[o,a]]</item>
+        <item>muy {[baj[o,a]]; influence:individual}</item>
+        <item>{[baj[o,a]]; influence:individual}</item>
+        <item>{[baj[o,a]]; influence:individual}</item>
         <item>de estatura media</item>
         <item>de estatura media</item>
-        <item>[alt[o,a]]</item>
-        <item>[alt[o,a]]</item>
-        <item>muy [alt[o,a]]</item>
+        <item>{[alt[o,a]]; influence:individual}</item>
+        <item>{[alt[o,a]]; influence:individual}</item>
+        <item>muy {[alt[o,a]]; influence:individual}</item>
     </string-array>
     <string-array name="individual_trait">
         <item>{string:individual_build}</item>
@@ -2534,10 +2563,10 @@
         <item>{string:individual_height}</item>
     </string-array>
     <string-array name="individual_representation">
-        <item>{string:individual_base} ⸠string:individual_build⸡</item>
-        <item>{string:individual_base} ⸠string:individual_eyes⸡</item>
-        <item>{string:individual_base} ⸠string:individual_hair⸡</item>
-        <item>{string:individual_base} ⸠string:individual_height⸡</item>
+        <item>{string:individual_base} {string:individual_build}</item>
+        <item>{string:individual_base} {string:individual_eyes}</item>
+        <item>{string:individual_base} {string:individual_hair}</item>
+        <item>{string:individual_base} {string:individual_height}</item>
     </string-array>
     <string-array name="language">
         <item>Inglés</item>
@@ -2608,61 +2637,61 @@
         <item>Animal anónimo</item>
     </string-array>
     <string-array name="negative_trait">
-        <item>[aburrid[o,a]]</item>
-        <item>[agresiv[o,a]]</item>
-        <item>[apátic[o,a]]</item>
+        <item>{[aburrid[o,a]]; influence:person}</item>
+        <item>{[agresiv[o,a]]; influence:person}</item>
+        <item>{[apátic[o,a]]; influence:person}</item>
         <item>arrogante</item>
-        <item>[atrevid[o,a]]</item>
-        <item>[celos[o,a]]</item>
-        <item>[charlat[án,ana]]</item>
+        <item>{[atrevid[o,a]]; influence:person}</item>
+        <item>{[celos[o,a]]; influence:person}</item>
+        <item>{[charlat[án,ana]]; influence:person}</item>
         <item>cruel</item>
         <item>débil</item>
         <item>desconfiable</item>
         <item>descortés</item>
-        <item>[deshonest[o,a]]</item>
-        <item>[despistad[o,a]]</item>
+        <item>{[deshonest[o,a]]; influence:person}</item>
+        <item>{[despistad[o,a]]; influence:person}</item>
         <item>dominante</item>
         <item>egoísta</item>
-        <item>[envidios[o,a]]</item>
-        <item>[estrict[o,a]]</item>
-        <item>[excéntric[o,a]]</item>
-        <item>[fanfarr[ón,ona]]</item>
-        <item>[frívol[o,a]]</item>
-        <item>[harag[án,ana]]</item>
+        <item>{[envidios[o,a]]; influence:person}</item>
+        <item>{[estrict[o,a]]; influence:person}</item>
+        <item>{[excéntric[o,a]]; influence:person}</item>
+        <item>{[fanfarr[ón,ona]]; influence:person}</item>
+        <item>{[frívol[o,a]]; influence:person}</item>
+        <item>{[harag[án,ana]]; influence:person}</item>
         <item>hipócrita</item>
         <item>impaciente</item>
         <item>impredecible</item>
-        <item>[impulsiv[o,a]]</item>
+        <item>{[impulsiv[o,a]]; influence:person}</item>
         <item>indiferente</item>
-        <item>[insegur[o,a]]</item>
+        <item>{[insegur[o,a]]; influence:person}</item>
         <item>insensible</item>
-        <item>[insolente</item>
-        <item>[interesad[o,a]]</item>
-        <item>[introvertid[o,a]]</item>
+        <item>insolente</item>
+        <item>{[interesad[o,a]]; influence:person}</item>
+        <item>{[introvertid[o,a]]; influence:person}</item>
         <item>irascible</item>
-        <item>[irrespetuos[o,a]]</item>
+        <item>{[irrespetuos[o,a]]; influence:person}</item>
         <item>irresponsable</item>
-        <item>[malhumorad[o,a]]</item>
-        <item>[mand[ón,ona]]</item>
+        <item>{[malhumorad[o,a]]; influence:person}</item>
+        <item>{[mand[ón,ona]]; influence:person}</item>
         <item>materialista</item>
-        <item>[metid[o,a]]</item>
-        <item>[mezquin[o,a]]</item>
-        <item>[modest[o,a]]</item>
-        <item>[molest[o,a]]</item>
-        <item>[obsesionad[o,a]]</item>
-        <item>[obstinad[o,a]]</item>
-        <item>[olvidadiz[o,a]]</item>
-        <item>[orgullos[o,a]]</item>
-        <item>[pendencier[o,a]]</item>
+        <item>{[metid[o,a]]; influence:person}</item>
+        <item>{[mezquin[o,a]]; influence:person}</item>
+        <item>{[modest[o,a]]; influence:person}</item>
+        <item>{[molest[o,a]]; influence:person}</item>
+        <item>{[obsesionad[o,a]]; influence:person}</item>
+        <item>{[obstinad[o,a]]; influence:person}</item>
+        <item>{[olvidadiz[o,a]]; influence:person}</item>
+        <item>{[orgullos[o,a]]; influence:person}</item>
+        <item>{[pendencier[o,a]]; influence:person}</item>
         <item>pesimista</item>
-        <item>[quejumbros[o,a]]</item>
-        <item>[quisquillos[o,a]]</item>
-        <item>[rencoros[o,a]]</item>
-        <item>[solitari[o,a]]</item>
-        <item>[tímid[o,a]]</item>
+        <item>{[quejumbros[o,a]]; influence:person}</item>
+        <item>{[quisquillos[o,a]]; influence:person}</item>
+        <item>{[rencoros[o,a]]; influence:person}</item>
+        <item>{[solitari[o,a]]; influence:person}</item>
+        <item>{[tímid[o,a]]; influence:person}</item>
         <item>torpe</item>
-        <item>[trampos[o,a]]</item>
-        <item>[vanidos[o,a]]</item>
+        <item>{[trampos[o,a]]; influence:person}</item>
+        <item>{[vanidos[o,a]]; influence:person}</item>
     </string-array>
     <string-array name="opinion">
         <item>¿Has oído de {method:getFormattedName}? Es mi peor enemigo.</item>
@@ -2670,10 +2699,10 @@
         <item>¿De casualidad no conoces a {method:getFormattedName}?</item>
         <item>Tengo que ir con {method:getFormattedName}. Me debe dinero.</item>
         <item>Estoy enamorado de {method:getFormattedName}.</item>
-        <item>¿Acaso has visto a ⸠[un[,a]]⸡ tal {method:getFormattedName}?</item>
-        <item>Tu {string:relative; gender:⸮}, {method:getFormattedName} y yo somos amantes. Todo un triángulo amoroso.</item>
-        <item>¿Eres {string:relative; gender:⛌} de {method:getFormattedName}? Se parecen mucho.</item>
-        <item>¿Eres acaso {string:relative; gender:⛌} de {method:getFormattedName}? Comparten ciertas características ustedes dos.</item>
+        <item>¿Acaso has visto a {[un[,a]]} tal {method:getFormattedName}?</item>
+        <item>Tu {string:relative}, {method:getFormattedName} y yo somos amantes. Todo un triángulo amoroso.</item>
+        <item>¿Eres {string:relative} de {method:getFormattedName}? Se parecen mucho.</item>
+        <item>¿Eres acaso {string:relative} de {method:getFormattedName}? Comparten ciertas características ustedes dos.</item>
         <item>Me agrada verte por aquí, no como a {method:getFormattedName}.</item>
         <item>Oh, sí, revelé un futuro terrorífico para {method:getFormattedName}.</item>
         <item>El otro día {method:getFormattedName} me pidió que le leyera el futuro.</item>
@@ -2689,8 +2718,8 @@
         <item>Hay una persona muy agradable llamada {method:getFormattedName}.</item>
         <item>Me gusta la comida, en especial aquella hecha por {method:getFormattedName}.</item>
         <item>Hay dos personas en este mundo a quienes deberías conocer. Ellas son {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>Tengo muchos hermanos, y mi ⸠[favorit[o,a]]⸡ es {method:getFormattedName}.</item>
-        <item>Nunca vayas a hablar con {method:getFormattedName}, es muy ⸠[molest[o,a]]⸡.</item>
+        <item>Tengo muchos hermanos, y mi {[favorit[o,a]]} es {method:getFormattedName}.</item>
+        <item>Nunca vayas a hablar con {method:getFormattedName}, es muy {[molest[o,a]]}.</item>
         <item>Me encanta hacer adivinaciones para {method:getFormattedName}.</item>
         <item>Sí, ¿has visto a {method:getFormattedName}? Necesito hablar con esta persona.</item>
         <item>A ver, a ver, uh, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, uh… y {method:getFormattedName}. Listo, anotados los que me faltan para predecirles su futuro.</item>
@@ -2722,7 +2751,7 @@
         <item>{method:getFormattedName} y {method:getFormattedName} son muy cercanos.</item>
         <item>{method:getFormattedName} y {method:getFormattedName} se entienden muy bien.</item>
         <item>Necesito encontrar a {method:getFormattedName}. Me debe dinero.</item>
-        <item>Estoy buscando a {method:getFormattedName}. ¿Tú ⸠[l[o,a]]⸡ has visto?</item>
+        <item>Estoy buscando a {method:getFormattedName}. ¿Tú {[l[o,a]]} has visto?</item>
         <item>Me parece que {method:getFormattedName} tiene un destino muy malo.</item>
         <item>Creo que {method:getFormattedName} tiene un buen futuro.</item>
         <item>¿Crees que no soy real? {method:getFormattedName} cree lo contrario.</item>
@@ -2800,7 +2829,7 @@
         <item>¿Sabes quién es {method:getFormattedName}?</item>
         <item>¿Conoces a {method:getFormattedName}?</item>
         <item>¿Quieres oír acerca de {method:getFormattedName}?</item>
-        <item>Ten cuidado con {method:getFormattedName}, es ⸠[mal[o,a]]⸡ con las personas que lo rodean.</item>
+        <item>Ten cuidado con {method:getFormattedName}, es {[mal[o,a]]} con las personas que lo rodean.</item>
         <item>Deberías ver a {method:getFormattedName}, es muy agradable.</item>
         <item>Honestamente, estoy cansado de predecirle el futuro a {method:getFormattedName}.</item>
         <item>¿Sabes algo de {method:getFormattedName}?</item>
@@ -2813,10 +2842,10 @@
         <item>Si pudiera armar un grupo de tontos, elegiría a {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}.</item>
         <item>El mejor grupo con el cual salir es {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}.</item>
         <item>Siempre es bueno escuchar los consejos de {method:getFormattedName}.</item>
-        <item>Tengo ⸠[un[,a]]⸡ ⸠[conocid[o,a]]⸡ ⸠[llamad[o,a]]⸡ {method:getFormattedName}.</item>
-        <item>Tengo ⸠[un[,a]]⸡ ⸠[amig[o,a]]⸡ ⸠[llamad[o,a]]⸡ {method:getFormattedName}.</item>
-        <item>Tengo ⸠[un[,a]]⸡ ⸠[enemig[o,a]]⸡ ⸠[llamad[o,a]]⸡ {method:getFormattedName}.</item>
-        <item>Tengo ⸠[un[,a]]⸡ amante ⸠[llamad[o,a]]⸡ {method:getFormattedName}.</item>
+        <item>Tengo {[un[,a]]} {[conocid[o,a]]} {[llamad[o,a]]} {method:getFormattedName}.</item>
+        <item>Tengo {[un[,a]]} {[amig[o,a]]} {[llamad[o,a]]} {method:getFormattedName}.</item>
+        <item>Tengo {[un[,a]]} {[enemig[o,a]]} {[llamad[o,a]]} {method:getFormattedName}.</item>
+        <item>Tengo {[un[,a]]} amante {[llamad[o,a]]} {method:getFormattedName}.</item>
         <item>Soy mejor que una persona llamada {method:getFormattedName}.</item>
         <item>{method:getFormattedName} tiene asegurado un buen futuro.</item>
         <item>A {method:getFormattedName} no le espera un buen futuro.</item>
@@ -2832,14 +2861,14 @@
         <item>¿Sabes lo que pasará con {method:getFormattedName}?</item>
         <item>Parece que {method:getFormattedName} y {method:getFormattedName} se pertenecen.</item>
         <item>Vaya, vaya, {method:getFormattedName} tiene buen presagio.</item>
-        <item>La profecía indica que {method:getFormattedName} es ⸠[[el,la]]⸡ ⸠[elegid[o,a]]⸡.</item>
+        <item>La profecía indica que {method:getFormattedName} es {[[el,la]]} {[elegid[o,a]]}.</item>
         <item>{method:getFormattedName} ha aceptado su destino.</item>
         <item>{method:getFormattedName} lucha vanamente contra su destino.</item>
         <item>Tengo el presentimiento de que te has cruzado con {method:getFormattedName}.</item>
         <item>Tengo muy buenas noticias para {method:getFormattedName}.</item>
         <item>Hay muy malas noticias sobre {method:getFormattedName}.</item>
         <item>Tengo malas noticias para {method:getFormattedName}.</item>
-        <item>La profecía dice que {method:getFormattedName} será ⸠[exitos[o,a]]⸡.</item>
+        <item>La profecía dice que {method:getFormattedName} será {[exitos[o,a]]}.</item>
         <item>{method:getFormattedName} es la persona mencionada en la profecía.</item>
         <item>El augurio señala prosperidad para {method:getFormattedName}.</item>
         <item>El augurio muestra que {method:getFormattedName} tendrá una larga vida.</item>
@@ -2860,13 +2889,13 @@
         <item>La situación cambiará para {method:getFormattedName}.</item>
         <item>{method:getFormattedName} recibirá lo que merece.</item>
         <item>{method:getFormattedName} recibirá un castigo.</item>
-        <item>{method:getFormattedName} será ⸠[recompensad[o,a]]⸡.</item>
+        <item>{method:getFormattedName} será {[recompensad[o,a]]}.</item>
         <item>{method:getFormattedName} tendrá una vida llena de intrigas y suspenso.</item>
         <item>Así como lo indica el augurio, {method:getFormattedName} será una persona exitosa.</item>
         <item>El futuro muestra cosas buenas y malas, pero {method:getFormattedName} parece tener la vida más sencilla.</item>
         <item>El destino de {method:getFormattedName} es realmente complejo.</item>
         <item>Dicen que {method:getFormattedName} hará cosas tan increíbles que cambiarán a la sociedad.</item>
-        <item>Uh, {method:getFormattedName} será ⸠[un[,a]]⸡ ⸠[visionari[o,a]]⸡.</item>
+        <item>Uh, {method:getFormattedName} será {[un[,a]]} {[visionari[o,a]]}.</item>
         <item>Hay cosas tan oscuras en el futuro de {method:getFormattedName}.</item>
         <item>Incluso yo no puedo descifrar del todo lo que pasará con {method:getFormattedName}.</item>
         <item>{method:getFormattedName} desafía todas las posibilidades.</item>
@@ -2888,7 +2917,7 @@
         <item>Si te das la oportunidad, {method:getFormattedName} te sorprenderá.</item>
         <item>Un sabio alguna vez dijo que errar es humano. La persona más humana que hay, posiblemente, es {method:getFormattedName}.</item>
         <item>Si los fracasos nos hacen sabios, {method:getFormattedName} debe ser uno de los más grandes eruditos que hay.</item>
-        <item>Te contaré la breve historia de {method:getFormattedName}, quien nació siendo ⸠[un[,a]]⸡ de los más talentosos individuos y que, sin embargo, terminó negándose el éxito debido a su actitud.</item>
+        <item>Te contaré la breve historia de {method:getFormattedName}, quien nació siendo uno de los más talentosos individuos y que, sin embargo, terminó negándose el éxito debido a su actitud.</item>
         <item>{method:getFormattedName} es realmente egoísta.</item>
         <item>{method:getFormattedName} acepta su destino.</item>
         <item>{method:getFormattedName} es de las pocas personas que no sé cómo es que siguen aquí a pesar de todo lo que les ha pasado.</item>
@@ -2898,18 +2927,18 @@
         <item>Nunca se puede confiar en {method:getFormattedName}.</item>
         <item>Si ves a {method:getFormattedName}, aléjate.</item>
         <item>Me estresa lidiar con {method:getFormattedName}.</item>
-        <item>Muchos creen que pueden enfrentarse a su destino, como ⸠[es[e,a]]⸡ tal {method:getFormattedName}.</item>
+        <item>Muchos creen que pueden enfrentarse a su destino, como {[es[e,a]]} tal {method:getFormattedName}.</item>
         <item>Hay personas quienes no hacen caso de lo que sucederá, lo cual es el caso de {method:getFormattedName}.</item>
-        <item>Nunca debes tratar con {method:getFormattedName}, pues es ⸠[peligros[o,a]]⸡.</item>
+        <item>Nunca debes tratar con {method:getFormattedName}, pues es {[peligros[o,a]]}.</item>
         <item>Es difícil ver el futuro de {method:getFormattedName}. Todo es borroso.</item>
-        <item>No he podido ver el futuro de ⸠[un[,a]]⸡ tal {method:getFormattedName}.</item>
+        <item>No he podido ver el futuro de {[un[,a]]} tal {method:getFormattedName}.</item>
         <item>{method:getFormattedName} es una de las pocas personas cuyo futuro es incierto.</item>
         <item>{method:getFormattedName} es de las pocas personas a las cuales no se les puede realizar una adivinación.</item>
         <item>Si ves a {method:getFormattedName}, dile que le mando saludos.</item>
-        <item>Si ves a {method:getFormattedName}, dile que ⸠[l[o,a]]⸡ espero para una consulta.</item>
+        <item>Si ves a {method:getFormattedName}, dile que {[l[o,a]]} espero para una consulta.</item>
         <item>Relaciónate con {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}, pues son personas buenas.</item>
         <item>Trata con {method:getFormattedName}, pues buenas cosas podrían salir de esa relación.</item>
-        <item>Es bien sabido que {method:getFormattedName} es ⸠[un[,a]]⸡ ⸠[vag[o,a]]}.</item>
+        <item>Es bien sabido que {method:getFormattedName} es {[un[,a]]} {[vag[o,a]]}.</item>
         <item>Se sabe muy bien que {method:getFormattedName} una vez logró evitar la muerte.</item>
         <item>{method:getFormattedName} se ha salvado muchas veces de morir.</item>
         <item>Algunos están hechos para morir hasta que logren lo inaudito, tal como {method:getFormattedName}.</item>
@@ -2935,7 +2964,7 @@
         <item>{method:getFormattedName} quiere dañar a {method:getFormattedName}.</item>
         <item>{method:getFormattedName} quiere que {method:getFormattedName} sea feliz.</item>
         <item>{method:getFormattedName} actúa de manera totalmente distinta a como dice ser.</item>
-        <item>{method:getFormattedName} es ⸠[un[,a]]⸡ cobarde.</item>
+        <item>{method:getFormattedName} es {[un[,a]]} cobarde.</item>
         <item>{method:getFormattedName} enfrenta valientemente su destino.</item>
         <item>¿Quién diría que {method:getFormattedName} y {method:getFormattedName} se llevarían muy bien?</item>
         <item>¿Quién pensaría que {method:getFormattedName} y {method:getFormattedName} serían muy cercanos?</item>
@@ -2968,22 +2997,22 @@
         <item>{method:getFormattedName} conoce a {method:getFormattedName}.</item>
         <item>Tengo que decirle algo a {method:getFormattedName}.</item>
         <item>Debo ver el futuro de {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} es una persona {string:adjective; gender:2}.</item>
-        <item>{method:getFormattedName} es un sujeto {string:adjective; gender:1⸡.</item>
-        <item>{method:getFormattedName} es un individuo {string:adjective; gender:1}.</item>
-        <item>{method:getFormattedName} y su {string:relative; gender:⸮} se llevan muy bien.</item>
-        <item>{method:getFormattedName} y su {string:relative; gender:⸮} tienen una mala relación.</item>
-        <item>{method:getFormattedName} y su {string:relative; gender:⸮} se tratan muy mal.</item>
-        <item>{method:getFormattedName} y su {string:relative; gender:⸮} tienen una relación armoniosa.</item>
-        <item>{method:getFormattedName} y su {string:relative; gender:⸮} han hecho cosas indecibles.</item>
-        <item>{method:getFormattedName} y su {string:relative; gender:⸮} han hecho cosas muy malas.</item>
-        <item>Tu {string:relative; gender:⸮} se parece mucho a {method:getFormattedName}.</item>
-        <item>Tu {string:relative; gender:⸮} ama a {method:getFormattedName}.</item>
-        <item>Tu {string:relative; gender:⸮} odia a {method:getFormattedName}.</item>
-        <item>Tu {string:relative; gender:⸮} ignora a {method:getFormattedName}.</item>
-        <item>Tu {string:relative; gender:⸮} es buen amigo de {method:getFormattedName}.</item>
-        <item>Tu {string:relative; gender:⸮} se lleva mal con {method:getFormattedName}.</item>
-        <item>Tu {string:relative; gender:⸮} y {method:getFormattedName} son enemigos.</item>
+        <item>{method:getFormattedName} es una {actor:persona; id:person; grammatical-indicator:feminine} {string:adjective; defaultOverride:person}.</item>
+        <item>{method:getFormattedName} es un {actor:sujeto; id:person; grammatical-indicator:feminine} {string:adjective; defaultOverride:person}.</item>
+        <item>{method:getFormattedName} es un {actor:individuo; id:person; grammatical-indicator:feminine} {string:adjective; defaultOverride:person}.</item>
+        <item>{method:getFormattedName} y su {string:relative} se llevan muy bien.</item>
+        <item>{method:getFormattedName} y su {string:relative} tienen una mala relación.</item>
+        <item>{method:getFormattedName} y su {string:relative} se tratan muy mal.</item>
+        <item>{method:getFormattedName} y su {string:relative} tienen una relación armoniosa.</item>
+        <item>{method:getFormattedName} y su {string:relative} han hecho cosas indecibles.</item>
+        <item>{method:getFormattedName} y su {string:relative} han hecho cosas muy malas.</item>
+        <item>Tu {string:relative} se parece mucho a {method:getFormattedName}.</item>
+        <item>Tu {string:relative} ama a {method:getFormattedName}.</item>
+        <item>Tu {string:relative} odia a {method:getFormattedName}.</item>
+        <item>Tu {string:relative} ignora a {method:getFormattedName}.</item>
+        <item>Tu {string:relative} es buen amigo de {method:getFormattedName}.</item>
+        <item>Tu {string:relative} se lleva mal con {method:getFormattedName}.</item>
+        <item>Tu {string:relative} y {method:getFormattedName} son enemigos.</item>
     </string-array>
     <string-array name="person">
         <item>&personType1;</item>
@@ -3219,6 +3248,12 @@
         <item>Júpiter</item>
         <item>Saturno</item>
     </string-array>
+    <string-array name="sample_actor">
+        <item>{actor:sample; id:sample; grammatical-indicator:singular-masculine; hidden}</item>
+        <item>{actor:sample; id:sample; grammatical-indicator:singular-feminine; hidden}</item>
+        <item>{actor:sample; id:sample; grammatical-indicator:plural-masculine; hidden}</item>
+        <item>{actor:sample; id:sample; grammatical-indicator:plural-feminine; hidden}</item>
+    </string-array>
     <string-array name="text_type">
         <item>Leer frases del adivinador</item>
         <item>Leer adivinaciones</item>
@@ -3235,200 +3270,183 @@
         <item>{string:negative_trait}</item>
     </string-array>
     <string-array name="positive_trait">
-        <item>[agradecid[o,a]]</item>
-        <item>[ahorrador[,a]]</item>
+        <item>{[agradecid[o,a]]; influence:person}</item>
+        <item>{[ahorrador[,a]]; influence:person}</item>
         <item>amable</item>
-        <item>[ambicios[o,a]]</item>
+        <item>{[ambicios[o,a]]; influence:person}</item>
         <item>amigable</item>
-        <item>[animad[o,a]]</item>
+        <item>{[animad[o,a]]; influence:person}</item>
         <item>[atent[o,a]]</item>
         <item>audaz</item>
-        <item>[batallador[,a]]</item>
-        <item>[cautelos[o,a]]</item>
-        <item>[cautivador[o,a]]</item>
-        <item>[compasiv[o,a]]</item>
-        <item>[comprensiv[o,a]]</item>
-        <item>[comprometid[o,a]]</item>
+        <item>{[batallador[,a]]; influence:person}</item>
+        <item>{[cautelos[o,a]]; influence:person}</item>
+        <item>{[cautivador[o,a]]; influence:person}</item>
+        <item>{[compasiv[o,a]]; influence:person}</item>
+        <item>{[comprensiv[o,a]]; influence:person}</item>
+        <item>{[comprometid[o,a]]; influence:person}</item>
         <item>confiable</item>
-        <item>[considerad[o,a]]</item>
-        <item>[creativ[o,a]]</item>
-        <item>[cuidados[o,a]]</item>
-        <item>[curios[o,a]]</item>
+        <item>{[considerad[o,a]]; influence:person}</item>
+        <item>{[creativ[o,a]]; influence:person}</item>
+        <item>{[cuidados[o,a]]; influence:person}</item>
+        <item>{[curios[o,a]]; influence:person}</item>
         <item>de fiar</item>
-        <item>[desenfadad[o,a]]</item>
-        <item>[despreocupad[o,a]]</item>
-        <item>[devot[o,a]]</item>
-        <item>[discret[o,a]]</item>
-        <item>[empeñad[o,a]]</item>
-        <item>[enérgic[o,a]]</item>
-        <item>[entretenid[o,a]]</item>
+        <item>{[desenfadad[o,a]]; influence:person}</item>
+        <item>{[despreocupad[o,a]]; influence:person}</item>
+        <item>{[devot[o,a]]; influence:person}</item>
+        <item>{[discret[o,a]]; influence:person}</item>
+        <item>{[empeñad[o,a]]; influence:person}</item>
+        <item>{[enérgic[o,a]]; influence:person}</item>
+        <item>{[entretenid[o,a]]; influence:person}</item>
         <item>entusiasta</item>
-        <item>[escrupulos[o,a]]</item>
-        <item>[extrovertid[o,a]]</item>
-        <item>[fervoros[o,a]]</item>
-        <item>[fidedign[o,a]]</item>
-        <item>[franc[o,a]]</item>
-        <item>[generos[o,a]]</item>
+        <item>{[escrupulos[o,a]]; influence:person}</item>
+        <item>{[extrovertid[o,a]]; influence:person}</item>
+        <item>{[fervoros[o,a]]; influence:person}</item>
+        <item>{[fidedign[o,a]]; influence:person}</item>
+        <item>{[franc[o,a]]; influence:person}</item>
+        <item>{[generos[o,a]]; influence:person}</item>
         <item>gentil</item>
         <item>hábil</item>
-        <item>[honest[o,a]]</item>
+        <item>{[honest[o,a]]; influence:person}</item>
         <item>humilde</item>
-        <item>[imaginativ[o,a]]</item>
-        <item>[impávid[o,a]]</item>
-        <item>[ingenios[o,a]]</item>
+        <item>{[imaginativ[o,a]]; influence:person}</item>
+        <item>{[impávid[o,a]]; influence:person}</item>
+        <item>{[ingenios[o,a]]; influence:person}</item>
         <item>inteligente</item>
         <item>jovial</item>
         <item>leal</item>
         <item>locuaz</item>
-        <item>[lúcid[o,a]]</item>
-        <item>[madur[o,a]]</item>
-        <item>[metódic[o,a]]</item>
-        <item>[modest[o,a]]</item>
+        <item>{[lúcid[o,a]]; influence:person}</item>
+        <item>{[madur[o,a]]; influence:person}</item>
+        <item>{[metódic[o,a]]; influence:person}</item>
+        <item>{[modest[o,a]]; influence:person}</item>
         <item>obediente</item>
         <item>optimista</item>
-        <item>[organizad[o,a]]</item>
-        <item>[osad[o,a]]</item>
+        <item>{[organizad[o,a]]; influence:person}</item>
+        <item>{[osad[o,a]]; influence:person}</item>
         <item>paciente</item>
-        <item>[práctic[o,a]]</item>
+        <item>{[práctic[o,a]]; influence:person}</item>
         <item>prudente</item>
         <item>razonable</item>
         <item>realista</item>
-        <item>[respetuos[o,a]]</item>
-        <item>[segur[o,a]] de sí [mism[o,a]]</item>
+        <item>{[respetuos[o,a]]; influence:person}</item>
+        <item>{[segur[o,a]]; influence:person} de sí {[mism[o,a]]; influence:person}</item>
         <item>sensible</item>
-        <item>[seri[o,a]]</item>
-        <item>[simpátic[o,a]]</item>
-        <item>[sincer[o,a]]</item>
-        <item>[sistemátic[o,a]]</item>
+        <item>{[seri[o,a]]; influence:person}</item>
+        <item>{[simpátic[o,a]]; influence:person}</item>
+        <item>{[sincer[o,a]]; influence:person}</item>
+        <item>{[sistemátic[o,a]]; influence:person}</item>
         <item>sociable</item>
-        <item>[sosegad[o,a]]</item>
+        <item>{[sosegad[o,a]]; influence:person}</item>
         <item>tolerante</item>
-        <item>[trabajador[,a]]</item>
+        <item>{[trabajador[,a]]; influence:person}</item>
         <item>veraz</item>
     </string-array>
     <string-array name="salutation">
-        <item>Hola.</item>
-        <item>¡Buenos días!</item>
-        <item>¡Buenas tardes!</item>
-        <item>¡Buenas noches!</item>
+        <item>¡Hola!</item>
+        <item>¡Buen día!</item>
         <item>¿Cómo estás?</item>
         <item>¿Qué tal?</item>
-        <item>¿Cómo te va?</item>
-        <item>¡Hola, amigo!</item>
-        <item>¡Qué gusto verte!</item>
-        <item>¡Hola, guapo/guapa!</item>
-        <item>¿Cómo te ha ido?</item>
-        <item>¿Cómo te encuentras?</item>
-        <item>¿Cómo vas?</item>
-        <item>¿Qué hay de nuevo?</item>
-        <item>¿Qué me cuentas?</item>
-        <item>¡Hola, bonita/bonito!</item>
-        <item>¡Hola, cariño!</item>
-        <item>¿Qué pasa?</item>
-        <item>¡Hola, familia!</item>
-        <item>¿Cómo va todo?</item>
-        <item>¡Encantado de verte!</item>
-        <item>¡Hola, compañero/a!</item>
-        <item>¡Hola, campeón/campeona!</item>
-        <item>¡Hola, jefe/jefa!</item>
-        <item>¿Cómo andas?</item>
-        <item>¡Hola, hermano/hermana!</item>
-        <item>¡Hola, colega!</item>
-        <item>¡Aló!</item>
-        <item>¡Ey, hola!</item>
-        <item>¡Hola, socio/a!</item>
-        <item>¡Hola, vecino/vecina!</item>
         <item>¡Saludos!</item>
-        <item>¡Hola, primo/prima!</item>
-        <item>¿Cómo lo llevas?</item>
-        <item>¡Hola, maestro/maestra!</item>
-        <item>¡Hola, socio/a!</item>
-        <item>¡Hola, bella/bello!</item>
+        <item>¡Qué alegría verte!</item>
+        <item>¡Hola, amigo/a!</item>
+        <item>Hola, ¿cómo te va?</item>
+        <item>Hola, ¿cómo te ha ido el día?</item>
+        <item>¡Hey!</item>
+        <item>¡Hola, qué gusto verte!</item>
         <item>¡Bienvenido/a!</item>
-        <item>¡Hola, rey/reina!</item>
-        <item>¡Hola, cielo!</item>
-        <item>¡Hola, nene/nena!</item>
-        <item>¡Hola, genio!</item>
-        <item>¡Hola, capo/capa!</item>
-        <item>¿Cómo van las cosas?</item>
-        <item>¡Hola, chaval/chavala!</item>
-        <item>¿Qué onda?</item>
-        <item>¿Cómo va el día?</item>
-        <item>¡Hola, crack!</item>
-        <item>¿Cómo se presenta el día?</item>
-        <item>¡Hola, campeona/campeón!</item>
-        <item>¿Todo bien?</item>
-        <item>¡Hola, jefa/jefe!</item>
-        <item>¿Cómo va la vida?</item>
-        <item>¡Hola, corazón!</item>
-        <item>¡Hola, guerrero/guerrera!</item>
-        <item>¡Hola, solecito!</item>
-        <item>¿Qué me dices?</item>
-        <item>¡Hola, tesoro!</item>
-        <item>¡Hola, preciosa/precioso!</item>
-        <item>¡Hola, churri!</item>
-        <item>¿Qué tal el día?</item>
-        <item>¡Hola, artista!</item>
-        <item>¡Hola, dulzura!</item>
-        <item>¿Qué tal la vida?</item>
-        <item>¡Hola, estrella!</item>
-        <item>¡Hola, diva!</item>
-        <item>¿Todo en orden?</item>
-        <item>¡Hola, figura!</item>
-        <item>¡Hola, mi rey/reina!</item>
-        <item>¡Hola, mi vida!</item>
-        <item>¿Cómo marcha todo?</item>
-        <item>¡Hola, belleza!</item>
-        <item>¡Hola, príncipe/princesa!</item>
-        <item>¡Hola, titán/titánide!</item>
-        <item>¡Hola, genio!</item>
-        <item>¡Hola, ángel!</item>
-        <item>¿Qué tal todo?</item>
-        <item>¡Hola, campeona/campeón!</item>
-        <item>¡Hola, jefa/jefe!</item>
-        <item>¿Qué se cuenta?</item>
-        <item>¡Hola, maravilla!</item>
-        <item>¿Qué hay, crack?</item>
-        <item>¡Hola, chico/chica!</item>
-        <item>¿Cómo va ese ánimo?</item>
-        <item>¿Cómo llevas el día?</item>
-        <item>¿Cómo está todo?</item>
-        <item>¿Qué se cuece?</item>
-        <item>¿Cómo te sientes hoy?</item>
-        <item>¡Hola, majestad!</item>
-        <item>¡Hola, héroe/heroína!</item>
-        <item>¿Qué hay de lo mío?</item>
-        <item>¿Cómo te trata la vida?</item>
-        <item>¡Hola, diosa/dios!</item>
-        <item>¡Hola, leyenda!</item>
-        <item>¿Cómo está la cosa?</item>
-        <item>¡Hola, encanto!</item>
-        <item>¡Hola, joya!</item>
-        <item>¿Cómo va la marcha?</item>
-        <item>¡Hola, flor de la vida!</item>
-        <item>¡Hola, luz de mis ojos!</item>
+        <item>¡Hola, un placer verte!</item>
+        <item>¡Hola, qué sorpresa!</item>
+        <item>¡Hola, guapo/a!</item>
+        <item>¡Hola, hermoso/a!</item>
+        <item>Hola, ¿qué haces?</item>
+        <item>Hola, ¿cómo te sientes hoy?</item>
+        <item>Hola, ¿cómo has estado?</item>
+        <item>¡Hola, cuéntame algo bueno!</item>
+        <item>¡Qué pasa, amigo/a!</item>
+        <item>Hola, ¿cómo te va todo?</item>
+        <item>¡Hola, hace tiempo que no te veo!</item>
+        <item>¡Hola, largo tiempo sin verte!</item>
+        <item>¡Hola! ¿Qué tal tu día?</item>
+        <item>¡Qué gusto verte!</item>
+        <item>Hola, ¿cómo ha sido tu semana?</item>
+        <item>¡Hola, felices de verte!</item>
+        <item>Hola, ¿cómo van las cosas?</item>
+        <item>Hola, ¿qué hay de nuevo?</item>
+        <item>¡Hola, encantado de verte!</item>
+        <item>Hola, ¿cómo va tu día?</item>
+        <item>¡Hola, es un placer verte de nuevo!</item>
+        <item>Hola, ¿cómo ha sido tu día?</item>
+        <item>¡Hola, tanto tiempo sin verte!</item>
+        <item>Hola, ¿qué tal te va?</item>
+        <item>Hola, ¿qué hay de nuevo en tu vida?</item>
+        <item>Hola, ¿qué me cuentas de bueno?</item>
+        <item>Hola, ¿qué hay en tu mundo?</item>
+        <item>Hola, ¿cómo va tu semana?</item>
+        <item>Hola, ¿qué tal la vida?</item>
+        <item>Hola, ¿cómo van las cosas por tu lado?</item>
+        <item>¡Hola, espero que estés bien!</item>
+        <item>¡Hola, espero que estés teniendo un buen día!</item>
+        <item>¡Hola!, ¿cómo están las cosas?</item>
+        <item>¡Hola, que tengas un buen día!</item>
+        <item>¡Hola, feliz de verte!</item>
+        <item>¡Hola, es un placer verte!</item>
+        <item>¡Hola!, ¿cómo te encuentras?</item>
+        <item>¡Hola!, ¿cómo va todo en tu mundo?</item>
+        <item>¡Hola!, ¿qué noticias tienes para mí?</item>
+        <item>¡Hola, que pases un buen día!</item>
+        <item>¡Hola, cuéntame cómo te va!</item>
+        <item>¡Hola!, ¿qué ha sido de ti?</item>
+        <item>¡Hola, espero que estés teniendo una gran semana!</item>
+        <item>¡Hola, eres un gusto de ver!</item>
+        <item>¡Hola!, ¿qué novedades?</item>
+        <item>¡Hola, cuéntame algo!</item>
+        <item>¡Hola, ¿cómo van tus asuntos?</item>
+        <item>¡Hola!, ¿cómo te va con todo?</item>
+        <item>¡Hola, cuéntame de tu día!</item>
+        <item>¡Hola, feliz de verte de nuevo!</item>
+        <item>¡Hola!, ¿cómo van las cosas en tu vida?</item>
+        <item>¡Hola!, ¿cómo va el ritmo?</item>
+        <item>¡Hola!, ¿cómo se te presenta el día?</item>
+        <item>¡Hola!, ¿qué noticias me traes?</item>
+        <item>¡Hola! ¿Todo va bien?</item>
+        <item>¡Hola, estás radiante hoy!</item>
+        <item>¡Hola!, ¿qué trae el viento?</item>
+        <item>¡Hola!, ¿qué te trae por aquí?</item>
+        <item>¡Hola!, ¿cómo te encuentras hoy?</item>
+        <item>¡Hola, cuéntame tus novedades!</item>
+        <item>¡Hola!, ¿qué tal la jornada?</item>
+        <item>¡Hola!, ¿cómo va el camino?</item>
+        <item>¡Hola, te extrañé!</item>
+        <item>¡Hola, feliz de verte una vez más!</item>
+        <item>¡Hola!, ¿cómo va el progreso?</item>
+        <item>¡Hola, cuéntame tus aventuras!</item>
+        <item>¡Hola!, ¿qué trae el día para ti?</item>
+        <item>¡Hola!, ¿cómo te encuentras esta semana?</item>
+        <item>¡Hola, es bueno verte de nuevo!</item>
+        <item>¡Hola, cuéntame de tu semana!</item>
+        <item>¡Hola!, ¿qué te depara el día?</item>
     </string-array>
     <string-array name="subject">
-        <item>{string:noun} ⸠string:adjective⸡</item>
-        <item>{string:noun}</item>
-        <item>{string:adjective}</item>
+        <item>{string:descriptor_noun} {string:descriptor_adjective}</item>
+        <item>{string:descriptor_noun} {actor:persona; id:descriptor; hidden}</item>
+        <item>{string:descriptor_adjective}</item>
     </string-array>
     <string-array name="unspecific_person">
-        <item>[un[,a]] [amig[o,a]]</item>
-        <item>[un[,a]] [enemig[o,a]]</item>
-        <item>[un[,a]] familiar</item>
-        <item>[un[,a]] [parient[e,a]] [lejan[o,a]]</item>
-        <item>[un[,a]] [conocid[o,a]]</item>
-        <item>[un[,a]] [vecin[o,a]]</item>
-        <item>[un[,a]] [desconocid[o,a]]</item>
-        <item>[un[,a]] [compañer[o,a]]</item>
-        <item>[un[,a]] camarada</item>
-        <item>[un[,a]] acompañante</item>
-        <item>[un[,a]] amante</item>
-        <item>[un[,a]] [seguidor[,a]]</item>
+        <item>{[un[,a]]; influence:?} {[amig[o,a]]; influence:?}</item>
+        <item>{[un[,a]]; influence:?} {[enemig[o,a]]; influence:?}</item>
+        <item>{[un[,a]]; influence:?} familiar</item>
+        <item>{[un[,a]]; influence:?} {[parient[e,a]]; influence:?} {[lejan[o,a]]; influence:?}</item>
+        <item>{[un[,a]]; influence:?} {[conocid[o,a]]; influence:?}</item>
+        <item>{[un[,a]]; influence:?} {[vecin[o,a]]; influence:?}</item>
+        <item>{[un[,a]]; influence:?} {[desconocid[o,a]]; influence:?}</item>
+        <item>{[un[,a]]; influence:?} {[compañer[o,a]]; influence:?}</item>
+        <item>{[un[,a]]; influence:?} camarada</item>
+        <item>{[un[,a]]; influence:?} acompañante</item>
+        <item>{[un[,a]]; influence:?} amante</item>
+        <item>{[un[,a]]; influence:?} {[seguidor[,a]]; influence:?}</item>
         <item>una persona relacionada con el trabajo</item>
-        <item>[un[,a]] [soci[o,a]]</item>
-        <item>[un[,a]] [colaborador[,a]]</item>
+        <item>{[un[,a]]; influence:?} {[soci[o,a]]; influence:?}</item>
+        <item>{[un[,a]]; influence:?} {[colaborador[,a]]; influence:?}</item>
         <item>un tercero</item>
         <item>una persona cualquiera</item>
     </string-array>

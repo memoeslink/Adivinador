@@ -69,7 +69,6 @@
         <br><br>For more information regarding this, please refer to our complete <a href="https://drive.google.com/file/d/1NFvPJOEIhUV-v8Tr9nuDC_seqhYz1b46/view?usp=sharing">Privacy Policy</a>.
         ]]>
     </string>
-    <string name="adjective">boring¶ affectionate¶ agile¶ pleasant¶ cheerful¶ kind¶ resentful¶ ambitious¶ friendly¶ angelic¶ fervent¶ listless¶ ardent¶ attentive¶ groggy¶ saucy¶ adventurous¶ sharp¶ crass¶ quarrelsome¶ bright¶ sneering¶ cantankerous¶ cautious¶ jealous¶ cynical¶ cowardly¶ coherent¶ sympathetic¶ conscientious¶ conservative¶ considerate¶ distraught¶ conventional¶ talkative¶ flirtatious¶ hearty¶ blunt¶ polite¶ big-headed¶ cruel¶ careful¶ curious¶ open-minded¶ laid-back¶ easy-going¶ moody¶ bad-tempered¶ short-tempered¶ narrow-minded¶ weak¶ dependent¶ dreary¶ depressed¶ dowdy¶ distrustful¶ inconsiderate¶ careless¶ idle¶ carefree¶ trustworthy¶ diligent¶ tactful¶ direct¶ discreet¶ argumentative¶ distant¶ absent-minded¶ funny¶ hesitant¶ sweet¶ polite¶ efficient¶ selfish¶ elegant¶ two-faced¶ emotional¶ enterprising¶ charming¶ energetic¶ peevish¶ conceited¶ nosy¶ eager¶ balanced¶ boisterous¶ fastidious¶ stoic¶ strict¶ stupid¶ flaky¶ picky¶ experienced¶ weird¶ outgoing¶ zealous¶ reliable¶ loyal¶ flabby¶ staid¶ cold¶ generous¶ gentle¶ amusing¶ grouchy¶ deft¶ beautiful¶ hysterical¶ slothful¶ honest¶ awful¶ reclusive¶ imaginative¶ moronic¶ impatient¶ impetuous¶ impulsive¶ independent¶ childish¶ naive¶ immature¶ restless¶ tactless¶ intelligent¶ interesting¶ intolerant¶ plucky¶ playful¶ shrewd¶ querulous¶ crazy¶ mature¶ churlish¶ sulky¶ spiteful¶ nasty¶ maternal¶ gloomy¶ meticulous¶ modest¶ caustic¶ nervous¶ obnoxious¶ proud¶ patient¶ peaceful¶ passionate¶ pensive¶ lazy¶ persevering¶ disruptive¶ annoying¶ sassy¶ powerful¶ positive¶ practical¶ conceited¶ snobby¶ provocative¶ cautious¶ punctual¶ fussy¶ reluctant¶ realistic¶ leery¶ reserved¶ responsible¶ ridiculous¶ discerning¶ confident¶ self-confident¶ sensible¶ sensitive¶ serene¶ serious¶ obliging¶ stern¶ friendly¶ sincere¶ sophisticated¶ drowsy¶ dull¶ dirty¶ superficial¶ mean¶ sullen¶ talented¶ stubborn¶ shy¶ silly¶ clumsy¶ hard-working¶ reassuring¶ quiet¶ naughty¶ sad¶ helpful¶ brave¶ bitchy¶ lively</string>
     <string name="app_name">Fortune-Teller</string>
     <string name="about_title">About</string>
     <string name="action_back">Back</string>
@@ -96,11 +95,13 @@
     <string name="data_entry">Enter data</string>
     <string name="date_component">It is¶ Today is¶ It\'s¶ The date is¶ The day is</string>
     <string name="denied_permission">Some functions will be disabled due to a denied permission.</string>
+    <string name="descriptor_adjective">boring¶ affectionate¶ agile¶ pleasant¶ cheerful¶ kind¶ resentful¶ ambitious¶ friendly¶ angelic¶ fervent¶ listless¶ ardent¶ attentive¶ groggy¶ saucy¶ adventurous¶ sharp¶ crass¶ quarrelsome¶ bright¶ sneering¶ cantankerous¶ cautious¶ jealous¶ cynical¶ cowardly¶ coherent¶ sympathetic¶ conscientious¶ conservative¶ considerate¶ distraught¶ conventional¶ talkative¶ flirtatious¶ hearty¶ blunt¶ polite¶ big-headed¶ cruel¶ careful¶ curious¶ open-minded¶ laid-back¶ easy-going¶ moody¶ bad-tempered¶ short-tempered¶ narrow-minded¶ weak¶ dependent¶ dreary¶ depressed¶ dowdy¶ distrustful¶ inconsiderate¶ careless¶ idle¶ carefree¶ trustworthy¶ diligent¶ tactful¶ direct¶ discreet¶ argumentative¶ distant¶ absent-minded¶ funny¶ hesitant¶ sweet¶ polite¶ efficient¶ selfish¶ elegant¶ two-faced¶ emotional¶ enterprising¶ charming¶ energetic¶ peevish¶ conceited¶ nosy¶ eager¶ balanced¶ boisterous¶ fastidious¶ stoic¶ strict¶ stupid¶ flaky¶ picky¶ experienced¶ weird¶ outgoing¶ zealous¶ reliable¶ loyal¶ flabby¶ staid¶ cold¶ generous¶ gentle¶ amusing¶ grouchy¶ deft¶ beautiful¶ hysterical¶ slothful¶ honest¶ awful¶ reclusive¶ imaginative¶ moronic¶ impatient¶ impetuous¶ impulsive¶ independent¶ childish¶ naive¶ immature¶ restless¶ tactless¶ intelligent¶ interesting¶ intolerant¶ plucky¶ playful¶ shrewd¶ querulous¶ crazy¶ mature¶ churlish¶ sulky¶ spiteful¶ nasty¶ maternal¶ gloomy¶ meticulous¶ modest¶ caustic¶ nervous¶ obnoxious¶ proud¶ patient¶ peaceful¶ passionate¶ pensive¶ lazy¶ persevering¶ disruptive¶ annoying¶ sassy¶ powerful¶ positive¶ practical¶ conceited¶ snobby¶ provocative¶ cautious¶ punctual¶ fussy¶ reluctant¶ realistic¶ leery¶ reserved¶ responsible¶ ridiculous¶ discerning¶ confident¶ self-confident¶ sensible¶ sensitive¶ serene¶ serious¶ obliging¶ stern¶ friendly¶ sincere¶ sophisticated¶ drowsy¶ dull¶ dirty¶ superficial¶ mean¶ sullen¶ talented¶ stubborn¶ shy¶ silly¶ clumsy¶ hard-working¶ reassuring¶ quiet¶ naughty¶ sad¶ helpful¶ brave¶ bitchy¶ lively</string>
+    <string name="descriptor_noun">soul¶ citizen¶ client¶ thing¶ creature¶ body¶ entity¶ entity¶ essence¶ specimen¶ spirit¶ existence¶ figure¶ form¶ life form¶ inhabitant¶ individual¶ matter¶ organism¶ person¶ character¶ personification¶ being¶ human being¶ thinking being¶ rational being¶ sentient being¶ living being¶ subject¶ substance¶ type¶ user</string>
     <string name="donations_description">Please, consider donating some money for the app development, that would allow me to make this app even better! Google Play Store applies a tax percentage depending on your country.</string>
     <string name="donations_donate">¡DONATE!</string>
     <string name="donations_title">Donate</string>
-    <string name="extended_family_member">[[father,mother]]-in-law¶ [[brother,sister]]-in-law¶ [[son,daughter]]-in-law¶ [step[father,mother]]¶ [step[son,daughter]]¶ [god[father,mother]]¶ [god[son,daughter]]</string>
-    <string name="family_member">{string:relative; gender:⸮}¶ {string:extended_family_member; gender:⸮}</string>
+    <string name="extended_family_member">{[[father,mother]]; influence:?}-in-law¶ {[[brother,sister]]; influence:?}-in-law¶ {[[son,daughter]]; influence:?}-in-law¶ {[step[father,mother]]; influence:?}¶ {[step[son,daughter]]; influence:?}¶ {[god[father,mother]]; influence:?}¶ {[god[son,daughter]]; influence:?}</string>
+    <string name="family_member">{string:relative}¶ {string:extended_family_member}</string>
     <string name="greeting_variant">Good to see you.¶ Long time no see.¶ How are you?¶ How have you been?¶ How are you doing?¶ How do you do?¶ How is everything?¶ What have you done?¶ What have you done lately?¶ What happens?¶ What is there?¶ What is new?¶ What do you tell me?¶ I hope you are doing well.¶ I hope you are fine.¶ I hope everything\'s OK.¶ I hope all is well with you.</string>
     <string name="input_birthdate">Birthdate:</string>
     <string name="input_gender_description">Gender:</string>
@@ -119,7 +120,6 @@
     <string name="menu_about">About</string>
     <string name="menu_exit">Exit</string>
     <string name="name_generation">Generate name</string>
-    <string name="noun">existence¶ matter¶ person¶ being¶ human¶ individual¶ entity¶ [[,wo]man]¶ customer¶ subject¶ body¶ essence¶ thing¶ substance¶ creature¶ organism¶ form¶ specimen｢1｣¶ life form¶ living being¶ user¶ friend¶ acquaintance¶ stranger¶ mate¶ colleague¶ best friend¶ [[boy,girl]friend]¶ [tip[o,a]]¶ character¶ offspring¶ figure¶ inhabitant¶ young [[girl,boy]]¶ young person¶ [[boy,girl]]¶ embodiment</string>
     <string name="ok">OK</string>
     <string name="person_data"><![CDATA[%1$s<font color="#F6FBB2">, %2$s (%3$s)</font>]]></string>
     <string name="person_details">Person details</string>
@@ -238,7 +238,7 @@
     <string name="preference_update_frequency">Frequency of update</string>
     <string name="preference_update_frequency_summary">Change the time between each prediction update</string>
     <string name="qualitative_adjective">nice¶ brilliant¶ unpleasant¶ different¶ fragile¶ electrifying¶ great¶ better¶ normal¶ negative¶ dark¶ worse¶ positive¶ rare¶ solid¶ terrible</string>
-    <string name="relative">[[father,mother]]¶ [[dad,mom]]¶ [[son,daughter]]¶ cousin¶ [[uncle,aunt]]¶ [[nephew,niece]]¶ [[brother,sister]]¶ [grand[father,mother]]¶ [grand[son,daughter]]¶ great [grand[father,mother]]</string>
+    <string name="relative">{[[father,mother]]; influence:?}¶ {[[dad,mom]]; influence:?}¶ {[[son,daughter]]; influence:?}¶ cousin¶ {[[uncle,aunt]]; influence:?}¶ {[[nephew,niece]]; influence:?}¶ {[[brother,sister]]; influence:?}¶ {[grand[father,mother]]; influence:?}¶ {[grand[son,daughter]]; influence:?}¶ great {[grand[father,mother]]; influence:?}</string>
     <string name="reload">Generate enquiry</string>
     <string name="save">Save enquiry</string>
     <string name="selector">Select enquiry</string>
@@ -1125,10 +1125,10 @@
         <item>a {rand:two; three}-headed bird</item>
         <item>a rosary</item>
         <item>an eye</item>
-        <item>{string:individual; gender:⸮}</item>
-        <item>{string:individual; gender:⸮}</item>
-        <item>{string:individual; gender:⸮}</item>
-        <item>{string:individual; gender:⸮}</item>
+        <item>{string:individual}</item>
+        <item>{string:individual}</item>
+        <item>{string:individual}</item>
+        <item>{string:individual}</item>
     </string-array>
     <string-array name="augury_situation">
         <item>amidst the void</item>
@@ -1205,6 +1205,32 @@
         <item>Blue</item>
         <item>Black</item>
     </string-array>
+    <string-array name="common_greeting">
+        <item>Good night</item>
+        <item>Good night</item>
+        <item>Good night</item>
+        <item>Good night</item>
+        <item>Good night</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good morning</item>
+        <item>Good afternoon</item>
+        <item>Good afternoon</item>
+        <item>Good afternoon</item>
+        <item>Good afternoon</item>
+        <item>Good afternoon</item>
+        <item>Good afternoon</item>
+        <item>Good evening</item>
+        <item>Good evening</item>
+        <item>Good evening</item>
+        <item>Good night</item>
+        <item>Good night</item>
+        <item>Good night</item>
+    </string-array>
     <string-array name="compatibility">
         <item>\?</item>
         <item>Sagittarius, Leo, Libra, Aries, Gemini.</item>
@@ -1227,7 +1253,7 @@
         <item>{string:greeting}, {string:conversation_addendum}. {string:greeting_variant}</item>
     </string-array>
     <string-array name="conversation_addendum">
-        <item><![CDATA[<font color="{method:getDefaultColor}"><b>{string:subject}</b></font>]]></item>
+        <item>{string:subject}</item>
         <item><![CDATA[<i>{string:interjection}</i>]]></item>
         <item><![CDATA[<font color="{method:getDefaultColor}"><b>user of {method:getDeviceInfo}</b></font>]]></item>
     </string-array>
@@ -1307,7 +1333,7 @@
         <item>You are in a moment where you have to make {rand:∅; critical; hasty; important; well-thought; necessary; essential} decisions about {string:divination_middle}.</item>
         <item>In this moment others see you as {a/an} {string:personality_trait} person.</item>
         <item>{string:foreboding_start} {string:foreboding_end}</item>
-        <item>I {rand:see; perceive; visualize; contemplate} an image of {string:augury_entity} ⸠string:augury_situation⸡.</item>
+        <item>I {rand:see; perceive; visualize; contemplate} an image of {string:augury_entity} {string:augury_situation}.</item>
     </string-array>
     <string-array name="divination_appendix">
         <item>Some keywords, related to this divination, are:</item>
@@ -1320,87 +1346,90 @@
         <item>These things are related to the aforesaid:</item>
         <item>This also appears in the divination:</item>
     </string-array>
+    <string-array name="divination_base">
+        <item>{string:divination_start}, {string:divination_middle} {string:divination_end}.</item>
+        <item>{string:divination_start}, {string:divination_middle} {string:divination_end}. {string:divination_cause}.</item>
+    </string-array>
     <string-array name="divination_cause">
-        <item />
-        <item>It seems that this could be due to {string:divination_causative_factor}.</item>
-        <item>Possibly it may be due to {string:divination_causative_factor}.</item>
-        <item>It is presumed that this could be caused by {string:divination_causative_factor}.</item>
-        <item>This is due to {string:divination_causative_factor}.</item>
-        <item>This is caused by {string:divination_causative_factor}.</item>
-        <item>This may be due to {string:divination_causative_factor}.</item>
-        <item>This could be caused by {string:divination_causative_factor}.</item>
-        <item>This may be due to {string:divination_causative_factor}.</item>
-        <item>Apparently this is caused by {string:divination_causative_factor}.</item>
-        <item>This is because of {string:divination_causative_factor}.</item>
-        <item>One could say that this is caused by {string:divination_causative_factor}.</item>
-        <item>If I\'m not mistaken, this is due to {string:divination_causative_factor}.</item>
-        <item>I think this is due to {string:divination_causative_factor}.</item>
-        <item>I guess the above is caused by {string:divination_causative_factor}.</item>
-        <item>I can {rand:see; perceive; perceive; detect; feel; observe; note} that this is due to {string:divination_causative_factor}.</item>
-        <item>It can be said that the {rand:reason; cause; circumstance; reason} of this could be {string:divination_causative_factor}.</item>
-        <item>I can see that the {rand:reason; cause; circumstance; reason} of this might be {string:divination_causative_factor}.</item>
-        <item>The {rand:responsible; cause; motive} of this could be {string:divination_causative_factor}.</item>
-        <item>The divination says that, possibly, the cause of this is {string:divination_causative_factor}.</item>
-        <item>I can {rand:see; perceive; detect; sense; feel; observe; note} in this {rand:fortune; divination; prediction; augury} that {string:divination_causative_factor} could be the cause.</item>
-        <item>It is possible that {string:divination_causative_factor} has something to do with it.</item>
+        <item>It seems that this could be due to {string:divination_causative_factor}</item>
+        <item>Possibly it may be due to {string:divination_causative_factor}</item>
+        <item>It is presumed that this could be caused by {string:divination_causative_factor}</item>
+        <item>This is due to {string:divination_causative_factor}</item>
+        <item>This is caused by {string:divination_causative_factor}</item>
+        <item>This may be due to {string:divination_causative_factor}</item>
+        <item>This could be caused by {string:divination_causative_factor}</item>
+        <item>This may be due to {string:divination_causative_factor}</item>
+        <item>Apparently this is caused by {string:divination_causative_factor}</item>
+        <item>This is because of {string:divination_causative_factor}</item>
+        <item>One could say that this is caused by {string:divination_causative_factor}</item>
+        <item>If I\'m not mistaken, this is due to {string:divination_causative_factor}</item>
+        <item>I think this is due to {string:divination_causative_factor}</item>
+        <item>I guess the above is caused by {string:divination_causative_factor}</item>
+        <item>I can {rand:see; perceive; perceive; detect; feel; observe; note} that this is due to {string:divination_causative_factor}</item>
+        <item>It can be said that the {rand:reason; cause; circumstance; reason} of this could be {string:divination_causative_factor}</item>
+        <item>I can see that the {rand:reason; cause; circumstance; reason} of this might be {string:divination_causative_factor}</item>
+        <item>The {rand:responsible; cause; motive} of this could be {string:divination_causative_factor}</item>
+        <item>The divination says that, possibly, the cause of this is {string:divination_causative_factor}</item>
+        <item>I can {rand:see; perceive; detect; sense; feel; observe; note} in this {rand:fortune; divination; prediction; augury} that {string:divination_causative_factor} could be the cause</item>
+        <item>It is possible that {string:divination_causative_factor} has something to do with it</item>
     </string-array>
     <string-array name="divination_causative_factor">
-        <item>{string:unspecific_person; gender:⸮}</item>
-        <item>{string:person; gender:⸮}</item>
-        <item>{string:individual; gender:⸮}</item>
-        <item>{string:individual; gender:⸮}</item>
+        <item>{string:unspecific_person}</item>
+        <item>{string:person}</item>
+        <item>{string:individual}</item>
+        <item>{string:individual}</item>
         <item>{string:divination_middle}</item>
         <item>{string:divination_middle}</item>
-        <item>{string:explicit_cause; gender:⸮}</item>
-        <item>{string:explicit_cause; gender:⸮}</item>
-        <item>{string:explicit_cause; gender:⸮}</item>
-        <item>{string:explicit_cause; gender:⸮}</item>
+        <item>{string:explicit_cause}</item>
+        <item>{string:explicit_cause}</item>
+        <item>{string:explicit_cause}</item>
+        <item>{string:explicit_cause}</item>
     </string-array>
     <string-array name="divination_end">
-        <item>will be {string:qualitative_adjective}.</item>
-        <item>will have positive changes.</item>
-        <item>will have negative changes.</item>
-        <item>will be affected in a positive way.</item>
-        <item>will be affected in a negative way.</item>
-        <item>will be affected negatively.</item>
-        <item>will be affected positively.</item>
-        <item>will get better.</item>
-        <item>will get worse.</item>
-        <item>will be OK, or will get fixed or be repaired.</item>
-        <item>won\'t be OK, or will be damaged.</item>
-        <item>will be fine or optimal.</item>
-        <item>won\'t be fine, or will be as in the worst-case scenario.</item>
-        <item>won\'t be affected in any way.</item>
-        <item>won\'t be affected.</item>
-        <item>won\'t change.</item>
-        <item>will be the same.</item>
-        <item>will change.</item>
-        <item>will change totally.</item>
-        <item>will change inversely.</item>
-        <item>will be at {method:getPercentage}.</item>
-        <item>will be reverted.</item>
-        <item>will be as before.</item>
-        <item>won\'t be as before.</item>
-        <item>will be seriously damaged.</item>
-        <item>will be truly improved.</item>
-        <item>will be adversely affected or diminished.</item>
-        <item>will be boosted or rise.</item>
-        <item>will bring solutions or wellness to other people.</item>
-        <item>will cause troubles or harm to other people.</item>
-        <item>will fade into the background.</item>
-        <item>will come to the fore.</item>
-        <item>will come to light.</item>
-        <item>will be revealed.</item>
-        <item>will be regained.</item>
-        <item>will be lost.</item>
-        <item>will return.</item>
-        <item>will end.</item>
-        <item>will increase or strengthen {rand:∅; although gradually; suddenly; all of a sudden; slowly; a bit; a lot}.</item>
-        <item>will decrease or deteriorate {rand:∅; although gradually; suddenly; all of a sudden; slowly; a bit; a lot}.</item>
-        <item>will bring good results, benefits or advantages in other areas of your life.</item>
-        <item>will bring bad results, drawbacks or disadvantages in other areas of your life.</item>
-        <item>will affect positively to {string:divination_middle}.</item>
-        <item>will affect negatively to {string:divination_middle}.</item>
+        <item>will be {string:qualitative_adjective}</item>
+        <item>will have positive changes</item>
+        <item>will have negative changes</item>
+        <item>will be affected in a positive way</item>
+        <item>will be affected in a negative way</item>
+        <item>will be affected negatively</item>
+        <item>will be affected positively</item>
+        <item>will get better</item>
+        <item>will get worse</item>
+        <item>will be OK, or will get fixed or be repaired</item>
+        <item>won\'t be OK, or will be damaged</item>
+        <item>will be fine or optimal</item>
+        <item>won\'t be fine, or will be as in the worst-case scenario</item>
+        <item>won\'t be affected in any way</item>
+        <item>won\'t be affected</item>
+        <item>won\'t change</item>
+        <item>will be the same</item>
+        <item>will change</item>
+        <item>will change totally</item>
+        <item>will change inversely</item>
+        <item>will be at {method:getPercentage}</item>
+        <item>will be reverted</item>
+        <item>will be as before</item>
+        <item>won\'t be as before</item>
+        <item>will be seriously damaged</item>
+        <item>will be truly improved</item>
+        <item>will be adversely affected or diminished</item>
+        <item>will be boosted or rise</item>
+        <item>will bring solutions or wellness to other people</item>
+        <item>will cause troubles or harm to other people</item>
+        <item>will fade into the background</item>
+        <item>will come to the fore</item>
+        <item>will come to light</item>
+        <item>will be revealed</item>
+        <item>will be regained</item>
+        <item>will be lost</item>
+        <item>will return</item>
+        <item>will end</item>
+        <item>will increase or strengthen {rand:∅; although gradually; suddenly; all of a sudden; slowly; a bit; a lot}</item>
+        <item>will decrease or deteriorate {rand:∅; although gradually; suddenly; all of a sudden; slowly; a bit; a lot}</item>
+        <item>will bring good results, benefits or advantages in other areas of your life</item>
+        <item>will bring bad results, drawbacks or disadvantages in other areas of your life</item>
+        <item>will affect positively to {string:divination_middle}</item>
+        <item>will affect negatively to {string:divination_middle}</item>
     </string-array>
     <string-array name="divination_middle">
         <item>{string:divination_middle_common}</item>
@@ -1723,17 +1752,17 @@
         <item>the behaviour of others</item>
         <item>your attitude</item>
         <item>a person\'s presence</item>
-        <item>the presence of {string:unspecific_person; gender:⸮}</item>
+        <item>the presence of {string:unspecific_person}</item>
         <item>the people around you</item>
         <item>the influence of others</item>
         <item>the actions of others</item>
         <item>the decisions of others</item>
         <item>the attitude of others</item>
-        <item>the influence of {string:unspecific_person; gender:⸮}</item>
-        <item>the meddling of {string:unspecific_person; gender:⸮}</item>
-        <item>the interference or opposition of {string:unspecific_person; gender:⸮}</item>
-        <item>the actions of {string:unspecific_person; gender:⸮}</item>
-        <item>the words of {string:unspecific_person; gender:⸮}</item>
+        <item>the influence of {string:unspecific_person}</item>
+        <item>the meddling of {string:unspecific_person}</item>
+        <item>the interference or opposition of {string:unspecific_person}</item>
+        <item>the actions of {string:unspecific_person}</item>
+        <item>the words of {string:unspecific_person}</item>
         <item>others\' words</item>
         <item>others\' wishes</item>
         <item>others\' prayers</item>
@@ -1991,10 +2020,10 @@
         <item>Hi</item>
         <item>Hello</item>
         <item>Welcome</item>
-        <item>{method:getSimpleGreeting}</item>
-        <item>Good {method:getCurrentDayOfWeek}</item>
-        <item>{string:date_component} {method:getCurrentDate}</item>
-        <item>{string:time_component} {method:getCurrentTime}</item>
+        <item>{string:common_greeting; index:h}</item>
+        <item>Good {date-time:EEEE}</item>
+        <item>{string:date_component} {date}</item>
+        <item>{string:time_component} {time}</item>
     </string-array>
     <string-array name="incompatibility">
         <item>\?</item>
@@ -2449,12 +2478,12 @@
         <item>a man with a thick mop of hair</item>
     </string-array>
     <string-array name="individual_base">
-        <item>[[,wo]man]</item>
+        <item>{rand:{actor:man; id:individual; grammatical-indicator:masculine}; {actor:woman; id:individual; grammatical-indicator:feminine}}</item>
         <item>kid</item>
-        <item>[[boy,girl]]</item>
-        <item>young [[,wo]man]</item>
-        <item>old [[,wo]man]</item>
-        <item>[lad[,y]]</item>
+        <item>{rand:{actor:boy; id:individual; grammatical-indicator:masculine}; {actor:girl; id:individual; grammatical-indicator:feminine}}</item>
+        <item>young {rand:{actor:man; id:individual; grammatical-indicator:masculine}; {actor:woman; id:individual; grammatical-indicator:feminine}}</item>
+        <item>old {rand:{actor:man; id:individual; grammatical-indicator:masculine}; {actor:woman; id:individual; grammatical-indicator:feminine}}</item>
+        <item>{rand:{actor:lad; id:individual; grammatical-indicator:masculine}; {actor:lady; id:individual; grammatical-indicator:feminine}}</item>
         <item>infant</item>
         <item>adult</item>
         <item>teenager</item>
@@ -2466,7 +2495,7 @@
         <item>baby</item>
         <item>newborn</item>
         <item>prepubescent</item>
-        <item>elderly [[,wo]man]</item>
+        <item>elderly {rand:{actor:man; id:individual; grammatical-indicator:masculine}; {actor:woman; id:individual; grammatical-indicator:feminine}}</item>
     </string-array>
     <string-array name="individual_build">
         <item>chubby</item>
@@ -2499,7 +2528,7 @@
         <item>shaven-headed</item>
         <item>pale-haired</item>
         <item>white-haired</item>
-        <item>[blond[,e]]</item>
+        <item>blond</item>
         <item>brunette</item>
         <item>auburn-haired</item>
         <item>red-headed</item>
@@ -2534,10 +2563,10 @@
         <item>{string:individual_height}</item>
     </string-array>
     <string-array name="individual_representation">
-        <item>⸠string:individual_build⸡ {string:individual_base}</item>
-        <item>{string:individual_base} ⸠string:individual_eyes⸡</item>
-        <item>⸠string:individual_hair⸡ {string:individual_base}</item>
-        <item>⸠string:individual_height⸡ {string:individual_base}</item>
+        <item>{string:individual_build} {string:individual_base}</item>
+        <item>{string:individual_base} {string:individual_eyes}</item>
+        <item>{string:individual_hair} {string:individual_base}</item>
+        <item>{string:individual_height} {string:individual_base}</item>
     </string-array>
     <string-array name="language">
         <item>English</item>
@@ -2671,9 +2700,9 @@
         <item>I have to go with {method:getFormattedName}. They owe me money.</item>
         <item>I\'m in love with {method:getFormattedName}.</item>
         <item>Have you seen a person named {method:getFormattedName}?</item>
-        <item>Your {string:relative; gender:⸮}, {method:getFormattedName} and I are lovers. A real love triangle.</item>
-        <item>Are you {string:relative; gender:⛌} of {method:getFormattedName}? You look very much alike.</item>
-        <item>Are you, by chance, {string:relative; gender:⛌} of {method:getFormattedName}? You both share certain traits.</item>
+        <item>Your {string:relative}, {method:getFormattedName} and I are lovers. A real love triangle.</item>
+        <item>Are you {string:relative} of {method:getFormattedName}? You look very much alike.</item>
+        <item>Are you, by chance, {string:relative} of {method:getFormattedName}? You both share certain traits.</item>
         <item>It\'s nice to see you here, unlike {method:getFormattedName}.</item>
         <item>Oh, yes, I revealed a frightening future for {method:getFormattedName}.</item>
         <item>The other day {method:getFormattedName} asked me to look into their future.</item>
@@ -2971,19 +3000,19 @@
         <item>{method:getFormattedName} is {a/an} {string:adjective} person.</item>
         <item>{method:getFormattedName} is {a/an} {string:adjective} character.</item>
         <item>{method:getFormattedName} is {a/an} {string:adjective} individual.</item>
-        <item>{method:getFormattedName} and their {string:relative; gender:⸮} get along very well.</item>
-        <item>{method:getFormattedName} and their {string:relative; gender:⸮} have a bad relationship.</item>
-        <item>{method:getFormattedName} and their {string:relative; gender:⸮} treat each other badly.</item>
-        <item>{method:getFormattedName} and their {string:relative; gender:⸮} have a harmonious relationship.</item>
-        <item>{method:getFormattedName} and their {string:relative; gender:⸮} have done unspeakable things.</item>
-        <item>{method:getFormattedName} and their {string:relative; gender:⸮} have done very bad things.</item>
-        <item>Your {string:relative; gender:⸮} looks a lot like {method:getFormattedName}.</item>
-        <item>Your {string:relative; gender:⸮} loves {method:getFormattedName}.</item>
-        <item>Your {string:relative; gender:⸮} hates {method:getFormattedName}.</item>
-        <item>Your {string:relative; gender:⸮} ignores {method:getFormattedName}.</item>
-        <item>Your {string:relative; gender:⸮} is good friends with {method:getFormattedName}.</item>
-        <item>Your {string:relative; gender:⸮} has a poor relationship with {method:getFormattedName}.</item>
-        <item>Your {string:relative; gender:⸮} and {method:getFormattedName} are enemies.</item>
+        <item>{method:getFormattedName} and their {string:relative} get along very well.</item>
+        <item>{method:getFormattedName} and their {string:relative} have a bad relationship.</item>
+        <item>{method:getFormattedName} and their {string:relative} treat each other badly.</item>
+        <item>{method:getFormattedName} and their {string:relative} have a harmonious relationship.</item>
+        <item>{method:getFormattedName} and their {string:relative} have done unspeakable things.</item>
+        <item>{method:getFormattedName} and their {string:relative} have done very bad things.</item>
+        <item>Your {string:relative} looks a lot like {method:getFormattedName}.</item>
+        <item>Your {string:relative} loves {method:getFormattedName}.</item>
+        <item>Your {string:relative} hates {method:getFormattedName}.</item>
+        <item>Your {string:relative} ignores {method:getFormattedName}.</item>
+        <item>Your {string:relative} is good friends with {method:getFormattedName}.</item>
+        <item>Your {string:relative} has a poor relationship with {method:getFormattedName}.</item>
+        <item>Your {string:relative} and {method:getFormattedName} are enemies.</item>
     </string-array>
     <string-array name="person">
         <item>&personType1;</item>
@@ -3220,106 +3249,95 @@
         <item>Saturn</item>
     </string-array>
     <string-array name="salutation">
-        <item>Hello.</item>
-        <item>Good morning!</item>
-        <item>Good afternoon!</item>
-        <item>Good evening!</item>
+        <item>Hello!</item>
+        <item>Good day!</item>
         <item>How are you?</item>
         <item>What\'s up?</item>
-        <item>How\'s it going?</item>
-        <item>Hello, friend!</item>
-        <item>Nice to see you!</item>
-        <item>Hello, handsome/beautiful!</item>
-        <item>How have you been?</item>
-        <item>How are you doing?</item>
-        <item>How are you holding up?</item>
-        <item>What\'s new?</item>
-        <item>What\'s the news?</item>
-        <item>Hello, pretty!</item>
-        <item>Hello, darling!</item>
-        <item>What\'s up?</item>
-        <item>Hello, family!</item>
-        <item>How is everything?</item>
-        <item>Great to see you!</item>
-        <item>Hello, mate!</item>
-        <item>Hello, champ!</item>
-        <item>Hello, boss!</item>
-        <item>How\'s it going?</item>
-        <item>Hello, brother/sister!</item>
-        <item>Hello, mate!</item>
-        <item>Hello!</item>
-        <item>Hey, hello!</item>
-        <item>Hello, partner!</item>
-        <item>Hello, neighbor!</item>
         <item>Greetings!</item>
-        <item>Hello, cousin!</item>
-        <item>How are you holding up?</item>
-        <item>Hello, teacher!</item>
-        <item>Hello, partner!</item>
-        <item>Hello, beauty!</item>
+        <item>So glad to see you!</item>
+        <item>Hi, friend!</item>
+        <item>Hi, how\'s it going?</item>
+        <item>Hi, how\'s your day been?</item>
+        <item>Hey!</item>
+        <item>Hi, nice to see you!</item>
         <item>Welcome!</item>
-        <item>Hello, king/queen!</item>
-        <item>Hello, sweetheart!</item>
-        <item>Hello, kid!</item>
-        <item>Hello, genius!</item>
-        <item>Hello, boss!</item>
-        <item>How\'s everything?</item>
-        <item>Hello, youngster!</item>
-        <item>What\'s going on?</item>
-        <item>How\'s your day going?</item>
-        <item>Hello, star!</item>
-        <item>How\'s the day shaping up?</item>
-        <item>Hello, champion!</item>
-        <item>All good?</item>
-        <item>Hello, boss lady/boss man!</item>
-        <item>How\'s life?</item>
-        <item>Hello, sweetheart!</item>
-        <item>Hello, warrior!</item>
-        <item>Hello, sunshine!</item>
-        <item>What\'s the news?</item>
-        <item>Hello, treasure!</item>
-        <item>Hello, gorgeous!</item>
-        <item>Hello, darling!</item>
-        <item>How\'s the day?</item>
-        <item>Hello, artist!</item>
-        <item>Hello, sweetness!</item>
-        <item>How\'s life?</item>
-        <item>Hello, star!</item>
-        <item>Hello, diva!</item>
-        <item>Everything in order?</item>
-        <item>Hello, champ!</item>
-        <item>Hello, my king/queen!</item>
-        <item>Hello, my love!</item>
-        <item>How\'s everything going?</item>
-        <item>Hello, beauty!</item>
-        <item>Hello, prince/princess!</item>
-        <item>Hello, titan!</item>
-        <item>Hello, genius!</item>
-        <item>Hello, angel!</item>
-        <item>How\'s everything?</item>
-        <item>Hello, champion!</item>
-        <item>Hello, boss!</item>
-        <item>What\'s up?</item>
-        <item>Hello, wonder!</item>
-        <item>What\'s up, star?</item>
-        <item>Hello, guy/girl!</item>
-        <item>How\'s your mood?</item>
-        <item>How\'s your day?</item>
-        <item>How is everything?</item>
-        <item>What\'s cooking?</item>
-        <item>How do you feel today?</item>
-        <item>Hello, majesty!</item>
-        <item>Hello, hero/heroine!</item>
-        <item>What about mine?</item>
-        <item>How\'s life treating you?</item>
-        <item>Hello, goddess/god!</item>
-        <item>Hello, legend!</item>
-        <item>How are things?</item>
-        <item>Hello, charm!</item>
-        <item>Hello, jewel!</item>
-        <item>How\'s it going?</item>
-        <item>Hello, flower of life!</item>
-        <item>Hello, light of my eyes!</item>
+        <item>Hi, great to see you!</item>
+        <item>Hi, what a surprise!</item>
+        <item>Hi, handsome/beautiful!</item>
+        <item>Hi, gorgeous!</item>
+        <item>Hi, what are you up to?</item>
+        <item>Hi, how do you feel today?</item>
+        <item>Hi, how have you been?</item>
+        <item>Hi, tell me something good!</item>
+        <item>What\'s up, friend!</item>
+        <item>Hi, how\'s everything?</item>
+        <item>Hi, it\'s been a while!</item>
+        <item>Hi, long time no see!</item>
+        <item>Hi, how\'s your day going!</item>
+        <item>Great to see you!</item>
+        <item>Hi, how has your week been?</item>
+        <item>Hi, happy to see you!</item>
+        <item>Hi, how are things?</item>
+        <item>Hi, what\'s new?</item>
+        <item>Hi, delighted to see you!</item>
+        <item>Hi, how\'s your day going?</item>
+        <item>Hi, nice to see you again!</item>
+        <item>Hi, how was your day?</item>
+        <item>Hi, it\'s been so long!</item>
+        <item>Hi, how are you doing?</item>
+        <item>Hi, what\'s new in your life?</item>
+        <item>Hi, what good news do you have?</item>
+        <item>Hi, what\'s happening in your world?</item>
+        <item>Hi, how\'s your week going?</item>
+        <item>Hi, how\'s life?</item>
+        <item>Hi, how are things on your end?</item>
+        <item>Hi, hope you\'re well!</item>
+        <item>Hi, hope you\'re having a good day!</item>
+        <item>Hi, how are things going?</item>
+        <item>Hi, have a good day!</item>
+        <item>Hi, glad to see you!</item>
+        <item>Hi, it\'s a pleasure to see you!</item>
+        <item>Hi, how are you feeling?</item>
+        <item>Hi, how\'s everything in your world?</item>
+        <item>Hi, what news do you have for me?</item>
+        <item>Hi, have a great day!</item>
+        <item>Hi, tell me how you are doing!</item>
+        <item>Hi, what\'s been happening to you?</item>
+        <item>Hi, hope you\'re having a great week!</item>
+        <item>Hi, you\'re a sight for sore eyes!</item>
+        <item>Hi, what\'s the news?</item>
+        <item>Hi, tell me something!</item>
+        <item>Hi, how are your affairs?</item>
+        <item>Hi, how\'s everything going?</item>
+        <item>Hi, tell me about your day!</item>
+        <item>Hi, happy to see you again!</item>
+        <item>Hi, how are things in your life?</item>
+        <item>Hi, how\'s the pace?</item>
+        <item>Hi, how does your day look?</item>
+        <item>Hi, what news do you bring?</item>
+        <item>Hi, is everything okay?</item>
+        <item>Hi, you\'re looking radiant today!</item>
+        <item>Hi, what brings the wind?</item>
+        <item>Hi, what brings you here?</item>
+        <item>Hi, how are you today?</item>
+        <item>Hi, tell me your news!</item>
+        <item>Hi, how\'s the day?</item>
+        <item>Hi, how\'s the journey?</item>
+        <item>Hi, I\'ve missed you!</item>
+        <item>Hi, happy to see you once more!</item>
+        <item>Hi, how\'s the progress?</item>
+        <item>Hi, tell me your adventures!</item>
+        <item>Hi, what does the day bring for you?</item>
+        <item>Hi, how are you doing this week?</item>
+        <item>Hi, good to see you again!</item>
+        <item>Hi, tell me about your week!</item>
+        <item>Hi, what does the day hold for you?</item>
+    </string-array>
+    <string-array name="sample_actor">
+        <item>{actor:sample; id:sample; grammatical-indicator:singular-masculine; hidden}</item>
+        <item>{actor:sample; id:sample; grammatical-indicator:singular-feminine; hidden}</item>
+        <item>{actor:sample; id:sample; grammatical-indicator:plural-masculine; hidden}</item>
+        <item>{actor:sample; id:sample; grammatical-indicator:plural-feminine; hidden}</item>
     </string-array>
     <string-array name="text_type">
         <item>Read phrases from the fortune-teller</item>
@@ -3409,9 +3427,9 @@
         <item>truthful</item>
     </string-array>
     <string-array name="subject">
-        <item>⸠string:adjective⸡ {string:noun}</item>
-        <item>{string:noun}</item>
-        <item>{string:adjective} one</item>
+        <item>{string:descriptor_adjective} {string:descriptor_noun}</item>
+        <item>{string:descriptor_noun}</item>
+        <item>{string:descriptor_adjective} one</item>
     </string-array>
     <string-array name="unspecific_person">
         <item>a friend</item>
