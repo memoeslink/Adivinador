@@ -6,27 +6,27 @@
         <item
             android:id="@+id/nav_data_entry"
             android:icon="@drawable/enquiry"
-            android:title="@string/data_entry"></item>
+            android:title="@string/data_entry" />
         <item
             android:id="@+id/nav_reload"
             android:icon="@drawable/reload"
-            android:title="@string/reload"></item>
+            android:title="@string/reload" />
         <item
             android:id="@+id/nav_save"
             android:icon="@drawable/save"
-            android:title="@string/save"></item>
+            android:title="@string/save" />
         <item
             android:id="@+id/nav_inquiry"
             android:icon="@drawable/form"
-            android:title="…"></item>
+            android:title="…" />
         <item
             android:id="@+id/nav_selector"
             android:icon="@drawable/form"
-            android:title="@string/selector"></item>
+            android:title="@string/selector" />
         <item
             android:id="@+id/nav_clear"
             android:icon="@drawable/clear"
-            android:title="@string/clear"></item>
+            android:title="@string/clear" />
     </group>
 
     <group
@@ -35,10 +35,10 @@
         <item
             android:id="@+id/nav_compatibility"
             android:icon="@drawable/heart_half"
-            android:title="@string/compatibility"></item>
+            android:title="@string/compatibility" />
         <item
             android:id="@+id/nav_name_generation"
             android:icon="@drawable/box"
-            android:title="@string/name_generation"></item>
+            android:title="@string/name_generation" />
     </group>
 </menu>

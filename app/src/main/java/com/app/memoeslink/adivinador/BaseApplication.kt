@@ -15,7 +15,7 @@ class BaseApplication : MultiDexApplication() {
         super.onCreate()
 
         // Initialize SharedPreferences
-        PreferenceHandler.init(applicationContext);
+        PreferenceHandler.init(applicationContext)
 
         // Set preference default values
         PreferenceManager.setDefaultValues(
