@@ -3,11 +3,13 @@ package com.app.memoeslink.adivinador;
 import android.content.Context;
 import android.content.ContextWrapper;
 
+import com.app.memoeslink.adivinador.tagprocessor.Actor;
 import com.app.memoeslink.adivinador.tagprocessor.TagProcessor;
 import com.app.memoeslink.adivinador.textfilter.TextFilter;
 import com.app.memoeslink.adivinador.textfilter.TextFilterFactory;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.Gender;
+import com.memoeslink.generator.common.GrammaticalNumber;
 import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.PrintableCharUtils;
 import com.memoeslink.generator.common.TextComponent;
@@ -85,6 +87,7 @@ public class Divination extends ContextWrapper {
         Randomizer r = new Randomizer(seed);
         ResourceExplorer explorer = new ResourceExplorer(getBaseContext(), seed);
         TagProcessor tagProcessor = new TagProcessor.NewTagProcessorBuilder(getBaseContext())
+                .setDefaultActor(new Actor(person.getDescriptor(), person.getGender(), GrammaticalNumber.SINGULAR))
                 .setSeed(seed)
                 .build();
 
@@ -149,13 +152,12 @@ public class Divination extends ContextWrapper {
         final String[] basicColors = {"#FEFF5B", "#6ABB6A", "#E55B5B", "#5B72E5", ">#925BFF"};
 
         for (int n = 0, limit = r.getElement(PROBABILITY_DISTRIBUTION); n < limit; n++) {
-            Gender gender = r.getEnum(Gender.class);
             String formattedLetter = String.format("<font color=\"%s\">%s</font>", basicColors[n], TextFormatter.formatText(Character.toString(letter), "b", "i"));
-            String description = String.format("{string:person; index:0} %s, {string:probability} {string:individual}", formattedLetter);
+            String description = String.format("{string:person; index:0} %s, {string:uncertainty} {string:individual}", formattedLetter);
             description = tagProcessor.replaceTags(description).getText();
             people.add(new Person.PersonBuilder()
                     .setNickname(Character.toString(letter))
-                    .setGender(gender)
+                    .setGender(tagProcessor.getActorRegistry().getOrDefault("individual").getGender())
                     .setDescription(description)
                     .setAttribute("nonspecific")
                     .setAttribute("unknown")

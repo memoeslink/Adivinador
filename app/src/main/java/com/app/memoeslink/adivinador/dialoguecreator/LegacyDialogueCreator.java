@@ -5,7 +5,11 @@ import android.content.ContextWrapper;
 
 import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.ResourceExplorer;
+import com.app.memoeslink.adivinador.preference.PreferenceUtils;
+import com.app.memoeslink.adivinador.tagprocessor.Actor;
 import com.app.memoeslink.adivinador.tagprocessor.TagProcessor;
+import com.memoeslink.generator.common.GrammaticalNumber;
+import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.TextProcessor;
 
 public class LegacyDialogueCreator extends ContextWrapper implements DialogueCreator {
@@ -15,7 +19,9 @@ public class LegacyDialogueCreator extends ContextWrapper implements DialogueCre
     public LegacyDialogueCreator(Context context, Long seed) {
         super(context);
         explorer = new ResourceExplorer(context, seed);
+        Person user = PreferenceUtils.getFormPerson();
         tagProcessor = new TagProcessor.NewTagProcessorBuilder(context)
+                .setDefaultActor(new Actor(user.getDescriptor(), user.getGender(), GrammaticalNumber.SINGULAR))
                 .setSeed(seed)
                 .build();
     }
