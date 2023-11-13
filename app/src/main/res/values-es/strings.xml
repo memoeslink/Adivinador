@@ -237,7 +237,7 @@
     <string name="preference_theme_summary">Cambia el tema de la aplicación</string>
     <string name="preference_update_frequency">Frecuencia de actualización</string>
     <string name="preference_update_frequency_summary">Cambia el tiempo que tarda en actualizarse la predicción</string>
-    <string name="qualitative_adjective">{[agradable]; plural-form:+s}¶ {[brillante]; plural-form:+s}¶ {[desagradable]; plural-form:+s}¶ {[diferente]; plural-form:+s}¶ {[frágil]; plural-form:+es}¶ {[electrizante]; plural-form:+s}¶ {[grandios[o,a]]; plural-form:+s}¶ {[mejor]; plural-form:+es}¶ {[normal]; plural-form:+es}¶ {[negativ[o,a]]; plural-form:+s}¶ {[oscur[o,a]]; plural-form:+s}¶ {[peor]; plural-form:+es}¶ {[positiv[o,a]]; plural-form:+s}¶ {[rar[o,a]]; plural-form:+s}¶ {[sólid[o,a]]; plural-form:+s}¶ {[terrible]; plural-form:+s}</string>
+    <string name="qualitative_adjective">{[agradable]; plural-form:+s; influence:divinationScope}¶ {[brillante]; plural-form:+s; influence:divinationScope}¶ {[desagradable]; plural-form:+s; influence:divinationScope}¶ {[diferente]; plural-form:+s; influence:divinationScope}¶ {[frágil]; plural-form:+es; influence:divinationScope}¶ {[electrizante]; plural-form:+s; influence:divinationScope}¶ {[grandios[o,a]]; plural-form:+s; influence:divinationScope}¶ {[mejor]; plural-form:+es; influence:divinationScope}¶ {[normal]; plural-form:+es; influence:divinationScope}¶ {[negativ[o,a]]; plural-form:+s; influence:divinationScope}¶ {[oscur[o,a]]; plural-form:+s; influence:divinationScope}¶ {[peor]; plural-form:+es; influence:divinationScope}¶ {[positiv[o,a]]; plural-form:+s; influence:divinationScope}¶ {[rar[o,a]]; plural-form:+s; influence:divinationScope}¶ {[sólid[o,a]]; plural-form:+s; influence:divinationScope}¶ {[terrible]; plural-form:+s; influence:divinationScope}</string>
     <string name="relative">{[[padre,madre]]; influence:?}¶ {[[papá,mamá]]; influence:?}¶ {[hij[o,a]]; influence:?}¶ {[prim[o,a]]; influence:?}¶ {[tí[o,a]]; influence:?}¶ {[sobrin[o,a]]; influence:?}¶ {[herman[o,a]]; influence:?}¶ {[abuel[o,a]]; influence:?}¶ {[niet[o,a]]; influence:?}¶ {[bisabuel[o,a]]; influence:?}</string>
     <string name="reload">Generar consulta</string>
     <string name="save">Guardar consulta</string>
@@ -250,7 +250,6 @@
     <string name="toast_inquiry_not_saved">No se pudo guardar la consulta.</string>
     <string name="toast_inquiry_saved">Se ha guardado la consulta con éxito.</string>
     <string name="toast_voice_unavailability">No hay ningún idioma disponible para voces en tu dispositivo.</string>
-    <string name="today">hoy</string>
     <string name="value_as_negative">negativo</string>
     <string name="value_as_neutral">neutral</string>
     <string name="value_as_null">nulo</string>
@@ -1386,7 +1385,7 @@
         <item>{string:explicit_cause}</item>
     </string-array>
     <string-array name="divination_end">
-        <item>{[será]; plural-form:[serán]; influence:divinationScope} {string:qualitative_adjective; influence:divinationScope}</item>
+        <item>{[será]; plural-form:[serán]; influence:divinationScope} {string:qualitative_adjective}</item>
         <item>{[tendrá]; plural-form:[tendrán]; influence:divinationScope} cambios positivos</item>
         <item>{[tendrá]; plural-form:[tendrán]; influence:divinationScope} cambios negativos</item>
         <item>se {[verá]; plural-form:[verán]; influence:divinationScope} {[afectad[o,a]]; plural-form:+s; influence:divinationScope} de manera positiva</item>
@@ -3069,7 +3068,7 @@
         <item>Los Cáncer son profundamente emocionales y sensibles, con un fuerte sentido de empatía hacia los demás. Como signo de agua, sienten las emociones a un nivel más profundo que otros signos, y están muy conectados con su entorno doméstico y familiar. Los Cáncer valoran la seguridad y la comodidad, y tienden a ser muy protectores con las personas que les importan. Sin embargo, su sensibilidad puede llevarles a ser tímidos, reservados o demasiado cautelosos. Su miedo a ser heridos puede hacer que se escondan en su caparazón, dificultando que los demás lleguen a conocerlos realmente.</item>
         <item>Los Leo son conocidos por su carisma, su confianza en sí mismos y su deseo de estar en el centro de atención. Son líderes naturales, con un espíritu noble y generoso que los lleva a cuidar y proteger a los que les rodean. Como signo de fuego, los Leo son apasionados, creativos y llenos de energía, con una personalidad que brilla con fuerza. Sin embargo, esta confianza también puede convertirse en arrogancia o egocentrismo si no se controla. Los Leo pueden ser obstinados y dominantes, insistiendo en hacer las cosas a su manera.</item>
         <item>Los Virgo son prácticos, meticulosos y detallistas. Como signo de tierra, están muy arraigados en el mundo material y buscan crear orden y eficiencia en todo lo que hacen. Son excelentes solucionadores de problemas, con una mente aguda y analítica que puede ver los detalles que otros pasan por alto. Sin embargo, esta atención al detalle puede convertirse en perfeccionismo, lo que puede llevar a la ansiedad y al exceso de crítica. Aunque los Virgo pueden parecer fríos o distantes en la superficie, a menudo tienen una rica vida interior y un fuerte deseo de ayudar a los demás.</item>
-        <item>Los Libra son conocidos por su sentido de la justicia, su equilibrio y su deseo de paz. Como signo de aire, son excelentes comunicadores y mediadores, siempre buscando formas de armonizar y equilibrar las relaciones. Tienen un fuerte sentido estético y disfrutan de la belleza y el lujo en todas sus formas. Sin embargo, su deseo de mantener la paz puede llevarles a evitar el conflicto y a ser indecisos. Los Libra pueden luchar con la autenticidad, a menudo sacrificando sus propios deseos o necesidades para mantener a los demás <contentos class=""></contentos></item>
+        <item>Los Libra son conocidos por su sentido de la justicia, su equilibrio y su deseo de paz. Como signo de aire, son excelentes comunicadores y mediadores, siempre buscando formas de armonizar y equilibrar las relaciones. Tienen un fuerte sentido estético y disfrutan de la belleza y el lujo en todas sus formas. Sin embargo, su deseo de mantener la paz puede llevarles a evitar el conflicto y a ser indecisos. Los Libra pueden luchar con la autenticidad, a menudo sacrificando sus propios deseos o necesidades para mantener a los demás contentos.</item>
         <item>Los Escorpio son intensos, profundos y apasionados. Como signo de agua, sienten las emociones profundamente y a menudo tienen una naturaleza introspectiva y misteriosa. Son extremadamente leales y dedicados, pero también pueden ser celosos y posesivos. Tienen un gran deseo de entender los secretos y misterios del universo, lo que les lleva a ser excelentes investigadores. Sin embargo, su intensidad puede ser abrumadora y pueden tener dificultades para abrirse a los demás. Los Escorpio tienen una voluntad fuerte y pueden ser implacables en la persecución de sus objetivos.</item>
         <item>Los Sagitario son aventureros, optimistas y llenos de entusiasmo. Como signo de fuego, están llenos de pasión y energía, siempre en busca de nuevas experiencias y conocimientos. Son muy independientes y valoran su libertad por encima de todo. Sin embargo, su deseo de libertad puede llevarles a ser irresponsables o imprudentes, y su honestidad puede a veces ser cruda. Los Sagitario son conocidos por su sentido del humor y su amor por la diversión, pero también pueden ser impacientes y tener dificultades para centrarse en los detalles.</item>
         <item>Los Capricornio son prácticos, ambiciosos y muy trabajadores. Como signo de tierra, están arraigados en la realidad y buscan la estabilidad y seguridad. Son muy responsables y disciplinados, con una capacidad innata para planificar y organizar. Sin embargo, su ambición puede llevarles a ser demasiado serios o reservados, y pueden tener dificultades para relajarse y disfrutar de la vida. Los Capricornio tienen un fuerte sentido del deber y la responsabilidad, pero también pueden ser obstinados y tener dificultades para aceptar la ayuda de los demás.</item>
@@ -3165,18 +3164,6 @@
         <item>La naturaleza tiene patrones y muestra que ciertos eventos ocurrirán.</item>
         <item>La magia reunida tiene noticias sobre el futuro.</item>
         <item>Existen fuerzas más allá de la comprensión que muestran las situaciones que ocurrirán.</item>
-    </string-array>
-    <string-array name="probability">
-        <item>quizá</item>
-        <item>acaso</item>
-        <item>posiblemente</item>
-        <item>probablemente</item>
-        <item>quizás</item>
-        <item>es posible que</item>
-        <item>a lo mejor</item>
-        <item>tal vez</item>
-        <item>puede que</item>
-        <item>seguramente</item>
     </string-array>
     <string-array name="refresh_time">
         <item>Nunca</item>
@@ -3430,6 +3417,18 @@
         <item>{string:descriptor_noun} {string:descriptor_adjective}</item>
         <item>{string:descriptor_noun} {actor:persona; id:descriptor; hidden}</item>
         <item>{string:descriptor_adjective}</item>
+    </string-array>
+    <string-array name="uncertainty">
+        <item>quizá</item>
+        <item>acaso</item>
+        <item>posiblemente</item>
+        <item>probablemente</item>
+        <item>quizás</item>
+        <item>es posible que</item>
+        <item>a lo mejor</item>
+        <item>tal vez</item>
+        <item>puede que</item>
+        <item>seguramente</item>
     </string-array>
     <string-array name="unspecific_person">
         <item>{[un[,a]]; influence:?} {[amig[o,a]]; influence:?}</item>

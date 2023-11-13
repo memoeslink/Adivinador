@@ -250,7 +250,6 @@
     <string name="toast_inquiry_not_saved">The enquiry couldn\'t be saved.</string>
     <string name="toast_inquiry_saved">The enquiry was saved successfully.</string>
     <string name="toast_voice_unavailability">There\'s not any available voice for TTS in your device.</string>
-    <string name="today">today</string>
     <string name="value_as_negative">negative</string>
     <string name="value_as_neutral">neutral</string>
     <string name="value_as_null">null</string>
@@ -3166,18 +3165,6 @@
         <item>Gathered magical forces have news about the future.</item>
         <item>There are forces beyond comprehension that show situations that will occur.</item>
     </string-array>
-    <string-array name="probability">
-        <item>perhaps</item>
-        <item>perchance</item>
-        <item>conceivably</item>
-        <item>probably</item>
-        <item>possibly</item>
-        <item>peradventure</item>
-        <item>prospectively</item>
-        <item>presumably</item>
-        <item>maybe</item>
-        <item>assuredly</item>
-    </string-array>
     <string-array name="refresh_time">
         <item>Never</item>
         <item>5 seconds</item>
@@ -3430,6 +3417,18 @@
         <item>{string:descriptor_adjective} {string:descriptor_noun}</item>
         <item>{string:descriptor_noun}</item>
         <item>{string:descriptor_adjective} one</item>
+    </string-array>
+    <string-array name="uncertainty">
+        <item>perhaps</item>
+        <item>perchance</item>
+        <item>conceivably</item>
+        <item>probably</item>
+        <item>possibly</item>
+        <item>peradventure</item>
+        <item>prospectively</item>
+        <item>presumably</item>
+        <item>maybe</item>
+        <item>assuredly</item>
     </string-array>
     <string-array name="unspecific_person">
         <item>a friend</item>
