@@ -60,7 +60,6 @@ public class Database extends SQLiteAssetHelper {
             TABLE_COUNT_REGISTRY.put(table, count);
             return count;
         } catch (SQLiteException e) {
-            e.printStackTrace();
             return count;
         } finally {
             c.close();
@@ -85,7 +84,6 @@ public class Database extends SQLiteAssetHelper {
             TABLE_MAX_ROW_ID.put(table, count);
             return count;
         } catch (SQLiteException e) {
-            e.printStackTrace();
             return count;
         } finally {
             c.close();
@@ -103,7 +101,6 @@ public class Database extends SQLiteAssetHelper {
             c.moveToFirst();
             return c.getString(1);
         } catch (Exception e) {
-            e.printStackTrace();
             return DEFAULT_VALUE;
         } finally {
             c.close();

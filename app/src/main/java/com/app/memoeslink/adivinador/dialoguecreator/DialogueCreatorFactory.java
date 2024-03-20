@@ -4,7 +4,10 @@ import android.content.Context;
 
 public class DialogueCreatorFactory {
 
-    public DialogueCreator getDialogueCreator(String type, Context context, Long seed) {
+    private DialogueCreatorFactory() {
+    }
+
+    public static DialogueCreator getDialogueCreator(String type, Context context, Long seed) {
         if (type == null) return new DefaultDialogueCreator();
 
         return switch (type) {

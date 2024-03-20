@@ -20,7 +20,7 @@ public class Identity extends ContextWrapper {
     private final Person person;
 
     public Identity(Context context) {
-        this(context, new Person.PersonBuilder().build());
+        this(context, new Person.PersonBuilder().setAttribute("empty").build());
     }
 
     public Identity(Context context, Person person) {

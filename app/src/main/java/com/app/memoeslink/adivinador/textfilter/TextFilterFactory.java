@@ -11,7 +11,7 @@ public class TextFilterFactory extends ContextWrapper {
         super(context);
     }
 
-    public TextFilter createTextFilter() {
+    public TextFilter getTextFilter() {
         return switch (getString(R.string.locale)) {
             case "en" -> new EnglishTextFilter();
             case "es" -> new SpanishTextFilter();

@@ -11,6 +11,7 @@ import com.memoeslink.generator.common.Constant;
 import com.memoeslink.generator.common.Explorer;
 import com.memoeslink.generator.common.Form;
 import com.memoeslink.generator.common.GeneratorManager;
+import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.PhraseType;
 import com.memoeslink.generator.common.TextFormatter;
 import com.memoeslink.manager.Device;
@@ -97,11 +98,11 @@ public class ResourceExplorer extends Explorer {
     }
 
     public String findMethodByName(String methodName) {
-        return StringHelper.defaultWhenEmpty(methodFinder.getMethodByName(methodName));
+        return StringHelper.defaultOnEmpty(methodFinder.getMethodByName(methodName));
     }
 
     public String findMethodByRef(MethodReference reference) {
-        return StringHelper.defaultWhenEmpty(methodFinder.getMethodByRef(reference));
+        return StringHelper.defaultOnEmpty(methodFinder.getMethodByRef(reference));
     }
 
     public String findPrefByTag(String tag) {
@@ -132,10 +133,13 @@ public class ResourceExplorer extends Explorer {
                 METHOD_MAPPING.put(MethodReference.DECIMAL_PERCENTAGE, () -> generatorManager.getStringGenerator().getPercentage(true));
                 METHOD_MAPPING.put(MethodReference.HEX_COLOR, () -> generatorManager.getStringGenerator().getHexColor());
                 METHOD_MAPPING.put(MethodReference.DEFAULT_COLOR, () -> resourceFinder.getStrFromArray(Constant.DEFAULT_COLORS));
-                METHOD_MAPPING.put(MethodReference.DEVICE_INFO, () -> new Device(context).getInfo(r.getElement(InformationType.values())));
+                METHOD_MAPPING.put(MethodReference.DEVICE_INFO, () -> new Device(context).getInfo(r.getElement(InformationType.getEntries())));
                 METHOD_MAPPING.put(MethodReference.CONTACT_NAME, contactNameFinder::getContactName);
                 METHOD_MAPPING.put(MethodReference.SUGGESTED_NAME, this::getSuggestedName);
-                METHOD_MAPPING.put(MethodReference.FORMATTED_NAME, this::getFormattedName);
+                METHOD_MAPPING.put(MethodReference.INDIVIDUAL, this::getIndividual);
+                METHOD_MAPPING.put(MethodReference.FORMATTED_INDIVIDUAL, this::getFormattedIndividual);
+                METHOD_MAPPING.put(MethodReference.ACTOR, this::getActor);
+                METHOD_MAPPING.put(MethodReference.FORMATTED_ACTOR, this::getFormattedActor);
                 METHOD_MAPPING.put(MethodReference.AGREEMENT, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.AGREEMENT));
                 METHOD_MAPPING.put(MethodReference.AMAZEMENT, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.AMAZEMENT));
                 METHOD_MAPPING.put(MethodReference.APOLOGY, () -> generatorManager.getPhraseGenerator().getPhrase(PhraseType.APOLOGY));
@@ -164,17 +168,38 @@ public class ResourceExplorer extends Explorer {
             return StringHelper.defaultIfBlank(suggestedName, Constant.DEVELOPER);
         }
 
-        private String getFormattedName() {
+        private Person getPerson() {
             return switch (r.getElement(NAME_SOURCES)) {
-                case "anonymous" ->
-                        TextFormatter.formatUsername(getMethodByRef(MethodReference.USERNAME));
-                case "common" -> TextFormatter.formatName(getMethodByRef(MethodReference.NAME));
-                case "contact" ->
-                        TextFormatter.formatContactName(getMethodByRef(MethodReference.CONTACT_NAME));
-                case "suggestion" ->
-                        TextFormatter.formatSuggestedName(getMethodByRef(MethodReference.SUGGESTED_NAME));
-                default -> TextFormatter.formatText(Database.DEFAULT_VALUE, "b");
+                case "anonymous" -> generatorManager.getPersonGenerator().getAnonymousPerson();
+                case "common" -> generatorManager.getPersonGenerator().getPerson();
+                case "contact" -> new Person.PersonBuilder()
+                        .setFullName(contactNameFinder.getContactName())
+                        .setAttribute("registered")
+                        .build();
+                case "suggestion" -> new Person.PersonBuilder()
+                        .setFullName(getSuggestedName())
+                        .setAttribute("suggested")
+                        .build();
+                default -> new Person.PersonBuilder().setAttribute("empty").build();
             };
+        }
+
+        private String getIndividual() {
+            return getPerson().getDescriptor();
+        }
+
+        private String getFormattedIndividual() {
+            return TextFormatter.formatPerson(getPerson());
+        }
+
+        private String getActor() {
+            Person person = getPerson();
+            return String.format("%s {actor:%s; id:@tempActor; grammatical-indicator:singular-%s; hidden}", person.getDescriptor(), person.getSha256(), person.getGender().toString().toLowerCase());
+        }
+
+        private String getFormattedActor() {
+            Person person = getPerson();
+            return String.format("%s {actor:%s; id:@tempActor; grammatical-indicator:singular-%s; hidden}", TextFormatter.formatPerson(person), person.getSha256(), person.getGender().toString().toLowerCase());
         }
     }
 }

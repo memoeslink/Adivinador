@@ -1,6 +1,7 @@
 package com.app.memoeslink.adivinador.tagprocessor;
 
 import android.content.Context;
+import android.util.Pair;
 
 import com.app.memoeslink.adivinador.Database;
 import com.app.memoeslink.adivinador.LanguageHelper;
@@ -16,6 +17,10 @@ import org.memoeslink.DateTimeHelper;
 import org.memoeslink.IntegerHelper;
 import org.memoeslink.StringHelper;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -28,14 +33,17 @@ public class TagProcessor extends Binder {
     public static final String INTEGER_REGEX = "(-?[1-9]\\d*|0)";
     public static final String GENDER_REGEX = "(any|undefined|neutral|masculine|feminine)";
     public static final String GRAMMATICAL_NUMBER_REGEX = "(any|undefined|singular|plural)";
+    public static final String ACTOR_ID_REGEX = "@?" + REFERENCE_REGEX;
     public static final String ACTOR_TAG_REGEX = "(?<actorTagStartSpaces>\\s*)" + "(?<!#)\\{" +
             "actor:" + "(?<actorTagName>" + TextProcessor.BASE_TEXT_REGEX + "+)" +
-            "(;\\s?" + "(?<actorTagIdAttr>id:(?<actorTagId>" + REFERENCE_REGEX + "))" + ")" +
+            "(;\\s?" + "(?<actorTagIdAttr>id:(?<actorTagId>" + ACTOR_ID_REGEX + "))" + ")" +
             "(;\\s?" + "(?<actorTagGramIndicatorAttr>grammatical-indicator:(?<actorTagGramIndicator>(" + GRAMMATICAL_NUMBER_REGEX + "|" + GENDER_REGEX + "|" + GRAMMATICAL_NUMBER_REGEX + "-" + GENDER_REGEX + ")))" + ")?" +
+            "(;\\s?" + "(?<actorTagTrueGramIndicatorAttr>true-grammatical-indicator:(?<actorTagTrueGramIndicator>(" + GRAMMATICAL_NUMBER_REGEX + "|" + GENDER_REGEX + "|" + GRAMMATICAL_NUMBER_REGEX + "-" + GENDER_REGEX + ")))" + ")?" +
+            "(;\\s?" + "(?<actorTagFormatAttr>id:(?<actorTagFormat>" + REFERENCE_REGEX + "))" + ")?" +
             "(;\\s?" + "(?<actorTagHiddenAttr>hidden)" + ")?" +
             "\\}" + "(?<actorTagEndSpaces>\\s*)";
     public static final Pattern ACTOR_TAG_PATTERN = Pattern.compile(ACTOR_TAG_REGEX);
-    public static final String SIMPLE_TAG_REGEX = "(?<simpleTagStartSpaces>\\s*)" + "#\\{(?<simpleTagContent>" + REFERENCE_REGEX + ")?\\}" + "(?<simpleTagEndSpaces>\\s*)";
+    public static final String SIMPLE_TAG_REGEX = "(?<simpleTagStartSpaces>\\s*)" + "#\\{(?<simpleTagContent>(?<simpleTagReference>" + ACTOR_ID_REGEX + ")(\\.(?<simpleTagMethodReference>[a-zA-Z0-9_$]+))?)?\\}" + "(?<simpleTagEndSpaces>\\s*)";
     public static final Pattern SIMPLE_TAG_PATTERN = Pattern.compile(SIMPLE_TAG_REGEX);
     public static final String RESOURCE_TAG_REGEX = "(?<resourceTagStartSpaces>\\s*)" + "(?<!#)\\{" +
             "(?<resourceTagType>string|database|compendium|method|reference|preference):(?<resourceTagName>" + REFERENCE_REGEX + ")" +
@@ -45,7 +53,7 @@ public class TagProcessor extends Binder {
     public static final String WORD_TAG_REGEX = "(?<wordTagStartSpaces>\\s*)" + "(?<!#)\\{" +
             "(?<wordTagContent>" + TextProcessor.EXTENDED_TEXT_REGEX + ")" +
             "(;\\s?" + "(?<wordTagPluralFormAttr>plural-form:(?<wordTagPluralForm>\\+" + TextProcessor.BASE_TEXT_REGEX + "+|" + TextProcessor.BASE_TEXT_REGEX + "+\\+|" + TextProcessor.EXTENDED_TEXT_REGEX + "))" + ")?" +
-            "(;\\s?" + "(?<wordTagInfluenceAttr>influence:(?<wordTagInfluence>" + REFERENCE_REGEX + "|\\?))" + ")?" +
+            "(;\\s?" + "(?<wordTagInfluenceAttr>influence:(?<wordTagInfluence>" + ACTOR_ID_REGEX + "|\\?))" + ")?" +
             "\\}" + "(?<wordTagEndSpaces>\\s*)";
     public static final Pattern WORD_TAG_PATTERN = Pattern.compile(WORD_TAG_REGEX);
     public static final String DATE_TIME_TAG_REGEX = "(?<dateTimeTagStartSpaces>\\s*)" + "(?<!#)\\{" +
@@ -62,7 +70,7 @@ public class TagProcessor extends Binder {
             DATE_TIME_TAG_REGEX + "|" +
             TextProcessor.BASE_TEXT_REGEX + "+" +
             ")";
-    public static final String RANDOM_TAG_REGEX = "(?<randomTagStartSpaces>\\s*)" + "(?<!#)\\{" + "" +
+    public static final String RANDOM_TAG_REGEX = "(?<randomTagStartSpaces>\\s*)" + "(?<!#)\\{" +
             "rand:" + "(?<randomTagOptions>(" + RANDOM_TAG_OPTIONS_REGEX + "(;|(?=\\}))" + ")+)" +
             "\\}" + "(?<randomTagEndSpaces>\\s*)";
     public static final Pattern RANDOM_TAG_PATTERN = Pattern.compile(RANDOM_TAG_REGEX);
@@ -101,11 +109,14 @@ public class TagProcessor extends Binder {
             return new TextComponent(s);
         TextComponent component = new TextComponent();
 
+        //Remove non-permanent actors
+        if (!nested) actorRegistry.clearNonPermanent();
+
         // Replace random tags within the text, if there are any
         ProcessedText t = replaceRandomTags(s, pairsOfBrackets);
 
         // Replace actor tags within the text, if there are any
-        t = replaceActorTags(t.getText(), t.getRemainingMatches());
+        t = replaceActorTags(t.getText(), t.getRemainingMatches(), true);
 
         // Replace simple tags within the text, if there are any
         t = replaceSimpleTags(t.getText(), t.getRemainingMatches());
@@ -120,10 +131,13 @@ public class TagProcessor extends Binder {
         t = replaceDateTimeTags(t.getText(), t.getRemainingMatches());
 
         // Replace grammar tags within the text, if there are any
-        GrammarTagProcessor grammarTagProcessor = new GrammarTagProcessorFactory(context).createGrammarTagProcessor();
+        GrammarTagProcessor grammarTagProcessor = new GrammarTagProcessorFactory(context).getGrammarTagProcessor();
         t = grammarTagProcessor.replaceTags(t.getText(), actorRegistry.getDefaultActor().getGender(), t.getRemainingMatches());
         component.setText(t.getText());
         pairsOfBrackets = t.getRemainingMatches();
+
+        //Remove short-lived actors
+        if (!nested) actorRegistry.clearEphemeral();
         return component;
     }
 
@@ -183,6 +197,10 @@ public class TagProcessor extends Binder {
     }
 
     public ProcessedText replaceActorTags(String s, int remainingMatches) {
+        return replaceActorTags(s, Integer.MAX_VALUE, false);
+    }
+
+    private ProcessedText replaceActorTags(String s, int remainingMatches, boolean persistent) {
         Matcher matcher = ACTOR_TAG_PATTERN.matcher(s);
         StringBuffer sb = new StringBuffer();
         int replacementCount = 0;
@@ -196,33 +214,16 @@ public class TagProcessor extends Binder {
                 replacement = matcher.group("actorTagEndSpaces");
             else
                 replacement = matcher.group("actorTagStartSpaces") + actorName + matcher.group("actorTagEndSpaces");
-            Actor actor = new Actor(actorName);
+            Pair<Gender, GrammaticalNumber> grammaticalIndicator = getGrammaticalIndicator(matcher.group("actorTagGramIndicator"));
+            Actor actor = new Actor(actorName, grammaticalIndicator.first, grammaticalIndicator.second);
 
-            if (matcher.group("actorTagGramIndicatorAttr") != null) {
-                String grammaticalIndicator = matcher.group("actorTagGramIndicator");
-                Gender gender = Gender.UNDEFINED;
-                GrammaticalNumber grammaticalNumber = GrammaticalNumber.UNDEFINED;
-
-                if (StringHelper.startsWith(grammaticalIndicator, "singular"))
-                    grammaticalNumber = GrammaticalNumber.SINGULAR;
-                else if (StringHelper.startsWith(grammaticalIndicator, "plural"))
-                    grammaticalNumber = GrammaticalNumber.PLURAL;
-                else if (StringHelper.startsWith(grammaticalIndicator, "any"))
-                    grammaticalNumber = r.getBoolean() ? GrammaticalNumber.SINGULAR : GrammaticalNumber.PLURAL;
-
-                if (StringHelper.endsWith(grammaticalIndicator, "masculine"))
-                    gender = Gender.MASCULINE;
-                else if (StringHelper.endsWith(grammaticalIndicator, "feminine"))
-                    gender = Gender.FEMININE;
-                else if (StringHelper.endsWith(grammaticalIndicator, "neutral"))
-                    gender = Gender.NEUTRAL;
-                else if (StringHelper.endsWith(grammaticalIndicator, "any"))
-                    gender = r.getBoolean() ? Gender.MASCULINE : Gender.FEMININE;
-
-                actor.setGender(gender);
-                actor.setGrammaticalNumber(grammaticalNumber);
+            if (matcher.group("actorTagTrueGramIndicator") != null) {
+                Pair<Gender, GrammaticalNumber> trueGrammaticalIndicator = getGrammaticalIndicator(matcher.group("actorTagTrueGramIndicator"));
+                actor.setTrueGender(trueGrammaticalIndicator.first);
+                actor.setTrueGrammaticalNumber(trueGrammaticalIndicator.second);
             }
-            actorRegistry.put(actorId, actor, true);
+            RecordTemporality temporality = StringHelper.startsWith(actorId, "@") ? RecordTemporality.EPHEMERAL : RecordTemporality.TRANSITORY;
+            actorRegistry.put(actorId, actor, temporality);
             matcher.appendReplacement(sb, replacement);
 
             if (replacementCount < Integer.MAX_VALUE)
@@ -230,6 +231,9 @@ public class TagProcessor extends Binder {
             remainingMatches--;
         }
         matcher.appendTail(sb);
+
+        if (!persistent)
+            actorRegistry.clearNonPermanent();
         return new ProcessedText(sb.toString(), replacementCount, remainingMatches);
     }
 
@@ -243,8 +247,26 @@ public class TagProcessor extends Binder {
         int replacementCount = 0;
 
         while (remainingMatches > 0 && matcher.find()) {
-            Actor actor = actorRegistry.getOrDefault(matcher.group("simpleTagContent"));
-            String replacement = matcher.group("simpleTagStartSpaces") + actor.getDescriptor() + matcher.group("simpleTagEndSpaces");
+            Actor actor = actorRegistry.getOrDefault(matcher.group("simpleTagReference"));
+            String methodReference = matcher.group("simpleTagMethodReference");
+            String replacement;
+
+            if (methodReference != null) {
+                replacement = AccessController.doPrivileged((PrivilegedAction<String>) () -> {
+                    String r = Database.DEFAULT_VALUE;
+
+                    try {
+                        Method method = actor.getDescriptor().getClass().getMethod(methodReference);
+                        method.setAccessible(true);
+                        r = (String) method.invoke(actor.getDescriptor());
+                    } catch (InvocationTargetException | IllegalAccessException |
+                             NoSuchMethodException ignored) {
+                    }
+                    return r;
+                });
+                replacement = matcher.group("simpleTagStartSpaces") + replacement + matcher.group("simpleTagEndSpaces");
+            } else
+                replacement = matcher.group("simpleTagStartSpaces") + actor.getDescriptor().toString() + matcher.group("simpleTagEndSpaces");
             matcher.appendReplacement(sb, replacement);
 
             if (replacementCount < Integer.MAX_VALUE)
@@ -385,7 +407,7 @@ public class TagProcessor extends Binder {
                     replacement = DateTimeFormatter.ofPattern(dateTimeFormat, LanguageHelper.getLocale(context)).format(dateTime);
                 }
             }
-            replacement = matcher.group("dateTimeTagStartSpaces") + StringHelper.defaultWhenBlank(replacement) + matcher.group("dateTimeTagEndSpaces");
+            replacement = matcher.group("dateTimeTagStartSpaces") + StringHelper.defaultOnBlank(replacement) + matcher.group("dateTimeTagEndSpaces");
             matcher.appendReplacement(sb, replacement);
 
             if (replacementCount < Integer.MAX_VALUE)
@@ -396,10 +418,34 @@ public class TagProcessor extends Binder {
         return new ProcessedText(sb.toString(), replacementCount, remainingMatches);
     }
 
+    private Pair<Gender, GrammaticalNumber> getGrammaticalIndicator(String s) {
+        if (StringHelper.isNullOrBlank(s))
+            return new Pair<>(Gender.UNDEFINED, GrammaticalNumber.UNDEFINED);
+        Gender gender = Gender.UNDEFINED;
+        GrammaticalNumber grammaticalNumber = GrammaticalNumber.UNDEFINED;
+
+        if (StringHelper.endsWith(s, "masculine"))
+            gender = Gender.MASCULINE;
+        else if (StringHelper.endsWith(s, "feminine"))
+            gender = Gender.FEMININE;
+        else if (StringHelper.endsWith(s, "neutral"))
+            gender = Gender.NEUTRAL;
+        else if (StringHelper.endsWith(s, "any"))
+            gender = r.getBoolean() ? Gender.MASCULINE : Gender.FEMININE;
+
+        if (StringHelper.startsWith(s, "singular"))
+            grammaticalNumber = GrammaticalNumber.SINGULAR;
+        else if (StringHelper.startsWith(s, "plural"))
+            grammaticalNumber = GrammaticalNumber.PLURAL;
+        else if (StringHelper.startsWith(s, "any"))
+            grammaticalNumber = r.getBoolean() ? GrammaticalNumber.SINGULAR : GrammaticalNumber.PLURAL;
+        return new Pair<>(gender, grammaticalNumber);
+    }
+
     public static class NewTagProcessorBuilder {
-        private Context context;
+        private final Context context;
         private Long seed;
-        private ActorRegistry actorRegistry = new ActorRegistry();
+        private final ActorRegistry actorRegistry = new ActorRegistry();
         private final List<String> compendium = new ArrayList<>();
 
         public NewTagProcessorBuilder(Context context) {
@@ -419,7 +465,7 @@ public class TagProcessor extends Binder {
 
         public NewTagProcessorBuilder setActor(String tag, Actor actor) {
             if (actor != null && StringHelper.isNotNullOrBlank(tag) && tag.matches("^" + REFERENCE_REGEX + "$"))
-                this.actorRegistry.put(tag, actor, false);
+                this.actorRegistry.put(tag, actor, RecordTemporality.PERMANENT);
             return this;
         }
 

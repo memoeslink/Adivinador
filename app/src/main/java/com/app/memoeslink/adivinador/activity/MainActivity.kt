@@ -57,7 +57,6 @@ import com.app.memoeslink.adivinador.Identity
 import com.app.memoeslink.adivinador.Prediction
 import com.app.memoeslink.adivinador.PredictionHistory
 import com.app.memoeslink.adivinador.R
-import com.app.memoeslink.adivinador.Screen
 import com.app.memoeslink.adivinador.Sound
 import com.app.memoeslink.adivinador.Speech
 import com.app.memoeslink.adivinador.extensions.fadeAndShow
@@ -65,8 +64,10 @@ import com.app.memoeslink.adivinador.extensions.fadeIn
 import com.app.memoeslink.adivinador.extensions.fadeOut
 import com.app.memoeslink.adivinador.extensions.getCurrentWindowPoint
 import com.app.memoeslink.adivinador.extensions.isObservable
+import com.app.memoeslink.adivinador.extensions.lockScreenOrientation
 import com.app.memoeslink.adivinador.extensions.toHtmlText
 import com.app.memoeslink.adivinador.extensions.toLinkedHtmlText
+import com.app.memoeslink.adivinador.extensions.unlockScreenOrientation
 import com.app.memoeslink.adivinador.preference.Preference
 import com.app.memoeslink.adivinador.preference.PreferenceHandler
 import com.app.memoeslink.adivinador.preference.PreferenceUtils
@@ -91,6 +92,7 @@ import com.memoeslink.generator.common.GeneratorManager
 import com.memoeslink.generator.common.NameType
 import com.memoeslink.generator.common.Person
 import com.memoeslink.generator.common.TextFormatter
+import com.memoeslink.generator.common.UsernameType
 import com.memoeslink.manager.Device
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -127,46 +129,52 @@ class MainActivity : MenuActivity() {
             Color.argb(125, 120, 168, 71)
         )
     )
-    private var srlRefresher: SwipeRefreshLayout? = null
-    private var rlAdContainer: RelativeLayout? = null
-    private var llConfetti: LinearLayout? = null
-    private var llDataEntryHolder: LinearLayout? = null
-    private var llReloadHolder: LinearLayout? = null
-    private var llInquiryHolder: LinearLayout? = null
-    private var llSelectorHolder: LinearLayout? = null
-    private var llClearHolder: LinearLayout? = null
-    private var llAdContent: LinearLayout? = null
-    private var givPersonImage: GithubIdenticonView? = null
-    private var givDetailsPersonImage: GithubIdenticonView? = null
-    private var ivFortuneTeller: AppCompatImageView? = null
-    private var ivDetailsLogo: AppCompatImageView? = null
-    private var ivSaveLogo: AppCompatImageView? = null
-    private var ivAdDismiss: AppCompatImageView? = null
-    private var atvInitialName: AppCompatAutoCompleteTextView? = null
-    private var atvFinalName: AppCompatAutoCompleteTextView? = null
-    private var tvPick: TextView? = null
-    private var tvDataEntry: TextView? = null
-    private var tvReload: TextView? = null
-    private var tvInquiry: TextView? = null
-    private var tvSelector: TextView? = null
-    private var tvClear: TextView? = null
-    private var tvPhrase: TextView? = null
-    private var tvPersonInfo: TextView? = null
-    private var tvPrediction: TextView? = null
-    private var tvBinder: TextView? = null
-    private var tvCompatibility: TextView? = null
-    private var tvTextCopy: TextView? = null
-    private var tvNameBox: TextView? = null
-    private var tvDetails: TextView? = null
-    private var spnNameType: AppCompatSpinner? = null
-    private var dpdInquiryDate: DatePickerDialog? = null
-    private var pbWait: ProgressBar? = null
-    private var btDataEntry: Button? = null
-    private var btTextCopy: Button? = null
-    private var vMain: View? = null
-    private var vCompatibility: View? = null
-    private var vNameGenerator: View? = null
-    private var vDetails: View? = null
+    private val descriptorTypes = mutableListOf<Any>().apply {
+        this.addAll(NameType.entries)
+        this.remove(NameType.EMPTY)
+        this.addAll(UsernameType.entries)
+        this.remove(UsernameType.EMPTY)
+    }
+    private lateinit var srlRefresher: SwipeRefreshLayout
+    private lateinit var rlAdContainer: RelativeLayout
+    private lateinit var llConfetti: LinearLayout
+    private lateinit var llDataEntryHolder: LinearLayout
+    private lateinit var llReloadHolder: LinearLayout
+    private lateinit var llInquiryHolder: LinearLayout
+    private lateinit var llSelectorHolder: LinearLayout
+    private lateinit var llClearHolder: LinearLayout
+    private lateinit var llAdContent: LinearLayout
+    private lateinit var givPersonImage: GithubIdenticonView
+    private lateinit var givDetailsPersonImage: GithubIdenticonView
+    private lateinit var ivFortuneTeller: AppCompatImageView
+    private lateinit var ivDetailsLogo: AppCompatImageView
+    private lateinit var ivSaveLogo: AppCompatImageView
+    private lateinit var ivAdDismiss: AppCompatImageView
+    private lateinit var atvInitialName: AppCompatAutoCompleteTextView
+    private lateinit var atvFinalName: AppCompatAutoCompleteTextView
+    private lateinit var tvPick: TextView
+    private lateinit var tvDataEntry: TextView
+    private lateinit var tvReload: TextView
+    private lateinit var tvInquiry: TextView
+    private lateinit var tvSelector: TextView
+    private lateinit var tvClear: TextView
+    private lateinit var tvPhrase: TextView
+    private lateinit var tvPersonInfo: TextView
+    private lateinit var tvPrediction: TextView
+    private lateinit var tvBinder: TextView
+    private lateinit var tvCompatibility: TextView
+    private lateinit var tvTextCopy: TextView
+    private lateinit var tvNameBox: TextView
+    private lateinit var tvDetails: TextView
+    private lateinit var spnNameType: AppCompatSpinner
+    private lateinit var dpdInquiryDate: DatePickerDialog
+    private lateinit var pbWait: ProgressBar
+    private lateinit var btDataEntry: Button
+    private lateinit var btTextCopy: Button
+    private lateinit var vMain: View
+    private lateinit var vCompatibility: View
+    private lateinit var vNameGenerator: View
+    private lateinit var vDetails: View
     private var adView: AdView? = null
     private var interstitialAd: InterstitialAd? = null
     private var adRequest: AdRequest? = null
@@ -204,17 +212,17 @@ class MainActivity : MenuActivity() {
         ivSaveLogo = findViewById(R.id.main_save)
         ivAdDismiss = findViewById(R.id.ad_dismiss)
         tvPick = findViewById(R.id.main_pick)
-        tvPick?.text = getString(R.string.pick).toLinkedHtmlText()
+        tvPick.text = getString(R.string.pick).toLinkedHtmlText()
         tvDataEntry = findViewById(R.id.main_data_entry)
-        tvDataEntry?.text = getString(R.string.data_entry).toLinkedHtmlText()
+        tvDataEntry.text = getString(R.string.data_entry).toLinkedHtmlText()
         tvReload = findViewById(R.id.main_reload)
-        tvReload?.text = getString(R.string.reload).toLinkedHtmlText()
+        tvReload.text = getString(R.string.reload).toLinkedHtmlText()
         tvInquiry = findViewById(R.id.main_inquiry)
-        tvInquiry?.text = getString(R.string.inquiry, "…").toLinkedHtmlText()
+        tvInquiry.text = getString(R.string.inquiry, "…").toLinkedHtmlText()
         tvSelector = findViewById(R.id.main_selector)
-        tvSelector?.text = getString(R.string.selector).toLinkedHtmlText()
+        tvSelector.text = getString(R.string.selector).toLinkedHtmlText()
         tvClear = findViewById(R.id.main_clear)
-        tvClear?.text = getString(R.string.clear).toLinkedHtmlText()
+        tvClear.text = getString(R.string.clear).toLinkedHtmlText()
         tvPhrase = findViewById(R.id.main_fortune_teller_phrase)
         tvPersonInfo = findViewById(R.id.main_person)
         tvPrediction = findViewById(R.id.main_prediction)
@@ -223,20 +231,20 @@ class MainActivity : MenuActivity() {
         vMain = findViewById(R.id.main_view)
         val inflater: LayoutInflater = this@MainActivity.layoutInflater
         vCompatibility = inflater.inflate(R.layout.dialog_compatibility, null)
-        atvInitialName = vCompatibility?.findViewById(R.id.dialog_name_field)
-        atvFinalName = vCompatibility?.findViewById(R.id.dialog_other_name_field)
-        tvBinder = vCompatibility?.findViewById(R.id.dialog_binder_text)
-        tvBinder?.text = getString(R.string.binder).toLinkedHtmlText()
-        tvCompatibility = vCompatibility?.findViewById(R.id.dialog_text)
-        pbWait = vCompatibility?.findViewById(R.id.dialog_progress)
+        atvInitialName = vCompatibility.findViewById(R.id.dialog_name_field)
+        atvFinalName = vCompatibility.findViewById(R.id.dialog_other_name_field)
+        tvBinder = vCompatibility.findViewById(R.id.dialog_binder_text)
+        tvBinder.text = getString(R.string.binder).toLinkedHtmlText()
+        tvCompatibility = vCompatibility.findViewById(R.id.dialog_text)
+        pbWait = vCompatibility.findViewById(R.id.dialog_progress)
         vNameGenerator = inflater.inflate(R.layout.dialog_name_generation, null)
-        spnNameType = vNameGenerator?.findViewById(R.id.dialog_spinner)
-        tvNameBox = vNameGenerator?.findViewById(R.id.dialog_generated_name)
-        tvTextCopy = vNameGenerator?.findViewById(R.id.dialog_copy_text)
-        tvTextCopy?.text = getString(R.string.action_copy).toLinkedHtmlText()
+        spnNameType = vNameGenerator.findViewById(R.id.dialog_spinner)
+        tvNameBox = vNameGenerator.findViewById(R.id.dialog_generated_name)
+        tvTextCopy = vNameGenerator.findViewById(R.id.dialog_copy_text)
+        tvTextCopy.text = getString(R.string.action_copy).toLinkedHtmlText()
         vDetails = inflater.inflate(R.layout.dialog_person_details, null)
-        tvDetails = vDetails?.findViewById(R.id.dialog_details)
-        givDetailsPersonImage = vDetails?.findViewById(R.id.dialog_person_image)
+        tvDetails = vDetails.findViewById(R.id.dialog_details)
+        givDetailsPersonImage = vDetails.findViewById(R.id.dialog_person_image)
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
         navigationView?.itemIconTintList = null
@@ -262,19 +270,19 @@ class MainActivity : MenuActivity() {
         }
 
         // Preload prediction
-        backupPredictions?.add(generatePrediction(PreferenceUtils.isEnquiryFormEntered()))
+        backupPredictions?.add(generatePrediction(PreferenceUtils.isEnquiryFormReady()))
 
         // Set empty prediction
         val emptyPrediction = Prediction.PredictionBuilder().build()
-        tvPrediction?.text = emptyPrediction.getFormattedContent(this@MainActivity).toHtmlText()
+        tvPrediction.text = emptyPrediction.getFormattedContent(this@MainActivity).toHtmlText()
 
         // Get a greeting
-        if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED)) tvPhrase?.text =
+        if (PreferenceHandler.getBoolean(Preference.SETTING_GREETINGS_ENABLED)) tvPhrase.text =
             fortuneTeller?.talk("greeting").toHtmlText()
-        else tvPhrase?.text = "…"
+        else tvPhrase.text = "…"
 
         // Change drawable for fortune teller
-        fortuneTeller?.randomAppearance?.let { ivFortuneTeller?.setImageResource(it) }
+        fortuneTeller?.randomAppearance?.let { ivFortuneTeller.setImageResource(it) }
 
         // Delete temporary preferences
         PreferenceUtils.deleteTemp()
@@ -285,12 +293,6 @@ class MainActivity : MenuActivity() {
             android.R.layout.simple_spinner_item,
             resources.getStringArray(R.array.name_type)
         ) {
-            val disabledPositions = intArrayOf(0, 1, 2)
-
-            override fun isEnabled(position: Int): Boolean {
-                return !disabledPositions.contains(position)
-            }
-
             override fun getDropDownView(
                 position: Int, convertView: View?, parent: ViewGroup
             ): View? {
@@ -301,8 +303,8 @@ class MainActivity : MenuActivity() {
             }
         }
         nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spnNameType?.adapter = nameAdapter
-        spnNameType?.setSelection(3)
+        spnNameType.adapter = nameAdapter
+        spnNameType.setSelection(0)
 
         val wrapper = ContextThemeWrapper(this@MainActivity, R.style.CustomDialog)
         val compatibilityBuilder = AlertDialog.Builder(wrapper)
@@ -329,9 +331,9 @@ class MainActivity : MenuActivity() {
         detailsBuilder.setView(vDetails)
         detailsDialog = detailsBuilder.create()
 
-        srlRefresher?.setOnRefreshListener {
+        srlRefresher.setOnRefreshListener {
             refreshPrediction()
-            srlRefresher?.isRefreshing = false
+            srlRefresher.isRefreshing = false
         }
 
         navigationView?.setNavigationItemSelectedListener { item: MenuItem ->
@@ -344,10 +346,10 @@ class MainActivity : MenuActivity() {
                 }
 
                 R.id.nav_reload -> refreshPrediction()
-                R.id.nav_save -> ivSaveLogo?.performClick()
-                R.id.nav_inquiry -> llInquiryHolder?.performClick()
-                R.id.nav_selector -> llSelectorHolder?.performClick()
-                R.id.nav_clear -> llClearHolder?.performClick()
+                R.id.nav_save -> ivSaveLogo.performClick()
+                R.id.nav_inquiry -> llInquiryHolder.performClick()
+                R.id.nav_selector -> llSelectorHolder.performClick()
+                R.id.nav_clear -> llClearHolder.performClick()
                 R.id.nav_compatibility -> {
                     compatibilityDialog?.show()
                     compatibilityDialog?.window?.setLayout(
@@ -372,17 +374,17 @@ class MainActivity : MenuActivity() {
             )
         }
 
-        tvPick?.setOnClickListener {
-            dpdInquiryDate?.isShowing?.takeUnless { it }?.let {
+        tvPick.setOnClickListener {
+            dpdInquiryDate.takeUnless { it.isShowing }?.let {
                 val pickedDate = LocalDate.parse(PreferenceUtils.getEnquiryDate())
-                dpdInquiryDate?.updateDate(
+                dpdInquiryDate.updateDate(
                     pickedDate.year, pickedDate.monthValue - 1, pickedDate.dayOfMonth
                 )
-                dpdInquiryDate?.show()
+                dpdInquiryDate.show()
             }
         }
 
-        spnNameType?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spnNameType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?, view: View, position: Int, id: Long
             ) {
@@ -393,59 +395,59 @@ class MainActivity : MenuActivity() {
             }
         }
 
-        ivFortuneTeller?.setOnClickListener {
+        ivFortuneTeller.setOnClickListener {
             if (PreferenceHandler.getStringAsInt(
                     Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
                 ) != 0
             ) {
-                Sound.play(this@MainActivity, "jump")
+                Sound.play(this@MainActivity, R.raw.jump)
                 BounceAnimation(ivFortuneTeller).setBounceDistance(7f).setNumOfBounces(1)
                     .setDuration(150).animate()
             }
         }
 
-        ivDetailsLogo?.setOnClickListener {
+        ivDetailsLogo.setOnClickListener {
             it.isEnabled = false
             refreshDetailsDisplay()
             detailsDialog?.show()
             it.isEnabled = true
         }
 
-        ivSaveLogo?.setOnClickListener {
+        ivSaveLogo.setOnClickListener {
             predictionHistory?.latest?.person?.let { person ->
-                if (PreferenceUtils.savePerson(person)) {
+                if (PreferenceUtils.savePersonToRegistry(person)) {
                     showToast(getString(R.string.toast_inquiry_saved))
                     refreshUiUponEnquirySaved()
                 } else showToast(getString(R.string.toast_inquiry_not_saved))
             }
         }
 
-        ivAdDismiss?.setOnClickListener { destroyAd() }
+        ivAdDismiss.setOnClickListener { destroyAd() }
 
-        llDataEntryHolder?.setOnClickListener {
+        llDataEntryHolder.setOnClickListener {
             val i = Intent(this@MainActivity, InputActivity::class.java)
             startActivity(i)
         }
 
-        llReloadHolder?.setOnClickListener { refreshPrediction() }
+        llReloadHolder.setOnClickListener { refreshPrediction() }
 
-        llInquiryHolder?.setOnClickListener { displayFormPerson(people[0]) }
+        llInquiryHolder.setOnClickListener { displayFormPerson(people[0]) }
 
-        llSelectorHolder?.setOnClickListener {
+        llSelectorHolder.setOnClickListener {
             if (dialog != null && !PreferenceHandler.has(Preference.TEMP_BUSY)) dialog?.show()
         }
 
-        llClearHolder?.setOnClickListener {
+        llClearHolder.setOnClickListener {
             PreferenceUtils.clearForm()
             refreshPrediction()
         }
 
-        btDataEntry?.setOnClickListener {
+        btDataEntry.setOnClickListener {
             val i = Intent(this@MainActivity, InputActivity::class.java)
             startActivity(i)
         }
 
-        btTextCopy?.setOnClickListener {
+        btTextCopy.setOnClickListener {
             predictionHistory?.takeUnless { it.isEmpty }?.let { history ->
                 copyTextToClipboard(history.latest?.getContent(this@MainActivity))
             }
@@ -453,7 +455,7 @@ class MainActivity : MenuActivity() {
 
         compatibilityDialog?.setOnShowListener { displayCoupleCompatibility() }
 
-        atvInitialName?.addTextChangedListener(object : TextWatcher {
+        atvInitialName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
@@ -463,7 +465,7 @@ class MainActivity : MenuActivity() {
             override fun afterTextChanged(s: Editable) {}
         })
 
-        atvFinalName?.addTextChangedListener(object : TextWatcher {
+        atvFinalName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
@@ -473,23 +475,23 @@ class MainActivity : MenuActivity() {
             override fun afterTextChanged(s: Editable) {}
         })
 
-        tvBinder?.setOnClickListener {
-            atvInitialName?.setText(predictionHistory?.latest?.person?.descriptor)
+        tvBinder.setOnClickListener {
+            atvInitialName.setText(predictionHistory?.latest?.person?.descriptor)
         }
 
-        tvNameBox?.addTextChangedListener(object : TextWatcher {
+        tvNameBox.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.toString().trim().isEmpty()) tvTextCopy?.visibility = View.GONE
-                else tvTextCopy?.visibility = View.VISIBLE
+                if (s.toString().trim().isEmpty()) tvTextCopy.visibility = View.GONE
+                else tvTextCopy.visibility = View.VISIBLE
             }
 
             override fun afterTextChanged(s: Editable) {}
         })
 
-        tvTextCopy?.setOnClickListener {
-            copyTextToClipboard(tvNameBox?.text.toString())
+        tvTextCopy.setOnClickListener {
+            copyTextToClipboard(tvNameBox.text.toString())
         }
 
         listener = OnSharedPreferenceChangeListener { _: SharedPreferences?, key: String? ->
@@ -569,11 +571,11 @@ class MainActivity : MenuActivity() {
         updateInquirySelector()
 
         // Get a prediction
-        if (!status.initialized || (PreferenceUtils.hasPersonTempStored() && (PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()))) refreshPrediction()
+        if (!status.initialized || (PreferenceUtils.isEnquiryFormStored() && (PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate()))) refreshPrediction()
 
         // Change drawable if the 'fortune teller aspect' preference was changed
         if (PreferenceHandler.has(Preference.TEMP_CHANGE_FORTUNE_TELLER)) {
-            fortuneTeller?.randomAppearance?.let { ivFortuneTeller?.setImageResource(it) }
+            fortuneTeller?.randomAppearance?.let { ivFortuneTeller.setImageResource(it) }
             PreferenceHandler.remove(Preference.TEMP_CHANGE_FORTUNE_TELLER)
         }
 
@@ -591,33 +593,35 @@ class MainActivity : MenuActivity() {
                 if (fortuneTellerRefresh >= frequency && frequency != 0) {
                     this@MainActivity.runOnUiThread {
                         // Fade out and fade in fortune-telling text
-                        if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) tvPhrase?.let {
+                        if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED) tvPhrase.let {
                             it.fadeAndShow(duration = 350)
                         }
 
                         Handler(Looper.getMainLooper()).postDelayed({
                             // Change drawable for the fortune teller
                             fortuneTeller?.randomAppearance?.let {
-                                ivFortuneTeller?.setImageResource(
+                                ivFortuneTeller.setImageResource(
                                     it
                                 )
                             }
 
                             // Get random phrase from the fortune teller
-                            tvPhrase?.text = fortuneTeller?.talk().toHtmlText()
+                            tvPhrase.text = fortuneTeller?.talk().toHtmlText()
 
                             // Read the text
                             if (PreferenceHandler.getStringAsInt(Preference.SETTING_TEXT_TYPE) == 0 || PreferenceHandler.getStringAsInt(
                                     Preference.SETTING_TEXT_TYPE
                                 ) == 2
-                            ) Speech.getInstance(this@MainActivity).speak(tvPhrase?.text.toString())
+                            ) Speech.getInstance(this@MainActivity).speak(tvPhrase.text.toString())
                         }, 350)
                     }
                     status.counters["fortuneTellerRefresh"] = 0L
                 } else status.counters["fortuneTellerRefresh"] = fortuneTellerRefresh.inc()
 
-                if (predictionRefresh >= refreshFrequency && (!PreferenceUtils.hasPersonTempStored() || PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate())) refreshPrediction()
-                else {
+                if (predictionRefresh >= refreshFrequency && (!PreferenceUtils.isEnquiryFormStored() || PreferenceUtils.getFormPerson().summary != predictionHistory?.latest?.person?.summary || predictionHistory?.latest?.date != DateTimeHelper.getStrCurrentDate())) {
+                    status.counters["predictionRefresh"] = 0L
+                    refreshPrediction()
+                } else {
                     if (predictionRefresh != 0L && predictionRefresh % 10 == 0L) {
                         backupPredictions?.takeIf { !it.isFull }?.let {
                             lifecycleScope.launch(Dispatchers.IO) {
@@ -686,9 +690,9 @@ class MainActivity : MenuActivity() {
                     OnGlobalLayoutListener {
                     override fun onGlobalLayout() {
                         try {
-                            val params = vMain?.layoutParams
+                            val params = vMain.layoutParams
                             params?.height = adView?.measuredHeight
-                            vMain?.requestLayout()
+                            vMain.requestLayout()
                             adView?.viewTreeObserver?.removeOnGlobalLayoutListener(this)
                         } catch (ignored: Exception) {
                         }
@@ -697,8 +701,8 @@ class MainActivity : MenuActivity() {
 
                 adView?.adListener = object : AdListener() {
                     override fun onAdLoaded() {
-                        llAdContent?.addView(adView)
-                        rlAdContainer?.visibility = View.VISIBLE
+                        llAdContent.addView(adView)
+                        rlAdContainer.visibility = View.VISIBLE
                         status.adAdded = true
                         println("The ad was loaded successfully.")
                     }
@@ -721,11 +725,11 @@ class MainActivity : MenuActivity() {
     private fun destroyAd() {
         adView?.takeIf { !PreferenceHandler.getBoolean(Preference.TEMP_RESTART_ADS) }?.let {
             PreferenceHandler.put(Preference.TEMP_RESTART_ADS, true)
-            val params = vMain?.layoutParams
+            val params = vMain.layoutParams
             params?.height = 0
             adView?.destroy()
-            rlAdContainer?.visibility = View.GONE
-            llAdContent?.removeAllViews()
+            rlAdContainer.visibility = View.GONE
+            llAdContent.removeAllViews()
             adView = null
             status.adAdded = false
             PreferenceHandler.remove(Preference.TEMP_RESTART_ADS)
@@ -751,7 +755,7 @@ class MainActivity : MenuActivity() {
                         override fun onAdFailedToLoad(error: LoadAdError) {
                             println("The interstitial ad couldn't be loaded: " + error.message)
                             prepareAd(false) // Show, avoid, or hide ads
-                            tvSelector?.invalidate() // Force view to be redrawn
+                            tvSelector.invalidate() // Force view to be redrawn
                         }
                     })
             }
@@ -759,15 +763,15 @@ class MainActivity : MenuActivity() {
     }
 
     private fun prepareAnimation() {
-        Screen.lockScreenOrientation(this@MainActivity) // Lock orientation
+        this@MainActivity.lockScreenOrientation() // Lock orientation
         stopConfetti() // Finish previous confetti animation
 
         // Redraw view
-        llConfetti?.requestLayout()
-        llConfetti?.invalidate()
+        llConfetti.requestLayout()
+        llConfetti.invalidate()
 
         // Measure screen and views
-        if (status.measuredTimes == 0L) llConfetti?.post { performMeasurements() }
+        if (status.measuredTimes == 0L) llConfetti.post { performMeasurements() }
         else Handler(Looper.getMainLooper()).postDelayed({ performMeasurements() }, 1000)
 
         // Wait for measurements to be done
@@ -794,11 +798,11 @@ class MainActivity : MenuActivity() {
                     Preference.SETTING_FORTUNE_TELLER_ASPECT, 1
                 ) != 0
             ) {
-                Sound.play(this@MainActivity, "jump")
+                Sound.play(this@MainActivity, R.raw.jump)
                 BounceAnimation(ivFortuneTeller).setBounceDistance(20f).setNumOfBounces(1)
                     .setDuration(500).animate()
             }
-            Screen.unlockScreenOrientation(this@MainActivity) // Unlock orientation
+            this@MainActivity.unlockScreenOrientation() // Unlock orientation
         }
     }
 
@@ -807,10 +811,10 @@ class MainActivity : MenuActivity() {
         val point: Point = windowManager.getCurrentWindowPoint()
         status.screenWidth = point.x
         status.screenHeight = point.y
-        status.measurements["confettiLayoutWidth"] = llConfetti?.width ?: 0
-        status.measurements["confettiLayoutHeight"] = llConfetti?.height ?: 0
-        status.measurements["confettiOriginInX"] = (llConfetti?.width ?: 0) / 2
-        status.measurements["confettiOriginInY"] = (llConfetti?.height ?: 0) / 2
+        status.measurements["confettiLayoutWidth"] = llConfetti.width
+        status.measurements["confettiLayoutHeight"] = llConfetti.height
+        status.measurements["confettiOriginInX"] = llConfetti.width / 2
+        status.measurements["confettiOriginInY"] = llConfetti.height / 2
         status.screenMeasured = true
 
         if (status.measuredTimes < Long.MAX_VALUE) status.measuredTimes++
@@ -862,12 +866,12 @@ class MainActivity : MenuActivity() {
         ) names = PreferenceHandler.getStringSet(Preference.DATA_STORED_NAMES).toList()
 
         names.takeIf { it.isNotEmpty() }?.let {
-            atvInitialName?.setAdapter(
+            atvInitialName.setAdapter(
                 ArrayAdapter(
                     this@MainActivity, android.R.layout.simple_spinner_dropdown_item, names
                 )
             )
-            atvFinalName?.setAdapter(
+            atvFinalName.setAdapter(
                 ArrayAdapter(
                     this@MainActivity, android.R.layout.simple_spinner_dropdown_item, names
                 )
@@ -876,7 +880,7 @@ class MainActivity : MenuActivity() {
     }
 
     private fun updateInquirySelector() {
-        people = PreferenceUtils.getStoredPeople()
+        people = PreferenceUtils.getRegistryPeople()
         val items: MutableList<String> = mutableListOf()
 
         for (person in people) {
@@ -906,10 +910,7 @@ class MainActivity : MenuActivity() {
     }
 
     private fun displayFormPerson(person: Person) {
-        if (!PreferenceUtils.isPersonTempStored(person)) {
-            PreferenceUtils.saveFormPerson(person)
-            refreshPrediction()
-        }
+        if (PreferenceUtils.saveFormPerson(person)) refreshPrediction()
     }
 
     private fun refreshPrediction() {
@@ -917,20 +918,19 @@ class MainActivity : MenuActivity() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             PreferenceHandler.put(Preference.TEMP_BUSY, true)
-            Sound.play(this@MainActivity, "ding")
+            Sound.play(this@MainActivity, R.raw.ding)
 
             this@MainActivity.runOnUiThread {
-                tvPick?.isEnabled = false
-                status.counters["predictionRefresh"] = 0L
-                llConfetti?.fadeOut(duration = 100)
+                tvPick.isEnabled = false
+                llConfetti.fadeOut(duration = 100)
             }
 
             val pickedDate = DateTimeHelper.toIso8601Date(
-                dpdInquiryDate?.datePicker?.year ?: 2000,
-                dpdInquiryDate?.datePicker?.month?.plus(1) ?: 1,
-                dpdInquiryDate?.datePicker?.dayOfMonth ?: 1
+                dpdInquiryDate.datePicker.year,
+                dpdInquiryDate.datePicker.month.plus(1),
+                dpdInquiryDate.datePicker.dayOfMonth
             )
-            val formEntered = PreferenceUtils.isEnquiryFormEntered()
+            val formEntered = PreferenceUtils.isEnquiryFormReady()
             var preStoredPrediction: Prediction = Prediction.PredictionBuilder().build()
             var retrieved = false
 
@@ -958,9 +958,9 @@ class MainActivity : MenuActivity() {
                 refreshHolders()
                 refreshNavigationView()
                 refreshSaveButton()
-                givPersonImage?.hash = predictionHistory?.latest?.person?.summary.hashCode()
+                givPersonImage.hash = predictionHistory?.latest?.person?.summary.hashCode()
 
-                tvPersonInfo?.text = getString(
+                tvPersonInfo.text = getString(
                     R.string.person_data,
                     predictionHistory?.latest?.person?.description,
                     predictionHistory?.latest?.person?.gender?.getName(
@@ -970,17 +970,17 @@ class MainActivity : MenuActivity() {
                 ).toHtmlText()
 
                 predictionHistory?.latest?.getFormattedContent(this@MainActivity)?.let { content ->
-                    tvPrediction?.text = content.toHtmlText().toSpannable().also { spannable ->
+                    tvPrediction.text = content.toHtmlText().toSpannable().also { spannable ->
                         val clickableSpan: ClickableSpan = object : ClickableSpan() {
                             override fun onClick(textView: View) {
-                                Sound.play(this@MainActivity, "crack")
-                                tvPrediction?.let {
+                                Sound.play(this@MainActivity, R.raw.crack)
+                                tvPrediction.let {
                                     val replacement = StringHelper.replaceBetweenZeroWidthSpaces(
                                         predictionHistory?.latest?.getFormattedContent(this@MainActivity),
                                         predictionHistory?.latest?.components?.get("fortuneCookie")
                                             .orEmpty()
                                     )
-                                    tvPrediction?.text = replacement.toHtmlText()
+                                    tvPrediction.text = replacement.toHtmlText()
                                 }
                             }
 
@@ -996,8 +996,8 @@ class MainActivity : MenuActivity() {
                             clickableSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                         )
                     }
-                    tvPrediction?.isClickable = true
-                    tvPrediction?.movementMethod = LinkMovementMethod.getInstance()
+                    tvPrediction.isClickable = true
+                    tvPrediction.movementMethod = LinkMovementMethod.getInstance()
                 }
 
                 if (activityState in ActivityState.RESUMED..ActivityState.POST_RESUMED && !tvPersonInfo.isObservable()) showToast(
@@ -1009,18 +1009,18 @@ class MainActivity : MenuActivity() {
                         Preference.SETTING_TEXT_TYPE
                     ) == 2
                 ) Speech.getInstance(this@MainActivity).speak(
-                    tvPersonInfo?.text.toString() + ". " + predictionHistory?.latest?.getContent(
+                    tvPersonInfo.text.toString() + ". " + predictionHistory?.latest?.getContent(
                         this@MainActivity
                     )
                 )
 
-                detailsDialog?.isShowing?.takeIf { it }?.let {
-                    detailsDialog?.hide()
+                detailsDialog?.takeIf { it.isShowing }?.apply {
+                    this.hide()
                     refreshDetailsDisplay()
-                    detailsDialog?.show()
+                    this.show()
                 }
-                tvPick?.isEnabled = true
-                llConfetti?.fadeIn(duration = 100)
+                tvPick.isEnabled = true
+                llConfetti.fadeIn(duration = 100)
                 PreferenceHandler.remove(Preference.TEMP_BUSY)
             }
         }
@@ -1029,29 +1029,29 @@ class MainActivity : MenuActivity() {
     private fun refreshHolders() {
         when {
             people.isEmpty() -> {
-                llInquiryHolder?.visibility = View.GONE
-                llSelectorHolder?.visibility = View.GONE
+                llInquiryHolder.visibility = View.GONE
+                llSelectorHolder.visibility = View.GONE
             }
 
             people.size == 1 -> {
-                tvInquiry?.text =
+                tvInquiry.text =
                     getString(R.string.inquiry, people[0].descriptor).toLinkedHtmlText()
 
-                if (PreferenceUtils.hasPersonTempStored()) llInquiryHolder?.visibility = View.GONE
-                else llInquiryHolder?.visibility = View.VISIBLE
-                llSelectorHolder?.visibility = View.GONE
+                if (PreferenceUtils.isEnquiryFormStored()) llInquiryHolder.visibility = View.GONE
+                else llInquiryHolder.visibility = View.VISIBLE
+                llSelectorHolder.visibility = View.GONE
             }
 
             else -> {
-                llInquiryHolder?.visibility = View.GONE
-                llSelectorHolder?.visibility = View.VISIBLE
+                llInquiryHolder.visibility = View.GONE
+                llSelectorHolder.visibility = View.VISIBLE
             }
         }
 
-        PreferenceUtils.hasPersonTempStored().let {
-            llDataEntryHolder?.visibility = if (it) View.GONE else View.VISIBLE
-            llReloadHolder?.visibility = if (it) View.GONE else View.VISIBLE
-            llClearHolder?.visibility = if (it) View.VISIBLE else View.GONE
+        PreferenceUtils.isEnquiryFormStored().let {
+            llDataEntryHolder.visibility = if (it) View.GONE else View.VISIBLE
+            llReloadHolder.visibility = if (it) View.GONE else View.VISIBLE
+            llClearHolder.visibility = if (it) View.VISIBLE else View.GONE
         }
     }
 
@@ -1064,7 +1064,7 @@ class MainActivity : MenuActivity() {
     }
 
     private fun refreshNavigationView() {
-        PreferenceUtils.hasPersonTempStored().let {
+        PreferenceUtils.isEnquiryFormStored().let {
             refreshNavigationViewItem(R.id.nav_data_entry, enabled = !it)
             refreshNavigationViewItem(R.id.nav_reload, enabled = !it)
             refreshNavigationViewItem(R.id.nav_save, enabled = !it)
@@ -1082,7 +1082,7 @@ class MainActivity : MenuActivity() {
                 navigationView?.menu?.findItem(R.id.nav_inquiry)?.title =
                     getString(R.string.inquiry, people[0].descriptor)
 
-                if (PreferenceUtils.hasPersonTempStored()) refreshNavigationViewItem(
+                if (PreferenceUtils.isEnquiryFormStored()) refreshNavigationViewItem(
                     R.id.nav_inquiry, enabled = false, visible = true
                 )
                 else refreshNavigationViewItem(R.id.nav_inquiry, enabled = true, visible = true)
@@ -1097,18 +1097,18 @@ class MainActivity : MenuActivity() {
     }
 
     private fun refreshSaveButton() {
-        PreferenceUtils.hasPersonTempStored().let {
-            ivSaveLogo?.visibility = if (it) View.GONE else View.VISIBLE
-            ivSaveLogo?.isEnabled = !it
-            ivSaveLogo?.isClickable = !it
+        PreferenceUtils.isEnquiryFormStored().let {
+            ivSaveLogo.visibility = if (it) View.GONE else View.VISIBLE
+            ivSaveLogo.isEnabled = !it
+            ivSaveLogo.isClickable = !it
         }
     }
 
     private fun refreshUiUponEnquirySaved() {
-        tvPick?.isEnabled = false
+        tvPick.isEnabled = false
         updateInquirySelector()
         displayFormPerson(people.last())
-        tvPick?.isEnabled = true
+        tvPick.isEnabled = true
     }
 
     private fun generatePrediction(formEntered: Boolean): Prediction {
@@ -1135,44 +1135,53 @@ class MainActivity : MenuActivity() {
     }
 
     private fun displayCoupleCompatibility() {
-        val initialName = atvInitialName?.text.toString().trim()
-        val finalName = atvFinalName?.text.toString().trim()
-        pbWait?.max = 100
-        pbWait?.progress = 0
+        val initialName = atvInitialName.text.toString().trim()
+        val finalName = atvFinalName.text.toString().trim()
+        pbWait.max = 100
+        pbWait.progress = 0
 
         if (initialName.isNotBlank() && finalName.isNotBlank()) {
             val compatibilityPoints = CoupleCompatibility.calculate(initialName, finalName)
-            tvCompatibility?.text = getString(
+            tvCompatibility.text = getString(
                 R.string.compatibility_result, TextFormatter.formatCapacity(compatibilityPoints)
             ).toHtmlText()
-            pbWait?.progress = compatibilityPoints
+            pbWait.progress = compatibilityPoints
         } else {
-            tvCompatibility?.text = getString(
+            tvCompatibility.text = getString(
                 R.string.compatibility_result, "<font color=\"#C0FF2B\">?</font>"
             ).toHtmlText()
-            pbWait?.progress = 0
+            pbWait.progress = 0
         }
     }
 
     private fun displayGeneratedName() {
         if (!status.tasks.contains("generateName")) {
             status.tasks.add("generateName")
-            spnNameType?.isEnabled = false
-            val nameType = NameType.values()[spnNameType?.selectedItemPosition ?: 0]
-            Sound.play(this@MainActivity, "wind")
-            tvNameBox?.text = GeneratorManager(Locale("xx")).nameGenerator.getNameOrRetry(nameType)
-            spnNameType?.isEnabled = true
+            spnNameType.isEnabled = false
+            val descriptorType = descriptorTypes[spnNameType.selectedItemPosition]
+            Sound.play(this@MainActivity, R.raw.wind)
+            tvNameBox.text = when (descriptorType) {
+                is NameType -> GeneratorManager(Locale("xx")).nameGenerator.getName(
+                    descriptorType
+                )
+
+                is UsernameType -> GeneratorManager(Locale("xx")).personGenerator.anonymousPerson.username
+                else -> ""
+            }
+            spnNameType.isEnabled = true
             status.tasks.remove("generateName")
         }
     }
 
     private fun refreshDetailsDisplay() {
-        val person = predictionHistory?.latest?.person ?: Person.PersonBuilder().build()
+        val person =
+            predictionHistory?.latest?.person ?: Person.PersonBuilder().setAttribute("empty")
+                .build()
         val identity = person?.let {
-            givDetailsPersonImage?.hash = it.summary.hashCode()
+            givDetailsPersonImage.hash = it.summary.hashCode()
             Identity(this@MainActivity, it)
         }
-        tvDetails?.text = identity?.information?.withDefault { Database.DEFAULT_VALUE }?.let {
+        tvDetails.text = identity?.information?.withDefault { Database.DEFAULT_VALUE }?.let {
             getString(
                 R.string.person_information,
                 TextFormatter.formatDescriptor(person),

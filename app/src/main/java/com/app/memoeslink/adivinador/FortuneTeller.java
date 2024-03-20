@@ -31,8 +31,8 @@ public class FortuneTeller extends ContextWrapper {
         Long seed = getSeed();
         r = new Randomizer(seed);
         explorer = new ResourceExplorer(context, seed);
-        aiDialogueCreator = new DialogueCreatorFactory().getDialogueCreator("AI", context, getSeed());
-        legacyDialogueCreator = new DialogueCreatorFactory().getDialogueCreator("legacy", context, getSeed());
+        aiDialogueCreator = DialogueCreatorFactory.getDialogueCreator("AI", context, getSeed());
+        legacyDialogueCreator = DialogueCreatorFactory.getDialogueCreator("legacy", context, getSeed());
     }
 
     public Long getSeed() {
@@ -68,7 +68,7 @@ public class FortuneTeller extends ContextWrapper {
             case "dialogue" -> dialogueCreator.chat();
             default -> "…";
         };
-        dialogue = StringHelper.trimToDefault(dialogue, "…");
+        dialogue = StringHelper.trimOrDefault(dialogue, "…");
 
         if (r.getBoolean()) {
             String pictogram = explorer.getResourceFinder().getResByRefId(ResourceReference.REACTION);

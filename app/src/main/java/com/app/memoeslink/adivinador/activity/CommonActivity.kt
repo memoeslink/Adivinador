@@ -20,16 +20,16 @@ import com.app.memoeslink.adivinador.BaseApplication
 import com.app.memoeslink.adivinador.LanguageHelper
 import com.app.memoeslink.adivinador.R
 import com.app.memoeslink.adivinador.ResourceExplorer
-import com.app.memoeslink.adivinador.Screen
 import com.app.memoeslink.adivinador.Sound
 import com.app.memoeslink.adivinador.Speech
+import com.app.memoeslink.adivinador.extensions.setContinuance
 import com.app.memoeslink.adivinador.preference.Preference
 import com.app.memoeslink.adivinador.preference.PreferenceHandler
 import org.memoeslink.StringHelper
 import java.util.Locale
 
 open class CommonActivity : AppCompatActivity() {
-    private var audioManager: AudioManager? = null
+    private lateinit var audioManager: AudioManager
     protected lateinit var resourceExplorer: ResourceExplorer
     protected var activityState = ActivityState.LAUNCHED
     protected var status = ActivityStatus()
@@ -38,8 +38,8 @@ open class CommonActivity : AppCompatActivity() {
         setTheme(themeId)
         super.onCreate(savedInstanceState)
         activityState = ActivityState.CREATED
-        resourceExplorer = ResourceExplorer(this@CommonActivity)
         audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
+        resourceExplorer = ResourceExplorer(this@CommonActivity)
         setCustomActionBar() // Set ActionBar aspect
     }
 
@@ -51,11 +51,8 @@ open class CommonActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         activityState = ActivityState.RESUMED
-        Screen.setContinuance(
-            this@CommonActivity, PreferenceHandler.getBoolean(Preference.SETTING_ACTIVE_SCREEN)
-        )
+        this@CommonActivity.setContinuance(PreferenceHandler.getBoolean(Preference.SETTING_ACTIVE_SCREEN))
 
-        // Stop TTS if it is disabled and continues talking
         if (!PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED) || !PreferenceHandler.getBoolean(
                 Preference.SETTING_VOICE_ENABLED
             )
@@ -87,7 +84,7 @@ open class CommonActivity : AppCompatActivity() {
         return when (event.keyCode) {
             KeyEvent.KEYCODE_VOLUME_UP -> {
                 if (event.action == KeyEvent.ACTION_DOWN) {
-                    audioManager?.adjustStreamVolume(
+                    audioManager.adjustStreamVolume(
                         if (PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED)) AudioManager.STREAM_MUSIC else AudioManager.STREAM_RING,
                         AudioManager.ADJUST_RAISE,
                         AudioManager.FLAG_SHOW_UI
@@ -98,7 +95,7 @@ open class CommonActivity : AppCompatActivity() {
 
             KeyEvent.KEYCODE_VOLUME_DOWN -> {
                 if (event.action == KeyEvent.ACTION_DOWN) {
-                    audioManager?.adjustStreamVolume(
+                    audioManager.adjustStreamVolume(
                         if (PreferenceHandler.getBoolean(Preference.SETTING_AUDIO_ENABLED)) AudioManager.STREAM_MUSIC else AudioManager.STREAM_RING,
                         AudioManager.ADJUST_LOWER,
                         AudioManager.FLAG_SHOW_UI
@@ -137,15 +134,12 @@ open class CommonActivity : AppCompatActivity() {
             ActionBar.LayoutParams.MATCH_PARENT,
             Gravity.CENTER_VERTICAL
         )
-        params.gravity = Gravity.CENTER_VERTICAL
-        val actionBar = supportActionBar
-
-        if (actionBar != null) {
-            actionBar.setDisplayShowCustomEnabled(true)
-            actionBar.setDisplayShowTitleEnabled(false)
-            actionBar.setDisplayUseLogoEnabled(false)
-            actionBar.setIcon(android.R.color.transparent)
-            actionBar.setCustomView(v, params)
+        supportActionBar?.apply {
+            setDisplayShowCustomEnabled(true)
+            setDisplayShowTitleEnabled(false)
+            setDisplayUseLogoEnabled(false)
+            setIcon(android.R.color.transparent)
+            setCustomView(v, params)
         }
     }
 
@@ -158,7 +152,7 @@ open class CommonActivity : AppCompatActivity() {
             toast = Toast.makeText(
                 this@CommonActivity, text, if (quick) Toast.LENGTH_SHORT else Toast.LENGTH_LONG
             )
-            Sound.play(this@CommonActivity, "computer_chimes")
+            Sound.play(this@CommonActivity, R.raw.computer_chimes)
             toast?.show()
         }
     }

@@ -237,7 +237,6 @@
     <string name="preference_theme_summary">Cambia el tema de la aplicación</string>
     <string name="preference_update_frequency">Frecuencia de actualización</string>
     <string name="preference_update_frequency_summary">Cambia el tiempo que tarda en actualizarse la predicción</string>
-    <string name="qualitative_adjective">{[agradable]; plural-form:+s; influence:divinationScope}¶ {[brillante]; plural-form:+s; influence:divinationScope}¶ {[desagradable]; plural-form:+s; influence:divinationScope}¶ {[diferente]; plural-form:+s; influence:divinationScope}¶ {[frágil]; plural-form:+es; influence:divinationScope}¶ {[electrizante]; plural-form:+s; influence:divinationScope}¶ {[grandios[o,a]]; plural-form:+s; influence:divinationScope}¶ {[mejor]; plural-form:+es; influence:divinationScope}¶ {[normal]; plural-form:+es; influence:divinationScope}¶ {[negativ[o,a]]; plural-form:+s; influence:divinationScope}¶ {[oscur[o,a]]; plural-form:+s; influence:divinationScope}¶ {[peor]; plural-form:+es; influence:divinationScope}¶ {[positiv[o,a]]; plural-form:+s; influence:divinationScope}¶ {[rar[o,a]]; plural-form:+s; influence:divinationScope}¶ {[sólid[o,a]]; plural-form:+s; influence:divinationScope}¶ {[terrible]; plural-form:+s; influence:divinationScope}</string>
     <string name="relative">{[[padre,madre]]; influence:?}¶ {[[papá,mamá]]; influence:?}¶ {[hij[o,a]]; influence:?}¶ {[prim[o,a]]; influence:?}¶ {[tí[o,a]]; influence:?}¶ {[sobrin[o,a]]; influence:?}¶ {[herman[o,a]]; influence:?}¶ {[abuel[o,a]]; influence:?}¶ {[niet[o,a]]; influence:?}¶ {[bisabuel[o,a]]; influence:?}</string>
     <string name="reload">Generar consulta</string>
     <string name="save">Guardar consulta</string>
@@ -1385,7 +1384,7 @@
         <item>{string:explicit_cause}</item>
     </string-array>
     <string-array name="divination_end">
-        <item>{[será]; plural-form:[serán]; influence:divinationScope} {string:qualitative_adjective}</item>
+        <item>{[será]; plural-form:[serán]; influence:divinationScope} {rand:{[agradable]; plural-form:+s; influence:divinationScope}; {[brillante]; plural-form:+s; influence:divinationScope}; {[desagradable]; plural-form:+s; influence:divinationScope}; {[diferente]; plural-form:+s; influence:divinationScope}; {[frágil]; plural-form:+es; influence:divinationScope}; {[electrizante]; plural-form:+s; influence:divinationScope}; {[grandios[o,a]]; plural-form:+s; influence:divinationScope}; {[mejor]; plural-form:+es; influence:divinationScope}; {[normal]; plural-form:+es; influence:divinationScope}; {[negativ[o,a]]; plural-form:+s; influence:divinationScope}; {[oscur[o,a]]; plural-form:+s; influence:divinationScope}; {[peor]; plural-form:+es; influence:divinationScope}; {[positiv[o,a]]; plural-form:+s; influence:divinationScope}; {[rar[o,a]]; plural-form:+s; influence:divinationScope}; {[sólid[o,a]]; plural-form:+s; influence:divinationScope}; {[terrible]; plural-form:+s; influence:divinationScope}}</item>
         <item>{[tendrá]; plural-form:[tendrán]; influence:divinationScope} cambios positivos</item>
         <item>{[tendrá]; plural-form:[tendrán]; influence:divinationScope} cambios negativos</item>
         <item>se {[verá]; plural-form:[verán]; influence:divinationScope} {[afectad[o,a]]; plural-form:+s; influence:divinationScope} de manera positiva</item>
@@ -1618,7 +1617,7 @@
     <string-array name="divination_start">
         <item>Dentro de {string:day_period}</item>
         <item>Hoy</item>
-        <item>Hoy, en cualquier segundo,</item>
+        <item>Hoy, en cualquier segundo</item>
         <item>En cualquier momento del día</item>
         <item>El día de hoy</item>
         <item>En el día actual</item>
@@ -2045,436 +2044,9 @@
         <item>{string:individual_base} {string:individual_trait}</item>
     </string-array>
     <string-array name="individual_aspect">
-        <item>una mujer de estatura baja</item>
-        <item>una mujer de piel clara</item>
-        <item>una mujer de cabello rizado</item>
-        <item>una mujer con pecas en el rostro</item>
-        <item>una mujer con ojos azules</item>
-        <item>una mujer de labios gruesos</item>
-        <item>una mujer de pechos pequeños</item>
-        <item>una mujer con caderas anchas</item>
-        <item>una mujer de complexión delgada</item>
-        <item>una mujer de piel morena</item>
-        <item>una mujer de piernas largas</item>
-        <item>una mujer de cuello delgado</item>
-        <item>una mujer con nariz respingona</item>
-        <item>una mujer de cabello corto</item>
-        <item>una mujer con manos pequeñas</item>
-        <item>una mujer de complexión robusta</item>
-        <item>una mujer con lunares en el cuello</item>
-        <item>una mujer de pechos medianos</item>
-        <item>una mujer con hombros anchos</item>
-        <item>una mujer de piel bronceada</item>
-        <item>una mujer de ojos color miel</item>
-        <item>una mujer de piernas tonificadas</item>
-        <item>una mujer con el cabello grisáceo</item>
-        <item>una mujer de brazos fuertes</item>
-        <item>una mujer de nalgas pequeñas</item>
-        <item>una mujer con ojos pequeños</item>
-        <item>una mujer de labios delgados</item>
-        <item>una mujer con frentes amplia</item>
-        <item>una mujer de pechos grandes</item>
-        <item>una mujer de piel oscura</item>
-        <item>una mujer de piernas cortas</item>
-        <item>una mujer con una sonrisa amplia</item>
-        <item>una mujer con caderas estrechas</item>
-        <item>una mujer de complexión atlética</item>
-        <item>una mujer de cabello ondulado</item>
-        <item>una mujer con ojos verdes</item>
-        <item>una mujer de nalgas grandes</item>
-        <item>una mujer con pómulos altos</item>
-        <item>una mujer con manos grandes</item>
-        <item>una mujer de cuello largo</item>
-        <item>una mujer con cejas gruesas</item>
-        <item>una mujer de piel con cicatrices</item>
-        <item>una mujer con una pequeña nariz</item>
-        <item>una mujer de ojos almendrados</item>
-        <item>una mujer con nalgas tonificadas</item>
-        <item>una mujer de estatura alta</item>
-        <item>una mujer de cabello largo</item>
-        <item>una mujer con pómulos suaves</item>
-        <item>una mujer de nariz larga</item>
-        <item>una mujer de piel pecosa</item>
-        <item>una mujer con cejas delgadas</item>
-        <item>una mujer de complexión musculosa</item>
-        <item>una mujer de manos delicadas</item>
-        <item>una mujer con orejas pequeñas</item>
-        <item>una mujer de pecho plano</item>
-        <item>una mujer de piel lisa</item>
-        <item>una mujer de cabello ralo</item>
-        <item>una mujer de ojos rasgados</item>
-        <item>una mujer de nalgas firmes</item>
-        <item>una mujer con dientes perfectos</item>
-        <item>una mujer de piernas gruesas</item>
-        <item>una mujer de cintura estrecha</item>
-        <item>una mujer de cabello lacio</item>
-        <item>una mujer de labios pequeños</item>
-        <item>una mujer de piel pálida</item>
-        <item>una mujer con ojos grandes</item>
-        <item>una mujer de caderas redondas</item>
-        <item>una mujer de complexión curvilínea</item>
-        <item>una mujer con una sonrisa tímida</item>
-        <item>una mujer con pechos caídos</item>
-        <item>una mujer de nalgas anchas</item>
-        <item>una mujer de cuello robusto</item>
-        <item>una mujer de piel con arrugas</item>
-        <item>una mujer de cejas arqueadas</item>
-        <item>una mujer con orejas grandes</item>
-        <item>una mujer con ojos penetrantes</item>
-        <item>una mujer de manos callosas</item>
-        <item>una mujer de estatura media</item>
-        <item>una mujer de labios carnosos</item>
-        <item>una mujer de cabello teñido</item>
-        <item>una mujer de cintura ancha</item>
-        <item>una mujer con piernas delgadas</item>
-        <item>una mujer de nariz aguileña</item>
-        <item>una mujer de piel marcada por el sol</item>
-        <item>una mujer con pechos firmes</item>
-        <item>una mujer con ojos brillantes</item>
-        <item>una mujer de cabello corto y rizado</item>
-        <item>una mujer con manos suaves</item>
-        <item>una mujer de caderas angulares</item>
-        <item>una mujer de labios resecos</item>
-        <item>una mujer con hombros estrechos</item>
-        <item>una mujer de complexión grande</item>
-        <item>una mujer de piel con marcas de acné</item>
-        <item>una mujer con orejas alargadas</item>
-        <item>una mujer con ojos marrones</item>
-        <item>una mujer de nariz ancha</item>
-        <item>una mujer de piernas musculosas</item>
-        <item>una mujer con pelo rizado y teñido</item>
-        <item>una mujer de cintura pequeña</item>
-        <item>una mujer con pómulos marcados</item>
-        <item>una mujer de pechos pequeños y firmes</item>
-        <item>una mujer de nalgas grandes y tonificadas</item>
-        <item>una mujer de piel tatuada</item>
-        <item>una mujer con una sonrisa torcida</item>
-        <item>una mujer de hombros caídos</item>
-        <item>una mujer de complexión flaca</item>
-        <item>una mujer con orejas de soplillo</item>
-        <item>una mujer de ojos almendrados y grandes</item>
-        <item>una mujer de manos ásperas</item>
-        <item>una mujer con cejas pintadas</item>
-        <item>una mujer de nariz chata</item>
-        <item>una mujer de piel blanca como la nieve</item>
-        <item>una mujer de cabello largo y liso</item>
-        <item>una mujer con pechos redondos</item>
-        <item>una mujer de caderas bajas</item>
-        <item>una mujer de nalgas flácidas</item>
-        <item>una mujer con ojos color ámbar</item>
-        <item>una mujer de complexión enjuta</item>
-        <item>una mujer con una mandíbula definida</item>
-        <item>una mujer de labios pintados de rojo</item>
-        <item>una mujer con ojos caídos</item>
-        <item>una mujer de cabello rubio</item>
-        <item>una mujer con manos finas</item>
-        <item>una mujer de nariz respingona y pequeña</item>
-        <item>una mujer de cintura alta</item>
-        <item>una mujer con pechos asimétricos</item>
-        <item>una mujer de nalgas redondeadas</item>
-        <item>una mujer de piel morena clara</item>
-        <item>una mujer de cabello castaño</item>
-        <item>una mujer con ojos risueños</item>
-        <item>una mujer con orejas perforadas</item>
-        <item>una mujer de nariz redonda</item>
-        <item>una mujer con una sonrisa radiante</item>
-        <item>una mujer de piel aceitunada</item>
-        <item>una mujer de labios partidos</item>
-        <item>una mujer con cejas pobladas</item>
-        <item>una mujer con pechos voluptuosos</item>
-        <item>una mujer de caderas altas</item>
-        <item>una mujer con nalgas planas</item>
-        <item>una mujer de cabello corto y lacio</item>
-        <item>una mujer de complexión fuerte</item>
-        <item>una mujer con ojos color verde esmeralda</item>
-        <item>una mujer de manos largas</item>
-        <item>una mujer de nariz perfecta</item>
-        <item>una mujer con una pequeña mancha en la mejilla</item>
-        <item>una mujer de piel suave como el terciopelo</item>
-        <item>una mujer con cintura de avispa</item>
-        <item>una mujer de labios voluptuosos</item>
-        <item>una mujer con cabello ondulado y largo</item>
-        <item>una mujer de ojos negros</item>
-        <item>una mujer con pechos hinchados</item>
-        <item>una mujer de nalgas abultadas</item>
-        <item>una mujer de complexión pesada</item>
-        <item>una mujer de manos delicadas y suaves</item>
-        <item>una mujer de piel con lunares</item>
-        <item>una mujer con una sonrisa dulce</item>
-        <item>una mujer de estatura imponente</item>
-        <item>una mujer con cabello platinado</item>
-        <item>una mujer de cintura marcada</item>
-        <item>una mujer con ojos color avellana</item>
-        <item>una mujer con pechos densos</item>
-        <item>una mujer de nalgas prominentes</item>
-        <item>una mujer de piel con varices</item>
-        <item>una mujer con orejas redondas</item>
-        <item>una mujer de cabello espeso</item>
-        <item>una mujer con cejas delgadas y arqueadas</item>
-        <item>una mujer de ojos color gris</item>
-        <item>una mujer de nariz recta</item>
-        <item>una mujer de piel con vello</item>
-        <item>una mujer con manos arrugadas</item>
-        <item>una mujer de caderas voluptuosas</item>
-        <item>una mujer de pechos caídos y grandes</item>
-        <item>una mujer de nalgas voluminosas</item>
-        <item>una mujer con cabello corto y espeso</item>
-        <item>una mujer de labios rosados</item>
-        <item>una mujer con ojos vivaces</item>
-        <item>una mujer de cejas bien delineadas</item>
-        <item>una mujer con orejas ligeramente puntiagudas</item>
-        <item>una mujer de nariz inclinada</item>
-        <item>una mujer con piel bronceada</item>
-        <item>una mujer de cabello fino y corto</item>
-        <item>una mujer con una sonrisa encantadora</item>
-        <item>una mujer de cintura sinuosa</item>
-        <item>una mujer de piel con estrías</item>
-        <item>una mujer de ojos azules como el mar</item>
-        <item>una mujer de cabello negro y rizado</item>
-        <item>una mujer de espalda fornida</item>
-        <item>una mujer con cintura delgada</item>
-        <item>una mujer con piernas largas y torneadas</item>
-        <item>una mujer con pecho voluminoso</item>
-        <item>una mujer con espalda delgada</item>
-        <item>una mujer con clavículas pronunciadas</item>
-        <item>una mujer con abdomen plano</item>
-        <item>una mujer con brazos esbeltos</item>
-        <item>una mujer con mentón afilado</item>
-        <item>una mujer con dedos largos y delgados</item>
-        <item>una mujer con muslos fuertes</item>
-        <item>una mujer con pecas en las mejillas</item>
-        <item>una mujer con cabello castaño oscuro</item>
-        <item>una mujer con rostro ovalado</item>
-        <item>una mujer con pestañas largas</item>
-        <item>una mujer con caderas curvas</item>
-        <item>una mujer con tobillos delgados</item>
-        <item>una mujer con dientes perfectamente alineados</item>
-        <item>una mujer con pecas en la nariz</item>
-        <item>una mujer con pies pequeños</item>
-        <item>una mujer con cabello negro azabache</item>
-        <item>una mujer con ojos verdes esmeralda</item>
-        <item>una mujer con labios rojos rubí</item>
-        <item>una mujer con cuello largo y delgado</item>
-        <item>una mujer con hombros descubiertos</item>
-        <item>una mujer con piel color oliva</item>
-        <item>una mujer con rostro redondo</item>
-        <item>una mujer con pelo largo hasta la cintura</item>
-        <item>una mujer con piel color canela</item>
-        <item>un hombre de espalda ancha</item>
-        <item>un hombre con abdomen marcado</item>
-        <item>un hombre de nalgas firmes</item>
-        <item>un hombre con cabello castaño oscuro</item>
-        <item>un hombre de complexión atlética</item>
-        <item>un hombre con piernas torneadas</item>
-        <item>un hombre de brazos musculosos</item>
-        <item>un hombre con pectorales firmes</item>
-        <item>un hombre de manos grandes</item>
-        <item>un hombre de ojos color miel</item>
-        <item>un hombre con cintura estrecha</item>
-        <item>un hombre con rostro anguloso</item>
-        <item>un hombre de piel morena</item>
-        <item>un hombre de hombros anchos</item>
-        <item>un hombre de tez pálida</item>
-        <item>un hombre con barba espesa</item>
-        <item>un hombre de pómulos marcados</item>
-        <item>un hombre con cuello largo</item>
-        <item>un hombre de cejas pobladas</item>
-        <item>un hombre de ojos almendrados</item>
-        <item>un hombre con pecho velludo</item>
-        <item>un hombre de orejas pequeñas</item>
-        <item>un hombre de piernas largas</item>
-        <item>un hombre con brazos tatuados</item>
-        <item>un hombre de nalgas prominentes</item>
-        <item>un hombre de labios gruesos</item>
-        <item>un hombre de nariz recta</item>
-        <item>un hombre de mandíbula cuadrada</item>
-        <item>un hombre con pies grandes</item>
-        <item>un hombre con muslos gruesos</item>
-        <item>un hombre de cabello rizado</item>
-        <item>un hombre con hombros redondeados</item>
-        <item>un hombre con espalda marcada</item>
-        <item>un hombre con glúteos tonificados</item>
-        <item>un hombre de ojos azules</item>
-        <item>un hombre con abdomen de lavadero</item>
-        <item>un hombre de caderas angostas</item>
-        <item>un hombre con pecho musculoso</item>
-        <item>un hombre de labios carnosos</item>
-        <item>un hombre de piel bronceada</item>
-        <item>un hombre de cejas angulares</item>
-        <item>un hombre con nariz puntiaguda</item>
-        <item>un hombre de pelo corto</item>
-        <item>un hombre de ojos profundos</item>
-        <item>un hombre con dedos largos</item>
-        <item>un hombre de brazos fuertes</item>
-        <item>un hombre con cintura definida</item>
-        <item>un hombre de frente amplia</item>
-        <item>un hombre con barba rala</item>
-        <item>un hombre de piel clara</item>
-        <item>un hombre de mejillas sonrosadas</item>
-        <item>un hombre con hombros cuadrados</item>
-        <item>un hombre de manos fuertes</item>
-        <item>un hombre con antebrazos marcados</item>
-        <item>un hombre de ojos verdes</item>
-        <item>un hombre con cabello negro azabache</item>
-        <item>un hombre de barba canosa</item>
-        <item>un hombre con pantorrillas musculosas</item>
-        <item>un hombre de abdomen plano</item>
-        <item>un hombre de piel tatuada</item>
-        <item>un hombre de cuello musculoso</item>
-        <item>un hombre con brazos velludos</item>
-        <item>un hombre de mandíbula marcada</item>
-        <item>un hombre con espalda velluda</item>
-        <item>un hombre de nariz ancha</item>
-        <item>un hombre de caderas anchas</item>
-        <item>un hombre con pelo largo</item>
-        <item>un hombre con cejas finas</item>
-        <item>un hombre de labios finos</item>
-        <item>un hombre de ojos negros</item>
-        <item>un hombre con pecho marcado</item>
-        <item>un hombre de orejas grandes</item>
-        <item>un hombre con pies velludos</item>
-        <item>un hombre de brazos anchos</item>
-        <item>un hombre con espalda definida</item>
-        <item>un hombre de glúteos marcados</item>
-        <item>un hombre de muslos fuertes</item>
-        <item>un hombre de ojos grises</item>
-        <item>un hombre con cabello rubio</item>
-        <item>un hombre de piel curtida</item>
-        <item>un hombre con mejillas llenas</item>
-        <item>un hombre con barba de candado</item>
-        <item>un hombre de antebrazos velludos</item>
-        <item>un hombre de abdomen rayado</item>
-        <item>un hombre con cintura marcada</item>
-        <item>un hombre de nariz aguileña</item>
-        <item>un hombre de piel aceitunada</item>
-        <item>un hombre con pelo ondulado</item>
-        <item>un hombre de ojos pequeños</item>
-        <item>un hombre de frente despejada</item>
-        <item>un hombre de cuello grueso</item>
-        <item>un hombre con pecho liso</item>
-        <item>un hombre con pómulos redondeados</item>
-        <item>un hombre de mandíbula robusta</item>
-        <item>un hombre de orejas pegadas</item>
-        <item>un hombre con pies fuertes</item>
-        <item>un hombre de piel suave</item>
-        <item>un hombre de hombros inclinados</item>
-        <item>un hombre de cejas claras</item>
-        <item>un hombre con piernas velludas</item>
-        <item>un hombre de brazos largos</item>
-        <item>un hombre con abdomen rayado</item>
-        <item>un hombre de nalgas redondas</item>
-        <item>un hombre de complexión delgada</item>
-        <item>un hombre de ojos rasgados</item>
-        <item>un hombre con manos ásperas</item>
-        <item>un hombre de piel morena clara</item>
-        <item>un hombre con pectorales definidos</item>
-        <item>un hombre de cintura ancha</item>
-        <item>un hombre de rostro suave</item>
-        <item>un hombre con hombros marcados</item>
-        <item>un hombre de piernas marcadas</item>
-        <item>un hombre de brazos marcados</item>
-        <item>un hombre de labios delicados</item>
-        <item>un hombre de nariz prominente</item>
-        <item>un hombre de mandíbula fuerte</item>
-        <item>un hombre con pies anchos</item>
-        <item>un hombre con muslos marcados</item>
-        <item>un hombre de cabello liso</item>
-        <item>un hombre con hombros relajados</item>
-        <item>un hombre con espalda fuerte</item>
-        <item>un hombre de glúteos apretados</item>
-        <item>un hombre de ojos pardos</item>
-        <item>un hombre de caderas definidas</item>
-        <item>un hombre con pecho ancho</item>
-        <item>un hombre de labios sonrosados</item>
-        <item>un hombre de piel dorada</item>
-        <item>un hombre con piernas curtidas</item>
-        <item>un hombre de cejas gruesas</item>
-        <item>un hombre con nariz redonda</item>
-        <item>un hombre de pelo espeso</item>
-        <item>un hombre de ojos brillantes</item>
-        <item>un hombre con dedos marcados</item>
-        <item>un hombre de brazos definidos</item>
-        <item>un hombre con cintura atlética</item>
-        <item>un hombre de frente marcada</item>
-        <item>un hombre con barba tupida</item>
-        <item>un hombre de piel blanca</item>
-        <item>un hombre con pómulos prominentes</item>
-        <item>un hombre de mejillas profundas</item>
-        <item>un hombre de hombros firmes</item>
-        <item>un hombre de manos velludas</item>
-        <item>un hombre con antebrazos fuertes</item>
-        <item>un hombre de glúteos esculpidos</item>
-        <item>un hombre de ojos oscuros</item>
-        <item>un hombre con cabello gris</item>
-        <item>un hombre de barba rubia</item>
-        <item>un hombre con pantorrillas marcadas</item>
-        <item>un hombre de abdomen liso</item>
-        <item>un hombre de piel satinada</item>
-        <item>un hombre de cuello corto</item>
-        <item>un hombre de mandíbula definida</item>
-        <item>un hombre con espalda lisa</item>
-        <item>un hombre de nariz perfilada</item>
-        <item>un hombre de caderas musculosas</item>
-        <item>un hombre con pelo tieso</item>
-        <item>un hombre de cejas oscuras</item>
-        <item>un hombre de ojos verdes oscuros</item>
-        <item>un hombre de orejas finas</item>
-        <item>un hombre con pies musculosos</item>
-        <item>un hombre de brazos estilizados</item>
-        <item>un hombre con espalda musculosa</item>
-        <item>un hombre con tatuajes en los hombros</item>
-        <item>un hombre con cabello afeitado</item>
-        <item>un hombre de piel tostada</item>
-        <item>un hombre con mejillas salientes</item>
-        <item>un hombre con barba desaliñada</item>
-        <item>un hombre de antebrazos definidos</item>
-        <item>un hombre de abdomen esculpido</item>
-        <item>un hombre con cintura estilizada</item>
-        <item>un hombre de nariz respingona</item>
-        <item>un hombre de piel canela</item>
-        <item>un hombre con pelo sedoso</item>
-        <item>un hombre de ojos atractivos</item>
-        <item>un hombre de labios sonrojados</item>
-        <item>un hombre de frente alta</item>
-        <item>un hombre de cuello estilizado</item>
-        <item>un hombre con pecho plano</item>
-        <item>un hombre con pómulos angulosos</item>
-        <item>un hombre con pies estilizados</item>
-        <item>un hombre con dedos musculosos</item>
-        <item>un hombre con espalda fornida</item>
-        <item>un hombre con muñecas gruesas</item>
-        <item>un hombre con piel cobriza</item>
-        <item>un hombre con piernas cortas y robustas</item>
-        <item>un hombre con patillas espesas</item>
-        <item>un hombre con barba incipiente</item>
-        <item>un hombre de constitución robusta</item>
-        <item>un hombre con abdominales cincelados</item>
-        <item>un hombre con piernas delgadas y esculpidas</item>
-        <item>un hombre con pectorales bien formados</item>
-        <item>un hombre con brazos venosos</item>
-        <item>un hombre con dedos delgados y largos</item>
-        <item>un hombre con ojos azules brillantes</item>
-        <item>un hombre con mentón hendido</item>
-        <item>un hombre con piel tensa</item>
-        <item>un hombre con sonrisa con hoyuelos</item>
-        <item>un hombre con cabello negro como el cuervo</item>
-        <item>un hombre con bíceps poderosos</item>
-        <item>un hombre con pecho ancho y macizo</item>
-        <item>un hombre con una fina capa de pelo en el pecho</item>
-        <item>un hombre con profundos hoyuelos</item>
-        <item>un hombre con estructura robusta</item>
-        <item>un hombre con piel de mármol</item>
-        <item>un hombre con brazos delgados</item>
-        <item>un hombre con nariz aguileña</item>
-        <item>un hombre con rasgos rústicamente atractivos</item>
-        <item>un hombre con músculos trapecios esculpidos</item>
-        <item>un hombre con cabello liso</item>
-        <item>un hombre con piernas larguiruchas</item>
-        <item>un hombre con rasgos faciales finamente cincelados</item>
-        <item>un hombre con un físico esbelto y ágil</item>
-        <item>un hombre con ojos pequeños y hundidos</item>
-        <item>un hombre con una suave pendiente en la nariz</item>
-        <item>un hombre con una gruesa melena de pelo</item>
+        <item>una {actor:mujer; id:individual; grammatical-indicator:feminine} {string:individual_feminine_feature}</item>
+        <item>un {actor:hombre; id:individual; grammatical-indicator:masculine} {string:individual_masculine_feature}</item>
+        <item>una {actor:persona; id:individual; grammatical-indicator:neutral} {rand:{string:individual_feminine_feature}; {string:individual_masculine_feature}}</item>
     </string-array>
     <string-array name="individual_base">
         <item>{[un[,a]]; influence:individual} {rand:{actor:hombre; id:individual; grammatical-indicator:masculine}; {actor:mujer; id:individual; grammatical-indicator:feminine}}</item>
@@ -2486,10 +2058,10 @@
         <item>{[un[,a]]; influence:individual} {rand:{actor:infante; id:individual; grammatical-indicator:masculine}; {actor:infante; id:individual; grammatical-indicator:feminine}}</item>
         <item>{[un[,a]]; influence:individual} {rand:{actor:adulto; id:individual; grammatical-indicator:masculine}; {actor:adulta; id:individual; grammatical-indicator:feminine}}</item>
         <item>{[un[,a]]; influence:individual} {rand:{actor:adolescente; id:individual; grammatical-indicator:masculine}; {actor:adolescente; id:individual; grammatical-indicator:feminine}}</item>
-        <item>una {actor:persona de menor edad; id:individual; grammatical-indicator:feminine}</item>
-        <item>una {actor:persona de mayor edad; id:individual; grammatical-indicator:feminine}</item>
-        <item>una {actor:persona de la misma edad; id:individual; grammatical-indicator:feminine}</item>
-        <item>una {actor:persona mayor de edad; id:individual; grammatical-indicator:feminine}</item>
+        <item>una {actor:persona de menor edad; id:individual; grammatical-indicator:feminine; true-grammatical-indicator:singular-any}</item>
+        <item>una {actor:persona de mayor edad; id:individual; grammatical-indicator:feminine; true-grammatical-indicator:singular-any}</item>
+        <item>una {actor:persona de la misma edad; id:individual; grammatical-indicator:feminine; true-grammatical-indicator:singular-any}</item>
+        <item>una {actor:persona mayor de edad; id:individual; grammatical-indicator:feminine; true-grammatical-indicator:singular-any}</item>
         <item>{[un[,a]]; influence:individual} {rand:{actor:menor de edad; id:individual; grammatical-indicator:masculine}; {actor:menor de edad; id:individual; grammatical-indicator:feminine}}</item>
         <item>{[un[,a]]; influence:individual} {rand:{actor:bebé; id:individual; grammatical-indicator:masculine}; {actor:bebé; id:individual; grammatical-indicator:feminine}}</item>
         <item>{[un[,a]]; influence:individual} recién {rand:{actor:nacido; id:individual; grammatical-indicator:masculine}; {actor:nacida; id:individual; grammatical-indicator:feminine}}</item>
@@ -2521,6 +2093,223 @@
         <item>de ojos separados</item>
         <item>de ojos pequeños</item>
         <item>de ojos grandes</item>
+    </string-array>
+    <string-array name="individual_feminine_feature">
+        <item>de estatura baja</item>
+        <item>de piel clara</item>
+        <item>de cabello rizado</item>
+        <item>con pecas en el rostro</item>
+        <item>con ojos azules</item>
+        <item>de labios gruesos</item>
+        <item>de pechos pequeños</item>
+        <item>con caderas anchas</item>
+        <item>de complexión delgada</item>
+        <item>de piel morena</item>
+        <item>de piernas largas</item>
+        <item>de cuello delgado</item>
+        <item>con nariz respingona</item>
+        <item>de cabello corto</item>
+        <item>con manos pequeñas</item>
+        <item>de complexión robusta</item>
+        <item>con lunares en el cuello</item>
+        <item>de pechos medianos</item>
+        <item>con hombros anchos</item>
+        <item>de piel bronceada</item>
+        <item>de ojos color miel</item>
+        <item>de piernas tonificadas</item>
+        <item>con el cabello grisáceo</item>
+        <item>de brazos fuertes</item>
+        <item>de nalgas pequeñas</item>
+        <item>con ojos pequeños</item>
+        <item>de labios delgados</item>
+        <item>con frentes amplia</item>
+        <item>de pechos grandes</item>
+        <item>de piel oscura</item>
+        <item>de piernas cortas</item>
+        <item>con una sonrisa amplia</item>
+        <item>con caderas estrechas</item>
+        <item>de complexión atlética</item>
+        <item>de cabello ondulado</item>
+        <item>con ojos verdes</item>
+        <item>de nalgas grandes</item>
+        <item>con pómulos altos</item>
+        <item>con manos grandes</item>
+        <item>de cuello largo</item>
+        <item>con cejas gruesas</item>
+        <item>de piel con cicatrices</item>
+        <item>con una pequeña nariz</item>
+        <item>de ojos almendrados</item>
+        <item>con nalgas tonificadas</item>
+        <item>de estatura alta</item>
+        <item>de cabello largo</item>
+        <item>con pómulos suaves</item>
+        <item>de nariz larga</item>
+        <item>de piel pecosa</item>
+        <item>con cejas delgadas</item>
+        <item>de complexión musculosa</item>
+        <item>de manos delicadas</item>
+        <item>con orejas pequeñas</item>
+        <item>de pecho plano</item>
+        <item>de piel lisa</item>
+        <item>de cabello ralo</item>
+        <item>de ojos rasgados</item>
+        <item>de nalgas firmes</item>
+        <item>con dientes perfectos</item>
+        <item>de piernas gruesas</item>
+        <item>de cintura estrecha</item>
+        <item>de cabello lacio</item>
+        <item>de labios pequeños</item>
+        <item>de piel pálida</item>
+        <item>con ojos grandes</item>
+        <item>de caderas redondas</item>
+        <item>de complexión curvilínea</item>
+        <item>con una sonrisa tímida</item>
+        <item>con pechos caídos</item>
+        <item>de nalgas anchas</item>
+        <item>de cuello robusto</item>
+        <item>de piel con arrugas</item>
+        <item>de cejas arqueadas</item>
+        <item>con orejas grandes</item>
+        <item>con ojos penetrantes</item>
+        <item>de manos callosas</item>
+        <item>de estatura media</item>
+        <item>de labios carnosos</item>
+        <item>de cabello teñido</item>
+        <item>de cintura ancha</item>
+        <item>con piernas delgadas</item>
+        <item>de nariz aguileña</item>
+        <item>de piel marcada por el sol</item>
+        <item>con pechos firmes</item>
+        <item>con ojos brillantes</item>
+        <item>de cabello corto y rizado</item>
+        <item>con manos suaves</item>
+        <item>de caderas angulares</item>
+        <item>de labios resecos</item>
+        <item>con hombros estrechos</item>
+        <item>de complexión grande</item>
+        <item>de piel con marcas de acné</item>
+        <item>con orejas alargadas</item>
+        <item>con ojos marrones</item>
+        <item>de nariz ancha</item>
+        <item>de piernas musculosas</item>
+        <item>con pelo rizado y teñido</item>
+        <item>de cintura pequeña</item>
+        <item>con pómulos marcados</item>
+        <item>de pechos pequeños y firmes</item>
+        <item>de nalgas grandes y tonificadas</item>
+        <item>de piel tatuada</item>
+        <item>con una sonrisa torcida</item>
+        <item>de hombros caídos</item>
+        <item>de complexión flaca</item>
+        <item>con orejas de soplillo</item>
+        <item>de ojos almendrados y grandes</item>
+        <item>de manos ásperas</item>
+        <item>con cejas pintadas</item>
+        <item>de nariz chata</item>
+        <item>de piel blanca como la nieve</item>
+        <item>de cabello largo y liso</item>
+        <item>con pechos redondos</item>
+        <item>de caderas bajas</item>
+        <item>de nalgas flácidas</item>
+        <item>con ojos color ámbar</item>
+        <item>de complexión enjuta</item>
+        <item>con una mandíbula definida</item>
+        <item>de labios pintados de rojo</item>
+        <item>con ojos caídos</item>
+        <item>de cabello rubio</item>
+        <item>con manos finas</item>
+        <item>de nariz respingona y pequeña</item>
+        <item>de cintura alta</item>
+        <item>con pechos asimétricos</item>
+        <item>de nalgas redondeadas</item>
+        <item>de piel morena clara</item>
+        <item>de cabello castaño</item>
+        <item>con ojos risueños</item>
+        <item>con orejas perforadas</item>
+        <item>de nariz redonda</item>
+        <item>con una sonrisa radiante</item>
+        <item>de piel aceitunada</item>
+        <item>de labios partidos</item>
+        <item>con cejas pobladas</item>
+        <item>con pechos voluptuosos</item>
+        <item>de caderas altas</item>
+        <item>con nalgas planas</item>
+        <item>de cabello corto y lacio</item>
+        <item>de complexión fuerte</item>
+        <item>con ojos color verde esmeralda</item>
+        <item>de manos largas</item>
+        <item>de nariz perfecta</item>
+        <item>con una pequeña mancha en la mejilla</item>
+        <item>de piel suave como el terciopelo</item>
+        <item>con cintura de avispa</item>
+        <item>de labios voluptuosos</item>
+        <item>con cabello ondulado y largo</item>
+        <item>de ojos negros</item>
+        <item>con pechos hinchados</item>
+        <item>de nalgas abultadas</item>
+        <item>de complexión pesada</item>
+        <item>de manos delicadas y suaves</item>
+        <item>de piel con lunares</item>
+        <item>con una sonrisa dulce</item>
+        <item>de estatura imponente</item>
+        <item>con cabello platinado</item>
+        <item>de cintura marcada</item>
+        <item>con ojos color avellana</item>
+        <item>con pechos densos</item>
+        <item>de nalgas prominentes</item>
+        <item>de piel con varices</item>
+        <item>con orejas redondas</item>
+        <item>de cabello espeso</item>
+        <item>con cejas delgadas y arqueadas</item>
+        <item>de ojos color gris</item>
+        <item>de nariz recta</item>
+        <item>de piel con vello</item>
+        <item>con manos arrugadas</item>
+        <item>de caderas voluptuosas</item>
+        <item>de pechos caídos y grandes</item>
+        <item>de nalgas voluminosas</item>
+        <item>con cabello corto y espeso</item>
+        <item>de labios rosados</item>
+        <item>con ojos vivaces</item>
+        <item>de cejas bien delineadas</item>
+        <item>con orejas ligeramente puntiagudas</item>
+        <item>de nariz inclinada</item>
+        <item>con piel bronceada</item>
+        <item>de cabello fino y corto</item>
+        <item>con una sonrisa encantadora</item>
+        <item>de cintura sinuosa</item>
+        <item>de piel con estrías</item>
+        <item>de ojos azules como el mar</item>
+        <item>de cabello negro y rizado</item>
+        <item>de espalda fornida</item>
+        <item>con cintura delgada</item>
+        <item>con piernas largas y torneadas</item>
+        <item>con pecho voluminoso</item>
+        <item>con espalda delgada</item>
+        <item>con clavículas pronunciadas</item>
+        <item>con abdomen plano</item>
+        <item>con brazos esbeltos</item>
+        <item>con mentón afilado</item>
+        <item>con dedos largos y delgados</item>
+        <item>con muslos fuertes</item>
+        <item>con pecas en las mejillas</item>
+        <item>con cabello castaño oscuro</item>
+        <item>con rostro ovalado</item>
+        <item>con pestañas largas</item>
+        <item>con caderas curvas</item>
+        <item>con tobillos delgados</item>
+        <item>con dientes perfectamente alineados</item>
+        <item>con pecas en la nariz</item>
+        <item>con pies pequeños</item>
+        <item>con cabello negro azabache</item>
+        <item>con ojos verdes esmeralda</item>
+        <item>con labios rojos rubí</item>
+        <item>con cuello largo y delgado</item>
+        <item>con hombros descubiertos</item>
+        <item>con piel color oliva</item>
+        <item>con rostro redondo</item>
+        <item>con pelo largo hasta la cintura</item>
+        <item>con piel color canela</item>
     </string-array>
     <string-array name="individual_hair">
         <item>{[calv[o,a]]; influence:individual}</item>
@@ -2555,6 +2344,223 @@
         <item>{[alt[o,a]]; influence:individual}</item>
         <item>muy {[alt[o,a]]; influence:individual}</item>
     </string-array>
+    <string-array name="individual_masculine_feature">
+        <item>de espalda ancha</item>
+        <item>con abdomen marcado</item>
+        <item>de nalgas firmes</item>
+        <item>con cabello castaño oscuro</item>
+        <item>de complexión atlética</item>
+        <item>con piernas torneadas</item>
+        <item>de brazos musculosos</item>
+        <item>con pectorales firmes</item>
+        <item>de manos grandes</item>
+        <item>de ojos color miel</item>
+        <item>con cintura estrecha</item>
+        <item>con rostro anguloso</item>
+        <item>de piel morena</item>
+        <item>de hombros anchos</item>
+        <item>de tez pálida</item>
+        <item>con barba espesa</item>
+        <item>de pómulos marcados</item>
+        <item>con cuello largo</item>
+        <item>de cejas pobladas</item>
+        <item>de ojos almendrados</item>
+        <item>con pecho velludo</item>
+        <item>de orejas pequeñas</item>
+        <item>de piernas largas</item>
+        <item>con brazos tatuados</item>
+        <item>de nalgas prominentes</item>
+        <item>de labios gruesos</item>
+        <item>de nariz recta</item>
+        <item>de mandíbula cuadrada</item>
+        <item>con pies grandes</item>
+        <item>con muslos gruesos</item>
+        <item>de cabello rizado</item>
+        <item>con hombros redondeados</item>
+        <item>con espalda marcada</item>
+        <item>con glúteos tonificados</item>
+        <item>de ojos azules</item>
+        <item>con abdomen de lavadero</item>
+        <item>de caderas angostas</item>
+        <item>con pecho musculoso</item>
+        <item>de labios carnosos</item>
+        <item>de piel bronceada</item>
+        <item>de cejas angulares</item>
+        <item>con nariz puntiaguda</item>
+        <item>de pelo corto</item>
+        <item>de ojos profundos</item>
+        <item>con dedos largos</item>
+        <item>de brazos fuertes</item>
+        <item>con cintura definida</item>
+        <item>de frente amplia</item>
+        <item>con barba rala</item>
+        <item>de piel clara</item>
+        <item>de mejillas sonrosadas</item>
+        <item>con hombros cuadrados</item>
+        <item>de manos fuertes</item>
+        <item>con antebrazos marcados</item>
+        <item>de ojos verdes</item>
+        <item>con cabello negro azabache</item>
+        <item>de barba canosa</item>
+        <item>con pantorrillas musculosas</item>
+        <item>de abdomen plano</item>
+        <item>de piel tatuada</item>
+        <item>de cuello musculoso</item>
+        <item>con brazos velludos</item>
+        <item>de mandíbula marcada</item>
+        <item>con espalda velluda</item>
+        <item>de nariz ancha</item>
+        <item>de caderas anchas</item>
+        <item>con pelo largo</item>
+        <item>con cejas finas</item>
+        <item>de labios finos</item>
+        <item>de ojos negros</item>
+        <item>con pecho marcado</item>
+        <item>de orejas grandes</item>
+        <item>con pies velludos</item>
+        <item>de brazos anchos</item>
+        <item>con espalda definida</item>
+        <item>de glúteos marcados</item>
+        <item>de muslos fuertes</item>
+        <item>de ojos grises</item>
+        <item>con cabello rubio</item>
+        <item>de piel curtida</item>
+        <item>con mejillas llenas</item>
+        <item>con barba de candado</item>
+        <item>de antebrazos velludos</item>
+        <item>de abdomen rayado</item>
+        <item>con cintura marcada</item>
+        <item>de nariz aguileña</item>
+        <item>de piel aceitunada</item>
+        <item>con pelo ondulado</item>
+        <item>de ojos pequeños</item>
+        <item>de frente despejada</item>
+        <item>de cuello grueso</item>
+        <item>con pecho liso</item>
+        <item>con pómulos redondeados</item>
+        <item>de mandíbula robusta</item>
+        <item>de orejas pegadas</item>
+        <item>con pies fuertes</item>
+        <item>de piel suave</item>
+        <item>de hombros inclinados</item>
+        <item>de cejas claras</item>
+        <item>con piernas velludas</item>
+        <item>de brazos largos</item>
+        <item>con abdomen rayado</item>
+        <item>de nalgas redondas</item>
+        <item>de complexión delgada</item>
+        <item>de ojos rasgados</item>
+        <item>con manos ásperas</item>
+        <item>de piel morena clara</item>
+        <item>con pectorales definidos</item>
+        <item>de cintura ancha</item>
+        <item>de rostro suave</item>
+        <item>con hombros marcados</item>
+        <item>de piernas marcadas</item>
+        <item>de brazos marcados</item>
+        <item>de labios delicados</item>
+        <item>de nariz prominente</item>
+        <item>de mandíbula fuerte</item>
+        <item>con pies anchos</item>
+        <item>con muslos marcados</item>
+        <item>de cabello liso</item>
+        <item>con hombros relajados</item>
+        <item>con espalda fuerte</item>
+        <item>de glúteos apretados</item>
+        <item>de ojos pardos</item>
+        <item>de caderas definidas</item>
+        <item>con pecho ancho</item>
+        <item>de labios sonrosados</item>
+        <item>de piel dorada</item>
+        <item>con piernas curtidas</item>
+        <item>de cejas gruesas</item>
+        <item>con nariz redonda</item>
+        <item>de pelo espeso</item>
+        <item>de ojos brillantes</item>
+        <item>con dedos marcados</item>
+        <item>de brazos definidos</item>
+        <item>con cintura atlética</item>
+        <item>de frente marcada</item>
+        <item>con barba tupida</item>
+        <item>de piel blanca</item>
+        <item>con pómulos prominentes</item>
+        <item>de mejillas profundas</item>
+        <item>de hombros firmes</item>
+        <item>de manos velludas</item>
+        <item>con antebrazos fuertes</item>
+        <item>de glúteos esculpidos</item>
+        <item>de ojos oscuros</item>
+        <item>con cabello gris</item>
+        <item>de barba rubia</item>
+        <item>con pantorrillas marcadas</item>
+        <item>de abdomen liso</item>
+        <item>de piel satinada</item>
+        <item>de cuello corto</item>
+        <item>de mandíbula definida</item>
+        <item>con espalda lisa</item>
+        <item>de nariz perfilada</item>
+        <item>de caderas musculosas</item>
+        <item>con pelo tieso</item>
+        <item>de cejas oscuras</item>
+        <item>de ojos verdes oscuros</item>
+        <item>de orejas finas</item>
+        <item>con pies musculosos</item>
+        <item>de brazos estilizados</item>
+        <item>con espalda musculosa</item>
+        <item>con tatuajes en los hombros</item>
+        <item>con cabello afeitado</item>
+        <item>de piel tostada</item>
+        <item>con mejillas salientes</item>
+        <item>con barba desaliñada</item>
+        <item>de antebrazos definidos</item>
+        <item>de abdomen esculpido</item>
+        <item>con cintura estilizada</item>
+        <item>de nariz respingona</item>
+        <item>de piel canela</item>
+        <item>con pelo sedoso</item>
+        <item>de ojos atractivos</item>
+        <item>de labios sonrojados</item>
+        <item>de frente alta</item>
+        <item>de cuello estilizado</item>
+        <item>con pecho plano</item>
+        <item>con pómulos angulosos</item>
+        <item>con pies estilizados</item>
+        <item>con dedos musculosos</item>
+        <item>con espalda fornida</item>
+        <item>con muñecas gruesas</item>
+        <item>con piel cobriza</item>
+        <item>con piernas cortas y robustas</item>
+        <item>con patillas espesas</item>
+        <item>con barba incipiente</item>
+        <item>de constitución robusta</item>
+        <item>con abdominales cincelados</item>
+        <item>con piernas delgadas y esculpidas</item>
+        <item>con pectorales bien formados</item>
+        <item>con brazos venosos</item>
+        <item>con dedos delgados y largos</item>
+        <item>con ojos azules brillantes</item>
+        <item>con mentón hendido</item>
+        <item>con piel tensa</item>
+        <item>con sonrisa con hoyuelos</item>
+        <item>con cabello negro como el cuervo</item>
+        <item>con bíceps poderosos</item>
+        <item>con pecho ancho y macizo</item>
+        <item>con una fina capa de pelo en el pecho</item>
+        <item>con profundos hoyuelos</item>
+        <item>con estructura robusta</item>
+        <item>con piel de mármol</item>
+        <item>con brazos delgados</item>
+        <item>con nariz aguileña</item>
+        <item>con rasgos rústicamente atractivos</item>
+        <item>con músculos trapecios esculpidos</item>
+        <item>con cabello liso</item>
+        <item>con piernas larguiruchas</item>
+        <item>con rasgos faciales finamente cincelados</item>
+        <item>con un físico esbelto y ágil</item>
+        <item>con ojos pequeños y hundidos</item>
+        <item>con una suave pendiente en la nariz</item>
+        <item>con una gruesa melena de pelo</item>
+    </string-array>
     <string-array name="individual_trait">
         <item>{string:individual_build}</item>
         <item>{string:individual_eyes}</item>
@@ -2572,9 +2578,6 @@
         <item>Español</item>
     </string-array>
     <string-array name="name_type">
-        <item>Sin nombre</item>
-        <item>Nombre por defecto</item>
-        <item>Caso de prueba</item>
         <item>Nombre masculino</item>
         <item>Nombre femenino</item>
         <item>Patronímico masculino</item>
@@ -2632,6 +2635,7 @@
         <item>Nombre de usuario compuesto</item>
         <item>Nombre de usuario derivado</item>
         <item>Nombre de usuario con patrón</item>
+        <item>Nombre de usuario de administrador</item>
         <item>Nombre anónimo</item>
         <item>Animal anónimo</item>
     </string-array>
@@ -2693,325 +2697,325 @@
         <item>{[vanidos[o,a]]; influence:person}</item>
     </string-array>
     <string-array name="opinion">
-        <item>¿Has oído de {method:getFormattedName}? Es mi peor enemigo.</item>
-        <item>Tú te pareces a alguien que conozco, se llama {method:getFormattedName}.</item>
-        <item>¿De casualidad no conoces a {method:getFormattedName}?</item>
-        <item>Tengo que ir con {method:getFormattedName}. Me debe dinero.</item>
-        <item>Estoy enamorado de {method:getFormattedName}.</item>
-        <item>¿Acaso has visto a {[un[,a]]} tal {method:getFormattedName}?</item>
-        <item>Tu {string:relative}, {method:getFormattedName} y yo somos amantes. Todo un triángulo amoroso.</item>
-        <item>¿Eres {string:relative} de {method:getFormattedName}? Se parecen mucho.</item>
-        <item>¿Eres acaso {string:relative} de {method:getFormattedName}? Comparten ciertas características ustedes dos.</item>
-        <item>Me agrada verte por aquí, no como a {method:getFormattedName}.</item>
-        <item>Oh, sí, revelé un futuro terrorífico para {method:getFormattedName}.</item>
-        <item>El otro día {method:getFormattedName} me pidió que le leyera el futuro.</item>
-        <item>Tantas trágicas historias se han escrito, como las de {method:getFormattedName}.</item>
-        <item>Revelar el futuro es algo agotador, y más el futuro de {method:getFormattedName}.</item>
-        <item>Muchas personas acuden a mí, en especial {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>¿Sabías que {method:getFormattedName} y {method:getFormattedName} son pareja?</item>
-        <item>Hay un destino muy cruel entre {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>Una fuerte rivalidad crece entre {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>¿Quieres saber qué pasó con {method:getFormattedName}?</item>
-        <item>{method:getFormattedName} acudió a mí para obtener mis conocimientos secretos.</item>
-        <item>Cuidado con {method:getFormattedName}, es una persona muy peligrosa.</item>
-        <item>Hay una persona muy agradable llamada {method:getFormattedName}.</item>
-        <item>Me gusta la comida, en especial aquella hecha por {method:getFormattedName}.</item>
-        <item>Hay dos personas en este mundo a quienes deberías conocer. Ellas son {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>Tengo muchos hermanos, y mi {[favorit[o,a]]} es {method:getFormattedName}.</item>
-        <item>Nunca vayas a hablar con {method:getFormattedName}, es muy {[molest[o,a]]}.</item>
-        <item>Me encanta hacer adivinaciones para {method:getFormattedName}.</item>
-        <item>Sí, ¿has visto a {method:getFormattedName}? Necesito hablar con esta persona.</item>
-        <item>A ver, a ver, uh, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName}, uh… y {method:getFormattedName}. Listo, anotados los que me faltan para predecirles su futuro.</item>
-        <item>Si te portas mal, {method:getFormattedName} va a venir y te va a llevar.</item>
-        <item>¿Has escuchado la triste historia de {method:getFormattedName}?</item>
-        <item>¿Has escuchado las aventuras de {method:getFormattedName}?</item>
-        <item>¿Has escuchado las buenas noticias sobre {method:getFormattedName}?</item>
-        <item>¿Te importaría dejarme adivinar algo sobre {method:getFormattedName}?</item>
-        <item>¿Quién es {method:getFormattedName}?</item>
-        <item>¿Te has encontrado con {method:getFormattedName}?</item>
-        <item>Me gusta una persona llamada {method:getFormattedName}.</item>
-        <item>Me gusta alguien que se llama {method:getFormattedName}.</item>
-        <item>¿Por qué odias a {method:getFormattedName}?</item>
-        <item>¿Te gusta una persona llamada {method:getFormattedName}?</item>
-        <item>¿Qué sabes acerca de {method:getFormattedName}?</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} son personas muy similares.</item>
-        <item>Dime si algún día ves a {method:getFormattedName}.</item>
-        <item>Dime si un día conoces a {method:getFormattedName}.</item>
-        <item>Soy una persona muy ocupada. Hoy saldré con {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} son muy buenos amigos.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} son los peores enemigos.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} se odian demasiado.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} se aman.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} siempre pelean.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} siempre tienen buenas ideas.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} se llevan muy bien.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} no se llevan bien.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} no se toleran.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} son muy cercanos.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} se entienden muy bien.</item>
-        <item>Necesito encontrar a {method:getFormattedName}. Me debe dinero.</item>
-        <item>Estoy buscando a {method:getFormattedName}. ¿Tú {[l[o,a]]} has visto?</item>
-        <item>Me parece que {method:getFormattedName} tiene un destino muy malo.</item>
-        <item>Creo que {method:getFormattedName} tiene un buen futuro.</item>
-        <item>¿Crees que no soy real? {method:getFormattedName} cree lo contrario.</item>
-        <item>{method:getFormattedName} me cae muy mal.</item>
-        <item>{method:getFormattedName} me cae muy bien.</item>
-        <item>Siento indiferencia hacia {method:getFormattedName}.</item>
-        <item>Me agrada estar con {method:getFormattedName}.</item>
-        <item>Odio estar con {method:getFormattedName}.</item>
-        <item>En alguna parte, {method:getFormattedName} conspira contra nosotros.</item>
-        <item>En algún lugar, {method:getFormattedName} hace planes que nos beneficiarán.</item>
-        <item>{method:getFormattedName} habla mal de {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} no para de hablar de {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} siempre tiene buenas cosas qué decir sobre {method:getFormattedName}.</item>
-        <item>Estoy cansado de {method:getFormattedName}.</item>
-        <item>Me gusta tratar con {method:getFormattedName}.</item>
-        <item>Hay muchas personas a las cuales realizo predicciones, pero a {method:getFormattedName} es a la que más le hago.</item>
-        <item>¿Conoces la leyenda de {method:getFormattedName}?</item>
-        <item>{method:getFormattedName} tiene un buen futuro.</item>
-        <item>{method:getFormattedName} tiene un futuro malo.</item>
-        <item>{method:getFormattedName} sabe muchas cosas.</item>
-        <item>{method:getFormattedName} asegura haber visto a {method:getFormattedName}.</item>
-        <item>Yo no creo que {method:getFormattedName} haya encontrado a {method:getFormattedName}.</item>
-        <item>El destino alguna vez indicó que {method:getFormattedName} y {method:getFormattedName} se habrían de encontrar, y así pasó.</item>
-        <item>{method:getFormattedName} hará cosas increíbles.</item>
-        <item>{method:getFormattedName} hará cosas terribles.</item>
-        <item>Me preocupa alguien que se llama {method:getFormattedName}.</item>
-        <item>¿No has sabido algo sobre {method:getFormattedName}?</item>
-        <item>{method:getFormattedName} ya no se ha comunicado conmigo, y es preocupante.</item>
-        <item>{method:getFormattedName} puede ganarle a {method:getFormattedName} en una pelea.</item>
-        <item>{method:getFormattedName} va a hacer cosas malas hoy.</item>
-        <item>{method:getFormattedName} hará algo muy bueno en este día.</item>
-        <item>El destino no favorece a {method:getFormattedName}.</item>
-        <item>El destino está a favor de {method:getFormattedName}.</item>
-        <item>Esta vida quiere que triunfe {method:getFormattedName}.</item>
-        <item>La vida ajusta las posibilidades en contra de {method:getFormattedName}.</item>
-        <item>Esta existencia tiene cosas muy curiosas, una de ellas es una persona llamada {method:getFormattedName}.</item>
-        <item>No me interrumpas, estoy viendo la vida de {method:getFormattedName}.</item>
-        <item>Es interesante ver lo que pasa con {method:getFormattedName}.</item>
-        <item>¡Quieto! Déjame ver qué sucede con {method:getFormattedName}.</item>
-        <item>¡Alto! Necesito saber qué ocurre con {method:getFormattedName}.</item>
-        <item>¡Oye! Tengo que conocer lo que pasará con {method:getFormattedName}.</item>
-        <item>¡Me gusta estar con {method:getFormattedName}!</item>
-        <item>¡Odio estar con {method:getFormattedName}!</item>
-        <item>No, no, no, todo está mal con {method:getFormattedName}.</item>
-        <item>Y así es la triste vida de {method:getFormattedName}.</item>
-        <item>¡Vaya! Deberías ver lo increíble que es la vida de {method:getFormattedName}.</item>
-        <item>Ver el futuro es entretenido. Me gusta, sobre todo, ver lo que acontece en la vida de {method:getFormattedName}.</item>
-        <item>Estoy harto de {method:getFormattedName}.</item>
-        <item>Estoy feliz por {method:getFormattedName}.</item>
-        <item>Existe una tensión fuerte entre {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} aparentemente se odian, aunque realmente se aman.</item>
-        <item>El futuro es felicidad para {method:getFormattedName}.</item>
-        <item>El futuro es tristeza para {method:getFormattedName}.</item>
-        <item>Si tuviera una moneda cada vez que {method:getFormattedName} dice una tontería, sería millonario.</item>
-        <item>Si tuviera una moneda por cada cosa ingeniosa que {method:getFormattedName} dice, estaría debiendo dinero.</item>
-        <item>No hay nada como molestar a {method:getFormattedName}.</item>
-        <item>Me gusta pasar el rato con {method:getFormattedName}.</item>
-        <item>Tal parece que las cosas van mal entre {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>Las cosas irán mal entre {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} trata de causar mal entre {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} siempre da malos consejos a {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} es una persona muy agradable. Deberías tratarla.</item>
-        <item>Sí, lo tengo. Aquí está el destino de {method:getFormattedName}.</item>
-        <item>Deberías ver lo que {method:getFormattedName} está haciendo.</item>
-        <item>Tal parece que {method:getFormattedName} está haciendo cosas malas.</item>
-        <item>{method:getFormattedName} se está portando muy bien.</item>
-        <item>Con el fin de enfrentar a su destino, {method:getFormattedName} hace cosas que cree que lo evitarán.</item>
-        <item>Casi nadie puede huir de su destino, en especial {method:getFormattedName}.</item>
-        <item>¿Crees en el destino? {method:getFormattedName} logró una vez salirse con la suya y evitarlo.</item>
-        <item>El futuro es algo inaudito, sobre todo el de {method:getFormattedName}.</item>
-        <item>{method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName} son muy buenos amigos.</item>
-        <item>Necesito ver a {method:getFormattedName}. Es urgente.</item>
-        <item>¿Has visto a {method:getFormattedName}? Tengo que decirle algo.</item>
-        <item>Si ves a {method:getFormattedName} dile que me pague.</item>
-        <item>¿Sabes quién es {method:getFormattedName}?</item>
-        <item>¿Conoces a {method:getFormattedName}?</item>
-        <item>¿Quieres oír acerca de {method:getFormattedName}?</item>
-        <item>Ten cuidado con {method:getFormattedName}, es {[mal[o,a]]} con las personas que lo rodean.</item>
-        <item>Deberías ver a {method:getFormattedName}, es muy agradable.</item>
-        <item>Honestamente, estoy cansado de predecirle el futuro a {method:getFormattedName}.</item>
-        <item>¿Sabes algo de {method:getFormattedName}?</item>
-        <item>¿Quieres saber lo que pasó con {method:getFormattedName}?</item>
-        <item>¡Calma! Ya te tocará saber qué pasará contigo. Debo ver lo que {method:getFormattedName} vivirá.</item>
-        <item>¡Déjame ver a {method:getFormattedName}!</item>
-        <item>¡Tengo que encontrar a {method:getFormattedName}!</item>
-        <item>¡Necesito decirle algo a {method:getFormattedName}!</item>
-        <item>No, es muy triste lo que ocurre con {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>Si pudiera armar un grupo de tontos, elegiría a {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>El mejor grupo con el cual salir es {method:getFormattedName}, {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>Siempre es bueno escuchar los consejos de {method:getFormattedName}.</item>
-        <item>Tengo {[un[,a]]} {[conocid[o,a]]} {[llamad[o,a]]} {method:getFormattedName}.</item>
-        <item>Tengo {[un[,a]]} {[amig[o,a]]} {[llamad[o,a]]} {method:getFormattedName}.</item>
-        <item>Tengo {[un[,a]]} {[enemig[o,a]]} {[llamad[o,a]]} {method:getFormattedName}.</item>
-        <item>Tengo {[un[,a]]} amante {[llamad[o,a]]} {method:getFormattedName}.</item>
-        <item>Soy mejor que una persona llamada {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} tiene asegurado un buen futuro.</item>
-        <item>A {method:getFormattedName} no le espera un buen futuro.</item>
-        <item>{method:getFormattedName} tendrá una vida llena de felicidad.</item>
-        <item>{method:getFormattedName} tendrá una vida acompañada de tristezas.</item>
-        <item>{method:getFormattedName} espera una vida de soledad.</item>
-        <item>{method:getFormattedName} recibirá la fortuna con los brazos abiertos.</item>
-        <item>{method:getFormattedName} tendrá una larga vida.</item>
-        <item>La desgracia será parte de la vida de {method:getFormattedName}.</item>
-        <item>Ejemplos de destinos totalmente distintos entre sí serían los de {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>Buenas posibilidades le esperan a {method:getFormattedName}.</item>
-        <item>Posibilidades malas le aguardan a {method:getFormattedName}.</item>
-        <item>¿Sabes lo que pasará con {method:getFormattedName}?</item>
-        <item>Parece que {method:getFormattedName} y {method:getFormattedName} se pertenecen.</item>
-        <item>Vaya, vaya, {method:getFormattedName} tiene buen presagio.</item>
-        <item>La profecía indica que {method:getFormattedName} es {[[el,la]]} {[elegid[o,a]]}.</item>
-        <item>{method:getFormattedName} ha aceptado su destino.</item>
-        <item>{method:getFormattedName} lucha vanamente contra su destino.</item>
-        <item>Tengo el presentimiento de que te has cruzado con {method:getFormattedName}.</item>
-        <item>Tengo muy buenas noticias para {method:getFormattedName}.</item>
-        <item>Hay muy malas noticias sobre {method:getFormattedName}.</item>
-        <item>Tengo malas noticias para {method:getFormattedName}.</item>
-        <item>La profecía dice que {method:getFormattedName} será {[exitos[o,a]]}.</item>
-        <item>{method:getFormattedName} es la persona mencionada en la profecía.</item>
-        <item>El augurio señala prosperidad para {method:getFormattedName}.</item>
-        <item>El augurio muestra que {method:getFormattedName} tendrá una larga vida.</item>
-        <item>El augurio dice que {method:getFormattedName} tendrá una vida buena.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} son personas que no se llevan entre sí.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} comparten vidas llenas de conflictos.</item>
-        <item>El destino ha sido complaciente con {method:getFormattedName}.</item>
-        <item>La vida se encarga una y otra vez de que {method:getFormattedName} falle.</item>
-        <item>Una cadena de éxitos ha sido predestinada para {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} va a tener una vida normal.</item>
-        <item>{method:getFormattedName} va a tener una vida libre de problemas.</item>
-        <item>{method:getFormattedName} tendrá una vida llena de dificultades, sin embargo, su recompensa será grande.</item>
-        <item>Aquí dice que {method:getFormattedName} ha cometido muchos crímenes.</item>
-        <item>La vida secreta de {method:getFormattedName} es muy aterradora.</item>
-        <item>Aparentemente {method:getFormattedName} es una buena persona, pero todo indica lo contrario.</item>
-        <item>La vida de {method:getFormattedName} dará un giro completo.</item>
-        <item>Las cosas se invertirán para {method:getFormattedName}.</item>
-        <item>La situación cambiará para {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} recibirá lo que merece.</item>
-        <item>{method:getFormattedName} recibirá un castigo.</item>
-        <item>{method:getFormattedName} será {[recompensad[o,a]]}.</item>
-        <item>{method:getFormattedName} tendrá una vida llena de intrigas y suspenso.</item>
-        <item>Así como lo indica el augurio, {method:getFormattedName} será una persona exitosa.</item>
-        <item>El futuro muestra cosas buenas y malas, pero {method:getFormattedName} parece tener la vida más sencilla.</item>
-        <item>El destino de {method:getFormattedName} es realmente complejo.</item>
-        <item>Dicen que {method:getFormattedName} hará cosas tan increíbles que cambiarán a la sociedad.</item>
-        <item>Uh, {method:getFormattedName} será {[un[,a]]} {[visionari[o,a]]}.</item>
-        <item>Hay cosas tan oscuras en el futuro de {method:getFormattedName}.</item>
-        <item>Incluso yo no puedo descifrar del todo lo que pasará con {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} desafía todas las posibilidades.</item>
-        <item>El destino de {method:getFormattedName} no es muy claro.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} comparten una rivalidad.</item>
-        <item>{method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName} serán parte de una disputa.</item>
-        <item>Incluso yo le temo a {method:getFormattedName}, pues es una persona realmente aterradora.</item>
-        <item>Todos debemos cuidarnos de {method:getFormattedName}.</item>
-        <item>Todos deberían conocer a {method:getFormattedName}.</item>
-        <item>Tal parece que las predicciones nunca han sido correctas para {method:getFormattedName}. Esta persona realmente desafía al futuro.</item>
-        <item>{method:getFormattedName} estima a {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} ignora el hecho de que {method:getFormattedName} puede llegar a ser un gran problema.</item>
-        <item>{method:getFormattedName} no se rinde a pesar de las desgracias.</item>
-        <item>La valentía es algo que a {method:getFormattedName} no le falta.</item>
-        <item>{method:getFormattedName} hará cosas inauditas.</item>
-        <item>Encuentro a {method:getFormattedName} realmente interesante.</item>
-        <item>{method:getFormattedName} tiene una vida intrincada.</item>
-        <item>{method:getFormattedName} es una de las personas menos conocidas que hay.</item>
-        <item>Si te das la oportunidad, {method:getFormattedName} te sorprenderá.</item>
-        <item>Un sabio alguna vez dijo que errar es humano. La persona más humana que hay, posiblemente, es {method:getFormattedName}.</item>
-        <item>Si los fracasos nos hacen sabios, {method:getFormattedName} debe ser uno de los más grandes eruditos que hay.</item>
-        <item>Te contaré la breve historia de {method:getFormattedName}, quien nació siendo uno de los más talentosos individuos y que, sin embargo, terminó negándose el éxito debido a su actitud.</item>
-        <item>{method:getFormattedName} es realmente egoísta.</item>
-        <item>{method:getFormattedName} acepta su destino.</item>
-        <item>{method:getFormattedName} es de las pocas personas que no sé cómo es que siguen aquí a pesar de todo lo que les ha pasado.</item>
-        <item>Si me preguntas, considero que {method:getFormattedName} tiene la vida más interesante.</item>
-        <item>No sé cómo es que {method:getFormattedName} puede salirse con la suya.</item>
-        <item>{method:getFormattedName} me debe mucho dinero por todas las adivinaciones.</item>
-        <item>Nunca se puede confiar en {method:getFormattedName}.</item>
-        <item>Si ves a {method:getFormattedName}, aléjate.</item>
-        <item>Me estresa lidiar con {method:getFormattedName}.</item>
-        <item>Muchos creen que pueden enfrentarse a su destino, como {[es[e,a]]} tal {method:getFormattedName}.</item>
-        <item>Hay personas quienes no hacen caso de lo que sucederá, lo cual es el caso de {method:getFormattedName}.</item>
-        <item>Nunca debes tratar con {method:getFormattedName}, pues es {[peligros[o,a]]}.</item>
-        <item>Es difícil ver el futuro de {method:getFormattedName}. Todo es borroso.</item>
-        <item>No he podido ver el futuro de {[un[,a]]} tal {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} es una de las pocas personas cuyo futuro es incierto.</item>
-        <item>{method:getFormattedName} es de las pocas personas a las cuales no se les puede realizar una adivinación.</item>
-        <item>Si ves a {method:getFormattedName}, dile que le mando saludos.</item>
-        <item>Si ves a {method:getFormattedName}, dile que {[l[o,a]]} espero para una consulta.</item>
-        <item>Relaciónate con {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName}, pues son personas buenas.</item>
-        <item>Trata con {method:getFormattedName}, pues buenas cosas podrían salir de esa relación.</item>
-        <item>Es bien sabido que {method:getFormattedName} es {[un[,a]]} {[vag[o,a]]}.</item>
-        <item>Se sabe muy bien que {method:getFormattedName} una vez logró evitar la muerte.</item>
-        <item>{method:getFormattedName} se ha salvado muchas veces de morir.</item>
-        <item>Algunos están hechos para morir hasta que logren lo inaudito, tal como {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} llevó una muy buena vida.</item>
-        <item>{method:getFormattedName} fue una de las pocas personas que se pueden considerar totalmente íntegras.</item>
-        <item>{method:getFormattedName} es una persona de fiar.</item>
-        <item>Se puede confiar totalmente en {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} es una de las personas más discretas. Yo, por otro lado, soy de las más chismosas.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} tienen problemas.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} quieren destruirse entre ellos.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} enfrentan una serie de hechos curiosos.</item>
-        <item>¿Conoces la historia de {method:getFormattedName}? ¿Uh? Pues esta es de las pocas cosas que no puedo revelar.</item>
-        <item>Revelé toda la vida de {method:getFormattedName}.</item>
-        <item>Pude adivinar todo lo que sucedería con {method:getFormattedName}.</item>
-        <item>Yo soy una entidad que ha vivido mucho tiempo. {method:getFormattedName} tuvo una vida que, a comparación de la mía, ha sido realmente mínima, casi nula.</item>
-        <item>Una vez {method:getFormattedName} dijo que {method:getFormattedName} y {method:getFormattedName} se atraían.</item>
-        <item>{method:getFormattedName} siempre ha sido indiferente.</item>
-        <item>{method:getFormattedName} por lo general es indiferente.</item>
-        <item>{method:getFormattedName} es muy egoísta.</item>
-        <item>{method:getFormattedName} es una persona muy compartida.</item>
-        <item>Auguro cosas buenas para {method:getFormattedName}.</item>
-        <item>En definitiva, {method:getFormattedName} es un desastre.</item>
-        <item>{method:getFormattedName} quiere dañar a {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} quiere que {method:getFormattedName} sea feliz.</item>
-        <item>{method:getFormattedName} actúa de manera totalmente distinta a como dice ser.</item>
-        <item>{method:getFormattedName} es {[un[,a]]} cobarde.</item>
-        <item>{method:getFormattedName} enfrenta valientemente su destino.</item>
-        <item>¿Quién diría que {method:getFormattedName} y {method:getFormattedName} se llevarían muy bien?</item>
-        <item>¿Quién pensaría que {method:getFormattedName} y {method:getFormattedName} serían muy cercanos?</item>
-        <item>Si te das la oportunidad, {method:getFormattedName} podría caerte muy bien.</item>
-        <item>Te recomiendo tratar a {method:getFormattedName}.</item>
-        <item>Debo aceptar que {method:getFormattedName} ha logrado evadir el destino.</item>
-        <item>Cuidado con {method:getFormattedName}, es una persona tramposa.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} en realidad se odian.</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} desearían no haberse conocido.</item>
-        <item>{method:getFormattedName} está buscando a {method:getFormattedName}.</item>
-        <item>Muy pocos saben llevar una buena vida, como {method:getFormattedName}.</item>
-        <item>¿Has conocido a {method:getFormattedName}?</item>
-        <item>¿Tienes idea de quién es {method:getFormattedName}?</item>
-        <item>Largos conflictos les aguardan a {method:getFormattedName} y a {method:getFormattedName}.</item>
-        <item>Una vida de paz existirá entre {method:getFormattedName} y {method:getFormattedName}.</item>
-        <item>Puedo asegurarte que {method:getFormattedName}, {method:getFormattedName} y {method:getFormattedName} van a hacer cosas buenas.</item>
-        <item>{method:getFormattedName} tiene una vida sorprendente.</item>
-        <item>Muchos sólo esperamos ver hacia el futuro, pero muchos deberíamos ver hacia el pasado, para evitar que todo se repita, como con {method:getFormattedName}.</item>
-        <item>Me agrada mucho {method:getFormattedName}.</item>
-        <item>Me desagrada {method:getFormattedName}.</item>
-        <item>Me gusta {method:getFormattedName}.</item>
-        <item>No me gusta {method:getFormattedName}.</item>
-        <item>Trágica y triste es la vida de {method:getFormattedName}.</item>
-        <item>La vida de {method:getFormattedName} es una auténtica comedia.</item>
-        <item>Me agrada la forma de ser de {method:getFormattedName}.</item>
-        <item>¿Sabes dónde está {method:getFormattedName}?</item>
-        <item>{method:getFormattedName} y {method:getFormattedName} comparten un buen destino.</item>
-        <item>Pocos logran el éxito como {method:getFormattedName}.</item>
-        <item>Deberías aprender algo de {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} conoce a {method:getFormattedName}.</item>
-        <item>Tengo que decirle algo a {method:getFormattedName}.</item>
-        <item>Debo ver el futuro de {method:getFormattedName}.</item>
-        <item>{method:getFormattedName} es una {actor:persona; id:person; grammatical-indicator:feminine} {string:adjective; defaultOverride:person}.</item>
-        <item>{method:getFormattedName} es un {actor:sujeto; id:person; grammatical-indicator:feminine} {string:adjective; defaultOverride:person}.</item>
-        <item>{method:getFormattedName} es un {actor:individuo; id:person; grammatical-indicator:feminine} {string:adjective; defaultOverride:person}.</item>
-        <item>{method:getFormattedName} y su {string:relative} se llevan muy bien.</item>
-        <item>{method:getFormattedName} y su {string:relative} tienen una mala relación.</item>
-        <item>{method:getFormattedName} y su {string:relative} se tratan muy mal.</item>
-        <item>{method:getFormattedName} y su {string:relative} tienen una relación armoniosa.</item>
-        <item>{method:getFormattedName} y su {string:relative} han hecho cosas indecibles.</item>
-        <item>{method:getFormattedName} y su {string:relative} han hecho cosas muy malas.</item>
-        <item>Tu {string:relative} se parece mucho a {method:getFormattedName}.</item>
-        <item>Tu {string:relative} ama a {method:getFormattedName}.</item>
-        <item>Tu {string:relative} odia a {method:getFormattedName}.</item>
-        <item>Tu {string:relative} ignora a {method:getFormattedName}.</item>
-        <item>Tu {string:relative} es buen amigo de {method:getFormattedName}.</item>
-        <item>Tu {string:relative} se lleva mal con {method:getFormattedName}.</item>
-        <item>Tu {string:relative} y {method:getFormattedName} son enemigos.</item>
+        <item>¿Has oído de {method:getFormattedActor}? Es mi peor enemigo.</item>
+        <item>Tú te pareces a alguien que conozco, se llama {method:getFormattedActor}.</item>
+        <item>¿De casualidad no conoces a {method:getFormattedActor}?</item>
+        <item>Tengo que ir con {method:getFormattedActor}. Me debe dinero.</item>
+        <item>Estoy enamorado de {method:getFormattedActor}.</item>
+        <item>¿Acaso has visto a {[un[,a]]; influence:@tempActor} tal {method:getFormattedActor}?</item>
+        <item>Tu {string:relative}, {method:getFormattedActor} y yo somos amantes. Todo un triángulo amoroso.</item>
+        <item>¿Eres {string:relative} de {method:getFormattedActor}? Se parecen mucho.</item>
+        <item>¿Eres acaso {string:relative} de {method:getFormattedActor}? Comparten ciertas características ustedes dos.</item>
+        <item>Me agrada verte por aquí, no como a {method:getFormattedActor}.</item>
+        <item>Oh, sí, revelé un futuro terrorífico para {method:getFormattedActor}.</item>
+        <item>El otro día {method:getFormattedActor} me pidió que le leyera el futuro.</item>
+        <item>Tantas trágicas historias se han escrito, como las de {method:getFormattedActor}.</item>
+        <item>Revelar el futuro es algo agotador, y más el futuro de {method:getFormattedActor}.</item>
+        <item>Muchas personas acuden a mí, en especial {method:getFormattedActor}, {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>¿Sabías que {method:getFormattedActor} y {method:getFormattedActor} son pareja?</item>
+        <item>Hay un destino muy cruel entre {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>Una fuerte rivalidad crece entre {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>¿Quieres saber qué pasó con {method:getFormattedActor}?</item>
+        <item>{method:getFormattedActor} acudió a mí para obtener mis conocimientos secretos.</item>
+        <item>Cuidado con {method:getFormattedActor}, es una persona muy peligrosa.</item>
+        <item>Hay una persona muy agradable llamada {method:getFormattedActor}.</item>
+        <item>Me gusta la comida, en especial aquella hecha por {method:getFormattedActor}.</item>
+        <item>Hay dos personas en este mundo a quienes deberías conocer. Ellas son {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>Tengo muchos hermanos, y mi {[favorit[o,a]]; influence:@tempActor} es {method:getFormattedActor}.</item>
+        <item>Nunca vayas a hablar con {method:getFormattedActor}, es muy {[molest[o,a]]; influence:@tempActor}.</item>
+        <item>Me encanta hacer adivinaciones para {method:getFormattedActor}.</item>
+        <item>Sí, ¿has visto a {method:getFormattedActor}? Necesito hablar con esta persona.</item>
+        <item>A ver, a ver, uh, {method:getFormattedActor}, {method:getFormattedActor}, {method:getFormattedActor}, {method:getFormattedActor}, {method:getFormattedActor}, uh… y {method:getFormattedActor}. Listo, anotados los que me faltan para predecirles su futuro.</item>
+        <item>Si te portas mal, {method:getFormattedActor} va a venir y te va a llevar.</item>
+        <item>¿Has escuchado la triste historia de {method:getFormattedActor}?</item>
+        <item>¿Has escuchado las aventuras de {method:getFormattedActor}?</item>
+        <item>¿Has escuchado las buenas noticias sobre {method:getFormattedActor}?</item>
+        <item>¿Te importaría dejarme adivinar algo sobre {method:getFormattedActor}?</item>
+        <item>¿Quién es {method:getFormattedActor}?</item>
+        <item>¿Te has encontrado con {method:getFormattedActor}?</item>
+        <item>Me gusta una persona llamada {method:getFormattedActor}.</item>
+        <item>Me gusta alguien que se llama {method:getFormattedActor}.</item>
+        <item>¿Por qué odias a {method:getFormattedActor}?</item>
+        <item>¿Te gusta una persona llamada {method:getFormattedActor}?</item>
+        <item>¿Qué sabes acerca de {method:getFormattedActor}?</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} son personas muy similares.</item>
+        <item>Dime si algún día ves a {method:getFormattedActor}.</item>
+        <item>Dime si un día conoces a {method:getFormattedActor}.</item>
+        <item>Soy una persona muy ocupada. Hoy saldré con {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} son muy buenos amigos.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} son los peores enemigos.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} se odian demasiado.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} se aman.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} siempre pelean.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} siempre tienen buenas ideas.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} se llevan muy bien.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} no se llevan bien.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} no se toleran.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} son muy cercanos.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} se entienden muy bien.</item>
+        <item>Necesito encontrar a {method:getFormattedActor}. Me debe dinero.</item>
+        <item>Estoy buscando a {method:getFormattedActor}. ¿Tú {[l[o,a]]; influence:@tempActor} has visto?</item>
+        <item>Me parece que {method:getFormattedActor} tiene un destino muy malo.</item>
+        <item>Creo que {method:getFormattedActor} tiene un buen futuro.</item>
+        <item>¿Crees que no soy real? {method:getFormattedActor} cree lo contrario.</item>
+        <item>{method:getFormattedActor} me cae muy mal.</item>
+        <item>{method:getFormattedActor} me cae muy bien.</item>
+        <item>Siento indiferencia hacia {method:getFormattedActor}.</item>
+        <item>Me agrada estar con {method:getFormattedActor}.</item>
+        <item>Odio estar con {method:getFormattedActor}.</item>
+        <item>En alguna parte, {method:getFormattedActor} conspira contra nosotros.</item>
+        <item>En algún lugar, {method:getFormattedActor} hace planes que nos beneficiarán.</item>
+        <item>{method:getFormattedActor} habla mal de {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} no para de hablar de {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} siempre tiene buenas cosas qué decir sobre {method:getFormattedActor}.</item>
+        <item>Estoy cansado de {method:getFormattedActor}.</item>
+        <item>Me gusta tratar con {method:getFormattedActor}.</item>
+        <item>Hay muchas personas a las cuales realizo predicciones, pero a {method:getFormattedActor} es a la que más le hago.</item>
+        <item>¿Conoces la leyenda de {method:getFormattedActor}?</item>
+        <item>{method:getFormattedActor} tiene un buen futuro.</item>
+        <item>{method:getFormattedActor} tiene un futuro malo.</item>
+        <item>{method:getFormattedActor} sabe muchas cosas.</item>
+        <item>{method:getFormattedActor} asegura haber visto a {method:getFormattedActor}.</item>
+        <item>Yo no creo que {method:getFormattedActor} haya encontrado a {method:getFormattedActor}.</item>
+        <item>El destino alguna vez indicó que {method:getFormattedActor} y {method:getFormattedActor} se habrían de encontrar, y así pasó.</item>
+        <item>{method:getFormattedActor} hará cosas increíbles.</item>
+        <item>{method:getFormattedActor} hará cosas terribles.</item>
+        <item>Me preocupa alguien que se llama {method:getFormattedActor}.</item>
+        <item>¿No has sabido algo sobre {method:getFormattedActor}?</item>
+        <item>{method:getFormattedActor} ya no se ha comunicado conmigo, y es preocupante.</item>
+        <item>{method:getFormattedActor} puede ganarle a {method:getFormattedActor} en una pelea.</item>
+        <item>{method:getFormattedActor} va a hacer cosas malas hoy.</item>
+        <item>{method:getFormattedActor} hará algo muy bueno en este día.</item>
+        <item>El destino no favorece a {method:getFormattedActor}.</item>
+        <item>El destino está a favor de {method:getFormattedActor}.</item>
+        <item>Esta vida quiere que triunfe {method:getFormattedActor}.</item>
+        <item>La vida ajusta las posibilidades en contra de {method:getFormattedActor}.</item>
+        <item>Esta existencia tiene cosas muy curiosas, una de ellas es una persona llamada {method:getFormattedActor}.</item>
+        <item>No me interrumpas, estoy viendo la vida de {method:getFormattedActor}.</item>
+        <item>Es interesante ver lo que pasa con {method:getFormattedActor}.</item>
+        <item>¡Quieto! Déjame ver qué sucede con {method:getFormattedActor}.</item>
+        <item>¡Alto! Necesito saber qué ocurre con {method:getFormattedActor}.</item>
+        <item>¡Oye! Tengo que conocer lo que pasará con {method:getFormattedActor}.</item>
+        <item>¡Me gusta estar con {method:getFormattedActor}!</item>
+        <item>¡Odio estar con {method:getFormattedActor}!</item>
+        <item>No, no, no, todo está mal con {method:getFormattedActor}.</item>
+        <item>Y así es la triste vida de {method:getFormattedActor}.</item>
+        <item>¡Vaya! Deberías ver lo increíble que es la vida de {method:getFormattedActor}.</item>
+        <item>Ver el futuro es entretenido. Me gusta, sobre todo, ver lo que acontece en la vida de {method:getFormattedActor}.</item>
+        <item>Estoy harto de {method:getFormattedActor}.</item>
+        <item>Estoy feliz por {method:getFormattedActor}.</item>
+        <item>Existe una tensión fuerte entre {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} aparentemente se odian, aunque realmente se aman.</item>
+        <item>El futuro es felicidad para {method:getFormattedActor}.</item>
+        <item>El futuro es tristeza para {method:getFormattedActor}.</item>
+        <item>Si tuviera una moneda cada vez que {method:getFormattedActor} dice una tontería, sería millonario.</item>
+        <item>Si tuviera una moneda por cada cosa ingeniosa que {method:getFormattedActor} dice, estaría debiendo dinero.</item>
+        <item>No hay nada como molestar a {method:getFormattedActor}.</item>
+        <item>Me gusta pasar el rato con {method:getFormattedActor}.</item>
+        <item>Tal parece que las cosas van mal entre {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>Las cosas irán mal entre {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} trata de causar mal entre {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} siempre da malos consejos a {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} es una persona muy agradable. Deberías tratarla.</item>
+        <item>Sí, lo tengo. Aquí está el destino de {method:getFormattedActor}.</item>
+        <item>Deberías ver lo que {method:getFormattedActor} está haciendo.</item>
+        <item>Tal parece que {method:getFormattedActor} está haciendo cosas malas.</item>
+        <item>{method:getFormattedActor} se está portando muy bien.</item>
+        <item>Con el fin de enfrentar a su destino, {method:getFormattedActor} hace cosas que cree que lo evitarán.</item>
+        <item>Casi nadie puede huir de su destino, en especial {method:getFormattedActor}.</item>
+        <item>¿Crees en el destino? {method:getFormattedActor} logró una vez salirse con la suya y evitarlo.</item>
+        <item>El futuro es algo inaudito, sobre todo el de {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor}, {method:getFormattedActor} y {method:getFormattedActor} son muy buenos amigos.</item>
+        <item>Necesito ver a {method:getFormattedActor}. Es urgente.</item>
+        <item>¿Has visto a {method:getFormattedActor}? Tengo que decirle algo.</item>
+        <item>Si ves a {method:getFormattedActor} dile que me pague.</item>
+        <item>¿Sabes quién es {method:getFormattedActor}?</item>
+        <item>¿Conoces a {method:getFormattedActor}?</item>
+        <item>¿Quieres oír acerca de {method:getFormattedActor}?</item>
+        <item>Ten cuidado con {method:getFormattedActor}, es {[mal[o,a]]; influence:@tempActor} con las personas que lo rodean.</item>
+        <item>Deberías ver a {method:getFormattedActor}, es muy agradable.</item>
+        <item>Honestamente, estoy cansado de predecirle el futuro a {method:getFormattedActor}.</item>
+        <item>¿Sabes algo de {method:getFormattedActor}?</item>
+        <item>¿Quieres saber lo que pasó con {method:getFormattedActor}?</item>
+        <item>¡Calma! Ya te tocará saber qué pasará contigo. Debo ver lo que {method:getFormattedActor} vivirá.</item>
+        <item>¡Déjame ver a {method:getFormattedActor}!</item>
+        <item>¡Tengo que encontrar a {method:getFormattedActor}!</item>
+        <item>¡Necesito decirle algo a {method:getFormattedActor}!</item>
+        <item>No, es muy triste lo que ocurre con {method:getFormattedActor}, {method:getFormattedActor}, {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>Si pudiera armar un grupo de tontos, elegiría a {method:getFormattedActor}, {method:getFormattedActor}, {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>El mejor grupo con el cual salir es {method:getFormattedActor}, {method:getFormattedActor}, {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>Siempre es bueno escuchar los consejos de {method:getFormattedActor}.</item>
+        <item>Tengo {[un[,a]]; influence:@tempActor} {[conocid[o,a]]; influence:@tempActor} {[llamad[o,a]]; influence:@tempActor} {method:getFormattedActor}.</item>
+        <item>Tengo {[un[,a]]; influence:@tempActor} {[amig[o,a]]; influence:@tempActor} {[llamad[o,a]]; influence:@tempActor} {method:getFormattedActor}.</item>
+        <item>Tengo {[un[,a]]; influence:@tempActor} {[enemig[o,a]]; influence:@tempActor} {[llamad[o,a]]; influence:@tempActor} {method:getFormattedActor}.</item>
+        <item>Tengo {[un[,a]]; influence:@tempActor} amante {[llamad[o,a]]; influence:@tempActor} {method:getFormattedActor}.</item>
+        <item>Soy mejor que una persona llamada {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} tiene asegurado un buen futuro.</item>
+        <item>A {method:getFormattedActor} no le espera un buen futuro.</item>
+        <item>{method:getFormattedActor} tendrá una vida llena de felicidad.</item>
+        <item>{method:getFormattedActor} tendrá una vida acompañada de tristezas.</item>
+        <item>{method:getFormattedActor} espera una vida de soledad.</item>
+        <item>{method:getFormattedActor} recibirá la fortuna con los brazos abiertos.</item>
+        <item>{method:getFormattedActor} tendrá una larga vida.</item>
+        <item>La desgracia será parte de la vida de {method:getFormattedActor}.</item>
+        <item>Ejemplos de destinos totalmente distintos entre sí serían los de {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>Buenas posibilidades le esperan a {method:getFormattedActor}.</item>
+        <item>Posibilidades malas le aguardan a {method:getFormattedActor}.</item>
+        <item>¿Sabes lo que pasará con {method:getFormattedActor}?</item>
+        <item>Parece que {method:getFormattedActor} y {method:getFormattedActor} se pertenecen.</item>
+        <item>Vaya, vaya, {method:getFormattedActor} tiene buen presagio.</item>
+        <item>La profecía indica que {method:getFormattedActor} es {[[el,la]]; influence:@tempActor} {[elegid[o,a]]; influence:@tempActor}.</item>
+        <item>{method:getFormattedActor} ha aceptado su destino.</item>
+        <item>{method:getFormattedActor} lucha vanamente contra su destino.</item>
+        <item>Tengo el presentimiento de que te has cruzado con {method:getFormattedActor}.</item>
+        <item>Tengo muy buenas noticias para {method:getFormattedActor}.</item>
+        <item>Hay muy malas noticias sobre {method:getFormattedActor}.</item>
+        <item>Tengo malas noticias para {method:getFormattedActor}.</item>
+        <item>La profecía dice que {method:getFormattedActor} será {[exitos[o,a]]; influence:@tempActor}.</item>
+        <item>{method:getFormattedActor} es la persona mencionada en la profecía.</item>
+        <item>El augurio señala prosperidad para {method:getFormattedActor}.</item>
+        <item>El augurio muestra que {method:getFormattedActor} tendrá una larga vida.</item>
+        <item>El augurio dice que {method:getFormattedActor} tendrá una vida buena.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} son personas que no se llevan entre sí.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} comparten vidas llenas de conflictos.</item>
+        <item>El destino ha sido complaciente con {method:getFormattedActor}.</item>
+        <item>La vida se encarga una y otra vez de que {method:getFormattedActor} falle.</item>
+        <item>Una cadena de éxitos ha sido predestinada para {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} va a tener una vida normal.</item>
+        <item>{method:getFormattedActor} va a tener una vida libre de problemas.</item>
+        <item>{method:getFormattedActor} tendrá una vida llena de dificultades, sin embargo, su recompensa será grande.</item>
+        <item>Aquí dice que {method:getFormattedActor} ha cometido muchos crímenes.</item>
+        <item>La vida secreta de {method:getFormattedActor} es muy aterradora.</item>
+        <item>Aparentemente {method:getFormattedActor} es una buena persona, pero todo indica lo contrario.</item>
+        <item>La vida de {method:getFormattedActor} dará un giro completo.</item>
+        <item>Las cosas se invertirán para {method:getFormattedActor}.</item>
+        <item>La situación cambiará para {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} recibirá lo que merece.</item>
+        <item>{method:getFormattedActor} recibirá un castigo.</item>
+        <item>{method:getFormattedActor} será {[recompensad[o,a]]; influence:@tempActor}.</item>
+        <item>{method:getFormattedActor} tendrá una vida llena de intrigas y suspenso.</item>
+        <item>Así como lo indica el augurio, {method:getFormattedActor} será una persona exitosa.</item>
+        <item>El futuro muestra cosas buenas y malas, pero {method:getFormattedActor} parece tener la vida más sencilla.</item>
+        <item>El destino de {method:getFormattedActor} es realmente complejo.</item>
+        <item>Dicen que {method:getFormattedActor} hará cosas tan increíbles que cambiarán a la sociedad.</item>
+        <item>Uh, {method:getFormattedActor} será {[un[,a]]; influence:@tempActor} {[visionari[o,a]]; influence:@tempActor}.</item>
+        <item>Hay cosas tan oscuras en el futuro de {method:getFormattedActor}.</item>
+        <item>Incluso yo no puedo descifrar del todo lo que pasará con {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} desafía todas las posibilidades.</item>
+        <item>El destino de {method:getFormattedActor} no es muy claro.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} comparten una rivalidad.</item>
+        <item>{method:getFormattedActor}, {method:getFormattedActor} y {method:getFormattedActor} serán parte de una disputa.</item>
+        <item>Incluso yo le temo a {method:getFormattedActor}, pues es una persona realmente aterradora.</item>
+        <item>Todos debemos cuidarnos de {method:getFormattedActor}.</item>
+        <item>Todos deberían conocer a {method:getFormattedActor}.</item>
+        <item>Tal parece que las predicciones nunca han sido correctas para {method:getFormattedActor}. Esta persona realmente desafía al futuro.</item>
+        <item>{method:getFormattedActor} estima a {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} ignora el hecho de que {method:getFormattedActor} puede llegar a ser un gran problema.</item>
+        <item>{method:getFormattedActor} no se rinde a pesar de las desgracias.</item>
+        <item>La valentía es algo que a {method:getFormattedActor} no le falta.</item>
+        <item>{method:getFormattedActor} hará cosas inauditas.</item>
+        <item>Encuentro a {method:getFormattedActor} realmente interesante.</item>
+        <item>{method:getFormattedActor} tiene una vida intrincada.</item>
+        <item>{method:getFormattedActor} es una de las personas menos conocidas que hay.</item>
+        <item>Si te das la oportunidad, {method:getFormattedActor} te sorprenderá.</item>
+        <item>Un sabio alguna vez dijo que errar es humano. La persona más humana que hay, posiblemente, es {method:getFormattedActor}.</item>
+        <item>Si los fracasos nos hacen sabios, {method:getFormattedActor} debe ser uno de los más grandes eruditos que hay.</item>
+        <item>Te contaré la breve historia de {method:getFormattedActor}, quien nació siendo uno de los más talentosos individuos y que, sin embargo, terminó negándose el éxito debido a su actitud.</item>
+        <item>{method:getFormattedActor} es realmente egoísta.</item>
+        <item>{method:getFormattedActor} acepta su destino.</item>
+        <item>{method:getFormattedActor} es de las pocas personas que no sé cómo es que siguen aquí a pesar de todo lo que les ha pasado.</item>
+        <item>Si me preguntas, considero que {method:getFormattedActor} tiene la vida más interesante.</item>
+        <item>No sé cómo es que {method:getFormattedActor} puede salirse con la suya.</item>
+        <item>{method:getFormattedActor} me debe mucho dinero por todas las adivinaciones.</item>
+        <item>Nunca se puede confiar en {method:getFormattedActor}.</item>
+        <item>Si ves a {method:getFormattedActor}, aléjate.</item>
+        <item>Me estresa lidiar con {method:getFormattedActor}.</item>
+        <item>Muchos creen que pueden enfrentarse a su destino, como {[es[e,a]]; influence:@tempActor} tal {method:getFormattedActor}.</item>
+        <item>Hay personas quienes no hacen caso de lo que sucederá, lo cual es el caso de {method:getFormattedActor}.</item>
+        <item>Nunca debes tratar con {method:getFormattedActor}, pues es {[peligros[o,a]]; influence:@tempActor}.</item>
+        <item>Es difícil ver el futuro de {method:getFormattedActor}. Todo es borroso.</item>
+        <item>No he podido ver el futuro de {[un[,a]]; influence:@tempActor} tal {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} es una de las pocas personas cuyo futuro es incierto.</item>
+        <item>{method:getFormattedActor} es de las pocas personas a las cuales no se les puede realizar una adivinación.</item>
+        <item>Si ves a {method:getFormattedActor}, dile que le mando saludos.</item>
+        <item>Si ves a {method:getFormattedActor}, dile que {[l[o,a]]; influence:@tempActor} espero para una consulta.</item>
+        <item>Relaciónate con {method:getFormattedActor}, {method:getFormattedActor} y {method:getFormattedActor}, pues son personas buenas.</item>
+        <item>Trata con {method:getFormattedActor}, pues buenas cosas podrían salir de esa relación.</item>
+        <item>Es bien sabido que {method:getFormattedActor} es {[un[,a]]; influence:@tempActor} {[vag[o,a]]; influence:@tempActor}.</item>
+        <item>Se sabe muy bien que {method:getFormattedActor} una vez logró evitar la muerte.</item>
+        <item>{method:getFormattedActor} se ha salvado muchas veces de morir.</item>
+        <item>Algunos están hechos para morir hasta que logren lo inaudito, tal como {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} llevó una muy buena vida.</item>
+        <item>{method:getFormattedActor} fue una de las pocas personas que se pueden considerar totalmente íntegras.</item>
+        <item>{method:getFormattedActor} es una persona de fiar.</item>
+        <item>Se puede confiar totalmente en {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} es una de las personas más discretas. Yo, por otro lado, soy de las más chismosas.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} tienen problemas.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} quieren destruirse entre ellos.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} enfrentan una serie de hechos curiosos.</item>
+        <item>¿Conoces la historia de {method:getFormattedActor}? ¿Uh? Pues esta es de las pocas cosas que no puedo revelar.</item>
+        <item>Revelé toda la vida de {method:getFormattedActor}.</item>
+        <item>Pude adivinar todo lo que sucedería con {method:getFormattedActor}.</item>
+        <item>Yo soy una entidad que ha vivido mucho tiempo. {method:getFormattedActor} tuvo una vida que, a comparación de la mía, ha sido realmente mínima, casi nula.</item>
+        <item>Una vez {method:getFormattedActor} dijo que {method:getFormattedActor} y {method:getFormattedActor} se atraían.</item>
+        <item>{method:getFormattedActor} siempre ha sido indiferente.</item>
+        <item>{method:getFormattedActor} por lo general es indiferente.</item>
+        <item>{method:getFormattedActor} es muy egoísta.</item>
+        <item>{method:getFormattedActor} es una persona muy compartida.</item>
+        <item>Auguro cosas buenas para {method:getFormattedActor}.</item>
+        <item>En definitiva, {method:getFormattedActor} es un desastre.</item>
+        <item>{method:getFormattedActor} quiere dañar a {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} quiere que {method:getFormattedActor} sea feliz.</item>
+        <item>{method:getFormattedActor} actúa de manera totalmente distinta a como dice ser.</item>
+        <item>{method:getFormattedActor} es {[un[,a]]; influence:@tempActor} cobarde.</item>
+        <item>{method:getFormattedActor} enfrenta valientemente su destino.</item>
+        <item>¿Quién diría que {method:getFormattedActor} y {method:getFormattedActor} se llevarían muy bien?</item>
+        <item>¿Quién pensaría que {method:getFormattedActor} y {method:getFormattedActor} serían muy cercanos?</item>
+        <item>Si te das la oportunidad, {method:getFormattedActor} podría caerte muy bien.</item>
+        <item>Te recomiendo tratar a {method:getFormattedActor}.</item>
+        <item>Debo aceptar que {method:getFormattedActor} ha logrado evadir el destino.</item>
+        <item>Cuidado con {method:getFormattedActor}, es una persona tramposa.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} en realidad se odian.</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} desearían no haberse conocido.</item>
+        <item>{method:getFormattedActor} está buscando a {method:getFormattedActor}.</item>
+        <item>Muy pocos saben llevar una buena vida, como {method:getFormattedActor}.</item>
+        <item>¿Has conocido a {method:getFormattedActor}?</item>
+        <item>¿Tienes idea de quién es {method:getFormattedActor}?</item>
+        <item>Largos conflictos les aguardan a {method:getFormattedActor} y a {method:getFormattedActor}.</item>
+        <item>Una vida de paz existirá entre {method:getFormattedActor} y {method:getFormattedActor}.</item>
+        <item>Puedo asegurarte que {method:getFormattedActor}, {method:getFormattedActor} y {method:getFormattedActor} van a hacer cosas buenas.</item>
+        <item>{method:getFormattedActor} tiene una vida sorprendente.</item>
+        <item>Muchos sólo esperamos ver hacia el futuro, pero muchos deberíamos ver hacia el pasado, para evitar que todo se repita, como con {method:getFormattedActor}.</item>
+        <item>Me agrada mucho {method:getFormattedActor}.</item>
+        <item>Me desagrada {method:getFormattedActor}.</item>
+        <item>Me gusta {method:getFormattedActor}.</item>
+        <item>No me gusta {method:getFormattedActor}.</item>
+        <item>Trágica y triste es la vida de {method:getFormattedActor}.</item>
+        <item>La vida de {method:getFormattedActor} es una auténtica comedia.</item>
+        <item>Me agrada la forma de ser de {method:getFormattedActor}.</item>
+        <item>¿Sabes dónde está {method:getFormattedActor}?</item>
+        <item>{method:getFormattedActor} y {method:getFormattedActor} comparten un buen destino.</item>
+        <item>Pocos logran el éxito como {method:getFormattedActor}.</item>
+        <item>Deberías aprender algo de {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} conoce a {method:getFormattedActor}.</item>
+        <item>Tengo que decirle algo a {method:getFormattedActor}.</item>
+        <item>Debo ver el futuro de {method:getFormattedActor}.</item>
+        <item>{method:getFormattedActor} es una {actor:persona; id:descriptor; grammatical-indicator:feminine} {string:descriptor_adjective}.</item>
+        <item>{method:getFormattedActor} es un {actor:sujeto; id:descriptor; grammatical-indicator:feminine} {string:descriptor_adjective}.</item>
+        <item>{method:getFormattedActor} es un {actor:individuo; id:descriptor; grammatical-indicator:feminine} {string:descriptor_adjective}.</item>
+        <item>{method:getFormattedActor} y su {string:relative} se llevan muy bien.</item>
+        <item>{method:getFormattedActor} y su {string:relative} tienen una mala relación.</item>
+        <item>{method:getFormattedActor} y su {string:relative} se tratan muy mal.</item>
+        <item>{method:getFormattedActor} y su {string:relative} tienen una relación armoniosa.</item>
+        <item>{method:getFormattedActor} y su {string:relative} han hecho cosas indecibles.</item>
+        <item>{method:getFormattedActor} y su {string:relative} han hecho cosas muy malas.</item>
+        <item>Tu {string:relative} se parece mucho a {method:getFormattedActor}.</item>
+        <item>Tu {string:relative} ama a {method:getFormattedActor}.</item>
+        <item>Tu {string:relative} odia a {method:getFormattedActor}.</item>
+        <item>Tu {string:relative} ignora a {method:getFormattedActor}.</item>
+        <item>Tu {string:relative} es buen amigo de {method:getFormattedActor}.</item>
+        <item>Tu {string:relative} se lleva mal con {method:getFormattedActor}.</item>
+        <item>Tu {string:relative} y {method:getFormattedActor} son enemigos.</item>
     </string-array>
     <string-array name="person">
         <item>&personType1;</item>

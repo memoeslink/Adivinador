@@ -38,7 +38,7 @@ public class Divination extends ContextWrapper {
 
     public Divination(Context context, Person person, String date) {
         super(context);
-        this.person = person != null ? person : new Person.PersonBuilder().build();
+        this.person = person != null ? person : new Person.PersonBuilder().setAttribute("empty").build();
         this.person.addAttribute("queried");
         this.person.setDescription(TextFormatter.formatDescriptor(person));
         this.date = StringHelper.defaultIfBlank(date, DateTimeHelper.getStrCurrentDate());
@@ -100,7 +100,7 @@ public class Divination extends ContextWrapper {
         }
 
         // Filter profanity
-        TextFilter textFilter = new TextFilterFactory(getBaseContext()).createTextFilter();
+        TextFilter textFilter = new TextFilterFactory(getBaseContext()).getTextFilter();
         divination = textFilter.censor(divination);
         return divination;
     }
@@ -157,7 +157,7 @@ public class Divination extends ContextWrapper {
             description = tagProcessor.replaceTags(description).getText();
             people.add(new Person.PersonBuilder()
                     .setNickname(Character.toString(letter))
-                    .setGender(tagProcessor.getActorRegistry().getOrDefault("individual").getGender())
+                    .setGender(tagProcessor.getActorRegistry().getOrDefault("individual").getTrueGender())
                     .setDescription(description)
                     .setAttribute("nonspecific")
                     .setAttribute("unknown")

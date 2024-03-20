@@ -1,3 +1,5 @@
+@file:JvmName("ViewExtensions")
+
 package com.app.memoeslink.adivinador.extensions
 
 import android.graphics.Rect

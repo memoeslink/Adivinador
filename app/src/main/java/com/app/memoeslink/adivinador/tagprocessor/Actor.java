@@ -9,28 +9,39 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Actor {
-    private String descriptor;
+    private Object descriptor;
     private Gender gender;
+    private Gender trueGender;
     private GrammaticalNumber grammaticalNumber;
+    private GrammaticalNumber trueGrammaticalNumber;
     private Set<String> attributes = new HashSet<>();
 
     public Actor() {
         descriptor = "";
         gender = Gender.UNDEFINED;
+        trueGender = Gender.UNDEFINED;
         grammaticalNumber = GrammaticalNumber.UNDEFINED;
+        trueGrammaticalNumber = GrammaticalNumber.UNDEFINED;
     }
 
-    public Actor(String descriptor) {
+    public Actor(Object descriptor) {
         this(descriptor, Gender.UNDEFINED, GrammaticalNumber.UNDEFINED);
     }
 
-    public Actor(String descriptor, Gender gender, GrammaticalNumber grammaticalNumber) {
-        this.descriptor = descriptor;
-        this.gender = gender;
-        this.grammaticalNumber = grammaticalNumber;
+    public Actor(Object descriptor, Gender gender, GrammaticalNumber grammaticalNumber) {
+        this(descriptor, gender, gender, grammaticalNumber, grammaticalNumber);
     }
 
-    public String getDescriptor() {
+    public Actor(Object descriptor, Gender gender, Gender trueGender, GrammaticalNumber grammaticalNumber, GrammaticalNumber trueGrammaticalNumber) {
+        this.descriptor = descriptor;
+        this.gender = gender;
+        this.trueGender = gender;
+        this.grammaticalNumber = grammaticalNumber;
+        this.trueGrammaticalNumber = grammaticalNumber;
+    }
+
+    public Object getDescriptor() {
+        if (descriptor instanceof String) return descriptor.toString();
         return descriptor;
     }
 
@@ -43,7 +54,15 @@ public class Actor {
     }
 
     public void setGender(Gender gender) {
-        this.gender = gender;
+        this.gender = gender != null ? gender : Gender.UNDEFINED;
+    }
+
+    public Gender getTrueGender() {
+        return trueGender != null && trueGender != Gender.UNDEFINED ? trueGender : Gender.UNDEFINED;
+    }
+
+    public void setTrueGender(Gender trueGender) {
+        this.trueGender = trueGender != null ? trueGender : Gender.UNDEFINED;
     }
 
     public GrammaticalNumber getGrammaticalNumber() {
@@ -51,7 +70,16 @@ public class Actor {
     }
 
     public void setGrammaticalNumber(GrammaticalNumber grammaticalNumber) {
-        this.grammaticalNumber = grammaticalNumber;
+        this.grammaticalNumber = grammaticalNumber != null ? grammaticalNumber : GrammaticalNumber.UNDEFINED;
+    }
+
+    public GrammaticalNumber getTrueGrammaticalNumber() {
+        return trueGrammaticalNumber != null && trueGrammaticalNumber != GrammaticalNumber.UNDEFINED ?
+                trueGrammaticalNumber : grammaticalNumber;
+    }
+
+    public void setTrueGrammaticalNumber(GrammaticalNumber trueGrammaticalNumber) {
+        this.trueGrammaticalNumber = trueGrammaticalNumber != null ? trueGrammaticalNumber : GrammaticalNumber.UNDEFINED;
     }
 
     public void setAttribute(String attribute) {

@@ -15,7 +15,7 @@ open class MenuActivity : CommonActivity() {
     protected var drawerLayout: DrawerLayout? = null
     protected var navigationView: NavigationView? = null
 
-    public override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setHomeAsUpIndicator(
             ResourcesCompat.getDrawable(
@@ -31,7 +31,7 @@ open class MenuActivity : CommonActivity() {
         return true
     }
 
-    public override fun onStart() {
+    override fun onStart() {
         super.onStart()
         invalidateOptionsMenu()
     }

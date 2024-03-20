@@ -2,6 +2,7 @@ package com.app.memoeslink.adivinador.tagprocessor;
 
 import android.util.Pair;
 
+import org.memoeslink.IntegerHelper;
 import org.memoeslink.StringHelper;
 
 import java.util.HashMap;
@@ -10,9 +11,10 @@ import java.util.regex.Pattern;
 
 public class ActorRegistry {
     private static final HashMap<String, Supplier<Actor>> RESERVED_TAGS = new HashMap<>();
-    private static final Pattern TAG_NAME_PATTERN = Pattern.compile("^" + TagProcessor.REFERENCE_REGEX + "$");
+    private static final Pattern TAG_NAME_PATTERN = Pattern.compile("^" + TagProcessor.ACTOR_ID_REGEX + "$");
+    private static final Pattern SEQUENCE_SUFFIX = Pattern.compile("^.*_" + TagProcessor.INTEGER_REGEX + "$");
     private Actor defaultActor;
-    private HashMap<String, Pair<Actor, Boolean>> compendium = new HashMap<>();
+    private final HashMap<String, Pair<Actor, RecordTemporality>> compendium = new HashMap<>();
     private DuplicateHandling duplicateHandling;
 
     public ActorRegistry() {
@@ -61,27 +63,40 @@ public class ActorRegistry {
                 (defaultHandling == DefaultHandling.NULL && (StringHelper.isNullOrBlank(tag) || compendium.containsKey(tag))) ||
                 (defaultHandling == DefaultHandling.NOT_FOUND && StringHelper.isNotNullOrBlank(tag) && !compendium.containsKey(tag))
         )
-            return compendium.getOrDefault(tag, new Pair<>(defaultActor, false)).first;
+            return compendium.getOrDefault(tag, new Pair<>(defaultActor, RecordTemporality.PERMANENT)).first;
         return null;
     }
 
-    public void put(String tag, Actor actor, boolean temporary) {
-        if (actor == null || StringHelper.isNullOrBlank(tag) || !TAG_NAME_PATTERN.matcher(tag).matches())
+    public void put(String tag, Actor actor, RecordTemporality temporality) {
+        if (actor == null || StringHelper.isNullOrBlank(tag)
+                || !TAG_NAME_PATTERN.matcher(tag).matches())
             return;
 
         if (RESERVED_TAGS.containsKey(tag)) {
             if (tag.equals("default"))
                 defaultActor = actor;
-        } else if (!compendium.containsKey(tag) || duplicateHandling == DuplicateHandling.REPLACE)
-            compendium.put(tag, new Pair<>(actor, temporary));
+            return;
+        }
+
+        if (temporality == RecordTemporality.EPHEMERAL && !StringHelper.startsWith(tag, "@"))
+            tag = "@" + tag;
+
+        if (!compendium.containsKey(tag) || duplicateHandling == DuplicateHandling.REPLACE)
+            compendium.put(tag, new Pair<>(actor, temporality));
         else if (duplicateHandling == DuplicateHandling.APPEND_SUFFIX) {
-            int index = 0;
+            int index = 2;
             String tempTag;
+
+            if (SEQUENCE_SUFFIX.matcher(tag).matches()) {
+                String sequence = StringHelper.substringAfterLast(tag, "_");
+                tag = StringHelper.substringBeforeLast(tag, "_");
+                index = IntegerHelper.tryParse(sequence, index);
+            }
 
             do {
                 tempTag = String.format("%s_%d", tag, ++index);
             } while (compendium.containsKey(tempTag) && index < Integer.MAX_VALUE);
-            compendium.put(tempTag, new Pair<>(actor, temporary));
+            compendium.put(tempTag, new Pair<>(actor, temporality));
         }
     }
 
@@ -93,7 +108,15 @@ public class ActorRegistry {
         compendium.clear();
     }
 
-    public void clearTemp() {
-        compendium.values().removeIf(p -> p.second);
+    public void clearEphemeral() {
+        compendium.values().removeIf(p -> p.second == RecordTemporality.EPHEMERAL);
+    }
+
+    public void clearTransitory() {
+        compendium.values().removeIf(p -> p.second == RecordTemporality.TRANSITORY);
+    }
+
+    public void clearNonPermanent() {
+        compendium.values().removeIf(p -> p.second != RecordTemporality.PERMANENT);
     }
 }

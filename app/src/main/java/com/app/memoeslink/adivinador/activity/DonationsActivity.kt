@@ -17,11 +17,11 @@ import games.moisoni.google_iab.models.PurchaseInfo
 
 
 class DonationsActivity : CommonActivity() {
-    private var btDonate: Button? = null
-    private var btBack: Button? = null
-    private var spnDonation: AppCompatSpinner? = null
-    private var bc: BillingConnector? = null
-    private var dialog: AlertDialog? = null
+    private lateinit var btDonate: Button
+    private lateinit var btBack: Button
+    private lateinit var spnDonation: AppCompatSpinner
+    private lateinit var bc: BillingConnector
+    private lateinit var dialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,10 +54,10 @@ class DonationsActivity : CommonActivity() {
             resources.getStringArray(R.array.donation_amount)
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spnDonation?.adapter = adapter
+        spnDonation.adapter = adapter
 
         // Set listeners
-        bc?.setBillingEventListener(object : BillingEventListener {
+        bc.setBillingEventListener(object : BillingEventListener {
             override fun onProductsFetched(productDetails: MutableList<ProductInfo>) {
             }
 
@@ -68,7 +68,7 @@ class DonationsActivity : CommonActivity() {
             }
 
             override fun onProductsPurchased(purchases: MutableList<PurchaseInfo>) {
-                dialog?.show()
+                dialog.show()
             }
 
             override fun onPurchaseAcknowledged(purchase: PurchaseInfo) {
@@ -102,18 +102,18 @@ class DonationsActivity : CommonActivity() {
             }
         })
 
-        btDonate?.setOnClickListener {
-            spnDonation?.selectedItemPosition?.let { index ->
-                bc?.purchase(this@DonationsActivity, GOOGLE_CATALOG[index])
+        btDonate.setOnClickListener {
+            spnDonation.selectedItemPosition.let { index ->
+                bc.purchase(this@DonationsActivity, GOOGLE_CATALOG[index])
             }
         }
 
-        btBack?.setOnClickListener { finish() }
+        btBack.setOnClickListener { finish() }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        bc?.release()
+        bc.release()
     }
 
     companion object {

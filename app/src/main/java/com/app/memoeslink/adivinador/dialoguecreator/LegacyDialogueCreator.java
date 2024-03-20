@@ -3,6 +3,7 @@ package com.app.memoeslink.adivinador.dialoguecreator;
 import android.content.Context;
 import android.content.ContextWrapper;
 
+import com.app.memoeslink.adivinador.MethodReference;
 import com.app.memoeslink.adivinador.R;
 import com.app.memoeslink.adivinador.ResourceExplorer;
 import com.app.memoeslink.adivinador.preference.PreferenceUtils;
@@ -22,6 +23,7 @@ public class LegacyDialogueCreator extends ContextWrapper implements DialogueCre
         Person user = PreferenceUtils.getFormPerson();
         tagProcessor = new TagProcessor.NewTagProcessorBuilder(context)
                 .setDefaultActor(new Actor(user.getDescriptor(), user.getGender(), GrammaticalNumber.SINGULAR))
+                .setActor("actor1", new Actor(explorer.findMethodByRef(MethodReference.FORMATTED_INDIVIDUAL)))
                 .setSeed(seed)
                 .build();
     }

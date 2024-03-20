@@ -24,12 +24,11 @@ import org.memoeslink.Validation
 import kotlin.math.abs
 
 class InputActivity : CommonActivity() {
-    private var tvName: AppCompatAutoCompleteTextView? = null
-    private var rgGender: RadioGroup? = null
-    private var dpBirthdate: CustomDatePicker? = null
-    private var btBack: Button? = null
-    private var listener: OnSharedPreferenceChangeListener? =
-        null // Declared as global to avoid destruction by JVM Garbage Collector
+    private lateinit var tvName: AppCompatAutoCompleteTextView
+    private lateinit var rgGender: RadioGroup
+    private lateinit var dpBirthdate: CustomDatePicker
+    private lateinit var btBack: Button
+    private lateinit var listener: OnSharedPreferenceChangeListener // Declared as global to avoid destruction by JVM Garbage Collector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,13 +44,13 @@ class InputActivity : CommonActivity() {
         )?.takeUnless { name ->
             name.isBlank()
         }?.let { name ->
-            tvName?.setText(name)
+            tvName.setText(name)
         }
 
         PreferenceHandler.getIntOrNull(
             Preference.TEMP_GENDER
         )?.let { gender ->
-            (rgGender?.getChildAt(gender.coerceAtLeast(0)) as RadioButton).isChecked = true
+            (rgGender.getChildAt(gender.coerceAtLeast(0)) as RadioButton).isChecked = true
         } ?: PreferenceHandler.put(
             Preference.TEMP_GENDER, Gender.NEUTRAL.value
         )
@@ -91,7 +90,7 @@ class InputActivity : CommonActivity() {
         if (PreferenceHandler.getBoolean(Preference.TEMP_BUSY)) toggleViews(false)
 
         // Set listeners
-        tvName?.addTextChangedListener(object : TextWatcher {
+        tvName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }
 
@@ -108,7 +107,7 @@ class InputActivity : CommonActivity() {
             }
         })
 
-        rgGender?.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int ->
+        rgGender.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int ->
             val gender = when (checkedId) {
                 R.id.input_gender_undefined_option -> Gender.NEUTRAL
                 R.id.input_gender_male_option -> Gender.MASCULINE
@@ -120,7 +119,7 @@ class InputActivity : CommonActivity() {
             )
         }
 
-        dpBirthdate?.init(
+        dpBirthdate.init(
             currentDate.year, currentDate.monthValue - 1, currentDate.dayOfMonth
         ) { _: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
             PreferenceHandler.put(
@@ -134,7 +133,7 @@ class InputActivity : CommonActivity() {
             )
         }
 
-        btBack?.setOnClickListener { finish() }
+        btBack.setOnClickListener { finish() }
 
         listener = OnSharedPreferenceChangeListener { _: SharedPreferences?, key: String? ->
             if (key == Preference.TEMP_BUSY.tag) toggleViews(true)
@@ -143,12 +142,12 @@ class InputActivity : CommonActivity() {
         PreferenceHandler.changePreferencesListener(listener)
     }
 
-    public override fun onStart() {
+    override fun onStart() {
         super.onStart()
 
         // Get stored names
-        PreferenceUtils.getStoredNames().takeIf { it.isNotEmpty() }?.let { storedNames ->
-            tvName?.setAdapter(
+        PreferenceUtils.getRegistryNames().takeIf { it.isNotEmpty() }?.let { storedNames ->
+            tvName.setAdapter(
                 ArrayAdapter(
                     this@InputActivity,
                     android.R.layout.simple_dropdown_item_1line,
@@ -158,25 +157,21 @@ class InputActivity : CommonActivity() {
         }
     }
 
-    public override fun onDestroy() {
-        PreferenceHandler.getStringOrNull(
-            Preference.TEMP_NAME
-        )?.takeUnless { name ->
-            name.isBlank()
-        }?.let { name ->
-            PreferenceUtils.saveName(name)
-            val person = PreferenceUtils.getFormPerson()
-            PreferenceUtils.savePerson(person)
-        }
+    override fun onDestroy() {
+        PreferenceHandler.getStringOrNull(Preference.TEMP_NAME)?.takeUnless(String::isBlank)
+            ?.let { name ->
+                PreferenceUtils.saveNameToRegistry(name)
+                PreferenceUtils.savePersonToRegistry(PreferenceUtils.getFormPerson())
+            }
         super.onDestroy()
     }
 
     private fun toggleViews(enabled: Boolean) {
-        dpBirthdate?.isClickable = enabled
-        dpBirthdate?.isEnabled = enabled
-        tvName?.isClickable = enabled
-        tvName?.isEnabled = enabled
-        rgGender?.isClickable = enabled
-        rgGender?.isEnabled = enabled
+        dpBirthdate.isClickable = enabled
+        dpBirthdate.isEnabled = enabled
+        tvName.isClickable = enabled
+        tvName.isEnabled = enabled
+        rgGender.isClickable = enabled
+        rgGender.isEnabled = enabled
     }
 }
